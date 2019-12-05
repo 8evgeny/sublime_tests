@@ -7,6 +7,7 @@ using namespace std;
 
  
 int main ()
+
 {
 time_t seconds = time(NULL);
 tm* timeinfo = localtime(&seconds);
