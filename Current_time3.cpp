@@ -19,6 +19,6 @@ int main ()
   seconds = difftime(timer,mktime(&y2k));
 
   printf ("%.f seconds since January 1, 2000 in the current timezone", seconds);
-  system("PAUSE");
+  // system("PAUSE");
   return 0;
 }
