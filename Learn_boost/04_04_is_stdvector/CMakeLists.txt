@@ -1,0 +1,16 @@
+set(CMAKE_CXX_STANDARD 17)
+   
+
+ADD_EXECUTABLE(04_04_is_stdvector main.cpp  )
+
+ target_link_libraries(04_04_is_stdvector
+    PUBLIC libpqxx
+    PUBLIC boost_thread
+    PUBLIC boost_system
+    Qt5::Core
+    Qt5::Widgets
+        # CONFIG
+        )
+
+
+

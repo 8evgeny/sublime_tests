@@ -1,0 +1,7 @@
+set(CMAKE_CXX_STANDARD 17)
+   
+
+ADD_EXECUTABLE(C++_STL ex02-02.cpp )
+
+
+

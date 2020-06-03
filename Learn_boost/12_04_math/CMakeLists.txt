@@ -1,0 +1,16 @@
+set(CMAKE_CXX_STANDARD 17)
+   
+
+ADD_EXECUTABLE(12_04_math main.cpp)
+
+ target_link_libraries(12_04_math
+    PUBLIC libpqxx
+    PUBLIC boost_thread
+    PUBLIC boost_system
+    Qt5::Core
+    Qt5::Widgets
+        # CONFIG
+        )
+
+
+
