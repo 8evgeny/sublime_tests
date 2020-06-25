@@ -1,0 +1,29 @@
+// fo/compose3.cpp
+#include <iostream>
+#include <algorithm>
+#include <functional>
+#include <string>
+#include <cctype>
+#include "compose22.hpp"
+using namespace std;
+
+int main()
+{
+    string s("Internationalization");
+    string sub("Nation");
+
+    // Поиск подстроки без учета регистра символов
+    string::iterator pos;
+    pos = search (s.begin(),s.end(),           // Строка 
+                  sub.begin(),sub.end(),       // Искомая подстрока
+                  compose_f_gx_hy(equal_to<int>(), // Критерий сравнения
+                                  ptr_fun(::toupper),
+                                  ptr_fun(::toupper)));
+
+    if (pos != s.end()) {
+        cout << "\"" << sub << "\" is part of \"" << s << "\""
+             << endl;
+    }
+}
+
+

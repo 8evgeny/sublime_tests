@@ -1,0 +1,26 @@
+// ѕолучение индекса дл€ новых данных ostream
+static const int iword_index = std::ios_base::xalloc();
+
+// ќпределение манипул€тора дл€ модификации этих данных
+std::ostream& fraction_spaces (std::ostream& strm)
+{
+    strm.iword(iword_index) = true;
+    return strm;
+}
+
+std::ostream& operator<< (std::ostream& strm, const Fraction& f)
+{
+    /* «апросить данные у ostream
+     * - true: использовать пробелы между числителем и знаменателем
+     * - false: выводить без пробелов
+     */
+    if (stem.iword(iword_index)) {
+        strm << f.numerator() << " / " << f.denominator();
+    }
+    else {
+        strm << f.numerator() << "/" << f.denominator();
+    }
+    return strm;
+}
+
+

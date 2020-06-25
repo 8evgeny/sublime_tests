@@ -1,0 +1,26 @@
+// string/iter1.cpp
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <cctype>
+using namespace std;
+
+int main()
+{
+    // Создание строки
+    string s("The zip code of Hondelage in Germany is 38108");
+    cout << "original: " << s << endl;
+    // Преобразование всех символов к нижнему регистру
+    transform (s.begin(), s.end(),    // Источник
+               s.begin(),             // Приемник
+               tolower);              // Операция
+    cout << "lowered:  " << s << endl;
+
+    // Преобразование всех символов к верхнему регистру
+    transform (s.begin(), s.end(),    // Источник
+               s.begin(),             // Приемник
+               toupper);              // Операция
+    cout << "uppered:  " << s << endl;
+}
+
+

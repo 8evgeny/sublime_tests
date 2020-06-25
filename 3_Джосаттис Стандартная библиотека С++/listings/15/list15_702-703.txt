@@ -1,0 +1,25 @@
+namespace std {
+    template <class T,
+              class Allocator = allocator<T> >
+    class vector {
+        ...
+        private:
+          Allocator alloc;       // Распределитель
+          T*        elems;       // Массив элементов
+          size_type numElems;    // Количество элементов
+          size_type sizeElems;   // Объем памяти для хранения элементов
+          ...
+
+        public:
+          // Конструкторы
+          explicit vector(const Allocator&=Allocator());
+          explicit vector(size_type num, const T& val=T(),
+                          const Allocator& = Allocator());
+          template <class InputIterator>
+          vector(InputIterator beg, InputIterator end,
+                 const Allocator& = Allocator());
+          vector(const vector<T,Allocator>& v);
+    };
+}
+
+

@@ -1,0 +1,43 @@
+// iter/assoiter.cpp
+#include <iostream>
+#include <set>
+#include <algorithm>
+using namespace std;
+
+#include "print.hpp"
+
+#include "assoiter.hpp"
+
+int main()
+{
+    set<int> coll;   
+
+    // Создание итератора вставки для coll
+    // - неудобный способ
+    asso_insert_iterator<set<int> > iter(coll);
+
+    // Вставка элементов через обычный интерфейс итераторов
+    *iter = 1;
+    iter++;
+    *iter = 2;
+    iter++;
+    *iter = 3;
+
+    PRINT_ELEMENTS(coll);
+
+    // Создание итератора вставки для coll и вставка элементов
+    // - удобный способ
+    asso_inserter(coll) = 44;
+    asso_inserter(coll) = 55;
+
+    PRINT_ELEMENTS(coll);
+
+    // Использование итератора вставки с алгоритмом
+    int vals[] = { 33, 67, -4, 13, 5, 2 };
+    copy (vals, vals+(sizeof(vals)/sizeof(vals[0])),  // Источник
+          asso_inserter(coll));                       // Приемник
+
+    PRINT_ELEMENTS(coll);
+}
+
+

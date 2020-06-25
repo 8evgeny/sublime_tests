@@ -1,0 +1,23 @@
+namespace std {
+	    template <class InputIter, class ForwIter>
+	    ForwIter uninitialized_fill_n (InputIter beg, InputIter end,
+	                                   ForwIter dest)
+	    {
+	        typedef typename iterator_traits<ForwIter>::value_type VT;
+	        ForwIter save(dest);
+	        try {
+	            for (; beg!=end; ++beg,++dest) {
+	                new (static_cast<void*>(&*dest))VT(value);
+	            }
+	            return dest;
+	        }
+	        catch (...) {
+	            for (; save!=dest; ++save) {
+	                save->~VT();
+	            }
+	            throw;
+	        }
+	    }
+	}
+
+

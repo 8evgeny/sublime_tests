@@ -1,0 +1,24 @@
+// iter/istriter.cpp
+#include <iostream>
+#include <iterator>
+using namespace std;
+
+int main()
+{
+    // —оздание потокового итератора ввода дл€ чтени€ целых чисел из cin
+    istream_iterator<int> intReader(cin);
+
+    // —оздание итератора конца потока данных
+    istream_iterator<int> intReaderEOF;
+
+    /* ѕока удаетс€ читать лексемы потоковым итератором ввода, 
+     * - дважды вывести прочитанное значение
+     */
+    while (intReader != intReaderEOF) {
+        cout << "once:       " << *intReader << endl;
+        cout << "once again: " << *intReader << endl;
+        ++intReader;
+    }
+}
+
+

@@ -1,0 +1,23 @@
+// i18n/loc1.cpp
+#include <iostream>
+#include <locale>
+using namespace std;
+
+int main()
+{
+    // »спользование классического локального контекста C
+    // дл€ чтени€ данных из стандартного ввода
+    cin.imbue(locale::classic());
+
+    // »спользование немецкого локального контекста
+    // дл€ записи данных в стандартный вывод
+    cout.imbue(locale("de_DE"));
+
+    // „тение и запись вещественных чисел в цикле
+    double value;
+    while (cin >> value) {
+        cout << value << endl;
+    }
+}
+
+

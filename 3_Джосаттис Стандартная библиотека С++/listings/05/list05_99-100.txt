@@ -1,0 +1,33 @@
+// stl/set1.cpp
+#include <iostream>
+#include <set>
+
+int main()
+{
+    // Тип коллекции
+    typedef std::set<int> IntSet;
+
+    IntSet coll;        // Контейнер для целых чисел
+
+    // Вставка элементов со значениями от 1 до 6
+     * - значение 1 вставляется дважды
+     */
+    coll.insert(3);
+    coll.insert(1);
+    coll.insert(5);
+    coll.insert(4);
+    coll.insert(1);
+    coll.insert(6);
+    coll.insert(2);
+
+    /* Вывод содержимого множества
+     * - перебор всех элементов.
+     */
+    IntSet::const_iterator pos;
+    for (pos = coll.begin(); pos != coll.end(); ++pos) {
+        std::cout << *pos << ' ';
+    }
+    std::cout << std::endl;
+}
+
+

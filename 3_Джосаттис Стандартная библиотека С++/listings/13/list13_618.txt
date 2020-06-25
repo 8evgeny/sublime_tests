@@ -1,0 +1,29 @@
+// io1/rw1.cpp
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    // Открытие файла "example.dat" для чтения и записи
+    filebuf buffer;
+    ostream output(&buffer);
+    istream input(&buffer);
+    buffer.open ("example.dat", ios::in | ios::out | ios::trunc);
+
+    for (int i=1; i<=4; i++) {
+        // Запись одной строки
+        output << i << ". line" << endl;
+
+        // Вывод всего содержимого файла
+        input.seekg(0);          // Позиционирование в начало
+        char c;
+        while (input.get(c)) {
+            cout.put(c);
+        }
+        cout << endl;
+        input.clear();           // Сброс флагов eofbit и failbit
+    }
+}
+
+

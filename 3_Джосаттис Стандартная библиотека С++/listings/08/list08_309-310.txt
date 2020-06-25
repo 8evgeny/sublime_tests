@@ -1,0 +1,21 @@
+// fo/memfun1b.cpp
+void ptrfoo (const std::vector<Person*>& coll)
+                                   // ^^^ указатель!
+{
+    using std::for_each;
+    using std::bind2nd;
+    using std::mem_fun;
+
+    // Вызов функции print() для каждого объекта,
+    // на который ссылается указатель
+    for_each (coll.begin(), coll.end(),
+              mem_fun(&Person::print));
+    // Вызов функции printWithPrefix () для каждого объекта,
+    // на который ссылается указатель
+    // - строка "person: " передается при вызове
+    for_each (coll.begin(), coll.end(),
+              bind2nd(mem_fun(&Person::printWithPrefix),
+                      "person: "));
+}
+
+

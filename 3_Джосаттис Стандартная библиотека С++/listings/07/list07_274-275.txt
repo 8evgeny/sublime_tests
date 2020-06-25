@@ -1,0 +1,37 @@
+// iter/reviter4.cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    list<int> coll;
+
+    // Вставка элементов со значениями от 1 до 9
+    for (int i=1; i<=9; ++i) {
+        coll.push_back(i);
+    }
+
+    // Поиск позиции элемента со значением 5
+    list<int>::iterator pos;
+    pos = find (coll.begin(), coll.end(),    // Интервал
+                5);                          // Значение
+    // Вывод значения элемента
+    cout << "pos:   " << *pos << endl;
+
+    // Преобразование итератора в обратный итератор
+    list<int>::reverse_iterator rpos(pos);
+
+    // Вывод значения элемента, на который ссылается обратный итератор
+    cout << "rpos:  " << *rpos << endl;
+
+    // Преобразование обратного итератора в обычный
+    list<int>::iterator rrpos;
+    rrpos = rpos.base();
+
+    // Вывод значения элемента, на который ссылается итератор
+    cout << "rrpos: " << *rrpos << endl;
+}
+
+

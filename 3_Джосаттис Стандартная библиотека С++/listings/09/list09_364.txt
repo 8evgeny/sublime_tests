@@ -1,0 +1,39 @@
+// algo/transf2.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    vector<int> coll1;
+    list<int> coll2;
+
+    INSERT_ELEMENTS(coll1,1,9);
+    PRINT_ELEMENTS(coll1,"coll1:   ");
+
+    // Возведение элементов в квадрат
+    transform (coll1.begin(), coll1.end(),       // Первый источник
+               coll1.begin(),                    // Второй источник
+               coll1.begin(),                    // Приемник
+               multiplies<int>());               // Операция
+    PRINT_ELEMENTS(coll1,"squared: ");
+
+    /* Сложить каждый элемент в порядке прямого перебора
+     * с соответствующим элементом в порядке обратного перебора
+     * и вставить результат в coll2
+     */
+    transform (coll1.begin(), coll1.end(),       // Первый источник
+               coll1.rbegin(),                   // Второй источник
+               back_inserter(coll2),             // Приемник
+               plus<int>());                     // Операция
+    PRINT_ELEMENTS(coll2,"coll2:   ");
+
+    // Вывод разностей соответствующих элементов
+    cout << "diff:    ";
+    transform (coll1.begin(), coll1.end(),       // Первый источник
+               coll2.begin(),                    // Второй источник
+               ostream_iterator<int>(cout, " "), // Приемник
+               minus<int>());                    // Операция
+    cout << endl;
+}
+
+

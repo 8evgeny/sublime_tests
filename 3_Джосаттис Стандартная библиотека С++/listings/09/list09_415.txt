@@ -1,0 +1,39 @@
+// algo/accu1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    vector<int> coll;
+
+    INSERT_ELEMENTS(coll,1,9);
+    PRINT_ELEMENTS(coll);
+
+    // Вычисление суммы элементов
+    cout << "sum: "
+         << accumulate (coll.begin(), coll.end(),    // Интервал
+                        0)                           // Начальное значение
+         << endl;
+
+    // Вычисление суммы элементов с вычетом 100
+    cout << "sum: "
+         << accumulate (coll.begin(), coll.end(),    // Интервал
+                        -100)                        // Начальное значение
+         << endl;
+
+    // Вычисление произведения элементов
+    cout << "product: "
+         << accumulate (coll.begin(), coll.end(),    // Интервал
+                        1,                           // Начальное значение
+                        multiplies<int>())           // Операция
+         << endl;
+
+    // Вычисление произведения элементов (с начальным значением 0)
+    cout << "product: "
+         << accumulate (coll.begin(), coll.end(),    // Интервал
+                        0,                           // Начальное значение
+                        multiplies<int>())           // Операция
+         << endl;
+}
+
+

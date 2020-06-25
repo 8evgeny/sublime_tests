@@ -1,0 +1,47 @@
+// io/sum1a.cpp
+#include <istream>
+
+namespace MyLib {
+    double readAndProcessSum (std::istream& strm)
+    {
+        using std::ios;
+        double value, sum;
+    
+        // Сохранение текущего состояния флагов исключений
+        ios::iostate oldExceptions = strm.exceptions();
+    
+        /* Выдача исключений при установке флагов failbit и badbit
+         * - ВНИМАНИЕ: флаг failbit также устанавливается
+         *   при достижении конца файла
+         */
+        strm.exceptions (ios::failbit | ios::badbit);
+    
+        try {
+            /* Пока поток находится в нормальном состоянии
+             * - прочитать значение и прибавить его к сумме
+             */
+            sum = 0;
+            while (strm >> value) {
+                sum += value;
+            }
+        }
+        catch (...) {
+            /* Если исключение произошло не из-за достижения конца файла,
+             * - восстановить старую маску исключений
+             * - перезапустить исключение
+             */
+            if (!strm.eof()) {
+                strm.exceptions(oldExceptions);  // Восстановление маски
+                throw;                           // Перезапуск исключения
+            }
+        }
+    
+        // Восстановление старой маски исключений
+        strm.exceptions (oldExceptions);
+    
+        // Возврат суммы
+        return sum;
+    }
+}
+
+

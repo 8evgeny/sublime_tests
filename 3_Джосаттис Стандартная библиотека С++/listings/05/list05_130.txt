@@ -1,0 +1,33 @@
+// stl/transform1.cpp
+#include <iostream>
+#include <vector>
+#include <set>
+#include <algorithm>
+#include "print.hpp"
+
+int square (int value)
+{
+    return value*value;
+}
+
+int main()
+{
+    std::set<int>    coll1;
+    std::vector<int> coll2;
+
+    // Вставка элементов со значениями от 1 до 9 в coll1
+    for (int i=1; i<=9; ++i) {
+        coll1.insert(i);
+    }
+    PRINT_ELEMENTS(coll1,"initialized: ");
+
+    // Преобразовоание каждого элемента при копировании из coll1 в coll2
+    // - square transformed values
+    std::transform (coll1.begin(),coll1.end(),    // Источник
+                    std::back_inserter(coll2),    // Приемник
+                    square);                      // Операция
+
+    PRINT_ELEMENTS(coll2,"squared:     ");
+}
+
+

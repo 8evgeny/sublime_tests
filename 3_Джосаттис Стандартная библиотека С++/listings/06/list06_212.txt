@@ -1,0 +1,15 @@
+typedef std::multimap<std::string,float> StringFloatMap;
+StringFloatMap coll;
+StringFloatMap::iterator pos;
+...
+// Удаление всех элементов с заданным значением
+for (pos = coll.begin(); pos != coll.end(); ) {
+    if (pos->second == value) {
+        coll.erase(pos++);
+    }
+    else {
+        ++pos;
+    }
+}
+
+

@@ -1,0 +1,30 @@
+class ClassB {
+  private:
+    const std::auto_ptr<ClassA> ptr1;      // Переменные auto_ptr
+    const std::auto_ptr<ClassA> ptr2;
+  public:
+    // Конструктор, инициализирующий auto_ptr.
+    // Утечка ресурсов невозможна.
+    ClassB (ClassA val1, ClassA val2)
+     : ptr1(new ClassA(val1)), ptr2(new ClassA(val2)) {
+    }
+
+    // Копирующий конструктор.
+    // Утечка ресурсов невозможна.
+    ClassB (const ClassB& x)
+     : ptr1(new ClassA(*x.ptr1)), ptr2(new ClassA(*x.ptr2)) {
+    }
+
+    // Оператор присваивания
+    const ClassB& operator= (const ClassB& x) {
+        *ptr1 = *x.ptr1;
+        *ptr2 = *x.ptr2;
+        return *this;
+    }
+
+    // Деструктор не нужен (деструктор по умолчанию 
+    // дает возможность ptr1 и ptr2 уничтожить их объекты).
+    ...
+};
+
+

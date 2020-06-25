@@ -1,0 +1,59 @@
+// num/slice1.cpp
+#include <iostream>
+#include <valarray>
+using namespace std;
+
+// Вывод массива значений по строкам
+template<class T>
+void printValarray (const valarray<T>& va, int num)
+{
+    for (int i=0; i<va.size()/num; ++i) {
+        for (int j=0; j<num; ++j) {
+            cout << va[i*num+j] << ' ';
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+int main()
+{
+    /* Массив значений с 12 элементами
+     * - четыре строки
+     * - три столбца
+     */
+    valarray<double> va(12);
+
+    // Заполнение массива данными
+    for (int i=0; i<12; i++) {
+        va[i] = i;
+    }
+
+    printValarray (va, 3);
+
+    // первый столбец = второй столбец,
+    // возведенный в степень третьего столбца
+    va[slice(0,4,3)] = pow (valarray<double>(va[slice(1,4,3)]),
+                            valarray<double>(va[slice(2,4,3)]));
+
+    printValarray (va, 3);
+
+    // Создание массива значений valarray с троекратным повторением
+    // третьего элемента va
+    valarray<double> vb(va[slice(2,4,0)]);
+
+    // Умножение третьего столбца на элементы vb
+    va[slice(2,4,3)] *= vb;
+
+    printValarray (va, 3);
+
+    // Вывод квадратных корней из элементов второй строки
+    printValarray (sqrt(valarray<double>(va[slice(3,3,1)])), 3);
+
+    // Удвоение элементов третьей строки
+    va[slice(2,4,3)] = valarray<double>(va[slice(2,4,3)]) * 2.0;
+
+    printValarray (va, 3);
+}
+
+

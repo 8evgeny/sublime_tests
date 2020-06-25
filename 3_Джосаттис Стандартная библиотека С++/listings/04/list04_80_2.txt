@@ -1,0 +1,26 @@
+// util/minmax.cpp
+#include <algorithm>
+using namespace std;
+
+/* Функция сравнивает два указателя путем сравнения значений, 
+ * на которые они ссылаются
+ */
+bool int_ptr_less (int* a, int* b)
+{
+    return *a < *b;
+}
+
+int main()
+{
+    int x = 17;
+    int y = 42;
+    int* px = &x;
+    int* py = &y;
+    int* pmax;
+
+    // Вызов max() с передачей функции сравнения
+    pmax = max (px, py, int_ptr_less);
+    //...
+}
+
+

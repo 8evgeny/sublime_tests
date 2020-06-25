@@ -1,0 +1,43 @@
+// algo/find1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    list<int> coll;
+
+    INSERT_ELEMENTS(coll,1,9);
+    INSERT_ELEMENTS(coll,1,9);
+
+    PRINT_ELEMENTS(coll,"coll: ");
+
+    // Поиск первого элемента со значением 4
+    list<int>::iterator pos1;
+    pos1 = find (coll.begin(), coll.end(),    // Интервал
+                 4);                          // Значение
+
+    /* Поиск второго элемента со значением 4
+     * - поиск начинается после позиции первого найденного элемента
+     * - со значением 4 (если он есть)
+     */
+    list<int>::iterator pos2;
+    if (pos1 != coll.end()) {
+        pos2 = find (++pos1, coll.end(),      // Интервал
+                     4);                      // Значение
+    }
+
+    /* Вывод всех элементов от первого до второго элемента
+     * со значением 4, включая оба элемента
+     * - Итератор pos1 необходимо вернуть к позиции первого элемента
+     *   со значением 4 (если он есть)
+     * - конец интервала определяется позицией за вторым элементом
+     *   со значением 4 (если он есть)
+     */
+    if (pos1!=coll.end() && pos2!=coll.end()) {
+        copy (--pos1, ++pos2,
+              ostream_iterator<int>(cout," "));
+        cout << endl;
+    }
+}
+
+

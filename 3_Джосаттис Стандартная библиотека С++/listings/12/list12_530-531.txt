@@ -1,0 +1,48 @@
+// num/val2.cpp
+#include <iostream>
+#include <valarray>
+using namespace std;
+
+// ¬ывод массива значений
+template <class T>
+void printValarray (const valarray<T>& va)
+{
+    for (int i=0; i<va.size(); i++) {
+        cout << va[i] << ' ';
+    }
+    cout << endl;
+}
+int main()
+{
+    // —оздание и инициализаци€ массивов значений с дев€тью элементами
+    valarray<double> va(9);
+    for (int i=0; i<va.size(); i++) {
+        va[i] = i * 1.1;
+    }
+
+    // ¬ывод массива значений
+    printValarray(va);
+
+    // ”двоение элементов массива
+    va *= 2.0;
+
+    // ѕовторный вывод массива значений
+    printValarray(va);
+
+    // —оздание второго массива значений, инициализированного
+    // элементами первого массива, увеличенными на 10
+    valarray<double> vb(va+10.0);
+
+    // ¬ывод второго массива значений
+    printValarray(vb);
+
+    // —оздание третьего массива значений и его инициализаци€
+    // результатом выполнени€ операций с обоими существующими массивами.
+    valarray<double> vc;
+    vc = sqrt(va) + vb/2.0 - 1.0;
+    
+    // ¬ывод третьего массива значений
+    printValarray(vc);
+}
+
+

@@ -1,0 +1,42 @@
+// string/unique.cpp
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <locale>
+using namespace std;
+
+class bothWhiteSpaces {
+  private:
+    const locale& loc;    // Локальный контекст
+  public:
+    /* Конструктор
+     * - сохранение объекта локального контекста
+     */
+    bothWhiteSpaces (const locale& l) : loc(l) {
+    }
+    /* Функция проверяет, являются ли оба символа пропусками
+     */
+    bool operator() (char elem1, char elem2) {
+        return isspace(elem1,loc) && isspace(elem2,loc);
+    }
+};
+
+int main()
+{
+    string contents;
+
+    // Не игнорировать начальные пропуски
+    cin.unsetf (ios::skipws);
+
+    // Чтение всех символов со сжатием пропусков
+    unique_copy(istream_iterator<char>(cin),    // Начало источника
+                istream_iterator<char>(),       // Конец источника
+                back_inserter(contents),        // Приемник
+                bothWhiteSpaces(cin.getloc())); // Критерий удаления
+
+    // Обработка содержимого
+    // - в данном случае - запись в стандартный вывод
+    cout << contents;
+}
+
+

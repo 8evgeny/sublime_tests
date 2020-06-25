@@ -1,0 +1,31 @@
+// algo/remove1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    vector<int> coll;
+
+    INSERT_ELEMENTS(coll,2,6);
+    INSERT_ELEMENTS(coll,4,9);
+    INSERT_ELEMENTS(coll,1,7);
+    PRINT_ELEMENTS(coll,"coll:               ");
+
+    // Удаление всех элементов со значением 5
+    vector<int>::iterator pos;
+    pos = remove(coll.begin(), coll.end(),   // Интервал
+                 5);                         // Удаляемое значение
+
+    PRINT_ELEMENTS(coll,"size not changed:   ");
+    // Стирание "удаленных" элементов из контейнера
+    coll.erase(pos, coll.end());
+    PRINT_ELEMENTS(coll,"size changed:       ");
+
+    // Удаление всех элементов со значением меньше 4
+    coll.erase(remove_if(coll.begin(), coll.end(),  // Интервал
+                         bind2nd(less<int>(),4)),   // Критерий удаления
+               coll.end());
+    PRINT_ELEMENTS(coll,"<4 removed:         ");
+}
+
+

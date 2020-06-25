@@ -1,0 +1,17 @@
+template <class ForwardIterator>
+void shift_left (ForwardIterator beg, ForwardIterator end)
+{
+    // Временная переменная для первого элемента
+    typedef typename
+    std::iterator_traits<ForwardIterator>::value_type value_type;
+
+    if (beg != end) {
+        // Сохранить значение первого элемента
+        value_type tmp(*beg);
+
+        // Сдвиг следующих значений
+        ...
+    }
+}
+
+

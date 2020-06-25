@@ -1,0 +1,26 @@
+// algo/sort1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    deque<int> coll;
+
+    INSERT_ELEMENTS(coll,1,9);
+    INSERT_ELEMENTS(coll,1,9);
+
+    PRINT_ELEMENTS(coll,"on entry: ");
+
+    // Сортировка элементов
+    sort (coll.begin(), coll.end());
+
+    PRINT_ELEMENTS(coll,"sorted:   ");
+
+    // Сортировка в обратном порядке
+    sort (coll.begin(), coll.end(),    // Интервал
+          greater<int>());             // Критерий сортировки
+
+    PRINT_ELEMENTS(coll,"sorted >: ");
+}
+
+

@@ -1,0 +1,46 @@
+// iter/reviter3.cpp
+#include <iostream>
+#include <deque>
+#include <algorithm>
+using namespace std;
+
+void print (int elem)
+{
+    cout << elem << ' ';
+}
+
+int main()
+{
+    deque<int> coll;
+
+    // Вставка элементов со значениями от 1 до 9
+    for (int i=1; i<=9; ++i) {
+        coll.push_back(i);
+    }
+
+    // Поиск позиции элемента со значением 2
+    deque<int>::iterator pos1;
+    pos1 = find (coll.begin(), coll.end(),    // Интервал
+                 2);                          // Значение
+
+    // Поиск позиции элемента со значением 7
+    deque<int>::iterator pos2;
+    pos2 = find (coll.begin(), coll.end(),    // Интервал
+                 7);                          // Значение
+
+    // Вывод всех элементов в интервале [pos1,pos2)
+    for_each (pos1, pos2,     // Интервал
+              print);         // Операция
+    cout << endl;
+
+    // Преобразование итераторов в обратные итераторы
+    deque<int>::reverse_iterator rpos1(pos1);
+    deque<int>::reverse_iterator rpos2(pos2);
+
+    // Вывод всех элементов интервала [pos1,pos2) в обратном порядке
+    for_each (rpos2, rpos1,   // Интервал
+              print);         // Операция
+    cout << endl;
+}
+
+

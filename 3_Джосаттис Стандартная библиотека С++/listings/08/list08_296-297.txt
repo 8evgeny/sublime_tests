@@ -1,0 +1,48 @@
+// fo/sort1.cpp
+#include <iostream>
+#include <string>
+#include <set>
+#include <algorithm>
+using namespace std;
+
+class Person {
+  public:
+    string firstname const;
+    string lastname const;
+    ...
+};
+
+/* Класс функции-предиката
+ * - оператор () сравнивает два объекта Person
+ */
+class PersonSortCriterion {
+  public:
+    bool operator() (const Person& p1, const Person& p2) const {
+        /* Первый объект Person меньше второго,
+         * - если фамилия в первом объекте меньше фамилии во втором объекте;
+         * - или если фамилии равны, а имя в первом объекте меньше.
+         */
+        return p1.lastname()<p2.lastname() ||
+               (!(p2.lastname()<p1.lastname()) &&
+                p1.firstname()<p2.firstname());
+    }
+};
+
+int main()
+{
+    // Объявление типа множества со специальным критерием сортировки
+    typedef set<Person,PersonSortCriterion> PersonSet;
+
+    // Создание коллекции
+    PersonSet coll;
+    ...
+
+    // Выполнение операций с элементами
+    PersonSet::iterator pos;
+    for (pos = coll.begin(); pos != coll.end(); ++pos) {
+        ...
+    }
+    ...
+}
+
+

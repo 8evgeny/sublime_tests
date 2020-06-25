@@ -1,0 +1,39 @@
+// string/string2.cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main (int argc, char** argv)
+{
+   const string delims(" \t,.;");
+   string line;
+
+   // Для каждой успешно прочитанной строки
+   while (getline(cin,line)) {
+       string::size_type begIdx, endIdx;
+
+       // Поиск начала первого слова
+       begIdx = line.find_first_not_of(delims);
+       // Пока удается найти начало очередного слова...
+       while (begIdx != string::npos) {
+           // Поиск конца текущего слова
+           endIdx = line.find_first_of (delims, begIdx);
+           if (endIdx == string::npos) {
+               // Конец слова совпадает с концом строки
+               endIdx = line.length();
+           }
+
+           // Вывод символов в обратном порядке
+           for (int i=endIdx-1; i>=static_cast<int>(begIdx); --i) {
+               cout << line[i];
+           }
+           cout << ' ';
+
+           // Поиск начала следующего слова
+           begIdx = line.find_first_not_of (delims, endIdx);
+       }
+       cout << endl;
+   }
+}
+
+

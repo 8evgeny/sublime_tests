@@ -1,0 +1,25 @@
+namespace std {
+	    template <class ForwIter, class T>
+	    void uninitialized_fill(ForwIter beg, ForwIter end,
+	                            const T& value)
+	    {
+	        typedef typename iterator_traits<ForwIter>::value_type VT;
+	        ForwIter save(beg);
+	        try {
+	            for (; beg!=end; ++beg) {
+	                new (static_cast<void*>(&*beg))VT(value);
+	            }
+	        }
+	        catch (...) {
+	            for (; save!=beg; ++save) {
+	                save->~VT();
+	            }
+	            throw;
+	        }
+	    }
+	}
+
+void uninitialized_fill_n (ForwardIterator beg, Size num,
+                         const T& value)
+
+

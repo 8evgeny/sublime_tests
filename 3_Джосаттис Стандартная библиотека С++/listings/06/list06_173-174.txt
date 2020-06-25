@@ -1,0 +1,40 @@
+// cont/deque1.cpp
+#include <iostream>
+#include <deque>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    // Создание пустого дека для хранения строк
+    deque<string> coll;
+
+    // Вставка нескольких элементов
+    coll.assign (3, string("string"));
+    coll.push_back ("last string");
+    coll.push_front ("first string");
+
+    // Вывод элементов с разделением символом новой строки
+    copy (coll.begin(), coll.end(),
+          ostream_iterator<string>(cout,"\n"));
+    cout << endl;
+
+    // Удаление первого и последнего элементов
+    coll.pop_front();
+    coll.pop_back();
+
+    // Вставка "another" во все элементы, кроме первого
+    for (unsigned i=1; i<coll.size(); ++i) {
+        coll[i] = "another " + coll[i];
+    }
+
+    // Увеличение размера до четырех элементов
+    coll.resize (4, "resized string");
+
+    // Вывод элементов с разделением символом новой строки
+    copy (coll.begin(), coll.end(),
+          ostream_iterator<string>(cout,"\n"));
+}
+
+

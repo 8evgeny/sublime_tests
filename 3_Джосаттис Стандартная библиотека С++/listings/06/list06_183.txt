@@ -1,0 +1,13 @@
+namespace std {
+    template <class T,
+              class Compare = less<T>,
+              class Allocator = allocator<T> >
+    class set;
+
+    template <class T,
+              class Compare = less<T>,
+              class Allocator = allocator<T> >
+    class multiset;
+}
+
+

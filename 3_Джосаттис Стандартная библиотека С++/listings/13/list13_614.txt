@@ -1,0 +1,21 @@
+// io/rdbuf1.cpp
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    // ѕоток дл€ шестнадцатеричного стандартного вывода
+    ostream hexout(cout.rdbuf());
+    hexout.setf (ios::hex, ios::basefield);
+    hexout.setf (ios::showbase);
+
+    // ѕереключение между дес€тичным и шестнадцатеричным выводом
+    hexout << "hexout: " << 177 << " ";
+    cout   << "cout: "   << 177 << " ";
+    hexout << "hexout: " << -49 << " ";
+    cout   << "cout: "   << -49 << " ";
+    hexout << endl;
+}
+
+

@@ -1,0 +1,39 @@
+//stl/copy3.cpp
+#include <iostream>
+#include <vector>
+#include <list>
+#include <deque>
+#include <set>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    list<int> coll1;
+
+    // Вставка элементов со значениями от 1 до 9
+    // в первую коллекцию
+    for (int i=1; i<=9; ++i) {
+        coll1.push_back(i);
+    }
+
+    // Копирование элементов из coll1 в coll2 с присоединением
+    vector<int> coll2;
+    copy (coll1.begin(), coll1.end(),      // Источник
+          back_inserter(coll2));           // Приемник
+
+    // Копирование элементов coll1 в coll3 со вставкой в начало
+    // - порядок следования элементов заменяется на противоположный
+    deque<int> coll3;
+    copy (coll1.begin(), coll1.end(),      // Источник
+          front_inserter(coll3));          // Приемник
+
+    // Копирование элементов coll1 в coll4
+    // - единственный итератор вставки, работающий
+    //   с ассоциативными контейнерами
+    set<int> coll4;
+    copy (coll1.begin(), coll1.end(),      // Источник
+          inserter(coll4,coll4.begin()));  // Приемник
+}
+
+

@@ -1,0 +1,49 @@
+// num/val1.cpp
+#include <iostream>
+#include <valarray>
+using namespace std;
+
+// Вывод массива значений
+template <class T>
+void printValarray (const valarray<T>& va)
+{
+    for (int i=0; i<va.size(); i++) {
+        cout << va[i] << ' ';
+    }
+    cout << endl;
+}
+
+int main()
+{
+    // Определение двух массивов с десятью элементами
+    valarray<double> va1(10), va2(10);
+
+    // Заполнение первого массива значениями 0.0, 1.1 ... 9.9
+    for (int i=0; i<10; i++) {
+        va1[i] = i * 1.1;
+    }
+
+    // Присваивание -1 всем элементам второго массива значений
+    va2 = -1;
+
+    // Вывод обоих массивов значений
+    printValarray(va1);
+    printValarray(va2);
+
+    // Вывод минимума, максимума и суммы элементов для первого массива
+    cout << "min(): " << va1.min() << endl;
+    cout << "max(): " << va1.max() << endl;
+    cout << "sum(): " << va1.sum() << endl;
+
+    // Присваивание содержимого первого массива второму
+    va2 = va1;
+
+    // Удаление всех элементов первого массива
+    va1.resize(0);
+
+    // Повторный вывод обоих массивов значений
+    printValarray(va1);
+    printValarray(va2);
+}
+
+

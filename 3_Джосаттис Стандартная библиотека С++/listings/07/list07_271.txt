@@ -1,0 +1,31 @@
+// iter2/reviter2.cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    vector<int> coll;
+
+    // Вставка элементов со значениями от 1 до 9
+    for (int i=1; i<=9; ++i) {
+        coll.push_back(i);
+    }
+
+    // Поиск позиции элемента со значением 5
+    vector<int>::iterator pos;
+    pos = find (coll.begin(), coll.end(),
+                5);
+
+    // Вывод значения, на которое ссылается итератор pos
+    cout << "pos:  " << *pos << endl;
+
+    // Преобразование итератора в обратный итератор rpos
+    vector<int>::reverse_iterator rpos(pos);
+
+    // Вывод значения, на которое ссылается обратный итератор rpos
+    cout << "rpos: " << *rpos << endl;
+}
+
+

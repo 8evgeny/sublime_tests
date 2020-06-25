@@ -1,0 +1,58 @@
+// fo/genera2.cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+#include "print.hpp"
+using namespace std;
+
+class IntSequence {
+  private:
+    int value;
+  public:
+    // Конструктор
+    IntSequence (int initialValue)
+     : value(initialValue) {
+    }
+
+    // "Вызов функции"
+    int operator() () {
+        return value++;
+    }
+};
+
+int main()
+{
+    list<int> coll;
+    IntSequence seq(1);    // Серия целых чисел, начинающаяся с 1
+
+    // Вставка значений от 1 до 4
+    // - передача объекта функции по ссылке,
+    //   чтобы при следующем вызове значения начинались с 5
+    generate_n<back_insert_iterator<list<int> >,
+               int, IntSequence&>(back_inserter(coll),    // Начало
+                                  4,      // Количество элементов
+                                  seq);   // Генератор значений
+    PRINT_ELEMENTS(coll);
+
+    // Вставка значений от 42 до 45
+    generate_n (back_inserter(coll),      // Начало
+                4,                        // Количество элементов
+                IntSequence(42));         // Генератор значений
+    PRINT_ELEMENTS(coll);
+
+    // Продолжение первой последовательности
+    // - передача объекта функции по ссылке,
+    //   чтобы при следующем вызове значения снова начинались с 5
+    generate_n (back_inserter(coll),      // Начало
+                4,                        // Количество элементов
+                seq);                     // Генератор значений
+    PRINT_ELEMENTS(coll);
+    
+    // Снова продолжить первую последовательность
+    generate_n (back_inserter(coll),      // Начало
+                4,                        // Количество элементов
+                seq);                     // Генератор значений
+    PRINT_ELEMENTS(coll);
+}
+
+

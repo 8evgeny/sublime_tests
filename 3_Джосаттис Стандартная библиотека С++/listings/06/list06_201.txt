@@ -1,0 +1,13 @@
+namespace std {
+    template <class Key, class T,
+              class Compare = less<Key>,
+              class Allocator = allocator<pair<const Key, T> > >
+    class map;
+
+    template <class Key, class T,
+              class Compare = less<Key>,
+              class Allocator = allocator<pair<const Key, T> > >
+    class multimap;
+}
+
+

@@ -1,0 +1,30 @@
+float x;
+...
+std::ostrstream buffer;    // Динамический поток char*
+
+// Заполнение потока char*
+buffer << "float x: " << x << std::ends;
+
+/* Передача итоговой C-строки функции foo()
+ * - фиксация потока char*
+ */
+foo(buffer.str());
+
+// Снятие фиксации с потока char*
+buffer.freeze(false);
+
+// Установка позиции записи в начало
+buffer.seekp (0, ios::beg);
+
+// Повторное заполнение потока char*
+buffer << "once more float x: " << x << std::ends;
+
+/* Повторная передача полученной C-строки функции foo()
+ * - фиксация потока char*;
+ */
+foo(buffer.str());
+
+// Возвращение памяти в буфер
+buffer.freeze(false);
+
+

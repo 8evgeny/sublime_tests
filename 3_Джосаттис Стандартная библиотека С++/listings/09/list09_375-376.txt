@@ -1,0 +1,42 @@
+// algo/unique1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    // Исходные данные
+    int source[] = { 1, 4, 4, 6, 1, 2, 2, 3, 1, 6, 6, 6, 5, 7,
+                      5, 4, 4 };
+    int sourceNum = sizeof(source)/sizeof(source[0]);
+
+    list<int> coll;
+
+    // Инициализация coll элементами source
+    copy (source, source+sourceNum,           // Источник
+          back_inserter(coll));               // Приемник
+    PRINT_ELEMENTS(coll);
+
+    // Удаление последовательных дубликатов
+    list<int>::iterator pos;
+    pos = unique (coll.begin(), coll.end());
+
+    /* Вывод оставшихся элементов
+     * - с использованием нового логического конца
+     */
+    copy (coll.begin(), pos,                  // Источник
+          ostream_iterator<int>(cout," "));   // Приемник
+    cout << "\n\n";
+
+    // Повторная инициализация coll элементами source
+    copy (source, source+sourceNum,           // Источник
+          coll.begin());                      // Приемник
+    PRINT_ELEMENTS(coll);
+
+    // Удаление элемента, если ему предшествует элемент с большим значением
+    coll.erase (unique (coll.begin(), coll.end(),
+                        greater<int>()),
+                coll.end());
+    PRINT_ELEMENTS(coll);
+}
+
+

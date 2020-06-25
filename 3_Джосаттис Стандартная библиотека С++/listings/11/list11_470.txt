@@ -1,0 +1,15 @@
+onst std::string cs("nico");     // cs содержит символы n,i,c,o
+std::string s("abcde");           // s содержит символы a,b,c,d,e
+
+s[2]                              // Символ c
+s.at(2)                           // Символ c
+
+s[100]                            // ОШИБКА: непредсказуемые последствия
+s.at(100)                         // Исключение out_of_range
+
+s[s.length()]                     // ОШИБКА: непредсказуемые последствия
+cs[cs.length()]                   // Символ \0
+s.at(s.length())                  // Исключение out_of_range
+cs.at(s.length())                 // Исключение out_of_range
+
+

@@ -1,0 +1,17 @@
+// ќпределение переменной дл€ возвращаемого значени€ insert()
+std::pair<std::set<float>::iterator,bool> status;
+
+// ¬ставка элемента с присваиванием возвращаемого значени€
+status = c.insert(value);
+
+// ќбработка возвращаемого значени€
+if (status.second) {
+    std::cout << value << "inserted as element "
+}
+else {
+    std::cout << value << "already exists as element "
+}
+std::cout << std::distance(c.begin(),status.first) + 1
+          << std::endl;
+
+

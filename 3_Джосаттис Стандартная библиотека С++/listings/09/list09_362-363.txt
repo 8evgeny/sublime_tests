@@ -1,0 +1,32 @@
+// algo/transf1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    vector<int> coll1;
+    list<int> coll2;
+
+    INSERT_ELEMENTS(coll1,1,9);
+    PRINT_ELEMENTS(coll1,"coll1:   ");
+
+    // Изменение знака всех элементов coll1
+    transform (coll1.begin(), coll1.end(),      // Источник
+               coll1.begin(),                   // Приемник
+               negate<int>());                  // Операция
+    PRINT_ELEMENTS(coll1,"negated: ");
+
+    // Копирование элементов coll1, умноженных на 10, в coll2
+    transform (coll1.begin(), coll1.end(),      // Источник
+               back_inserter(coll2),            // Приемник
+               bind2nd(multiplies<int>(),10));  // Операция
+    PRINT_ELEMENTS(coll2,"coll2:   ");
+
+    // Вывод элементов coll2 с изменением знака и в обратном порядке
+    transform (coll2.rbegin(), coll2.rend(),    // Источник
+               ostream_iterator<int>(cout," "), // Приемник
+               negate<int>());                  // Операция
+    cout << endl;
+}
+
+

@@ -1,0 +1,34 @@
+// algo/count1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+bool isEven (int elem)
+{
+    return elem % 2 == 0;
+}
+
+int main()
+{
+    vector<int> coll;
+    int num;
+
+    INSERT_ELEMENTS(coll,1,9);
+    PRINT_ELEMENTS(coll,"coll: ");
+
+    // Подсчет элементов со значением 4
+    num = count (coll.begin(), coll.end(),       // Интервал
+                 4);                             // Значение
+    cout << "number of elements equal to 4:      " << num << endl;
+
+    // Подсчет четных элементов
+    num = count_if (coll.begin(), coll.end(),    // Интервал
+                    isEven);                     // Критерий
+    cout << "number of elements with even value: " << num << endl;
+
+    // Подсчет элементов со значениями, большими 4
+    num = count_if (coll.begin(), coll.end(),    // Интервал
+                    bind2nd(greater<int>(),4));  // Критерий
+    cout << "number of elements greater than 4:  " << num << endl;
+}
+
+

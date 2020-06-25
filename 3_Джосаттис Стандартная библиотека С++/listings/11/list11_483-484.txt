@@ -1,0 +1,40 @@
+// string/iter3.cpp
+#include <string>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    // Создание константной строки
+    const string hello("Hello, how are you?");
+
+    // Инициализация строки s всеми символами строки hello
+    string s(hello.begin(),hello.end());
+
+    // Перебор всех символов
+    string::iterator pos;
+    for (pos = s.begin(); pos != s.end(); ++pos) {
+        cout << *pos;
+    }
+    cout << endl;
+
+    // Перестановка символов строки в обратном порядке
+    reverse (s.begin(), s.end());
+    cout << "reverse:       " << s << endl;
+
+    // Сортировка всех символов строки
+    sort (s.begin(), s.end());
+    cout << "ordered:       " << s << endl;
+
+    /* Удаление смежных дубликатов
+     * - unique() изменяет очередность символов и возвращает новый конец
+     * - erase() удаляет лишние символы
+     */
+    s.erase (unique(s.begin(),
+                    s.end()),
+             s.end());
+    cout << "no duplicates: " << s << endl;
+}
+
+

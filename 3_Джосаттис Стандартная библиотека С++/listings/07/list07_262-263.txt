@@ -1,0 +1,47 @@
+// iter/itercat.cpp
+#include <vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   vector<int> coll;
+
+   // Вставка элементов от -3 до 9
+   for (int i=-3; i<=9; ++i) {
+       coll.push_back (i);
+   }
+
+   /* Вывод количества элементов как расстояния между 
+    * начальным и конечным итераторами
+    * - ВНИМАНИЕ: применение оператора - для итераторов
+    */
+   cout << "number/distance: " << coll.end()-coll.begin() << endl;
+
+   /* Вывод всех элементов
+    * - ВНИМАНИЕ: применение оператора < вместо оператора !=
+    */
+   vector<int>::iterator pos;
+   for (pos=coll.begin(); pos<coll.end(); ++pos) {
+       cout << *pos << ' ';
+   }
+   cout << endl;
+
+   /* Вывод всех элементов
+    * - ВНИМАНИЕ: применение оператора [] вместо оператора *
+    */
+   for (int i=0; i<coll.size(); ++i) {
+       cout << coll.begin()[i] << ' ';
+   }
+   cout << endl;
+
+   /* Вывод каждого второго элемента
+    * - ВНИМАНИЕ: применение оператора +=
+    */
+   for (pos = coll.begin(); pos < coll.end()-1; pos += 2) {
+       cout << *pos << ' ';
+   }
+   cout << endl;
+}
+
+

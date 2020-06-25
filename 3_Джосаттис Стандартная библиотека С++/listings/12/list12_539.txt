@@ -1,0 +1,21 @@
+namespace std {
+	    class gslice;
+	
+	    template <class T>
+	    class gslice_array;
+	
+	    template <class T>
+	    class valarray {
+	      public:
+	        // Обобщенный срез константного массива значений
+	        // возвращает новый массив значений
+	        valarray<T> operator[] (const gslice&) const;
+	
+	        // Обобщенный срез неконстантного массива
+	        // значений возвращает gslice_array
+	        gslice_array<T> operator[] (const gslice&);
+	        ...
+	    };
+	}
+
+

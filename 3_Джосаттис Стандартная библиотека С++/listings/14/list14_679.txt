@@ -1,0 +1,14 @@
+std::locale    loc;
+OutIt          to = ...;
+std::ios_base& fmt = ...;
+charT          fill = ...;
+T              value = ...;
+
+// ѕолучение фацета числового форматировани€ дл€ контекста loc
+const std::num_put<charT,OutIt>& np
+ = std::use_facet<std::num_put<charT,OutIt> >(loc);
+
+// ¬ывод данных с использованием фацета
+np.put(to, fmt, fill, value);
+
+

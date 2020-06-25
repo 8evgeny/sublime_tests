@@ -1,0 +1,43 @@
+// fo/genera1.cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+#include "print.hpp"
+using namespace std;
+
+class IntSequence {
+  private:
+    int value;
+  public:
+    // Конструктор
+    IntSequence (int initialValue)
+     : value(initialValue) {
+    }
+
+    // "Вызов функции"
+    int operator() () {
+        return value++;
+    }
+};
+
+int main()
+{
+    list<int> coll;
+
+    // Вставка значений от 1 до 9
+    generate_n (back_inserter(coll),    // Начало
+                9,                      // Количество элементов
+                IntSequence(1));        // Генератор значений
+
+    PRINT_ELEMENTS(coll);
+
+    // Замена элементов от второго до предпоследнего значениями,
+    // начинающимися с 42
+    generate (++coll.begin(),           // Начало
+              --coll.end(),             // Конец
+              IntSequence(42));         // Генератор значений
+
+    PRINT_ELEMENTS(coll);
+}
+
+

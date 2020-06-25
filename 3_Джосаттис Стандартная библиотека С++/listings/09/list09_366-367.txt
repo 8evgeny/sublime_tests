@@ -1,0 +1,41 @@
+// algo/fill1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    // Вывод десяти экземпляров 7.7
+    fill_n(ostream_iterator<float>(cout, " "), // Начало приемника
+           10,                                 // Счетчик
+           7.7);                               // Новое значение
+    cout << endl;
+
+    list<string> coll;
+
+    // Вставка девяти экземпляров "hello"
+    fill_n(back_inserter(coll),       // Начало приемника
+           9,                         // Счетчик
+           "hello");                  // Новое значение
+    PRINT_ELEMENTS(coll,"coll: ");
+
+    // Замена всех элементов строкой "again"
+    fill(coll.begin(), coll.end(),    // Приемник
+         "again");                    // Новое значение
+    PRINT_ELEMENTS(coll,"coll: ");
+
+    // Замена всех элементов, кроме двух, строкой "hi"
+    fill_n(coll.begin(),              // Начало приемника
+           coll.size()-2,             // Счетчик
+           "hi");                     // Новое значение
+    PRINT_ELEMENTS(coll,"coll: ");
+
+    // Замена элементов от второго до предпоследнего строкой "hmmm"
+    list<string>::iterator pos1, pos2;
+    pos1 = coll.begin();
+    pos2 = coll.end();
+    fill (++pos1, --pos2,              // Приемник
+          "hmmm");                     // Новое значение
+    PRINT_ELEMENTS(coll,"coll: ");
+}
+
+

@@ -1,0 +1,70 @@
+// io/outbuf3.hpp
+#include <cstdio>
+#include <streambuf>
+
+extern "C" {
+    int write (int fd, const char* buf, int num);
+}
+
+class outbuf : public std::streambuf {
+  protected:
+    static const int bufferSize = 10;   // Размер буфера данных
+    char buffer[bufferSize];            // Буфер данных
+
+  public:
+    /* Конструктор
+     * - Инициализация буфера данных
+     * - на один символ меньше, чтобы при накоплении bufferSize символов
+     *   вызывалась функция overflow()
+     */
+    outbuf() {
+        setp (buffer, buffer+(bufferSize-1));
+    }
+    /* Деструктор
+     * - Очистка буфера данных
+     */
+    virtual ~outbuf() {
+        sync();
+    }
+
+  protected:
+    // Вывод символов, хранящихся в буфере
+    int flushBuffer () {
+        int num = pptr()-pbase();
+        if (write (1, buffer, num) != num) {
+            return EOF;
+        }
+        pbump (-num);    // Соответствующий перевод указателя вывода
+        return num;
+    }
+
+    /* Буфер полон
+     * - Вывести c и все предшествующие символы
+     */
+    virtual int_type overflow (int_type c) {
+        if (c != EOF) {
+            // Вставка символа в буфер
+            *pptr() = c;
+            pbump(1);
+        }
+        // Очистка буфера
+        if (flushBuffer() == EOF) {
+            // ERROR
+            return EOF;
+        }
+        return c;
+    }
+
+    /* Синхронизация данных с файлом/приемником
+     * - вывод данных из буфера
+     */
+    virtual int sync () {
+        if (flushBuffer() == EOF) {
+            // ОШИБКА
+            return -1;
+        }
+        return 0;
+    }
+};
+
+

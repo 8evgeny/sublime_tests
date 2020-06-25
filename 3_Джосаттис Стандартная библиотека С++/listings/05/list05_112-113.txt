@@ -1,0 +1,26 @@
+pos = find_if (coll.begin(), coll.end(),               // Интервал
+               compose_f_gx_hx(logical_or<bool>(),     // Критерий
+                               bind2nd(equal_to<int>(),25),
+                               bind2nd(equal_to<int>(),35)));
+switch (*pos) {
+  case 25:
+    // Первым обнаружен элемент со значением 25
+    pos25 = pos;
+    pos35 = find (++pos, coll.end(),     // Интервал
+                  35);                   // Значение
+    ...
+    break;
+  case 35:
+    // Первым обнаружен элемент со значением 35
+    pos35 = pos;
+    pos25 = find (++pos, coll.end(),     // Интервал
+                  25);                   // Значение
+    ...
+    break;
+  default:
+    // Элементы со значениями 25 и 35 не найдены
+    ...
+    break;
+}
+
+

@@ -1,0 +1,79 @@
+// cont/setcmp.cpp
+#include <iostream>
+#include <set>
+#include "print.hpp"
+using namespace std;
+
+// Тип критерия сортировки
+template <class T>
+class RuntimeCmp {
+  public:
+    enum cmp_mode {normal, reverse};
+  private:
+    cmp_mode mode;
+  public:  
+    // Конструктор критерия сортировки
+    // - по умолчанию используется значение normal
+    RuntimeCmp (cmp_mode m=normal) : mode(m) {
+    }
+    // Сравнение элементов
+    bool operator() (const T& t1, const T& t2) const {
+        return mode == normal ? t1 < t2 : t2 < t1;
+    }
+    // Сравнение критериев сортировки
+    bool operator== (const RuntimeCmp& rc) {
+        return mode == rc.mode;
+    }
+};
+
+// Тип множества, использующего данный критерий сортировки
+typedef set<int,RuntimeCmp<int> > IntSet;
+
+// Опережающее объявление
+void fill (IntSet& set);
+
+int main()
+{
+    // Создание, заполнение и вывод множества с обычным порядком следования
+    // элементов - используется критерий сортировки по умолчанию
+    IntSet coll1;
+    fill(coll1);
+    PRINT_ELEMENTS (coll1, "coll1: ");
+
+    // Создание критерия сортировки с обратным порядком следования элементов
+    RuntimeCmp<int> reverse_order(RuntimeCmp<int>::reverse);
+
+    // Создание, заполнение и вывод множества
+    // с обратным порядком следования элементов
+    IntSet coll2(reverse_order);
+    fill(coll2);
+    PRINT_ELEMENTS (coll2, "coll2: ");
+
+    // Присваивание элементов И критерия сортировки
+    coll1 = coll2;
+    coll1.insert(3);
+    PRINT_ELEMENTS (coll1, "coll1: ");
+    // Просто для уверенности...
+    if (coll1.value_comp() == coll2.value_comp()) {
+        cout << "coll1 and coll2 have same sorting criterion"
+             << endl;
+    }
+    else {
+        cout << "coll1 and coll2 have different sorting criterion"
+             << endl;
+    }
+}
+
+void fill (IntSet& set)
+{
+    // Вставка элементов в произвольном порядке
+    set.insert(4);
+    set.insert(7);
+    set.insert(5);
+    set.insert(1);
+    set.insert(6);
+    set.insert(2);
+    set.insert(5);
+}
+
+

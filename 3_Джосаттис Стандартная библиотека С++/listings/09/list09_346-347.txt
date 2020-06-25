@@ -1,0 +1,49 @@
+// algo/search2.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+// Проверка элемента на четность
+bool checkEven (int elem, bool even)
+{
+    if (even) {
+        return elem % 2 == 0;
+    }
+    else {
+        return elem % 2 == 1;
+    }
+}
+
+int main()
+{
+    vector<int> coll;
+
+    INSERT_ELEMENTS(coll,1,9);
+    PRINT_ELEMENTS(coll,"coll: ");
+
+    /* Аргументы checkEven()
+     * - проверка последовательности "чет нечет чет"
+     */
+    bool checkEvenArgs[3] = { true, false, true };
+
+    // Поиск первого подинтервала в coll
+    vector<int>::iterator pos;
+    pos = search (coll.begin(), coll.end(),       // Интервал
+                  checkEvenArgs, checkEvenArgs+3, // Значения подинтервала
+                  checkEven);                     // Критерий
+
+    // Цикл повторяется до тех пор, пока внутри coll
+    // успешно находится очередное вхождение подинтервала
+    while (pos != coll.end()) {
+        // Вывод позиции первого элемента
+        cout << "subrange found starting with element "
+             << distance(coll.begin(),pos) + 1
+             << endl;
+
+        // Поиск следующего подинтервала в coll
+        pos = search (++pos, coll.end(),              // Интервал
+                      checkEvenArgs, checkEvenArgs+3, // Значения 
+                      checkEven);                     // Критерий
+    }
+}
+
+

@@ -1,0 +1,45 @@
+// stl/find1.cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    list<int> coll;
+    list<int>::iterator pos;
+
+    // Вставка элементов от 20 до 40
+    for (int i=20; i<=40; ++i) {
+        coll.push_back(i);
+    }
+    // Поиск позиции элемента со значением, равным 3
+     * - такой элемент отсутствует, поэтому pos присваивается coll.end()
+     */
+    pos = find (coll.begin(), coll.end(),    // Интервал
+                3);                          // Значение
+    
+    /* Перестановка элементов от найденного до конца интервала 
+     * - поскольку итератор pos равен coll.end(),
+     *   перестановка производится в пустом интервале.
+     */
+    reverse (pos, coll.end());
+
+    // Поиск позиций со значениями 25 и 25
+    list<int>::iterator pos25, pos35;
+    pos25 = find (coll.begin(), coll.end(),  // Интервал
+                  25);                       // Значение
+    pos35 = find (coll.begin(), coll.end(),  // Интервал
+                  35);                       // Значение
+
+    /* Вывод максимума по полученному интервалу
+     * - обратите внимание: интервал содержит позицию pos25,
+     *   но позиция pos35 в него не включается.
+     */
+    cout << "max: " << *max_element (pos25, pos35) << endl;
+
+    // process the elements including the last position
+    cout << "max: " << *max_element (pos25, ++pos35) << endl;
+}
+
+

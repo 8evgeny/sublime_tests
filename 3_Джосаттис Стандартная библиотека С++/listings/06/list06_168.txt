@@ -1,0 +1,30 @@
+namespace std {
+    class vector<bool> {
+      public:
+        // Вспомогательный тип для оператора индексирования
+        class reference {
+          ...
+          public:
+            // Автоматическое преобразование типа к bool
+            operator bool() const;
+
+            // Присваивание
+            reference& operator= (const bool);
+            reference& operator= (const reference&);
+
+            // Инверсия бита
+            void flip();
+        }
+        ...
+
+        // Операции обращения к элементам
+        // - возвращается тип reference вместо bool
+        reference operator[](size_type n);
+        reference at(size_type n);
+        reference front();
+        reference back();
+        ...
+    }
+}
+
+

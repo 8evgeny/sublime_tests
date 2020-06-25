@@ -1,0 +1,19 @@
+stock: BASF price: 369.5
+stock: BMW price: 834
+stock: Daimler price: 819
+stock: Siemens price: 842.2
+stock: VW price: 413.5
+
+stock: BASF price: 739
+stock: BMW price: 1668
+stock: Daimler price: 1638
+stock: Siemens price: 1684.4
+stock: VW price: 827
+
+stock: BASF price: 739
+stock: BMW price: 1668
+stock: Daimler price: 1638
+stock: Siemens price: 1684.4
+stock: Volkswagen price: 827
+
+

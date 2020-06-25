@@ -1,0 +1,64 @@
+// cont/queue.hpp
+/* ************************************************************
+ *  Queue.hpp
+ *   - более удобный и безопасный класс очереди
+ * ************************************************************/
+#ifndef QUEUE_HPP
+#define QUEUE_HPP
+
+#include <deque>
+#include <exception>
+
+template <class T>
+class Queue {
+  protected:
+    std::deque<T> c;        // Контейнер для хранения элементов
+
+  public:
+    /* Класс исключения, генерируемого функциями pop() и front()
+     * при пустой очереди
+     */
+    class ReadEmptyQueue : public std::exception {
+      public:
+        virtual const char* what() const throw() {
+            return "read empty queue";
+        }
+    };
+  
+    // Количество элементов
+    typename std::deque<T>::size_type size() const {
+        return c.size();
+    }
+
+    // Проверка пустой очереди
+    bool empty() const {
+        return c.empty();
+    }
+
+    // Занесение элемента в очередь
+    void push (const T& elem) {
+        c.push_back(elem);
+    }
+
+    // Извлечение элемента из очереди с возвращением его значения
+    T pop () {
+        if (c.empty()) {
+            throw ReadEmptyQueue();
+        }
+        T elem(c.front());
+        c.pop_front();
+        return elem;
+    }
+
+    // Получение значения следующего элемента
+    T& front () {
+        if (c.empty()) {
+            throw ReadEmptyQueue();
+        }
+        return c.front();
+    }
+};
+
+#endif /* QUEUE_HPP */
+
+

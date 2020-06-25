@@ -1,0 +1,49 @@
+// algo/nth1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    deque<int> coll;
+
+    INSERT_ELEMENTS(coll,3,7);
+    INSERT_ELEMENTS(coll,2,6);
+    INSERT_ELEMENTS(coll,1,5);
+    PRINT_ELEMENTS(coll);
+
+    // Выделение четырех наименьших элементов
+    nth_element (coll.begin(),     // Начало интервала
+                 coll.begin()+3,   // Граничный элемент
+                 coll.end());      // Конец интервала
+
+    // Вывод
+    cout << "the four lowest elements are:  ";
+    copy (coll.begin(), coll.begin()+4,
+          ostream_iterator<int>(cout," "));
+    cout << endl;
+
+    // Выделение четырех наибольших элементов
+    nth_element (coll.begin(),     // Начало интервала
+                 coll.end()-4,     // Граничный элемент
+                 coll.end());      // Конец интервала
+
+    // Вывод
+    cout << "the four highest elements are: ";
+    copy (coll.end()-4, coll.end(),
+          ostream_iterator<int>(cout," "));
+    cout << endl;
+
+    // Выделение четырех наибольших элементов (второй вариант)
+    nth_element (coll.begin(),     // Начало интервала
+                 coll.begin()+3,   // Граничный элемент
+                 coll.end(),       // Конец интервала
+                 greater<int>());  // Критерий сортировки
+
+    // Вывод
+    cout << "the four highest elements are: ";
+    copy (coll.begin(), coll.begin()+4,
+          ostream_iterator<int>(cout," "));
+    cout << endl;
+}
+
+

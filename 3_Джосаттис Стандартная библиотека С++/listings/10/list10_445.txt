@@ -1,0 +1,41 @@
+// cont/bitset1.cpp
+#include <bitset>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    /* enumeration type for the bits
+     * - each bit represents a color
+     */
+    enum Color { red, yellow, green, blue, white, black, //...,
+                 numColors };
+
+    // Создание битового поля для всех битов/цветов
+    bitset<numColors> usedColors;
+
+    // Установка битов двух цветов
+    usedColors.set(red);
+    usedColors.set(blue);
+
+    // Вывод данных битового поля
+    cout << "bitfield of used colors:   " << usedColors
+         << endl;
+    cout << "number   of used colors:   " << usedColors.count()
+         << endl;
+    cout << "bitfield of unused colors: " << ~usedColors
+         << endl;
+
+    // Если в битовом поле использован хотя бы один цвет...
+    if (usedColors.any()) {
+        // перебрать все цвета в цикле
+        for (int c = 0; c < numColors; ++c) {
+            // Если флаг текущего цвета установлен...
+            if (usedColors[(Color)c]) {
+                //...
+            }
+        }
+    }
+}
+
+

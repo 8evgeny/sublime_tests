@@ -1,0 +1,21 @@
+template <class T, class charT, class traits>
+std::basic_ostream<charT,traits>&
+operator<< (std::basic_ostream<charT,traits>& strm,
+            const std::complex<T> c)
+{
+    // Временная строка для выполнения вывода с одним аргументом
+    std::basic_ostringstream<charT,traits> s;
+    s.flags(strm.flags());         // Копирование флагов потока
+    s.imbue(strm.getloc());        // Копирование локального контеста потока
+    s.precision(strm.precision()); // Копирование точности потока
+
+    // Подготовка итоговой строки
+    s << '(' << c.real() << ',' << c.imag() << ')';
+
+    // Вывод итоговой строки
+    strm << s.str();
+
+    return strm;
+}
+
+

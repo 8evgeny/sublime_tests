@@ -1,0 +1,16 @@
+const std::string aString("othello");
+std::string s;
+
+s = aString;            // Присваивание строки "othello"
+s = "two\nlines";       // Присваивание C-строки
+s = ' ';                // Присваивание отдельного символа
+
+s.assign(aString);      // Присваивание "othello" (эквивалент оператора =)
+s.assign(aString,1,3);  // Присваивание подстроки "the"
+s.assign(aString,2,std::string::npos);  // Присваивание подстроки "hello"
+
+s.assign("two\nlines"); // Присваивание C-строки (эквивалент оператора =)
+s.assign("nico",5);     // Присваивание символьного массива: n,i,c,o,\0
+s.assign(5,'x');        // Присваивание символьного массива: x,x,x,x,x
+
+

@@ -1,0 +1,17 @@
+template <class ForwIter, class Predicate>
+ForwIter std::remove_if(ForwIter beg, ForwIter end,
+                        Predicate op)
+{
+    while (beg != end && !op(*beg)( {
+        ++beg;
+    }
+    if (beg == end) {
+        return beg;
+    }
+    else {
+        ForwIter next = beg;
+        return remove_copy_if(++next, end, beg, op);
+    }
+}
+
+

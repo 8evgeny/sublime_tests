@@ -1,0 +1,21 @@
+ english   german
+--------------------
+ car       Auto
+ clever    raffiniert
+ day       Tag
+ smart     elegant
+ smart     raffiniert
+ smart     klug
+ strange   fremd
+ strange   seltsam
+ trait     Merkmal
+
+smart:
+    elegant
+    raffiniert
+    klug
+raffiniert:
+    clever
+    smart
+
+

@@ -1,0 +1,22 @@
+// algo/generate.cpp
+#include <cstdlib>
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    list<int> coll;
+
+    // Получение пяти случайных чисел
+    generate_n (back_inserter(coll),      // Начало приемного интервала
+                5,                        // Счетчик
+                rand);                    // Генератор значений
+    PRINT_ELEMENTS(coll);
+
+    // Замена пятью новыми случайными числами
+    generate (coll.begin(), coll.end(),   // Приемный интервал
+              rand);                      // Генератор значений
+    PRINT_ELEMENTS(coll);
+}
+
+

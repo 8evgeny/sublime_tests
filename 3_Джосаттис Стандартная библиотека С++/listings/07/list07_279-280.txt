@@ -1,0 +1,40 @@
+// iter/frontins.cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+#include "print.hpp"
+using namespace std;
+
+int main()
+{
+    list<int> coll;
+
+    // Создание начального итератора вставки для coll
+    // - неудобный способ
+    front_insert_iterator<list<int> > iter(coll);
+
+    // Вставка элементов через обычный интерфейс итераторов
+    *iter = 1;
+    iter++;
+    *iter = 2;
+    iter++;
+    *iter = 3;
+
+    PRINT_ELEMENTS(coll);
+
+    // Создание начального итератора вставки и вставка элементов
+    // - удобный способ
+    front_inserter(coll) = 44;
+    front_inserter(coll) = 55;
+
+    PRINT_ELEMENTS(coll);
+
+    // Вставка всех элементов контейнера с использованием
+    // начального итератора вставки
+    copy (coll.begin(), coll.end(),    // Источник
+          front_inserter(coll));       // Приемник
+
+    PRINT_ELEMENTS(coll);
+}
+
+

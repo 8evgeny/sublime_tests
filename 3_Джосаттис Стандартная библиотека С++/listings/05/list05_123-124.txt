@@ -1,0 +1,44 @@
+// stl/remove2.cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    list<int> coll;
+
+    // Вставка элементов со значениями от 6 до 1 и от 1 до 6
+    for (int i=1; i<=6; ++i) {
+        coll.push_front(i);
+        coll.push_back(i);
+    }
+
+    // Вывод всех элементов коллекции
+    copy (coll.begin(), coll.end(),
+          ostream_iterator<int>(cout," "));
+    cout << endl;
+
+    // Удаление всех элементов со значением 3
+    // - сохранение нового конца коллекции
+    list<int>::iterator end = remove (coll.begin(), coll.end(),
+                                      3);
+
+    // Вывод элементов полученной коллекции
+    copy (coll.begin(), end,
+          ostream_iterator<int>(cout," "));
+    cout << endl;
+    // Вывод количества "удаленных" элементов
+    cout << "number of removed elements: "
+         << distance(end,coll.end()) << endl;
+
+    // Стирание "удаленных" элементов
+    coll.erase (end, coll.end());
+
+    // Вывод всех элементов модифицированной коллекции
+    copy (coll.begin(), coll.end(),
+          ostream_iterator<int>(cout," "));
+    cout << endl;
+}
+
+

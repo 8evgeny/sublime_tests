@@ -1,0 +1,14 @@
+// algo/copy3.cpp
+#include <iostream>
+#include <algorithm>
+#include <string>
+using namespace std;
+
+int main()
+{
+    copy (istream_iterator<string>(cin),         // Начало источника
+          istream_iterator<string>(),            // Конец источника
+          ostream_iterator<string>(cout,"\n"));  // Приемник
+}
+
+

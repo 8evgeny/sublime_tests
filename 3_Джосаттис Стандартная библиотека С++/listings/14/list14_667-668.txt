@@ -1,0 +1,58 @@
+// i18n/loc2.cpp
+#include <iostream>
+#include <locale>
+#include <string>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+    // —оздание локального контекста по умолчанию
+    // в зависимости от состо€ни€ переменной окружени€
+    locale langLocale("");
+    // ѕрисваивание локального контекста стандартному каналу вывода
+    cout.imbue(langLocale);
+
+    // ќбработка имени локального контекста
+    bool isGerman;
+    if (langLocale.name() == "de_DE" ||
+        langLocale.name() == "de" ||
+        langLocale.name() == "german") {
+          isGerman = true;
+    }
+    else {
+          isGerman = false;
+    }
+
+    // „тение локального контекста дл€ ввода
+    if (isGerman) {
+        cout << "Sprachumgebung fuer Eingaben: ";
+    }
+    else {
+        cout << "Locale for input: ";
+    }
+    string s;
+    cin >> s;
+    if (!cin) {
+        if (isGerman) {
+            cerr << "FEHLER beim Einlesen der Sprachumgebung"
+                 << endl;
+        }
+        else {
+            cerr << "ERROR while reading the locale" << endl;
+        }
+        return EXIT_FAILURE;
+    }
+    locale cinLocale(s.c_str());
+
+    // ѕрисваивание локального контекста стандартному каналу ввода
+    cin.imbue(cinLocale);
+
+    // „тение и запись вещественных чисел в цикле
+    double value;
+    while (cin >> value) {
+        cout << value << endl;
+    }
+}
+
+

@@ -1,0 +1,57 @@
+namespace std {
+    template<> struct char_traits<char> {
+      // Определения типов:
+      typedef char      char_type;
+      typedef int       int_type; 
+      typedef streampos pos_type;
+      typedef streamoff off_type;
+      typedef mbstate_t state_type;
+
+      // Функции:
+      static void assign(char& c1, const char& c2) {
+          c1 = c2;
+      }
+      static void eq(const char& c1, const char& c2) {
+          return c1 == c2;
+      }
+      static bool lt(const char& c1, const char& c2) {
+          return c1 < c2;
+      }
+      static size_t length(const char* s) {
+          return strlen(s);
+      }
+      static int compare(const char* s1, const char* s2, size_t n) {
+          return memcmp(s1,s2,n);
+      }
+      static char* copy(char* s1, const char* s2, size_t n) {
+          return (char*)memcpy(s1,s2,n);
+      }
+      static char* move(char* s1, const char* s2, size_t n) {
+          return (char*)memmove(s1,s2,n);
+      }
+      static char* assign(char* s1, size_t n, char c) {
+          return (char*)memset(s,c,n);
+      }
+      static const char* find(const char* s, size_t n,
+                              const char& c) {
+          return (const char*)memchr(s,c,n);
+      }
+      static int eof() {
+          return EOF;
+      }
+      static int to_int_type(const char& c) {
+          return (int)(insigned char)c;
+      }
+      static char to_char_type(const int& i) {
+          return (char)i;
+      }
+      static int not_eof(const int& i) {
+          return i!=EOF ? i : !EOF;
+      }
+      static bool eq_int_type(const int& i1, const int& i2) {
+          return i1==i2;
+      }
+    };
+}
+
+

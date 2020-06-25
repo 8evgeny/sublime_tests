@@ -1,0 +1,20 @@
+namespace std {
+    class slice;
+
+    template <class T>
+    class slice_array;
+
+    template <class T>
+    class valarray {
+      public:
+        // Срез константного массива значений
+        // возвращает новый массив значений
+        valarray<T> operator[] (slice) const;
+
+        // Срез неконстантного массива значений возвращает slice_array
+        slice_array<T> operator[] (slice);
+        ...
+    };
+}
+
+

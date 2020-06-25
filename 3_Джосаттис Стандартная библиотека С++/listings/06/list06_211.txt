@@ -1,0 +1,11 @@
+typedef std::multimap<std::string,float> StringFloatMMap;
+StringFloatMMap coll;
+...
+// Удаление первого элемента с переданным ключом
+StringFloatMMap::iterator pos;
+pos = coll.find(key);
+if (pos != coll.end()) {
+    coll.erase(pos);
+}
+
+

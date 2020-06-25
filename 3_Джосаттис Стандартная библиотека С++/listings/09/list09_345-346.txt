@@ -1,0 +1,37 @@
+// algo/search1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    deque<int> coll;
+    list<int> subcoll;
+
+    INSERT_ELEMENTS(coll,1,7);
+    INSERT_ELEMENTS(coll,1,7);
+
+    INSERT_ELEMENTS(subcoll,3,6);
+
+    PRINT_ELEMENTS(coll,   "coll:    ");
+    PRINT_ELEMENTS(subcoll,"subcoll: ");
+    // Поиск первого вхождения subcoll в coll
+    deque<int>::iterator pos;
+    pos = search (coll.begin(), coll.end(),         // Интервал
+                  subcoll.begin(), subcoll.end());  // Подинтервал
+
+    // Цикл повторяется до тех пор, пока внутри coll
+    // успешно находится очередное вхождение subcoll
+    while (pos != coll.end()) { 
+        // Вывод позиции первого элемента
+        cout << "subcoll found starting with element "
+             << distance(coll.begin(),pos) + 1
+             << endl;
+
+        // Поиск следующего вхождения subcoll
+        ++pos;
+        pos = search (pos, coll.end(),                  // Интервал
+                      subcoll.begin(), subcoll.end());  // Подинтервал
+    }
+}
+
+

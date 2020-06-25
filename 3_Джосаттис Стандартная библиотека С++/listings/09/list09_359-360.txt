@@ -1,0 +1,38 @@
+// algo/copy1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    vector<int> coll1;
+    list<int> coll2;
+
+    INSERT_ELEMENTS(coll1,1,9);
+    /* Копирование элементов coll1 в coll2
+     * - используем конечный итератор вставки,
+     *   чтобы вместо замены производилась вставка элементов
+     */
+    copy (coll1.begin(), coll1.end(),         // Источник
+          back_inserter(coll2));              // Приемник
+
+    /* Вывод элементов coll2
+     * - копирование элементов в cout
+     *   с использованием потокового итератора вывода
+     */
+    copy (coll2.begin(), coll2.end(),         // Источник
+          ostream_iterator<int>(cout," "));   // Приемник
+    cout << endl;
+
+    /* Копирование элементов coll1 в coll2 в обратном порядке
+     * - на этот раз с заменой
+     */
+    copy (coll1.rbegin(), coll1.rend(),       // Источник
+          coll2.begin());                     // Приемник
+
+    // Повторный вывод элементов coll2
+    copy (coll2.begin(), coll2.end(),         // Источник
+          ostream_iterator<int>(cout," "));   // Приемник
+    cout << endl;
+}
+
+

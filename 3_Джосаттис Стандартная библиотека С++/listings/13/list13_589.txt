@@ -1,0 +1,17 @@
+// io/ignore.hpp
+#include <istream>
+#include <limits>
+
+template <class charT, class traits>
+inline
+std::basic_istream<charT,traits>&
+ignoreLine (std::basic_istream<charT,traits>& strm)
+{
+    // Пропуск символов до конца строки
+    strm.ignore(std::numeric_limits<int>::max(),strm.widen('\n'));
+
+    // Возвращение strm для организации цепочечных вызовов
+    return strm;
+}
+
+

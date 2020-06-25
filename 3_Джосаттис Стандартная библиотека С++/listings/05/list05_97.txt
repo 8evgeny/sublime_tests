@@ -1,0 +1,26 @@
+// stl/list2.cpp
+#include <iostream>
+#include <list>
+using namespace std;
+
+int main()
+{
+    list<char> coll;      // Список с символьными элементами
+
+    // Присоединение элементов от 'a' до 'z'
+
+    for (char c='a'; c<='z'; ++c) {
+        coll.push_back(c);
+    }
+
+    /* Вывод содержимого списка
+     * - перебор всех элементов.
+     */
+    list<char>::const_iterator pos;
+    for (pos = coll.begin(); pos != coll.end(); ++pos) {
+        cout << *pos << ' ';
+    }
+    cout << endl;
+}
+
+

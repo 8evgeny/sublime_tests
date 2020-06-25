@@ -1,0 +1,30 @@
+namespace std {
+    template <class T, class Allocator>
+    void vector<T,Allocator>::reserve(size_type size)
+    {
+        // Функция reserve() никогда не уменьшает объем памяти
+        if (size <= sizeElems) {
+            return;
+        }
+
+        // Выделение новой памяти для size элементов
+        T* newmem = alloc.allocate(size);
+
+        // Копирование старых элементов в новую память
+        uninitialized_copy(elems,elems+numElems,newmem);
+
+        // Уничтожение старых элементов
+        for (size_type i=0; i<numElems; ++i) {
+            alloc.destroy(&elems[i]);
+        }
+
+        // Освобождение старой памяти
+        alloc.deallocate(elems,sizeElems);
+
+        // Элементы находятся в новой памяти
+        sizeElems = size;
+        elems = newmem;
+    }
+}
+
+

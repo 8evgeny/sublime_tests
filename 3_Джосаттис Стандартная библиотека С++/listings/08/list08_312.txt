@@ -1,0 +1,32 @@
+// fo/fopow1.cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+// Включение пользовательского объекта функции fopow<>
+#include "fopow.hpp"
+
+int main()
+{
+    vector<int> coll;
+
+    // Вставка элементов со значениями от 1 до 9
+    for (int i=1; i<=9; ++i) {
+        coll.push_back(i);
+    }
+
+    // Вывод числа 3, возведенного в степень каждого элемента
+    transform (coll.begin(), coll.end(),         // Источник
+               ostream_iterator<int>(cout," "),  // Приемник
+               bind1st(fopow<float,int>(),3));   // Операция
+    cout << endl;
+
+    // Вывод всех элементов, возведенных в степень 3
+    transform (coll.begin(), coll.end(),         // Источник
+               ostream_iterator<int>(cout," "),  // Приемник
+               bind2nd(fopow<float,int>(),3));   // Операция
+    cout << endl;
+}
+
+

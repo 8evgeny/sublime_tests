@@ -1,0 +1,38 @@
+// algo/rotate2.cpp
+#include "algostuff.hpp"
+using namespace std;
+int main()
+{
+    set<int> coll;
+
+    INSERT_ELEMENTS(coll,1,9);
+    PRINT_ELEMENTS(coll);
+
+    // Вывод элементов с циклическим сдвигом на одну позицию влево
+    set<int>::iterator pos = coll.begin();
+    advance(pos,1);
+    rotate_copy(coll.begin(),                     // Начало источника
+                pos,                              // Новый первый элемент
+                coll.end(),                       // Конец источника
+                ostream_iterator<int>(cout," ")); // Приемник
+    cout << endl;
+
+    // Вывод элементов с циклическим сдвигом на две позиции вправо
+    pos = coll.end();
+    advance(pos,-2);
+    rotate_copy(coll.begin(),                     // Начало источника
+                pos,                              // Новый первый элемент
+                coll.end(),                       // Конец источника
+                ostream_iterator<int>(cout," ")); // Приемник
+    cout << endl;
+
+    // Вывод элементов с циклическим сдвигом, в результате которого
+    // элемент со значением 4 переходит в начало
+    rotate_copy(coll.begin(),                     // Начало источника
+                coll.find(4),                     // Новый первый элемент
+                coll.end(),                       // Конец источника
+                ostream_iterator<int>(cout," ")); // Приемник
+    cout << endl;
+}
+
+

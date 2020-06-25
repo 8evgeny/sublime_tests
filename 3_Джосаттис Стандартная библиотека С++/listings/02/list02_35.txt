@@ -1,0 +1,20 @@
+class Car; // Абстрактный базовый класс
+	           // (содержит хотя бы одну чисто виртуальную функцию)
+	class Cabriolet : public Car {
+	    ...
+	};
+	
+	class Limousine : public Car {
+	    ...
+	};
+	
+	void f(Car* cp)
+	{
+	    Cabriolet* p = dynamic_cast<Cabriolet*>(cp);
+	    if (p == NULL) {
+	        // p не указывает на объект типа Cabriolet
+	        ...
+	    }
+	}
+
+

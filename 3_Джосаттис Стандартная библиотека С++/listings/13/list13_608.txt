@@ -1,0 +1,35 @@
+// io/cat1.cpp
+// Заголовочные файлы для файлового ввода-вывода
+#include <fstream>
+#include <iostream>
+using namespace std;
+
+/* Для всех файлов, имена которых переданы в аргументах командной строки,
+ * - открыть, вывести содержимое и закрыть файл
+ */
+int main (int argc, char* argv[])
+{
+    ifstream file;
+
+    // Перебор аргументов командной строки
+    for (int i=1; i<argc; ++i) {
+
+        // Открытие файла
+        file.open(argv[i]);
+
+        // Вывод содержимого файла в cout
+        char c;
+        while (file.get(c)) {
+            cout.put(c);
+        }
+
+        // Сброс флагов eofbit и failbit, установленных
+        // при обнаружении конца файла
+        file.clear();
+
+        // Закрытие файла
+        file.close();
+    }
+}
+
+

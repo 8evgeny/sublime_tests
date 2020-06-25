@@ -1,0 +1,36 @@
+// stl/remove3.cpp
+#include <iostream>
+#include <set>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    set<int> coll;
+
+    // Вставка элементов со значениями от 1 до 9
+    for (int i=1; i<=9; ++i) {
+        coll.insert(i);
+    }
+
+    // Вывод всех элементов коллекции
+    copy (coll.begin(), coll.end(),
+          ostream_iterator<int>(cout," "));
+    cout << endl;
+
+    /* Удаление всех элементов со значением 3
+     * - алгоритм remove() не работает
+     * - используем функцию erase()
+     */
+    int num = coll.erase(3);
+
+    // Вывод количества удаленных элементов
+    cout << "number of removed elements: " << num << endl;
+
+    // Вывод всех элементов модифицированной коллекции
+    copy (coll.begin(), coll.end(),
+          ostream_iterator<int>(cout," "));
+    cout << endl;
+}
+
+

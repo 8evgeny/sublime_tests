@@ -1,0 +1,34 @@
+// algo/psort1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    deque<int> coll;
+
+    INSERT_ELEMENTS(coll,3,7);
+    INSERT_ELEMENTS(coll,2,6);
+    INSERT_ELEMENTS(coll,1,5);
+    PRINT_ELEMENTS(coll);
+
+    // Сортировка первых пяти элементов
+    partial_sort (coll.begin(),      // Начало интервала
+                  coll.begin()+5,    // Конец упорядоченного интервала
+                  coll.end());       // Конец всего интервала
+    PRINT_ELEMENTS(coll);
+
+    // Сортировка первых пяти элементов в обратном порядке
+    partial_sort (coll.begin(),      // Начало интервала
+                  coll.begin()+5,    // Конец упорядоченного интервала
+                  coll.end(),        // Конец всего интервала
+                  greater<int>());   // Критерий сортировки
+    PRINT_ELEMENTS(coll);
+
+    // Сортировка всех элементов
+    partial_sort (coll.begin(),      // Начало интервала
+                  coll.end(),        // Конец упорядоченного интервала
+                  coll.end());       // Конец всего интервала
+    PRINT_ELEMENTS(coll);
+}
+
+

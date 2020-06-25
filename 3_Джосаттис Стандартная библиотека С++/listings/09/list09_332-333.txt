@@ -1,0 +1,45 @@
+// algo/algostuff.hpp
+#ifndef ALGOSTUFF_HPP
+#define ALGOSTUFF_HPP
+
+#include <iostream>
+#include <vector>
+#include <deque>
+#include <list>
+#include <set>
+#include <map>
+#include <string>
+#include <algorithm>
+#include <functional>
+#include <numeric>
+
+/* PRINT_ELEMENTS()
+ * - вывод необ€зательной строки C, за которой вывод€тс€
+ * - все элементы коллекции coll, разделенные пробелами.
+*/
+template <class T>
+inline void PRINT_ELEMENTS (const T& coll, const char* optcstr="")
+{
+    typename T::const_iterator pos;
+
+    std::cout << optcstr;
+    for (pos=coll.begin(); pos!=coll.end(); ++pos) {
+        std::cout << *pos << ' ';
+    }
+    std::cout << std::endl;
+}
+/* INSERT_ELEMENTS (collection, first, last)
+ * - заполнение коллекции значени€ми от first до last
+ * - ¬Ќ»ћјЌ»≈: интервал Ќ≈ я¬Ћя≈“—я полуоткрытым
+ */
+template <class T>
+inline void INSERT_ELEMENTS (T& coll, int first, int last)
+{
+    for (int i=first; i<=last; ++i) {
+        coll.insert(coll.end(),i);
+    }
+}
+
+#endif /*ALGOSTUFF_HPP*/
+
+

@@ -1,0 +1,22 @@
+// stl/riter1.cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    vector<int> coll;
+
+    // Вставка элементов со значениями от 1 до 9
+    for (int i=1; i<=9; ++i) {
+        coll.push_back(i);
+    }
+
+    // Вывод всех элементов в обратном порядке
+    copy (coll.rbegin(), coll.rend(),        // Источник
+          ostream_iterator<int>(cout," "));  // Приемник
+    cout << endl;
+}
+
+

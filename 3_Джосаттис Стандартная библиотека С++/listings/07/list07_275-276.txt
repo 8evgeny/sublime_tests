@@ -1,0 +1,16 @@
+namespace std {
+    template <class InputIterator, class OutputIterator>
+    OutputIterator copy (InputIterator from_pos,  // Начало источника
+                         InputIterator from_end,  // Конец источника
+                         OutputIterator to_pos)   // Начало приемника
+    {
+        while (from_pos != from_end) {
+            *to_pos = *from_pos;  // Копирование значений
+            ++from_pos;
+            ++to_pos;
+        }
+        return to_pos;
+    }
+}
+
+

@@ -1,0 +1,45 @@
+// util/autoptr2.cpp
+#include <iostream>
+#include <memory>
+using namespace std;
+
+/* Определение оператора вывода для auto_ptr
+ * - вывод значения объекта или NULL
+ */
+template <class T>
+ostream& operator<< (ostream& strm, const auto_ptr<T>& p)
+{
+    // Указывает ли p на объект?
+    if (p.get() == NULL) {
+        strm << "NULL";         // НЕТ: вывести строку NULL
+    }
+    else {
+        strm << *p;             // ДА: вывести объект
+    }
+    return strm;
+}
+
+int main()
+{
+    const auto_ptr<int> p(new int(42));
+    const auto_ptr<int> q(new int(0));
+    const auto_ptr<int> r;
+
+    cout << "after initialization:" << endl;
+    cout << " p: " << p << endl;
+    cout << " q: " << q << endl;
+    cout << " r: " << r << endl;
+
+    *q = *p;
+//  *r = *p;    // ОШИБКА: неопределенное поведение
+    *p = -77;
+    cout << "after assigning values:" << endl;
+    cout << " p: " << p << endl;
+    cout << " q: " << q << endl;
+    cout << " r: " << r << endl;
+
+//  q = p;      // ОШИБКА компиляции
+//  r = p;      // ОШИБКА компиляции
+}
+
+

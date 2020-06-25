@@ -1,0 +1,42 @@
+// stl/fo1.cpp
+#include <iostream>
+#include <set>
+#include <deque>
+#include <algorithm>
+#include "print.hpp"
+using namespace std;
+
+int main()
+{
+    set<int,greater<int> > coll1;
+    deque<int> coll2;
+
+    // Вставка элементов со значениями от 1 до 9
+    for (int i=1; i<=9; ++i) {
+        coll1.insert(i);
+    }
+
+    PRINT_ELEMENTS(coll1,"initialized: ");
+
+    // Преобразование всех элементов coll2 умножением на 10
+    transform (coll1.begin(),coll1.end(),        // Источник
+               back_inserter(coll2),             // Приемник
+               bind2nd(multiplies<int>(),10));   // Операция
+
+    PRINT_ELEMENTS(coll2,"transformed: ");
+
+    // Замена значения, равного 70, на 42
+    replace_if (coll2.begin(),coll2.end(),       // Интервал
+                bind2nd(equal_to<int>(),70),     // Критерий замены
+                42);                             // Новое значение
+    PRINT_ELEMENTS(coll2,"replaced:    ");
+
+    // Удаление всех элементов со значениями, меньшими 50
+    coll2.erase(remove_if(coll2.begin(),coll2.end(), // Интервал
+                          bind2nd(less<int>(),50)),  // Критерий удаления
+                coll2.end());
+
+    PRINT_ELEMENTS(coll2,"removed:     ");
+}
+
+

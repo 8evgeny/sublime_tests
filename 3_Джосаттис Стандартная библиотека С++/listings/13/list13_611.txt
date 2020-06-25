@@ -1,0 +1,28 @@
+// Заголовочные файлы для ввода-вывода
+#include <iostream>
+#include <fstream>
+
+void printFileTwice (const char* filename)
+{
+    // Открытие файла
+    std::ifstream file(filename);
+
+    // Первый вывод содержимого
+    std::cout << file.rdbuf();
+
+    // Возврат к началу файла
+    file.seekg(0);
+
+    // Второй вывод содержимого
+    std::cout << file.rdbuf();
+}
+
+int main (int argc, char* argv[])
+{
+    // Двукратный вывод всех файлов, переданных в командной строке
+    for (int i=1; i<argc; ++i) {
+        printFileTwice(argv[i]);
+    }
+}
+
+

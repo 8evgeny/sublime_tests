@@ -1,0 +1,18 @@
+namespace std {
+	    template <class T>
+	    class indirect_array;
+		    template <class T>
+	    class valarray {
+	      public:
+	        // Индексирование константного массива значений
+	        // возвращает новый массив значений
+	        valarray<T> operator[] (const valarray<size_t>&) const;
+	
+	        // Индексирование неконстантного массива
+	        // значений возвращает indirect_array
+	        indirect_array<T> operator[] (const valarray<size_t>&);
+	        ...
+	    };
+	}
+
+

@@ -1,0 +1,27 @@
+// iter/advance2.cpp
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    istream_iterator<string> cinPos(cin);
+    ostream_iterator<string> coutPos(cout," ");
+
+    /* Пока при вводе не будет достигнут конец файла
+     * - записывать каждую третью строку
+     */
+    while (cinPos != istream_iterator<string>()) {
+        // Пропустить следующие две строки
+        advance (cinPos, 2);
+
+        // Чтение и запись третьей строки
+        if (cinPos != istream_iterator<string>()) {
+            *coutPos++ = *cinPos++;
+        }
+    }
+    cout << endl;
+}
+
+

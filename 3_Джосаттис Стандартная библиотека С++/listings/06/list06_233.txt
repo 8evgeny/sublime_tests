@@ -1,0 +1,24 @@
+// cont/sortvec.cpp
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    /* Создание строкового вектора
+     * - инициализация словами, прочитанными из стандартного ввода
+     */
+    vector<string> coll((istream_iterator<string>(cin)),
+                        (istream_iterator<string>()));
+
+    // Сортировка элементов
+    sort (coll.begin(), coll.end());
+
+    // Вывод всех элементов с подавлением дубликатов
+    unique_copy (coll.begin(), coll.end(),
+                 ostream_iterator<string>(cout, "\n"));
+}
+
+

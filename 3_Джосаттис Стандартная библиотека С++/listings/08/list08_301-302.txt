@@ -1,0 +1,45 @@
+// fo/foreach3.cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+// Объект функции для вычисления среднего арифметического
+class MeanValue {
+  private:
+    long num;    // Счетчик элементов
+    long sum;    // Сумма всех значений элементов
+  public:
+    // Конструктор
+    MeanValue () : num(0), sum(0) {
+    }
+
+    // "Вызов функции"
+    // - обработка очередного элемента последовательности
+    void operator() (int elem) {
+        num++;          // Увеличение счетчика
+        sum += elem;    // Прибавление значения
+    }
+
+    // Возвращение среднего арифметического
+    double value () {
+        return static_cast<double>(sum) / static_cast<double>(num);
+    }
+};
+
+int main()
+{
+    vector<int> coll;
+
+    // Вставка элементов от 1 до 8
+    for (int i=1; i<=8; ++i) {
+        coll.push_back(i);
+    }
+
+    // Вычисление и вывод среднего арифметического
+    MeanValue mv = for_each (coll.begin(), coll.end(),  // Интервал
+                             MeanValue());              // Операция
+    cout << "mean value: " << mv.value() << endl;
+}
+
+

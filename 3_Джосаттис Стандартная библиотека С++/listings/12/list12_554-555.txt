@@ -1,0 +1,38 @@
+namespace std {
+    template<class T>
+    class valarray {
+      public:
+        ...
+        mask_array<T> operator[](const valarray<bool>&);
+        ...
+    };
+}
+Класс mask_array поддерживает следующие операции:
+namespace std {
+    template <class T>
+    class mask_array {
+      public:
+        typedef T value_type;
+
+        void operator= (const T&);
+        void operator= (const valarray<T>&) const;
+        void operator*= (const valarray<T>&) const;
+        void operator/= (const valarray<T>&) const;
+        void operator%= (const valarray<T>&) const;
+        void operator+= (const valarray<T>&) const;
+        void operator-= (const valarray<T>&) const;
+        void operator^= (const valarray<T>&) const;
+        void operator&= (const valarray<T>&) const;
+        void operator|= (const valarray<T>&) const;
+        void operator<<= (const valarray<T>&) const;
+        void operator>>= (const valarray<T>&) const;
+        ~mask_array();
+      private:
+        mask_array();
+        mask_array(const mask_array<T>&);
+        mask_array& operator= (const mask_array<T>&);
+        ...
+    };
+}
+
+

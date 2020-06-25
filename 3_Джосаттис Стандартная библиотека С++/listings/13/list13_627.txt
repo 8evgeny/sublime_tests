@@ -1,0 +1,28 @@
+// io/frac2out.cpp
+#include <iostream>
+#include <sstream>
+
+template <class charT, class traits>
+inline
+std::basic_ostream<charT,traits>&
+operator << (std::basic_ostream<charT,traits>& strm,
+             const Fraction& f)
+{
+    /* —троковый поток
+     * - с тем же форматом
+     * - без специальной ширины пол€
+     */
+    std::basic_ostringstream<charT,traits> s;
+    s.copyfmt(strm);
+    s.width(0);
+
+    // «аполнение строкового потока
+    s << f.numerator() << '/' << f.denominator();
+
+    // print string stream
+    strm << s.str();
+
+    return strm;
+}
+
+

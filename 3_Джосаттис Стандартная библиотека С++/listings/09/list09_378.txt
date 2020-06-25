@@ -1,0 +1,25 @@
+// algo/unique3.cpp
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+bool bothSpaces (char elem1, char elem2)
+{
+    return elem1 == ' ' && elem2 == ' ';
+}
+
+int main()
+{
+    // По умолчанию начальные пробелы не пропускаются
+    cin.unsetf(ios::skipws);
+
+    /* Копирование стандартного ввода в стандартный вывод
+     * - со сверткой пробелов
+     */
+    unique_copy(istream_iterator<char>(cin),  // Начало источника: cin
+                istream_iterator<char>(),     // Конец источника: eof
+                ostream_iterator<char>(cout), // Приемник: cout
+                bothSpaces);                  // Критерий удаления
+}
+
+

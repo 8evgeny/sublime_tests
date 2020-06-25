@@ -1,0 +1,21 @@
+class Fraction {
+    ...
+    public:
+      virtual void printOn (std::ostream& strm) const;  // Вывод
+      virtual void scanFrom (std::istream& strm);       // Ввод
+      ...
+};
+
+std::ostream& operator << (std::ostream& strm, const Fraction& f)
+{
+    f.printOn(strm);
+    return strm;
+}
+
+std::istream& operator >> (std::istream& strm, Fraction& f)
+{
+    f.scanFrom (strm);
+    return strm;
+}
+
+

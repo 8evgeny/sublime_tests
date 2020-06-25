@@ -1,0 +1,14 @@
+float x;
+...
+/* Создание и заполнение потока char*
+ * - не забывайте о ends или '\0'!!!
+ */
+std::ostrstream buffer;     // Динамический потоковый буфер
+buffer << "float x: " << x << std::ends;
+
+// Передача полученной C-строки функции foo() и возвращение памяти в буфер
+char* s = buffer.str();
+foo(s);
+buffer.freeze(false);
+
+

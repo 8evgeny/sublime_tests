@@ -1,0 +1,13 @@
+OutputIterator
+set_symmetric_difference (InputIterator source1Beg,
+                             InputIterator source1End,
+                          InputIterator source2Beg,
+                             InputIterator source2End,
+                          OutputIterator destBeg)
+
+set_symmetric_difference (InputIterator source1Beg, 
+                              InputIterator source1End,
+                          InputIterator source2Beg,
+                              InputIterator source2End,
+                          OutputIterator destBeg, BinaryPredicate op)
+

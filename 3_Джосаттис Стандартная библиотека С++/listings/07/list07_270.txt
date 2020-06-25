@@ -1,0 +1,32 @@
+// iter/reviter1.cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+using namespace std;
+
+void print (int elem)
+{
+    cout << elem << ' ';
+}
+
+int main()
+{
+    list<int> coll;
+
+    // Вставка элементов со значениями от 1 до 9
+    for (int i=1; i<=9; ++i) {
+        coll.push_back(i);
+    }
+
+    // Вывод всех элементов в нормальном порядке
+    for_each (coll.begin(), coll.end(),      // Интервал
+              print);                        // Операция
+    cout << endl;
+
+    // Вывод всех элементов в обратном порядке
+    for_each (coll.rbegin(), coll.rend(),    // Интервал
+              print);                        // Операция
+    cout << endl;
+}
+
+

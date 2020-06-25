@@ -1,0 +1,38 @@
+// iter/ostriter.cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+using namespace std;
+
+int main()
+{
+    // Создание потокового итератора вывода для потока cout
+    // - выводимые значения разделяются символом новой строки
+    ostream_iterator<int> intWriter(cout,"\n");
+
+    // Запись элементов через обычный интерфейс итераторов
+    *intWriter = 42;
+    intWriter++;
+    *intWriter = 77;
+    intWriter++;
+    *intWriter = -5;
+
+    // Создание коллекции с элементами от 1 до 9
+    vector<int> coll;
+    for (int i=1; i<=9; ++i) {
+        coll.push_back(i);
+    }
+
+    // Запись всех элементов без разделителей
+    copy (coll.begin(), coll.end(),
+          ostream_iterator<int>(cout));
+    cout << endl;
+
+    // Запись всех элементов с разделителем " < "
+    copy (coll.begin(), coll.end(),
+          ostream_iterator<int>(cout," < "));
+    cout << endl;
+}
+
+

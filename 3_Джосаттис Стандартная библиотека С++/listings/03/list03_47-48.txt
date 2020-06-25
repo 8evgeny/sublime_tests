@@ -1,0 +1,25 @@
+namespace MyLib {
+    /* Пользовательский класс исключений
+     * объявлен производным от стандартного класса исключений
+     */
+    class MyProblem : public std::exception {
+      public:
+        ...
+        MyProblem(...) {        // Специальный конструктор
+        }
+
+        virtual const char* what() const throw() { // Функция what()
+            ...
+        }
+    };
+    ...
+
+    void f() {
+        ...
+        // Создание объекта и генерирование исключения
+        throw MyProblem(...);
+        ...
+    }
+}
+
+

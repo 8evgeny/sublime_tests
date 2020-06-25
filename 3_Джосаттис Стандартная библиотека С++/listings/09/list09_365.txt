@@ -1,0 +1,36 @@
+// algo/swap1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    vector<int> coll1;
+    deque<int> coll2;
+
+    INSERT_ELEMENTS(coll1,1,9);
+    INSERT_ELEMENTS(coll2,11,23);
+
+    PRINT_ELEMENTS(coll1,"coll1: ");
+    PRINT_ELEMENTS(coll2,"coll2: ");
+
+    // Ёлементы coll1 мен€ютс€ местами с соответствующими элементами coll2
+    deque<int>::iterator pos;
+    pos = swap_ranges (coll1.begin(), coll1.end(),  // ѕервый интервал
+                       coll2.begin());              // ¬торой интервал
+
+    PRINT_ELEMENTS(coll1,"\ncoll1: ");
+    PRINT_ELEMENTS(coll2,"coll2: ");
+    if (pos != coll2.end()) {
+        cout << "first element not modified: "
+             << *pos << endl;
+    }
+
+    // «еркальный обмен трех первых элементов coll2
+    // с трем€ последними элементами
+    swap_ranges (coll2.begin(), coll2.begin()+3,    // ѕервый интервал
+                 coll2.rbegin());                   // ¬торой интервал
+
+    PRINT_ELEMENTS(coll2,"\ncoll2: ");
+}
+
+

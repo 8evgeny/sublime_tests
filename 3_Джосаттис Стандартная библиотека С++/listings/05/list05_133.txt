@@ -1,0 +1,38 @@
+// stl/sort1.cpp
+#include <iostream>
+#include <string>
+#include <deque>
+#include <algorithm>
+using namespace std;
+
+class Person {
+  public:
+    string firstname() const;
+    string lastname() const;
+    ...
+};
+
+/* Бинарный предикат:
+ * - сравнивает два объекта Person
+ */
+bool personSortCriterion (const Person& p1, const Person& p2)
+{
+    /* Первый объект Person меньше второго,
+     * - если фамилия в первом объекте меньше фамилии во втором объекте;
+     * - или если фамилии равны, а имя в первом объекте меньше.
+     */
+    return p1.lastname()<p2.lastname() ||
+           (!(p2.lastname()<p1.lastname()) &&
+            p1.firstname()<p2.firstname());
+}
+
+int main()
+{
+    deque<Person> coll;
+    ...
+    sort(coll.begin(),coll.end(),    // Интервал
+         personSortCriterion);       // Критерий сортировки
+    ...
+}
+
+

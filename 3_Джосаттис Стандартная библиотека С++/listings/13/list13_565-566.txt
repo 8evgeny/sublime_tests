@@ -1,0 +1,11 @@
+namespace std {
+    typedef basic_istream<char>    istream;
+    typedef basic_istream<wchar_t> wistream;
+
+    typedef basic_istream<char>    ostream;
+    typedef basic_istream<wchar_t> wostream;
+    typedef basic_istream<char>    iostream;
+    typedef basic_istream<wchar_t> wiostream;
+}
+
+

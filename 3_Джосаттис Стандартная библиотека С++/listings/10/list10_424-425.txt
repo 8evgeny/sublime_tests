@@ -1,0 +1,39 @@
+// cont/stack1.cpp
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int main()
+{
+    stack<int> st;
+
+    // Занесение трех элементов в стек
+    st.push(1);
+    st.push(2);
+    st.push(3);
+
+    // Извлечение и вывод двух элементов из стека
+    cout << st.top() << ' ';
+    st.pop();
+    cout << st.top() << ' ';
+    st.pop();
+
+    // Модификация верхнего элемента
+    st.top() = 77;
+
+    // Занесение двух новых элементов
+    st.push(4);
+    st.push(5);
+
+    // Извлечение одного элемента без обработки
+    st.pop();
+
+    // Извлечение и вывод оставшихся элементов
+    while (!st.empty()) {
+        cout << st.top() << ' ';
+        st.pop();
+    }
+    cout << endl;
+}
+
+

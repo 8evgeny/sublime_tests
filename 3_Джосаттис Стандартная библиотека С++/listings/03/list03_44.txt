@@ -1,0 +1,14 @@
+class E1
+	class E2
+	
+	void f() throw(E1,std::bad_exception)
+	                 // Генерирует исключения типа E1 или
+	                 // bad_exception для всех остальных типов исключений
+	{
+	    ...
+	    throw E1();  // Генерирует исключение типа E1
+	    ...
+	    throw E2();  // Вызывает функцию unexpected(),
+	}                // которая генерирует bad_exception
+
+

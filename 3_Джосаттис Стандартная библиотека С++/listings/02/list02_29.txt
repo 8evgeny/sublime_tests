@@ -1,0 +1,25 @@
+template <class T>
+class MyClass {
+  private:
+    T value;
+  public:
+    template <class X>                     // Шаблон функции позволяет
+    void assign (const MyClass<X>& x) {    // использовать другие типы
+        value = x.getValue();              // шаблонов при присваивании.
+    }
+    T getValue () const {
+        return value;
+    }
+    ...
+};
+
+void f()
+{
+    MyClass<double> d;
+    MyClass<int> i;
+
+    d.assign(d);    // OK
+    d.assign(i);    // OK (тип int совместим с double по присваиванию)
+}
+
+

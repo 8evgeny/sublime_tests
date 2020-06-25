@@ -1,0 +1,41 @@
+// algo/bounds1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    list<int> coll;
+
+    INSERT_ELEMENTS(coll,1,9);
+    INSERT_ELEMENTS(coll,1,9);
+    coll.sort ();
+    PRINT_ELEMENTS(coll);
+
+    // Вывод первой и последней позиций, в которых может быть
+    // вставлен элемент со значением 5
+    list<int>::iterator pos1, pos2;
+
+    pos1 = lower_bound (coll.begin(), coll.end(),
+                        5);
+    pos2 = upper_bound (coll.begin(), coll.end(),
+                        5);
+    cout << "5 could get position "
+         << distance(coll.begin(),pos1) + 1
+         << " up to "
+         << distance(coll.begin(),pos2) + 1
+         << " without breaking the sorting" << endl;
+
+    // Вставка 3 в первой возможной позиции без нарушения упорядоченности
+    coll.insert (lower_bound(coll.begin(),coll.end(),
+                             3),
+                 3);
+
+    // Вставка 7 в первой возможной позиции без нарушения упорядоченности
+    coll.insert (upper_bound(coll.begin(),coll.end(),
+                             7),
+                 7);
+
+    PRINT_ELEMENTS(coll);
+}
+
+

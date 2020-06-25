@@ -1,0 +1,38 @@
+// algo/replace2.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    list<int> coll;
+
+    INSERT_ELEMENTS(coll,2,6);
+    INSERT_ELEMENTS(coll,4,9);
+    PRINT_ELEMENTS(coll);
+
+    // Вывод коллекции, в которой все элементы, равные 5,
+    // заменены значением 55
+    replace_copy(coll.begin(), coll.end(),           // Источник
+                 ostream_iterator<int>(cout," "),    // Приемник
+                 5,                                  // Старое значение
+                 55);                                // Новое значение
+    cout << endl;
+
+    // Вывод коллекции, в которой все элементы, меньшие 5,
+    // заменены значением 42
+    // print all elements with a value less than 5 replaced with 42
+    replace_copy_if(coll.begin(), coll.end(),        // Источник
+                    ostream_iterator<int>(cout," "), // Приемник
+                    bind2nd(less<int>(),5),     // Критерий замены
+                    42);                        // Новое значение
+    cout << endl;
+
+    // Вывод коллекции, в которой все нечетные элементы заменены нулями
+    replace_copy_if(coll.begin(), coll.end(),        // Источник
+                    ostream_iterator<int>(cout," "), // Приемник
+                    bind2nd(modulus<int>(),2),  // Критерий замены
+                    0);                         // Новое значение
+    cout << endl;
+}
+
+

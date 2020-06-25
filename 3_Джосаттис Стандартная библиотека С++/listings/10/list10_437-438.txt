@@ -1,0 +1,43 @@
+// cont/queue2.cpp
+#include <iostream>
+#include <string>
+#include "Queue.hpp"      // Использование нестандартного класса очереди
+using namespace std;
+
+int main()
+{
+   try {    
+      Queue<string> q;
+
+      // Вставка трех элементов в очередь
+      q.push("These ");
+      q.push("are ");
+      q.push("more than ");
+
+      // Вывод и удаление двух элементов из очереди
+      cout << q.pop();
+      cout << q.pop();
+
+      // Вставка двух новых элементов
+      q.push("four ");
+      q.push("words!");
+
+      // Удаление одного элемента
+      q.pop();
+
+      // Вывод и удаление двух элементов из очереди
+      cout << q.pop();
+      cout << q.pop() << endl;
+
+      // Вывод количества оставшихся элементов
+      cout << "number of elements in the queue: " << q.size()
+           << endl;
+      // Вывод и удаление одного элемента
+      cout << q.pop() << endl;
+   }
+   catch (const exception& e) {
+      cerr << "EXCEPTION: " << e.what() << endl;
+   }
+}
+
+

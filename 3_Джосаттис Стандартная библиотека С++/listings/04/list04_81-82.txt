@@ -1,0 +1,21 @@
+class MyContainer {
+  private:
+    int* elems;     // Динамический массив элементов
+    int numElems;   // Количество элементов
+  public:
+    ...
+    // Реализация swap()
+    void swap(MyContainer& x) {
+        std::swap(elems,x.elems);
+        std::swap(numElems,x.numElems);
+    }
+    ...
+};
+
+// Перегрузка глобальной версии swap() для данного типа
+inline void swap (MyContainer& c1, MyContainer& c2)
+{
+    c1.swap(c2);   // Вызов специальной реализации swap()
+}
+
+

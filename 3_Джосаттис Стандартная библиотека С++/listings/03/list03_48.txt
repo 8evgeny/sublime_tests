@@ -1,0 +1,23 @@
+amespace MyLib {
+    /* Пользовательский класс исключения
+     * объявлен производным от стандартного класса
+     * с конструктором для аргумента what()
+     */
+    class MyRangeProblem : public std::out_of_range {
+      public:
+        MyRangeProblem (const string& whatString)
+          : out_of_range(whatString) {
+        }
+    };
+    ...
+
+    void f() {
+        ...
+        // Создание объекта конструктором со строковым аргументом
+        // и генерирование исключения
+        throw MyRangeProblem("here is my special range problem");
+        ...
+    }
+}
+
+

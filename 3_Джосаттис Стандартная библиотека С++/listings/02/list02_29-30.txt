@@ -1,0 +1,20 @@
+template <class T>
+class MyClass {
+  public:
+    // Ўаблонный конструктор с автоматическим преобразованием типа
+    // не замещает стандартный копирующий конструктор
+    template <class U>
+    MyClass (const MyClass<U>& x);
+    ...
+};
+
+void f()
+{
+    MyClass<double> xd;
+    ...
+    MyClass<double> xd2(xd); // ¬ызывает стандартный копирующий конструктор
+    MyClass<int> xi(xd);     // ¬ызывает шаблонный конструктор
+    ...
+}
+
+

@@ -1,0 +1,48 @@
+// num/complex1.cpp
+#include <iostream>
+#include <complex>
+using namespace std;
+
+int main()
+{
+    /* Комплексное число с вещественной и мнимой частями
+     * - Вещественная часть: 4.0
+     * - Мнимая часть: 3.0
+     */
+    complex<double> c1(4.0,3.0);
+
+    /* Создание комплексного числа в системе полярных координат
+     * - Амплитуда: 5.0
+     * - Фазовый угол: 0.75
+     */
+    complex<float> c2(polar(5.0,0.75));
+
+    // Вывод комплексного числа с вещественной и мнимой частями
+    cout << "c1: " << c1 << endl;
+    cout << "c2: " << c2 << endl;
+
+    // Вывод комплексного числа в полярных координатах
+    cout << "c1: magnitude: " << abs(c1)
+         << " (squared magnitude: " << norm(c1) << ") "
+         <<    " phase angle: " << arg(c1) << endl;
+    cout << "c2: magnitude: " << abs(c2)
+         << " (squared magnitude: " << norm(c2) << ") "
+         <<    " phase angle: " << arg(c2) << endl;
+
+    // Вывод сопряжений комплексных чисел
+    cout << "c1 conjugated:  " << conj(c1) << endl;
+    cout << "c2 conjugated:  " << conj(c2) << endl;
+    // Вывод результата вычисления
+    cout << "4.4 + c1 * 1.8: " << 4.4 + c1 * 1.8 << endl;
+
+    /* Вывод суммы c1 и c2:
+     * - внимание: разные типы!
+     */
+    cout << "c1 + c2:        "
+         << c1 + complex<double>(c2.real(),c2.imag()) << endl;
+
+    // Прибавление к с1 квадратного корня из c1 и вывод результата
+    cout << "c1 += sqrt(c1): " << (c1 += sqrt(c1)) << endl;
+}
+
+

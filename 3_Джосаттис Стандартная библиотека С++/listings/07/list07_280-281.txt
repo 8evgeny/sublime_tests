@@ -1,0 +1,49 @@
+// iter/inserter.cpp
+#include <iostream>
+#include <set>
+#include <list>
+#include <algorithm>
+#include "print.hpp"
+using namespace std;
+
+int main()
+{
+    set<int> coll;
+
+    // Создание общего итератора вставки для coll
+    // - неудобный способ
+    insert_iterator<set<int> > iter(coll,coll.begin());
+
+    // Вставка элементов через обычный интерфейс итераторов
+    *iter = 1;
+    iter++;
+    *iter = 2;
+    iter++;
+    *iter = 3;
+
+    PRINT_ELEMENTS(coll,"set:  ");
+
+    // Создание общего итератора вставки и вставка элементов
+    // - удобный способ
+    inserter(coll,coll.end()) = 44;
+    inserter(coll,coll.end()) = 55;
+
+    PRINT_ELEMENTS(coll,"set:  ");
+
+    // Вставка всех элементов контейнера с использованием
+    // общего итератора вставки
+    list<int> coll2;
+    copy (coll.begin(), coll.end(),           // Источник
+          inserter(coll2,coll2.begin()));     // Приемник
+
+    PRINT_ELEMENTS(coll2,"list: ");
+
+    // Вставка всех элементов контейнера перед вторым элементом
+    // с использованием общего итератора вставки
+    copy (coll.begin(), coll.end(),           // Источник
+          inserter(coll2,++coll2.begin()));   // Приемник
+
+    PRINT_ELEMENTS(coll2,"list: ");
+}
+
+

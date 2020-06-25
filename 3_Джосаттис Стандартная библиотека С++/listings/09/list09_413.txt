@@ -1,0 +1,26 @@
+// algo/imerge1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    list<int> coll;
+
+    // Вставка двух упорядоченных интервалов
+    INSERT_ELEMENTS(coll,1,7);
+    INSERT_ELEMENTS(coll,1,8);
+    PRINT_ELEMENTS(coll);
+
+    // Определение начала второго интервала (элемент после 7)
+    list<int>::iterator pos;
+    pos = find (coll.begin(), coll.end(),    // Интервал
+                7);                          // Значение
+    ++pos;
+
+    // Слияние в один упорядоченный интервал
+    inplace_merge (coll.begin(), pos, coll.end());
+
+    PRINT_ELEMENTS(coll);
+}
+
+

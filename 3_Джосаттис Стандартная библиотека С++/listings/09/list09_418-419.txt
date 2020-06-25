@@ -1,0 +1,23 @@
+// algo/partsum1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    vector<int> coll;
+
+    INSERT_ELEMENTS(coll,1,6);
+    PRINT_ELEMENTS(coll);
+
+    // Вывод всех частичных сумм
+    partial_sum (coll.begin(), coll.end(),          // Источник
+                 ostream_iterator<int>(cout," "));  // Приемник
+    cout << endl;
+    // Вывод всех частичных произведений
+    partial_sum (coll.begin(), coll.end(),          // Источник
+                 ostream_iterator<int>(cout," "),   // Приемник
+                 multiplies<int>());                // Операция
+    cout << endl;
+}
+
+

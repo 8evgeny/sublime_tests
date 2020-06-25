@@ -1,0 +1,34 @@
+// io/redirect.cpp
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+void redirect(ostream&);
+
+int main()
+{
+    cout << "the first row" << endl;
+
+    redirect(cout);
+
+    cout << "the last row" << endl;
+}
+
+void redirect (ostream& strm)
+{
+    ofstream file("redirect.txt");
+    
+    // Сохранение выходного буфера потока
+    streambuf* strm_buffer = strm.rdbuf();
+    // Перенаправление вывода в файл
+    strm.rdbuf (file.rdbuf());
+
+    file << "one row for the file" << endl;
+    strm << "one row for the stream" << endl;
+
+    // Восстановление старого выходного буфера
+    strm.rdbuf (strm_buffer);
+
+}    // Автоматическое закрытие файла И буфера
+
+

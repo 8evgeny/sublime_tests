@@ -1,0 +1,27 @@
+// io/sum2a.cpp
+#include <istream>
+
+namespace MyLib {
+    double readAndProcessSum (std::istream& strm)
+    {
+        double value, sum;
+    
+        /* Пока поток остается в нормальном состоянии
+         * - прочитать очередное значение и прибавить его к сумме
+         */
+        sum = 0;
+        while (strm >> value) {
+            sum += value;
+        }
+    
+        if (!strm.eof()) {
+            throw std::ios::failure
+                    ("input error in readAndProcessSum()");
+        }
+    
+        // Возврат суммы
+        return sum;
+    }
+}
+
+

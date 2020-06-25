@@ -1,0 +1,64 @@
+// cont/countptr.hpp
+#ifndef COUNTED_PTR_HPP
+#define COUNTED_PTR_HPP
+
+/* Класс, обеспечивающий семантику подсчета ссылок
+ * - объект, на который ссылается указатель, автоматически
+ *   уничтожается при удалении последнего экземпляра CountedPtr
+ *   для данного объекта.
+ */
+template <class T>
+class CountedPtr {
+  private:
+    T* ptr;        // Указатель на значение
+    long* count;   // Количество владельцев (общие данные)
+  public:
+    // Инициализация объекта существующим указателем 
+    // - указатель p должен быть получен в результате вызова new
+    explicit CountedPtr (T* p=0)
+     : ptr(p), count(new long(1)) {
+    }
+
+    // Копирующий указатель (увеличивает счетчик владельцев)
+    CountedPtr (const CountedPtr<T>& p) throw()
+     : ptr(p.ptr), count(p.count) {
+        ++*count;
+    }
+
+    // Деструктор (уничтожает объект, если владелец был последним)
+    ~CountedPtr () throw() {
+        dispose();
+    }
+
+    // Присваивание (перевод указателя на новый объект)
+    CountedPtr<T>& operator= (const CountedPtr<T>& p) throw() {
+        if (this != &p) {
+            dispose();
+            ptr = p.ptr;
+            count = p.count;
+            ++*count;
+        }
+        return *this;
+    }
+
+    // Доступ к объекту, на который ссылается указатель
+    T& operator*() const throw() {
+        return *ptr;
+    }
+    T* operator->() const throw() {
+        return ptr;
+    }
+
+  private:
+    void dispose() {
+        if (--*count == 0) {
+             delete count;
+             delete ptr;
+        }
+    }
+    
+};
+
+#endif /*COUNTED_PTR_HPP*/
+
+

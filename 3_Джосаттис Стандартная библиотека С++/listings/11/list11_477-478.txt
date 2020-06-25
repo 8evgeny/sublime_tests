@@ -1,0 +1,12 @@
+std::string s("Hi Bill, I'm ill, so please pay the bill");
+
+s.find("il")       // Возвращает 4 (первая подстрока "il")
+s.find("il",10)    // Возвращает 13 (первая подстрока "il" после s[10])
+s.rfind("il")      // Возвращает 37 (последняя подстрока "il")
+s.find_first_of("il")  // Возвращает 1 (первый из символов i или l)
+s.find_last_of("il")   // Возвращает 39 (последний из символов i или l)
+s.find_first_not_of("il")  // Возвращает 0  (первый символ,
+                           // отличный от i и l)
+s.find_last_not_of("il")   // Возвращает npos
+
+

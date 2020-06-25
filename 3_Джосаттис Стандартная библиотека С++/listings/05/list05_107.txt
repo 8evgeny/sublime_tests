@@ -1,0 +1,44 @@
+// stl/algo1.cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    vector<int> coll;
+    vector<int>::iterator pos;
+
+    // Вставка элементов от 1 до 6 в произвольном порядке
+    coll.push_back(2);
+    coll.push_back(5);
+    coll.push_back(4);
+    coll.push_back(1);
+    coll.push_back(6);
+    coll.push_back(3);
+
+    // Поиск и вывод минимального и максимального элементов
+    pos = min_element (coll.begin(), coll.end());
+    cout << "min: " << *pos << endl;
+    pos = max_element (coll.begin(), coll.end());
+    cout << "max: " << *pos << endl;
+
+    // Сортировка всех элементов
+    sort (coll.begin(), coll.end());
+
+    // Поиск первого элемента со значением, равным 3
+    pos = find (coll.begin(), coll.end(),  // Интервал
+                3);                        // Значение
+
+    // Перестановка найденного элемента со значением 3
+    // и всех последующих элементов в обратном порядке.
+    reverse (pos, coll.end());
+
+    // Вывод всех элементов
+    for (pos=coll.begin(); pos!=coll.end(); ++pos) {
+        cout << *pos << ' ';
+    }
+    cout << endl;
+}
+
+

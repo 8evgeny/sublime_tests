@@ -1,0 +1,39 @@
+// fo.removeif.cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+#include "print.hpp"
+using namespace std;
+
+class Nth {        // Объект функции возвращает true для n-го вызова
+  private:
+    int nth;       // Номер вызова, для которого следует вернуть true
+    int count;     // Счетчик вызовов
+  public:
+    Nth (int n) : nth(n), count(0) {
+    }
+    bool operator() (int) {
+        return ++count == nth;
+    }
+};
+
+int main()
+{
+    list<int> coll;
+
+    // Вставка элементов со значениями от 1 до 9
+    for (int i=1; i<=9; ++i) {
+        coll.push_back(i);
+    }
+    PRINT_ELEMENTS(coll,"coll:        ");
+
+    // Удаление третьего элемента
+    list<int>::iterator pos;
+    pos = remove_if(coll.begin(),coll.end(),  // Интервал
+                    Nth(3));                  // Критерий удаления
+    coll.erase(pos,coll.end());
+
+    PRINT_ELEMENTS(coll,"nth removed: ");
+}
+
+

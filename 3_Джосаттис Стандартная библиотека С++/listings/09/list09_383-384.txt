@@ -1,0 +1,45 @@
+// algo/perm1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    vector<int> coll;
+
+    INSERT_ELEMENTS(coll,1,3);
+    PRINT_ELEMENTS(coll,"on entry:  ");
+
+    /* Генерировать перестановки элементов до тех пор, пока они
+     * не будут упорядочены
+     * - при этом перебираются все возможные перестановки,
+     * - потому что в исходном состоянии
+     * - элементы упорядочены по возрастанию
+     */
+    while (next_permutation(coll.begin(),coll.end())) {
+        PRINT_ELEMENTS(coll," ");
+    }
+    PRINT_ELEMENTS(coll,"afterward: ");
+
+    /* Генерировать перестановки элементов до тех пор,
+     * пока элементы не будут упорядочены по убыванию
+     * - это будет следующая перестановка после сортировки
+     * - по возрастанию, поэтому цикл сразу же завершается
+     */
+    while (prev_permutation(coll.begin(),coll.end())) {
+        PRINT_ELEMENTS(coll," ");
+    }
+    PRINT_ELEMENTS(coll,"now:       ");
+
+    /* Генерировать перестановки элементов до тех пор,
+     * пока элементы не будут упорядочены по убыванию
+     * - при этом перебираются все возможные перестановки,
+     * - потому что в исходном состоянии
+     * - элементы упорядочены по убыванию
+     */
+    while (prev_permutation(coll.begin(),coll.end())) {
+        PRINT_ELEMENTS(coll," ");
+    }
+    PRINT_ELEMENTS(coll,"afterward: ");
+}
+
+

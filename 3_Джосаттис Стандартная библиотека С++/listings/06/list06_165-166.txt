@@ -1,0 +1,54 @@
+// cont/vector1.cpp
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    // Создание пустого вектора для хранения строк
+    vector<string> sentence;
+
+    // Резервируем память для пяти элементов,
+    // чтобы предотвратить перераспределение
+    sentence.reserve(5);
+    // Присоединение нескольких элементов
+    sentence.push_back("Hello,");
+    sentence.push_back("how");
+    sentence.push_back("are");
+    sentence.push_back("you");
+    sentence.push_back("?");
+
+    // Вывод элементов, разделенных пробелами
+    copy (sentence.begin(), sentence.end(),
+          ostream_iterator<string>(cout," "));
+    cout << endl;
+
+    // Вывод "служебных данных"
+    cout << "  max_size(): " << sentence.max_size() << endl;
+    cout << "  size():     " << sentence.size()     << endl;
+    cout << "  capacity(): " << sentence.capacity() << endl;
+
+    // Перестановка второго и четвертого элемента
+    swap (sentence[1], sentence[3]);
+
+    // Вставка элемента "always" перед элементом "?"
+    sentence.insert (find(sentence.begin(),sentence.end(),"?"),
+                     "always");
+
+    // Присваивание "!" последнему элементу
+    sentence.back() = "!";
+    
+    // Вывод элементов, разделенных пробелами
+    copy (sentence.begin(), sentence.end(),
+          ostream_iterator<string>(cout," "));
+    cout << endl;
+
+    // Повторный вывод "служебных данных"
+    cout << "  max_size(): " << sentence.max_size() << endl;
+    cout << "  size():     " << sentence.size()     << endl;
+    cout << "  capacity(): " << sentence.capacity() << endl;
+}
+
+

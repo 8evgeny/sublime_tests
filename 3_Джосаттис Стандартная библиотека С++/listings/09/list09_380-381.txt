@@ -1,0 +1,31 @@
+// algo/rotate1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    vector<int> coll;
+
+    INSERT_ELEMENTS(coll,1,9);
+    PRINT_ELEMENTS(coll,"coll:      ");
+
+    // Циклический сдвиг на один элемент влево
+    rotate (coll.begin(),      // Начало интервала
+            coll.begin() + 1,  // Новый первый элемент
+            coll.end());       // Конец интервала
+    PRINT_ELEMENTS(coll,"one left:  ");
+
+    // Циклический сдвиг на два элемента вправо
+    rotate (coll.begin(),      // Начало интервала
+            coll.end() - 2,    // Новый первый элемент
+            coll.end());       // Конец интервала
+    PRINT_ELEMENTS(coll,"two right: ");
+    // Циклический сдвиг, в результате которого элемент со значением 4
+    // переходит в начало
+    rotate (coll.begin(),                     // Начало интервала
+            find(coll.begin(),coll.end(),4),  // Новый первый элемент
+            coll.end());                      // Конец интервала
+    PRINT_ELEMENTS(coll,"4 first:   ");
+}
+
+

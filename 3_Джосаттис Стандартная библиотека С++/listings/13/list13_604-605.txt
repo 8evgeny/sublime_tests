@@ -1,0 +1,61 @@
+// io/charset.cpp
+#include <string>       // Строки
+#include <iostream>     // Ввод-вывод
+#include <fstream>      // Файловый ввод-вывод
+#include <iomanip>      // setw()
+#include <cstdlib>      // exit()
+using namespace std;
+
+// Опережающие объявления
+void writeCharsetToFile (const string& filename);
+void outputFile (const string& filename);
+
+int main ()
+{
+    writeCharsetToFile("charset.out");
+    outputFile("charset.out");
+}
+
+void writeCharsetToFile (const string& filename)
+{
+    // Открытие выходного файла
+    ofstream file(filename.c_str());
+
+    // Файл открыт?
+    if (! file) {
+        // NO, abort program
+        cerr << "can't open output file \"" << filename << "\""
+             << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    // Вывод текущего набора символов
+    for (int i=32; i<256; i++) {
+        file << "value: " << setw(3) << i << "   "
+             << "char:  " << static_cast<char>(i) << endl;
+    }
+
+}   // Автоматическое закрытие файла
+
+void outputFile (const string& filename)
+{
+    // open input file
+    ifstream file(filename.c_str());
+
+    // Файл открыт?
+    if (! file) {
+        // НЕТ, аварийное завершение программы
+        cerr << "can't open input file \"" << filename << "\""
+             << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    // Копирование содержимого файла в cout
+    char c;
+    while (file.get(c)) {
+        cout.put(c);
+    }
+
+}   // Автоматическое закрытие файла
+
+

@@ -1,0 +1,16 @@
+namespace std {
+    template <class T, class Allocator>
+    vector<T,Allocator>::vector(size_type num, const T& val,
+                                const Allocator& a)
+     : alloc(a)        // Инициализация распределителя
+    {
+        // Выделение памяти
+        sizeElems = numElems = num;
+        elems = alloc.allocate(num);
+
+        // Инициализация элементов
+        uninitialized_fill_n (elems, num. val);
+    }
+}
+
+

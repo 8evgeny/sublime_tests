@@ -1,0 +1,61 @@
+// cont/refsem1.cpp
+#include <iostream>
+#include <list>
+#include <deque>
+#include <algorithm>
+#include "countptr.hpp"
+using namespace std;
+
+void printCountedPtr (CountedPtr<int> elem)
+{
+    cout << *elem << ' ';
+}
+
+int main()
+{
+    // Массив целых чисел (для совместного использования
+    // в разных контейнерах)
+    static int values[] = { 3, 5, 9, 1, 6, 4 };
+
+    // Две разные коллекции
+    typedef CountedPtr<int> IntPtr;
+    deque<IntPtr> coll1;
+    list<IntPtr> coll2;
+
+    /* Вставка общих объектов в коллекции
+     * - исходный порядок в coll1
+     * - обратный порядок в  coll2
+     */
+    for (int i=0; i<sizeof(values)/sizeof(values[0]); ++i) {
+        IntPtr ptr(new int(values[i]));
+        coll1.push_back(ptr);
+        coll2.push_front(ptr);
+    }
+
+    // Вывод содержимого обеих коллекций
+    for_each (coll1.begin(), coll1.end(),
+              printCountedPtr);
+    cout << endl;
+    for_each (coll2.begin(), coll2.end(),
+              printCountedPtr);
+    cout << endl << endl;
+
+    /* Модификация значений в разных коллекциях
+     * - возведение в квадрат третьего значения в coll1
+     * - изменение знака первого значения в coll1
+     * - обнуление первого значения в coll2
+     */
+    *coll1[2] *= *coll1[2];
+    (**coll1.begin()) *= -1;
+    (**coll2.begin()) = 0;
+
+    // Повторный вывод содержимого обеих коллекций
+    for_each (coll1.begin(), coll1.end(),
+              printCountedPtr);
+    cout << endl;
+    for_each (coll2.begin(), coll2.end(),
+              printCountedPtr);
+    cout << endl;
+}
+
+

@@ -1,0 +1,26 @@
+// algo/reverse1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    vector<int> coll;
+
+    INSERT_ELEMENTS(coll,1,9);
+    PRINT_ELEMENTS(coll,"coll: ");
+
+    // Перестановка элементов в обратном порядке
+    reverse (coll.begin(), coll.end());
+    PRINT_ELEMENTS(coll,"coll: ");
+
+    // Перестановка в обратном порядке элементов
+    // со второго до предпоследнего
+    reverse (coll.begin()+1, coll.end()-1);
+    PRINT_ELEMENTS(coll,"coll: ");
+    // Вывод всех элементов в обратном порядке
+    reverse_copy (coll.begin(), coll.end(),           // Источник
+                  ostream_iterator<int>(cout," "));   // Приемник
+    cout << endl;
+}
+
+

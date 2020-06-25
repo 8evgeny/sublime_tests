@@ -1,0 +1,30 @@
+// algo/copy2.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    /* Инициализация исходной коллекции символами
+     *  "..........abcdef.........."
+     */
+    vector<char> source(10,'.');
+    for (int c='a'; c<='f'; c++) {
+        source.push_back(c);
+    }
+    source.insert(source.end(),10,'.');
+    PRINT_ELEMENTS(source,"source: ");
+
+    // Копирование всех букв с позиции за три элемента перед 'a'
+    vector<char> c1(source.begin(),source.end());
+    copy (c1.begin()+10, c1.begin()+16,  // Исходный интервал
+          c1.begin()+7);                 // Приемный интервал
+    PRINT_ELEMENTS(c1,"c1:     ");
+
+    // Копирование всех букв с позиции через три элемента после 'f'
+    vector<char> c2(source.begin(),source.end());
+    copy_backward (c2.begin()+10, c2.begin()+16,  // Источник
+                   c2.begin()+19);                // Приемник
+    PRINT_ELEMENTS(c2,"c2:     ");
+}
+
+

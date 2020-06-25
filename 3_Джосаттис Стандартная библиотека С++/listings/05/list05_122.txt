@@ -1,0 +1,34 @@
+// stl/remove1.cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    list<int> coll;
+
+    // Вставка элементов со значениями от 6 до 1 и от 1 до 6
+    for (int i=1; i<=6; ++i) {
+        coll.push_front(i);
+        coll.push_back(i);
+    }
+
+    // Вывод всех элементов коллекции
+    cout << "pre:  ";
+    copy (coll.begin(), coll.end(),           // Источник
+          ostream_iterator<int>(cout," "));   // Приемник
+    cout << endl;
+
+    // Удаление всех элементов со значением 3
+    remove (coll.begin(), coll.end(),         // Интервал
+            3);                               // Значение
+
+    // Вывод всех элементов коллекции
+    cout << "post: ";
+    copy (coll.begin(), coll.end(),           // Источник
+          ostream_iterator<int>(cout," "));   // Приемник
+    cout << endl;
+}
+
+

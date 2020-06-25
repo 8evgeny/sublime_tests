@@ -1,0 +1,25 @@
+// io/charcat2.cpp
+#include <iostream>
+#include <iterator>
+using namespace std;
+
+int main()
+{
+    // Итератор потокового буфера ввода для cin
+    istreambuf_iterator<char> inpos(cin);
+
+    // Итератор конца потока
+    istreambuf_iterator<char> endpos;
+
+    // Итератор потокового буфера вывода для cout
+    ostreambuf_iterator<char> outpos(cout);
+
+    // Пока итератор ввода остается действительным
+    while (inpos != endpos) {
+        *outpos = *inpos;    // Присвоить его значение итератору вывода
+        ++inpos;
+        ++outpos;
+    }
+}
+
+

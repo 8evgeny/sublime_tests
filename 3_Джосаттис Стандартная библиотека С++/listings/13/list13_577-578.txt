@@ -1,0 +1,15 @@
+namespace std {
+    class ios_base::failure : public exception {
+      public:
+        // Конструктор
+        explicit failure (const string& msg);
+
+        // Деструктор
+        virtual ~failure();
+
+        // Возврат информации об исключении
+        virtual const char* what() const;
+    };
+}
+
+

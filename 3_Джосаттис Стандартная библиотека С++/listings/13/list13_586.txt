@@ -1,0 +1,16 @@
+// io/charcat1.cpp
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    char c;
+
+    // Пока удается прочитать символ
+    while (cin.get(c)) {
+        // Вывести прочитанный символ в выходной поток
+        cout.put(c);
+    }
+}
+
+

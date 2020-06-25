@@ -1,0 +1,37 @@
+namespace std {
+    template<class charT,
+             class traits = char_traits<charT>,
+             class Allocator = allocator<charT> >
+    class basic_string {
+      public:
+        // Конструктор по умолчанию
+        explicit basic_string(const Allocator& a = Allocator());
+
+        // Копирующий конструктор
+        basic_string(const basic_string& str,
+                     size_type str_idx = 0,
+                     size_type str_num = npos);
+        basic_string(const basic_string& str,
+                     size_type str_idx, size_type str_num,
+                     const Allocator&);
+
+        // Конструктор для C-строк
+        basic_string(const charT* cstr,
+                     const Allocator& a = Allocator());
+
+        // Конструктор для символьных массивов
+        basic_string(const charT* chars, size_type chars_len,
+                     const Allocator& a = Allocator());
+
+        // Конструктор для num экземпляров символа
+        basic_string(size_type num, charT c,
+                     const Allocator& a = Allocator());
+        // Конструктор для интервала символов
+        template<class InputIterator>
+        basic_string(InputIterator beg, InputIterator end,
+                     const Allocator& a = Allocator());
+        ...
+    };
+}
+
+

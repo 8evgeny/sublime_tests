@@ -1,0 +1,19 @@
+	std::istream& operator>> (std::istream& strm, Row& row)
+	{
+	    /* Организация предварительной и завершающей обработки
+	     *  - true: пропуски не игнорируются
+	     */ 
+	    std::istream::sentry se(strm,true);
+	    if (se) {
+	        // Выполнение ввода
+	        char c;
+	        row.clear();
+	        while (strm.get(c) && c != '\n') {
+	            row.append(c);
+	        }
+	    }
+	
+	    return strm;
+	}
+
+

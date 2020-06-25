@@ -1,0 +1,43 @@
+// io/frac2in.hpp
+#include <iostream>
+
+template <class charT, class traits>
+inline
+std::basic_istream<charT,traits>&
+operator >> (std::basic_istream<charT,traits>& strm, Fraction& f)
+{
+    int n, d;
+
+    // ¬вод числител€
+    strm >> n;
+
+    /* ≈сли числитель прочитан успешно
+     * - прочитать '/' и знаменатель
+     */
+    if (strm.peek() == '/') {
+        strm.ignore();
+        strm >> d;
+    }
+    else {
+        d = 1;
+    }
+
+    /* ≈сли знаменатель равен нулю
+     * - установить failbit как признак ошибки форматировани€ ввода-вывода
+     */
+    if (d == 0) {
+        strm.setstate(std::ios::failbit);
+        return strm;
+    }
+
+    /* ≈сли все прошло успешно,
+     * изменить значение дроби
+     */
+    if (strm) {
+        f = Fraction(n,d);
+    }
+
+    return strm;
+}
+
+

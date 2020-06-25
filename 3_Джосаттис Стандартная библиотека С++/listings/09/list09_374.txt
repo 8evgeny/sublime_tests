@@ -1,0 +1,33 @@
+// algo/remove2.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    list<int> coll1;
+
+    INSERT_ELEMENTS(coll1,1,6);
+    INSERT_ELEMENTS(coll1,1,9);
+    PRINT_ELEMENTS(coll1);
+
+    // Вывод содержимого коллекции кроме элементов со значением 3
+    remove_copy(coll1.begin(), coll1.end(),       // Источник
+                ostream_iterator<int>(cout," "),  // Приемник
+                3);                               // Удаляемое значение
+    cout << endl;
+
+    // Вывод содержимого коллекции кроме элементов со значением, большим 4
+    remove_copy_if(coll1.begin(), coll1.end(),      // Источник
+                   ostream_iterator<int>(cout," "), // Приемник
+                   bind2nd(greater<int>(),4));      // Критерий удаления
+    cout << endl;
+
+    // Копирование всех элементов, больших 3, в мультимножество
+    multiset<int> coll2;
+    remove_copy_if(coll1.begin(), coll1.end(),    // Источник
+                   inserter(coll2,coll2.end()),   // Приемник
+                   bind2nd(less<int>(),4));       // Критерий удаления
+    PRINT_ELEMENTS(coll2);
+}
+
+

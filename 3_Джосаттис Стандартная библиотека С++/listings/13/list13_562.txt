@@ -1,0 +1,39 @@
+// io/io1.cpp
+#include <cstdlib>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    double x, y;        // Операнды
+
+    // Вывод заголовка
+    cout << "Multiplication of two floating point values" << endl;
+
+    // Чтение первого операнда
+    cout << "first operand:  ";
+    if (! (cin >> x)) {
+        /* Ошибка ввода
+         *  => вывести сообщение и завершить программу с кодом ошибки
+         */
+        cerr << "error while reading the first floating value"
+             << endl;
+        return EXIT_FAILURE;
+    }
+
+    // Чтение второго операнда
+    cout << "second operand: ";
+    if (! (cin >> y)) {
+        /* Ошибка ввода
+         *  => вывести сообщение и завершить программу с кодом ошибки
+         */
+        cerr << "error while reading the second floating value"
+             << endl;
+        return EXIT_FAILURE;
+    }
+
+    // Вывод операндов и результата
+    cout << x << " times " << y << " equals " << x * y << endl;
+}
+
+

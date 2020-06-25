@@ -1,0 +1,14 @@
+// Определение идентификаторов в пространстве имен josuttis
+namespace josuttis {
+    class File;
+    void myGlobalFunc();
+    ...
+}
+...
+
+// Использование идентификатора, входящего в пространство имен
+josuttis::File obj;
+...
+josuttis::myGlobalFunc();
+
+

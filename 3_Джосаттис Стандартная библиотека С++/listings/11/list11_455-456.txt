@@ -1,0 +1,57 @@
+// string/string1.cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main (int argc, char* argv[])
+{
+    string filename, basename, extname, tmpname;
+    const string suffix("tmp");
+
+    /* Для каждого аргумента командной строки
+     * (который является обычной C-строкой)
+     */
+    for (int i=1; i<argc; ++i) {
+        // Аргумент интерпретируется как имя файла
+        filename = argv[i];
+        
+        // Поиск точки в имени файла
+        string::size_type idx = filename.find('.');
+        if (idx == string::npos) {
+            // Имя файла не содержит точек
+            tmpname = filename + '.' + suffix;
+        }
+        else {
+            /* Разделение имени файла на базовое имя и расширение
+             * - базовое имя содержит все символы перед точкой
+             * - расширение содержит все символы после точки
+             */
+            basename = filename.substr(0, idx);
+            extname = filename.substr(idx+1);
+            if (extname.empty()) {
+                // Содержит точку, но без расширения:
+                // присоединить символы tmp
+                tmpname = filename;
+                tmpname += suffix;
+            }
+            else if (extname == suffix) {
+                // Расширение tmp заменяется на xxx
+                tmpname = filename;
+                tmpname.replace (idx+1, extname.size(), "xxx");
+            }
+            else {
+                // Замена любого расширения на tmp
+                tmpname = filename;
+                tmpname.replace (idx+1, string::npos, suffix);
+            }
+        }
+
+        // Вывод имен исходного и временного файлов
+        cout << filename << " => " << tmpname << endl;
+    }
+}
+
+
+
+
+

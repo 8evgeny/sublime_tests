@@ -1,0 +1,42 @@
+namespace std {
+    template <class T1, class T2>
+    struct pair {
+        // Имена типов компонентов
+        typedef T1 firstType;
+        typedef T2 secondType;
+
+        // Компоненты
+        T1 first;
+        T2 second;
+
+        /* Конструктор по умолчанию - вызовы T1() и T2()
+         * обеспечивают инициализацию базовых типов
+         */
+        pair()
+          : first(T1()), second(T2()) {
+        }
+
+        // Конструктор с двумя значениями
+        pair(const T1& a, const T2& b)
+          : first(a), second(b) {
+        }
+
+        // Копирующий конструктор с автоматическими преобразованиями
+        template<class U, class V>
+        pair(const pair<U, V> &p)
+          : first(p.first), second(p.second) {
+        }
+    };
+
+    // Сравнения
+    template <class T1, class T2>
+    bool operator== (const pair<T1,T2>&, const pair<T1,T2>&);
+    template <class T1, class T2>
+    bool operator< (const pair<T1,T2>&, const pair<T1,T2>&);
+    ... // И т.д для !=, <=, >, >=
+
+    template <class T1, class T2>
+    pair<T1, T2> make_pair(const T1&, const T2&);
+}
+
+

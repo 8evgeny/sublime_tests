@@ -1,0 +1,47 @@
+// algo/searchn1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+   deque<int> coll;
+
+   INSERT_ELEMENTS(coll,1,9);
+   PRINT_ELEMENTS(coll);
+
+   // Поиск четырех последовательных элементов со значением 3
+   deque<int>::iterator pos;
+   pos = search_n (coll.begin(), coll.end(),    // Интервал
+                   4,                           // Счетчик
+                   3);                          // Значение
+
+   // Вывод результата
+   if (pos != coll.end()) {
+       cout << "four consecutive elements with value 3 "
+            << "start with " << distance(coll.begin(),pos) +1
+            << ". element" << endl;
+   }
+   else {
+       cout << "no four consecutive elements with value 3 found"
+            << endl;
+   }
+
+   // Поиск четырех последовательных элементов со значением, большим 3
+   pos = search_n (coll.begin(), coll.end(),    // Интервал
+                   4,                           // Счетчик
+                   3,                           // Значение
+                   greater<int>());             // Критерий
+
+   // Вывод результата
+   if (pos != coll.end()) {
+       cout << "four consecutive elements with value > 3 "
+            << "start with " << distance(coll.begin(),pos) +1
+            << ". element" << endl;
+   }
+   else {
+       cout << "no four consecutive elements with value > 3 found"
+            << endl;
+   }
+}
+
+

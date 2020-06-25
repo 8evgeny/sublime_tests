@@ -1,0 +1,36 @@
+// stl/map1.cpp
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main()
+{
+    /* Тип контейнера:
+     * - map: элементами являются пары "ключ/значение"
+     * - string: ключи относятся к типу string
+     * - float: значения относятся к типу float
+     */
+    typedef map<string,float> StringFloatMap;
+
+    StringFloatMap coll;
+
+    // Вставка элементов в коллекцию
+    coll["VAT"] = 0.15;
+    coll["Pi"] = 3.1415;
+    coll["an arbitrary number"] = 4983.223;
+    coll["Null"] = 0;
+
+    /* Вывод содержимого коллекции
+     * - перебор всех элементов
+     * - компонент first содержит ключ
+     * - компонент second содержит значение
+     */
+    StringFloatMap::iterator pos;
+    for (pos = coll.begin(); pos != coll.end(); ++pos) {
+        cout << "key: \"" << pos->first << "\" "
+             << "value: " << pos->second << endl;
+    }
+}
+
+

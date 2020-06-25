@@ -1,0 +1,74 @@
+// io/inbuf1.hpp
+#include <cstdio>
+#include <cstring>
+#include <streambuf>
+
+extern "C" {
+    int read (int fd, char* buf, int num);
+}
+
+class inbuf : public std::streambuf {
+  protected:
+    /* Буфер данных:
+     * - до четырех символов в области возврата,
+     * - до шести символов в обычном буфере ввода.
+     */
+    static const int bufferSize = 10;    // Размер буфера данных
+    char buffer[bufferSize];             // Буфер
+
+  public:
+    /* Конструктор
+     * - Инициализация пустого буфера
+     * - без области возврата
+     * => принудительный вызов underflow()
+     */
+    inbuf() {
+        setg (buffer+4,     // Начало области возврата
+              buffer+4,     // Текущая позиция
+              buffer+4);    // Конечная позиция
+    }
+
+  protected:
+    // Вставка новых символов в буфер
+    virtual int_type underflow () {
+
+        // Текущая позиция чтения предшествует концу буфера?
+        if (gptr() < egptr()) {
+            return traits_type::to_int_type(*gptr());
+        }
+
+        /* Обработка размера области возврата
+         * - использовать количество прочитанных символов,
+         * - но не более 4
+         */
+        int numPutback;
+        numPutback = gptr() - eback();
+        if (numPutback > 4) {
+            numPutback = 4;
+        }
+
+        /* Копирование до четырех ранее прочитанных символов
+         * в область возврата (первые четыре символа)
+         */
+        std::memmove (buffer+(4-numPutback), gptr()-numPutback,
+                      numPutback);
+
+        // Чтение новых символов
+        int num;
+        num = read (0, buffer+4, bufferSize-4);
+        if (num <= 0) {
+            // ОШИБКА или EOF
+            return EOF;
+        }
+
+        // Сброс указателей
+        setg (buffer+(4-numPutback),   // Начало области возврата
+              buffer+4,                // Текущая позиция чтения
+              buffer+4+num);           // Конец буфера
+
+        // Вернуть следующий символ
+        return traits_type::to_int_type(*gptr());
+    }
+};
+
+

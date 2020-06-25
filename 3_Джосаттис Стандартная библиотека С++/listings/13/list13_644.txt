@@ -1,0 +1,13 @@
+// io/outbuf1.cpp
+#include <iostream>
+#include "outbuf1.hpp"
+
+int main()
+{
+    outbuf ob;                // Создание специального буфера вывода
+    std::ostream out(&ob);    // Инициализация выходного потока 
+                              // созданным буфером вывода
+    out << "31 hexadecimal: " << std::hex << 31 << std::endl;
+}
+
+

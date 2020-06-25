@@ -1,0 +1,21 @@
+namespace std {
+	    /* Числовые пределы для int
+	     */
+	    template <> class numeric_limits<int> {
+	      public:
+	        // Да, для int существует специализация числовых пределов
+	        static const bool is_specialized = true;
+	
+	        static T min() throw() {
+	            return -2147483648;
+	        }
+	
+	        static T max() throw() {
+	            return 2147483647;
+	        }
+	        static const int digits = 31;
+	        ...
+	    };
+	}
+
+

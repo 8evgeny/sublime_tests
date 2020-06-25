@@ -1,0 +1,22 @@
+// ¬ектор со специальным распределителем
+std::vector<int,MyAlloc<int> > v;
+
+// ќтображение int/float со специальным распределителем
+std::map<int,float,less<int>,
+         MyAlloc<std::pair<const int,float> > > m;
+
+// —трока со специальным распределителем
+std::basic_string<char,std::char_traits<char>,MyAlloc<char> > s;
+≈сли вы используете собственный распределитель пам€ти, веро€тно, дл€ него стоит определить некоторые типы. ѕример:
+// —пециальный строковый тип, использующий специальный распределитель
+typedef basic_string<char,std::char_traits<char>,
+                     MyAlloc<char> > xstring;
+
+// —пециальное отображение string/string со специальным распределителем
+typedef std::map<xstring,xstring,less<xstring>,
+                 MyAlloc<std::pair<const xstring,xstring> >> xmap;
+
+// —оздание объекта типа xmap
+xmap mymap;
+
+

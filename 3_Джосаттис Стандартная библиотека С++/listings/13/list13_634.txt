@@ -1,0 +1,15 @@
+namespace std {
+  class ios_base {
+    public:
+      // Разновидности событий обратного вызова
+      enum event { erase_event, imbue_event, copyfmt_event };
+      // Тип функции обратного вызова
+      typedef void (*event_callback) (event e, ios_base& strm,
+                                      int arg);
+      // Регистрация функций обратного вызова
+      void register_callback (event_callback cb, int arg);
+      ...
+    };
+}
+
+

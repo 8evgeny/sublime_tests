@@ -1,0 +1,64 @@
+// cont/Stack.hpp
+/* ************************************************************
+ *  Stack.hpp
+ *   - более удобный и безопасный класс стека
+ * ************************************************************/
+#ifndef STACK_HPP
+#define STACK_HPP
+
+#include <deque>
+#include <exception>
+
+template <class T>
+class Stack {
+  protected:
+    std::deque<T> c;        // Контейнер для хранения элементов
+
+  public:
+    /* Класс исключения, генерируемого функциями pop() и top()
+     * при пустом стеке
+     */
+    class ReadEmptyStack : public std::exception {
+      public:
+        virtual const char* what() const throw() {
+            return "read empty stack";
+        }
+    };
+  
+    // Количество элементов
+    typename std::deque<T>::size_type size() const {
+        return c.size();
+    }
+
+    // Проверка пустого стека
+    bool empty() const {
+        return c.empty();
+    }
+
+    // Занесение элемента в стек
+    void push (const T& elem) {
+        c.push_back(elem);
+    }
+
+    // Извлечение элемента из стека с возвращением его значения
+    T pop () {
+        if (c.empty()) {
+            throw ReadEmptyStack();
+        }
+        T elem(c.back());
+        c.pop_back();
+        return elem;
+    }
+
+    // Получение значения верхнего элемента
+    T& top () {
+        if (c.empty()) {
+            throw ReadEmptyStack();
+        }
+        return c.back();
+    }
+};
+
+#endif /* STACK_HPP */
+
+

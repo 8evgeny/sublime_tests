@@ -1,0 +1,23 @@
+// algo/foreach1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+// Функция, вызываемая для каждого элемента
+void print (int elem)
+{
+    cout << elem << ' ';
+}
+
+int main()
+{
+    vector<int> coll;
+
+    INSERT_ELEMENTS(coll,1,9);
+
+    // call print() for each element
+    for_each (coll.begin(), coll.end(),  // Интервал
+              print);                    // Операция
+    cout << endl;
+}
+
+

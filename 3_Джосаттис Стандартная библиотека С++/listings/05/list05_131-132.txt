@@ -1,0 +1,53 @@
+// stl/prime1.cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+#include <cstdlib>      // для abs()
+using namespace std;
+
+// Предикат проверяет, является ли целое число простым
+bool isPrime (int number)
+{
+    // Знак числа игнорируется
+    number = abs(number);
+
+    // 0 и 1 не являются простыми числами
+    if (number == 0 || number == 1) {
+        return false;
+    }
+        
+    // Поиск множителя, на который число делится без остатка
+    int divisor;
+    for (divisor = number/2; number%divisor != 0; --divisor) {
+        ;
+    }
+
+    // Если не найдено ни одного множителя, большего 1,
+    // проверяемое число является простым.
+    return divisor == 1;
+}
+
+int main()
+{
+    list<int> coll;
+
+    // Вставка элементов со значениями от 24 до 30
+    for (int i=24; i<=30; ++i) {
+        coll.push_back(i);
+    }
+
+    // Поиск простого числа
+    list<int>::iterator pos;
+    pos = find_if (coll.begin(), coll.end(),    // Интервал
+                   isPrime);                    // Предикат
+    if (pos != coll.end()) {
+        // Найдено простое число
+        cout << *pos << " is first prime number found" << endl;
+    }
+    else {
+        // Простые числа не найдены
+        cout << "no prime number found" << endl;
+    }
+}
+
+

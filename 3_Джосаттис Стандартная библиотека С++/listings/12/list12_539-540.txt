@@ -1,0 +1,60 @@
+// num/gslice1.cpp
+#include <iostream>
+#include <valarray>
+using namespace std;
+
+// Построчный вывод трехмерного массива значений
+template<class T>
+void printValarray3D (const valarray<T>& va, int dim1, int dim2)
+{
+    for (int i=0; i<va.size()/(dim1*dim2); ++i) {
+        for (int j=0; j<dim2; ++j) {
+            for (int k=0; k<dim1; ++k) {
+                cout << va[i*dim1*dim2+j*dim1+k] << ' ';
+            }
+            cout << '\n';
+        }
+        cout << '\n';
+    }
+    cout << endl;
+}
+
+int main()
+{
+    /* Массив значений из 24 элементов
+     * - две группы
+     * - четыре строки
+     * - три столбца
+     */
+    valarray<double> va(24);
+
+    // Заполнение массива значений данными
+    for (int i=0; i<24; i++) {
+        va[i] = i;
+    }
+
+    // Вывод массива значений
+    printValarray3D (va, 3, 4);
+
+    // Нам нужны два двумерных подмножества 3x3 элемента
+    // в двух 12-элементных массивах
+    size_t lengthvalues[] = {  2, 3 };
+    size_t stridevalues[] = { 12, 3 };
+    valarray<size_t> length(lengthvalues,2);
+    valarray<size_t> stride(stridevalues,2);
+
+    // Присвоить второй столбец первых трех строк
+    // первому столбцу первых трех строк
+    va[gslice(0,length,stride)]
+        = valarray<double>(va[gslice(1,length,stride)]);
+
+    // Прибавить и присвоить третью из первых трех строк
+    // первой из первых трех строк
+    va[gslice(0,length,stride)]
+        += valarray<double>(va[gslice(2,length,stride)]);
+    
+    // Вывод массива значений
+    printValarray3D (va, 3, 4);
+}
+
+

@@ -1,0 +1,14 @@
+using std::ios, std::cout;
+
+// Сохранение текущих форматных флагов
+ios::fmtflags oldFlags = cout.flags();
+
+// Изменение состояния флагов
+cout.setf(ios::showpos | ios::showbase | ios::uppercase);
+cout.setf(ios::internal, ios::adjustfield);
+cout << std::hex << x << std::endl;
+
+// Восстановление сохраненных форматных флагов
+cout.flags(oldFlags);
+
+

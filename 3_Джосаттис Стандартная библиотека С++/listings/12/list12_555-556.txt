@@ -1,0 +1,28 @@
+namespace std {
+    template <class T>
+    class indirect_array {
+      public:
+        typedef T value_type;
+
+        void operator= (const T&);
+        void operator= (const valarray<T>&) const;
+        void operator*= (const valarray<T>&) const;
+        void operator/= (const valarray<T>&) const;
+        void operator%= (const valarray<T>&) const;
+        void operator+= (const valarray<T>&) const;
+        void operator-= (const valarray<T>&) const;
+        void operator^= (const valarray<T>&) const;
+        void operator&= (const valarray<T>&) const;
+        void operator|= (const valarray<T>&) const;
+        void operator<<= (const valarray<T>&) const;
+        void operator>>= (const valarray<T>&) const;
+        ~indirect_array();
+      private:
+        indirect_array();
+        indirect_array(const indirect_array<T>&);
+        indirect_array& operator= (const indirect_array<T>&);
+        ...
+    };
+}
+
+

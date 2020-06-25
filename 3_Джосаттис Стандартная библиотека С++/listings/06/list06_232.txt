@@ -1,0 +1,21 @@
+// cont/sortset.cpp
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <set>
+using namespace std;
+
+int main()
+{
+    /* Создание строкового множества
+     * - инициализация словами, прочитанными из стандартного ввода
+     */
+    set<string> coll((istream_iterator<string>(cin)),
+                     (istream_iterator<string>()));
+
+    // Вывод всех элементов
+    copy (coll.begin(), coll.end(),
+          ostream_iterator<string>(cout, "\n"));
+}
+
+

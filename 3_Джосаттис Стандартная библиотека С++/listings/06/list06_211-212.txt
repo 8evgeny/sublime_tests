@@ -1,0 +1,14 @@
+typedef std::multimap<std::string,float> StringFloatMap;
+StringFloatMap coll;
+StringFloatMap::iterator pos;
+...
+for (pos = coll.begin(); pos != coll.end(); ) {
+    if (pos->second == value) {
+        pos = coll.erase(pos);        // ’орошо бы, но...
+    }                                 // происходит ќЎ»Ѕ ј  ќћѕ»Ћя÷»»!
+    else {
+        ++pos;
+    }
+}
+
+

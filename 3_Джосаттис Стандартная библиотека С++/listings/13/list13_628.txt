@@ -1,0 +1,18 @@
+// io.frac1in.cpp
+#include <iostream>
+
+inline
+std::istream& operator >> (std::istream& strm, Fraction& f)
+{
+    int n, d;
+
+    strm >> n;      // Ввод числителя
+    strm.ignore();  // Пропуск '/'
+    strm >> d;      // Ввод знаменателя
+
+    f = Fraction(n,d);  // Присваивание всей дроби
+
+    return strm;
+}
+
+

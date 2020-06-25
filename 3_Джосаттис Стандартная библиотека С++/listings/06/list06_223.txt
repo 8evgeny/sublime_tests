@@ -1,0 +1,26 @@
+// cont/array1.cpp
+#include <iostream>
+#include <algorithm>
+#include <functional>
+using namespace std;
+
+int main()
+{
+    int coll[] = { 5, 6, 2, 4, 1, 3 };
+
+    // Возведение элементов в квадрат
+    transform (coll, coll+6,        // Первый источник
+               coll,                // Второй источник
+               coll,                // Приемник
+               multiplies<int>());  // Операция
+
+    // Сортировка выполняется, начиная со второго элемента
+    sort (coll+1, coll+6);
+
+    // Вывод всех элементов
+    copy (coll, coll+6,
+          ostream_iterator<int>(cout," "));
+    cout << endl;
+}
+
+

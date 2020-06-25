@@ -1,0 +1,49 @@
+namespace std {
+    // Вспомогательный тип, используемый при копировании и присваивании
+    template <class Y> struct auto_ptr_ref {};
+
+    template<class T>
+    class auto_ptr {
+      public:
+        // Тип значения
+        typedef T element_type;
+
+        // Конструктор
+        explicit auto_ptr(T* ptr = 0) throw();
+
+        // Копирующие конструкторы (с неявным преобразованием типа)
+        // Обратите внимание - параметр объявлен неконстантным!
+        auto_ptr(const auto_ptr&) throw();
+        template<class U> auto_ptr(auto_ptr<U>&) throw();
+
+        // Присваивание (с неявным преобразованием типа)
+        // Обратите внимание - параметр объявлен неконстантным!
+
+        auto_ptr& operator= (auto_ptr&) throw();
+        template<class U>
+        auo_ptr& operator= (auto_ptr<U>&) throw();
+
+        // Деструктор
+        ~auto_ptr() throw();
+
+        // Обращение по указателю
+
+        T* get() const throw();
+        T& operator*() const throw();
+        T* operator->() const throw();
+
+        // Освобождение принадлежащего объекта
+        T * release ()throw();
+        // Повторная инициализация
+        void reset(T* ptr = 0) throw();
+    // Специальные преобразования,
+    // используемые при копировании и присваивании
+    public:
+        auto_ptr(auto_ptr_ref<T>) throw();
+        auto_ptr& operator= (auto_ptr_ref<T> rhs) throw();
+        template<class U> operator auto_ptr_ref<U>() throw();
+        template<class U> operator auto_ptr <U>() throw();
+    };
+}
+
+

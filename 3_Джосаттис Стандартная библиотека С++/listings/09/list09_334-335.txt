@@ -1,0 +1,38 @@
+// algo/foreach2.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+// Объект функции прибавляет к значению элемента приращение,
+// заданное при его инициализации
+template <class T>
+class AddValue {
+  private:
+    T theValue;    // Приращение
+  public:
+    // Конструктор инициализирует приращение
+    AddValue (const T& v) : theValue(v) {
+    }
+
+    // Суммирование выполняется "вызовом функции" для элемента 
+    void operator() (T& elem) const {
+        elem += theValue;
+    }
+};
+int main()
+{
+    vector<int> coll;
+
+    INSERT_ELEMENTS(coll,1,9);
+
+    // Прибавить к каждому элементу 10
+    for_each (coll.begin(), coll.end(),       // Интервал
+              AddValue<int>(10));             // Операция
+    PRINT_ELEMENTS(coll);
+
+    // Прибавить к каждому элементу значение первого элемента
+    for_each (coll.begin(), coll.end(),       // range
+              AddValue<int>(*coll.begin()));  // operation
+    PRINT_ELEMENTS(coll);
+}
+
+

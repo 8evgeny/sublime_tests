@@ -1,0 +1,26 @@
+// io/outbuf1.hpp
+#include <streambuf>
+#include <locale>
+#include <cstdio>
+
+class outbuf : public std::streambuf
+{
+  protected:
+    /* Главная функция вывода
+     * - вывод символов в верхнем регистре
+     */
+    virtual int_type overflow (int_type c) {
+        if (c != EOF) {
+            // Преобразование символа к верхнему регистру
+            c = std::toupper(c,getloc());
+
+            // Запись символа в стандартный вывод
+            if (putchar(c) == EOF) {
+                return EOF;
+            }
+        }
+        return c;
+    }
+};
+
+

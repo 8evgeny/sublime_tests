@@ -1,0 +1,25 @@
+namespace std {
+	  template<> class complex<float> {
+	    public:
+	      explicit complex(const complex<double>&);
+	      explicit complex(const complex<long double>)&);
+	      // Другие версии копирующих конструкторов отсутствуют
+	      ...
+	  };
+	  template<> class complex<double> {
+	    public:
+	      complex(const complex<float>&);
+	      explicit complex(const complex<long double>)&);
+	      // Другие версии копирующих конструкторов отсутствуют
+	      ...
+	  };
+	  template<> class complex<long double> {
+	    public:
+	      complex(const complex<float>&);
+	      complex(const complex<double>)&);
+	      // Другие версии копирующих конструкторов отсутствуют
+	      ...
+	  };
+	}
+
+

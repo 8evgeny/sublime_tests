@@ -1,0 +1,28 @@
+namespace std {
+    template <class T>
+    class slice_array {
+      public:
+        typedef T value_type;
+
+        void operator= (const T&);
+        void operator= (const valarray<T>&) const;
+        void operator*= (const valarray<T>&) const;
+        void operator/= (const valarray<T>&) const;
+        void operator%= (const valarray<T>&) const;
+        void operator+= (const valarray<T>&) const;
+        void operator-= (const valarray<T>&) const;
+        void operator^= (const valarray<T>&) const;
+        void operator&= (const valarray<T>&) const;
+        void operator|= (const valarray<T>&) const;
+        void operator<<= (const valarray<T>&) const;
+        void operator>>= (const valarray<T>&) const;
+        ~slice_array();
+      private:
+        slice_array();
+        slice_array(const slice_array&);
+        slice_array& operator= (const slice_array&);
+        ...
+    };
+}
+
+

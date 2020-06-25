@@ -1,0 +1,35 @@
+// stl/mmap1.cpp
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main()
+{
+    // Тип коллекции
+    typedef multimap<int,string> IntStringMMap;
+
+    IntStringMMap coll;  // Контейнер для хранения пар int/string
+
+    // Вставка элементов в произвольном порядке
+    // - значение с ключом 1 вставляется дважды.
+    coll.insert(make_pair(5,"tagged"));
+    coll.insert(make_pair(2,"a"));
+    coll.insert(make_pair(1,"this"));
+    coll.insert(make_pair(4,"of"));
+    coll.insert(make_pair(6,"strings"));
+    coll.insert(make_pair(1,"is"));
+    coll.insert(make_pair(3,"multimap"));
+
+    /* Вывод содержимого контейнера
+     * - перебор всех элементов
+     * - переменная second содержит значение.
+     */
+    IntStringMMap::iterator pos;
+    for (pos = coll.begin(); pos != coll.end(); ++pos) {
+        cout << pos->second << ' ';
+    }
+    cout << endl;
+}
+
+

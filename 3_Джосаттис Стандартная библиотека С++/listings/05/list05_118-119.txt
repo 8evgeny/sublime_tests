@@ -1,0 +1,31 @@
+// stl/ioiter1.cpp
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    vector<string> coll;
+
+    /* Загрузка слов из стандартного входного потока данных
+     * - источник: все строки до конца файла (или до возникновения ошибки)
+     * - приемник: coll (вставка)
+     */
+    copy (istream_iterator<string>(cin),    // Начало источника
+          istream_iterator<string>(),       // Конец источника
+          back_inserter(coll));             // Приемник
+
+    // Сортировка элементов
+    sort (coll.begin(), coll.end());
+
+    /* Вывод всех элементов без дубликатов
+     * - источник: coll
+     * - приемник: стандартный вывод (с разделением элементов
+     *                                символом новой строки)
+     */
+    unique_copy (coll.begin(), coll.end(),             // Источник
+                 ostream_iterator<string>(cout,"\n")); // Приемник
+}
+
+

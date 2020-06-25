@@ -1,0 +1,18 @@
+namespace std {
+	    template <class T>
+	    class mask_array;
+	    template <class T>
+	    class valarray {
+	      public:
+	        // Маскирование константного массива значений
+	        // возвращает новый массив значений
+	        valarray<T> operator[] (const gslice&) const;
+	
+	        // Маскирование неконстантного массива
+	        // значений возвращает mask_array
+	        mask_array<T> operator[] (const valarray<bool>&);
+	        ...
+	    };
+	}
+
+

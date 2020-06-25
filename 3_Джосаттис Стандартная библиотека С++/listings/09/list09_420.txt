@@ -1,0 +1,30 @@
+// algo/adjdiff1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+   deque<int> coll;
+
+   INSERT_ELEMENTS(coll,1,6);
+   PRINT_ELEMENTS(coll);
+
+   // Вывод разностей между элементами
+   adjacent_difference (coll.begin(), coll.end(),         // Источник
+                        ostream_iterator<int>(cout," ")); // Приемник
+   cout << endl;
+
+   // Вывод сумм элементов с их предшественниками
+   adjacent_difference (coll.begin(), coll.end(),         // Источник
+                        ostream_iterator<int>(cout," "),  // Приемник
+                        plus<int>());                     // Операция
+   cout << endl;
+
+   // Вывод произведения элемента и его предшественника
+   adjacent_difference (coll.begin(), coll.end(),         // Источник
+                        ostream_iterator<int>(cout," "),  // Приемник
+                        multiplies<int>());               // Операция
+   cout << endl;
+}
+
+

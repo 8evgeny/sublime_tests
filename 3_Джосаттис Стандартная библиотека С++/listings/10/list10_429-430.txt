@@ -1,0 +1,42 @@
+// cont/stack2.cpp
+#include <iostream>
+#include "Stack.hpp"      // Использование нестандартного класса стека
+using namespace std;
+
+int main()
+{
+   try {
+      Stack<int> st;
+
+      // Занесение трех элементов в стек
+      st.push(1);
+      st.push(2);
+      st.push(3);
+
+      // Извлечение и вывод двух элементов из стека
+      cout << st.pop() << ' ';
+      cout << st.pop() << ' ';
+
+      // Модификация верхнего элемента
+      st.top() = 77;
+
+      // Занесение двух новых элементов
+      st.push(4);
+      st.push(5);
+
+      // Извлечение одного элемента без обработки
+      st.pop();
+
+      /* Извлечение и вывод трех элементов
+       * - ОШИБКА: одного элемента не хватает
+       */
+      cout << st.pop() << ' ';
+      cout << st.pop() << endl;
+      cout << st.pop() << endl;
+   }
+   catch (const exception& e) {
+      cerr << "EXCEPTION: " << e.what() << endl;
+   }
+}
+
+

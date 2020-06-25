@@ -1,0 +1,32 @@
+// algo/find2.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    vector<int> coll;
+    vector<int>::iterator pos;
+
+    INSERT_ELEMENTS(coll,1,9);
+
+    PRINT_ELEMENTS(coll,"coll: ");
+    // Поиск первого элемента, большего 3
+    pos = find_if (coll.begin(), coll.end(),    // Интервал
+                   bind2nd(greater<int>(),3));  // Критерий
+
+    // Вывод позиции
+    cout << "the "
+         << distance(coll.begin(),pos) + 1
+         << ". element is the first greater than 3" << endl;
+
+    // Поиск первого элемента, кратного 3
+    pos = find_if (coll.begin(), coll.end(),
+                   not1(bind2nd(modulus<int>(),3)));
+
+    // Вывод позиции
+    cout << "the "
+         << distance(coll.begin(),pos) + 1
+         << ". element is the first divisible by 3" << endl;
+}
+
+

@@ -1,0 +1,48 @@
+// stl/add1.cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+#include "print.hpp"
+using namespace std;
+
+// Объект функции прибавляет к значению элемента приращение,
+// заданное при его инициализации
+class AddValue {
+  private:
+    int theValue;    // Приращение
+  public:
+    // Конструктор инициализирует приращение
+    AddValue(int v) : theValue(v) {
+    }
+
+    // Суммирование выполняется "вызовом функции" для элемента 
+    void operator() (int& elem) const {
+        elem += theValue;
+    }
+};
+
+int main()
+{
+    list<int> coll;
+
+    // Вставка элементов со значениями от 1 до 9
+    for (int i=1; i<=9; ++i) {
+        coll.push_back(i);
+    }
+
+    PRINT_ELEMENTS(coll,"initialized:                ");
+
+    // Прибавить к каждому элементу 10
+    for_each (coll.begin(), coll.end(),    // Интервал
+              AddValue(10));               // Операция
+
+    PRINT_ELEMENTS(coll,"after adding 10:            ");
+
+    // Прибавить к каждому элементу значение первого элемента
+    for_each (coll.begin(), coll.end(),    // Интервал
+              AddValue(*coll.begin()));    // Операция
+
+    PRINT_ELEMENTS(coll,"after adding first element: ");
+}
+
+

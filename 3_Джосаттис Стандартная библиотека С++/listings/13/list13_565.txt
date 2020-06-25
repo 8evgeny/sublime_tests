@@ -1,0 +1,15 @@
+namespace std {
+    template <class charT,
+              class traits = char_traits<charT> >
+    class basic_istream;
+
+    template <class charT,
+              class traits = char_traits<charT> >
+    class basic_ostream;
+
+    template <class charT,
+              class traits = char_traits<charT> >
+    class basic_iostream;
+}
+
+

@@ -1,0 +1,16 @@
+locale loc;
+string s1, s2;
+...
+// ѕолучение фацета collate локального контекста locale
+const std::collate<charT>&col
+ = stdLLuse_facet<std::collate<charT> >(loc);
+
+// —равнение строк с использованием фацета collate
+int result = col.compare(s1.data(), s1.data()+s1.size(),
+                         s2.data(), s2.data()+s2.size());
+if (result == 0) {
+    // s1 и s2 равны
+    ...
+}
+
+

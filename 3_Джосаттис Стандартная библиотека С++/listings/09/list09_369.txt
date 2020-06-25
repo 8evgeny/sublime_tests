@@ -1,0 +1,26 @@
+// algo/replace1.cpp
+#include "algostuff.hpp"
+using namespace std;
+
+int main()
+{
+    list<int> coll;
+
+    INSERT_ELEMENTS(coll,2,7);
+    INSERT_ELEMENTS(coll,4,9);
+    PRINT_ELEMENTS(coll,"coll: ");
+
+    // Замена всех элементов, равных 6, значением 42
+    replace (coll.begin(), coll.end(),     // Интервал
+             6,                            // Старое значение
+             42);                          // Новое значение
+    PRINT_ELEMENTS(coll,"coll: ");
+
+    // Замена всех элементов, меньших 5, значением 0
+    replace_if (coll.begin(), coll.end(),  // Интервал
+                bind2nd(less<int>(),5),    // Критерий замены
+                0);                        // Новое значение
+    PRINT_ELEMENTS(coll,"coll: ");
+}
+
+
