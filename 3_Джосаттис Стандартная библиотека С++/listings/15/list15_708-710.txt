@@ -1,0 +1,86 @@
+// util/defalloc.hpp
+namespace std {
+   template <class T>
+   class allocator {
+     public:
+       // Определения типов
+       typedef size_t    size_type;
+       typedef ptrdiff_t difference_type;
+       typedef T*        pointer;
+       typedef const T*  const_pointer;
+       typedef T&        reference;
+       typedef const T&  const_reference;
+       typedef T         value_type;
+
+       // Привязка распределителя к типу U
+       template <class U>
+       struct rebind {
+           typedef allocator<U> other;
+       };
+
+       // Функции возвращают адреса значений
+       pointer address (reference value) const {
+           return &value;
+       }
+       const_pointer address (const_reference value) const {
+           return &value;
+       }
+
+       /* Конструкторы и деструктор
+        * - ничего не делаем, поскольку распределитель не имеет состояния
+        */
+       allocator() throw() {
+       }
+       allocator(const allocator&) throw() {
+       }
+       template <class U>
+         allocator (const allocator<U>&) throw() {
+       }
+       ~allocator() throw() {
+       }
+
+       // Функция возвращает максимальное количество элементов,
+       // для которых может быть выделена память
+       size_type max_size () const throw() {
+           return numeric_limits<size_t>::max() / sizeof(T);
+       }
+
+       // Выделение памяти для num элементов типа T без инициализации
+       pointer allocate (size_type num,
+                         allocator<void>::const_pointer hint = 0) {
+           // allocate memory with global new
+           return (pointer)(::operator new(num*sizeof(T)));
+       }
+
+       // Инициализация элементов выделенного блока p значением value
+       void construct (pointer p, const T& value) {
+           // Инициализация памяти оператором new
+           new((void*)p)T(value);
+       }
+
+       // Удаление элементов инициализированного блока p
+       void destroy (pointer p) {
+           // Уничтожение объектов вызовом деструктора
+           p->~T();
+       }
+
+       // Освобождение блока p, содержащего удаленные элементы
+       void deallocate (pointer p, size_type num) {
+           // Освобождение памяти глобальным оператором delete
+           ::operator delete((void*)p);
+       }
+   };
+   // Оператор сообщает, что все специализации данного распределителя
+   // являются взаимозаменяемыми.
+   template <class T1, class T2>
+   bool operator== (const allocator<T1>&,
+                    const allocator<T2>&) throw() {
+       return true;
+   }
+   template <class T1, class T2>
+   bool operator!= (const allocator<T1>&,
+                    const allocator<T2>&) throw() {
+       return false;
+   }
+}
+

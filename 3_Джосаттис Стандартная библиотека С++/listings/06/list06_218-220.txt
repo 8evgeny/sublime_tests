@@ -1,0 +1,93 @@
+// cont/mapcmp.cpp
+#include <iostream>
+#include <iomanip>
+#include <map>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+/* Объект функции для сравнения строк
+ * - позволяет задать критерий сравнения во время выполнения
+ * - позволяет сравнивать символы без учета регистра
+ */
+class RuntimeStringCmp {
+  public:
+    // Константы режима сравнения
+    enum cmp_mode {normal, nocase};
+  private:
+    // Используемый режим сравнения
+    const cmp_mode mode;
+
+    // Вспомогательная функция для сравнения символов без учета регистра
+    static bool nocase_compare (char c1, char c2)
+    {
+        return toupper(c1) < toupper(c2);
+    }
+
+  public:  
+    // Конструктор: инициализация критерия сравнения
+    RuntimeStringCmp (cmp_mode m=normal) : mode(m) {
+    }
+
+    // Сравнение
+    bool operator() (const string& s1, const string& s2) const {
+        if (mode == normal) {
+            return s1<s2;
+        }
+        else {
+            return lexicographical_compare (s1.begin(), s1.end(),
+                                            s2.begin(), s2.end(),
+                                            nocase_compare);
+        }
+    }
+};
+
+/* Тип контейнера:
+ * - отображение
+ *       - ключ: string 
+ *       - значение: string
+ *       - специальный тип критерия сравнения
+ */
+typedef map<string,string,RuntimeStringCmp> StringStringMap;
+
+// Функция для заполнения контейнера и вывода его содержимого
+void fillAndPrint(StringStringMap& coll);
+int main()
+{
+    // Создание контейнера с критерием сравнения по умолчанию
+    StringStringMap coll1;
+    fillAndPrint(coll1);
+
+    // Создание объекта для сравнений без учета регистра символов
+    RuntimeStringCmp ignorecase(RuntimeStringCmp::nocase);
+
+    // Создание контейнера с критерием сравнения без учета регистра
+    StringStringMap coll2(ignorecase);
+    fillAndPrint(coll2);
+}
+
+void fillAndPrint(StringStringMap& coll)
+{
+    // Вставка элементов в произвольном порядке
+    coll["Deutschland"] = "Germany";
+    coll["deutsch"] = "German";
+    coll["Haken"] = "snag";
+    coll["arbeiten"] = "work";
+    coll["Hund"] = "dog";
+    coll["gehen"] = "go";
+    coll["Unternehmen"] = "enterprise";
+    coll["unternehmen"] = "undertake";
+    coll["gehen"] = "walk";
+    coll["Bestatter"] = "undertaker";
+
+    // Вывод элементов
+    StringStringMap::iterator pos;
+    cout.setf(ios::left, ios::adjustfield);
+    for (pos=coll.begin(); pos!=coll.end(); ++pos) {
+        cout << setw(15) << pos->first.c_str() << " "
+             << pos->second << endl;
+    }
+    cout << endl;
+}
+
+
