@@ -1,0 +1,43 @@
+Пример 20.13. hrefsub
+#!/usr/bin/perl -w
+# hrefsub - замена в тегах <A HREF="..."> кода HTML
+# Автор - Джайсл Аас <gisle@aas.no>
+
+sub usage { die "Usage: $0 <from> <to> <file>...\n" }
+
+my $from = shift or usage;
+my $to   = shift or usage;
+usage unless @ARGV;
+
+# Субклассировать HTML::Filter для выполнения подстановок.
+package MyFilter;
+use HTML::Filter;
+@ISA=qw(HTML::Filter);
+use HTML::Entities qw(encode_entities);
+
+sub start {
+   my($self, $tag, $attr, $attrseq, $orig) = @_;
+   if ($tag eq 'a' && exists $attr->{href}) {
+           if ($attr->{href} =~ s/\Q$from/$to/g) {
+               # must reconstruct the start tag based on $tag and $attr.
+               # wish we instead were told the extent of the 'href' value
+               # in $orig.
+               my $tmp = "<$tag";
+               for (@$attrseq) {
+                   my $encoded = encode_entities($attr->{$_});
+                   $tmp .= qq( $_="$encoded ");
+               }
+               $tmp .= ">";
+               $self->output($tmp);
+               return;
+           }
+   }
+   $self->output($orig);
+}
+ 
+# Использование класса
+package main;
+foreach (@ARGV) {
+        MyFilter->new->parse_file($_);
+}
+

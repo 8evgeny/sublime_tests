@@ -1,0 +1,16 @@
+Пример 19.1. hiweb
+#!/usr/bin/perl -w
+# hiweb - загрузить модуль CGI для расшифровки
+# данных, полученных от веб-сервера
+use strict;
+
+use CGI qw(:standard escapeHTML);
+
+# Получить параметр от формы
+my $value = param('PARAM_NAME');
+
+# Вывести документ
+print header(), start_html("Howdy there!"),
+      p("You typed: ", tt(escapeHTML($value))),
+      end_html();
+

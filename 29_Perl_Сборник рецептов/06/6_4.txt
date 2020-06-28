@@ -1,0 +1,12 @@
+Пример 6.4. popgrep1
+# popgrep1 – поиск строк с названиями штатов
+# версия 1: медленная, но понятная
+@popstates = qw(CO ON MI WI MN);
+LINE: while (defined($line = <>)) {
+    for $state (@popstates) {
+        if ($line =~ /\b$state\b/) {   # М е д л е н н о
+            print; next LINE;
+       }
+    }
+}
+

@@ -1,0 +1,53 @@
+Пример 4.4. mjd-permute
+#!/usr/bin/perl -w
+# mjd_permute: перестановка всех введенных слов
+use strict;
+sub factorial($);    # Опережающее объявление прототипа
+
+while (<>) {
+    my @data = split;
+    my $num_permutations = factorial(scalar @data);
+    for (my $i=0; $i < $num_permutations; $i++) {
+        my @permutation = @data[n2perm($i, $#data)];
+        print "@permutation\n";
+    }
+}
+
+# Вспомогательная функция: факториал с запоминанием
+BEGIN {
+  my @fact = (1);
+  sub factorial($) {
+      my $n = shift;
+      return $fact[$n] if defined $fact[$n];
+      $fact[$n] = $n * factorial($n - 1);
+  }
+}
+# n2pat($N, $len) : построить $N-й шаблон перестановки длины $len
+sub n2pat {
+    my $i   = 1;
+    my $N   = shift;
+    my $len = shift;
+    my @pat;
+    while ($i <= $len + 1) {   # На самом деле просто while ($N) { ...
+        push @pat, $N % $i;
+        $N = int($N/$i);
+        $i++;
+    }
+    return @pat;
+}
+
+# pat2perm(@pat) : превратить шаблон, возвращаемый n2pat(),
+# в перестановку целых чисел.
+sub pat2perm {
+    my @pat    = @_;
+    my @source = (0 .. $#pat);
+    my @perm;
+    push @perm, splice(@source, (pop @pat), 1) while @pat;
+    return @perm;
+}
+
+# n2perm($N, $len) : сгенерировать N-ю перестановку S объектов
+sub n2perm {
+    pat2perm(n2pat(@_));
+}
+

@@ -1,0 +1,9 @@
+Пример 22.8. validating-bookchecker
+#!/usr/bin/perl -w
+# bookchecker - разбор и проверка действительности файла books.xml
+
+use XML::LibXML;
+$parser = XML::LibXML->new;
+$parser->validation(1);
+$parser->parse_file("books.xml");
+

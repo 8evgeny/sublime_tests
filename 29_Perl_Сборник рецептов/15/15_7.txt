@@ -1,0 +1,43 @@
+Пример 15.7. tksample4
+#!/usr/bin/perl -w
+# tksample4 - диалоговые окна для предупреждений
+
+use Tk;
+use Tk::DialogBox;
+
+my $main;
+
+# Создать обработчик предупреждений, который отображает
+# предупреждение в диалоговом окне Tk
+
+BEGIN {
+    $SIG{__WARN__} = sub {
+        if (defined $main) {
+            my $dialog = $main->DialogBox( -title   => "Warning",
+                                           -buttons => [ "Acknowledge" ]);
+            $dialog->add("Label", -text => $_[0])->pack;
+            $dialog->Show;
+        } else {
+            print STDOUT join("\n", @_), "n";
+        }
+    };
+}
+
+# Команды вашей программы
+
+$main = MainWindow->new();
+
+$main->Button( -text   => "Make A Warning",
+               -command => \&make_warning) ->pack(-side => "left");
+$main->Button( -text   => "Quit",
+               -command => sub { exit } )  ->pack(-side => "left");
+
+MainLoop;
+
+# Фиктивная подпрограмма для выдачи предупреждения
+    
+sub make_warning {
+    my $a;
+    my $b = 2 * $a;
+}
+

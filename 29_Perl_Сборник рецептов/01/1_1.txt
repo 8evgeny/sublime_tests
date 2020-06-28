@@ -1,0 +1,14 @@
+ѕример 1.1. slowcat
+#!/usr/bin/perl
+# slowcat Ц з а м е д л е н н ы й вывод
+# использование: slowcat [-DELAY] [files...],
+# где DELAY Ц задержка
+$DELAY = ($ARGV[0] =~ /^-([.\d]+)/) ? (shift, $1) : 1;
+$| = 1;
+while (<>) {
+    for (split(//)) {
+        print;
+        select(undef,undef,undef, 0.005 * $DELAY);
+    }
+}
+

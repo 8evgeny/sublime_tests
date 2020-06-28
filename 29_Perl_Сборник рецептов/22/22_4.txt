@@ -1,0 +1,36 @@
+Пример 22.4. sax-titledumper
+# TitleDumper.pm
+# TitleDumper.pm -- обработчик SAX для вывода элементов title из файла books
+package TitleDumper;
+
+use base qw(XML::SAX::Base);
+
+my $in_title = 0;
+
+# При входе в title увеличить $in_title
+sub start_element {
+  my ($self, $data) = @_;
+  if ($data->{Name} eq 'title') {
+    $in_title++;
+  }
+}
+
+# При выходе из title уменьшить $in_title и вывести перевод строки
+sub end_element {
+  my ($self, $data) = @_;
+  if ($data->{Name} eq 'title') {
+    $in_title--;
+    print "\n";
+  }
+}
+
+# Внутри title вывести весь полученный текст
+sub characters {
+  my ($self, $data) = @_;
+  if ($in_title) {
+    print $data->{Data};
+  }
+}
+
+1;
+

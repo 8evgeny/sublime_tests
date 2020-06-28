@@ -1,0 +1,201 @@
+Пример 16.12. sigrand
+#!/usr/bin/perl -w
+# sigrand - выдача случайных подписей для файла .signature
+
+use strict;
+
+# Конфигурационные переменные
+use vars qw( $NG_IS_DIR $MKNOD $FULLNAME $FIFO $ART $NEWS $SIGS $SEMA
+    	        $GLOBRAND $NAME );
+
+# Глобальные имена
+use vars qw( $Home $Fortune_Path @Pwd );
+
+################################################################
+# Начало секции конфигурации
+# В действительности следует читать из ~/.sigrandrc
+
+gethome();
+
+# rec/humor/funny вместо rec.humor.funny
+$NG_IS_DIR      = 1;    
+
+$MKNOD          = "/bin/mknod";
+$FULLNAME       = "$Home/.fullname";
+$FIFO           = "$Home/.signature";
+$ART            = "$Home/.article";
+$NEWS           = "$Home/News";
+$SIGS           = "$NEWS/SIGNATURES";
+$SEMA           = "$Home/.sigrandpid";
+$GLOBRAND       = 1/4;  # Вероятность использования глобальных
+                        # подписей при наличии специализированного файла
+
+# $NAME следует: (1) оставить неопределенным, чтобы программа
+# попыталась угадать адрес подписи (возможно, заглянув 
+# в ~/.fullname, (2) присвоить точный адрес или (3) присвоить
+# пустую строку, чтобы отказаться от использования имени.
+
+$NAME           = '';           # Означает, что имя не используется
+## $NAME        = "me\@home.org\n";  
+
+# Конец секции конфигурации -- HOME и FORTUNE 
+# настраиваются автоматически
+################################################################
+
+setup();                # Выполнить инициализацию
+justme();               # Убедиться, что программа еще не работает
+fork && exit;           # Перейти в фоновый режим
+
+open (SEMA, "> $SEMA")      	or die "can't write $SEMA: $!";
+print SEMA "$$\n";
+close(SEMA)                 	or die "can't close $SEMA: $!";
+
+# В бесконечном цикле записывать подпись в FIFO.
+# Если именованные каналы у вас не поддерживаются, измените
+# паузу в конце цикла (например, 10, чтобы обновление
+# происходило только каждые 10 секунд).
+for (;;) {
+    open (FIFO, "> $FIFO")		or die "can't write $FIFO: $!";
+    my $sig = pick_quote();
+    for ($sig) { 
+        s/^((:?[^\n]*\n){4}).*$/$1/s;   # Ограничиться 4 строками
+        s/^(.{1,80}).*? *$/$1/gm;       # Обрезать длинные строки
+    }
+    # Вывести подпись с именем, если оно присутствует,
+    # и дополнить до 4 строк
+    if ($NAME) { 
+        print FIFO $NAME, "\n" x (3 - ($sig =~ tr/\n//)), $sig;
+    } else {
+        print FIFO $sig;
+    }
+    close FIFO;
+
+    # Без небольшой паузы приемник не закончит чтение к моменту, 
+    # когда передатчик снова попытается открыть FIFO;
+    # поскольку приемник существует, попытка окажется успешной.
+    # В итоге появятся сразу несколько подписей.
+    # Небольшая пауза между открытиями дает приемникам возможность
+    # завершить чтение и закрыть канал.
+
+    select(undef, undef, undef, 0.2);   # Выждать 1/5 секунды
+}
+die "XXX: NOT REACHED";         # На эту строку вы никогда не попадете
+
+################################################################
+
+# Игнорировать SIGPIPE на случай, если кто-то открыл FIFO и 
+# снова закрыл, не читая данных; взять имя пользователя из файла
+# .fullname. Попытаться определить полное имя хоста. Следить за
+# амперсандами в паролях. Убедиться, что у нас есть подписи или 
+# цитаты. При необходимости построить FIFO.
+
+sub setup {
+    $SIG{PIPE} = 'IGNORE';
+    unless (defined $NAME) {            # Если $NAME не определено
+        if (-e $FULLNAME) {             # при конфигурации
+    	        $NAME = `$FULLNAME`;
+    	        die "$FULLNAME should contain only 1 line, aborting" 
+    	            if $NAME =~ tr/\n// > 1;
+        } else {
+    	        my($user, $host);
+    	        chop($host = `hostname`);
+    	        ($host) = gethostbyname($host) unless $host =~ /\./;
+    	        $user = $ENV{USER} || $ENV{LOGNAME} || $Pwd[0]
+    	            or die "intruder alert";
+    	        ($NAME = $Pwd[6]) =~ s/,.*//;
+    	        $NAME =~ s/&/\u\L$user/g; # До сих пор встречается
+    	        $NAME = "\t$NAME\t$user\@$host\n";
+        } 
+    }
+
+    check_fortunes() if !-e $SIGS;
+
+    unless (-p $FIFO) {      # -p проверяет, является ли операнд
+                             # именованным каналом
+        if (!-e _) {
+    	         system("$MKNOD $FIFO p") && die "can't mknod $FIFO";
+    	         warn "created $FIFO as a named pipe\n";
+        } else {
+    	         die "$0: won't overwrite file .signature\n";
+        } 
+    } else {
+        warn "$0: using existing named pipe $FIFO\n";
+    } 
+
+    # Получить хорошее начальное значение для раскрутки генератора.
+    # Не нужно в версиях 5.004 и выше.
+    srand(time() ^ ($$ + ($$ << 15)));
+}
+
+# Выбрать случайную подпись
+sub pick_quote {
+    my $sigfile = signame();
+    if (!-e $sigfile) {
+        return fortune();
+    } 
+    open (SIGS, "< $sigfile" )		or die "can't open $sigfile";
+    local $/  = "%%\n";
+    local $_;
+    my $quip;
+    rand($.) < 1 && ($quip = $_) while <SIGS>;
+    close SIGS;
+    chomp $quip;
+    return $quip || "ENOSIG: This signature file is empty.\n";
+} 
+
+# Проверить, содержит ли ~/.article строку Newsgroups. Если содержит,
+# найти первую конференцию и узнать, существует ли для нее
+# специализированный набор цитат; в противном случае вернуть глобальный
+# набор. Кроме того, время от времени возвращать глобальный набор 
+# для внесения большего разнообразия в подписи.
+
+sub signame {
+     (rand(1.0) > ($GLOBRAND) && open ART) || return $SIGS;   
+     local $/  = '';
+     local $_  = <ART>;
+     my($ng)   = /Newsgroups:\s*([^,\s]*)/;
+     $ng =~ s!\.!/!g if $NG_IS_DIR;     # if rn -/,  or SAVEDIR=%p/%c
+     $ng = "$NEWS/$ng/SIGNATURES";
+     return -f $ng ? $ng : $SIGS;
+} 
+
+# Вызывать программу fortune с параметром -s до тех пор,
+# пока мы не получим достаточно короткую цитату или не 
+# превысим лимит попыток.
+sub fortune {
+   local $_;
+   my $tries = 0;
+   do { 
+       $_ = `$Fortune_Path -s`;
+   } until tr/\n// < 5 || $tries++ > 20;
+   s/^/ /mg;
+   $_ || " SIGRAND: deliver random signals to all processes.\n";
+} 
+
+# Проверить наличие программы fortune.  Определить полный путь
+# и занести его в глобальную переменную.
+sub check_fortunes {
+    return if $Fortune_Path;    # Уже найден
+    for my $dir (split(/:/, $ENV{PATH}), '/usr/games') {
+        return if -x ($Fortune_Path = "$dir/fortune");
+    } 
+    die "Need either $SIGS or a fortune program, bailing out";
+} 
+
+# Определение каталога
+sub gethome {
+    @Pwd = getpwuid($<);
+    $Home = $ENV{HOME} || $ENV{LOGDIR} || $Pwd[7]
+    		   or die "no home directory for user $<";
+}
+
+# "Останется только один"  -- из фильма "Горец"
+sub justme {
+    if (open SEMA) {
+        my $pid;
+        chop($pid = <SEMA>);
+        kill(0, $pid)         and die "$0 already running (pid $pid), bailing out";
+        close SEMA;
+    }
+}
+

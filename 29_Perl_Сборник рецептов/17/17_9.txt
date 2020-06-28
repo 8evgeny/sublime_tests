@@ -1,0 +1,25 @@
+Пример 17.9. backsniff
+#!/usr/bin/perl -w
+# backsniff - регистрация попыток подключения к определенным портам
+use Sys::Syslog;
+use Socket;
+# Идентифицировать порт и адрес
+$sockname          = getsockname(STDIN)
+                     or die "Couldn't identify myself: $!\n";
+($port, $iaddr)    = sockaddr_in($sockname);
+$my_address        = inet_ntoa($iaddr);
+# Получить имя службы
+$service = (getservbyport ($port, "tcp"))[0] || $port;
+# now identify remote address
+$sockname          = getpeername(STDIN)
+                         or die "Couldn't identify other end: $!\n";
+($port, $iaddr)    = sockaddr_in($sockname);
+$ex_address        = inet_ntoa($iaddr);
+# Занести информацию в журнал
+openlog("sniffer", "ndelay", "daemon");
+syslog("notice", "Connection from %s to %s:%s\n", $ex_address, 
+
+        $my_address, $service);
+closelog();
+exit;
+

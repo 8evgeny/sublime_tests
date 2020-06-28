@@ -1,0 +1,34 @@
+Пример 16.10. fifolog
+#!/usr/bin/perl -w
+# fifolog - чтение и сохранение сообщений из FIFO
+
+$SIG{ALRM} = sub { close(FIFO) };   # Переход к следующему 
+                                    # процессу в очереди
+while (1) {
+    alarm(0);                       # Отключить таймер
+    open($fifo, "</tmp/log")        or die "Can't open /tmp/log : $!\n";
+    alarm(1);                       # 1 секунда на регистрацию
+
+    $service = <$fifo>;
+    next unless defined $service;   # Прерывание или нечего регистрировать
+    chomp $service;
+
+    $message = <$fifo>;
+    next unless defined $message;   # Прерывание или нечего регистрировать
+    chomp $message;
+
+    alarm(0);                       # Отключить таймеры
+                                    # для обработки сообщений
+    if ($service eq "http") {
+        # Игнорировать
+    } elsif ($service eq "login") {
+        # Сохранить в /var/log/login
+        if ( open($log, ">> /tmp/login") ) {
+            print $log scalar(localtime), " $service $message\n";
+            close($log);
+        } else {
+            warn "Couldn’t log $service $message to /var/log/login : $!\n";
+        }
+    }
+}
+

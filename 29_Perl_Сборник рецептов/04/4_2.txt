@@ -1,0 +1,57 @@
+Пример 4.2. words
+#!/usr/bin/perl -w
+# words – вывод данных по столбцам
+
+use strict;
+
+my ($item, $cols, $rows, $maxlen);
+my ($xpixel, $ypixel, $mask, @data);
+
+getwinsize();
+
+# Получить все строки входных данных
+# и запомнить максимальную длину строки
+$maxlen = 1;        
+while (<>) {
+    my $mylen;
+    s/\s+$//;
+    $maxlen = $mylen if (($mylen = length) > $maxlen);
+    push(@data, $_);
+}
+
+$maxlen += 1;               # Дополнительный пробел
+
+# Определить границы экрана
+$cols = int($cols / $maxlen) || 1;
+$rows = int(($#data+$cols) / $cols);
+
+# Задать маску для ускорения вычислений
+$mask = sprintf("%%-%ds ", $maxlen-1);
+
+# Подпрограмма для обнаружения последнего элемента строки
+sub EOL { ($item+1) % $cols == 0 }  
+
+# Обработать каждый элемент, выбирая нужный фрагмент
+# на основании позиции
+for ($item = 0; $item < $rows * $cols; $item++) {
+    my $target =  ($item % $cols) * $rows + int($item/$cols);
+    my $piece = sprintf($mask, $target < @data ? $data[$target] : "");
+    $piece =~ s/\s+$// if EOL();  # Последний элемент не выравнивать
+    print $piece;
+    print "\n" if EOL();
+}
+
+# Завершить при необходимости
+print "\n" if EOL();
+
+# Не переносится -- только для Linux
+sub getwinsize {
+    my $winsize = "\0" x 8;
+    my $TIOCGWINSZ = 0x40087468;
+    if (ioctl(STDOUT, $TIOCGWINSZ, $winsize)) {
+        ($rows, $cols, $xpixel, $ypixel) = unpack('S4', $winsize);
+    } else {
+        $cols = 80;
+    }
+}
+

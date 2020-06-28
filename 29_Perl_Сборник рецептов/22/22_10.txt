@@ -1,0 +1,9 @@
+Пример 22.10. text.xml
+<list>
+  <title>System</title>
+  <TituloGrande>Products</TituloGrande>
+  <sublist>
+    <SubTitleOne>Book</SubTitleOne>
+  </sublist>
+</list>
+

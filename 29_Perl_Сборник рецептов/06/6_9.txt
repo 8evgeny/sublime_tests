@@ -1,0 +1,9 @@
+Пример 6.9. minigrep
+#!/usr/bin/perl
+# minigrep – тривиальный поиск
+$pat = shift;
+while (<>) {
+    print if /$pat/o;
+}
+
+

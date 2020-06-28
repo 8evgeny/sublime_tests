@@ -1,0 +1,9 @@
+Пример 9.2. fdirs
+#!/usr/bin/perl -lw
+# fdirs – поиск всех каталогов
+@ARGV = qw(.) unless @ARGV;
+use File::Find ();
+sub find(&@) { &File::Find::find }
+*name = *File::Find::name;
+find { print $name if -d } @ARGV;
+

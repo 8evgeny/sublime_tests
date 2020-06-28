@@ -1,0 +1,9 @@
+Пример 9.4. rmtree2
+#!/usr/bin/perl
+# rmtree2 - удаление ветви дерева каталогов (по аналогии с  rm –r)
+use File::Path;
+die "usage: $0 dir ..\n" unless @ARGV;
+    foreach $dir (@ARGV) {
+    rmtree($dir);
+}
+

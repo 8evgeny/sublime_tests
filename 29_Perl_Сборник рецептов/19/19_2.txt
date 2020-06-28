@@ -1,0 +1,6 @@
+Пример 19.2. webwhoami
+#!/usr/bin/perl
+# webwhoami - вывод идентификатора пользователя
+print "Content-Type: text/plain\n\n";
+print "Running as ", scalar getpwuid($>), "\n";
+

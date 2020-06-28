@@ -1,0 +1,148 @@
+Пример 12.3. pmdesc
+#!/usr/bin/perl -w
+# pmdesc - вывод описаний файлов pm
+# tchrist@perl.com
+
+use strict;
+use File::Find      qw(find);
+use Getopt::Std     qw(getopts);
+use Carp;
+
+use vars (
+    q!$opt_v!,              # Вывод отладочной информации
+    q!$opt_w!,              # Предупреждения об отсутствующих
+                            # описаниях модулей
+    q!$opt_a!,              # Вывод относительных путей
+    q!$opt_s!,              # Сортировка данных по каждому каталогу
+);
+
+$| = 1;
+
+getopts("wvas")             or die "bad usage";
+
+@ARGV = @INC unless @ARGV;
+
+# Глобальные переменные. Я бы предпочел обойтись без этого.
+use vars (
+    q!$Start_Dir!,    # Каталог верхнего уровня, для которого
+                      # вызывалась функция find
+    q!%Future!,       # Другие каталоги верхнего уровня, 
+                      # для которых find вызывается позднее
+);
+
+my $Module;
+
+# Установить фильтр для сортировки списка модулей,
+# если был указан соответствующий флаг.
+if ($opt_s) {
+    if (open(ME, "-|")) {
+        $/ = "";
+        while (<ME>) {
+            chomp;
+            print join("\n", sort split /\n/), "\n";
+        }
+        exit;
+    }
+}
+
+MAIN: {
+    my %visited;
+    my ($dev,$ino);
+
+    @Future{@ARGV} = (1) x @ARGV;
+
+    foreach $Start_Dir (@ARGV) {
+        delete $Future{$Start_Dir};
+
+        print "\n<<Modules from $Start_Dir>>\n\n"
+            if $opt_v;
+
+        next unless ($dev,$ino) = stat($Start_Dir);
+        next if $visited{$dev,$ino}++;
+        next unless $opt_a || $Start_Dir =~ m!^/!;
+
+        find(\&wanted, $Start_Dir);
+    }
+    exit;
+}
+
+# Вычислить имя модуля по файлу и каталогу
+sub modname {
+    local $_ = $File::Find::name;
+
+    if (index($_, $Start_Dir . "/") == 0) {
+        substr($_, 0, 1+length($Start_Dir)) = "";
+    }
+
+    s { /              }    {::}gx;
+    s { \.p(m|od)$     }    {}x;
+
+    return $_;
+}
+
+# Решить, нужен ли нам данный модуль
+sub wanted {
+    if ( $Future{$File::Find::name} ) {
+        warn "\t(Skipping $File::Find::name, qui venit in futuro.)\n"
+            if 0 and $opt_v;
+        $File::Find::prune = 1;
+        return;
+    }
+    return unless /\.pm$/ && -f;
+    $Module = &modname;
+    # Пропуск нежелательных модулей
+    if ($Module =~ /^CPAN(\Z|::)/) {
+        warn("$Module -- skipping because it misbehaves\n");
+        return;
+    }
+
+    my    $file = $_;
+
+  unless (open(POD, "<", $file)) {
+        warn "\tcannot open $file: $!";
+            # if $opt_w;
+        return 0;
+    }
+
+    $: = " -:";
+
+    local $/ = "";
+    local $_;
+    while (<POD>) {
+        if (/=head\d\s+NAME/) {
+            chomp($_ = <POD>);
+            s/^.*?-\s+//s;
+            s/\n/ /g;
+            #write;
+            my $v;
+            if (defined ($v = getversion($Module))) {
+                print "$Module ($v) ";
+            } else {
+                print "$Module ";
+            }
+            print "- $_\n";
+            return 1;
+        }
+    }
+
+    warn "\t(MISSING DESC FOR $File::Find::name)\n"
+        if $opt_w;
+
+    return 0;
+}
+
+# Загрузить модуль и вывести его номер версии,
+# перенаправляя ошибки в /dev/null
+sub getversion {
+    my $mod = shift;
+
+    my $vers = `$^X -m$mod -e 'print \$${mod}::VERSION' 2>/dev/null`;
+    $vers =~ s/^\s*(.*?)\s*$/$1/; # Удалить лишние пропуски
+    return ($vers || undef);
+}
+
+format  =
+^<<<<<<<<<<<<<<<<<~~^<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+$Module,        $_
+.
+

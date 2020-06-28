@@ -1,0 +1,28 @@
+Пример 20.12. htmlsub
+#!/usr/bin/perl -w
+# htmlsub - замена в обычном тексте файлов HTML
+# Автор - Gisle Aas <gisle@aas.no>
+sub usage { die "Usage: $0 <from> <to> <file>...\n" }
+my $from = shift or usage;
+my $to   = shift or usage;
+usage unless @ARGV;
+
+# Субклассировать HTML::Filter для выполнения подстановок.
+package MyFilter;
+use HTML::Filter;
+@ISA=qw(HTML::Filter);
+use HTML::Entities qw(decode_entities encode_entities);
+
+sub text
+{
+   my $self = shift;
+   my $text = decode_entities($_[0]);
+   $text =~ s/\Q$from/$to/go;       # Самая важная строка
+   $self->SUPER::text(encode_entities($text));
+}
+# Использование класса.
+package main;
+foreach (@ARGV) {
+    MyFilter->new->parse_file($_);
+}
+

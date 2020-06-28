@@ -1,0 +1,16 @@
+Пример 20.4. htitle
+#!/usr/bin/perl
+# htitle - Получить название HTML-документа из URL
+use LWP;
+die "usage: $0 url ...\n" unless @ARGV;
+foreach $url (@ARGV) {
+    $ua = LWP::UserAgent->new();
+    $res = $ua->get($url);
+    print "$url: " if @ARGV > 1;
+    if ($res->is_success) {
+        print $res->title, "\n";
+    } else {
+        print $res->status_line, "\n";
+    }
+}
+

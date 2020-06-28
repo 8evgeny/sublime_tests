@@ -1,0 +1,170 @@
+Пример 17.10. fwdport
+#!/usr/bin/perl -w
+# fwdport – прокси-сервер для внешних служб
+
+use strict;                 # Обязательные объявления
+use Getopt::Long;           # Для обработки параметров
+use Net::hostent;           # Именованный интерфейс для информации о хосте
+use IO::Socket;             # Для создания серверных и клиентских сокетов
+use POSIX ":sys_wait_h";    # Для уничтожения зомби
+
+my (
+    %Children,              # Хэш порожденных процессов
+    $REMOTE,                # Внешнее соединение
+    $LOCAL,                 # Для внутреннего прослушивания
+
+ $SERVICE,               # Имя службы или номер порта
+    $proxy_server,          # Сокет, для которого вызывается accept()
+    $ME,                    # Базовое имя программы
+);
+
+($ME = $0) =~ s,.*/,,;      # Сохранить базовое имя сценария
+
+check_args();               # Обработать параметры
+start_proxy();              # Запустить наш сервер
+service_clients();          # Ждать входящих подключений
+die "NOT REACHED";          # Сюда попасть невозможно
+
+# Обработать командную строку с применением расширенной версии
+# библиотеки getopts.
+sub check_args { 
+    GetOptions(
+        "remote=s"    => \$REMOTE,
+        "local=s"     => \$LOCAL,
+        "service=s"   => \$SERVICE,
+    ) or die <<EOUSAGE;
+    usage: $0 [ --remote host ] [ --local interface ] [ --service service ]
+EOUSAGE
+    die "Need remote"               unless $REMOTE;
+    die "Need local or service"     unless $LOCAL || $SERVICE;
+}
+
+# Запустить наш сервер
+sub start_proxy {
+    my @proxy_server_config = (
+      Proto     => 'tcp',
+      Reuse     => 1,
+      Listen    => SOMAXCONN,
+    );
+    push @proxy_server_config, LocalPort => $SERVICE if $SERVICE;
+    push @proxy_server_config, LocalAddr => $LOCAL   if $LOCAL;
+    $proxy_server = IO::Socket::INET->new(@proxy_server_config)
+                    or die "can't create proxy server: $@";
+    print "[Proxy server on ", ($LOCAL || $SERVICE), " initialized.]\n";
+}
+
+sub service_clients { 
+    my (
+        $local_client,    # Клиент, обращающийся к внешней службе
+        $lc_info,         # Имя/порт локального клиента
+        $remote_server,   # Сокет для внешнего соединения
+        @rs_config,       # Временный массив параметров удаленного сокета
+        $rs_info,         # Имя/порт удаленного сервера
+        $kidpid,          # Порожденный процесс для каждого подключения
+    );
+
+    $SIG{CHLD} = \&REAPER;   # Уничтожить зомби
+
+    accepting();
+    # Принятое подключение означает, что внутренний клиент
+    # хочет выйти наружу
+    while ($local_client = $proxy_server->accept()) {
+        $lc_info = peerinfo($local_client);
+        set_state("servicing local $lc_info");
+        printf "[Connect from $lc_info]\n";
+
+        @rs_config = (
+            Proto     => 'tcp',
+            PeerAddr  => $REMOTE,
+        );
+        push(@rs_config, PeerPort => $SERVICE) if $SERVICE;
+
+        print "[Connecting to $REMOTE...";
+        set_state("connecting to $REMOTE");                 # См. ниже
+        $remote_server = IO::Socket::INET->new(@rs_config)
+                         or die "remote server: $@";
+        print "done]\n";
+
+        $rs_info = peerinfo($remote_server);
+        set_state("connected to $rs_info");
+
+        $kidpid = fork();
+        die "Cannot fork" unless defined $kidpid;
+        if ($kidpid) {
+            $Children{$kidpid} = time();     # Запомнить время запуска
+            close $remote_server;            # Не нужно главному процессу
+            close $local_client;             # Тоже
+            next;                            # Перейти к другому клиенту
+        } 
+
+        # В этой точке программа представляет собой ответвленный 
+        # порожденный процесс, созданный специально для входящего 
+        # клиента, но для упрощения ввода/вывода нам понадобится близнец.
+
+        close $proxy_server;                  # Не нужно потомку
+
+        $kidpid = fork(); 
+        die "Cannot fork" unless defined $kidpid;
+
+        # Теперь каждый близнец сидит на своем месте и переправляет
+        # строки данных. Видите, как многозадачность упрощает алгоритм?
+
+        # Родитель ответвленного процесса, потомок главного процесса
+        if ($kidpid) {              
+            set_state("$rs_info --> $lc_info");
+            select($local_client); $| = 1;
+            print while <$remote_server>;
+            kill('TERM', $kidpid);      # Работа закончена,
+            }                           # убить близнеца
+        # Потомок потомка, внук главного процесса
+        else {                      
+            set_state("$rs_info <-- $lc_info");
+            select($remote_server); $| = 1;
+            print while <$local_client>;
+
+   kill('TERM', getppid());    # Работа закончена,
+            }                           # убить близнеца
+        exit;                           # Тот, кто еще жив, умирает
+    } continue {
+        accepting();
+    } 
+}
+
+# Вспомогательная функция для получения строки в формате ХОСТ:ПОРТ
+sub peerinfo {
+    my $sock = shift;
+    my $hostinfo = gethostbyaddr($sock->peeraddr);
+    return sprintf("%s:%s", 
+                    $hostinfo->name || $sock->peerhost, 
+                    $sock->peerport);
+} 
+
+# Сбросить $0, при этом в некоторых системах "ps" выдает
+# нечто интересное: строку, которую мы присвоили $0!
+sub set_state { $0 = "$ME [@_]" } 
+
+# Вспомогательная функция для вызова set_state
+sub accepting {
+    set_state("accepting proxy for " . ($REMOTE || $SERVICE));
+}
+
+# Кто-то умер. Уничтожать зомби, пока они остаются.
+# Проверить время их работы.
+sub REAPER { 
+    my $child;
+    my $start;
+    while (($child = waitpid(-1,WNOHANG)) > 0) {
+        if ($start = $Children{$child}) {
+            my $runtime = time() - $start;
+            printf "Child $child ran %dm%ss\n", 
+                $runtime / 60, $runtime % 60;
+            delete $Children{$child};
+        } else {
+            print "Bizarre kid $child exited $?\n";
+        } 
+    }
+    # Если бы мне пришлось выбирать между System V и 4.2,
+    # я бы уволился. – Питер Ханиман
+    $SIG{CHLD} = \&REAPER; 
+};
+

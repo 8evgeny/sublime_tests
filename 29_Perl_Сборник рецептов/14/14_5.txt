@@ -1,0 +1,26 @@
+ѕример 14.5. dbusers
+#!/usr/bin/perl -w
+# dbusers - работа с таблицей пользователей в MySQL
+use DBI;
+use User::pwent;
+
+$dbh = DBI->connect('dbi:mysql:dbname:mysqlserver.domain.com:3306',
+                    'user', 'password',
+                    { RaiseError => 1, AutoCommit => 1 })
+
+$dbh->do("CREATE TABLE users (uid INT, login CHAR(8))");
+
+$sql_fmt = "INSERT INTO users VALUES( %d, %s )";
+while ($user = getpwent) {
+    $sql = sprintf($sql_fmt, $user->uid, $dbh->quote($user->name));
+    $dbh->do($sql);
+}
+$rows = $dbh->selectall_arrayref("SELECT uid,login FROM users WHERE uid < 50");
+foreach $row (@$rows) {
+    print join(", ", map {defined $_ ? $_ : "(null)"} @$row), "\n";
+}
+
+$dbh->do("DROP TABLE users");
+
+$dbh->disconnect;
+

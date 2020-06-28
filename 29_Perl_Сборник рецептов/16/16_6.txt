@@ -1,0 +1,17 @@
+Пример 16.6. pipe4
+#!/usr/bin/perl -w
+# pipe4 - применение разветвляющего вызова open
+#         для передачи данных от потомка к родителю
+
+use IO::Handle;
+if ($pid = open $child, "-|") {
+    chomp($line = <$child>);
+    print "Parent Pid $$ just read this: `$line'\n";
+    close $child;
+} else {
+    die "cannot fork: $!" unless defined $pid;
+    STDOUT->autoflush(1);
+    print STDOUT "Child Pid $$ is sending this\n";
+    exit;
+}
+

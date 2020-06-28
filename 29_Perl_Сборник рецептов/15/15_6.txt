@@ -1,0 +1,58 @@
+Пример 15.6. tksample3
+#!/usr/bin/perl -w
+# tksample3 - работа с диалоговыми окнами
+
+use Tk;
+use Tk::DialogBox;
+
+$main = MainWindow->new();
+
+$dialog = $main->DialogBox( -title   => "Register",
+                            -buttons => [ "Register", "Cancel" ],
+                           );
+
+# В верхней части окна пользователь вводит имя, при этом
+# надпись (Label) действует как подсказка.
+
+$dialog->add("Label", -text => "Name")->pack();
+$entry = $dialog->add("Entry", -width => 35)->pack();
+
+# Диалоговое окно вызывается кнопкой
+$main->Button( -text    => "Click Here For Registration Form",
+               -command => \&register)    ->pack(-side => "left");
+$main->Button( -text    => "Quit",
+               -command => sub { exit } ) ->pack(-side => "left");
+
+MainLoop;
+
+#
+# register
+#
+# Вызывает диалоговое окно регистрации.
+#
+
+sub register {
+    my $button;
+    my $done = 0;
+
+    do {    
+        # Отобразить диалоговое окно.
+        $button = $dialog->Show;
+
+        # Действовать в зависимости от того, какая кнопка была нажата.
+        if ($button eq "Register") {
+                my $name = $entry->get;
+
+            if (defined($name) && length($name)) {
+                print "Welcome to the fold, $name\n";
+                $done = 1;
+            } else {
+                print "You didn’t give me your name!\n";
+            }
+        } else {
+            print "Sorry you decided not to register.\n";
+            $done = 1;
+        }
+    } until $done;
+}
+

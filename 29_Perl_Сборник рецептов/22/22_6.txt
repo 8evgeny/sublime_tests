@@ -1,0 +1,11 @@
+Пример 22.6. filters-rewriteprog
+#!/usr/bin/perl -w
+# rewrite-ids -- вызов фильтра SAX для преобразования
+#                атрибутов id в элементы
+
+use RewriteIDs;
+use XML::SAX::Machines qw(:all);
+
+my $machine = Pipeline(RewriteIDs => *STDOUT);
+$machine->parse_uri("books.xml");
+

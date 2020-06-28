@@ -1,0 +1,52 @@
+Пример 15.10. graphbox
+graphbox
+#!/usr/bin/perl -w
+# graphbox - построение гистограммы с распределением количества
+# отправленных сообщений электронной почты по дням недели
+
+use GD::Graph::bars;
+use Getopt::Std;
+use strict;
+
+my %count;  # Накапливаемое количество сообщений по дням недели
+my $chart;  # Объект GD::Graph::bars
+my $plot;   # Объект GD с диаграммой
+
+my @DAYS = qw(Mon Tue Wed Thu Fri Sat Sun);
+my $day_re = join("|", @DAYS);
+
+$day_re = qr/$day_re/;
+
+# Обработка параметров
+
+my %Opt;
+getopts('ho:', \%Opt);
+if ($Opt{h} or !$Opt{o}) {
+  die "Usage:\n\t$0 -o outfile.png < mailbox\n";
+}
+
+# Извлечение дат из заголовков Date (неточное!)
+
+while (<>) {
+  if (/^Date: .*($day_re)/) {
+    $count{$1}++;
+  }
+}
+
+# Построение гистограммы
+
+$chart = GD::Graph::bars->new(480,320);
+$chart->set(x_label => "Day",
+            y_label => "Messages",
+            title   => "Mail Activity");
+$plot = $chart->plot([ [ @DAYS ],
+                       [ @count{@DAYS} ],
+                     ]);
+
+# Сохранение гистограммы
+
+open(F, "> $Opt{o}")
+  or die "Can't open $Opt{o} for writing: $!\n";
+print F $plot->png;
+close F;
+

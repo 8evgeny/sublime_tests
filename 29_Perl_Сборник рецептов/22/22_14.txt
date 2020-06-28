@@ -1,0 +1,38 @@
+Пример 22.14. rss-filter
+#!/usr/bin/perl -w
+# guardian-filter -- фильтрация сводки RSS "Guardian" по ключевым словам
+use XML::RSSLite;
+use XML::RSS;
+use LWP::Simple;
+use strict;
+
+# Список ключевых слов
+my @keywords = qw(perl internet porn iraq bush);
+
+# Принять RSS
+my $URL = 'http://www.guardian.co.uk/rss/1,,,00.xml';
+my $content = get($URL);
+# Разобрать RSS
+my %result;
+parseRSS(\%result, \$content);
+
+# Построить регулярное выражение по ключевым словам
+my $re = join "|", @keywords;
+$re = qr/\b(?:$re)\b/i;
+
+# Создать новую поставку RSS
+my $rss = XML::RSS->new(version => '0.91');
+$rss->channel(title       => $result{title},
+              link        => $result{link},
+              description => $result{description});
+
+foreach my $item (@{ $result{items} }) {
+  my $title = $item->{title};
+  $title =~ s{\s+}{ };  $title =~ s{^\s+}{  }; $title =~ s{\s+$}{  };
+
+  if ($title =~ /$re/) {
+    $rss->add_item(title => $title, link => $item->{link});
+  }
+}
+print $rss->as_string;
+

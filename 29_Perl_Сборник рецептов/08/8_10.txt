@@ -1,0 +1,13 @@
+Пример 8.10. build_index
+# Применение : build_index(*МАНИПУЛЯТОР_ДАННЫХ, *МАНИПУЛЯТОР_ИНДЕКСА)
+sub build_index {
+    my $data_file  = shift;
+    my $index_file = shift;
+    my $offset     = 0;
+  
+    while (<$data_file>) {
+        print $index_file pack("N", $offset);
+        $offset = tell($data_file);
+    }
+}
+

@@ -1,0 +1,137 @@
+Пример 17.6. nonforker
+#!/usr/bin/perl -w
+# nonforker - мультиплексный сервер без ветвления
+use POSIX;
+use IO::Socket;
+use IO::Select;
+use Socket;
+use Fcntl;
+use Tie::RefHash;
+
+$port = 1685;               # Замените по своему усмотрению
+
+# Прослушивать порт.
+$server = IO::Socket::INET->new(LocalPort => $port,
+                                Listen    => 10 )
+  or die "Can't make server socket: $@\n";
+# Начать с пустыми буферами
+%inbuffer  = ();
+%outbuffer = ();
+%ready     = ();
+
+tie %ready, 'Tie::RefHash';
+
+nonblock($server);
+$select = IO::Select->new($server);
+
+# Главный цикл: проверка чтения/принятия, проверка записи,
+# проверка готовности к обработке
+while (1) {
+    my $client;
+    my $rv;
+    my $data;
+
+    # Проверить наличие новой информации на имеющихся подключениях
+
+    # Есть ли что-нибудь для чтения или подтверждения?
+    foreach $client ($select->can_read(1)) {
+
+        if ($client == $server) {
+            # Принять новое подключение
+
+            $client = $server->accept();
+            $select->add($client);
+            nonblock($client);
+        } else {
+            # Прочитать данные
+            $data = '';
+            $rv   = $client->recv($data, POSIX::BUFSIZ, 0);
+
+            unless (defined($rv) && length $data) {
+                # Это должен быть конец файла, поэтому закрываем клиент
+                delete $inbuffer{$client};
+                delete $outbuffer{$client};
+                delete $ready{$client};
+
+                $select->remove($client);
+                close $client;
+                next;
+            }
+
+            $inbuffer{$client} .= $data;
+
+            # Проверить, говорят ли данные в буфере или только что
+            # прочитанные данные о наличии полного запроса, ожидающего
+            # выполнения. Если да - заполнить $ready{$client}
+            # запросами, ожидающими обработки.
+            while ($inbuffer{$client} =~ s/(.*\n)//) {
+                push( @{$ready{$client}}, $1 );
+            }
+        }
+    }
+
+  # Есть ли полные запросы для обработки?
+    foreach $client (keys %ready) {
+        handle($client);
+    }
+
+    # Сбрасываемые буферы ?
+    foreach $client ($select->can_write(1)) {
+        # Пропустить этот клиент, если нам нечего сказать
+        next unless exists $outbuffer{$client};
+
+        $rv = $client->send($outbuffer{$client}, 0);
+        unless (defined $rv) {
+            # Пожаловаться, но следовать дальше.
+            warn "I was told I could write, but I can't.\n";
+            next;
+        }
+        if ($rv == length $outbuffer{$client} ||
+            {$! == POSIX::EWOULDBLOCK)
+        {
+            substr($outbuffer{$client}, 0, $rv) = '';
+            delete $outbuffer{$client} unless length $outbuffer{$client};
+        } else {
+            # Не удалось записать все данные и не из-за блокировки.
+            # Очистить буферы и следовать дальше.
+            delete $inbuffer{$client};
+            delete $outbuffer{$client};
+            delete $ready{$client};
+
+            $select->remove($client);
+            close($client);
+            next;
+        }
+    }
+
+    # Внеполосные данные?
+    foreach $client ($select->has_exception(0)) { # аргумент - тайм-аут
+        # Обработайте внеполосные данные, если хотите.
+    }
+}
+
+# handle($socket) обрабатывает все необработанные запросы 
+# для клиента $client
+sub handle {
+    # Запросы находятся в $ready{$client}
+    # Отправить вывод в $outbuffer{$client}
+    my $client = shift;
+    my $request;
+
+    foreach $request (@{$ready{$client}}) {
+        # $request - текст запроса
+        # Занести текст ответа в $outbuffer{$client}
+    }
+    delete $ready{$client};
+}
+# nonblock($socket) переводит сокет в неблокирующий режим
+sub nonblock {
+    my $socket = shift;
+    my $flags;
+    
+    $flags = fcntl($socket, F_GETFL, 0)
+            or die "Can't get flags for socket: $!\n";
+    fcntl($socket, F_SETFL, $flags | O_NONBLOCK)
+            or die "Can't make socket nonblocking: $!\n";
+}
+

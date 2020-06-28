@@ -1,0 +1,13 @@
+Пример 20.10. aprept
+#!/usr/bin/perl -w
+# aprept - отчет по журналам Apache
+
+use Logfile::Apache;
+
+$l = Logfile::Apache->new(
+    File  => "-",                   # STDIN
+    Group => [ Domain, File ]);
+
+$l->report(Group => Domain, Sort => Records);
+$l->report(Group => File,   List => [Bytes,Records]);
+

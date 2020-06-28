@@ -1,0 +1,15 @@
+Пример 22.12. Функция match_names
+sub match_names {
+  my $pattern = shift;
+  my $nodelist = shift;
+  my $matches = XML::LibXML::NodeList->new;
+  foreach my $context ($nodelist->get_nodelist) {
+    foreach my $node ($context->findnodes('//*')) {
+      if ($node->nodeName =~ /$pattern/ix) {
+        $matches->push($node);
+      }
+    }
+  }
+  return $matches;
+}
+

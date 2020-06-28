@@ -1,0 +1,34 @@
+Ïğèìåğ 22.13. rss-parser
+#!/usr/bin/perl -w
+# guardian-list -- ïîèñê ñòàòåé â "Guardian" ïî êëş÷åâûì ñëîâàì
+
+use XML::RSSLite;
+use LWP::Simple;
+
+use strict;
+
+# Ñïèñîê êëş÷åâûõ ñëîâ
+my @keywords = qw(perl internet porn iraq bush);
+
+# Ïğèíÿòü RSS
+my $URL = 'http://www.guardian.co.uk/rss/1,,,00.xml';
+my $content = get($URL);
+
+# Ğàçîáğàòü RSS
+my %result;
+parseRSS(\%result, \$content);
+
+# Ïîñòğîèòü ğåãóëÿğíîå âûğàæåíèå ïî êëş÷åâûì ñëîâàì
+my $re = join "|", @keywords;
+$re = qr/\b(?:$re)\b/i;
+
+# Âûâåñòè îò÷åò î íàéäåííûõ ñîâïàäåíèÿõ
+foreach my $item (@{ $result{items} }) {
+  my $title = $item->{title};
+  $title =~ s{\s+}{ };  $title =~ s{^\s+}{  }; $title =~ s{\s+$}{  };
+
+  if ($title =~ /$re/) {
+    print "$title\n\t$item->{link}\n\n";
+  }
+}
+

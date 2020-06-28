@@ -1,0 +1,44 @@
+Пример 13.1. StrNum
+package StrNum;
+use Exporter ();
+@ISA = "Exporter";
+@EXPORT = qw(StrNum);  # Необычно
+use overload        (
+        '<=>'   => \&spaceship,
+        "cmp"   => \&spaceship,
+        '""'    => \&stringify,
+        "bool"  => \&boolify,
+        '0+'    => \&nummify,
+        '+'     => \&concat,
+        '*'     => \&repeat,
+);
+
+# Конструктор
+sub StrNum($) { 
+    my ($value) = @_; 
+    return bless \$value; 
+} 
+
+sub stringify { ${ $_[0] } } 
+sub numify    { ${ $_[0] } } 
+sub boolify   { ${ $_[0] } } 
+# Наличие <=> дает нам <, == и т. д.
+sub spaceship { 
+    my ($s1, $s2, $inverted) = @_;
+    return $inverted ? $$s2 cmp $$s1 : $$s1 cmp $$s2;
+} 
+
+# Использует stringify
+sub concat { 
+    my ($s1, $s2, $inverted) = @_;
+    return StrNum $inverted ? ($s2 . $s1) : ($s1 . $s2);
+} 
+
+# Использует stringify
+sub repeat { 
+    my ($s1, $s2, $inverted) = @_;
+    return StrNum $inverted ? ($s2 x $s1) : ($s1 x $s2);
+}
+
+1;
+

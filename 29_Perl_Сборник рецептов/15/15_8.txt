@@ -1,0 +1,75 @@
+Пример 15.8. tcapdemo
+#!/usr/bin/perl -w
+# tcapdemo - прямое позиционирование курсора
+
+use POSIX;
+use Term::Cap;
+
+init();                     # Инициализация Term::Cap.
+zip();                      # Рисование линий на экране.
+finish();                   # Последующая очистка.
+exit();
+
+# Две вспомогательные функции.  Смысл clear_screen очевиден, а
+# clear_end очищает до конца экрана.
+sub clear_screen { $tcap->Tputs('cl', 1, *STDOUT) } 
+sub clear_end    { $tcap->Tputs('cd', 1, *STDOUT) } 
+
+# Переместить курсор в конкретную позицию.
+sub gotoxy {
+    my($x, $y) = @_;
+    $tcap->Tgoto('cm', $x, $y, *STDOUT);
+} 
+
+# Определить скорость терминала через модуль POSIX и использовать 
+# для инициализации Term::Cap.
+sub init { 
+    $| = 1;
+    $delay = (shift() || 0) * 0.005;
+    my $termios = POSIX::Termios->new();
+    $termios->getattr;
+    my $ospeed = $termios->getospeed;
+    $tcap = Term::Cap->Tgetent ({ TERM => undef, OSPEED => $ospeed });
+    $tcap->Trequire(qw(cl cm cd));
+}
+
+# Рисовать линии на экране, пока пользователь 
+# не нажмет Ctrl-C.
+
+sub zip { 
+    clear_screen();
+    ($maxrow, $maxcol) = ($tcap->{_li} - 1, $tcap->{_co} - 1);
+
+    @chars = qw(* - / | \ _ );
+    sub circle { push(@chars, shift @chars); }
+
+    $interrupted = 0;
+    $SIG{INT} = sub { ++$interrupted };
+
+    $col = $row = 0;
+    ($row_sign, $col_sign) = (1,1);
+
+    do {
+        gotoxy($col, $row);
+        print $chars[0];
+        select(undef, undef, undef, $delay);
+
+        $row += $row_sign;
+        $col += $col_sign;
+
+        if    ($row == $maxrow) { $row_sign = -1; circle; } 
+        elsif ($row == 0 )      { $row_sign = +1; circle; }
+
+        if    ($col == $maxcol) { $col_sign = -1; circle; } 
+        elsif ($col == 0 )      { $col_sign = +1; circle; }
+    
+    } until $interrupted;
+
+}
+
+# Очистить экран.
+sub finish { 
+    gotoxy(0, $maxrow);
+    clear_end();
+}
+

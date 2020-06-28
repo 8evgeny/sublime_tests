@@ -1,0 +1,17 @@
+Пример 10.1. bysub1
+#!/usr/bin/perl 
+# bysub1 - простая сортировка по теме
+my(@msgs, @sub);
+my $msgno = -1;
+$/ = '';                    # Чтение по абзацам
+while (<>) {
+    if (/^From/m) {
+        /^Subject:\s*(?:Re:\s*)*(.*)/mi;
+        $sub[++$msgno] = lc($1) || '';
+    }
+    $msgs[$msgno] .= $_;
+} 
+for my $i (sort { $sub[$a] cmp $sub[$b] || $a <=> $b } (0 .. $#msgs)) {
+    print $msgs[$i];
+}
+

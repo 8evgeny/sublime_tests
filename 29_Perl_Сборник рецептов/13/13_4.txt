@@ -1,0 +1,15 @@
+Пример 13.4. UnderScore
+package UnderScore;
+use Carp;
+sub TIESCALAR {
+    my $class = shift;
+    my $dummy;
+    return bless \$dummy => $class;
+} 
+sub FETCH { croak "Read access to \$_ forbidden"  } 
+sub STORE { croak "Write access to \$_ forbidden" } 
+sub unimport { tie($_, __PACKAGE__) }
+sub import { untie $_ } 
+tie($_, __PACKAGE__) unless tied $_;
+1;
+

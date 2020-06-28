@@ -1,0 +1,209 @@
+Пример 7.11. lockarea
+#!/usr/bin/perl -w
+# lockarea – частичная блокировка с использованием fcntl
+
+use strict;
+
+my $FORKS = shift || 1;
+my $SLEEP = shift || 1;
+
+use Fcntl;
+use POSIX qw(:unistd_h);
+
+my $COLS = 80;
+my $ROWS = 23;
+
+# Когда вы в последний раз видели *этот* режим правильно работающим?
+open(FH, "+> /tmp/lkscreen")            or  die $!;
+
+select(FH);
+$| = 1;
+select STDOUT;
+
+# Очистить экран
+for (1 .. $ROWS) {
+        print FH " " x $COLS, "\n";
+}
+
+my $progenitor = $$;
+fork while $FORKS-- > 0;
+
+print "hello from $$\n";
+
+if ($progenitor == $$) {
+        $SIG{INT} = \&infanticide;
+} else {
+        $SIG{INT} = sub { die "goodbye from $$" };
+}
+
+while (1) {
+        my $line_num = int rand($ROWS);
+        my $line;
+        my $n;
+
+        # Перейти к строке
+        seek(FH, $n = $line_num * ($COLS+1), SEEK_SET)        or next;
+
+        # Получить блокировку
+        my $place = tell(FH);
+        my $him;
+        next unless defined($him = lock(*FH, $place, $COLS));
+
+        # Прочитать строку
+        read(FH, $line, $COLS) == $COLS                       or next;
+        my $count = ($line =~ /(\d+)/) ? $1 : 0;
+        $count++;
+
+        # Обновить строку
+        seek(FH, $place, 0)                                   or die $!;
+        my $update = sprintf($him
+                            ? "%6d: %d ZAPPED %d"
+                            : "%6d: %d was just here",
+                        $count, $$, $him);
+        my $start = int(rand($COLS - length($update)));
+        die "XXX" if $start + length($update) > $COLS;
+        printf FH "%*.*s\n", -$COLS, $COLS, " " x $start . $update;
+
+        # Снять блокировку и сделать паузу
+        unlockplace(*FH, $place, $COLS);
+        sleep $SLEEP if $SLEEP;
+}
+die "NOT REACHED";                # На всякий случай
+
+# lock($handle, $offset, $timeout) - получение блокировки fcntl
+sub lock {
+        my ($fh, $start, $till) = @_;
+        ##print "$$: Locking $start, $till\n";
+        my $lock = struct_flock(F_WRLCK, SEEK_SET, $start, $till, 0);
+        my $blocker = 0;
+        unless (fcntl($fh, F_SETLK, $lock)) {
+            die "F_SETLK $$ @_: $!" unless $! == EAGAIN || $! == EDEADLK;
+            fcntl($fh, F_GETLK, $lock)          or die "F_GETLK $$ @_: $!";
+            $blocker = (struct_flock($lock))[-1];
+            ##print "lock $$ @_: waiting for $blocker\n";
+            $lock = struct_flock(F_WRLCK, SEEK_SET, $start, $till, 0);
+            unless (fcntl($fh, F_SETLKW, $lock)) {
+                warn "F_SETLKW $$ @_: $!\n";
+                return;  # undef
+            }
+        }
+        return $blocker;
+}
+
+# unlock($handle, $offset, $timeout) – снять блокировку fcntl
+sub unlockplace {
+        my ($fh, $start, $till) = @_;
+        ##print "$$: Unlocking $start, $till\n";
+        my $lock = struct_flock(F_UNLCK, SEEK_SET, $start, $till, 0);
+        fcntl($fh, F_SETLK, $lock) or die "F_UNLCK $$ @_: $!";
+}
+
+# Структуры flock для разных ОС
+
+# Структура flock для Linux
+#   short l_type;
+#   short l_whence;
+#   off_t l_start;
+#   off_t l_len;
+#   pid_t l_pid;
+
+BEGIN {
+        # По данным c2ph: typedef='s2 l2 i', sizeof=16
+        my $FLOCK_STRUCT = 's s l l i';
+
+        sub linux_flock {
+            if (wantarray) {
+                my ($type, $whence, $start, $len, $pid) =
+                    unpack($FLOCK_STRUCT, $_[0]);
+                return ($type, $whence, $start, $len, $pid);
+            } else {
+                my ($type, $whence, $start, $len, $pid) = @_;
+                return pack($FLOCK_STRUCT,
+                        $type, $whence, $start, $len, $pid);
+            }
+        }
+
+}
+
+# Структура flock для SunOS
+#   short   l_type;         /* F_RDLCK, F_WRLCK или F_UNLCK */
+#   short   l_whence;       /* Флаг выбора начального смещения */
+#   long    l_start;        /* Относительное смещение в байтах */
+#   long    l_len;          /* Длина в байтах; 
+                               0 - блокировка до EOF */
+#   short   l_pid;          /* Возвращается F_GETLK */
+#   short   l_xxx;          /* Зарезервировано на будущее */
+BEGIN {
+        # По данным c2ph: typedef='s2 l2 s2', sizeof=16
+        my $FLOCK_STRUCT = 's s l l s s';
+
+        sub sunos_flock {
+            if (wantarray) {
+                my ($type, $whence, $start, $len, $pid, $xxx) =
+                    unpack($FLOCK_STRUCT, $_[0]);
+                return ($type, $whence, $start, $len, $pid);
+            } else {
+                my ($type, $whence, $start, $len, $pid) = @_;
+                return pack($FLOCK_STRUCT,
+                        $type, $whence, $start, $len, $pid, 0);
+            }
+        }
+}
+
+# Структура flock для (Free)BSD:
+#   off_t   l_start;        /* Начальное смещение */
+#   off_t   l_len;          /* len = 0 означает блокировку до конца файла */
+#   pid_t   l_pid;          /* Владелец блокировки */
+#   short   l_type;         /* Тип блокировки: чтение/запись и т. д. */
+#   short   l_whence;       /* Тип l_start */
+BEGIN {
+        # По данным c2ph: typedef="q2 i s2", size=24
+        my $FLOCK_STRUCT = 'll ll i s s';
+
+        sub bsd_flock {
+            if (wantarray) {
+                my ($xxstart, $start, $xxlen, $len, $pid, $type, $whence) =
+                    unpack($FLOCK_STRUCT, $_[0]);
+                return ($type, $whence, $start, $len, $pid);
+            } else {
+                my ($type, $whence, $start, $len, $pid) = @_;
+                my ($xxstart, $xxlen) = (0,0);
+                return pack($FLOCK_STRUCT,
+                    $xxstart, $start, $xxlen, $len, $pid, $type, $whence);
+            }
+        }
+}
+
+# Синоним структуры fcntl на стадии компиляции
+BEGIN {
+        for ($^O) {
+            *struct_flock =                do                           {
+                                    /bsd/  &&  \&bsd_flock
+                                           ||
+                                /linux/    &&    \&linux_flock
+                                           ||
+                              /sunos/      &&      \&sunos_flock
+                                           ||
+                      die "unknown operating system $^O, bailing out";
+            };
+        }
+}
+
+# Установить обработчик сигнала для потомков
+BEGIN {
+        my $called = 0;
+
+        sub infanticide {
+            exit if $called++;
+            print "$$: Time to die, kiddies.\n" if $$ == $progenitor;
+            my $job = getpgrp();
+            $SIG{INT} = 'IGNORE';
+            kill -2, $job if $job;  # killpg(SIGINT, job)
+            1 while wait > 0;
+            print "$$: My turn\n" if $$ == $progenitor;
+            exit;
+        }
+}
+
+END { &infanticide }
+

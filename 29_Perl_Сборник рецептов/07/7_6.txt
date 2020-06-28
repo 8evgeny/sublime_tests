@@ -1,0 +1,12 @@
+Пример 7.6. countchunks
+#!/usr/bin/perl -n 
+# countchunks – подсчет использованных слов
+# с пропуском комментариев. При обнаружении __END__ или __DATA__
+# происходит переход к следующему файлу.
+for (split /\W+/) { 
+    next LINE if /^#/; 
+    close ARGV if /__(DATA|END)__/;
+    $chunks++;     
+}     
+END { print "Found $chunks chunks\n" }
+

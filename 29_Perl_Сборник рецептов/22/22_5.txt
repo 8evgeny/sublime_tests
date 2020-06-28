@@ -1,0 +1,34 @@
+Пример 22.5. filters-rewriteids
+package RewriteIDs;
+# RewriteIDs.pm -- преобразование атрибутов "id" в элементы
+
+use base qw(XML::SAX::Base);
+
+my $ID_ATTRIB = "{}id";   # the attribute hash entry we're interested in
+
+sub start_element {
+    my ($self, $data) = @_;
+
+    if ($data->{Name} eq 'book') {
+        my $id = $data->{Attributes}{$ID_ATTRIB}{Value};
+        delete $data->{Attributes}{$ID_ATTRIB};
+        $self->SUPER::start_element($data);
+
+        # Создать новую структуру данных элемента для тега <id>
+        my $id_node = {};
+        %$id_node = %$self;
+        $id_node->{Name} = 'id';  # Сложнее, если используются
+                                  # пространства имен
+        $id_node->{Attributes} = {};
+
+        # Построить <id>$id</id>
+        $self->SUPER::start_element($id_node);
+        $self->SUPER::characters({ Data => $id });
+        $self->SUPER::end_element($id_node);
+    } else {
+        $self->SUPER::start_element($data);
+    }
+}
+
+1;
+

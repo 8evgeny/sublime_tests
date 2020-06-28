@@ -1,0 +1,22 @@
+Пример 8.11. line_with_index
+# Применение : line_with_index(*МАНИПУЛЯТОР_ДАННЫХ,
+#                              *МАНИПУЛЯТОР_ИНДЕКСА,
+#                              $НОМЕР_СТРОКИ)
+# Возвращает строку или undef, если НОМЕР_СТРОКИ выходит за пределы файла
+sub line_with_index {
+    my $data_file   = shift;
+    my $index_file  = shift;
+    my $line_number = shift;
+    my $size;               # Размер элемента индекса
+    my $i_offset;           # Смещение элемента в индексе
+    my $entry;              # Элемент индекса
+    my $d_offset;           # Смещение в файле данных
+    $size = length(pack("N", 0));
+    $i_offset = $size * ($line_number-1);
+    seek($index_file, $i_offset, 0) or return;
+    read($index_file, $entry, $size);
+    $d_offset = unpack("N", $entry);
+    seek($data_file, $d_offset, 0);
+    return scalar(<$data_file>);
+}
+

@@ -1,0 +1,113 @@
+Пример 15.9. tkshufflepod
+#!/usr/bin/perl -w
+# tkshufflepod - изменение порядка разделов =head1 в pod-файле
+
+use Tk;
+use Tk::Pod;
+use strict;
+
+# Объявление переменных
+
+my $podfile;       # Имя открываемого файла
+my $m;             # Главное окно
+my $l;             # Элемент Listbox
+my ($up, $down);   # Позиции для перемещения
+my @sections;      # Список разделов pod
+my $all_pod;       # Текст pod-файла (используется при чтении)
+
+# Прочитать pod-файл в память и разбить его на разделы.
+
+$podfile = shift || "-";
+
+undef $/;
+open(F, " < $podfile")
+  or die "Can't open $podfile : $!\n";
+$all_pod = <F>;
+close(F);
+@sections = split(/(?==head1)/, $all_pod);
+
+# Превратить @sections в массив анонимных массивов. Первый элемент
+# каждого массива содержит исходный текст сообщения, а второй -
+# текст, следующий за =head1 (заголовок раздела).
+
+foreach (@sections) {
+    /(.*)/;
+    $_ = [ $_, $1 ];
+}
+
+# Запустить Tk и вывести список разделов.
+
+$m = MainWindow->new();
+$l = $m->Listbox('-width' => 60)->pack('-expand' => 1, '-fill' => 'both');
+
+foreach my $section (@sections) {
+    $l->insert("end", $section->[1]);
+}
+
+# Разрешить перетаскивание для элемента Listbox.
+$l->bind( '<Any-Button>'     => \&down );
+$l->bind( '<Any-ButtonRelease>' => \&up );
+
+# Разрешить просмотр при двойном щелчке
+$l->bind( '<Double-Button>'     => \&view );
+
+# 'q' завершает программу, а 's' сохраняет изменения.
+$m->bind( '<q>'     => sub { exit } );
+$m->bind( '<s>'     => \&save );
+
+MainLoop;
+
+# down(widget): вызывается, когда пользователь щелкает в Listbox.
+
+sub down {
+    my $self = shift;
+    $down = $self->curselection;;
+}
+
+# up(widget): вызывается, когда пользователь отпускает 
+# кнопку мыши в Listbox.
+
+sub up {
+    my $self = shift;
+    my $elt;
+
+    $up = $self->curselection;;
+
+    return if $down == $up;
+
+    # change selection list
+    $elt = $sections[$down];
+    splice(@sections, $down, 1);
+    splice(@sections, $up, 0, $elt);
+    $self->delete($down);
+    $self->insert($up, $sections[$up]->[1]);
+}
+# save(widget): сохранение списка разделов.
+
+sub save {
+    my $self = shift;
+
+    open(F, "> $podfile")
+      or die "Can’t open $podfile for writing: $!";
+    print F map { $_->[0] } @sections;
+    close F;
+
+    exit;
+}
+
+# view(widget): вывод раздела.  Использует элемент Pod.
+
+sub view {
+    my $self = shift;
+    my $temporary = "/tmp/$$-section.pod";
+    my $popup;
+
+    open(F, "> $temporary")
+      or warn ("Can't open $temporary : $!\n"), return;
+    print F $sections[$down]->[0];
+    close(F);
+    $popup = $m->Pod('-file' => $temporary);
+
+    $popup->bind('<Destroy>' => sub { unlink $temporary } );
+}
+

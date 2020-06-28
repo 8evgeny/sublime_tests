@@ -1,0 +1,12 @@
+Пример 13.5. Tie::AppendHash
+package Tie::AppendHash;
+use strict;
+use Tie::Hash;
+use Carp;
+our @ISA = qw(Tie::StdHash);
+sub STORE {
+    my ($self, $key, $value) = @_;
+    push @{$self->{key}}, $value;
+} 
+1;
+

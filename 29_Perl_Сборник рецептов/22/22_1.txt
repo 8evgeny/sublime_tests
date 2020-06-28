@@ -1,0 +1,45 @@
+Пример 22.1. Простой документ XML
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+  <!-- Programming Perl 3ed -->
+
+  <book id="1">
+    <title>Programming Perl</title>
+    <edition>3</edition>
+    <authors>
+      <author>
+        <firstname>Larry</firstname>
+        <lastname>Wall</lastname>
+      </author>
+      <author>
+        <firstname>Tom</firstname>
+        <lastname>Christiansen</lastname>
+      </author>
+      <author>
+        <firstname>Jon</firstname>
+        <lastname>Orwant</lastname>
+      </author>
+    </authors>
+    <isbn>0-596-00027-8</isbn>
+  </book>
+  <!-- Perl & LWP -->
+  <book id="2">
+    <title>Perl &amp; </title>
+    <edition>1</edition>
+    <authors>
+      <author>
+        <firstname>Sean</firstname>
+        <lastname>Burke</lastname>
+      </author>
+    </authors>
+    <isbn>0-596-00178-9</isbn>
+  </book>
+  <book id="3">
+    <!-- Anonymous Perl -->
+    <title>Anonymous Perl</title>
+    <edition>1</edition>
+    <authors />
+    <isbn>0-555-00178-0</isbn>
+  </book>
+</books>
+

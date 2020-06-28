@@ -1,0 +1,16 @@
+Пример 12.1. jam
+#!/usr/bin/perl -w
+# jam - вставка символов в STDIN
+require 'sys/ioctl.ph';
+die "no TIOCSTI" unless defined &TIOCSTI;
+sub jam {
+    local $SIG{TTOU} = "IGNORE"; # "Остановка для вывода на терминал"
+    local *TTY;  # Создать локальный манипулятор
+    open(TTY, "+<", "/dev/tty")                 or die "no tty: $!";
+    for (split(//, $_[0])) {
+        ioctl(TTY, &TIOCSTI, $_)            or die "bad TIOCSTI: $!";
+    }
+    close(TTY);
+}
+jam("@ARGV\n");
+

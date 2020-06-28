@@ -1,0 +1,15 @@
+ѕример 19.4. oreobounce
+#!/usr/bin/perl -w
+# oreobounce - установить cookie и перенаправить браузер
+use CGI qw(:cgi);
+
+$oreo = cookie( -NAME    => 'filling',
+                -VALUE   => "vanilla crиme',
+                -EXPIRES => '+3MТ,    # M - мес€ц, m - минута
+                -DOMAIN  => '.perl.comТ);
+
+$whither  = "http://somewhere.perl.com/nonesuch.html";
+
+print redirect( -URL     => $whither,
+                -COOKIE  => $oreo);
+

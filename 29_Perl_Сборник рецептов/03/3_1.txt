@@ -1,0 +1,115 @@
+Пример 3.1. hopdelta
+#!/usr/bin/perl
+# hopdelta – по заголовку почтового сообщения выдает сведения
+#            о задержке почты на каждом промежуточном участке.
+use strict;
+use Date::Manip qw (ParseDate UnixDate);
+
+# Заголовок печати; из-за сложностей printf следовало 
+# бы использовать format/write
+printf "%-20.20s %-20.20s %-20.20s   %s\n", 
+        "Sender", "Recipient", "Time", "Delta";
+$/ = '';                # Режим абзаца
+$_ = <>;                # Читать заголовок
+s/\n\s+/ /g;            # Объединить строки продолжения
+# Вычислить, когда и где начался маршрут сообщения
+my($start_from) = /^From.*\@([^\s>]*)/m;
+my($start_date) = /^Date:\s+(.*)/m;
+my $then = getdate($start_date);
+printf "%-20.20s %-20.20s %s\n", 'Start', $start_from, fmtdate($then);
+
+my $prevfrom = $start_from;
+
+# Обрабатывать строки заголовка снизу вверх
+for (reverse split(/\n/)) {
+    my ($delta, $now, $from, $by, $when);
+    next unless /^Received:/;
+    s/\bon (.*?) (id.*)/; $1/s;         # Кажется, заголовок qmail
+    unless (($when) = /;\s+(.*)$/) {
+        warn "bad received line: $_";
+        next;
+    }
+    ($from) = /from\s+(\S+)/;           
+    ($from) = /\((.*?)\)/ unless $from; # Иногда встречается
+    $from =~ s/\)$//;                   # Кто-то пожадничал
+    ($by)   = /by\s+(\S+\.\S+)/;        # Отправитель для данного участка
+
+    # Операции, приводящие строку к анализируемому формату
+    for ($when) {
+        s/ (for|via) .*$//;
+        s/([+-]\d\d\d\d) \(\S+\)/$1/;
+        s/id \S+;\s*//;
+    }
+    next unless $now = getdate($when);   # Перевести в секунды
+                                         # с начала эпохи
+    $delta = $now - $then;
+
+    printf "%-20.20s %-20.20s %s  ", $from, $by, fmtdate($now);
+    $prevfrom = $by;
+    puttime($delta);
+    $then = $now;
+}
+
+exit;
+
+# Преобразовать произвольные строки времени в секунды с начала эпохи
+sub getdate {
+    my $string     =  shift;
+    $string        =~ s/\s+\(.*\)\s*$//;        # Убрать нестандартные
+                                                # терминаторы
+    my $date       =  ParseDate($string);
+    my $epoch_secs =  UnixDate($date,"%s");
+    return $epoch_secs;
+}
+
+# Преобразовать секунды с начала эпохи в строку определенного формата
+sub fmtdate {
+    my $epoch = shift;
+    my($sec,$min,$hour,$mday,$mon,$year) = localtime($epoch);
+    return sprintf "%02d:%02d:%02d %04d/%02d/%02d",
+
+  $hour, $min, $sec,
+            $year + 1900, $mon + 1, $mday,
+}
+
+# Преобразовать секунды в удобочитаемый формат
+sub puttime {
+    my($seconds) = shift;
+    my($days, $hours, $minutes);
+
+    $days    = pull_count($seconds, 24 * 60 * 60);
+    $hours   = pull_count($seconds, 60 * 60);
+    $minutes = pull_count($seconds, 60);
+
+    put_field('s', $seconds);
+    put_field('m', $minutes);
+    put_field('h', $hours);
+    put_field('d', $days);
+
+    print "\n";
+}
+
+# Применение: $count = pull_count(seconds, amount)
+# Удалить из seconds заданную величину, изменить версию вызывающей
+# стороны и вернуть число удалений.
+sub pull_count {
+    my($answer) = int($_[0] / $_[1]);
+    $_[0] -= $answer * $_[1];
+    return $answer;
+}
+
+# Применение: put_field(char, number)
+# Вывести числовое поле в десятичном формате с 3 разрядами и суффиксом char
+# Выводить лишь для секунд (char == 's')
+sub put_field {
+    my ($char, $number) = @_;
+    printf " %3d%s", $number, $char if $number || $char eq 's';
+}
+
+=end
+
+Sender               Recipient            Time                  Delta
+Start                wall.org             09:17:12 1998/05/23
+wall.org             mail.brainstorm.net  09:20:56 1998/05/23   44s  3m
+mail.brainstorm.net  jhereg.perl.com      09:20:58 1998/05/23    2s
+

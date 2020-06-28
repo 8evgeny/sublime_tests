@@ -1,0 +1,97 @@
+Пример 17.5. preforker
+#!/usr/bin/perl
+# preforker - сервер с предварительным ветвлением
+use IO::Socket;
+use Symbol;
+use POSIX;
+
+# Создать сокет SERVER, вызвать bind и прослушивать порт.
+$server = IO::Socket::INET->new(LocalPort => 6969,
+                                Type      => SOCK_STREAM,
+                                Proto     => 'tcp',
+                                Reuse     => 1,
+                                Listen    => 10 )
+  or die "making socket: $@\n";
+
+# Глобальные переменные
+$PREFORK                = 5;   # Количество поддерживаемых потомков
+$MAX_CLIENTS_PER_CHILD  = 5;   # Количество клиентов, обрабатываемых
+                               # каждым потомком.
+%children               = ();  # Ключами являются текущие 
+                               # идентификаторы процессов-потомков
+$children               = 0;   # Текущее число потомков
+
+sub REAPER {                   # Чистка мертвых потомков
+    $SIG{CHLD} = \&REAPER;
+    my $pid = wait;
+    $children --;
+    delete $children{$pid};
+}
+
+sub HUNTSMAN {                      # Обработчик сигнала SIGINT
+    local($SIG{CHLD}) = 'IGNORE';   # Убиваем своих потомков 
+    kill 'INT' => keys %children;
+    exit;                           # Корректно завершиться
+}
+
+    
+# Создать потомков.
+for (1 .. $PREFORK) {
+    make_new_child();
+}
+
+# Установить обработчики сигналов.
+$SIG{CHLD} = \&REAPER;
+$SIG{INT}  = \&HUNTSMAN;
+
+# Поддерживать численность процессов.
+while (1) {
+    sleep;                          # Ждать сигнала (например,
+                                    # смерти потомка).
+    for ($i = $children; $i < $PREFORK; $i++) {
+        make_new_child();           # Заполнить пул потомков.
+    }
+}
+sub make_new_child {
+    my $pid;
+    my $sigset;
+    
+    # Блокировать сигнал для fork.
+    $sigset = POSIX::SigSet->new(SIGINT);
+    sigprocmask(SIG_BLOCK, $sigset)
+        or die "Can't block SIGINT for fork: $!\n";
+    
+    die "fork: $!" unless defined ($pid = fork);
+    
+    if ($pid) {
+        # Родитель запоминает рождение потомка и возвращается.
+        sigprocmask(SIG_UNBLOCK, $sigset)
+            or die "Can't unblock SIGINT for fork: $!\n";
+        $children{$pid} = 1;
+        $children++;
+        return;
+    } else {
+        # Потомок *не может* выйти из этой подпрограммы.
+        $SIG{INT} = 'DEFAULT';   # Пусть SIGINT убивает процесс,
+                                 # как это было раньше.
+    
+        # Разблокировать сигналы
+        sigprocmask(SIG_UNBLOCK, $sigset)
+            or die "Can't unblock SIGINT for fork: $!\n";
+    
+        # Обрабатывать подключения, пока их число не достигнет
+        # $MAX_CLIENTS_PER_CHILD.
+        for ($i=0; $i < $MAX_CLIENTS_PER_CHILD; $i++) {
+            $client = $server->accept()     or last;
+            # Сделать что-то с соединением.
+        }
+    
+        # Корректно убрать мусор и завершиться.
+    
+        # Этот выход ОЧЕНЬ важен, в противном случае потомок начнет
+        # плодить все больше и больше потомков, что в конечном счете
+        # приведет к переполнению таблицы процессов.
+        exit;
+    }
+}
+

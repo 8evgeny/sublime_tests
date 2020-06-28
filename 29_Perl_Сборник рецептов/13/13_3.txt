@@ -1,0 +1,22 @@
+Пример 13.3. ValueRing
+package ValueRing;
+# Конструктор для связывания скаляров
+sub TIESCALAR {
+    my ($class, @values) = @_;
+    bless  \@values, $class;
+    return \@values;
+} 
+# Перехватывает чтение
+sub FETCH {
+    my $self = shift;
+    push(@$self, shift(@$self));
+    return $self->[-1];
+} 
+# Перехватывает запись
+sub STORE {
+    my ($self, $value) = @_;
+    unshift @$self, $value;
+    return $value;
+} 
+1;
+

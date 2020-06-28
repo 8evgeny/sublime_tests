@@ -1,0 +1,32 @@
+Пример 16.8. pipe6
+#!/usr/bin/perl -w
+# pipe6 - двусторонний обмен данными с применением socketpair
+
+use Socket;
+use IO::Handle;
+# Мы говорим AF_UNIX, потому что хотя константа *_LOCAL 
+# соответствует POSIX 1003.1g, на многих компьютерах
+# она еще не поддерживается.
+socketpair($child, $parent, AF_UNIX, SOCK_STREAM, PF_UNSPEC)
+    or  die "socketpair: $!";
+
+$child->autoflush(1);
+$parent->autoflush(1);
+
+if ($pid = fork) {
+    close $parent;
+    print $child "Parent Pid $$ is sending this\n";
+    chomp($line = <$child>);
+    print "Parent Pid $$ just read this: `$line'\n";
+    close $child;
+    waitpid($pid,0);
+} else {
+    die "cannot fork: $!" unless defined $pid;
+    close $child;
+    chomp($line = <$parent>);
+    print "Child Pid $$ just read this: `$line'\n";
+    print $parent "Child Pid $$ is sending this\n";
+    close $parent;
+    exit;
+}
+

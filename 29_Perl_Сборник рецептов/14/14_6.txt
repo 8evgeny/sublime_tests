@@ -1,0 +1,29 @@
+Пример 14.6. ipk
+#!/usr/bin/perl -w
+# ipk - демонстрация INTEGER PRIMARY KEY
+use DBI;
+use strict;
+my $dbh = DBI->connect("dbi:SQLite:ipk.dat", "", "",
+{RaiseError => 1, AutoCommit => 1});
+# Удалить таблицу, если она существовала ранее.
+eval {
+  local $dbh->{PrintError} = 0;
+  $dbh->do("DROP TABLE names");
+};
+# Создать таблицу заново.
+$dbh->do("CREATE TABLE names (id INTEGER PRIMARY KEY, name)");
+# Заполнить таблицу данными.
+foreach my $person (qw(Nat Tom Guido Larry Damian Jon)) {
+  $dbh->do("INSERT INTO names VALUES (NULL, '$person')");
+}
+# Удаление значения
+$dbh->do("DELETE FROM names WHERE name='Guido'");
+# Вставка нового значения
+$dbh->do("INSERT INTO names VALUES (NULL, 'Dan')");
+# Вывод содержимого таблицы
+my $all = $dbh->selectall_arrayref("SELECT id,name FROM names");
+foreach my $row (@$all) {
+  my ($id, $word) = @$row;
+  print "$word has id $id\n";
+}
+

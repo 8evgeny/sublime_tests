@@ -1,0 +1,9 @@
+use Fcntl;
+
+$flags = "";
+fcntl(HANDLE, F_GETFL, $flags)
+    or die "Couldn't get flags for HANDLE : $!\n";
+$flags |= O_NONBLOCK;
+fcntl(HANDLE, F_SETFL, $flags)
+    or die "Couldn't set flags for HANDLE: $!\n";
+

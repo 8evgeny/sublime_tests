@@ -1,0 +1,77 @@
+Пример 1.6. psgrep
+#!/usr/bin/perl –w
+# psgrep – фильтрация выходных данных ps 
+#          с компиляцией пользовательских запросов в программный код
+#
+use strict;
+# Все поля из заголовка PS
+my @fieldnames = qw(FLAGS UID PID PPID PRI NICE SIZE
+                    RSS WCHAN STAT TTY TIME COMMAND);
+# Определение формата распаковки (в примере
+# жестко закодирован формат ps для Linux)
+my $fmt = cut2fmt(8, 14, 20, 26, 30, 34, 41, 47, 59, 63, 67, 72);
+my %fields;           # Для хранения данных
+die << Thanatos unless @ARGV;
+usage: $0 criterion ...
+    Each criterion is a Perl expression involving:
+    @fieldnames
+    All criteria must be met for a line to be printed.
+Thanatos
+# Создать синонимы для uid, size, UID, SIZE и т.д.
+# Пустые скобки необходимы для создания прототипа без аргументов
+for my $name (@fieldnames) {
+    no strict 'refs';
+    *name = *{lc $name} = sub () { $fields{$name} };
+}
+my $code = "sub is_desirable { " . join(" and ", @ARGV) . " } ";
+unless (eval $code.1) {
+    die "Error in code: $@\n\t$code\n";
+}
+open (PS, "ps wwaxl |")             || die "cannot fork: $!";
+print scalar <PS>;          # Строка-заголовок
+while (<PS> {
+    @fields{@fieldnames} = trim(unpack($fmt, $_));
+    print if is_desirable();        # Строки, удовлетворяющие критериям
+}
+close(PS)                           || die "ps failed!";
+
+# Преобразовать позиции разреза в формат распаковки
+sub cut2fmt {
+    my(@positions) = @_;
+    my $template   = '';
+    my $lastpos    = 1;
+    foreach $place(positions) {
+        $template .= "A" . ($place - $lastpos) . " ";
+        $lastpos   = $place;
+    }
+    $template .= "A*";
+    return $template;
+}
+sub trim {
+    my @strings = @_;
+    for (@strings) {
+        s/^\s+//;
+        s/\s+$//;
+    }
+    return wantarray ? @strings : $strings[0];
+}
+# Следующий шаблон использовался для определения позиций разреза.
+# Далее следует пример входных данных
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+#         1         2         3         4         5         6         7
+# Позиции:
+#       8     14    20    26  30  34     41    47          59  63  67   72
+#       |     |     |     |   |   |      |     |           |   |   |    |
+__END__
+ FLAGS   UID   PID  PPID PRI  NI   SIZE   RSS WCHAN       STA TTY TIME COMMAND
+   100     0     1     0   0   0    760   432 do_select   S   ?   0:02 init
+   140     0   187     1   0   0    784   452 do_select   S   ?   0:02 syslogd
+100100   101   428     1   0   0   1436   944 do_exit     S    1  0:00 /bin/login
+100140    99 30217   402   0   0   1552  1008 posix_lock  S   ?   0:00 httpd
+     0   101   593   428   0   0   1780  1260 copy_thread S    1  0:00 -tcsh
+100000   101 30639  9562  17   0    924   496             R   p1  0:00 ps axl
+     0   101 25145  9563   0   0   2964  2360 idetape_rea S   p2  0:06 trn
+100100     0 10116  9564   0   0   1412   928 setup_frame T   p3  0:00 ssh –C www
+100100     0 26560 26554   0   0   1076   572 setup_frame T   p2  0:00 less
+100000   101 19058  9562   0   0   1396   900 setup_frame T   p1  0:02 nvi /tmp/a
+

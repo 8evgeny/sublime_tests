@@ -1,0 +1,37 @@
+Пример 17.4. biclient
+#!/usr/bin/perl -w
+# biclient - двусторонний клиент с разветвлением
+use strict;
+use IO::Socket;
+my ($host, $port, $kidpid, $handle, $line);
+
+unless (@ARGV == 2) { die "usage: $0 host port" }
+($host, $port) = @ARGV;
+
+# Создать tcp-подключение для заданного хоста и порта
+$handle = IO::Socket::INET->new(Proto     => "tcp",
+                                PeerAddr  => $host,
+                                PeerPort  => $port)
+       or die "can't connect to port $port on $host: $!";
+
+$handle->autoflush(1);        # Запретить буферизацию
+print STDERR "[Connected to $host:$port]\n";
+
+# Разделить программу на два идентичных процесса
+die "can't fork: $!" unless defined($kidpid = fork());
+
+if ($kidpid) {                      
+    # Родитель копирует сокет в стандартный вывод
+    while (defined ($line = <$handle>)) {
+        print STDOUT $line;
+    }
+    kill("TERM" => $kidpid);        # Послать потомку SIGTERM
+}
+else {                              
+    # Потомок копирует стандартный ввод в сокет
+    while (defined ($line = <STDIN>)) {
+        print $handle $line;
+    }
+}
+exit;
+

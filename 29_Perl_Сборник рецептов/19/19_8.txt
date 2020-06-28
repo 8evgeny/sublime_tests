@@ -1,0 +1,35 @@
+Пример 19.8. who.cgi
+#!/usr/bin/perl -wT
+# who.cgi - вызвать who(1) для пользователя и отформатировать результат
+
+$ENV{IFS}='';
+$ENV{PATH}='/bin:/usr/bin';
+
+use CGI qw(:standard);
+
+# Вывести поисковую форму
+print header(), start_html("Query Users"), h1("Search");
+print start_form(), p("Which user?", textfield("WHO")); submit(), end_form();
+
+# Вывести результаты поиска
+$name = param("WHO");
+if ($name) {
+    print h1("Results");
+    $html = '';
+    
+    # Вызвать who и построить текст ответа
+    foreach (`who`) {
+        next unless /^$name\s/o;   # Только строки, совпадающие с $name
+        s/&/&amp;/g;
+        s/</&lt;/g;
+        s/>/&gt;/g;
+        $html .= $_;
+    }
+    # Если пользователь не найден, вывести сообщение
+    $html = $html || "$name is not logged in";
+    
+    print pre($html);
+}
+
+print end_html();
+

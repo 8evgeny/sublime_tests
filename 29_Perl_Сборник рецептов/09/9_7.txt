@@ -1,0 +1,105 @@
+Пример 9.7. lst
+#!/usr/bin/perl
+# lst – вывод отсортированного содержимого каталогов
+
+use Getopt::Std;
+use File::Find;
+use File::stat;
+use User::pwent;
+use User::grent;
+
+getopts('lusrcmi')    			or die <<DEATH;
+Usage: $0 [-mucsril] [dirs ...]
+ or    $0 -i [-mucsrl] < filelist
+
+Input format:
+    -i  read pathnames from stdin
+Output format:
+    -l  long listing
+Sort on:
+    -m  use mtime (modify time) [DEFAULT]
+    -u  use atime (access time)
+    -c  use ctime (inode change time)
+    -s  use size for sorting
+Ordering:
+    -r  reverse sort
+NB: You may only use select one sorting option at a time.
+DEATH
+    
+unless ($opt_i || @ARGV) { @ARGV = ('.') }
+
+if ($opt_c + $opt_u + $opt_s + $opt_m > 1) {
+    die "can only sort on one time or size";
+}
+
+$IDX = 'mtime';
+$IDX = 'atime' if $opt_u;
+$IDX = 'ctime' if $opt_c;
+$IDX = 'size'  if $opt_s;
+
+$TIME_IDX = $opt_s ? 'mtime' : $IDX;
+
+*name = *File::Find::name;  # Принудительное импортирование переменной
+
+# Флаг $opt_i заставляет wanted брать имена файлов 
+# из ARGV вместо получения от find.
+
+if ($opt_i) {
+     *name = *_;  # $name теперь является синонимом $_
+     while (<>) { chomp; &wanted; }   # Все нормально, это не stdin
+}  else {
+    find(\&wanted, @ARGV);
+}
+
+# Отсортировать файлы по кэшированным значениям времени,
+# начиная с самых новых.
+@skeys = sort { $time{$b} <=> $time{$a} } keys %time;
+
+# Изменить порядок, если в командной строке был указан флаг -r
+@skeys = reverse @skeys if $opt_r;
+
+for (@skeys) {
+    unless ($opt_l) {  # Эмулировать ls -l, кроме прав доступа
+        print "$_\n";
+        next;
+    }
+    $now = localtime $stat{$_}->$TIME_IDX();
+    printf "%6d %04o %6d %8s %8s %8d %s %s\n",
+    	$stat{$_}->ino(),
+    	$stat{$_}->mode() & 07777,
+    	$stat{$_}->nlink(),
+    	user($stat{$_}->uid()),
+    	group($stat{$_}->gid()),
+    	$stat{$_}->size(),
+    	$now, $_;
+}
+
+# Получить от stat информацию о файле, сохраняя критерий 
+# сортировки (mtime, atime, ctime или size)
+# в хэше %time, индексируемом по имени файла.
+# Если нужен длинный список, весь объект stat приходится 
+# сохранять в %stat. Да, это действительно хэш объектов.
+sub wanted {
+    my $sb = stat($_);  # XXX: stat или lstat?
+    return unless $sb;
+
+ $time{$name} = $sb->$IDX();  # Косвенный вызов метода
+    $stat{$name} = $sb if $opt_l;
+}
+
+# Кэширование преобразований идентификатора пользователя в имя
+sub user {
+    my $uid = shift;
+    $user{$uid} = getpwuid($uid)->name || "#$uid"
+        unless defined $user{$uid};
+    return $user{$uid};
+}
+
+# Кэширование преобразований номера группы в имя
+sub group {
+    my $gid = shift;
+    $group{$gid} = getgrgid($gid)->name || "#$gid"
+        unless defined $group{$gid};
+    return $group{$gid};
+}
+

@@ -1,0 +1,15 @@
+Пример 8.5. bgets
+#!/usr/bin/perl 
+# bgets – вывод строк по смещениям в двоичном файле
+use IO::Seekable;
+use open IO=>":raw";   # Двоичный режим для всех открываемых манипуляторов
+($file, @addrs) = @ARGV             or die "usage: $0 addr ...";
+open(FH, $file)                     or die "cannot open $file: $!";
+$/ = "\000";
+foreach $addr (@addrs) {
+    $addr = oct $addr if $addr =~ /^0/;
+    seek(FH, $addr, SEEK_SET)
+        or die "can't seek to $addr in $file: $!";
+    printf qq{%#x %#o %d "%s"\n}, $addr, $addr, $addr, scalar <>;
+}
+

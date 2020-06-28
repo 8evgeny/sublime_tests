@@ -1,0 +1,14 @@
+Пример 6.5. popgrep2
+#!/usr/bin/perl
+# popgrep2 - поиск строк с названиями штатов
+# Версия 2: быстрая, с использованием qr//
+@popstates = qw(CO ON MI WI MN);
+@poppats = map { qr/\b$_\b/ } @popstates;
+LINE: while (defined($line = <>)) {
+    for $pat (@poppats) {
+        if ($line =~ /$pat/) {        # Работает быстро
+            print; next LINE;
+       }
+    }
+}
+

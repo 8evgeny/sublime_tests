@@ -1,0 +1,45 @@
+Ïğèìåğ 18.3. mail-attachment
+#!/usr/bin/perl -w
+# mail-attachment - îòïğàâêà ôàéëîâ â âèäå âëîæåíèé
+
+use MIME::Lite;
+use Getopt::Std;
+
+my $SMTP_SERVER = 'smtp.example.com';           # ÈÇÌÅÍÈÒÜ!
+my $DEFAULT_SENDER = 'sender@example.com';      # ÈÇÌÅÍÈÒÜ!
+my $DEFAULT_RECIPIENT = 'recipient@example.com';# ÈÇÌÅÍÈÒÜ!
+
+MIME::Lite->send('smtp', $SMTP_SERVER, Timeout=>60);
+
+my (%o, $msg);
+
+# Îáğàáîòàòü ïàğàìåòğû
+
+getopts('hf:t:s:', \%o);
+
+$o{f} ||= $DEFAULT_SENDER;
+$o{t} ||= $DEFAULT_RECIPIENT;
+$o{s} ||= 'Your binary file, sir';
+
+if ($o{h} or !@ARGV) {
+    die "usage:\n\t$0 [-h] [-f from] [-t to] [-s subject] file ...\n";
+}
+
+# Ïîñòğîèòü è îòïğàâèòü ñîîáùåíèÿ
+
+$msg = new MIME::Lite(
+    From => $o{f},
+    To   => $o{t},
+    Subject => $o{s},
+    Data => "Hi",
+    Type => "multipart/mixed",
+);
+
+while (@ARGV) {
+  $msg->attach('Type' => 'application/octet-stream',
+               'Encoding' => 'base64',
+               'Path' => shift @ARGV);
+}
+
+$msg->send();
+

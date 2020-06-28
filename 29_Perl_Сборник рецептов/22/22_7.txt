@@ -1,0 +1,15 @@
+Пример 22.7. validating-booksdtd
+<!ELEMENT books (book*)>
+<!ELEMENT book (title,edition,authors,isbn)>
+<!ELEMENT authors (author*)>
+<!ELEMENT author (firstname,lastname)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT edition (#PCDATA)>
+<!ELEMENT firstname (#PCDATA)>
+<!ELEMENT lastname (#PCDATA)>
+<!ELEMENT isbn (#PCDATA)>
+
+<!ATTLIST book
+  id    CDATA    #REQUIRED
+>
+

@@ -1,0 +1,23 @@
+Пример 16.4. pipe2
+#!/usr/bin/perl -w
+# pipe2 - применение pipe и fork для передачи данных потомком родителю
+
+use IO::Handle;
+my ($reader, $writer);
+pipe($reader, $writer);
+$writer->autoflush(1);
+
+if ($pid = fork) {
+    close $writer;
+    chomp($line = <$reader>);
+    print "Parent Pid $$ just read this: `$line'\n";
+    close $reader;
+    waitpid($pid,0);
+} else {
+    die "cannot fork: $!" unless defined $pid;
+    close $reader;
+    print $writer "Child Pid $$ is sending this\n";
+    close $writer;  # Произойдет в любом случае
+    exit;
+}
+

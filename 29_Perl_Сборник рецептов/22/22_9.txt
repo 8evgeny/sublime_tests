@@ -1,0 +1,16 @@
+Ïğèìåğ 22.9. xpath-1
+#!/usr/bin/perl -w
+
+use XML::LibXML;
+
+my $parser = XML::LibXML->new;
+$doc = $parser->parse_file("books.xml");
+
+# Íàéòè ıëåìåíòû title 
+my @nodes = $doc->findnodes("/books/book/title");
+
+# Âûâåñòè òåêñò ıëåìåíòîâ title
+foreach my $node (@nodes) {
+  print $node->firstChild->data, "\n";
+}
+

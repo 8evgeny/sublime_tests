@@ -1,0 +1,40 @@
+Пример 20.11. Вывод модулей CPAN для конкретного автора
+#!/usr/bin/perl -w
+# dump-cpan-modules-for-author - display modules a CPAN author owns
+use LWP::Simple;
+use URI;
+use HTML::TableContentParser;
+use HTML::Entities;
+use strict;
+our $URL = shift || 'http://search.cpan.org/author/TOMC/';
+my $tables = get_tables($URL);
+my $modules = $tables->[4];    # 5th table holds module data
+foreach my $r (@{ $modules->{rows} }) {
+  my ($module_name, $module_link, $status, $description) = 
+      parse_module_row($r, $URL);
+  print "$module_name <$module_link>\n\t$status\n\t$description\n\n";
+} 
+sub get_tables {
+  my $URL = shift;
+  my $page = get($URL);
+  my $tcp = new HTML::TableContentParser;
+  return $tcp->parse($page);
+}
+sub parse_module_row {
+  my ($row, $URL) = @_;
+  my ($module_html, $module_link, $module_name, $status, $description);
+  # extract cells
+  $module_html = $row->{cells}[0]{data};  # Ссылка и имя в HTML
+  $status      = $row->{cells}[1]{data};  # Строка статуса и ссылка
+  $description = $row->{cells}[2]{data};  # Только описание
+  $status =~ s{<.*?>}{  }g; # Наивное удаление ссылки, работает
+                            # только для простейшего кода HTML
+  # Выделение из HTML ссылки на модуль и имени
+  ($module_link, $module_name) = $module_html =~ m{href="(.*?)".*?>(.*)<}i;
+  $module_link = URI->new_abs($module_link, $URL); # resolve relative links
+  # Удаление тегов и сущностей
+  decode_entities($module_name);
+  decode_entities($description);
+  return ($module_name, $module_link, $status, $description);
+}
+

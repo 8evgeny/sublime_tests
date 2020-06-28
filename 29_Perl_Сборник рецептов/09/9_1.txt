@@ -1,0 +1,10 @@
+Пример 9.1. uvi
+#!/usr/bin/perl -w
+# uvi – редактирование файла в vi без изменения атрибутов времени
+
+$file = shift or die "usage: uvi filename\n";
+($atime, $mtime) = (stat($file))[8,9];
+system($ENV{EDITOR} || "vi", $file);
+utime($atime, $mtime, $file)
+    or die "couldn't restore $file to orig times: $!";
+

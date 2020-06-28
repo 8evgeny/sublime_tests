@@ -1,0 +1,29 @@
+ѕример 19.6. dummyhttpd
+#!/usr/bin/perl -w
+# dummyhttpd - запустить демон HTTP и выводить данные,
+#              получаемые от клиента
+use strict;
+use LWP 5.32;      # ћинимальна€ допустима€ верси€
+use HTTP::Daemon;
+
+my $server = HTTP::Daemon->new(Timeout => 60, LocalPort => 8989);
+print "Please contact me at: <URL:", $server->url, ">\n";
+
+while (my $client = $server->accept) {
+  CONNECTION:
+    while (my $answer = $client->get_request) {
+        print $answer->as_string;
+        $client->autoflush;
+      RESPONSE:
+        while (<STDIN>) {
+            last RESPONSE   if $_ eq ".\n";
+            last CONNECTION if $_ eq "..\n";
+            print $client $_;
+        }
+        print "\nEOF\n";
+    }
+    print "CLOSE: ", $client->reason, "\n";
+    $client->close;
+    undef $client;
+}
+

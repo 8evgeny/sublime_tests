@@ -1,0 +1,13 @@
+Пример 13.8. Counter
+package Counter;
+sub TIEHANDLE {
+    my $class = shift;
+    my $start = shift;
+    return bless \$start => $class;
+} 
+sub READLINE {
+    my $self = shift;
+    return ++$$self;
+} 
+1;
+

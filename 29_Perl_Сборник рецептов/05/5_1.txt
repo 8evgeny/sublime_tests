@@ -1,0 +1,12 @@
+Пример 5.1. countfrom
+#!/usr/bin/perl
+# countfrom – подсчет сообщений от каждого отправителя
+$filename = $ARGV[0] || "-";     # "-" означает стандартный ввод
+open(FILE, "< $filename")          or die "Can't open $filename : $!";
+while(<FILE>) {
+    if (/^From: (.*)/) { $from{$1}++ }
+}
+foreach $person (sort keys %from) {    
+    print "$person: $from{$person}\n";
+}
+

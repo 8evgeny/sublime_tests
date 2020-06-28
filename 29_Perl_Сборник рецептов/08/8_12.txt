@@ -1,0 +1,25 @@
+Пример 8.12. cache_line_index
+ #!/usr/bin/perl -w
+ # cache_line_index - кэширование индекса
+ # Использует процедуры build_index и line_with_index (см. выше)
+ @ARGV =  = 2 or
+     die "usage: print_line FILENAME LINE_NUMBER";
+ 
+ ($filename, $line_number) = @ARGV;
+ open(my $orig, "<", $filename) 
+         or die "Can't open $filename for reading: $!";
+ 
+ # Открыть индекс и построить его при необходимости.
+ # Здесь возникает потенциальная опасность перехвата: две копии
+ # программы могут одновременно определить, что индекс для данного
+ # файла не существует, и попытаться построить его.
+ # Проблема легко решается блокировкой.
+ $indexname = "$filename.index";
+ sysopen(my $idx, $indexname, O_CREAT|O_RDWR)
+          or die "Can't open $indexname for read/write: $!";
+ build_index($orig, $idx) if -z $indexname;  # XXX: race unless lock
+ 
+ $line = line_with_index($orig, $idx, $line_number);
+ die "Didn't find line $line_number in $filename" unless defined $line;
+ print $line;
+

@@ -1,0 +1,26 @@
+Пример 22.3. dom-addprice
+#!/usr/bin/perl -w
+# dom-addprice -- включение элемента price в элементы book
+
+use XML::LibXML;
+use Data::Dumper;
+use strict;
+
+my $parser = XML::LibXML->new;
+my $dom = $parser->parse_file("books.xml") or die;
+my $root = $dom->documentElement;
+
+# get list of all the "book" elements
+my @books = $root->getElementsByTagName("book");
+
+foreach my $book (@books) {
+  my $price = sprintf("\$%d.95", 19 + 5 * int rand 5); # Случайное число
+  my $price_text_node = $dom->createTextNode($price);  # Содержимое <price>
+  my $price_element   = $dom->createElement("price");  # Создать <price>
+  $price_element->appendChild($price_text_node);       # Занести содержимое
+                                                       # в <price>
+  $book->appendChild($price_element);                  # Поместить <price> в <book>
+}
+
+print $dom->toString;
+
