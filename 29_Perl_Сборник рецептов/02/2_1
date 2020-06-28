@@ -1,15 +1,14 @@
-Пример 2.1. Декодирование чисел
 #!/usr/bin/perl -w
 use Scalar::Util qw(looks_like_number);
 print "$0: hit ^D (your eof character) to exit\n";
 for (;;) {
-    my ($on, $n);      # Исходная строка и ее числовое представление 
+    my ($on, $n);      # РСЃС…РѕРґРЅР°СЏ СЃС‚СЂРѕРєР° Рё РµРµ С‡РёСЃР»РѕРІРѕРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ 
     print "Pick a number, any number: ";
     $on = $n = <STDIN>;
     last if !defined $n;
     chomp($on,$n);
-    $n =~ s/_//g;                # Разрешить 186_282.398_280_685
-    $n = oct($n) if $n =~ /^0/;  # Разрешить 0xFF, 037, 0b1010
+    $n =~ s/_//g;                # Р Р°Р·СЂРµС€РёС‚СЊ 186_282.398_280_685
+    $n = oct($n) if $n =~ /^0/;  # Р Р°Р·СЂРµС€РёС‚СЊ 0xFF, 037, 0b1010
     if (looks_like_number($n)) {
         printf "Decimal double of $on is %g\n", 2*$n;
     } else {
@@ -17,4 +16,3 @@ for (;;) {
     }
 }
 print "\nBye.\n";
-

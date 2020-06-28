@@ -1,16 +1,15 @@
-Пример 1.4. fixstyle
-#!/usr/bin/perl –w
-# fixstyle - замена строк секции <DATA> парными строками
-# использование: $0 [-v] [файлы...]
+#!/usr/bin/perl -w
+# fixstyle - Р·Р°РјРµРЅР° СЃС‚СЂРѕРє СЃРµРєС†РёРё <DATA> РїР°СЂРЅС‹РјРё СЃС‚СЂРѕРєР°РјРё
+# РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ: $0 [-v] [С„Р°Р№Р»С‹...]
 use strict;
 my $verbose = (@ARGV && $ARGV[0] eq '-v' && shift);
 if (@ARGV) {
-    $^I = ".orig";         # Сохранить старые файлы
+    $^I = ".orig";         # СЃРѕС…СЂР°РЅРёС‚СЊ СЃС‚Р°СЂС‹Рµ С„Р°Р№Р»С‹
 } else {
-    warn "$0: Reading from stdin\n" if –t STDIN;
+    warn "$0: Reading from stdin\n" if Р¦t STDIN;
 }
 my $code = "while (<>) {\n";
-# Читать данные и строить код для eval
+# вЂћРёС‚Р°С‚СЊ РґР°РЅРЅС‹Рµ Рё СЃС‚СЂРѕРёС‚СЊ РєРѕРґ РґР»в‚¬ eval
 while (<DATA>) {
     chomp;
     my ($in, $out) = split /\s*=>\s*/;
@@ -41,4 +40,3 @@ preextend      => pre-extend
 re-compiling   => recompiling
 reenter        => re-enter
 turnkey        => turn-key
-

@@ -1,6 +1,5 @@
-Пример 1.5. fixstyle2
-#!/usr/bin/perl –w
-# fixstyle2 = аналог fixstyle для большого количества замен
+#!/usr/bin/perl -w
+# fixstyle2 = Р°РЅР°Р»РѕРі fixstyle РґР»в‚¬ Р±РѕР»СЊС€РѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° Р·Р°РјРµРЅ
 use strict;
 my $verbose = (@ARGV && $ARGV[0] eq '-v' && shift);
 my %change = ();
@@ -14,12 +13,12 @@ while (<DATA>) {
 if (@ARGV) {
     $^I = ".orig";
 } else {
-    warn "$0: Reading from stdin\n" if –t STDIN;
+    warn "$0: Reading from stdin\n" if -t STDIN;
 }
 while (<>) {
     my $i =0;
-    s/^(\s+)// && print $1;    # Выдать начальный пропуск
-    for (split /(\s+)/, $_, -1) {   # Сохранить конечные пропуски
+    s/^(\s+)// && print $1;    # В¬С‹РґР°С‚СЊ РЅР°С‡Р°Р»СЊРЅС‹Р№ РїСЂРѕРїСѓСЃРє
+    for (split /(\s+)/, $_, -1) {   # вЂ”РѕС…СЂР°РЅРёС‚СЊ РєРѕРЅРµС‡РЅС‹Рµ РїСЂРѕРїСѓСЃРєРё
         print( ($i++ & 1) ? $_ : ($change{$_} || $_));
     }
 }
@@ -42,4 +41,3 @@ preextend      => pre-extend
 re-compiling   => recompiling
 reenter        => re-enter
 turnkey        => turn-key
-

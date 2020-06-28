@@ -1,14 +1,13 @@
-Пример 1.2. randcap
-#!/usr/bin/perl –p
-# randcap: фильтр, который случайным образом 
-# преобразует к верхнему регистру 20% символов
-# Начиная с версии 5.4, вызов srand() необязателен.
+#!/usr/bin/perl вЂ“p
+# randcap: С„РёР»СЊС‚СЂ, РєРѕС‚РѕСЂС‹Р№ СЃР»СѓС‡Р°Р№РЅС‹Рј РѕР±СЂР°Р·РѕРј 
+# РїСЂРµРѕР±СЂР°Р·СѓРµС‚ Рє РІРµСЂС…РЅРµРјСѓ СЂРµРіРёСЃС‚СЂСѓ 20% СЃРёРјРІРѕР»РѕРІ
+# РќР°С‡РёРЅР°СЏ СЃ РІРµСЂСЃРёРё 5.4, РІС‹Р·РѕРІ srand() РЅРµРѕР±СЏР·Р°С‚РµР»РµРЅ.
 
 BEGIN { srand(time() ^ ($$ + ($$ << 15))) }
 sub randcase { rand(100) < 20 ? "\u$_[0]" : "\l$_[0]" }
 s/(\w)/randcase($1)/ge;
 
-% randcap < genesis | head –9
+% randcap < genesis | head вЂ“9
 boOk 01 genesis
 
 001:001 in the BEginning goD created the heaven and tHe earTH.
@@ -18,4 +17,3 @@ boOk 01 genesis
         tHe face of the Waters.
 
 001:003 and god Said, let there be ligHt: and therE wAs LigHt.
-

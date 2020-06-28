@@ -1,6 +1,5 @@
-Пример 1.3. wrapdemo
-#!/usr/bin/perl –w
-# wrapdemo – демонстрация работы Text::Wrap
+#!/usr/bin/perl -w
+# wrapdemo - РґРµРјРѕРЅСЃС‚СЂР°С†РёСЏ СЂР°Р±РѕС‚С‹ Text::Wrap
 
 @input = ("Folding and splicing is the work of an editor,",
           "not a mere collection of silicon",
@@ -12,7 +11,7 @@ $columns = 20;
 print "0123456789" x 2, "\n";
 print wrap("    ", "  ", @input), "\n";
 
-Результат выглядит так:
+#СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РіР»в‚¬РґРёС‚ С‚Р°Рє:
 
 01234567890123456789
     Folding and
@@ -23,4 +22,3 @@ print wrap("    ", "  ", @input), "\n";
   mere collection
   of silicon and
   mobile electrons!
-
