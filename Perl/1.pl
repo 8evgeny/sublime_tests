@@ -5,4 +5,4 @@ print"I'm $^X, ";
 print "Script: $0 (@ARGV);\n";
 print "Pid $$ by uid $<\n";
 open my $f, '<','/etc/shadow'
-or die "No shadow: $!\n";		
+or die "No shadow: $!\n";				

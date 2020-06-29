@@ -1,5 +1,6 @@
 // Using the STL generic reverse algorithm with a vector
 #include <iostream>
+#include <cstring>
 #include <vector>
 #include <cassert>
 #include <algorithm> // For reverse
