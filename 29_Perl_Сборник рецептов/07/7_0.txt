@@ -1,0 +1,6 @@
+open (INPUT. "<"."/home/eparubets/S-630_Reestr/text.txt") 
+      or die "Couldm't open file for reading: $!\n";
+while (<INPUT>) {
+	print if /From/;
+}
+close (INPUT)
