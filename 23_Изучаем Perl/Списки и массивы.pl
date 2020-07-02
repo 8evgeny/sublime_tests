@@ -160,10 +160,10 @@ print "\n";
 print @backwards = reverse qw/ yabba dabba doo /,"\n"; # Получаем doo, dabba, yabba
 print $backwards = reverse qw/ yabba dabba doo /,"\n"; # Получаем oodabbadabbay
 
-$fred = нечто; #  Скалярный контекст
-@pebbles = нечто; #  Списочный контекст
-($wilma, $betty) = нечто; #  Списочный контекст
-($dino) = нечто; #  И в этом случае списочный контекст!
+$fred = nechto; #  Скалярный контекст
+@pebbles = nechto; #  Списочный контекст
+($wilma, $betty) = nechto; #  Списочный контекст
+($dino) = nechto; #  И в этом случае списочный контекст!
 
 @fred = 6 * 7; # Список из одного элемента (42)
 @barney = "hello" . ' ' . "world";
@@ -172,7 +172,16 @@ $fred = нечто; #  Скалярный контекст
 # А это не эквивалентно:
 @betty = ( );  # Правильный способ очистки массива
 
+@rocks = qw( talc quartz jade obsidian );
+print "How many rocks do you have?\n";
+print "I have ", @rocks, " rocks!\n";  # НЕВЕРНО, выводятся строки
+print "I have ", scalar @rocks, " rocks!\n"; # Верно, выводится число
 
+# @lines = <STDIN>; # Прочитать все строки
+chomp(@lines);  # Удалить все завершающие символы новой строки
+print chomp(@lines = <STDIN>),"\n"; # Прочитать только текст без символов новой строки
+
+print "@lines";
 
 
 
