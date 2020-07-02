@@ -148,3 +148,31 @@ print @numbers = sort 97..102 ,"\n"; # Получаем 100, 101, 102, 97, 98, 9
 sort @rocks;  # ОШИБКА, @rocks не изменяется
 @rocks = sort @rocks; # Теперь коллекция упорядочена
 
+@people = qw( fred barney betty );
+@sorted = sort @people,"\n"; # Списочный контекст: barney, betty, fred
+print "@sorted "."\n";
+print $number = 42 + @people,"\n"; # Скалярный контекст: 42 + 3 = 45
+
+@list = @people; # Список из трех элементов
+print $n = @people;  # Число 3
+print "\n";
+
+print @backwards = reverse qw/ yabba dabba doo /,"\n"; # Получаем doo, dabba, yabba
+print $backwards = reverse qw/ yabba dabba doo /,"\n"; # Получаем oodabbadabbay
+
+$fred = нечто; #  Скалярный контекст
+@pebbles = нечто; #  Списочный контекст
+($wilma, $betty) = нечто; #  Списочный контекст
+($dino) = нечто; #  И в этом случае списочный контекст!
+
+@fred = 6 * 7; # Список из одного элемента (42)
+@barney = "hello" . ' ' . "world";
+
+@wilma = undef; # ОЙ! Получаем список из одного элемента (undef) - массив не очистился
+# А это не эквивалентно:
+@betty = ( );  # Правильный способ очистки массива
+
+
+
+
+
