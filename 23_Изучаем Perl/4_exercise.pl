@@ -19,4 +19,5 @@ print "Enter some numbers on separate lines: ";
 my $user_total = total(<STDIN>);
 print "The total of those numbers is $user_total.\n";
 
+
 print total (1..1000),"\n";
