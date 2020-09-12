@@ -1,5 +1,6 @@
 // Demonstrating generic reverse algorithm on a list
 #include <iostream>
+#include <cstring>
 #include <cassert>
 #include <list>
 #include <algorithm>  // For reverse
