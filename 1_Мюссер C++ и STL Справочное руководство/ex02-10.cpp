@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <cassert>
+#include <cstring>
 #include <list>
 #include <deque>
 #include <algorithm>  // For merge
@@ -19,19 +20,15 @@ int main()
        << "the result into a list." << endl;
   char s[] = "acegikm";
   
-  deque<char> deque1 = 
-    make< deque<char> >("bdfhjlnopqrstuvwxyz");
+  deque<char> deque1 = make< deque<char> >("bdfhjlnopqrstuvwxyz");
 
   // Initialize list1 with 26 copies of the letter x:
   list<char> list1(26, 'x');
 
-  // Merge first 5 letters in array s with first 10 in
-  // deque1, putting result in list1:
-  merge(&s[0], &s[5], deque1.begin(), deque1.begin() + 10,
-        list1.begin());
+  // Merge first 5 letters in array s with first 10 in deque1, putting result in list1:
+  merge(&s[0], &s[5], deque1.begin(), deque1.begin() + 10, list1.begin());
 
-  assert (list1 == 
-            make< list<char> >("abcdefghijlnopqxxxxxxxxxxx"));
+  assert (list1 == make< list<char> >("abcdefghijlnopqxxxxxxxxxxx"));
   cout << " --- Ok." << endl;
   return 0;
 }

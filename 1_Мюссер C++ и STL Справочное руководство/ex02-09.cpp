@@ -2,6 +2,7 @@
 // list, and a deque
 #include <iostream>
 #include <cassert>
+#include <cstring>
 #include <list>
 #include <deque>
 #include <algorithm>  // For merge
@@ -18,17 +19,14 @@ int main()
        << "an array, a list, and a deque." << endl;
   char s[] = "aeiou";
   int len = strlen(s);
-  list<char> list1 = 
-     make< list<char> >("bcdfghjklmnpqrstvwxyz");
+  list<char> list1 = make< list<char> >("bcdfghjklmnpqrstvwxyz");
 
   // Initialize deque1 with 26 copies of the letter x:
   deque<char> deque1(26, 'x');
 
   // Merge array s and list1, putting result in deque1:
-  merge(&s[0], &s[len], list1.begin(), list1.end(),
-        deque1.begin());
-  assert (deque1 == 
-            make< deque<char> >("abcdefghijklmnopqrstuvwxyz"));
+  merge(&s[0], &s[len], list1.begin(), list1.end(), deque1.begin());
+  assert (deque1 == make< deque<char> >("abcdefghijklmnopqrstuvwxyz"));
   cout << " --- Ok." << endl;
   return 0;
 }

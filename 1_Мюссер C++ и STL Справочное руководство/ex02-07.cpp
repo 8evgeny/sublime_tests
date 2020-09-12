@@ -1,6 +1,7 @@
 // Demonstrating the generic find algorithm with a list
 #include <iostream>
 #include <cassert>
+#include <cstring>
 #include <list>
 #include <algorithm> // for find
 using namespace std; 
@@ -18,8 +19,7 @@ int main()
   list<char> list1 = make< list<char> >("C++ is a better C");
 
   // Search for the first occurrence of the letter e:
-  list<char>::iterator
-    where = find(list1.begin(), list1.end(), 'e');
+  list<char>::iterator where = find(list1.begin(), list1.end(),'e');
 
   list<char>::iterator next = where;
   ++next;

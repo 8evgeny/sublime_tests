@@ -1,6 +1,7 @@
 // Demonstrating the generic find algorithm with a vector
 #include <iostream>
 #include <cassert>
+#include <cstring>
 #include <vector>
 #include <algorithm>  // For find
 using namespace std; 

@@ -17,8 +17,7 @@ int main()
   // Initialize vector1 to x[0] through x[4]:
   vector<int> vector1(&x[0], &x[5]); 
   
-  int product = accumulate(vector1.begin(), vector1.end(),
-                           1, mult);
+  int product = accumulate(vector1.begin(), vector1.end(), 1, mult);
     
   assert (product == 2310);
   cout << " --- Ok." << endl;

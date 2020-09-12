@@ -1,5 +1,6 @@
 // Demonstrating generic find algorithm with an array
 #include <iostream>
+#include <cstring>
 #include <cassert>
 #include <algorithm>  // for find
 using namespace std; 
