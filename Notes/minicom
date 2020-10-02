@@ -1,0 +1,10 @@
+Требуется адаптер USB - TTL    
+Подключаем  RX  TX  GND
+
+Утилита 
+minicom -D  /dev/ttyUSB0
+На Khadas
+17 GND
+18 RX
+19 TX
+получаем доступ к плате

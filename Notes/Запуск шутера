@@ -1,0 +1,67 @@
+sudo LOG_REGIME=console bash -x ./run_shooter.sh streaming
+
+sudo crontab -l 
+30 6 * * * /usr/bin/systemctl start shooter_vafelnica
+30 11 * * * /usr/bin/systemctl stop shooter_vafelnica
+
+nano /etc/systemd/system/shooter_vafelnica.service
+
+[Unit]
+Description=shooter
+Wants=network-online.target ptpd.service
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/alager/sadko_vafelnica/scripts/Indianapolis/shooter_systemd.sh start
+ExecStop=/alager/sadko_vafelnica/scripts/Indianapolis/shooter_systemd.sh stop
+RestartSec=20s
+#Restart=on-failure
+
+смотрим скрипт  shooter_systemd.sh
+
+
+#!/usr/bin/bash
+
+SHOOTER_PATH='/alager/sadko_vafelnica/build/bin/'
+SHOOTER_BINARY='shooter'
+IMAGES_PATH_1=$SHOOTER_PATH/recognition_camera_imgs
+IMAGES_PATH_2=$SHOOTER_PATH/plate_and_car_crops
+
+function CheckError {
+if [[ $? -ne 0 ]]; then
+   echo "Error occurred in $1"
+   exit 1
+fi
+}
+
+if [[ $1 == "start" ]]; then
+   cd $SHOOTER_PATH
+   CheckError "cd to $SHOOTER_PATH"
+   echo "Starting shooter..."
+   ./$SHOOTER_BINARY '/P7.Sink=FileTxt' '/P7.Roll=200mb' '/P7.Files=20'
+   CheckError "shooter end"
+   echo "Shooter finished"
+   exit 0
+fi
+
+if [[ $1 == "stop" ]]; then
+   pkill -INT shooter
+   CheckError "Kill shooter"
+   exit 0
+
+
+if [[ $1 == "clear_images" ]]; then
+   echo "Clearing images"
+   rm -r $IMAGES_PATH_1
+   #CheckError "removing $IMAGES_PATH_1"
+   rm -r $IMAGES_PATH_2
+   #CheckError "removing $IMAGES_PATH_2"
+   echo "Clearing images done"
+   exit 0
+fi
+
+echo "Unknown parameter $1"
+exit 1
