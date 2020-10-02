@@ -1,0 +1,19 @@
+Прошивка через консоль программатором USBasp
+sudo avrdude -c  usbasp  -p m328p -P /dev/ttyS0 -b 19200 -U flash:w:led-blink.hex:i
+sudo avrdude -c  usbasp  -p m328p -P /dev/ttyS0 -b 19200 -U flash:w:S-789.hex:i
+ls /dev/|grep ttyACM
+sudo avrdude -c  usbasp  -p m328p -P /dev/ttyACM0 -b 19200 -U flash:w:led-blink.hex:i
+sudo avrdude -p m8 -c avr910 -P /dev/ttyACM3 -u -U flash:w:main.hex -U hfuse:w:0xDF:m -U lfuse:w:0xF3:m Пример
+-p это тип контроллера в нашем случае ATMega8 (m8)
+-с тип программатора (AVR910)
+-P порт к которому подключен программатор, просто у меня без этого параметра не работало, для этого мы и определили его в самом начале.
+-u отключаем сравнение ячеек конфигурации до и после, в принципе и без него работает.
+-U указываем тип памяти flash и FUSE биты. w- означает запись, mтип формата данных. Работает и без него.
+
+Библиотеки кладем в    /usr/share/arduino/hardware/archlinux-arduino/avr/cores/arduino
+
+mount.cifs -o guest,vers=2.1 //192.168.77.80/share /mnt/smb
+
+мой старый программатор avr910
+sudo avrdude -c  avr910  -p m328p -P /dev/ttyACM0 -b 19200 -U flash:w:led-blink.hex:i
+

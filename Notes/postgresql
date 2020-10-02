@@ -1,0 +1,82 @@
+\COPY log4 TO '/home/eparubets/log4.txt' (FORMAT csv);  таблицу в csv 
+ 
+ 
+\d violation_order   - находясь в бд  посмотреть поля таблицы !!
+ 
+createdb -O user db_ti_2    -создание базы
+psql db_ti_2 < dump.11_02_2020
+psq
+
+
+снятие дампа
+pg_dump  db_ti_2 > dupm_12_02_2020
+если только одну таблицу - в конце добавляем  -t имя
+
+восстановление дампа
+psql db_ti_2 -f init.drop_table    это скрипт очистки базы
+psql db_ti_2 < dump_12_02_20
+ 
+ 
+sudo -iu postgres
+ 
+[postgres]$ initdb -D /var/lib/postgres/data
+ 
+Запускаем сервер PostgreSQL
+$ (systemctl start postgresql
+
+Проверяем запустилось ли:
+$ systemctl status postgresql
+
+Дополнительно его можно добавить в автозагрузку
+$ systemctl enable postgresql
+
+sudo su postgres
+[postgres]$ createuser --interactive        !!!
+sudo -iu eparubets
+$ createdb myDatabaseName  (под созданным пользователем)
+
+
+sudo -u postgres psql -c “ALTER USER postgres PASSWORD ‘postgres’;”  - помогло на АРМ
+
+Становимся пользователем postgres (пользователь postgres не имеет пароля по умолчанию, поэтому таким вот образом)
+$ sudo su - postgres
+
+Создание базы - под postres - createdb -O user db_ti_2
+
+
+psql - перейти в консоль SQL
+
+CREATE DATABASE имя;     Создание базы данных
+
+
+Добавляем нового пользователя базы данных
+$ createuser -DRSP <username>
+
+-D Пользователь не может создавать базы данных
+-R Пользователь не может создавать аккаунты
+-S Пользователь не является суперпользователем
+-P Запрашивать пароль при создании
+С другой стороны, вы можете использовать команду createuser без параметров. Вывод в терминале выглядит так:
+$ createuser <username>
+Shall the new role be a superuser? (y/n)  n
+Shall the new role be allowed to create databases? (y/n)  y
+Shall the new role be allowed to create more new roles? (y/n)  y
+ссылка https://wiki.archlinux.org/index.php/PostgreSQL_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9)#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0_PostgreSQL
+
+
+psql testDB
+
+psql eparubets
+psql -f update_object_point.sql
+
+\?  - справка
+ \q                              quit psql
+\d[S+]                        list tables, views, and sequences
+ \d[S+]  NAME           describe table, view, sequence, or index
+
+
+Подключение к БД на другой машине
+[eparubets@WS012 ~]$ psql -h 10.8.0.10  -U vladimir -d test_db_2
+
+снятие дампа с любой машины
+pg_dump -U user db_ti_2 -h 192.168.77.247 > dump_from_host
