@@ -1,0 +1,282 @@
+GEV_STATUS GevReleaseImage (GEV_CAMERA_HANDLE handle, GEV_BUFFER_OBJECT **image_object_ptr);
+	Releases an image object back to the acquisition process for re-use. It is mandatory to call this
+	function for a transfer using the SynchronousNextEmpty cycle mode in order to avoid running out of
+	images for the acquisitions process to fill. It is not necessary to call this function for a transfer using
+	the Asynchronous cycle mode..
+
+	Return Value
+	GEV_STATUS
+	 Possible values are:
+	GEVLIB_OK
+	GEVLIB_ERROR_INVALID_HANDLE
+	GEVLIB_ERROR_PARAMETER_INVALID
+	GEVLIB_ERROR_ARG_INVALID
+	Replacement Function
+	GevReleaseFrame
+
+GEV_STATUS GevAbortImageTransfer(GEV_CAMERA_HANDLE handle);
+	Description
+	Stops the streaming transfer immediately.
+	Parameters
+	handle
+	 Handle to the camera
+	Return Value
+	GEV_STATUS
+	 Possible values are:
+	GEVLIB_OK
+	GEVLIB_ERROR_INVALID_HANDLE
+	 (other errors from GevRegisterWriteInt)
+	Replacement Function
+	GevAbortTransfer
+
+
+GEV_STATUS GevFreeImageTransfer(GEV_CAMERA_HANDLE handle);
+	Description
+	Frees a streaming transfer to the list of buffers indicated.
+	Parameters
+	handle
+	 Handle to the camera.
+	Return Value
+	GEV_STATUS
+	 Possible values are:
+	GEVLIB_OK
+	GEVLIB_ERROR_INVALID_HANDLE
+	GEVLIB_ERROR_TIMEOUT (streaming thread did not respond within 5 seconds)
+	Replacement Function
+	GevFreeTransfer
+
+
+GEV_STATUS GevGetImage (GEV_CAMERA_HANDLE handle, GEV_BUFFER_OBJECT **image_object_ptr);
+	Description
+	Returns the pointer to the next acquired image object acquired images.
+	If no images are available in the queue, a NULL pointer is returned.
+	Parameters
+	handle
+	 Handle to the camera
+	image_object_ptr
+	 Pointer to receive the image object pointer.
+	Return Value
+	GEV_STATUS
+	 Possible values are:
+	GEVLIB_OK
+	GEVLIB_ERROR_INVALID_HANDLE
+	GEVLIB_ERROR_TIME_OUT
+	GEVLIB_ERROR_NULL_PTR
+	Replacement Function
+	None
+
+
+GEV_STATUS GevReleaseImageBuffer(GEV_CAMERA_HANDLE handle, void **image_buffer_ptr);
+	Releases an image object back to the acquisition process for re-use. The image object is identified
+	from the image buffer pointer passed in to the function. It is mandatory to call this function for a
+	transfer using the SynchronousNextEmpty cycle mode in order to avoid running out of images for the
+	acquisition process to fill. It is not necessary to call this function for a transfer using the Asynchronous
+	cycle mode..
+
+	Return Value
+	GEV_STATUS
+	 Possible values are
+	GEVLIB_OK
+	GEVLIB_ERROR_INVALID_HANDLE
+	GEVLIB_ERROR_PARAMETER_INVALID
+	GEVLIB_ERROR_ARG_INVALID
+	Replacement Function
+	GevReleaseFrameBuffer
+
+
+GEV_STATUS GevStartImageTransfer(GEV_CAMERA_HANDLE handle, UINT32 numFrames);
+	Return Value
+	GEV_STATUS
+	 Possible values are:
+	GEVLIB_OK
+	GEVLIB_ERROR_INVALID_HANDLE
+	GEV_STATUS_BUSY
+	 (camera is busy reconfiguring – try again later)
+	Replacement Function
+	GevStartTransfer
+
+
+GEV_STATUS GevStopImageTransfer(GEV_CAMERA_HANDLE handle);
+	Return Value
+	GEV_STATUS
+	 Possible values are:
+	GEVLIB_OK
+	GEVLIB_ERROR_INVALID_HANDLE
+	Replacement Function
+	GevStopTransfer
+
+GEV_STATUS GevWaitForNextImage (GEV_CAMERA_HANDLE handle, GEV_BUFFER_OBJECT **image_object_ptr, UINT32 timeout);
+	Waits for the next image object to be acquired and returns its pointer. If no buffer has been acquired
+	before the timeout period expires, a NULL pointer is returned.
+
+	Return Value
+	GEV_STATUS
+	 Possible values are:
+	GEVLIB_OK
+	GEVLIB_ERROR_INVALID_HANDLE
+	GEVLIB_ERROR_TIME_OUT
+	GEVLIB_ERROR_NULL_PTR
+	Replacement Function
+	GevWaitForNextFrame
+
+
+GEV_STATUS GevWaitForNextImageBuffer (GEV_CAMERA_HANDLE handle, void **image_buffer_ptr, UINT32 timeout);
+	Waits for the next image to be acquired and returns the pointer to the image data. If no buffer has
+	been acquired before the timeout period expires, a NULL pointer is returned.
+
+	Return Value
+	GEV_STATUS
+	 Possible values are:
+	GEVLIB_OK
+	GEVLIB_ERROR_INVALID_HANDLE
+	GEVLIB_ERROR_TIME_OUT
+	GEVLIB_ERROR_NULL_PTR
+	Replacement Function
+	None
+
+
+GEV_STATUS GevGetImageBuffer(GEV_CAMERA_HANDLE handle, void **image_buffer_ptr);
+	Description
+	Returns the pointer to the most recently acquired image buffer data. If no buffer has been acquired, a
+	NULL pointer is returned with a timeout condition.
+	Parameters
+	handle
+	 Handle to the camera
+	image_buffer_ptr
+	 Pointer to receive the image buffer data pointer.
+	Return Value
+	GEV_STATUS
+	 Possible values are
+	GEVLIB_OK
+	GEVLIB_ERROR_INVALID_HANDLE
+	GEVLIB_ERROR_TIME_OUT
+	GEVLIB_ERROR_NULL_PTR
+	Replacement Function
+	None
+
+
+GEV_STATUS GevGetImageParameters (GEV_CAMERA_HANDLE handle, PUINT32 width,PUINT32 height, PUINT32 x_offset, PUINT32 y_offset, PUINT32 format);
+
+GEV_STATUS GevSetImageParameters (GEV_CAMERA_HANDLE handle, UINT32 width, UINT32 height, UINT32 x_offset, UINT32 y_offset, UINT32 format);
+
+	Gets/sets image parameters from the camera. The current height, width, x/y origin, and image data format can be manipulated with these functions. 
+	(Note : Some cameras allow the format of the image data to be changed whereas others do not.)
+
+
+GEV_STATUS GevGetNextImage (GEV_CAMERA_HANDLE handle, GEV_BUFFER_OBJECT **image_object_ptr, struct timeval *pTimeout);
+	Waits for the next image object to be acquired and returns its pointer. If no buffer has been acquired
+	before the timeout period expires, a NULL pointer is returned.
+
+	Parameters
+	handle
+	 Handle to the camera
+	image_object_ptr
+	 Pointer to receive the image object pointer.
+	pTimeout
+	 Pointer to a struct timeval (microsecond precision) for the timeout period to wait
+	for the next frame.
+	Return Value
+	GEV_STATUS
+	 Possible values are:
+	GEVLIB_OK
+	GEVLIB_ERROR_INVALID_HANDLE
+	GEVLIB_ERROR_TIME_OUT
+	GEVLIB_ERROR_NULL_PTR
+	Replacement Function
+	GevGetNextFrame
+
+GEV_STATUS GevInitializeImageTransfer (GEV_CAMERA_HANDLE handle, UINT32 numBuffers, UINT8 **bufAddress);
+	Initializes a streaming transfer to the list of buffers indicated.
+	The transfer is set up with the Asynchronous cycling mode.
+	Parameters
+	handle
+	 Handle to the camera.
+	numBuffers
+	 Number of buffers addresses in array.
+	bufAddress
+	 Array of buffer addresses (already allocated).
+	Return Value
+	GEV_STATUS
+	Possible values are:
+	GEVLIB_OK
+	GEVLIB_ERROR_INVALID_HANDLE
+	GEVLIB_ERROR_PARAMETER_INVALID
+	(GEV_REGISTER struct is not for an Integer register)
+	GEVLIB_ERROR_ARG_INVALID
+	(GEV_REGISTER definition is invalid)
+	GEVLIB_ERROR_SOFTWARE
+	(GEV_REGISTER struct defines an unsupported register type)
+	Note: Errors include attempting to initialize the transfer on a connection that is not set
+	up for streaming.
+	Replacement Function
+	GevInitializeTransfer
+
+
+GEV_STATUS GevInitImageTransfer (GEV_CAMERA_HANDLE handle, GevBufferCyclingMode mode, UINT32 numBuffers, UINT8 **bufAddress);
+	Initializes a streaming transfer to the list of buffers indicated. The buffer cycling mode is also set.
+	Parameters
+	handle
+	 Handle to the camera.
+	mode
+	 Buffer cycling mode. Can be either :
+	Asynchronous: All buffers available all the time with no protection between the
+	application and the acquisition process.
+	Or
+	SynchronousNextEmpty; Buffers obtained by the application are available only to
+	the application until released back to the acquisition process. Buffers are filled in the
+	order they are released back to the acquisition process. If there are no more buffers
+	available to the acquisition process, subsequent images are not stored to memory and
+	are deemed to have been sent to the “trash”.
+	numBuffers
+	 Number of buffers addresses in array.
+	bufAddress
+	 Array of buffer addresses (already allocated).
+	Return Value
+	GEV_STATUS
+	 Possible values are:
+	GEVLIB_OK
+	GEVLIB_ERROR_INVALID_HANDLE
+	GEVLIB_ERROR_PARAMETER_INVALID
+	(GEV_REGISTER struct is not for an Integer register)
+	GEVLIB_ERROR_ARG_INVALID
+	(GEV_REGISTER definition is invalid)
+	GEVLIB_ERROR_SOFTWARE
+	(GEV_REGISTER struct defines an unsupported register type)
+	Note: Errors include attempting to initialize the transfer on a connection that is not set
+	up for streaming.
+	Replacement Function
+	GevInitializeTransfer
+
+GEV_STATUS GevQueryImageTransferStatus (GEV_CAMERA_HANDLE handle, PUINT32 pTotalBuffers, PUINT32 pNumUsed, PUINT32 pNumFree, PUINT32 pNumTrashed,
+    GevBufferCyclingMode *pMode);
+
+	Releases an image object back to the acquisition process for re-use. It is mandatory to call this
+	function for a transfer using the SynchronousNextEmpty cycle mode in order to avoid running out of
+	images for the acquisitions process to fill. It is not necessary to call this function for a transfer using
+	the Asynchronous cycle mode..
+	Parameters
+	handle
+	 Handle to the camera
+	pTotalBuffers
+	 Pointer to receive the total number of buffers in the transfer list.
+	pNumUsed
+	 Pointer to receive the number of filled buffers ready to be received from the transfer
+	list.
+	pNumFree
+	 Pointer to receive the number of empty (free) buffers that are available to be filled.
+	pNumTrashed
+	 Pointer to receive the total number of buffers that have been “trashed” so far. (i.e.
+	Frames that are dropped when there are no more empty buffers to fill but image data
+	has still been received).
+	pMode
+	 Pointer to receive the current buffer cycling mode (Asynchronous=0,
+	SynchronousNextEmpty=1).
+	Return Value
+	GEV_STATUS
+	 Possible values are:
+	GEVLIB_OK
+	GEVLIB_ERROR_INVALID_HANDLE
+	GEVLIB_ERROR_PARAMETER_INVALID
+	GEVLIB_ERROR_ARG_INVALID
+	Replacement Function
+	GevQueryTransferStatus

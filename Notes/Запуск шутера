@@ -1,3 +1,18 @@
+
+COMPLEX_IP=10.8.1.157 ./build.sh
+
+sudo ./shooter -m streaming /P7.Sink=console
+возможные значения режима -m: 
+streaming
+viewer
+solver
+default
+calib
+homography_estimation
+collect1
+collect2
+
+
 sudo LOG_REGIME=console bash -x ./run_shooter.sh streaming
 
 sudo crontab -l 

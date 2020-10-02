@@ -1,0 +1,4 @@
+pacman -Ql pacman pacman-contrib | grep -E 'bin/.+'    список доступных утилит
+
+
+pacman -Qqet | grep -v "$(pacman -Qqg base)"

@@ -1,0 +1,240 @@
+Репозиторий в гитхаб
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/8evgeny/Test.git
+git push -u origin master
+
+
+
+ Evgeny_Parubets_Alager  - мой логин на репозитории
+git clone https://gitlab.com/alager/sadko
+Логин  Parubets.e@alager.ru
+Пароль Qwe12345#
+
+https://gitlab.com/alager/sadko.git
+
+$ git fetch  - обновить у себя данные
+$ git pull  - то-же
+$ git push origin имя ветки
+
+S-432-Duplo          - рабочая ветка
+
+
+$ git init
+Эта команда создаёт в текущем каталоге новый подкаталог с именем .git содержащий все необходимые файлы репозитория — основу Git-репозитория
+$ git add *.c
+$ git add README
+$ git commit -m 'initial project version'
+
+
+$ git clone git://github.com/schacon/grit.git
+Клонирование репозитория осуществляется командой git clone [url]
+$ git clone git://github.com/schacon/grit.git mygrit
+Эта команда делает всё то же самое, что и предыдущая, только результирующий каталог будет назван mygrit.
+$ git status
+
+
+$ cat .gitignore
+*.[oa]
+*~
+файл .gitignore с перечислением шаблонов
+$ git diff
+Чтобы увидеть, что же вы изменили, но пока не проиндексировали
+git diff --cached.
+Если вы хотите посмотреть, что вы проиндексировали и что войдёт в следующий коммит
+git diff --staged
+Эта команда сравнивает
+ваши индексированные изменения с последним коммитом:
+$ git commit
+$ git commit -m "Story 182: Fix benchmarks for speed"
+
+
+git config --global core.editor
+
+
+$ git commit -a -m 'added new benchmarks'
+Добавление параметра -a в команду git commit заставляет Git автоматически индексировать каждый уже отслеживаемый на момент коммита файл, позволяя вам обойтись без git add:
+$ git rm grit.gemspec
+удалить файл из Git’а
+$ git rm --cached readme.txt
+удалить файл из
+индекса, оставив его при этом в рабочем каталоге.
+$ git mv file_from file_to
+переименование файла
+$ git log
+Просмотр истории коммитов
+$ git log -p -2
+показывает дельту (разницу/di), привнесенную каждым коммитом. вывод до 2-х последних записей:
+$ git log --stat
+краткая статистика по каждому коммиту,
+$ git log --pretty=oneline
+Параметр oneline выводит каждый коммит в одну строку
+$ git log --pretty=format:"%h - %an, %ar : %s"
+Параметр Описание выводимых данных
+%H Хеш коммита
+%h Сокращённый хеш коммита
+%T Хеш дерева
+%t Сокращённый хеш дерева
+%P Хеши родительских коммитов
+%p Сокращённые хеши родительских коммитов
+%an Имя автора
+%ae Электронная почта автора
+%ad Дата автора (формат соответствует параметру –date= )
+%ar Дата автора, относительная (пр. ”2 мес. назад”)
+%cn Имя коммитера
+%ce Электронная почта коммитера
+%cd Дата коммитера
+%cr Дата коммитера, относительная
+%s Комментарий
+$ git log --pretty=format:"%h %s" --graph
+Этот параметр добавляет ASCII-граф, показывающий историю ветвлений и слияний.
+gitk
+Наглядный вариант git log, к тому же он принимает почти те же фильтрующие опции, что и git log.
+$ git commit --amend
+Эта команда берёт индекс и использует его для коммита. Если после последнего коммита не было никаких изменений (например, вы запустили приведённую команду сразу
+после предыдущего коммита), то состояние проекта будет абсолютно таким же и всё, что
+вы измените, это комментарий к коммиту.
+$ git commit -m 'initial commit'
+$ git add forgotten_file
+$ git commit --amend
+Все три команды вместе дают один коммит — второй коммит заменяет результат первого.
+$ git reset HEAD benchmarks.rb
+для исключения из индекса
+$ git checkout -- benchmarks.rb
+Отмена изменений. Это опасная команда: все сделанные  изменения в этом файле пропали — вы просто скопировали поверх него другой файл.
+$ git remote
+перечисляет список имён-сокращений для всех уже указанных удалённых дескрипторов
+$ git remote -v
+Чтобы посмотреть, какому URL соответствует сокращённое имя в Git
+$ git remote add pb git://github.com/paulboone/ticgit.git
+Добавление удалённых репозиториев Теперь вы можете использовать в командной строке имя pb вместо полного URL
+$ git fetch pb
+извлечь (fetch) всю информацию, которая есть в репозитории Ветка master теперь доступна локально как pb/master. Вы можете слить (merge) её в одну из своих веток или перейти на эту ветку, если хотите её проверить.  Когда вы клонируете репозиторий, команда clone автоматически добавляет этот удалённый репозиторий под именем origin. Таким образом, git fetch origin извлекает все наработки, отправленные (push) на этот сервер после того, как вы склонировали его (или получили изменения с помощью fetch).
+$ git pull
+Выполнение git pull, как правило, извлекает (fetch) данные с сервера, с которого вы изначально склонировали, и
+автоматически пытается слить (merge) их с кодом, над которым вы в данный момент работаете
+$ git push origin master
+Чтобы отправить вашу ветку master на сервер origin
+$ git remote show origin
+побольше информации об одном из удалённых репозиториев
+$ git tag
+Просмотр имеющихся меток
+$ git tag -a v1.4 -m 'my version 1.4'
+Создание аннотированной метки
+$ git tag v1.4-lw
+Легковесная метка
+$ git config --global alias.co checkout
+$ git config --global alias.br branch
+$ git config --global alias.ci commit
+$ git config --global alias.st status
+псевдонимы (alias)
+$ git branch testing
+создадим новую ветку под названием testing
+$ git checkout testing
+перейдём на новую ветку testing:
+$ git checkout -b iss53
+Чтобы создать ветку и сразу же перейти на неё
+$ git checkout master
+$ git merge hotfix
+
+
+git fetch
+git fetch загружает коммиты, файлы и ссылки из удаленного репозитория. Данная команда выполняется, когда вы хотите посмотреть, что изменилось в удаленном репозитории, что кто-то другой сделал в нем. При этом очень важно, что git fetch не изменяет никаких ваших локальных данных, над которыми вы работаете.
+git branch
+вывести все ветки
+git branch -r
+удаленные ветки
+git checkout master
+Чтобы переключиться на ветку в Git используется команда git checkout. Например, чтобы переключиться на ветку master необходимо выполнить команду:
+git diff --name-only --cached
+Данная команда выведет список имен файлов, которые будут добавлены в следующий коммит.
+
+
+Конфигурация.
+git config --global user.name "ctlos"
+git config --global user.email "ctlos@protonmail.com"
+
+Инициализация.
+git init
+
+Статус.
+git status
+
+Игнорирование файлов и каталогов 
+.gitignore.
+
+Добавление изменений.
+git add .
+git commit -m "test"
+
+Создание репозитория на github.com.
+git remote add origin https://github.com/ctlos/ctlosiso
+git remote add origin git@github.com:ctlos/ctlosiso.git
+
+Отменить регистрацию удаленного репозитория.
+git remote rm origin
+
+Отправка на github.com.
+git push -u origin master
+git push --set-upstream origin master
+
+Клонирование.
+git clone https://github.com/ctlos/ctlosiso
+
+Ssh.
+git clone git@github.com:ctlos/ctlosiso.git
+
+Или ветку.
+git clone -b openbox git@github.com:ctlos/ctlosiso.git
+
+Список репозиториев.
+git remote
+
+
+Отправка на github.
+git push ctlosiso master
+
+Версия проекта.
+git tag "version1.0"
+
+Новая ветка.
+git branch work
+
+Просмотр веток локально.
+git branch
+
+Просмотр веток и удаленных.
+git branch -a
+
+Создание локальных веток из удаленных.
+git branch openbox origin/openbox
+git branch xfce origin/xfce
+git branch budgie origin/budgie
+
+Перемещение по веткам.
+git checkout work
+
+Слияние веток. Перед этим переключить ветку.
+git merge work
+
+Удаление веток.
+git branch -D work
+
+Просмотр изменений.
+git log
+
+Откат(предварительно, получить хэш).
+git reset --hard a3775a5485af0af20375cedf46112db5f813322a 
+git push --force
+
+
+Отмена git add
+Чтобы отменить выполнение команды git add необходимо выполнить команду:
+
+git reset
+Данная команда удалит из индекса все файлы (которые были добавлены в индекс командой git add).
+
+Если необходимо удалить из индекса только один файл, то после git reset необходимо указать путь до данного файла (вместо myfile.cpp укажите свой файл):
+
+git reset myfile.cpp
