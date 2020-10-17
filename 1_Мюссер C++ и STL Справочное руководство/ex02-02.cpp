@@ -1,4 +1,5 @@
 // Using the STL generic reverse algorithm with a vector
+//стр 53
 #include <iostream>
 #include <cstring>
 #include <vector>

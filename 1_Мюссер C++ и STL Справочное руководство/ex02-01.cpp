@@ -1,4 +1,5 @@
 // Using the STL generic reverse algorithm with a string and an array
+//стр 52
 #include <iostream>
 #include <cstring>
 #include <string>
