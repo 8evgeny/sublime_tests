@@ -8,3 +8,6 @@ minicom -D  /dev/ttyUSB0
 18 RX
 19 TX
 получаем доступ к плате
+
+Подключение к m4
+picocom -b 1500000 /dev/ttyUSB0
