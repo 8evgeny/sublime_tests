@@ -2,6 +2,7 @@
 LD_LIBRARY_PATH=/home/eparubets/S-671/third-party/build/x86_64/install/Gigev_2.10/lib/
 export LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/home/eparubets/S-671/third-party/build/x86_64/install/Gigev_2.10/lib/
+export LD_LIBRARY_PATH=/home/alager/S-852/third-party/build/install/aarch64/lib/
 
 алиас
 [me@linuxbox ~]$ type foo
@@ -24,6 +25,9 @@ id
 
 
 export PATH=~/scripts/:$PATH    -  путь к скриптам
+
+export PATH=~/home/pi/cmake-3.15.2/bin/:$PATH
+
 
 запуск процесса в автозагрузке - systemctl enable  name-process
 

@@ -1,6 +1,38 @@
-адрес
+адрес M4
 10.8.1.122
+
+T4 - 10.8.1.153
+T3 - 192.168.77.127
 
 Подключение UART к m4 - отдельный разьем 
 picocom -b 1500000 /dev/ttyUSB0
 
+Работаю с T3plus
+подключаюсь через UART
+picocom -b 115200 /dev/ttyUSB0
+
+адрес 192.168.30.150
+ssh pi@192.168.30.150
+
+развернута S-852
+установлен cmake
+версия 3.51  -  нужна сборка из исходников
+
+wget https://github.com/Kitware/CMake/releases/download/v3.15.2/cmake-3.15.2.tar.gz
+Когда tar.gz полностью скачается, его нужно распаковать. Воспользуемся следующей командой:
+tar -zxvf cmake-3.15.2.tar.gz
+cd cmake-3.15.2
+Чтобы провести компиляцию скачанного кода, выполним ещё одну команду:
+./bootstrap
+make
+sudo make install
+
+export PATH=~/home/pi/cmake-3.15.2/bin/:$PATH
+
+sudo apt-get install smbclient
+
+обновлены пакеты
+
+sed -i -re 's/([a-z]{2}\.)?archive.ubuntu.com|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
+
+Усноногвлен пакет libgtk-3-dev

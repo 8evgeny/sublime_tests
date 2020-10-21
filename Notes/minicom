@@ -9,5 +9,5 @@ minicom -D  /dev/ttyUSB0
 19 TX
 получаем доступ к плате
 
-Подключение к m4
+Подключение UART к m4 - отдельный разьем 
 picocom -b 1500000 /dev/ttyUSB0
