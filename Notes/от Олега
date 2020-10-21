@@ -1,0 +1,49 @@
+https://wiki.alager.ru:3005/Модемы_и_GPS-датчики
+
+# /etc/systemd/system/ptpd.service.d/override.conf
+[Service]
+
+Restart=on-failure
+RestartSec=20
+
+sudo killall minicom
+
+systemctl status dhcpd4@eth0.service
+этой командой можно смотреть кому настройки выданы
+
+запустил dhcp server  до перезагрузки
+что бы запустить после перезагрузки нужно выполнить :
+systemctl start dhcpd4@enp4s0
+systemctl status dhcpd4@enp4s0
+
+nmap -sP 192.168.100.0/24
+
+vncserver -geometry 1920x1080
+
+mpv tcp://192.168.10.122:1234
+
+Напомни команду запуска впн сервера после ребута компа
+Он должен сам стартануть, при наличии инета. 
+systemctl status openvpn-client@client.service
+
+Олег а как на 187 машине поменять графику на xfce?
+Олег
+root@boise:~# apt install xfce4 --no-install-recommends
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+xfce4 is already the newest version (4.12.4).
+уже установлено
+
+Евгений
+а как его включить?
+Олег
+vncviewer 10.8.1.187:5902
+меняется тут /home/pi/.vnc/xstartup
+
+ln -sf /usr/lib/libx264.so /usr/lib/libx264.so.157
+Евгений
+Это подмена либы?
+Олег
+Скормил ему либу 159 под видом 157
+
