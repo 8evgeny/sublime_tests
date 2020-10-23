@@ -21,8 +21,7 @@ int main()
   list<int> list1(&a[0], &a[10]);
 
   // Find the first element equal to 7 in list1:
-  list<int>::iterator i = find(list1.begin(),
-                               list1.end(),7);
+  list<int>::iterator i = find(list1.begin(),list1.end(),7);
     
   assert (*i == 7 && *(++i) == 11);
 
