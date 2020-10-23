@@ -58,3 +58,14 @@ GPIO1_C7     32+(3-1)*8+7 = 55
 GPIO3_D4     96+(4-1)*8+4 = 124
 GPIO3_D5     96+(4-1)*8+5 = 125
 GPIO3_D6     96+(4-1)*8+6 = 126
+
+
+Переход на новое ядро
+sudo dd if=/bs512count524287-linux5.7-155.img of=/dev/mmcblk1
+sudo dd if=/bs512count524287-linux4.9-155.img of=/dev/mmcblk1
+
+sudo ip a a 172.31.0.207/24 dev enp0s20f0u2  добавить адрес в интерфейс
+sudo ip a del 172.31.0.207/24 dev enp0s20f0u2  удалить
+
+tune2fs -U 3dbb38b5-dc49-402c-bb04-7375a9e50648 /dev/nvme0n1p1
+менять UID 
