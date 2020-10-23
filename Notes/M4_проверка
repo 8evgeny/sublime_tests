@@ -36,3 +36,25 @@ sudo apt-get install smbclient
 sed -i -re 's/([a-z]{2}\.)?archive.ubuntu.com|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
 
 Усноногвлен пакет libgtk-3-dev
+
+Нумерация GPIO 
+GPIOA: 0 
+GPIOB: 32                                                                       
+GPIOC: 64                                                                       
+GPIOD: 96                                                                       
+GPIOE: 128                                                                      
+GPIOF: 160                                                                    
+
+a = 1
+b = 2
+c = 3
+d = 4
+
+GPIO4_C6   128+(3-1)*8+6 = 150
+GPIO4_C1   128+(3-1)*8+1 = 145
+GPIO4_C0   128+(3-1)*8+0 = 144
+GPIO1_C2     32+(3-1)*8+2 = 50
+GPIO1_C7     32+(3-1)*8+7 = 55
+GPIO3_D4     96+(4-1)*8+4 = 124
+GPIO3_D5     96+(4-1)*8+5 = 125
+GPIO3_D6     96+(4-1)*8+6 = 126
