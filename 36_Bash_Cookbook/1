@@ -1,0 +1,14 @@
+$ touch /tmp/sample_file
+$ ls /tmp/sample_file
+$ ls -l /tmp/sample_file
+$ stat /tmp/sample_file
+$ file /tmp/sample_file
+/tmp/sample_file: empty
+$ file -b /tmp/sample_file
+empty
+$ echo '#!/bin/bash -' > /tmp/sample_file
+$ file /tmp/sample_file
+/tmp/sample_file: Bourne-Again shell script text executable
+$ file -b /tmp/sample_file
+Bourne-Again shell script text executable
+
