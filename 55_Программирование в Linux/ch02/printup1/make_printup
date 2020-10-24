@@ -1,0 +1,4 @@
+#!/bin/sh
+gcc -c print_up.c
+gcc -c main.c
+gcc -o printup print_up.o main.o

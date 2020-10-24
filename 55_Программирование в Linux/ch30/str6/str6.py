@@ -1,0 +1,10 @@
+s = "Be"
+print(s+" yourself!")
+print(s*3)
+print(len(s))
+print(int("1024"))
+print(float("3.14"))
+print(s[1])
+print(s[1:4])
+print(s[:4])
+print(s[-4:])

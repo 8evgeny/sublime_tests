@@ -1,0 +1,1 @@
+void toup (char * str);
