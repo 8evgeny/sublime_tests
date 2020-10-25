@@ -1,0 +1,1 @@
+/usr/bin/gcc -g  -rdynamic CMakeFiles/55_ch4_myenv.dir/envmain.o CMakeFiles/55_ch4_myenv.dir/myprintenv.o CMakeFiles/55_ch4_myenv.dir/mysetenv.o  -o 55_ch4_myenv 

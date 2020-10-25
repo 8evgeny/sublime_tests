@@ -1,0 +1,1 @@
+/usr/bin/gcc -g  -rdynamic CMakeFiles/55_ch3_setenvdemo.dir/setenvdemo.o  -o 55_ch3_setenvdemo 

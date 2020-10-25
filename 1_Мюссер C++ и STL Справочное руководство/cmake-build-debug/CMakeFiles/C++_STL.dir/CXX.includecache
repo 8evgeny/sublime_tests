@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/1_Мюссер C++ и STL Справочное руководство/ex02-02.cpp
+iostream
+-
+cstring
+-
+vector
+-
+cassert
+-
+algorithm
+-
+

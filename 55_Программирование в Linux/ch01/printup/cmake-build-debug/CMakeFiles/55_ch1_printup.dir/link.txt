@@ -1,0 +1,1 @@
+/usr/bin/gcc -g  -rdynamic CMakeFiles/55_ch1_printup.dir/main.o CMakeFiles/55_ch1_printup.dir/print_up.o  -o 55_ch1_printup 

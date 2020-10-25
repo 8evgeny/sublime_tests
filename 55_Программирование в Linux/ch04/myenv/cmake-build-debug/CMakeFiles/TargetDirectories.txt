@@ -1,0 +1,3 @@
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch04/myenv/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch04/myenv/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch04/myenv/cmake-build-debug/CMakeFiles/55_ch4_myenv.dir

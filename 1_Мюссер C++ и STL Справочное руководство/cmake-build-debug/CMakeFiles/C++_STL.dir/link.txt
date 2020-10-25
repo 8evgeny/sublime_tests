@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/C++_STL.dir/ex02-02.cpp.o  -o C++_STL 

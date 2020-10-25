@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch01/printup/main.c
+string.h
+-
+stdio.h
+-
+print_up.h
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch01/printup/print_up.h
+
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch01/printup/print_up.c
+ctype.h
+-
+stdio.h
+-
+string.h
+-
+print_up.h
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch01/printup/print_up.h
+
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch01/printup/print_up.h
+

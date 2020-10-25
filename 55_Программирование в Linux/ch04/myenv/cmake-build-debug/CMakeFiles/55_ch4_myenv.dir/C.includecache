@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch04/myenv/envmain.c
+stdio.h
+-
+myenv.h
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch04/myenv/myenv.h
+
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch04/myenv/myenv.h
+
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch04/myenv/myprintenv.c
+stdlib.h
+-
+stdio.h
+-
+myenv.h
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch04/myenv/myenv.h
+
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch04/myenv/mysetenv.c
+stdlib.h
+-
+stdio.h
+-
+myenv.h
+/home/jhon/Sublime_tests/55_Программирование в Linux/ch04/myenv/myenv.h
+
