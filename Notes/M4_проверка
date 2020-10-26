@@ -69,3 +69,7 @@ sudo ip a del 172.31.0.207/24 dev enp0s20f0u2  удалить
 
 tune2fs -U 3dbb38b5-dc49-402c-bb04-7375a9e50648 /dev/nvme0n1p1
 менять UID 
+
+Проверка pps
+ntpq -p
+ppstest /dev/pps0
