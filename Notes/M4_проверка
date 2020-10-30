@@ -80,3 +80,11 @@ gpsmon, cgps, and xgps
 
 ppsfind ttyS3
 sudo timedatectl set-timezone Europe/Moscow
+
+sudo ip a del 172.31.0.153/24 dev eth0
+sudo ip a a 172.31.0.155/24 dev eth0
+sudo ip a a 192.168.100.153/24 dev eth1
+sudo ip a del 192.168.77.115/24 dev eth1
+
+systemctl status networking.service
+journalctl -xe
