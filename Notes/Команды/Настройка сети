@@ -1,0 +1,138 @@
+Рассмотрим настройку сети в Linux Ubuntu.
+
+Приведу пример команд просмотра информации о сетевых интерфейсах:
+ifconfig
+ifconfig -a
+ifconfig eth0
+ip a
+ip -6 a
+ethtool eth0
+ethtool -i eth0
+ethtool -k eth0
+ethtool -S eth0
+lshw -C network
+lspci | grep Ethernet
+netstat -st
+netstat -s counter
+netstat -ntl
+cat /sys/class/net/eth0/operstate
+ip -d -s link list dev eth0
+ip -s -s link show
+
+Пример включения/отключения сетевых интерфейсов:
+sudo ifconfig eth0 up
+sudo ifconfig eth0 down
+sudo ifconfig wlan0 up
+sudo ifup ens1f0
+sudo ifdown ens1f0
+
+Если имя сетевого интерфейса неизвестно, то смотрим его в logical name набрав команду:
+sudo lshw -C network
+
+Чтобы единоразово запросить IP адрес по DHCP выполним команду:
+dhclient
+dhclient eth0
+dhclient enp0s3
+cat /var/lib/dhcp/dhclient.leases
+
+Ручное назначение настроек (сбрасываются после перезагрузки):
+sudo ifconfig eth0 inet 192.168.0.2 netmask 255.255.255.0
+sudo ifconfig eth0:0 inet 192.168.3.2 netmask 255.255.255.0
+sudo ifconfig eth0:1 inet 192.168.10.1 netmask 255.255.255.0
+
+Удалить все IP с интерфейса eth0 можно так:
+sudo ip addr flush dev eth0
+
+Чтобы настройки не сбрасывались их необходимо прописать в конфигурационный файл:
+sudo nano /etc/network/interfaces
+
+Приведу пример содержания:
+auto lo
+iface lo inet loopback
+  
+auto eth0
+iface eth0 inet static
+address 192.168.0.2
+netmask 255.255.255.0
+network 192.168.0.0
+broadcast 192.168.0.255
+gateway 192.168.0.1
+dns-nameservers 192.168.0.1
+  
+auto eth1
+iface eth1 inet static
+address 10.0.0.2
+netmask 255.255.255.0
+  
+auto eth2
+iface eth2 inet dhcp
+
+В редакторе nano комбинация клавиш Ctrl+O служит для сохранения изменений, Ctrl+X для выхода.
+DNS адреса добавляются в конфигурационный файл /etc/resolv.conf и директорию /etc/resolvconf/, каждый с новой строки, таким образом:
+nameserver 192.168.0.1
+nameserver 8.8.8.8
+
+Посмотреть/добавить/удалить маршрут по умолчанию можно так:
+sudo route add default gw 192.168.1.1
+sudo route del default gw 192.168.1.1
+
+Удалить сеть:
+sudo route del -net 238.1.0.0/16
+
+Посмотреть таблицу маршрутизации так:
+sudo ip route show
+sudo ip route show 172.16.0.0/16
+ip route get 172.16.0.5
+sudo route
+sudo route -n
+sudo netstat -rn
+sudo cat /proc/net/route
+
+Просмотр IPv6 маршрутов:
+ip -6 route
+ip -6 route show t all
+
+Пример добавления маршрутов для сети через шлюз, сетевой интерфейс и маршрут для конкретного адреса через шлюз:
+sudo route add -net 172.16.0.0/16 gw 10.0.0.1
+sudo route add -net 172.16.0.0/16 dev eth0
+sudo route add -host 192.168.0.1 gw 172.16.0.1
+
+Например с указанным маршрутом можно удалять пакеты:
+sudo ip route add blackhole 10.10.0.0/24
+
+Можно добавить маршруты в отдельную таблицу, например мы добавим маршрут по умолчанию всем, а адресу 192.168.5.12 указали свой маршрут по умолчанию:
+sudo route add default gw 192.168.1.1
+sudo ip rule add from 192.168.5.12 lookup 4
+sudo ip route add default via 10.0.2.1 table 4
+
+Перезапуск сетевых служб:
+sudo /etc/init.d/networking restart
+
+Либо перезапуск сервера:
+sudo reboot
+
+В случае потерь пакетов при большом трафике или если неправильно работает шейпер, то можно попробовать отключить offload:
+ethtool -K eth0 tso off
+ethtool -K eth0 gro off
+ethtool -K eth0 gso off
+
+Или так:
+ethtool -K ens2f1 tso off gro off gso off
+
+Посмотрим какие offload активированы, например generic-segmentation-offload — это сокращено «gso»:
+ethtool --show-offload eth0
+
+Посмотреть правильно ли распределены прерывания сетевой платы по ядрам процессора можно командой:
+grep eth0 /proc/interrupts
+
+Пример просмотра ARP таблицы (-d для удаления записи):
+arp -an
+arp -an | wc -l
+arp -i eth0
+
+Изменить MTU
+sudo ip l set eth0 down 
+sudo ip l set eth0 mtu 3710
+sudo ip l set eth0 up
+
+
