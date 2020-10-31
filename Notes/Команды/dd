@@ -169,6 +169,7 @@ G - 1024 мегабайт.
 и найдем среди них флеш накопитель:
 
 sudo fdisk -u -l /dev/sd?
+
 Так же, для определения разделов на всех устройства, можно воспользоваться командой:
 
 sudo cat /proc/partitions
@@ -230,3 +231,5 @@ dd if=/dev/sdc1 | gzip -c9 > /PATH/TO/BACKUP.gz
 
 распаковать обратно:
 gunzip -c /PATH/TO/BACKUP.gz | dd of=/dev/sdc1
+
+gunzip -c /home/jhon/Desktop/KHADAS/VIM3.krescue.sd.img.gz | sudo dd of=/dev/sdc conv=noerror 
