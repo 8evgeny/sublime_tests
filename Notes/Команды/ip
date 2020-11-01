@@ -240,3 +240,13 @@ ip route add 10.10.20.0/24 dev eth0 - создать маршрут к указ�
 ip route add table nnn 10.10.20.0/24 dev eth0 - создать маршрут в специальной таблице роутинга.
 ip route add blackhole 10.10.20.0/24 dev eth0 - создать blackhole маршрут.
 ip route add unreachable 10.10.20.0/24 dev eth0 - создать unreachable маршрут.
+
+
+Посмотреть таблицу маршрутизации
+[jhon@jhon-pc ~]$ ip rule 
+0:	from all lookup local
+32766:	from all lookup main
+32767:	from all lookup default
+
+ip route show table local
+ip route show table main
