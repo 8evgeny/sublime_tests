@@ -102,3 +102,10 @@ nmcli conn down "Проводное соединение 2"
  nmcli device wifi connect "TP-Link" password 12345678 name "TP-Link Wifi"
 
 Если всё прошло хорошо, то вы получите уже привычное сообщение про создание подключения с именем TP-Link Wifi и это имя в дальнейшем можно использовать для редактирования этого подключения и управления им, как описано выше.
+
+
+nmcli device wifi connect "MGTS_GPON5_CB34" password 5JH5A5KN name "Wifi"
+nmcli device wifi connect "MGTS_GPON_CB34" password 5JH5A5KN name "Wifi"
+
+sudo nmcli connection add con-name "dhcp" type wifi ifname wlan0 ssid MGTS_GPON5_CB34
+
