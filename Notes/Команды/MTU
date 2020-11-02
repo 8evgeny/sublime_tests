@@ -1,0 +1,53 @@
+Notes on jumbo frames
+Some drivers will prevent lower C-states
+Some kernel drivers, like e1000e will prevent the CPU from entering C-states under C3 with non-standard MTU sizes by design. See bugzilla #77361 for comments by the developers.
+
+Requirements
+Must be GigLAN backbone (i.e. 1000baseT)
+Local NICs in the local PCs must support JFs
+Switches must support JFs
+Configuration
+Invoke ip with the mtu parameter as follows:
+
+# ip link set ethx mtu <size>
+Where ethx is the ethernet adapter in question (eth0, eth1, etc.) and <size> is the size of the frame you wish to use (1500, 4000, 9000).
+
+Use ip link show | grep mtu to verify that the setting has been applied.
+
+Example:
+
+$ ip link show | grep mtu
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue state UNKNOWN 
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 4000 qdisc pfifo_fast state UP qlen 1000
+3: eth1: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN qlen 1000
+Systemd unit
+Tip: If supported, it's recommend to set the MTU value in the Network manager instead (see systemd-networkd).
+To make the setting permanent, we will create a systemd unit.
+
+/etc/systemd/system/setmtu@.service
+[Unit]
+Description=Set mtu on device
+Before=network.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/conf.d/setmtu
+ExecStart=/usr/bin/ip link set dev %i up mtu ${%i}
+
+[Install]
+WantedBy=multi-user.target
+Now create the configuration. Adjust it as necessary, adding one line for each device:
+
+/etc/conf.d/setmtu
+eth0=4000
+That will set the mtu of eth0 to 4000.
+
+And now enable and start the service on every device you want to configure. (In this example, the service would be setmtu@eth0.service)
+
+Netctl
+For adapters configured by netctl, another way to set the mtu persistently is to use the ExecUpPost variable in the network profile:
+
+ExecUpPost='/usr/bin/ip link set eth0 mtu 4000'
+
+на Хадасе
+echo 4088 > /sys/devices/platform/ff500000.dwc3/xhci-hcd.0.auto/usb1/1-1/1-1.1/1-1.1:1.0/net/eth1/mtu
