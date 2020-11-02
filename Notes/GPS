@@ -1,0 +1,111 @@
+cat /etc/systemd/system/gpsd.service.d/override.conf
+
+[Service]
+ExecStartPre=/bin/stty -F /dev/ttyS3 38400
+
+sudo cat  /dev/ttyS3  - поток данных
+
+Поскольку gpsd является демоном, вы можете просто настроить демон для автоматического запуска при запуске. Как это сделать, зависит от того, какая система запуска у вас есть. Например, если у вас есть systemd, вы должны написать файл gpsd.service, что-то вроде этого
+
+[Unit]
+Description=GPSd daemon service file
+
+[Service]
+Type=forking
+User=root
+Group=dialout
+TimeoutStartSec=0
+ExecStart=/usr/sbin/gpsd /dev/ttyS3 -F /var/run/gpsd.sock
+
+
+[Install]
+# Grouping mechanism that let systemd start groups of processes up at the same time
+WantedBy=multi-user.target
+затем установите его в /lib/systemd/system , используя следующие команды
+
+$ sudo systemctl enable gpsd
+$ sudo systemctl start gpsd
+
+Проверка pps
+ntpq -p
+ppstest /dev/pps0
+
+gpspipe -w
+Проверьте консольный вывод команды cgps
+gpsmon, cgps, and xgps 
+
+
+sudo nano /etc/systemd/system/gpsd.service.d/override.conf
+systemctl restart gpsd.service
+
+sudo nano /run/ntp.conf.dhcp
+systemctl restart ntp.service
+
+sudo nano /etc/ntp.conf
+
+So, I want to have a GPS Receiver driving a PPS (pulse-per-second) signal to the NTP server for a highly accurate time reference service.
+
+Introduction
+There are at least a couple of ways to propagate the PPS signal to the ntpd (NTP daemon) service, plus some variants in each case. However, the GPS device must be seen as a device that sources two different types of data:
+
+the absolute date and time, and
+the 1Hz clock signal (PPS).
+The first one provides the complete information (incl. date and time) about when now is, but with poor accuracy because data is sent over the serial port and then encoded using a specific protocol such as NMEA (National Marine Electronics Association). PPS provides instead a very accurate clock but without any reference to absolute time. Thus, a combination of this timing information will offer a precise and complete timestamp of the current time.
+
+Most of GPS Receiver exploits the NMEA protocol. This means, specific NMEA messages will be sent out from the receiver every second. Among them, only GPRMC ones contain current date and time. Besides, depending on the device, it could be necessary to keep to a minimum the amount of information sent out over the serial port every second. To achieve this, the PGRMO command, containing a message types selection, could be forwarded to the GPS Receiver, which will retain this configuration in its internal memory.
+
+Finally, ntpd supports several types of drivers. NTP drivers are low-level callback functions registered within the ntpd core and implementing the access to several types of local clocks, such as GPSs, radio clocks, etc. Each driver is identified by a pseudo-IP address identifier. More precisely, the identifiers involved are:
+
+127.127.20.x – NMEA Reference Clock Driver
+127.127.28.x – SHM (Shared Memory) Driver
+
+NMEA Reference Clock Driver
+The NMEA clock driver assumes that a GPS sending out NMEA messages is connected to the system via serial port, named /dev/gpsX and its PPS signal is accessible from a /dev/gpsppsX device. /dev/gpsX is actually a link to some /dev/ttySX serial device, and /dev/gpsppsX is a link to a /dev/ppsX device which is provided by the kernel PPS API (called LinuxPPS). This API collects and distributes a precision kernel clock information from/to userland programs, supporting predefined client drivers. When the API is unavailable in the kernel, apply a patch to the kernel mainline tree.
+
+In order to activate the PPS line discipline on the serial port connected to the GPS, run the ldattach utility, which will stay in background to keep the serial port open and the discipline active.
+
+ldattach pps /dev/ttyS0
+
+# Example of /etc/ntp.conf
+server 127.127.20.0 mode 1 minpoll 4 prefer 
+fudge 127.127.20.0 flag3 1 flag2 0 time1 0.0
+Param	Format	Default	Range	Description
+mode	uint	0	-	Specifies GPS sentences and bitrates set
+time1	float	0.0	-	PPS time offset calibration factor in seconds and fraction
+time2	float	0.0	-	Serial end of line time offset calibration factor, in seconds and fraction
+stratum	uint	0	0;15	Driver stratum
+refid	string	ip	-	Driver reference identifier (ASCII 4 chars)
+flag1	uint	0	0;1	Disable/enable PPS signal processing
+flag2	uint	0	0;1	Capture the pulse on the rising/falling edge (req. PPS signal processing enabled)
+flag3	uint	0	0;1	Use the ntpd clock/kernel discipline (req. PPS signal processing enabled)
+flag4	uint	0	0;1	Disable/enable location in timecode
+Supported mode are:
+
+Mode	Description
+1	process $GPMRC
+2	process $GPGGA
+4	process $GPGLL
+8	process $GPZDA or $GPZDG
+0	linespeed 4800bps
+16	linespeed 9600bps
+32	linespeed 19200bps
+48	linespeed 38400bps
+64	linespeed 57600bps
+80	linespeed 115200bps
+Example of usage mode 18 = process $GPGGA at 9600bps mode 0 = process all sentences at 4800bps
+
+SHM Reference Clock
+The SHM driver accepts delayed timing information from a System-V IPC shared memory. In this case, the timing information is written there by some external process, whatever it is. This process reads the timing information from the GPS and writes it to the shared memory so that the ntpd can process it. gpsd and shmpps are utilities able of executing this job, for instance.
+
+gpsd is a general-purpose daemon designed to interact with most types of GPS models using a wide variety of protocols. It is also capable of processing the PPS signals and sending timing information to ntpd via dedicated shared memory devices. One for pushing to ntpd absolute timestamp parsed from the NMEA messages (or supported equivalent), another for PPS timing data. ntpd will see them as two different SHM devices.
+
+# Example of /etc/ntp.conf
+server 127.127.28.0 minpoll 4 
+fudge 127.127.28.0 refid GPS
+server 127.127.28.1 minpoll 4 prefer
+fudge 127.127.28.1 refid PPS
+Sources and Research Material:
+http://linlog.blogspot.de/2009/07/synchronizing-ntp-server-to-gpspps.html
+http://www.lammertbies.nl/comm/info/GPStime.html
+http://www.eecis.udel.edu/~mills/ntp/html/drivers/driver20.html
+http://www.oit.uci.edu/dcslib/ntp/ntp-4.0.99k/driver28.htm
