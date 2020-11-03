@@ -1,0 +1,3 @@
+[submodule "Python_tests"]
+	path = Python_tests
+	url = ../PycharmProjects.git
