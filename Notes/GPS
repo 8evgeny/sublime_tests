@@ -1,4 +1,4 @@
-cat /etc/systemd/system/gpsd.service.d/override.conf
+cat /etc/systemd/system/gpsd.service.d/override.conf.
 
 [Service]
 ExecStartPre=/bin/stty -F /dev/ttyS3 38400
@@ -109,3 +109,21 @@ http://linlog.blogspot.de/2009/07/synchronizing-ntp-server-to-gpspps.html
 http://www.lammertbies.nl/comm/info/GPStime.html
 http://www.eecis.udel.edu/~mills/ntp/html/drivers/driver20.html
 http://www.oit.uci.edu/dcslib/ntp/ntp-4.0.99k/driver28.htm
+
+gpscat /dev/ttyS3
+
+sudo nano /etc/systemd/system/gpsd.service
+sudo nano /etc/systemd/system/gpsd.service.d/override.conf
+sudo nano /etc/ntp.conf
+
+systemctl stop gpsd.service
+systemctl daemon-reload
+
+Установите необходимые пакеты.
+user@server ~$ sudo apt-get install aptitude
+user@server ~$ sudo aptitude install wpasupplicant gpsd chrony
+
+ntp.conf
+Ниже зададим настройку для синхронизации с аппаратными часами на случай отсутствия синхронизации с серверами в интернет:
+server 127.127.1.0             # адрес аппаратных часов
+fudge 127.127.1.0 stratum 10  # приоритет - stratum - он выбран таким образом, чтобы при наличии интернета NTP-сервер не синхронизировался с аппаратными часами

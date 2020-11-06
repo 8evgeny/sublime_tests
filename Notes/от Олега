@@ -47,3 +47,24 @@ ln -sf /usr/lib/libx264.so /usr/lib/libx264.so.157
 Олег
 Скормил ему либу 159 под видом 157
 
+sed -i -re 's/([a-z]{2}\.)?archive.ubuntu.com|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
+
+https://elinux.org/images/f/f9/Introduction_to_IEEE_1588_Precision_Time_Protocol_%28PTP%29_Using_Embedded_Linux_Systems.pdf
+
+stty -F /dev/ttyAML6 115200
+
+https://www.vanheusden.com/time/rpi_gpio_ntp/
+vanheusden.comvanheusden.com
+rpi_gpio_ntp
+www.vanheusden.com
+
+cat /sys/class/thermal/thermal_zone0/type
+
+cat /etc/systemd/network/21-wired.network
+сетевые настройки для eth1 (usb сетевушка)
+echo "nameserver 8.8.8.8" > /etc/resolv.conf  что бы прописать днс
+
+https://docs.khadas.com/vim3/HowToTestGPIOIRQ.html
+Khadas DocumentationKhadas Documentation
+How To Test GPIO IRQ
+Switch to root userOnly root user can control GPIO, you need to switch to root user before testing. $ khadas@Khadas:~$ suPassword: root@Khadas:/home/khadas# GPIO Pin Control Setting Confirm the pins
