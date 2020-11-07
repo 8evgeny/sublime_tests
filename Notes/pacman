@@ -2,3 +2,22 @@ pacman -Ql pacman pacman-contrib | grep -E 'bin/.+'    список доступ
 
 
 pacman -Qqet | grep -v "$(pacman -Qqg base)"
+
+Run the following command to get a list of affected packages: pacman -Qqo '/usr/lib/perl5/5.30'
+# Удалить пакет
+$ pacman -R имя_пакета
+
+# Удалить пакет с зависимостями(не используемыми другими пакетами)
+$ pacman -Rs имя_пакета
+
+# Удалить пакет с зависимыми и зависящами пакетами
+$ pacman -Rsc имя_пакета
+
+# Удалить пакеты "сироты"
+$ pacman -Rsn $(pacman -Qdtq)
+
+# Установка пакета из файла
+$ pacman -U /путь_к_файлу/файл.tar.xz
+
+# или из сети
+$ pacman -U http://www.example.com/repo/example.pkg.tar.xz
