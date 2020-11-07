@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1566836422 source:c:\qt\project\cb\game c++\16_games\01 tetris\main.cpp
-	<SFML/Graphics.hpp>
-	<time.h>
-
-1566836540 source:c:\qt\project\cb\game c++\16_games\02 doodle jump\main.cpp
-	<SFML/Graphics.hpp>
-	<time.h>
-
