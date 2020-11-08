@@ -68,6 +68,6 @@ for i in my_str:
         my_str1.append(i)
 print(my_str1)
 
-# медоды join и map - смотри видео
+
 
 
