@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/POCO_tests/POCO/main.cpp
+Poco/Net/ServerSocket.h
+-
+Poco/Net/HTTPServer.h
+-
+Poco/Net/HTTPRequestHandler.h
+-
+Poco/Net/HTTPRequestHandlerFactory.h
+-
+Poco/Net/HTTPResponse.h
+-
+Poco/Net/HTTPServerRequest.h
+-
+Poco/Net/HTTPServerResponse.h
+-
+Poco/Util/ServerApplication.h
+-
+iostream
+-
+string
+-
+vector
+-
+
