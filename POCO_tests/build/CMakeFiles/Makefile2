@@ -63,7 +63,7 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jhon/Sublime_tests/POCO_tests/POCO
+CMAKE_SOURCE_DIR = /home/jhon/Sublime_tests/POCO_tests/1
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/jhon/Sublime_tests/POCO_tests/build
@@ -72,7 +72,7 @@ CMAKE_BINARY_DIR = /home/jhon/Sublime_tests/POCO_tests/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/POCO.dir/all
+all: CMakeFiles/poco.dir/all
 
 .PHONY : all
 
@@ -82,36 +82,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/POCO.dir/clean
+clean: CMakeFiles/poco.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/POCO.dir
+# Target rules for target CMakeFiles/poco.dir
 
 # All Build rule for target.
-CMakeFiles/POCO.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/POCO.dir/build.make CMakeFiles/POCO.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/POCO.dir/build.make CMakeFiles/POCO.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/POCO_tests/build/CMakeFiles --progress-num=1,2 "Built target POCO"
-.PHONY : CMakeFiles/POCO.dir/all
+CMakeFiles/poco.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poco.dir/build.make CMakeFiles/poco.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poco.dir/build.make CMakeFiles/poco.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/POCO_tests/build/CMakeFiles --progress-num=1,2 "Built target poco"
+.PHONY : CMakeFiles/poco.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/POCO.dir/rule: cmake_check_build_system
+CMakeFiles/poco.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/POCO_tests/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/POCO.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/poco.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/POCO_tests/build/CMakeFiles 0
-.PHONY : CMakeFiles/POCO.dir/rule
+.PHONY : CMakeFiles/poco.dir/rule
 
 # Convenience name for target.
-POCO: CMakeFiles/POCO.dir/rule
+poco: CMakeFiles/poco.dir/rule
 
-.PHONY : POCO
+.PHONY : poco
 
 # clean rule for target.
-CMakeFiles/POCO.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/POCO.dir/build.make CMakeFiles/POCO.dir/clean
-.PHONY : CMakeFiles/POCO.dir/clean
+CMakeFiles/poco.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poco.dir/build.make CMakeFiles/poco.dir/clean
+.PHONY : CMakeFiles/poco.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

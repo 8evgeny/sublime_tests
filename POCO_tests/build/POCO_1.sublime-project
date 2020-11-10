@@ -2,44 +2,44 @@
 	"folders":
 	[
 		{
-			"path": "../POCO"
+			"path": "../1"
 		}
 	],
 	"build_systems":
 	[
 		{
-			"name": "POCO - all",
+			"name": "POCO_1 - all",
 			"cmd": ["/usr/bin/make", "-f", "Makefile", "all"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},
 		{
-			"name": "POCO - clean",
+			"name": "POCO_1 - clean",
 			"cmd": ["/usr/bin/make", "-f", "Makefile", "clean"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},
 		{
-			"name": "POCO - rebuild_cache",
+			"name": "POCO_1 - rebuild_cache",
 			"cmd": ["/usr/bin/make", "-f", "Makefile", "rebuild_cache"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},
 		{
-			"name": "POCO - edit_cache",
+			"name": "POCO_1 - edit_cache",
 			"cmd": ["/usr/bin/make", "-f", "Makefile", "edit_cache"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},
 		{
-			"name": "POCO - POCO",
-			"cmd": ["/usr/bin/make", "-f", "Makefile", "POCO"],
+			"name": "POCO_1 - poco",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "poco"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},
 		{
-			"name": "POCO - POCO/fast",
-			"cmd": ["/usr/bin/make", "-f", "Makefile", "POCO/fast"],
+			"name": "POCO_1 - poco/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "poco/fast"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		}

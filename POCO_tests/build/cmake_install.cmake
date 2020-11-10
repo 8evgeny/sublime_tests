@@ -1,4 +1,4 @@
-# Install script for directory: /home/jhon/Sublime_tests/POCO_tests/POCO
+# Install script for directory: /home/jhon/Sublime_tests/POCO_tests/1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

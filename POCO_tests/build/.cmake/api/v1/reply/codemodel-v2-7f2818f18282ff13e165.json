@@ -26,7 +26,7 @@
 					[
 						0
 					],
-					"name" : "POCO",
+					"name" : "POCO_1",
 					"targetIndexes" : 
 					[
 						0
@@ -37,9 +37,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "POCO::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-POCO-Debug-7237c15fd4e72e90ddfe.json",
-					"name" : "POCO",
+					"id" : "poco::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-poco-Debug-fe420a423ac42374deb8.json",
+					"name" : "poco",
 					"projectIndex" : 0
 				}
 			]
@@ -49,7 +49,7 @@
 	"paths" : 
 	{
 		"build" : "/home/jhon/Sublime_tests/POCO_tests/build",
-		"source" : "/home/jhon/Sublime_tests/POCO_tests/POCO"
+		"source" : "/home/jhon/Sublime_tests/POCO_tests/1"
 	},
 	"version" : 
 	{

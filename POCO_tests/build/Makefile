@@ -67,7 +67,7 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jhon/Sublime_tests/POCO_tests/POCO
+CMAKE_SOURCE_DIR = /home/jhon/Sublime_tests/POCO_tests/1
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/jhon/Sublime_tests/POCO_tests/build
@@ -130,17 +130,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named POCO
+# Target rules for targets named poco
 
 # Build rule for target.
-POCO: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 POCO
-.PHONY : POCO
+poco: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 poco
+.PHONY : poco
 
 # fast build rule for target.
-POCO/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/POCO.dir/build.make CMakeFiles/POCO.dir/build
-.PHONY : POCO/fast
+poco/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poco.dir/build.make CMakeFiles/poco.dir/build
+.PHONY : poco/fast
 
 main.o: main.cpp.o
 
@@ -148,7 +148,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/POCO.dir/build.make CMakeFiles/POCO.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poco.dir/build.make CMakeFiles/poco.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -157,7 +157,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/POCO.dir/build.make CMakeFiles/POCO.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poco.dir/build.make CMakeFiles/poco.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -166,7 +166,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/POCO.dir/build.make CMakeFiles/POCO.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poco.dir/build.make CMakeFiles/poco.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -177,7 +177,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... POCO"
+	@echo "... poco"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

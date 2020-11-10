@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "POCO"
+			"path" : "poco"
 		}
 	],
 	"backtrace" : 1,
@@ -11,8 +11,7 @@
 		"commands" : 
 		[
 			"add_executable",
-			"target_link_libraries",
-			"target_include_directories"
+			"target_link_libraries"
 		],
 		"files" : 
 		[
@@ -26,19 +25,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 20,
+				"line" : 8,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 22,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
-				"line" : 21,
+				"line" : 24,
 				"parent" : 0
 			}
 		]
@@ -55,13 +48,6 @@
 					"fragment" : "-std=gnu++11"
 				}
 			],
-			"includes" : 
-			[
-				{
-					"backtrace" : 3,
-					"path" : "/home/jhon/POCO/cmake-build/include"
-				}
-			],
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
@@ -69,7 +55,7 @@
 			]
 		}
 	],
-	"id" : "POCO::@6890427a1f51a3e7e1df",
+	"id" : "poco::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -83,38 +69,22 @@
 				"role" : "flags"
 			},
 			{
-				"backtrace" : 2,
-				"fragment" : "/home/jhon/POCO/cmake-build/lib/libPocoNetd",
+				"fragment" : "-Wl,-rpath,/usr/local/lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "/home/jhon/POCO/cmake-build/lib/libPocoUtil",
+				"fragment" : "/usr/local/lib/libPocoNet.so",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "/home/jhon/POCO/cmake-build/lib/libPocoNetd.a",
+				"fragment" : "/usr/local/lib/libPocoUtil.so",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "/home/jhon/POCO/cmake-build/lib/libPocoUtild.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "/home/jhon/POCO/cmake-build/lib/libPocoJSONd.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "/home/jhon/POCO/cmake-build/lib/libPocoXMLd.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "/home/jhon/POCO/cmake-build/lib/libPocoFoundationd.a",
+				"fragment" : "/usr/local/lib/libPocoFoundation.so",
 				"role" : "libraries"
 			},
 			{
@@ -125,8 +95,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "POCO",
-	"nameOnDisk" : "POCO",
+	"name" : "poco",
+	"nameOnDisk" : "poco",
 	"paths" : 
 	{
 		"build" : ".",
