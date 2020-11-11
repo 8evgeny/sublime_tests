@@ -1,4 +1,10 @@
 cat /etc/systemd/system/gpsd.service.d/override.conf.
+[Unit]
+Requires=systemd-udev-trigger.service
+[Service]
+ExecStartPre=/bin/stty -F $MT3333 115200
+
+
 
 [Service]
 ExecStartPre=/bin/stty -F /dev/ttyS3 38400
@@ -10,7 +16,6 @@ sudo cat  /dev/ttyS3  - поток данных
 [Unit]
 Description=GPSd daemon service file
 
-[Service]
 Type=forking
 User=root
 Group=dialout
@@ -138,3 +143,87 @@ fudge 127.127.28.0 flag1 1 time1 0.9999 refid GPS #flag1 - PPS on
 # GPS PPS reference (NTP1)
 server 127.127.22.0 minpoll 4
 fudge 127.127.22.0 flag3 1 refid PPS #flag3 - enable KPPS API
+
+
+
+
+на рабочем 156 комплексе  
+/etc/ntp.conf
+
+pool ntp1.vniiftri.ru iburst
+pool ntp2.vniiftri.ru iburst
+server 127.127.28.0  minpoll 4 maxpoll 4 noselect
+fudge 127.127.28.0 flag1 1  refid GPS
+server 127.127.28.2 minpoll 4 maxpoll 4 prefer
+fudge 127.127.28.2 flag1 1 refid PPS
+
+/etc/systemd/system/gpsd.service.d/override.conf
+[Unit]
+Requires=systemd-udev-trigger.service 
+
+/lib/systemd/system/gpsd.service
+[Unit]
+Description=GPS (Global Positioning System) Daemon
+Requires=gpsd.socket
+# Needed with chrony SOCK refclock
+After=chronyd.service
+
+[Service]
+Type=forking
+EnvironmentFile=-/etc/default/gpsd
+ExecStart=/usr/sbin/gpsd $GPSD_OPTIONS $DEVICES
+ExecStartPre=/bin/stty -F /dev/ttyS3 115200
+
+[Install]
+WantedBy=multi-user.target
+Also=gpsd.socket
+
+/lib/systemd/system/ntp.service
+[Unit]
+Description=Network Time Service
+Documentation=man:ntpd(8)
+After=network.target
+Conflicts=systemd-timesyncd.service
+
+[Service]
+Type=forking
+# Debian uses a shell wrapper to process /etc/default/ntp
+# and select DHCP-provided NTP servers if available
+ExecStart=/usr/lib/ntp/ntp-systemd-wrapper
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+
+/usr/lib/ntp/ntp-systemd-wrapper
+#!/bin/sh
+
+DAEMON=/usr/sbin/ntpd
+PIDFILE=/var/run/ntpd.pid
+LOCKFILE=/run/lock/ntpdate
+
+if [ -r /etc/default/ntp ]; then
+        . /etc/default/ntp
+fi
+
+if [ -e /run/ntp.conf.dhcp ]; then
+        NTPD_OPTS="$NTPD_OPTS -c /run/ntp.conf.dhcp"
+fi
+
+RUNASUSER=ntp
+UGID=$(getent passwd $RUNASUSER | cut -f 3,4 -d:) || true
+if test "$(uname -s)" = "Linux"; then
+        NTPD_OPTS="$NTPD_OPTS -u $UGID"
+fi
+
+# Protect the service startup against concurrent ntpdate ifup hooks
+(
+        if flock -w 180 9; then
+                exec $DAEMON -p $PIDFILE $NTPD_OPTS
+        else
+                echo "Timeout waiting for $LOCKFILE"
+                exit 1
+        fi
+) 9>$LOCKFILE
+
+

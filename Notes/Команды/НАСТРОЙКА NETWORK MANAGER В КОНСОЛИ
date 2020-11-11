@@ -36,6 +36,8 @@ nmcli general hostname
 Получаем состояние интерфейсов
 nmcli device status
 
+
+
 2. СПИСОК ПОДКЛЮЧЕНИЙ
 Теперь самое интересное, управление сетью nmcli. Смотрим список доступных подключений:
 nmcli connection show
