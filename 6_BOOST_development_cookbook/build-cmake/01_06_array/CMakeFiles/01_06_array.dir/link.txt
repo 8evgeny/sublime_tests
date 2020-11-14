@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/01_06_array.dir/main.o -o 01_06_array  -llibpqxx -lboost_program_options -lQt5::Core -lQt5::Widgets 
+/usr/bin/g++ -g -rdynamic CMakeFiles/01_06_array.dir/main.o -o 01_06_array 

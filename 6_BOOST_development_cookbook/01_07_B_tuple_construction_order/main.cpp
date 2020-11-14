@@ -3,7 +3,7 @@
 
 template <int I>
 struct printer {
-    printer() { std::cout << I; }
+    printer() { std::cout << I<<std::endl; }
 };
 
 int main() {

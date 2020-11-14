@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "01_08_bind/01_08_bind"
+			"path" : "01_07_A_tuple/01_07_A_tuple"
 		}
 	],
 	"backtrace" : 1,
@@ -10,12 +10,11 @@
 	{
 		"commands" : 
 		[
-			"ADD_EXECUTABLE",
-			"target_link_libraries"
+			"ADD_EXECUTABLE"
 		],
 		"files" : 
 		[
-			"01_08_bind/CMakeLists.txt"
+			"01_07_A_tuple/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -26,12 +25,6 @@
 				"command" : 0,
 				"file" : 0,
 				"line" : 4,
-				"parent" : 0
-			},
-			{
-				"command" : 1,
-				"file" : 0,
-				"line" : 6,
 				"parent" : 0
 			}
 		]
@@ -55,7 +48,7 @@
 			]
 		}
 	],
-	"id" : "01_08_bind::@ca80d819c4fbb0e0bb46",
+	"id" : "01_07_A_tuple::@758c1a3240524943d4de",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -67,36 +60,16 @@
 			{
 				"fragment" : "-rdynamic",
 				"role" : "flags"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-llibpqxx",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-lboost_program_options",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-lQt5::Core",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-lQt5::Widgets",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
-	"name" : "01_08_bind",
-	"nameOnDisk" : "01_08_bind",
+	"name" : "01_07_A_tuple",
+	"nameOnDisk" : "01_07_A_tuple",
 	"paths" : 
 	{
-		"build" : "01_08_bind",
-		"source" : "01_08_bind"
+		"build" : "01_07_A_tuple",
+		"source" : "01_07_A_tuple"
 	},
 	"sourceGroups" : 
 	[
@@ -113,7 +86,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "01_08_bind/main.cpp",
+			"path" : "01_07_A_tuple/main.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
