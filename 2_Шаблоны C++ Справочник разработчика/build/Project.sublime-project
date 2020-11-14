@@ -32,18 +32,6 @@
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},
 		{
-			"name": "Project - tuples",
-			"cmd": ["/usr/bin/make", "-f", "Makefile", "tuples"],
-			"working_dir": "${project_path}",
-			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
-		},
-		{
-			"name": "Project - tuples/fast",
-			"cmd": ["/usr/bin/make", "-f", "Makefile", "tuples/fast"],
-			"working_dir": "${project_path}",
-			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
-		},
-		{
 			"name": "arrays - arrays",
 			"cmd": ["/usr/bin/make", "-f", "Makefile", "arrays"],
 			"working_dir": "${project_path}",
@@ -304,6 +292,66 @@
 		{
 			"name": "foldtraverse - foldtraverse/fast",
 			"cmd": ["/usr/bin/make", "-f", "Makefile", "foldtraverse/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "brighe_forupto1 - brighe_forupto1",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "brighe_forupto1"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "brighe_forupto1 - brighe_forupto1/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "brighe_forupto1/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "brighe_forupto2 - brighe_forupto2",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "brighe_forupto2"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "brighe_forupto2 - brighe_forupto2/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "brighe_forupto2/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "brighe_forupto3 - brighe_forupto3",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "brighe_forupto3"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "brighe_forupto3 - brighe_forupto3/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "brighe_forupto3/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "brighe_forupto4 - brighe_forupto4",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "brighe_forupto4"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "brighe_forupto4 - brighe_forupto4/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "brighe_forupto4/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - tuples",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "tuples"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - tuples/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "tuples/fast"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		}

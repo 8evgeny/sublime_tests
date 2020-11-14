@@ -1,3 +1,5 @@
+#include "functorbridge.hpp"
+#include <utility>
 // primary template:
 template<typename Signature> 
 class FunctionPtr;

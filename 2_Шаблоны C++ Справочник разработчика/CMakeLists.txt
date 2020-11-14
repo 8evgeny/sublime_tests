@@ -1,2 +1,4 @@
-add_subdirectory(tuples)
 add_subdirectory(basics)
+add_subdirectory(bridge)
+
+add_subdirectory(tuples)

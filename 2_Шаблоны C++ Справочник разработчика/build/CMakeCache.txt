@@ -240,6 +240,30 @@ arrays_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Спра�
 arrays_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/basics/arrays
 
 //Value Computed by CMake
+brighe_forupto1_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/bridge/forupto1
+
+//Value Computed by CMake
+brighe_forupto1_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/bridge/forupto1
+
+//Value Computed by CMake
+brighe_forupto2_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/bridge/forupto2
+
+//Value Computed by CMake
+brighe_forupto2_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/bridge/forupto2
+
+//Value Computed by CMake
+brighe_forupto3_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/bridge/forupto3
+
+//Value Computed by CMake
+brighe_forupto3_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/bridge/forupto3
+
+//Value Computed by CMake
+brighe_forupto4_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/bridge/forupto4
+
+//Value Computed by CMake
+brighe_forupto4_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/bridge/forupto4
+
+//Value Computed by CMake
 cref_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/basics/cref
 
 //Value Computed by CMake
@@ -476,7 +500,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=25
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=30
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
