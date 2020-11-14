@@ -10,8 +10,7 @@
 	{
 		"commands" : 
 		[
-			"ADD_EXECUTABLE",
-			"target_link_libraries"
+			"ADD_EXECUTABLE"
 		],
 		"files" : 
 		[
@@ -26,12 +25,6 @@
 				"command" : 0,
 				"file" : 0,
 				"line" : 4,
-				"parent" : 0
-			},
-			{
-				"command" : 1,
-				"file" : 0,
-				"line" : 6,
 				"parent" : 0
 			}
 		]
@@ -67,31 +60,6 @@
 			{
 				"fragment" : "-rdynamic",
 				"role" : "flags"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-llibpqxx",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-lboost_thread",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-lboost_system",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-lQt5::Core",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-lQt5::Widgets",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"

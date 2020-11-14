@@ -6,7 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/jhon/Sublime_tests/6_BOOST_development_cookbook/01_11_noncopyable/main.cpp
-boost/noncopyable.hpp
+/home/jhon/Sublime_tests/6_BOOST_development_cookbook/02_03_scoped_array/main.cpp
+boost/scoped_array.hpp
+-
+stdexcept
+-
+assert.h
 -
 

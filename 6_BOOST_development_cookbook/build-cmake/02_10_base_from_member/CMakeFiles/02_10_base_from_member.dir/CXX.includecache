@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/jhon/Sublime_tests/6_BOOST_development_cookbook/01_05_optional/main.cpp
-boost/optional.hpp
+/home/jhon/Sublime_tests/6_BOOST_development_cookbook/02_10_base_from_member/main.cpp
+boost/noncopyable.hpp
 -
-iostream
+sstream
 -
-stdlib.h
+boost/utility/base_from_member.hpp
 -
 

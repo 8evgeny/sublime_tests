@@ -6,9 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/jhon/Sublime_tests/6_BOOST_development_cookbook/01_06_array/main.cpp
-boost/array.hpp
+/home/jhon/Sublime_tests/6_BOOST_development_cookbook/02_05_function_fobject/main.cpp
+functional
+-
+boost/function.hpp
+-
+vector
 -
 algorithm
+-
+boost/bind.hpp
 -
 

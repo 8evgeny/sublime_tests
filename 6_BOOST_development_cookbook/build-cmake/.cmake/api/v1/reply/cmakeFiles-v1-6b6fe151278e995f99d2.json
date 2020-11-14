@@ -182,13 +182,7 @@
 			"path" : "02_01_scoped_ptr/CMakeLists.txt"
 		},
 		{
-			"path" : "02_02_shared_ptr/CMakeLists.txt"
-		},
-		{
 			"path" : "02_03_scoped_array/CMakeLists.txt"
-		},
-		{
-			"path" : "02_04_shared_array/CMakeLists.txt"
 		},
 		{
 			"path" : "02_05_function_fobject/CMakeLists.txt"
