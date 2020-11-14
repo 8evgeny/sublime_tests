@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "01_11_noncopyable/01_11_noncopyable"
+			"path" : "01_12_A_noncopyable_movable/01_12_A_noncopyable_movable"
 		}
 	],
 	"backtrace" : 1,
@@ -10,12 +10,11 @@
 	{
 		"commands" : 
 		[
-			"ADD_EXECUTABLE",
-			"target_link_libraries"
+			"ADD_EXECUTABLE"
 		],
 		"files" : 
 		[
-			"01_11_noncopyable/CMakeLists.txt"
+			"01_12_A_noncopyable_movable/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -26,12 +25,6 @@
 				"command" : 0,
 				"file" : 0,
 				"line" : 4,
-				"parent" : 0
-			},
-			{
-				"command" : 1,
-				"file" : 0,
-				"line" : 6,
 				"parent" : 0
 			}
 		]
@@ -55,7 +48,7 @@
 			]
 		}
 	],
-	"id" : "01_11_noncopyable::@77c11ffb79436897e8b6",
+	"id" : "01_12_A_noncopyable_movable::@678238208bafe4e8e5e8",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -67,36 +60,16 @@
 			{
 				"fragment" : "-rdynamic",
 				"role" : "flags"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-llibpqxx",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-lboost_program_options",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-lQt5::Core",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-lQt5::Widgets",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
-	"name" : "01_11_noncopyable",
-	"nameOnDisk" : "01_11_noncopyable",
+	"name" : "01_12_A_noncopyable_movable",
+	"nameOnDisk" : "01_12_A_noncopyable_movable",
 	"paths" : 
 	{
-		"build" : "01_11_noncopyable",
-		"source" : "01_11_noncopyable"
+		"build" : "01_12_A_noncopyable_movable",
+		"source" : "01_12_A_noncopyable_movable"
 	},
 	"sourceGroups" : 
 	[
@@ -113,7 +86,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "01_11_noncopyable/main.cpp",
+			"path" : "01_12_A_noncopyable_movable/main.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

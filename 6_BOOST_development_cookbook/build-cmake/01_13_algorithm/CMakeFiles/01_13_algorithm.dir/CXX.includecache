@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/6_BOOST_development_cookbook/01_13_algorithm/main.cpp
+boost/array.hpp
+-
+boost/algorithm/cxx11/iota.hpp
+-
+boost/array.hpp
+-
+boost/algorithm/hex.hpp
+-
+iterator
+-
+iostream
+-
+assert.h
+-
+
