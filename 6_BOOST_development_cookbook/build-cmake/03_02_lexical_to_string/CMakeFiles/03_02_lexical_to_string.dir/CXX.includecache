@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/6_BOOST_development_cookbook/03_02_lexical_to_string/main.cpp
+assert.h
+-
+boost/lexical_cast.hpp
+-
+sstream
+-
+cstdlib
+-
+

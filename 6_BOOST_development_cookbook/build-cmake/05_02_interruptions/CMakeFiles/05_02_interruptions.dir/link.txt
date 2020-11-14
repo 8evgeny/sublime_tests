@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/05_02_interruptions.dir/main.o -o 05_02_interruptions  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 
+/usr/bin/g++ -g -rdynamic CMakeFiles/05_02_interruptions.dir/main.o -o 05_02_interruptions 

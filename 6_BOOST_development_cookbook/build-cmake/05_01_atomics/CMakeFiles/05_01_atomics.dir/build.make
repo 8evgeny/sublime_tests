@@ -98,6 +98,8 @@ include 05_01_atomics/CMakeFiles/05_01_atomics.dir/flags.make
 
 05_01_atomics/05_01_atomics: 05_01_atomics/CMakeFiles/05_01_atomics.dir/main.o
 05_01_atomics/05_01_atomics: 05_01_atomics/CMakeFiles/05_01_atomics.dir/build.make
+05_01_atomics/05_01_atomics: /usr/lib/libboost_thread.so
+05_01_atomics/05_01_atomics: /usr/lib/libboost_system.so
 05_01_atomics/05_01_atomics: 05_01_atomics/CMakeFiles/05_01_atomics.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable 05_01_atomics"
 	cd /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/05_01_atomics && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/05_01_atomics.dir/link.txt --verbose=$(VERBOSE)

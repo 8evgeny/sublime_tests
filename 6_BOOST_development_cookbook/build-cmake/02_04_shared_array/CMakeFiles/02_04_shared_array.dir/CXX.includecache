@@ -9,7 +9,7 @@
 /home/jhon/Sublime_tests/6_BOOST_development_cookbook/02_04_shared_array/main.cpp
 cstring
 -
-boost/thread.hpp
+boost/thread/thread.hpp
 -
 boost/bind.hpp
 -

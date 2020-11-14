@@ -1,16 +1,23 @@
 set(CMAKE_CXX_STANDARD 17)
    
-
 ADD_EXECUTABLE(05_01_atomics main.cpp  )
 
- target_link_libraries(05_01_atomics
-    PUBLIC libpqxx
-    PUBLIC boost_thread
-    PUBLIC boost_system
-    Qt5::Core
-    Qt5::Widgets
-        # CONFIG
-        )
+#find_package(Boost COMPONENTS boost_thread  REQUIRED)
+#if(NOT Boost_FOUND)
+#        message(SEND_ERROR "Failed to find boost::boost_thread.")
+#        return()
+#else()
+#        include_directories(${Boost_INCLUDE_DIRS})
+#endif()
+
+
+target_link_libraries(
+    05_01_atomics
+    /usr/lib/libboost_thread.so
+    /usr/lib/libboost_system.so
+#    ${Boost}
+    )
+
 
 
 

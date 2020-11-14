@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/6_BOOST_development_cookbook/04_04_is_stdvector/main.cpp
+vector
+-
+boost/type_traits/integral_constant.hpp
+-
+boost/static_assert.hpp
+-
+

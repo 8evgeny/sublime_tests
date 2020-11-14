@@ -1,0 +1,786 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						37
+					],
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "01_02_any",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "01_02_any",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "01_03_variant",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "01_03_variant",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "01_04_A_any_db_example",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "01_04_A_any_db_example",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "01_04_B_variant_db_example",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "01_04_B_variant_db_example",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "01_05_optional",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "01_05_optional",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "01_06_array",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "01_06_array",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "01_07_A_tuple",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "01_07_A_tuple",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "01_07_B_tuple_construction_order",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "01_07_B_tuple_construction_order",
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"build" : "01_08_bind",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "01_08_bind",
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"build" : "01_09_type_index",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "01_09_type_index",
+					"targetIndexes" : 
+					[
+						9
+					]
+				},
+				{
+					"build" : "01_10_A_move",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "01_10_A_move",
+					"targetIndexes" : 
+					[
+						10
+					]
+				},
+				{
+					"build" : "01_11_noncopyable",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "01_11_noncopyable",
+					"targetIndexes" : 
+					[
+						11
+					]
+				},
+				{
+					"build" : "01_12_A_noncopyable_movable",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "01_12_A_noncopyable_movable",
+					"targetIndexes" : 
+					[
+						12
+					]
+				},
+				{
+					"build" : "01_13_algorithm",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "01_13_algorithm",
+					"targetIndexes" : 
+					[
+						13
+					]
+				},
+				{
+					"build" : "02_01_scoped_ptr",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "02_01_scoped_ptr",
+					"targetIndexes" : 
+					[
+						14
+					]
+				},
+				{
+					"build" : "02_03_scoped_array",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "02_03_scoped_array",
+					"targetIndexes" : 
+					[
+						15
+					]
+				},
+				{
+					"build" : "02_05_function_fobject",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "02_05_function_fobject",
+					"targetIndexes" : 
+					[
+						16
+					]
+				},
+				{
+					"build" : "02_06_function_fpointer",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "02_06_function_fpointer",
+					"targetIndexes" : 
+					[
+						17
+					]
+				},
+				{
+					"build" : "02_07_function_lambda_c++11",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "02_07_function_lambda_c++11",
+					"targetIndexes" : 
+					[
+						18
+					]
+				},
+				{
+					"build" : "02_08_ptr_container_c++11",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "02_08_ptr_container_c++11",
+					"targetIndexes" : 
+					[
+						19
+					]
+				},
+				{
+					"build" : "02_09_scope_exit",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "02_09_scope_exit",
+					"targetIndexes" : 
+					[
+						20
+					]
+				},
+				{
+					"build" : "02_10_base_from_member",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "02_10_base_from_member",
+					"targetIndexes" : 
+					[
+						21
+					]
+				},
+				{
+					"build" : "03_01_lexical_to_number",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "03_01_lexical_to_number",
+					"targetIndexes" : 
+					[
+						22
+					]
+				},
+				{
+					"build" : "03_02_lexical_to_string",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "03_02_lexical_to_string",
+					"targetIndexes" : 
+					[
+						23
+					]
+				},
+				{
+					"build" : "03_03_numeric_cast",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "03_03_numeric_cast",
+					"targetIndexes" : 
+					[
+						24
+					]
+				},
+				{
+					"build" : "03_04_lexical_user_defined",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "03_04_lexical_user_defined",
+					"targetIndexes" : 
+					[
+						25
+					]
+				},
+				{
+					"build" : "03_05_polymorphic_cast",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "03_05_polymorphic_cast",
+					"targetIndexes" : 
+					[
+						26
+					]
+				},
+				{
+					"build" : "03_06_spirit",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "03_06_spirit",
+					"targetIndexes" : 
+					[
+						27
+					]
+				},
+				{
+					"build" : "03_07_spirit_rules",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "03_07_spirit_rules",
+					"targetIndexes" : 
+					[
+						28
+					]
+				},
+				{
+					"build" : "04_01_conditional",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "04_01_conditional",
+					"targetIndexes" : 
+					[
+						29
+					]
+				},
+				{
+					"build" : "04_02_disable_if_c",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "04_02_disable_if_c",
+					"targetIndexes" : 
+					[
+						30
+					]
+				},
+				{
+					"build" : "04_03_enable_if_c",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "04_03_enable_if_c",
+					"targetIndexes" : 
+					[
+						31
+					]
+				},
+				{
+					"build" : "04_04_is_stdvector",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "04_04_is_stdvector",
+					"targetIndexes" : 
+					[
+						32
+					]
+				},
+				{
+					"build" : "04_05_mpl_int_",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "04_05_mpl_int_",
+					"targetIndexes" : 
+					[
+						33
+					]
+				},
+				{
+					"build" : "04_06_static_assert",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "04_06_static_assert",
+					"targetIndexes" : 
+					[
+						34
+					]
+				},
+				{
+					"build" : "04_07_typeof",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "04_07_typeof",
+					"targetIndexes" : 
+					[
+						35
+					]
+				},
+				{
+					"build" : "06_01_tasks_processor_base",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "06_01_tasks_processor_base",
+					"targetIndexes" : 
+					[
+						36
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						37
+					],
+					"name" : "Project",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "01_01_02_any::@c7dbb819398dea9e4eab",
+					"jsonFile" : "target-01_01_02_any-Debug-512d68e5f2684d8b07a3.json",
+					"name" : "01_01_02_any",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "01_01_03_variant::@782309c8214b716642f2",
+					"jsonFile" : "target-01_01_03_variant-Debug-ffebff03e7079c0f683a.json",
+					"name" : "01_01_03_variant",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "01_04_A_any_db_example::@acc03dee80b71911b2d6",
+					"jsonFile" : "target-01_04_A_any_db_example-Debug-a1f924c86b6b027598bf.json",
+					"name" : "01_04_A_any_db_example",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "01_04_B_variant_db_example::@c61f20edabdee9cdedc0",
+					"jsonFile" : "target-01_04_B_variant_db_example-Debug-0aee9b28be8add06febf.json",
+					"name" : "01_04_B_variant_db_example",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "01_05_optional::@0aea9cf4bcad1579b2d4",
+					"jsonFile" : "target-01_05_optional-Debug-5790c1c40d0040c819f6.json",
+					"name" : "01_05_optional",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "01_06_array::@fa9bd87e2c846681f2ef",
+					"jsonFile" : "target-01_06_array-Debug-46614f102657982ff89f.json",
+					"name" : "01_06_array",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "01_07_A_tuple::@758c1a3240524943d4de",
+					"jsonFile" : "target-01_07_A_tuple-Debug-8854cff12f4dc1f4a648.json",
+					"name" : "01_07_A_tuple",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "01_07_B_tuple_construction_order::@c9e69c244792e1365728",
+					"jsonFile" : "target-01_07_B_tuple_construction_order-Debug-22ee8152b5f7e2bf142c.json",
+					"name" : "01_07_B_tuple_construction_order",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "01_08_bind::@ca80d819c4fbb0e0bb46",
+					"jsonFile" : "target-01_08_bind-Debug-e1b72e39c0badff19654.json",
+					"name" : "01_08_bind",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 10,
+					"id" : "01_09_type_index::@cb5782c62541c48c3a81",
+					"jsonFile" : "target-01_09_type_index-Debug-179a014af8b67ca0a142.json",
+					"name" : "01_09_type_index",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 11,
+					"id" : "01_10_A_move::@43ef16577f8fd9f76921",
+					"jsonFile" : "target-01_10_A_move-Debug-9e04c777751f790a3f27.json",
+					"name" : "01_10_A_move",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "01_11_noncopyable::@77c11ffb79436897e8b6",
+					"jsonFile" : "target-01_11_noncopyable-Debug-3c26dc9185f8dcb99d27.json",
+					"name" : "01_11_noncopyable",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 13,
+					"id" : "01_12_A_noncopyable_movable::@678238208bafe4e8e5e8",
+					"jsonFile" : "target-01_12_A_noncopyable_movable-Debug-6a33fbe1e0750653aecc.json",
+					"name" : "01_12_A_noncopyable_movable",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 14,
+					"id" : "01_13_algorithm::@37bde187b01de32be8e3",
+					"jsonFile" : "target-01_13_algorithm-Debug-9707d23c953eb38ecfee.json",
+					"name" : "01_13_algorithm",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "02_01_scoped_ptr::@d0a734af9437140e959a",
+					"jsonFile" : "target-02_01_scoped_ptr-Debug-628654389c1b00b49281.json",
+					"name" : "02_01_scoped_ptr",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 16,
+					"id" : "02_03_scoped_array::@33480544097adc2fd502",
+					"jsonFile" : "target-02_03_scoped_array-Debug-4ced73559a59b942d60d.json",
+					"name" : "02_03_scoped_array",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 17,
+					"id" : "02_05_function_fobject::@77378e64dc2ee4145ecd",
+					"jsonFile" : "target-02_05_function_fobject-Debug-02fd575b78afb1e5a64c.json",
+					"name" : "02_05_function_fobject",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 18,
+					"id" : "02_06_function_fpointer::@f0a1e8636f51b36fece7",
+					"jsonFile" : "target-02_06_function_fpointer-Debug-842d3c0218b8b95c3297.json",
+					"name" : "02_06_function_fpointer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 19,
+					"id" : "02_07_function_lambda_c++11::@1305a8d621ed4c22641c",
+					"jsonFile" : "target-02_07_function_lambda_c++11-Debug-2ae3a4d2d789e16dcfd8.json",
+					"name" : "02_07_function_lambda_c++11",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 20,
+					"id" : "02_08_ptr_container_c++11::@c332c60f2ec4a64662ce",
+					"jsonFile" : "target-02_08_ptr_container_c++11-Debug-edd63182e80bb54a9faf.json",
+					"name" : "02_08_ptr_container_c++11",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 21,
+					"id" : "02_09_scope_exit::@c60eaee354b57cd8912a",
+					"jsonFile" : "target-02_09_scope_exit-Debug-f45e58b407bc2552cc3d.json",
+					"name" : "02_09_scope_exit",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 22,
+					"id" : "02_10_base_from_member::@7159d280c2ba04e65e48",
+					"jsonFile" : "target-02_10_base_from_member-Debug-9f1acd628df252934ca4.json",
+					"name" : "02_10_base_from_member",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 23,
+					"id" : "03_01_lexical_to_number::@e4658221bdef87bec7cc",
+					"jsonFile" : "target-03_01_lexical_to_number-Debug-00e895d6630a2d1cb2b4.json",
+					"name" : "03_01_lexical_to_number",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 24,
+					"id" : "03_02_lexical_to_string::@5b69a7368159af8fc3e2",
+					"jsonFile" : "target-03_02_lexical_to_string-Debug-09935683ee656ec9a6e9.json",
+					"name" : "03_02_lexical_to_string",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 25,
+					"id" : "03_03_numeric_cast::@33953c994eeca8f2fe3e",
+					"jsonFile" : "target-03_03_numeric_cast-Debug-cf702720b5dad166adc0.json",
+					"name" : "03_03_numeric_cast",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 26,
+					"id" : "03_04_lexical_user_defined::@49064f36bdcf97921846",
+					"jsonFile" : "target-03_04_lexical_user_defined-Debug-a29a784328f9708e6d52.json",
+					"name" : "03_04_lexical_user_defined",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 27,
+					"id" : "03_05_polymorphic_cast::@e7acf5a247fc3c811456",
+					"jsonFile" : "target-03_05_polymorphic_cast-Debug-2e0efd0d40eddc7e3ea3.json",
+					"name" : "03_05_polymorphic_cast",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 28,
+					"id" : "03_06_spirit::@759402c7a51e24674287",
+					"jsonFile" : "target-03_06_spirit-Debug-e80772db1988352d7afc.json",
+					"name" : "03_06_spirit",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 29,
+					"id" : "03_07_spirit_rules::@6d89046c10a371cd365e",
+					"jsonFile" : "target-03_07_spirit_rules-Debug-968741cd2156ae78fba8.json",
+					"name" : "03_07_spirit_rules",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 30,
+					"id" : "04_01_conditional::@a61c856b3aea19a260ed",
+					"jsonFile" : "target-04_01_conditional-Debug-929c887480591a692f24.json",
+					"name" : "04_01_conditional",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 31,
+					"id" : "04_02_disable_if_c::@adcc46bdc91acc82d7f9",
+					"jsonFile" : "target-04_02_disable_if_c-Debug-3f50de39ecfcf087af3f.json",
+					"name" : "04_02_disable_if_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 32,
+					"id" : "04_03_enable_if_c::@3ebac0e50f0e2722622d",
+					"jsonFile" : "target-04_03_enable_if_c-Debug-3b0b36bd9bdb1c0319bf.json",
+					"name" : "04_03_enable_if_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 33,
+					"id" : "04_04_is_stdvector::@63490c282b6231e4f245",
+					"jsonFile" : "target-04_04_is_stdvector-Debug-896c41e3d5b5074c9ae5.json",
+					"name" : "04_04_is_stdvector",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 34,
+					"id" : "04_05_mpl_int_::@eb91023732861533603a",
+					"jsonFile" : "target-04_05_mpl_int_-Debug-26a5c0ba4d8677ea4079.json",
+					"name" : "04_05_mpl_int_",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 35,
+					"id" : "04_06_static_assert::@fbe31a9cceb29e4622b9",
+					"jsonFile" : "target-04_06_static_assert-Debug-002272f717f49862f8f1.json",
+					"name" : "04_06_static_assert",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 36,
+					"id" : "04_07_typeof::@57324a0cee621a8fb4a1",
+					"jsonFile" : "target-04_07_typeof-Debug-9ea1245687b0938736cc.json",
+					"name" : "04_07_typeof",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 37,
+					"id" : "06_01_tasks_processor_base::@26f8641b67b3bda777f4",
+					"jsonFile" : "target-06_01_tasks_processor_base-Debug-91e58a3fc4df005b36ed.json",
+					"name" : "06_01_tasks_processor_base",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake",
+		"source" : "/home/jhon/Sublime_tests/6_BOOST_development_cookbook"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 1
+	}
+}

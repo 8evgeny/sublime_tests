@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/04_06_static_assert.dir/main.o -o 04_06_static_assert  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 
+/usr/bin/g++ -g -rdynamic CMakeFiles/04_06_static_assert.dir/main.o -o 04_06_static_assert 

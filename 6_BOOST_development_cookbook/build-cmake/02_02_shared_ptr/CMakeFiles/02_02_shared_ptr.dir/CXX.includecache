@@ -7,8 +7,8 @@
 #IncludeRegexTransform: 
 
 /home/jhon/Sublime_tests/6_BOOST_development_cookbook/02_02_shared_ptr/main.cpp
-boost/thread.hpp
--
+boost/thread/thread.hpp
+/home/jhon/Sublime_tests/6_BOOST_development_cookbook/02_02_shared_ptr/boost/thread/thread.hpp
 boost/bind.hpp
 -
 boost/shared_ptr.hpp

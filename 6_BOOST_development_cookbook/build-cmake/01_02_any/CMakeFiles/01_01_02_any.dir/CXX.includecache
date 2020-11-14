@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/6_BOOST_development_cookbook/01_02_any/main.cpp
+boost/any.hpp
+-
+iostream
+-
+vector
+-
+string
+-
+list
+-
+boost/any.hpp
+-
+

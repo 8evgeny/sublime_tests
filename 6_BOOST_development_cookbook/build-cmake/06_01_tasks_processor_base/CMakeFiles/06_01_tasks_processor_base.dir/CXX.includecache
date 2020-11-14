@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/6_BOOST_development_cookbook/06_01_tasks_processor_base/main.cpp
+tasks_processor_base.hpp
+/home/jhon/Sublime_tests/6_BOOST_development_cookbook/06_01_tasks_processor_base/tasks_processor_base.hpp
+
+/home/jhon/Sublime_tests/6_BOOST_development_cookbook/06_01_tasks_processor_base/tasks_processor_base.hpp
+boost/thread/thread.hpp
+-
+boost/asio/io_service.hpp
+-
+iostream
+-
+

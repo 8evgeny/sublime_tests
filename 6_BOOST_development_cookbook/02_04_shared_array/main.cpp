@@ -1,6 +1,7 @@
  
 #include <cstring>
-#include <boost/thread.hpp>
+//#include <boost/thread.hpp>
+#include <boost/thread/thread.hpp>
 #include <boost/bind.hpp>
 
 void do_process(const char* data, std::size_t size);

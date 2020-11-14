@@ -98,6 +98,8 @@ include 06_01_tasks_processor_base/CMakeFiles/06_01_tasks_processor_base.dir/fla
 
 06_01_tasks_processor_base/06_01_tasks_processor_base: 06_01_tasks_processor_base/CMakeFiles/06_01_tasks_processor_base.dir/main.o
 06_01_tasks_processor_base/06_01_tasks_processor_base: 06_01_tasks_processor_base/CMakeFiles/06_01_tasks_processor_base.dir/build.make
+06_01_tasks_processor_base/06_01_tasks_processor_base: /usr/lib/libboost_thread.so
+06_01_tasks_processor_base/06_01_tasks_processor_base: /usr/lib/libboost_system.so
 06_01_tasks_processor_base/06_01_tasks_processor_base: 06_01_tasks_processor_base/CMakeFiles/06_01_tasks_processor_base.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable 06_01_tasks_processor_base"
 	cd /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/06_01_tasks_processor_base && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/06_01_tasks_processor_base.dir/link.txt --verbose=$(VERBOSE)

@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/6_BOOST_development_cookbook/01_07_A_tuple/main.cpp
+boost/tuple/tuple.hpp
+-
+string
+-
+boost/tuple/tuple_comparison.hpp
+-
+assert.h
+-
+set
+-
+

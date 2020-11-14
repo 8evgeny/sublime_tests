@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/6_BOOST_development_cookbook/04_07_typeof/main.cpp
+functional
+-
+boost/bind.hpp
+-
+boost/typeof/typeof.hpp
+-
+boost/static_assert.hpp
+-
+boost/type_traits/is_same.hpp
+-
+boost/tuple/tuple.hpp
+-
+

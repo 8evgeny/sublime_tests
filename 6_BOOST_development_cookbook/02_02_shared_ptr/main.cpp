@@ -16,7 +16,8 @@ foo_class* get_data() {
 }
 
 
-#include <boost/thread.hpp>
+//#include <boost/thread.hpp>
+#include <boost/thread/thread.hpp>
 #include <boost/bind.hpp>
 
 void process1(const foo_class* p);
