@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/algo.dir/accumulate1.o -o algo 

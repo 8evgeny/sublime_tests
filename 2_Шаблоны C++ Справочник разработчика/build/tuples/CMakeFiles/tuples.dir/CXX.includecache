@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/tuples/compressedtuple1.cpp
+algorithm
+-
+tupleelt1.hpp
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/tuples/tupleelt1.hpp
+tuplestorage3.hpp
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/tuples/tuplestorage3.hpp
+iostream
+-
+
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/tuples/tupleelt1.hpp
+
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/tuples/tuplestorage3.hpp
+

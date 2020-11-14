@@ -1,0 +1,86 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "algo",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "algo",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "alloc",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "alloc",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "Project",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "algo::@bb83f9c1dd657cfdedea",
+					"jsonFile" : "target-algo-Debug-c4c8252cea2899046fd4.json",
+					"name" : "algo",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "alloc::@78de51ed3440289ebc52",
+					"jsonFile" : "target-alloc-Debug-2c341941c9bfa0dd2a01.json",
+					"name" : "alloc",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/jhon/Sublime_tests/3_\u0414\u0436\u043e\u0441\u0430\u0442\u0442\u0438\u0441 \u0421\u0442\u0430\u043d\u0434\u0430\u0440\u0442\u043d\u0430\u044f \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430 \u0421++/build",
+		"source" : "/home/jhon/Sublime_tests/3_\u0414\u0436\u043e\u0441\u0430\u0442\u0442\u0438\u0441 \u0421\u0442\u0430\u043d\u0434\u0430\u0440\u0442\u043d\u0430\u044f \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430 \u0421++"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 1
+	}
+}

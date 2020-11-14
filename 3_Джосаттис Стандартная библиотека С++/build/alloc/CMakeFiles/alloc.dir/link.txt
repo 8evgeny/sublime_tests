@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/alloc.dir/myalloc11.o -o alloc 

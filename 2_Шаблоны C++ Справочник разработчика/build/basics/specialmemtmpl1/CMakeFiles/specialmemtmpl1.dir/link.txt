@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/specialmemtmpl1.dir/specialmemtmpl1.o -o specialmemtmpl1 

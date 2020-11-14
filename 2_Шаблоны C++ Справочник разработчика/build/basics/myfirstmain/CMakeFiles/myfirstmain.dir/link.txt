@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/myfirstmain.dir/myfirstmain.o -o myfirstmain 

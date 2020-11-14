@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/basics/arrays/arrays.cpp
+arrays.hpp
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/basics/arrays/arrays.hpp
+
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/basics/arrays/arrays.hpp
+iostream
+-
+

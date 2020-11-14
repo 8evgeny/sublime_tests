@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/basics/max1/max1.cpp
+max1.hpp
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/basics/max1/max1.hpp
+iostream
+-
+string
+-
+
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/basics/max1/max1.hpp
+

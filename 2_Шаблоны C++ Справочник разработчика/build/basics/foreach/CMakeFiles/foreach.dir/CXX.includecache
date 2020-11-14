@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/basics/foreach/foreach.cpp
+iostream
+-
+vector
+-
+foreach.hpp
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/basics/foreach/foreach.hpp
+
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/basics/foreach/foreach.hpp
+

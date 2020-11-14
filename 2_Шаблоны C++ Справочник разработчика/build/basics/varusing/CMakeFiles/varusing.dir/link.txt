@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/varusing.dir/varusing.o -o varusing 
