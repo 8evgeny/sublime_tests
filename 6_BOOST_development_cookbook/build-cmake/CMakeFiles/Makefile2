@@ -87,9 +87,7 @@ all: 01_11_noncopyable/all
 all: 01_12_A_noncopyable_movable/all
 all: 01_13_algorithm/all
 all: 02_01_scoped_ptr/all
-all: 02_02_shared_ptr/all
 all: 02_03_scoped_array/all
-all: 02_04_shared_array/all
 all: 02_05_function_fobject/all
 all: 02_06_function_fpointer/all
 all: 02_07_function_lambda_c++11/all
@@ -187,9 +185,7 @@ preinstall: 01_11_noncopyable/preinstall
 preinstall: 01_12_A_noncopyable_movable/preinstall
 preinstall: 01_13_algorithm/preinstall
 preinstall: 02_01_scoped_ptr/preinstall
-preinstall: 02_02_shared_ptr/preinstall
 preinstall: 02_03_scoped_array/preinstall
-preinstall: 02_04_shared_array/preinstall
 preinstall: 02_05_function_fobject/preinstall
 preinstall: 02_06_function_fpointer/preinstall
 preinstall: 02_07_function_lambda_c++11/preinstall
@@ -287,9 +283,7 @@ clean: 01_11_noncopyable/clean
 clean: 01_12_A_noncopyable_movable/clean
 clean: 01_13_algorithm/clean
 clean: 02_01_scoped_ptr/clean
-clean: 02_02_shared_ptr/clean
 clean: 02_03_scoped_array/clean
-clean: 02_04_shared_array/clean
 clean: 02_05_function_fobject/clean
 clean: 02_06_function_fpointer/clean
 clean: 02_07_function_lambda_c++11/clean
@@ -642,24 +636,6 @@ clean: 12_07_gil/clean
 .PHONY : 02_01_scoped_ptr/clean
 
 #=============================================================================
-# Directory level rules for directory 02_02_shared_ptr
-
-# Recursive "all" directory target.
-02_02_shared_ptr/all: 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/all
-
-.PHONY : 02_02_shared_ptr/all
-
-# Recursive "preinstall" directory target.
-02_02_shared_ptr/preinstall:
-
-.PHONY : 02_02_shared_ptr/preinstall
-
-# Recursive "clean" directory target.
-02_02_shared_ptr/clean: 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/clean
-
-.PHONY : 02_02_shared_ptr/clean
-
-#=============================================================================
 # Directory level rules for directory 02_03_scoped_array
 
 # Recursive "all" directory target.
@@ -676,24 +652,6 @@ clean: 12_07_gil/clean
 02_03_scoped_array/clean: 02_03_scoped_array/CMakeFiles/02_03_scoped_array.dir/clean
 
 .PHONY : 02_03_scoped_array/clean
-
-#=============================================================================
-# Directory level rules for directory 02_04_shared_array
-
-# Recursive "all" directory target.
-02_04_shared_array/all: 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/all
-
-.PHONY : 02_04_shared_array/all
-
-# Recursive "preinstall" directory target.
-02_04_shared_array/preinstall:
-
-.PHONY : 02_04_shared_array/preinstall
-
-# Recursive "clean" directory target.
-02_04_shared_array/clean: 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/clean
-
-.PHONY : 02_04_shared_array/clean
 
 #=============================================================================
 # Directory level rules for directory 02_05_function_fobject
@@ -2505,40 +2463,13 @@ clean: 12_07_gil/clean
 .PHONY : 02_01_scoped_ptr/CMakeFiles/02_01_scoped_ptr.dir/clean
 
 #=============================================================================
-# Target rules for target 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir
-
-# All Build rule for target.
-02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/all:
-	$(MAKE) $(MAKESILENT) -f 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/build.make 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/depend
-	$(MAKE) $(MAKESILENT) -f 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/build.make 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=16 "Built target 02_02_shared_ptr"
-.PHONY : 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/all
-
-# Build rule for subdir invocation for target.
-02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 1
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 0
-.PHONY : 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/rule
-
-# Convenience name for target.
-02_02_shared_ptr: 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/rule
-
-.PHONY : 02_02_shared_ptr
-
-# clean rule for target.
-02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/clean:
-	$(MAKE) $(MAKESILENT) -f 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/build.make 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/clean
-.PHONY : 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/clean
-
-#=============================================================================
 # Target rules for target 02_03_scoped_array/CMakeFiles/02_03_scoped_array.dir
 
 # All Build rule for target.
 02_03_scoped_array/CMakeFiles/02_03_scoped_array.dir/all:
 	$(MAKE) $(MAKESILENT) -f 02_03_scoped_array/CMakeFiles/02_03_scoped_array.dir/build.make 02_03_scoped_array/CMakeFiles/02_03_scoped_array.dir/depend
 	$(MAKE) $(MAKESILENT) -f 02_03_scoped_array/CMakeFiles/02_03_scoped_array.dir/build.make 02_03_scoped_array/CMakeFiles/02_03_scoped_array.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=17 "Built target 02_03_scoped_array"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=16 "Built target 02_03_scoped_array"
 .PHONY : 02_03_scoped_array/CMakeFiles/02_03_scoped_array.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2559,40 +2490,13 @@ clean: 12_07_gil/clean
 .PHONY : 02_03_scoped_array/CMakeFiles/02_03_scoped_array.dir/clean
 
 #=============================================================================
-# Target rules for target 02_04_shared_array/CMakeFiles/02_04_shared_array.dir
-
-# All Build rule for target.
-02_04_shared_array/CMakeFiles/02_04_shared_array.dir/all:
-	$(MAKE) $(MAKESILENT) -f 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/build.make 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/depend
-	$(MAKE) $(MAKESILENT) -f 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/build.make 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=18 "Built target 02_04_shared_array"
-.PHONY : 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/all
-
-# Build rule for subdir invocation for target.
-02_04_shared_array/CMakeFiles/02_04_shared_array.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 1
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 0
-.PHONY : 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/rule
-
-# Convenience name for target.
-02_04_shared_array: 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/rule
-
-.PHONY : 02_04_shared_array
-
-# clean rule for target.
-02_04_shared_array/CMakeFiles/02_04_shared_array.dir/clean:
-	$(MAKE) $(MAKESILENT) -f 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/build.make 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/clean
-.PHONY : 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/clean
-
-#=============================================================================
 # Target rules for target 02_05_function_fobject/CMakeFiles/02_05_function_fobject.dir
 
 # All Build rule for target.
 02_05_function_fobject/CMakeFiles/02_05_function_fobject.dir/all:
 	$(MAKE) $(MAKESILENT) -f 02_05_function_fobject/CMakeFiles/02_05_function_fobject.dir/build.make 02_05_function_fobject/CMakeFiles/02_05_function_fobject.dir/depend
 	$(MAKE) $(MAKESILENT) -f 02_05_function_fobject/CMakeFiles/02_05_function_fobject.dir/build.make 02_05_function_fobject/CMakeFiles/02_05_function_fobject.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=19 "Built target 02_05_function_fobject"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=17 "Built target 02_05_function_fobject"
 .PHONY : 02_05_function_fobject/CMakeFiles/02_05_function_fobject.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2619,7 +2523,7 @@ clean: 12_07_gil/clean
 02_06_function_fpointer/CMakeFiles/02_06_function_fpointer.dir/all:
 	$(MAKE) $(MAKESILENT) -f 02_06_function_fpointer/CMakeFiles/02_06_function_fpointer.dir/build.make 02_06_function_fpointer/CMakeFiles/02_06_function_fpointer.dir/depend
 	$(MAKE) $(MAKESILENT) -f 02_06_function_fpointer/CMakeFiles/02_06_function_fpointer.dir/build.make 02_06_function_fpointer/CMakeFiles/02_06_function_fpointer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=20 "Built target 02_06_function_fpointer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=18 "Built target 02_06_function_fpointer"
 .PHONY : 02_06_function_fpointer/CMakeFiles/02_06_function_fpointer.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2646,7 +2550,7 @@ clean: 12_07_gil/clean
 02_07_function_lambda_c++11/CMakeFiles/02_07_function_lambda_c++11.dir/all:
 	$(MAKE) $(MAKESILENT) -f 02_07_function_lambda_c++11/CMakeFiles/02_07_function_lambda_c++11.dir/build.make 02_07_function_lambda_c++11/CMakeFiles/02_07_function_lambda_c++11.dir/depend
 	$(MAKE) $(MAKESILENT) -f 02_07_function_lambda_c++11/CMakeFiles/02_07_function_lambda_c++11.dir/build.make 02_07_function_lambda_c++11/CMakeFiles/02_07_function_lambda_c++11.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=21 "Built target 02_07_function_lambda_c++11"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=19 "Built target 02_07_function_lambda_c++11"
 .PHONY : 02_07_function_lambda_c++11/CMakeFiles/02_07_function_lambda_c++11.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2673,7 +2577,7 @@ clean: 12_07_gil/clean
 02_08_ptr_container_c++11/CMakeFiles/02_08_ptr_container_c++11.dir/all:
 	$(MAKE) $(MAKESILENT) -f 02_08_ptr_container_c++11/CMakeFiles/02_08_ptr_container_c++11.dir/build.make 02_08_ptr_container_c++11/CMakeFiles/02_08_ptr_container_c++11.dir/depend
 	$(MAKE) $(MAKESILENT) -f 02_08_ptr_container_c++11/CMakeFiles/02_08_ptr_container_c++11.dir/build.make 02_08_ptr_container_c++11/CMakeFiles/02_08_ptr_container_c++11.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=22 "Built target 02_08_ptr_container_c++11"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=20 "Built target 02_08_ptr_container_c++11"
 .PHONY : 02_08_ptr_container_c++11/CMakeFiles/02_08_ptr_container_c++11.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2700,7 +2604,7 @@ clean: 12_07_gil/clean
 02_09_scope_exit/CMakeFiles/02_09_scope_exit.dir/all:
 	$(MAKE) $(MAKESILENT) -f 02_09_scope_exit/CMakeFiles/02_09_scope_exit.dir/build.make 02_09_scope_exit/CMakeFiles/02_09_scope_exit.dir/depend
 	$(MAKE) $(MAKESILENT) -f 02_09_scope_exit/CMakeFiles/02_09_scope_exit.dir/build.make 02_09_scope_exit/CMakeFiles/02_09_scope_exit.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=23 "Built target 02_09_scope_exit"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=21 "Built target 02_09_scope_exit"
 .PHONY : 02_09_scope_exit/CMakeFiles/02_09_scope_exit.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2727,7 +2631,7 @@ clean: 12_07_gil/clean
 02_10_base_from_member/CMakeFiles/02_10_base_from_member.dir/all:
 	$(MAKE) $(MAKESILENT) -f 02_10_base_from_member/CMakeFiles/02_10_base_from_member.dir/build.make 02_10_base_from_member/CMakeFiles/02_10_base_from_member.dir/depend
 	$(MAKE) $(MAKESILENT) -f 02_10_base_from_member/CMakeFiles/02_10_base_from_member.dir/build.make 02_10_base_from_member/CMakeFiles/02_10_base_from_member.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=24 "Built target 02_10_base_from_member"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=22 "Built target 02_10_base_from_member"
 .PHONY : 02_10_base_from_member/CMakeFiles/02_10_base_from_member.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2754,7 +2658,7 @@ clean: 12_07_gil/clean
 03_01_lexical_to_number/CMakeFiles/03_01_lexical_to_number.dir/all:
 	$(MAKE) $(MAKESILENT) -f 03_01_lexical_to_number/CMakeFiles/03_01_lexical_to_number.dir/build.make 03_01_lexical_to_number/CMakeFiles/03_01_lexical_to_number.dir/depend
 	$(MAKE) $(MAKESILENT) -f 03_01_lexical_to_number/CMakeFiles/03_01_lexical_to_number.dir/build.make 03_01_lexical_to_number/CMakeFiles/03_01_lexical_to_number.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=25 "Built target 03_01_lexical_to_number"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=23 "Built target 03_01_lexical_to_number"
 .PHONY : 03_01_lexical_to_number/CMakeFiles/03_01_lexical_to_number.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2781,12 +2685,12 @@ clean: 12_07_gil/clean
 03_02_lexical_to_string/CMakeFiles/03_02_lexical_to_string.dir/all:
 	$(MAKE) $(MAKESILENT) -f 03_02_lexical_to_string/CMakeFiles/03_02_lexical_to_string.dir/build.make 03_02_lexical_to_string/CMakeFiles/03_02_lexical_to_string.dir/depend
 	$(MAKE) $(MAKESILENT) -f 03_02_lexical_to_string/CMakeFiles/03_02_lexical_to_string.dir/build.make 03_02_lexical_to_string/CMakeFiles/03_02_lexical_to_string.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=26 "Built target 03_02_lexical_to_string"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=24,25 "Built target 03_02_lexical_to_string"
 .PHONY : 03_02_lexical_to_string/CMakeFiles/03_02_lexical_to_string.dir/all
 
 # Build rule for subdir invocation for target.
 03_02_lexical_to_string/CMakeFiles/03_02_lexical_to_string.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 03_02_lexical_to_string/CMakeFiles/03_02_lexical_to_string.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 0
 .PHONY : 03_02_lexical_to_string/CMakeFiles/03_02_lexical_to_string.dir/rule
@@ -2808,7 +2712,7 @@ clean: 12_07_gil/clean
 03_03_numeric_cast/CMakeFiles/03_03_numeric_cast.dir/all:
 	$(MAKE) $(MAKESILENT) -f 03_03_numeric_cast/CMakeFiles/03_03_numeric_cast.dir/build.make 03_03_numeric_cast/CMakeFiles/03_03_numeric_cast.dir/depend
 	$(MAKE) $(MAKESILENT) -f 03_03_numeric_cast/CMakeFiles/03_03_numeric_cast.dir/build.make 03_03_numeric_cast/CMakeFiles/03_03_numeric_cast.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=27 "Built target 03_03_numeric_cast"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=26 "Built target 03_03_numeric_cast"
 .PHONY : 03_03_numeric_cast/CMakeFiles/03_03_numeric_cast.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2835,7 +2739,7 @@ clean: 12_07_gil/clean
 03_04_lexical_user_defined/CMakeFiles/03_04_lexical_user_defined.dir/all:
 	$(MAKE) $(MAKESILENT) -f 03_04_lexical_user_defined/CMakeFiles/03_04_lexical_user_defined.dir/build.make 03_04_lexical_user_defined/CMakeFiles/03_04_lexical_user_defined.dir/depend
 	$(MAKE) $(MAKESILENT) -f 03_04_lexical_user_defined/CMakeFiles/03_04_lexical_user_defined.dir/build.make 03_04_lexical_user_defined/CMakeFiles/03_04_lexical_user_defined.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=28 "Built target 03_04_lexical_user_defined"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=27 "Built target 03_04_lexical_user_defined"
 .PHONY : 03_04_lexical_user_defined/CMakeFiles/03_04_lexical_user_defined.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2862,7 +2766,7 @@ clean: 12_07_gil/clean
 03_05_polymorphic_cast/CMakeFiles/03_05_polymorphic_cast.dir/all:
 	$(MAKE) $(MAKESILENT) -f 03_05_polymorphic_cast/CMakeFiles/03_05_polymorphic_cast.dir/build.make 03_05_polymorphic_cast/CMakeFiles/03_05_polymorphic_cast.dir/depend
 	$(MAKE) $(MAKESILENT) -f 03_05_polymorphic_cast/CMakeFiles/03_05_polymorphic_cast.dir/build.make 03_05_polymorphic_cast/CMakeFiles/03_05_polymorphic_cast.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=29 "Built target 03_05_polymorphic_cast"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=28 "Built target 03_05_polymorphic_cast"
 .PHONY : 03_05_polymorphic_cast/CMakeFiles/03_05_polymorphic_cast.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2889,7 +2793,7 @@ clean: 12_07_gil/clean
 03_06_spirit/CMakeFiles/03_06_spirit.dir/all:
 	$(MAKE) $(MAKESILENT) -f 03_06_spirit/CMakeFiles/03_06_spirit.dir/build.make 03_06_spirit/CMakeFiles/03_06_spirit.dir/depend
 	$(MAKE) $(MAKESILENT) -f 03_06_spirit/CMakeFiles/03_06_spirit.dir/build.make 03_06_spirit/CMakeFiles/03_06_spirit.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=30 "Built target 03_06_spirit"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=29 "Built target 03_06_spirit"
 .PHONY : 03_06_spirit/CMakeFiles/03_06_spirit.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2916,7 +2820,7 @@ clean: 12_07_gil/clean
 03_07_spirit_rules/CMakeFiles/03_07_spirit_rules.dir/all:
 	$(MAKE) $(MAKESILENT) -f 03_07_spirit_rules/CMakeFiles/03_07_spirit_rules.dir/build.make 03_07_spirit_rules/CMakeFiles/03_07_spirit_rules.dir/depend
 	$(MAKE) $(MAKESILENT) -f 03_07_spirit_rules/CMakeFiles/03_07_spirit_rules.dir/build.make 03_07_spirit_rules/CMakeFiles/03_07_spirit_rules.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=31 "Built target 03_07_spirit_rules"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=30 "Built target 03_07_spirit_rules"
 .PHONY : 03_07_spirit_rules/CMakeFiles/03_07_spirit_rules.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2943,7 +2847,7 @@ clean: 12_07_gil/clean
 04_01_conditional/CMakeFiles/04_01_conditional.dir/all:
 	$(MAKE) $(MAKESILENT) -f 04_01_conditional/CMakeFiles/04_01_conditional.dir/build.make 04_01_conditional/CMakeFiles/04_01_conditional.dir/depend
 	$(MAKE) $(MAKESILENT) -f 04_01_conditional/CMakeFiles/04_01_conditional.dir/build.make 04_01_conditional/CMakeFiles/04_01_conditional.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=32 "Built target 04_01_conditional"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=31 "Built target 04_01_conditional"
 .PHONY : 04_01_conditional/CMakeFiles/04_01_conditional.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2970,7 +2874,7 @@ clean: 12_07_gil/clean
 04_02_disable_if_c/CMakeFiles/04_02_disable_if_c.dir/all:
 	$(MAKE) $(MAKESILENT) -f 04_02_disable_if_c/CMakeFiles/04_02_disable_if_c.dir/build.make 04_02_disable_if_c/CMakeFiles/04_02_disable_if_c.dir/depend
 	$(MAKE) $(MAKESILENT) -f 04_02_disable_if_c/CMakeFiles/04_02_disable_if_c.dir/build.make 04_02_disable_if_c/CMakeFiles/04_02_disable_if_c.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=33 "Built target 04_02_disable_if_c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=32 "Built target 04_02_disable_if_c"
 .PHONY : 04_02_disable_if_c/CMakeFiles/04_02_disable_if_c.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2997,7 +2901,7 @@ clean: 12_07_gil/clean
 04_03_enable_if_c/CMakeFiles/04_03_enable_if_c.dir/all:
 	$(MAKE) $(MAKESILENT) -f 04_03_enable_if_c/CMakeFiles/04_03_enable_if_c.dir/build.make 04_03_enable_if_c/CMakeFiles/04_03_enable_if_c.dir/depend
 	$(MAKE) $(MAKESILENT) -f 04_03_enable_if_c/CMakeFiles/04_03_enable_if_c.dir/build.make 04_03_enable_if_c/CMakeFiles/04_03_enable_if_c.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=34 "Built target 04_03_enable_if_c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=33 "Built target 04_03_enable_if_c"
 .PHONY : 04_03_enable_if_c/CMakeFiles/04_03_enable_if_c.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3024,7 +2928,7 @@ clean: 12_07_gil/clean
 04_04_is_stdvector/CMakeFiles/04_04_is_stdvector.dir/all:
 	$(MAKE) $(MAKESILENT) -f 04_04_is_stdvector/CMakeFiles/04_04_is_stdvector.dir/build.make 04_04_is_stdvector/CMakeFiles/04_04_is_stdvector.dir/depend
 	$(MAKE) $(MAKESILENT) -f 04_04_is_stdvector/CMakeFiles/04_04_is_stdvector.dir/build.make 04_04_is_stdvector/CMakeFiles/04_04_is_stdvector.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=35 "Built target 04_04_is_stdvector"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=34 "Built target 04_04_is_stdvector"
 .PHONY : 04_04_is_stdvector/CMakeFiles/04_04_is_stdvector.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3051,7 +2955,7 @@ clean: 12_07_gil/clean
 04_05_mpl_int_/CMakeFiles/04_05_mpl_int_.dir/all:
 	$(MAKE) $(MAKESILENT) -f 04_05_mpl_int_/CMakeFiles/04_05_mpl_int_.dir/build.make 04_05_mpl_int_/CMakeFiles/04_05_mpl_int_.dir/depend
 	$(MAKE) $(MAKESILENT) -f 04_05_mpl_int_/CMakeFiles/04_05_mpl_int_.dir/build.make 04_05_mpl_int_/CMakeFiles/04_05_mpl_int_.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=36 "Built target 04_05_mpl_int_"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=35 "Built target 04_05_mpl_int_"
 .PHONY : 04_05_mpl_int_/CMakeFiles/04_05_mpl_int_.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3078,7 +2982,7 @@ clean: 12_07_gil/clean
 04_06_static_assert/CMakeFiles/04_06_static_assert.dir/all:
 	$(MAKE) $(MAKESILENT) -f 04_06_static_assert/CMakeFiles/04_06_static_assert.dir/build.make 04_06_static_assert/CMakeFiles/04_06_static_assert.dir/depend
 	$(MAKE) $(MAKESILENT) -f 04_06_static_assert/CMakeFiles/04_06_static_assert.dir/build.make 04_06_static_assert/CMakeFiles/04_06_static_assert.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=37 "Built target 04_06_static_assert"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=36 "Built target 04_06_static_assert"
 .PHONY : 04_06_static_assert/CMakeFiles/04_06_static_assert.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3105,7 +3009,7 @@ clean: 12_07_gil/clean
 04_07_typeof/CMakeFiles/04_07_typeof.dir/all:
 	$(MAKE) $(MAKESILENT) -f 04_07_typeof/CMakeFiles/04_07_typeof.dir/build.make 04_07_typeof/CMakeFiles/04_07_typeof.dir/depend
 	$(MAKE) $(MAKESILENT) -f 04_07_typeof/CMakeFiles/04_07_typeof.dir/build.make 04_07_typeof/CMakeFiles/04_07_typeof.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=38 "Built target 04_07_typeof"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=37 "Built target 04_07_typeof"
 .PHONY : 04_07_typeof/CMakeFiles/04_07_typeof.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3132,7 +3036,7 @@ clean: 12_07_gil/clean
 05_01_atomics/CMakeFiles/05_01_atomics.dir/all:
 	$(MAKE) $(MAKESILENT) -f 05_01_atomics/CMakeFiles/05_01_atomics.dir/build.make 05_01_atomics/CMakeFiles/05_01_atomics.dir/depend
 	$(MAKE) $(MAKESILENT) -f 05_01_atomics/CMakeFiles/05_01_atomics.dir/build.make 05_01_atomics/CMakeFiles/05_01_atomics.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=39 "Built target 05_01_atomics"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=38 "Built target 05_01_atomics"
 .PHONY : 05_01_atomics/CMakeFiles/05_01_atomics.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3159,7 +3063,7 @@ clean: 12_07_gil/clean
 05_02_interruptions/CMakeFiles/05_02_interruptions.dir/all:
 	$(MAKE) $(MAKESILENT) -f 05_02_interruptions/CMakeFiles/05_02_interruptions.dir/build.make 05_02_interruptions/CMakeFiles/05_02_interruptions.dir/depend
 	$(MAKE) $(MAKESILENT) -f 05_02_interruptions/CMakeFiles/05_02_interruptions.dir/build.make 05_02_interruptions/CMakeFiles/05_02_interruptions.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=40 "Built target 05_02_interruptions"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=39 "Built target 05_02_interruptions"
 .PHONY : 05_02_interruptions/CMakeFiles/05_02_interruptions.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3186,7 +3090,7 @@ clean: 12_07_gil/clean
 05_03_mutex/CMakeFiles/05_03_mutex.dir/all:
 	$(MAKE) $(MAKESILENT) -f 05_03_mutex/CMakeFiles/05_03_mutex.dir/build.make 05_03_mutex/CMakeFiles/05_03_mutex.dir/depend
 	$(MAKE) $(MAKESILENT) -f 05_03_mutex/CMakeFiles/05_03_mutex.dir/build.make 05_03_mutex/CMakeFiles/05_03_mutex.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=41 "Built target 05_03_mutex"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=40 "Built target 05_03_mutex"
 .PHONY : 05_03_mutex/CMakeFiles/05_03_mutex.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3213,7 +3117,7 @@ clean: 12_07_gil/clean
 05_04_shared_lock/CMakeFiles/05_04_shared_lock.dir/all:
 	$(MAKE) $(MAKESILENT) -f 05_04_shared_lock/CMakeFiles/05_04_shared_lock.dir/build.make 05_04_shared_lock/CMakeFiles/05_04_shared_lock.dir/depend
 	$(MAKE) $(MAKESILENT) -f 05_04_shared_lock/CMakeFiles/05_04_shared_lock.dir/build.make 05_04_shared_lock/CMakeFiles/05_04_shared_lock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=42 "Built target 05_04_shared_lock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=41 "Built target 05_04_shared_lock"
 .PHONY : 05_04_shared_lock/CMakeFiles/05_04_shared_lock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3240,7 +3144,7 @@ clean: 12_07_gil/clean
 05_05_thread/CMakeFiles/05_05_thread.dir/all:
 	$(MAKE) $(MAKESILENT) -f 05_05_thread/CMakeFiles/05_05_thread.dir/build.make 05_05_thread/CMakeFiles/05_05_thread.dir/depend
 	$(MAKE) $(MAKESILENT) -f 05_05_thread/CMakeFiles/05_05_thread.dir/build.make 05_05_thread/CMakeFiles/05_05_thread.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=43 "Built target 05_05_thread"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=42 "Built target 05_05_thread"
 .PHONY : 05_05_thread/CMakeFiles/05_05_thread.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3267,7 +3171,7 @@ clean: 12_07_gil/clean
 05_06_thread_group/CMakeFiles/05_06_thread_group.dir/all:
 	$(MAKE) $(MAKESILENT) -f 05_06_thread_group/CMakeFiles/05_06_thread_group.dir/build.make 05_06_thread_group/CMakeFiles/05_06_thread_group.dir/depend
 	$(MAKE) $(MAKESILENT) -f 05_06_thread_group/CMakeFiles/05_06_thread_group.dir/build.make 05_06_thread_group/CMakeFiles/05_06_thread_group.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=44 "Built target 05_06_thread_group"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=43 "Built target 05_06_thread_group"
 .PHONY : 05_06_thread_group/CMakeFiles/05_06_thread_group.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3294,7 +3198,7 @@ clean: 12_07_gil/clean
 05_07_thread_specific_ptr/CMakeFiles/05_07_thread_specific_ptr.dir/all:
 	$(MAKE) $(MAKESILENT) -f 05_07_thread_specific_ptr/CMakeFiles/05_07_thread_specific_ptr.dir/build.make 05_07_thread_specific_ptr/CMakeFiles/05_07_thread_specific_ptr.dir/depend
 	$(MAKE) $(MAKESILENT) -f 05_07_thread_specific_ptr/CMakeFiles/05_07_thread_specific_ptr.dir/build.make 05_07_thread_specific_ptr/CMakeFiles/05_07_thread_specific_ptr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=45 "Built target 05_07_thread_specific_ptr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=44 "Built target 05_07_thread_specific_ptr"
 .PHONY : 05_07_thread_specific_ptr/CMakeFiles/05_07_thread_specific_ptr.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3321,7 +3225,7 @@ clean: 12_07_gil/clean
 05_08_work_queue/CMakeFiles/05_08_work_queue.dir/all:
 	$(MAKE) $(MAKESILENT) -f 05_08_work_queue/CMakeFiles/05_08_work_queue.dir/build.make 05_08_work_queue/CMakeFiles/05_08_work_queue.dir/depend
 	$(MAKE) $(MAKESILENT) -f 05_08_work_queue/CMakeFiles/05_08_work_queue.dir/build.make 05_08_work_queue/CMakeFiles/05_08_work_queue.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=46 "Built target 05_08_work_queue"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=45 "Built target 05_08_work_queue"
 .PHONY : 05_08_work_queue/CMakeFiles/05_08_work_queue.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3348,7 +3252,7 @@ clean: 12_07_gil/clean
 06_01_tasks_processor_base/CMakeFiles/06_01_tasks_processor_base.dir/all:
 	$(MAKE) $(MAKESILENT) -f 06_01_tasks_processor_base/CMakeFiles/06_01_tasks_processor_base.dir/build.make 06_01_tasks_processor_base/CMakeFiles/06_01_tasks_processor_base.dir/depend
 	$(MAKE) $(MAKESILENT) -f 06_01_tasks_processor_base/CMakeFiles/06_01_tasks_processor_base.dir/build.make 06_01_tasks_processor_base/CMakeFiles/06_01_tasks_processor_base.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=47 "Built target 06_01_tasks_processor_base"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=46 "Built target 06_01_tasks_processor_base"
 .PHONY : 06_01_tasks_processor_base/CMakeFiles/06_01_tasks_processor_base.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3375,7 +3279,7 @@ clean: 12_07_gil/clean
 06_02_tasks_processor_timers/CMakeFiles/06_02_tasks_processor_timers.dir/all:
 	$(MAKE) $(MAKESILENT) -f 06_02_tasks_processor_timers/CMakeFiles/06_02_tasks_processor_timers.dir/build.make 06_02_tasks_processor_timers/CMakeFiles/06_02_tasks_processor_timers.dir/depend
 	$(MAKE) $(MAKESILENT) -f 06_02_tasks_processor_timers/CMakeFiles/06_02_tasks_processor_timers.dir/build.make 06_02_tasks_processor_timers/CMakeFiles/06_02_tasks_processor_timers.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=48 "Built target 06_02_tasks_processor_timers"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=47 "Built target 06_02_tasks_processor_timers"
 .PHONY : 06_02_tasks_processor_timers/CMakeFiles/06_02_tasks_processor_timers.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3402,12 +3306,12 @@ clean: 12_07_gil/clean
 06_03_tasks_processor_network/CMakeFiles/06_03_tasks_processor_network.dir/all:
 	$(MAKE) $(MAKESILENT) -f 06_03_tasks_processor_network/CMakeFiles/06_03_tasks_processor_network.dir/build.make 06_03_tasks_processor_network/CMakeFiles/06_03_tasks_processor_network.dir/depend
 	$(MAKE) $(MAKESILENT) -f 06_03_tasks_processor_network/CMakeFiles/06_03_tasks_processor_network.dir/build.make 06_03_tasks_processor_network/CMakeFiles/06_03_tasks_processor_network.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=49,50 "Built target 06_03_tasks_processor_network"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=48 "Built target 06_03_tasks_processor_network"
 .PHONY : 06_03_tasks_processor_network/CMakeFiles/06_03_tasks_processor_network.dir/all
 
 # Build rule for subdir invocation for target.
 06_03_tasks_processor_network/CMakeFiles/06_03_tasks_processor_network.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 06_03_tasks_processor_network/CMakeFiles/06_03_tasks_processor_network.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 0
 .PHONY : 06_03_tasks_processor_network/CMakeFiles/06_03_tasks_processor_network.dir/rule
@@ -3429,12 +3333,12 @@ clean: 12_07_gil/clean
 06_04_tasks_processor_multithread/CMakeFiles/06_04_tasks_processor_multithread.dir/all:
 	$(MAKE) $(MAKESILENT) -f 06_04_tasks_processor_multithread/CMakeFiles/06_04_tasks_processor_multithread.dir/build.make 06_04_tasks_processor_multithread/CMakeFiles/06_04_tasks_processor_multithread.dir/depend
 	$(MAKE) $(MAKESILENT) -f 06_04_tasks_processor_multithread/CMakeFiles/06_04_tasks_processor_multithread.dir/build.make 06_04_tasks_processor_multithread/CMakeFiles/06_04_tasks_processor_multithread.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=51 "Built target 06_04_tasks_processor_multithread"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=49,50 "Built target 06_04_tasks_processor_multithread"
 .PHONY : 06_04_tasks_processor_multithread/CMakeFiles/06_04_tasks_processor_multithread.dir/all
 
 # Build rule for subdir invocation for target.
 06_04_tasks_processor_multithread/CMakeFiles/06_04_tasks_processor_multithread.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 06_04_tasks_processor_multithread/CMakeFiles/06_04_tasks_processor_multithread.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 0
 .PHONY : 06_04_tasks_processor_multithread/CMakeFiles/06_04_tasks_processor_multithread.dir/rule
@@ -3456,7 +3360,7 @@ clean: 12_07_gil/clean
 06_05_conveyor/CMakeFiles/06_05_conveyor.dir/all:
 	$(MAKE) $(MAKESILENT) -f 06_05_conveyor/CMakeFiles/06_05_conveyor.dir/build.make 06_05_conveyor/CMakeFiles/06_05_conveyor.dir/depend
 	$(MAKE) $(MAKESILENT) -f 06_05_conveyor/CMakeFiles/06_05_conveyor.dir/build.make 06_05_conveyor/CMakeFiles/06_05_conveyor.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=52 "Built target 06_05_conveyor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=51 "Built target 06_05_conveyor"
 .PHONY : 06_05_conveyor/CMakeFiles/06_05_conveyor.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3483,7 +3387,7 @@ clean: 12_07_gil/clean
 06_06_nonblocking_barrier/CMakeFiles/06_06_nonblocking_barrier.dir/all:
 	$(MAKE) $(MAKESILENT) -f 06_06_nonblocking_barrier/CMakeFiles/06_06_nonblocking_barrier.dir/build.make 06_06_nonblocking_barrier/CMakeFiles/06_06_nonblocking_barrier.dir/depend
 	$(MAKE) $(MAKESILENT) -f 06_06_nonblocking_barrier/CMakeFiles/06_06_nonblocking_barrier.dir/build.make 06_06_nonblocking_barrier/CMakeFiles/06_06_nonblocking_barrier.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=53 "Built target 06_06_nonblocking_barrier"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=52 "Built target 06_06_nonblocking_barrier"
 .PHONY : 06_06_nonblocking_barrier/CMakeFiles/06_06_nonblocking_barrier.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3510,7 +3414,7 @@ clean: 12_07_gil/clean
 06_07_exception_ptr/CMakeFiles/06_07_exception_ptr.dir/all:
 	$(MAKE) $(MAKESILENT) -f 06_07_exception_ptr/CMakeFiles/06_07_exception_ptr.dir/build.make 06_07_exception_ptr/CMakeFiles/06_07_exception_ptr.dir/depend
 	$(MAKE) $(MAKESILENT) -f 06_07_exception_ptr/CMakeFiles/06_07_exception_ptr.dir/build.make 06_07_exception_ptr/CMakeFiles/06_07_exception_ptr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=54 "Built target 06_07_exception_ptr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=53 "Built target 06_07_exception_ptr"
 .PHONY : 06_07_exception_ptr/CMakeFiles/06_07_exception_ptr.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3537,7 +3441,7 @@ clean: 12_07_gil/clean
 06_08_tasks_processor_signals/CMakeFiles/06_08_tasks_processor_signals.dir/all:
 	$(MAKE) $(MAKESILENT) -f 06_08_tasks_processor_signals/CMakeFiles/06_08_tasks_processor_signals.dir/build.make 06_08_tasks_processor_signals/CMakeFiles/06_08_tasks_processor_signals.dir/depend
 	$(MAKE) $(MAKESILENT) -f 06_08_tasks_processor_signals/CMakeFiles/06_08_tasks_processor_signals.dir/build.make 06_08_tasks_processor_signals/CMakeFiles/06_08_tasks_processor_signals.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=55 "Built target 06_08_tasks_processor_signals"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=54 "Built target 06_08_tasks_processor_signals"
 .PHONY : 06_08_tasks_processor_signals/CMakeFiles/06_08_tasks_processor_signals.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3564,7 +3468,7 @@ clean: 12_07_gil/clean
 07_01_case_conv/CMakeFiles/07_01_case_conv.dir/all:
 	$(MAKE) $(MAKESILENT) -f 07_01_case_conv/CMakeFiles/07_01_case_conv.dir/build.make 07_01_case_conv/CMakeFiles/07_01_case_conv.dir/depend
 	$(MAKE) $(MAKESILENT) -f 07_01_case_conv/CMakeFiles/07_01_case_conv.dir/build.make 07_01_case_conv/CMakeFiles/07_01_case_conv.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=56 "Built target 07_01_case_conv"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=55 "Built target 07_01_case_conv"
 .PHONY : 07_01_case_conv/CMakeFiles/07_01_case_conv.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3591,7 +3495,7 @@ clean: 12_07_gil/clean
 07_02_regex_match/CMakeFiles/07_02_regex_match.dir/all:
 	$(MAKE) $(MAKESILENT) -f 07_02_regex_match/CMakeFiles/07_02_regex_match.dir/build.make 07_02_regex_match/CMakeFiles/07_02_regex_match.dir/depend
 	$(MAKE) $(MAKESILENT) -f 07_02_regex_match/CMakeFiles/07_02_regex_match.dir/build.make 07_02_regex_match/CMakeFiles/07_02_regex_match.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=57 "Built target 07_02_regex_match"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=56 "Built target 07_02_regex_match"
 .PHONY : 07_02_regex_match/CMakeFiles/07_02_regex_match.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3618,7 +3522,7 @@ clean: 12_07_gil/clean
 07_03_regex_replace/CMakeFiles/07_03_regex_replace.dir/all:
 	$(MAKE) $(MAKESILENT) -f 07_03_regex_replace/CMakeFiles/07_03_regex_replace.dir/build.make 07_03_regex_replace/CMakeFiles/07_03_regex_replace.dir/depend
 	$(MAKE) $(MAKESILENT) -f 07_03_regex_replace/CMakeFiles/07_03_regex_replace.dir/build.make 07_03_regex_replace/CMakeFiles/07_03_regex_replace.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=58 "Built target 07_03_regex_replace"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=57 "Built target 07_03_regex_replace"
 .PHONY : 07_03_regex_replace/CMakeFiles/07_03_regex_replace.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3645,7 +3549,7 @@ clean: 12_07_gil/clean
 07_04_format/CMakeFiles/07_04_format.dir/all:
 	$(MAKE) $(MAKESILENT) -f 07_04_format/CMakeFiles/07_04_format.dir/build.make 07_04_format/CMakeFiles/07_04_format.dir/depend
 	$(MAKE) $(MAKESILENT) -f 07_04_format/CMakeFiles/07_04_format.dir/build.make 07_04_format/CMakeFiles/07_04_format.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=59 "Built target 07_04_format"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=58 "Built target 07_04_format"
 .PHONY : 07_04_format/CMakeFiles/07_04_format.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3672,7 +3576,7 @@ clean: 12_07_gil/clean
 07_05_string_algo/CMakeFiles/07_05_string_algo.dir/all:
 	$(MAKE) $(MAKESILENT) -f 07_05_string_algo/CMakeFiles/07_05_string_algo.dir/build.make 07_05_string_algo/CMakeFiles/07_05_string_algo.dir/depend
 	$(MAKE) $(MAKESILENT) -f 07_05_string_algo/CMakeFiles/07_05_string_algo.dir/build.make 07_05_string_algo/CMakeFiles/07_05_string_algo.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=60 "Built target 07_05_string_algo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=59 "Built target 07_05_string_algo"
 .PHONY : 07_05_string_algo/CMakeFiles/07_05_string_algo.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3699,7 +3603,7 @@ clean: 12_07_gil/clean
 07_06_iterator_range/CMakeFiles/07_06_iterator_range.dir/all:
 	$(MAKE) $(MAKESILENT) -f 07_06_iterator_range/CMakeFiles/07_06_iterator_range.dir/build.make 07_06_iterator_range/CMakeFiles/07_06_iterator_range.dir/depend
 	$(MAKE) $(MAKESILENT) -f 07_06_iterator_range/CMakeFiles/07_06_iterator_range.dir/build.make 07_06_iterator_range/CMakeFiles/07_06_iterator_range.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=61 "Built target 07_06_iterator_range"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=60 "Built target 07_06_iterator_range"
 .PHONY : 07_06_iterator_range/CMakeFiles/07_06_iterator_range.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3726,7 +3630,7 @@ clean: 12_07_gil/clean
 07_07_string_ref/CMakeFiles/07_07_string_ref.dir/all:
 	$(MAKE) $(MAKESILENT) -f 07_07_string_ref/CMakeFiles/07_07_string_ref.dir/build.make 07_07_string_ref/CMakeFiles/07_07_string_ref.dir/depend
 	$(MAKE) $(MAKESILENT) -f 07_07_string_ref/CMakeFiles/07_07_string_ref.dir/build.make 07_07_string_ref/CMakeFiles/07_07_string_ref.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=62 "Built target 07_07_string_ref"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=61 "Built target 07_07_string_ref"
 .PHONY : 07_07_string_ref/CMakeFiles/07_07_string_ref.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3753,7 +3657,7 @@ clean: 12_07_gil/clean
 08_01_vector_of_types/CMakeFiles/08_01_vector_of_types.dir/all:
 	$(MAKE) $(MAKESILENT) -f 08_01_vector_of_types/CMakeFiles/08_01_vector_of_types.dir/build.make 08_01_vector_of_types/CMakeFiles/08_01_vector_of_types.dir/depend
 	$(MAKE) $(MAKESILENT) -f 08_01_vector_of_types/CMakeFiles/08_01_vector_of_types.dir/build.make 08_01_vector_of_types/CMakeFiles/08_01_vector_of_types.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=63 "Built target 08_01_vector_of_types"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=62 "Built target 08_01_vector_of_types"
 .PHONY : 08_01_vector_of_types/CMakeFiles/08_01_vector_of_types.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3780,7 +3684,7 @@ clean: 12_07_gil/clean
 08_02_manipulating_vector_of_types/CMakeFiles/08_02_manipulating_vector_of_types.dir/all:
 	$(MAKE) $(MAKESILENT) -f 08_02_manipulating_vector_of_types/CMakeFiles/08_02_manipulating_vector_of_types.dir/build.make 08_02_manipulating_vector_of_types/CMakeFiles/08_02_manipulating_vector_of_types.dir/depend
 	$(MAKE) $(MAKESILENT) -f 08_02_manipulating_vector_of_types/CMakeFiles/08_02_manipulating_vector_of_types.dir/build.make 08_02_manipulating_vector_of_types/CMakeFiles/08_02_manipulating_vector_of_types.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=64 "Built target 08_02_manipulating_vector_of_types"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=63 "Built target 08_02_manipulating_vector_of_types"
 .PHONY : 08_02_manipulating_vector_of_types/CMakeFiles/08_02_manipulating_vector_of_types.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3807,7 +3711,7 @@ clean: 12_07_gil/clean
 08_03_result_of_c++11/CMakeFiles/08_03_result_of_c++11.dir/all:
 	$(MAKE) $(MAKESILENT) -f 08_03_result_of_c++11/CMakeFiles/08_03_result_of_c++11.dir/build.make 08_03_result_of_c++11/CMakeFiles/08_03_result_of_c++11.dir/depend
 	$(MAKE) $(MAKESILENT) -f 08_03_result_of_c++11/CMakeFiles/08_03_result_of_c++11.dir/build.make 08_03_result_of_c++11/CMakeFiles/08_03_result_of_c++11.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=65 "Built target 08_03_result_of_c++11"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=64 "Built target 08_03_result_of_c++11"
 .PHONY : 08_03_result_of_c++11/CMakeFiles/08_03_result_of_c++11.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3834,7 +3738,7 @@ clean: 12_07_gil/clean
 08_04_higher_order_metafunctions/CMakeFiles/08_04_higher_order_metafunctions.dir/all:
 	$(MAKE) $(MAKESILENT) -f 08_04_higher_order_metafunctions/CMakeFiles/08_04_higher_order_metafunctions.dir/build.make 08_04_higher_order_metafunctions/CMakeFiles/08_04_higher_order_metafunctions.dir/depend
 	$(MAKE) $(MAKESILENT) -f 08_04_higher_order_metafunctions/CMakeFiles/08_04_higher_order_metafunctions.dir/build.make 08_04_higher_order_metafunctions/CMakeFiles/08_04_higher_order_metafunctions.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=66 "Built target 08_04_higher_order_metafunctions"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=65 "Built target 08_04_higher_order_metafunctions"
 .PHONY : 08_04_higher_order_metafunctions/CMakeFiles/08_04_higher_order_metafunctions.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3861,7 +3765,7 @@ clean: 12_07_gil/clean
 08_05_lazy/CMakeFiles/08_05_lazy.dir/all:
 	$(MAKE) $(MAKESILENT) -f 08_05_lazy/CMakeFiles/08_05_lazy.dir/build.make 08_05_lazy/CMakeFiles/08_05_lazy.dir/depend
 	$(MAKE) $(MAKESILENT) -f 08_05_lazy/CMakeFiles/08_05_lazy.dir/build.make 08_05_lazy/CMakeFiles/08_05_lazy.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=67 "Built target 08_05_lazy"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=66 "Built target 08_05_lazy"
 .PHONY : 08_05_lazy/CMakeFiles/08_05_lazy.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3888,7 +3792,7 @@ clean: 12_07_gil/clean
 08_06_tuple_to_string/CMakeFiles/08_06_tuple_to_string.dir/all:
 	$(MAKE) $(MAKESILENT) -f 08_06_tuple_to_string/CMakeFiles/08_06_tuple_to_string.dir/build.make 08_06_tuple_to_string/CMakeFiles/08_06_tuple_to_string.dir/depend
 	$(MAKE) $(MAKESILENT) -f 08_06_tuple_to_string/CMakeFiles/08_06_tuple_to_string.dir/build.make 08_06_tuple_to_string/CMakeFiles/08_06_tuple_to_string.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=68 "Built target 08_06_tuple_to_string"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=67 "Built target 08_06_tuple_to_string"
 .PHONY : 08_06_tuple_to_string/CMakeFiles/08_06_tuple_to_string.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3915,7 +3819,7 @@ clean: 12_07_gil/clean
 08_07_splitting_tuple/CMakeFiles/08_07_splitting_tuple.dir/all:
 	$(MAKE) $(MAKESILENT) -f 08_07_splitting_tuple/CMakeFiles/08_07_splitting_tuple.dir/build.make 08_07_splitting_tuple/CMakeFiles/08_07_splitting_tuple.dir/depend
 	$(MAKE) $(MAKESILENT) -f 08_07_splitting_tuple/CMakeFiles/08_07_splitting_tuple.dir/build.make 08_07_splitting_tuple/CMakeFiles/08_07_splitting_tuple.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=69 "Built target 08_07_splitting_tuple"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=68 "Built target 08_07_splitting_tuple"
 .PHONY : 08_07_splitting_tuple/CMakeFiles/08_07_splitting_tuple.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3942,7 +3846,7 @@ clean: 12_07_gil/clean
 09_01_hash/CMakeFiles/09_01_hash.dir/all:
 	$(MAKE) $(MAKESILENT) -f 09_01_hash/CMakeFiles/09_01_hash.dir/build.make 09_01_hash/CMakeFiles/09_01_hash.dir/depend
 	$(MAKE) $(MAKESILENT) -f 09_01_hash/CMakeFiles/09_01_hash.dir/build.make 09_01_hash/CMakeFiles/09_01_hash.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=70 "Built target 09_01_hash"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=69 "Built target 09_01_hash"
 .PHONY : 09_01_hash/CMakeFiles/09_01_hash.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3969,7 +3873,7 @@ clean: 12_07_gil/clean
 09_02_unordered/CMakeFiles/09_02_unordered.dir/all:
 	$(MAKE) $(MAKESILENT) -f 09_02_unordered/CMakeFiles/09_02_unordered.dir/build.make 09_02_unordered/CMakeFiles/09_02_unordered.dir/depend
 	$(MAKE) $(MAKESILENT) -f 09_02_unordered/CMakeFiles/09_02_unordered.dir/build.make 09_02_unordered/CMakeFiles/09_02_unordered.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=71 "Built target 09_02_unordered"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=70 "Built target 09_02_unordered"
 .PHONY : 09_02_unordered/CMakeFiles/09_02_unordered.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3996,7 +3900,7 @@ clean: 12_07_gil/clean
 09_03_bimap/CMakeFiles/09_03_bimap.dir/all:
 	$(MAKE) $(MAKESILENT) -f 09_03_bimap/CMakeFiles/09_03_bimap.dir/build.make 09_03_bimap/CMakeFiles/09_03_bimap.dir/depend
 	$(MAKE) $(MAKESILENT) -f 09_03_bimap/CMakeFiles/09_03_bimap.dir/build.make 09_03_bimap/CMakeFiles/09_03_bimap.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=72 "Built target 09_03_bimap"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=71 "Built target 09_03_bimap"
 .PHONY : 09_03_bimap/CMakeFiles/09_03_bimap.dir/all
 
 # Build rule for subdir invocation for target.
@@ -4023,7 +3927,7 @@ clean: 12_07_gil/clean
 09_04_multiindex/CMakeFiles/09_04_multiindex.dir/all:
 	$(MAKE) $(MAKESILENT) -f 09_04_multiindex/CMakeFiles/09_04_multiindex.dir/build.make 09_04_multiindex/CMakeFiles/09_04_multiindex.dir/depend
 	$(MAKE) $(MAKESILENT) -f 09_04_multiindex/CMakeFiles/09_04_multiindex.dir/build.make 09_04_multiindex/CMakeFiles/09_04_multiindex.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=73 "Built target 09_04_multiindex"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=72 "Built target 09_04_multiindex"
 .PHONY : 09_04_multiindex/CMakeFiles/09_04_multiindex.dir/all
 
 # Build rule for subdir invocation for target.
@@ -4050,7 +3954,7 @@ clean: 12_07_gil/clean
 09_05_slist_and_pool/CMakeFiles/09_05_slist_and_pool.dir/all:
 	$(MAKE) $(MAKESILENT) -f 09_05_slist_and_pool/CMakeFiles/09_05_slist_and_pool.dir/build.make 09_05_slist_and_pool/CMakeFiles/09_05_slist_and_pool.dir/depend
 	$(MAKE) $(MAKESILENT) -f 09_05_slist_and_pool/CMakeFiles/09_05_slist_and_pool.dir/build.make 09_05_slist_and_pool/CMakeFiles/09_05_slist_and_pool.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=74 "Built target 09_05_slist_and_pool"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=73 "Built target 09_05_slist_and_pool"
 .PHONY : 09_05_slist_and_pool/CMakeFiles/09_05_slist_and_pool.dir/all
 
 # Build rule for subdir invocation for target.
@@ -4077,12 +3981,12 @@ clean: 12_07_gil/clean
 09_06_flat/CMakeFiles/09_06_flat.dir/all:
 	$(MAKE) $(MAKESILENT) -f 09_06_flat/CMakeFiles/09_06_flat.dir/build.make 09_06_flat/CMakeFiles/09_06_flat.dir/depend
 	$(MAKE) $(MAKESILENT) -f 09_06_flat/CMakeFiles/09_06_flat.dir/build.make 09_06_flat/CMakeFiles/09_06_flat.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=75 "Built target 09_06_flat"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=74,75 "Built target 09_06_flat"
 .PHONY : 09_06_flat/CMakeFiles/09_06_flat.dir/all
 
 # Build rule for subdir invocation for target.
 09_06_flat/CMakeFiles/09_06_flat.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 09_06_flat/CMakeFiles/09_06_flat.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 0
 .PHONY : 09_06_flat/CMakeFiles/09_06_flat.dir/rule
@@ -4158,12 +4062,12 @@ clean: 12_07_gil/clean
 10_03_extern_template/CMakeFiles/10_03_extern_template.dir/all:
 	$(MAKE) $(MAKESILENT) -f 10_03_extern_template/CMakeFiles/10_03_extern_template.dir/build.make 10_03_extern_template/CMakeFiles/10_03_extern_template.dir/depend
 	$(MAKE) $(MAKESILENT) -f 10_03_extern_template/CMakeFiles/10_03_extern_template.dir/build.make 10_03_extern_template/CMakeFiles/10_03_extern_template.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=78,79 "Built target 10_03_extern_template"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=78 "Built target 10_03_extern_template"
 .PHONY : 10_03_extern_template/CMakeFiles/10_03_extern_template.dir/all
 
 # Build rule for subdir invocation for target.
 10_03_extern_template/CMakeFiles/10_03_extern_template.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 10_03_extern_template/CMakeFiles/10_03_extern_template.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 0
 .PHONY : 10_03_extern_template/CMakeFiles/10_03_extern_template.dir/rule
@@ -4185,7 +4089,7 @@ clean: 12_07_gil/clean
 10_04_constexpr_c++11/CMakeFiles/10_04_constexpr_c++11.dir/all:
 	$(MAKE) $(MAKESILENT) -f 10_04_constexpr_c++11/CMakeFiles/10_04_constexpr_c++11.dir/build.make 10_04_constexpr_c++11/CMakeFiles/10_04_constexpr_c++11.dir/depend
 	$(MAKE) $(MAKESILENT) -f 10_04_constexpr_c++11/CMakeFiles/10_04_constexpr_c++11.dir/build.make 10_04_constexpr_c++11/CMakeFiles/10_04_constexpr_c++11.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=80 "Built target 10_04_constexpr_c++11"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=79 "Built target 10_04_constexpr_c++11"
 .PHONY : 10_04_constexpr_c++11/CMakeFiles/10_04_constexpr_c++11.dir/all
 
 # Build rule for subdir invocation for target.
@@ -4212,7 +4116,7 @@ clean: 12_07_gil/clean
 10_05_noexcept_c++11/CMakeFiles/10_05_noexcept_c++11.dir/all:
 	$(MAKE) $(MAKESILENT) -f 10_05_noexcept_c++11/CMakeFiles/10_05_noexcept_c++11.dir/build.make 10_05_noexcept_c++11/CMakeFiles/10_05_noexcept_c++11.dir/depend
 	$(MAKE) $(MAKESILENT) -f 10_05_noexcept_c++11/CMakeFiles/10_05_noexcept_c++11.dir/build.make 10_05_noexcept_c++11/CMakeFiles/10_05_noexcept_c++11.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=81 "Built target 10_05_noexcept_c++11"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=80 "Built target 10_05_noexcept_c++11"
 .PHONY : 10_05_noexcept_c++11/CMakeFiles/10_05_noexcept_c++11.dir/all
 
 # Build rule for subdir invocation for target.
@@ -4239,7 +4143,7 @@ clean: 12_07_gil/clean
 10_06_export_import/CMakeFiles/10_06_export_import.dir/all:
 	$(MAKE) $(MAKESILENT) -f 10_06_export_import/CMakeFiles/10_06_export_import.dir/build.make 10_06_export_import/CMakeFiles/10_06_export_import.dir/depend
 	$(MAKE) $(MAKESILENT) -f 10_06_export_import/CMakeFiles/10_06_export_import.dir/build.make 10_06_export_import/CMakeFiles/10_06_export_import.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=82 "Built target 10_06_export_import"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=81 "Built target 10_06_export_import"
 .PHONY : 10_06_export_import/CMakeFiles/10_06_export_import.dir/all
 
 # Build rule for subdir invocation for target.
@@ -4266,7 +4170,7 @@ clean: 12_07_gil/clean
 10_07_my_library/CMakeFiles/10_07_my_library.dir/all:
 	$(MAKE) $(MAKESILENT) -f 10_07_my_library/CMakeFiles/10_07_my_library.dir/build.make 10_07_my_library/CMakeFiles/10_07_my_library.dir/depend
 	$(MAKE) $(MAKESILENT) -f 10_07_my_library/CMakeFiles/10_07_my_library.dir/build.make 10_07_my_library/CMakeFiles/10_07_my_library.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=83 "Built target 10_07_my_library"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=82 "Built target 10_07_my_library"
 .PHONY : 10_07_my_library/CMakeFiles/10_07_my_library.dir/all
 
 # Build rule for subdir invocation for target.
@@ -4293,7 +4197,7 @@ clean: 12_07_gil/clean
 10_08_version/CMakeFiles/10_08_version.dir/all:
 	$(MAKE) $(MAKESILENT) -f 10_08_version/CMakeFiles/10_08_version.dir/build.make 10_08_version/CMakeFiles/10_08_version.dir/depend
 	$(MAKE) $(MAKESILENT) -f 10_08_version/CMakeFiles/10_08_version.dir/build.make 10_08_version/CMakeFiles/10_08_version.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=84 "Built target 10_08_version"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=83 "Built target 10_08_version"
 .PHONY : 10_08_version/CMakeFiles/10_08_version.dir/all
 
 # Build rule for subdir invocation for target.
@@ -4320,7 +4224,7 @@ clean: 12_07_gil/clean
 11_01_listing_files/CMakeFiles/11_01_listing_files.dir/all:
 	$(MAKE) $(MAKESILENT) -f 11_01_listing_files/CMakeFiles/11_01_listing_files.dir/build.make 11_01_listing_files/CMakeFiles/11_01_listing_files.dir/depend
 	$(MAKE) $(MAKESILENT) -f 11_01_listing_files/CMakeFiles/11_01_listing_files.dir/build.make 11_01_listing_files/CMakeFiles/11_01_listing_files.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=85 "Built target 11_01_listing_files"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=84 "Built target 11_01_listing_files"
 .PHONY : 11_01_listing_files/CMakeFiles/11_01_listing_files.dir/all
 
 # Build rule for subdir invocation for target.
@@ -4347,7 +4251,7 @@ clean: 12_07_gil/clean
 11_02_erasing_files/CMakeFiles/11_02_erasing_files.dir/all:
 	$(MAKE) $(MAKESILENT) -f 11_02_erasing_files/CMakeFiles/11_02_erasing_files.dir/build.make 11_02_erasing_files/CMakeFiles/11_02_erasing_files.dir/depend
 	$(MAKE) $(MAKESILENT) -f 11_02_erasing_files/CMakeFiles/11_02_erasing_files.dir/build.make 11_02_erasing_files/CMakeFiles/11_02_erasing_files.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=86 "Built target 11_02_erasing_files"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=85 "Built target 11_02_erasing_files"
 .PHONY : 11_02_erasing_files/CMakeFiles/11_02_erasing_files.dir/all
 
 # Build rule for subdir invocation for target.
@@ -4374,7 +4278,7 @@ clean: 12_07_gil/clean
 11_03_interprocess_basics/CMakeFiles/11_03_interprocess_basics.dir/all:
 	$(MAKE) $(MAKESILENT) -f 11_03_interprocess_basics/CMakeFiles/11_03_interprocess_basics.dir/build.make 11_03_interprocess_basics/CMakeFiles/11_03_interprocess_basics.dir/depend
 	$(MAKE) $(MAKESILENT) -f 11_03_interprocess_basics/CMakeFiles/11_03_interprocess_basics.dir/build.make 11_03_interprocess_basics/CMakeFiles/11_03_interprocess_basics.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=87 "Built target 11_03_interprocess_basics"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=86 "Built target 11_03_interprocess_basics"
 .PHONY : 11_03_interprocess_basics/CMakeFiles/11_03_interprocess_basics.dir/all
 
 # Build rule for subdir invocation for target.
@@ -4401,12 +4305,12 @@ clean: 12_07_gil/clean
 11_04_interprocess_queue/CMakeFiles/11_04_interprocess_queue.dir/all:
 	$(MAKE) $(MAKESILENT) -f 11_04_interprocess_queue/CMakeFiles/11_04_interprocess_queue.dir/build.make 11_04_interprocess_queue/CMakeFiles/11_04_interprocess_queue.dir/depend
 	$(MAKE) $(MAKESILENT) -f 11_04_interprocess_queue/CMakeFiles/11_04_interprocess_queue.dir/build.make 11_04_interprocess_queue/CMakeFiles/11_04_interprocess_queue.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=88 "Built target 11_04_interprocess_queue"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles --progress-num=87,88 "Built target 11_04_interprocess_queue"
 .PHONY : 11_04_interprocess_queue/CMakeFiles/11_04_interprocess_queue.dir/all
 
 # Build rule for subdir invocation for target.
 11_04_interprocess_queue/CMakeFiles/11_04_interprocess_queue.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 11_04_interprocess_queue/CMakeFiles/11_04_interprocess_queue.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/6_BOOST_development_cookbook/build-cmake/CMakeFiles 0
 .PHONY : 11_04_interprocess_queue/CMakeFiles/11_04_interprocess_queue.dir/rule

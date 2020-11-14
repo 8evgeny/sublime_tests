@@ -325,19 +325,6 @@ depend:
 .PHONY : 02_01_scoped_ptr/fast
 
 #=============================================================================
-# Target rules for targets named 02_02_shared_ptr
-
-# Build rule for target.
-02_02_shared_ptr: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 02_02_shared_ptr
-.PHONY : 02_02_shared_ptr
-
-# fast build rule for target.
-02_02_shared_ptr/fast:
-	$(MAKE) $(MAKESILENT) -f 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/build.make 02_02_shared_ptr/CMakeFiles/02_02_shared_ptr.dir/build
-.PHONY : 02_02_shared_ptr/fast
-
-#=============================================================================
 # Target rules for targets named 02_03_scoped_array
 
 # Build rule for target.
@@ -349,19 +336,6 @@ depend:
 02_03_scoped_array/fast:
 	$(MAKE) $(MAKESILENT) -f 02_03_scoped_array/CMakeFiles/02_03_scoped_array.dir/build.make 02_03_scoped_array/CMakeFiles/02_03_scoped_array.dir/build
 .PHONY : 02_03_scoped_array/fast
-
-#=============================================================================
-# Target rules for targets named 02_04_shared_array
-
-# Build rule for target.
-02_04_shared_array: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 02_04_shared_array
-.PHONY : 02_04_shared_array
-
-# fast build rule for target.
-02_04_shared_array/fast:
-	$(MAKE) $(MAKESILENT) -f 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/build.make 02_04_shared_array/CMakeFiles/02_04_shared_array.dir/build
-.PHONY : 02_04_shared_array/fast
 
 #=============================================================================
 # Target rules for targets named 02_05_function_fobject
@@ -1400,9 +1374,7 @@ help:
 	@echo "... 01_12_A_noncopyable_movable"
 	@echo "... 01_13_algorithm"
 	@echo "... 02_01_scoped_ptr"
-	@echo "... 02_02_shared_ptr"
 	@echo "... 02_03_scoped_array"
-	@echo "... 02_04_shared_array"
 	@echo "... 02_05_function_fobject"
 	@echo "... 02_06_function_fpointer"
 	@echo "... 02_07_function_lambda_c++11"

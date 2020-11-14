@@ -39,16 +39,16 @@ void example1() {
     std::for_each(s.begin(), s.end(), ptr_deleter<int>());
 }
 
-//void example2_a() {
-//    typedef std::auto_ptr<int> int_aptr_t;
-//    std::set<int_aptr_t, ptr_cmp<int> > s;
-//    s.insert(int_aptr_t(new int(1)));
-//    s.insert(int_aptr_t(new int(0)));
-//    // ...
-//    assert(**s.begin() == 0);
-//    // ...
-//    // resources will be deallocated by auto_ptr<>
-//}
+void example2_a() {
+    typedef std::auto_ptr<int> int_aptr_t;
+    std::set<int_aptr_t, ptr_cmp<int> > s;
+    s.insert(int_aptr_t(new int(1)));
+    s.insert(int_aptr_t(new int(0)));
+    // ...
+    assert(**s.begin() == 0);
+    // ...
+    // resources will be deallocated by auto_ptr<>
+}
 
 void example2_b() {
     typedef std::unique_ptr<int> int_uptr_t;
@@ -97,7 +97,7 @@ void theres_more_example() {
 
 int main() {
     example1();
-//    example2_a();
+    example2_a();
     example2_b();
     example3();
     correct_impl();

@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/02_07_function_lambda_c++11.dir/main.o -o 02_07_function_lambda_c++11  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 
+/usr/bin/g++ -g -rdynamic CMakeFiles/02_07_function_lambda_c++11.dir/main.o -o 02_07_function_lambda_c++11 

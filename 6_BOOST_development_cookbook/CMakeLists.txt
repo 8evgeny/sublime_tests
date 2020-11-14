@@ -13,9 +13,13 @@ add_subdirectory(01_11_noncopyable)
 add_subdirectory(01_12_A_noncopyable_movable)
 add_subdirectory(01_13_algorithm)
 add_subdirectory(02_01_scoped_ptr)
-add_subdirectory(02_02_shared_ptr)
+
+#add_subdirectory(02_02_shared_ptr)
+
 add_subdirectory(02_03_scoped_array)
-add_subdirectory(02_04_shared_array)
+
+#add_subdirectory(02_04_shared_array)
+
 add_subdirectory(02_05_function_fobject)
 add_subdirectory(02_06_function_fpointer)
 add_subdirectory(02_07_function_lambda_c++11)

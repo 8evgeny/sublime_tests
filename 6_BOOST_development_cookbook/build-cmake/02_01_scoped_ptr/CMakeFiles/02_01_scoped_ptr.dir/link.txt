@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/02_01_scoped_ptr.dir/main.o -o 02_01_scoped_ptr  -llibpqxx -lboost_program_options -lQt5::Core -lQt5::Widgets 
+/usr/bin/g++ -g -rdynamic CMakeFiles/02_01_scoped_ptr.dir/main.o -o 02_01_scoped_ptr 

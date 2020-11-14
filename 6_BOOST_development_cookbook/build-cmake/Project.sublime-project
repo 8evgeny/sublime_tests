@@ -212,18 +212,6 @@
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},
 		{
-			"name": "Project - 02_02_shared_ptr",
-			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_02_shared_ptr"],
-			"working_dir": "${project_path}",
-			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
-		},
-		{
-			"name": "Project - 02_02_shared_ptr/fast",
-			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_02_shared_ptr/fast"],
-			"working_dir": "${project_path}",
-			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
-		},
-		{
 			"name": "Project - 02_03_scoped_array",
 			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_03_scoped_array"],
 			"working_dir": "${project_path}",
@@ -232,18 +220,6 @@
 		{
 			"name": "Project - 02_03_scoped_array/fast",
 			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_03_scoped_array/fast"],
-			"working_dir": "${project_path}",
-			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
-		},
-		{
-			"name": "Project - 02_04_shared_array",
-			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_04_shared_array"],
-			"working_dir": "${project_path}",
-			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
-		},
-		{
-			"name": "Project - 02_04_shared_array/fast",
-			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_04_shared_array/fast"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},

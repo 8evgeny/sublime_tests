@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/02_10_base_from_member.dir/main.o -o 02_10_base_from_member  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 
+/usr/bin/g++ -g -rdynamic CMakeFiles/02_10_base_from_member.dir/main.o -o 02_10_base_from_member 

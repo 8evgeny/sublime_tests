@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/02_05_function_fobject.dir/main.o -o 02_05_function_fobject  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 
+/usr/bin/g++ -g -rdynamic CMakeFiles/02_05_function_fobject.dir/main.o -o 02_05_function_fobject 
