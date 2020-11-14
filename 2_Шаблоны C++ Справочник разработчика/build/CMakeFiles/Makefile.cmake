@@ -31,10 +31,17 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../basics/stacknontype/CMakeLists.txt"
   "../basics/tmplparamref/CMakeLists.txt"
   "../basics/varusing/CMakeLists.txt"
+  "../bridge/CMakeLists.txt"
+  "../bridge/forupto1/CMakeLists.txt"
+  "../bridge/forupto2/CMakeLists.txt"
+  "../bridge/forupto3/CMakeLists.txt"
   "CMakeFiles/3.18.4/CMakeCCompiler.cmake"
   "CMakeFiles/3.18.4/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.18.4/CMakeSystem.cmake"
+  "../debugging/CMakeLists.txt"
   "../tuples/CMakeLists.txt"
+  "../tuples/compressedtuple1/CMakeLists.txt"
+  "../tuples/indexsort/CMakeLists.txt"
   "/usr/share/cmake-3.18/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.18/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.18/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
@@ -66,7 +73,6 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "tuples/CMakeFiles/CMakeDirectoryInformation.cmake"
   "basics/CMakeFiles/CMakeDirectoryInformation.cmake"
   "basics/arrays/CMakeFiles/CMakeDirectoryInformation.cmake"
   "basics/foreach/CMakeFiles/CMakeDirectoryInformation.cmake"
@@ -90,11 +96,18 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "basics/specialmemtmpl1/CMakeFiles/CMakeDirectoryInformation.cmake"
   "basics/specialmemtmpl3/CMakeFiles/CMakeDirectoryInformation.cmake"
   "basics/foldtraverse/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "bridge/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "bridge/forupto1/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "bridge/forupto2/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "bridge/forupto3/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "tuples/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "tuples/compressedtuple1/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "tuples/indexsort/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "debugging/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "tuples/CMakeFiles/tuples.dir/DependInfo.cmake"
   "basics/arrays/CMakeFiles/arrays.dir/DependInfo.cmake"
   "basics/foreach/CMakeFiles/foreach.dir/DependInfo.cmake"
   "basics/foreachinvoke/CMakeFiles/foreachinvoke.dir/DependInfo.cmake"
@@ -117,4 +130,10 @@ set(CMAKE_DEPEND_INFO_FILES
   "basics/specialmemtmpl1/CMakeFiles/specialmemtmpl1.dir/DependInfo.cmake"
   "basics/specialmemtmpl3/CMakeFiles/specialmemtmpl3.dir/DependInfo.cmake"
   "basics/foldtraverse/CMakeFiles/foldtraverse.dir/DependInfo.cmake"
+  "bridge/forupto1/CMakeFiles/brighe_forupto1.dir/DependInfo.cmake"
+  "bridge/forupto2/CMakeFiles/brighe_forupto2.dir/DependInfo.cmake"
+  "bridge/forupto3/CMakeFiles/brighe_forupto3.dir/DependInfo.cmake"
+  "tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/DependInfo.cmake"
+  "tuples/indexsort/CMakeFiles/tuple_indexsort.dir/DependInfo.cmake"
+  "debugging/CMakeFiles/debugging.dir/DependInfo.cmake"
   )

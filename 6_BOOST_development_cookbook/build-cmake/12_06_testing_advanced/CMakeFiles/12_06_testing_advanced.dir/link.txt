@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/12_06_testing_advanced.dir/main.o CMakeFiles/12_06_testing_advanced.dir/developer1.o CMakeFiles/12_06_testing_advanced.dir/developer2.o CMakeFiles/12_06_testing_advanced.dir/foo.o -o 12_06_testing_advanced  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

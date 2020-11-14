@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/05_04_shared_lock.dir/main.o -o 05_04_shared_lock  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/01_09_type_index.dir/main.o -o 01_09_type_index  -llibpqxx -lboost_program_options -lQt5::Core -lQt5::Widgets 

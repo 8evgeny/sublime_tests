@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/03_06_spirit.dir/main.o -o 03_06_spirit  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

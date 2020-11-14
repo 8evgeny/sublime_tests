@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/10_03_extern_template.dir/main.o CMakeFiles/10_03_extern_template.dir/source.o -o 10_03_extern_template  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

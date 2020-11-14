@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/01_01_03_variant.dir/main.o -o 01_01_03_variant  -llibpqxx -lboost_program_options -lQt5::Core -lQt5::Widgets 

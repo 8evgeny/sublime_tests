@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/09_05_slist_and_pool.dir/main.o -o 09_05_slist_and_pool  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

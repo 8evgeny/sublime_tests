@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/05_05_thread.dir/main.o -o 05_05_thread  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

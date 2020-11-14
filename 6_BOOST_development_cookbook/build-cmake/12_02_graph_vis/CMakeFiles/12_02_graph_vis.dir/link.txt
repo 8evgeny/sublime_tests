@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/12_02_graph_vis.dir/main.o -o 12_02_graph_vis  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

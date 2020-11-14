@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/03_05_polymorphic_cast.dir/main.o -o 03_05_polymorphic_cast  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

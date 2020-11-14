@@ -258,16 +258,16 @@ brighe_forupto3_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ 
 brighe_forupto3_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/bridge/forupto3
 
 //Value Computed by CMake
-brighe_forupto4_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/bridge/forupto4
-
-//Value Computed by CMake
-brighe_forupto4_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/bridge/forupto4
-
-//Value Computed by CMake
 cref_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/basics/cref
 
 //Value Computed by CMake
 cref_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/basics/cref
+
+//Value Computed by CMake
+debugging_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/debugging
+
+//Value Computed by CMake
+debugging_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/debugging
 
 //Value Computed by CMake
 foldtraverse_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/basics/foldtraverse
@@ -336,12 +336,6 @@ move2_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справ
 move2_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/basics/move2
 
 //Value Computed by CMake
-myfirstmain_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/basics/myfirstmain
-
-//Value Computed by CMake
-myfirstmain_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/basics/myfirstmain
-
-//Value Computed by CMake
 specialmemtmpl1_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/basics/specialmemtmpl1
 
 //Value Computed by CMake
@@ -388,6 +382,18 @@ tmplparamref_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ С�
 
 //Value Computed by CMake
 tmplparamref_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/basics/tmplparamref
+
+//Value Computed by CMake
+tuple_compressedtuple1_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/tuples/compressedtuple1
+
+//Value Computed by CMake
+tuple_compressedtuple1_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/tuples/compressedtuple1
+
+//Value Computed by CMake
+tuple_indexsort_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/tuples/indexsort
+
+//Value Computed by CMake
+tuple_indexsort_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/tuples/indexsort
 
 //Value Computed by CMake
 varusing_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/basics/varusing
@@ -500,7 +506,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=30
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=32
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

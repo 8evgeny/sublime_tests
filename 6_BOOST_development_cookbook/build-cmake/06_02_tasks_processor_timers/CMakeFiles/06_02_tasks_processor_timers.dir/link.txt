@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/06_02_tasks_processor_timers.dir/main.o -o 06_02_tasks_processor_timers  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

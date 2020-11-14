@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/06_05_conveyor.dir/main.o -o 06_05_conveyor  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

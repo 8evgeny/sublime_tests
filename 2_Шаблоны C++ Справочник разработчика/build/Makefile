@@ -130,19 +130,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named tuples
-
-# Build rule for target.
-tuples: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tuples
-.PHONY : tuples
-
-# fast build rule for target.
-tuples/fast:
-	$(MAKE) $(MAKESILENT) -f tuples/CMakeFiles/tuples.dir/build.make tuples/CMakeFiles/tuples.dir/build
-.PHONY : tuples/fast
-
-#=============================================================================
 # Target rules for targets named arrays
 
 # Build rule for target.
@@ -428,6 +415,84 @@ foldtraverse/fast:
 	$(MAKE) $(MAKESILENT) -f basics/foldtraverse/CMakeFiles/foldtraverse.dir/build.make basics/foldtraverse/CMakeFiles/foldtraverse.dir/build
 .PHONY : foldtraverse/fast
 
+#=============================================================================
+# Target rules for targets named brighe_forupto1
+
+# Build rule for target.
+brighe_forupto1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 brighe_forupto1
+.PHONY : brighe_forupto1
+
+# fast build rule for target.
+brighe_forupto1/fast:
+	$(MAKE) $(MAKESILENT) -f bridge/forupto1/CMakeFiles/brighe_forupto1.dir/build.make bridge/forupto1/CMakeFiles/brighe_forupto1.dir/build
+.PHONY : brighe_forupto1/fast
+
+#=============================================================================
+# Target rules for targets named brighe_forupto2
+
+# Build rule for target.
+brighe_forupto2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 brighe_forupto2
+.PHONY : brighe_forupto2
+
+# fast build rule for target.
+brighe_forupto2/fast:
+	$(MAKE) $(MAKESILENT) -f bridge/forupto2/CMakeFiles/brighe_forupto2.dir/build.make bridge/forupto2/CMakeFiles/brighe_forupto2.dir/build
+.PHONY : brighe_forupto2/fast
+
+#=============================================================================
+# Target rules for targets named brighe_forupto3
+
+# Build rule for target.
+brighe_forupto3: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 brighe_forupto3
+.PHONY : brighe_forupto3
+
+# fast build rule for target.
+brighe_forupto3/fast:
+	$(MAKE) $(MAKESILENT) -f bridge/forupto3/CMakeFiles/brighe_forupto3.dir/build.make bridge/forupto3/CMakeFiles/brighe_forupto3.dir/build
+.PHONY : brighe_forupto3/fast
+
+#=============================================================================
+# Target rules for targets named tuple_compressedtuple1
+
+# Build rule for target.
+tuple_compressedtuple1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tuple_compressedtuple1
+.PHONY : tuple_compressedtuple1
+
+# fast build rule for target.
+tuple_compressedtuple1/fast:
+	$(MAKE) $(MAKESILENT) -f tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/build.make tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/build
+.PHONY : tuple_compressedtuple1/fast
+
+#=============================================================================
+# Target rules for targets named tuple_indexsort
+
+# Build rule for target.
+tuple_indexsort: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tuple_indexsort
+.PHONY : tuple_indexsort
+
+# fast build rule for target.
+tuple_indexsort/fast:
+	$(MAKE) $(MAKESILENT) -f tuples/indexsort/CMakeFiles/tuple_indexsort.dir/build.make tuples/indexsort/CMakeFiles/tuple_indexsort.dir/build
+.PHONY : tuple_indexsort/fast
+
+#=============================================================================
+# Target rules for targets named debugging
+
+# Build rule for target.
+debugging: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 debugging
+.PHONY : debugging
+
+# fast build rule for target.
+debugging/fast:
+	$(MAKE) $(MAKESILENT) -f debugging/CMakeFiles/debugging.dir/build.make debugging/CMakeFiles/debugging.dir/build
+.PHONY : debugging/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -437,7 +502,11 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... arrays"
+	@echo "... brighe_forupto1"
+	@echo "... brighe_forupto2"
+	@echo "... brighe_forupto3"
 	@echo "... cref"
+	@echo "... debugging"
 	@echo "... foldtraverse"
 	@echo "... foreach"
 	@echo "... foreachinvoke"
@@ -457,7 +526,8 @@ help:
 	@echo "... stackauto"
 	@echo "... stacknontype"
 	@echo "... tmplparamref"
-	@echo "... tuples"
+	@echo "... tuple_compressedtuple1"
+	@echo "... tuple_indexsort"
 	@echo "... varusing"
 .PHONY : help
 

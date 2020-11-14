@@ -129,36 +129,6 @@ depend:
 	cd "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-tuples/CMakeFiles/tuples.dir/rule:
-	cd "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tuples/CMakeFiles/tuples.dir/rule
-.PHONY : tuples/CMakeFiles/tuples.dir/rule
-
-# Convenience name for target.
-tuples: tuples/CMakeFiles/tuples.dir/rule
-
-.PHONY : tuples
-
-# fast build rule for target.
-tuples/fast:
-	cd "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build" && $(MAKE) $(MAKESILENT) -f tuples/CMakeFiles/tuples.dir/build.make tuples/CMakeFiles/tuples.dir/build
-.PHONY : tuples/fast
-
-# target to build an object file
-compressedtuple1.o:
-	cd "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build" && $(MAKE) $(MAKESILENT) -f tuples/CMakeFiles/tuples.dir/build.make tuples/CMakeFiles/tuples.dir/compressedtuple1.o
-.PHONY : compressedtuple1.o
-
-# target to preprocess a source file
-compressedtuple1.i:
-	cd "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build" && $(MAKE) $(MAKESILENT) -f tuples/CMakeFiles/tuples.dir/build.make tuples/CMakeFiles/tuples.dir/compressedtuple1.i
-.PHONY : compressedtuple1.i
-
-# target to generate assembly for a file
-compressedtuple1.s:
-	cd "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build" && $(MAKE) $(MAKESILENT) -f tuples/CMakeFiles/tuples.dir/build.make tuples/CMakeFiles/tuples.dir/compressedtuple1.s
-.PHONY : compressedtuple1.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -167,10 +137,6 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... tuples"
-	@echo "... compressedtuple1.o"
-	@echo "... compressedtuple1.i"
-	@echo "... compressedtuple1.s"
 .PHONY : help
 
 

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/04_01_conditional.dir/main.o -o 04_01_conditional  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

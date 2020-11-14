@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/05_03_mutex.dir/main.o -o 05_03_mutex  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

@@ -1,0 +1,1187 @@
+{
+	"folders":
+	[
+		{
+			"path": "../"
+		}
+	],
+	"build_systems":
+	[
+		{
+			"name": "Project - all",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "all"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - clean",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "clean"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - rebuild_cache",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "rebuild_cache"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - edit_cache",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "edit_cache"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_01_02_any",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_01_02_any"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_01_02_any/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_01_02_any/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_01_03_variant",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_01_03_variant"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_01_03_variant/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_01_03_variant/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_04_A_any_db_example",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_04_A_any_db_example"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_04_A_any_db_example/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_04_A_any_db_example/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_04_B_variant_db_example",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_04_B_variant_db_example"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_04_B_variant_db_example/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_04_B_variant_db_example/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_05_optional",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_05_optional"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_05_optional/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_05_optional/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_06_array",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_06_array"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_06_array/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_06_array/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_07_A_tuple",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_07_A_tuple"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_07_A_tuple/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_07_A_tuple/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_07_B_tuple_construction_order",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_07_B_tuple_construction_order"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_07_B_tuple_construction_order/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_07_B_tuple_construction_order/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_08_bind",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_08_bind"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_08_bind/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_08_bind/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_09_type_index",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_09_type_index"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_09_type_index/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_09_type_index/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_10_A_move",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_10_A_move"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_10_A_move/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_10_A_move/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_11_noncopyable",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_11_noncopyable"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_11_noncopyable/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_11_noncopyable/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_12_A_noncopyable_movable",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_12_A_noncopyable_movable"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_12_A_noncopyable_movable/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_12_A_noncopyable_movable/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_13_algorithm",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_13_algorithm"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 01_13_algorithm/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "01_13_algorithm/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_01_scoped_ptr",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_01_scoped_ptr"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_01_scoped_ptr/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_01_scoped_ptr/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_02_shared_ptr",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_02_shared_ptr"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_02_shared_ptr/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_02_shared_ptr/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_03_scoped_array",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_03_scoped_array"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_03_scoped_array/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_03_scoped_array/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_04_shared_array",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_04_shared_array"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_04_shared_array/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_04_shared_array/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_05_function_fobject",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_05_function_fobject"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_05_function_fobject/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_05_function_fobject/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_06_function_fpointer",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_06_function_fpointer"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_06_function_fpointer/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_06_function_fpointer/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_07_function_lambda_c++11",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_07_function_lambda_c++11"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_07_function_lambda_c++11/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_07_function_lambda_c++11/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_08_ptr_container_c++11",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_08_ptr_container_c++11"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_08_ptr_container_c++11/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_08_ptr_container_c++11/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_09_scope_exit",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_09_scope_exit"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_09_scope_exit/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_09_scope_exit/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_10_base_from_member",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_10_base_from_member"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 02_10_base_from_member/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "02_10_base_from_member/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 03_01_lexical_to_number",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "03_01_lexical_to_number"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 03_01_lexical_to_number/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "03_01_lexical_to_number/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 03_02_lexical_to_string",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "03_02_lexical_to_string"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 03_02_lexical_to_string/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "03_02_lexical_to_string/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 03_03_numeric_cast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "03_03_numeric_cast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 03_03_numeric_cast/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "03_03_numeric_cast/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 03_04_lexical_user_defined",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "03_04_lexical_user_defined"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 03_04_lexical_user_defined/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "03_04_lexical_user_defined/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 03_05_polymorphic_cast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "03_05_polymorphic_cast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 03_05_polymorphic_cast/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "03_05_polymorphic_cast/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 03_06_spirit",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "03_06_spirit"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 03_06_spirit/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "03_06_spirit/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 03_07_spirit_rules",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "03_07_spirit_rules"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 03_07_spirit_rules/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "03_07_spirit_rules/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 04_01_conditional",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "04_01_conditional"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 04_01_conditional/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "04_01_conditional/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 04_02_disable_if_c",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "04_02_disable_if_c"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 04_02_disable_if_c/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "04_02_disable_if_c/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 04_03_enable_if_c",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "04_03_enable_if_c"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 04_03_enable_if_c/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "04_03_enable_if_c/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 04_04_is_stdvector",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "04_04_is_stdvector"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 04_04_is_stdvector/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "04_04_is_stdvector/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 04_05_mpl_int_",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "04_05_mpl_int_"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 04_05_mpl_int_/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "04_05_mpl_int_/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 04_06_static_assert",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "04_06_static_assert"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 04_06_static_assert/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "04_06_static_assert/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 04_07_typeof",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "04_07_typeof"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 04_07_typeof/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "04_07_typeof/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_01_atomics",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_01_atomics"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_01_atomics/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_01_atomics/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_02_interruptions",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_02_interruptions"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_02_interruptions/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_02_interruptions/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_03_mutex",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_03_mutex"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_03_mutex/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_03_mutex/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_04_shared_lock",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_04_shared_lock"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_04_shared_lock/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_04_shared_lock/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_05_thread",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_05_thread"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_05_thread/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_05_thread/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_06_thread_group",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_06_thread_group"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_06_thread_group/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_06_thread_group/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_07_thread_specific_ptr",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_07_thread_specific_ptr"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_07_thread_specific_ptr/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_07_thread_specific_ptr/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_08_work_queue",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_08_work_queue"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 05_08_work_queue/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "05_08_work_queue/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_01_tasks_processor_base",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_01_tasks_processor_base"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_01_tasks_processor_base/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_01_tasks_processor_base/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_02_tasks_processor_timers",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_02_tasks_processor_timers"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_02_tasks_processor_timers/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_02_tasks_processor_timers/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_03_tasks_processor_network",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_03_tasks_processor_network"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_03_tasks_processor_network/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_03_tasks_processor_network/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_04_tasks_processor_multithread",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_04_tasks_processor_multithread"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_04_tasks_processor_multithread/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_04_tasks_processor_multithread/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_05_conveyor",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_05_conveyor"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_05_conveyor/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_05_conveyor/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_06_nonblocking_barrier",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_06_nonblocking_barrier"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_06_nonblocking_barrier/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_06_nonblocking_barrier/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_07_exception_ptr",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_07_exception_ptr"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_07_exception_ptr/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_07_exception_ptr/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_08_tasks_processor_signals",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_08_tasks_processor_signals"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 06_08_tasks_processor_signals/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "06_08_tasks_processor_signals/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 07_01_case_conv",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "07_01_case_conv"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 07_01_case_conv/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "07_01_case_conv/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 07_02_regex_match",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "07_02_regex_match"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 07_02_regex_match/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "07_02_regex_match/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 07_03_regex_replace",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "07_03_regex_replace"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 07_03_regex_replace/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "07_03_regex_replace/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 07_04_format",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "07_04_format"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 07_04_format/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "07_04_format/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 07_05_string_algo",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "07_05_string_algo"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 07_05_string_algo/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "07_05_string_algo/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 07_06_iterator_range",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "07_06_iterator_range"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 07_06_iterator_range/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "07_06_iterator_range/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 07_07_string_ref",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "07_07_string_ref"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 07_07_string_ref/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "07_07_string_ref/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 08_01_vector_of_types",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "08_01_vector_of_types"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 08_01_vector_of_types/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "08_01_vector_of_types/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 08_02_manipulating_vector_of_types",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "08_02_manipulating_vector_of_types"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 08_02_manipulating_vector_of_types/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "08_02_manipulating_vector_of_types/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 08_03_result_of_c++11",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "08_03_result_of_c++11"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 08_03_result_of_c++11/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "08_03_result_of_c++11/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 08_04_higher_order_metafunctions",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "08_04_higher_order_metafunctions"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 08_04_higher_order_metafunctions/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "08_04_higher_order_metafunctions/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 08_05_lazy",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "08_05_lazy"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 08_05_lazy/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "08_05_lazy/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 08_06_tuple_to_string",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "08_06_tuple_to_string"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 08_06_tuple_to_string/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "08_06_tuple_to_string/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 08_07_splitting_tuple",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "08_07_splitting_tuple"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 08_07_splitting_tuple/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "08_07_splitting_tuple/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 09_01_hash",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "09_01_hash"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 09_01_hash/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "09_01_hash/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 09_02_unordered",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "09_02_unordered"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 09_02_unordered/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "09_02_unordered/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 09_03_bimap",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "09_03_bimap"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 09_03_bimap/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "09_03_bimap/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 09_04_multiindex",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "09_04_multiindex"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 09_04_multiindex/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "09_04_multiindex/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 09_05_slist_and_pool",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "09_05_slist_and_pool"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 09_05_slist_and_pool/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "09_05_slist_and_pool/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 09_06_flat",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "09_06_flat"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 09_06_flat/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "09_06_flat/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_01_int128",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_01_int128"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_01_int128/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_01_int128/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_02_no_rtti",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_02_no_rtti"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_02_no_rtti/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_02_no_rtti/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_03_extern_template",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_03_extern_template"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_03_extern_template/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_03_extern_template/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_04_constexpr_c++11",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_04_constexpr_c++11"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_04_constexpr_c++11/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_04_constexpr_c++11/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_05_noexcept_c++11",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_05_noexcept_c++11"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_05_noexcept_c++11/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_05_noexcept_c++11/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_06_export_import",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_06_export_import"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_06_export_import/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_06_export_import/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_07_my_library",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_07_my_library"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_07_my_library/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_07_my_library/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_08_version",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_08_version"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 10_08_version/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "10_08_version/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 11_01_listing_files",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "11_01_listing_files"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 11_01_listing_files/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "11_01_listing_files/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 11_02_erasing_files",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "11_02_erasing_files"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 11_02_erasing_files/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "11_02_erasing_files/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 11_03_interprocess_basics",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "11_03_interprocess_basics"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 11_03_interprocess_basics/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "11_03_interprocess_basics/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 11_04_interprocess_queue",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "11_04_interprocess_queue"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 11_04_interprocess_queue/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "11_04_interprocess_queue/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 11_05_interprocess_pointers",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "11_05_interprocess_pointers"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 11_05_interprocess_pointers/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "11_05_interprocess_pointers/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 11_06_reading_files",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "11_06_reading_files"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 11_06_reading_files/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "11_06_reading_files/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 11_07_coroutines",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "11_07_coroutines"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 11_07_coroutines/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "11_07_coroutines/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 12_01_graph",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "12_01_graph"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 12_01_graph/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "12_01_graph/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 12_02_graph_vis",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "12_02_graph_vis"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 12_02_graph_vis/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "12_02_graph_vis/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 12_03_random",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "12_03_random"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 12_03_random/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "12_03_random/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 12_04_math",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "12_04_math"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 12_04_math/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "12_04_math/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 12_05_testing",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "12_05_testing"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 12_05_testing/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "12_05_testing/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 12_06_testing_advanced",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "12_06_testing_advanced"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 12_06_testing_advanced/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "12_06_testing_advanced/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 12_07_gil",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "12_07_gil"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Project - 12_07_gil/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "12_07_gil/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		}
+	]
+}

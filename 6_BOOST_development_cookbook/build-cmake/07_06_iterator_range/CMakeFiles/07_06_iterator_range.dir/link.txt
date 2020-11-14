@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/07_06_iterator_range.dir/main.o -o 07_06_iterator_range  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

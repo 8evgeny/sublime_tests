@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/06_07_exception_ptr.dir/main.o -o 06_07_exception_ptr  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

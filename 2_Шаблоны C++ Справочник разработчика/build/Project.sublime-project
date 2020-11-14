@@ -332,26 +332,38 @@
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},
 		{
-			"name": "brighe_forupto4 - brighe_forupto4",
-			"cmd": ["/usr/bin/make", "-f", "Makefile", "brighe_forupto4"],
+			"name": "tuple_compressedtuple1 - tuple_compressedtuple1",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "tuple_compressedtuple1"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},
 		{
-			"name": "brighe_forupto4 - brighe_forupto4/fast",
-			"cmd": ["/usr/bin/make", "-f", "Makefile", "brighe_forupto4/fast"],
+			"name": "tuple_compressedtuple1 - tuple_compressedtuple1/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "tuple_compressedtuple1/fast"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},
 		{
-			"name": "Project - tuples",
-			"cmd": ["/usr/bin/make", "-f", "Makefile", "tuples"],
+			"name": "tuple_indexsort - tuple_indexsort",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "tuple_indexsort"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},
 		{
-			"name": "Project - tuples/fast",
-			"cmd": ["/usr/bin/make", "-f", "Makefile", "tuples/fast"],
+			"name": "tuple_indexsort - tuple_indexsort/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "tuple_indexsort/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "debugging - debugging",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "debugging"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "debugging - debugging/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "debugging/fast"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		}

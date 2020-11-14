@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/debugging/tracer.hpp
+iostream
+-
+
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/debugging/tracertest.cpp
+iostream
+-
+algorithm
+-
+tracer.hpp
+/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/debugging/tracer.hpp
+

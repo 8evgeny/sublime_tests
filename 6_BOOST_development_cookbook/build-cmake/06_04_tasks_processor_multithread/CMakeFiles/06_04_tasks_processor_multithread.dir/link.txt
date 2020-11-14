@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/06_04_tasks_processor_multithread.dir/main.o -o 06_04_tasks_processor_multithread  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

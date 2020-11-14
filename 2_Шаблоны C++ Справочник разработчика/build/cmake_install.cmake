@@ -44,8 +44,10 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/tuples/cmake_install.cmake")
   include("/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/basics/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/bridge/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/tuples/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/debugging/cmake_install.cmake")
 
 endif()
 

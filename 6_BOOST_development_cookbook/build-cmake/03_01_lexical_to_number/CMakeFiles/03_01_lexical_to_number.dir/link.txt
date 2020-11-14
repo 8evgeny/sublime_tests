@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/03_01_lexical_to_number.dir/main.o -o 03_01_lexical_to_number  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

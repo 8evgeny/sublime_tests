@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/debugging.dir/tracertest.o -o debugging 

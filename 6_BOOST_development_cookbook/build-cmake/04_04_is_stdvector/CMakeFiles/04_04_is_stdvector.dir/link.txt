@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/04_04_is_stdvector.dir/main.o -o 04_04_is_stdvector  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

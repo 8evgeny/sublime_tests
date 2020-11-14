@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/12_03_random.dir/main.o -o 12_03_random  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

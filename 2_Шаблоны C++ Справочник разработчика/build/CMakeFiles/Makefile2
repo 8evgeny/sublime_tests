@@ -72,20 +72,26 @@ CMAKE_BINARY_DIR = "/home/jhon/Sublime_tests/2_Шаблоны C++ Справоч
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: tuples/all
 all: basics/all
+all: bridge/all
+all: tuples/all
+all: debugging/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall: tuples/preinstall
 preinstall: basics/preinstall
+preinstall: bridge/preinstall
+preinstall: tuples/preinstall
+preinstall: debugging/preinstall
 
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: tuples/clean
 clean: basics/clean
+clean: bridge/clean
+clean: tuples/clean
+clean: debugging/clean
 
 .PHONY : clean
 
@@ -567,49 +573,157 @@ basics/varusing/clean: basics/varusing/CMakeFiles/varusing.dir/clean
 .PHONY : basics/varusing/clean
 
 #=============================================================================
+# Directory level rules for directory bridge
+
+# Recursive "all" directory target.
+bridge/all: bridge/forupto1/all
+bridge/all: bridge/forupto2/all
+bridge/all: bridge/forupto3/all
+
+.PHONY : bridge/all
+
+# Recursive "preinstall" directory target.
+bridge/preinstall: bridge/forupto1/preinstall
+bridge/preinstall: bridge/forupto2/preinstall
+bridge/preinstall: bridge/forupto3/preinstall
+
+.PHONY : bridge/preinstall
+
+# Recursive "clean" directory target.
+bridge/clean: bridge/forupto1/clean
+bridge/clean: bridge/forupto2/clean
+bridge/clean: bridge/forupto3/clean
+
+.PHONY : bridge/clean
+
+#=============================================================================
+# Directory level rules for directory bridge/forupto1
+
+# Recursive "all" directory target.
+bridge/forupto1/all: bridge/forupto1/CMakeFiles/brighe_forupto1.dir/all
+
+.PHONY : bridge/forupto1/all
+
+# Recursive "preinstall" directory target.
+bridge/forupto1/preinstall:
+
+.PHONY : bridge/forupto1/preinstall
+
+# Recursive "clean" directory target.
+bridge/forupto1/clean: bridge/forupto1/CMakeFiles/brighe_forupto1.dir/clean
+
+.PHONY : bridge/forupto1/clean
+
+#=============================================================================
+# Directory level rules for directory bridge/forupto2
+
+# Recursive "all" directory target.
+bridge/forupto2/all: bridge/forupto2/CMakeFiles/brighe_forupto2.dir/all
+
+.PHONY : bridge/forupto2/all
+
+# Recursive "preinstall" directory target.
+bridge/forupto2/preinstall:
+
+.PHONY : bridge/forupto2/preinstall
+
+# Recursive "clean" directory target.
+bridge/forupto2/clean: bridge/forupto2/CMakeFiles/brighe_forupto2.dir/clean
+
+.PHONY : bridge/forupto2/clean
+
+#=============================================================================
+# Directory level rules for directory bridge/forupto3
+
+# Recursive "all" directory target.
+bridge/forupto3/all: bridge/forupto3/CMakeFiles/brighe_forupto3.dir/all
+
+.PHONY : bridge/forupto3/all
+
+# Recursive "preinstall" directory target.
+bridge/forupto3/preinstall:
+
+.PHONY : bridge/forupto3/preinstall
+
+# Recursive "clean" directory target.
+bridge/forupto3/clean: bridge/forupto3/CMakeFiles/brighe_forupto3.dir/clean
+
+.PHONY : bridge/forupto3/clean
+
+#=============================================================================
+# Directory level rules for directory debugging
+
+# Recursive "all" directory target.
+debugging/all: debugging/CMakeFiles/debugging.dir/all
+
+.PHONY : debugging/all
+
+# Recursive "preinstall" directory target.
+debugging/preinstall:
+
+.PHONY : debugging/preinstall
+
+# Recursive "clean" directory target.
+debugging/clean: debugging/CMakeFiles/debugging.dir/clean
+
+.PHONY : debugging/clean
+
+#=============================================================================
 # Directory level rules for directory tuples
 
 # Recursive "all" directory target.
-tuples/all: tuples/CMakeFiles/tuples.dir/all
+tuples/all: tuples/compressedtuple1/all
+tuples/all: tuples/indexsort/all
 
 .PHONY : tuples/all
 
 # Recursive "preinstall" directory target.
-tuples/preinstall:
+tuples/preinstall: tuples/compressedtuple1/preinstall
+tuples/preinstall: tuples/indexsort/preinstall
 
 .PHONY : tuples/preinstall
 
 # Recursive "clean" directory target.
-tuples/clean: tuples/CMakeFiles/tuples.dir/clean
+tuples/clean: tuples/compressedtuple1/clean
+tuples/clean: tuples/indexsort/clean
 
 .PHONY : tuples/clean
 
 #=============================================================================
-# Target rules for target tuples/CMakeFiles/tuples.dir
+# Directory level rules for directory tuples/compressedtuple1
 
-# All Build rule for target.
-tuples/CMakeFiles/tuples.dir/all:
-	$(MAKE) $(MAKESILENT) -f tuples/CMakeFiles/tuples.dir/build.make tuples/CMakeFiles/tuples.dir/depend
-	$(MAKE) $(MAKESILENT) -f tuples/CMakeFiles/tuples.dir/build.make tuples/CMakeFiles/tuples.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=43,44 "Built target tuples"
-.PHONY : tuples/CMakeFiles/tuples.dir/all
+# Recursive "all" directory target.
+tuples/compressedtuple1/all: tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/all
 
-# Build rule for subdir invocation for target.
-tuples/CMakeFiles/tuples.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tuples/CMakeFiles/tuples.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" 0
-.PHONY : tuples/CMakeFiles/tuples.dir/rule
+.PHONY : tuples/compressedtuple1/all
 
-# Convenience name for target.
-tuples: tuples/CMakeFiles/tuples.dir/rule
+# Recursive "preinstall" directory target.
+tuples/compressedtuple1/preinstall:
 
-.PHONY : tuples
+.PHONY : tuples/compressedtuple1/preinstall
 
-# clean rule for target.
-tuples/CMakeFiles/tuples.dir/clean:
-	$(MAKE) $(MAKESILENT) -f tuples/CMakeFiles/tuples.dir/build.make tuples/CMakeFiles/tuples.dir/clean
-.PHONY : tuples/CMakeFiles/tuples.dir/clean
+# Recursive "clean" directory target.
+tuples/compressedtuple1/clean: tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/clean
+
+.PHONY : tuples/compressedtuple1/clean
+
+#=============================================================================
+# Directory level rules for directory tuples/indexsort
+
+# Recursive "all" directory target.
+tuples/indexsort/all: tuples/indexsort/CMakeFiles/tuple_indexsort.dir/all
+
+.PHONY : tuples/indexsort/all
+
+# Recursive "preinstall" directory target.
+tuples/indexsort/preinstall:
+
+.PHONY : tuples/indexsort/preinstall
+
+# Recursive "clean" directory target.
+tuples/indexsort/clean: tuples/indexsort/CMakeFiles/tuple_indexsort.dir/clean
+
+.PHONY : tuples/indexsort/clean
 
 #=============================================================================
 # Target rules for target basics/arrays/CMakeFiles/arrays.dir
@@ -645,7 +759,7 @@ basics/arrays/CMakeFiles/arrays.dir/clean:
 basics/foreach/CMakeFiles/foreach.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/foreach/CMakeFiles/foreach.dir/build.make basics/foreach/CMakeFiles/foreach.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/foreach/CMakeFiles/foreach.dir/build.make basics/foreach/CMakeFiles/foreach.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=7,8 "Built target foreach"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=15,16 "Built target foreach"
 .PHONY : basics/foreach/CMakeFiles/foreach.dir/all
 
 # Build rule for subdir invocation for target.
@@ -672,7 +786,7 @@ basics/foreach/CMakeFiles/foreach.dir/clean:
 basics/foreachinvoke/CMakeFiles/foreachinvoke.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/foreachinvoke/CMakeFiles/foreachinvoke.dir/build.make basics/foreachinvoke/CMakeFiles/foreachinvoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/foreachinvoke/CMakeFiles/foreachinvoke.dir/build.make basics/foreachinvoke/CMakeFiles/foreachinvoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=9,10 "Built target foreachinvoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=17,18 "Built target foreachinvoke"
 .PHONY : basics/foreachinvoke/CMakeFiles/foreachinvoke.dir/all
 
 # Build rule for subdir invocation for target.
@@ -699,7 +813,7 @@ basics/foreachinvoke/CMakeFiles/foreachinvoke.dir/clean:
 basics/max1/CMakeFiles/max1.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/max1/CMakeFiles/max1.dir/build.make basics/max1/CMakeFiles/max1.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/max1/CMakeFiles/max1.dir/build.make basics/max1/CMakeFiles/max1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=11,12 "Built target max1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=19,20 "Built target max1"
 .PHONY : basics/max1/CMakeFiles/max1.dir/all
 
 # Build rule for subdir invocation for target.
@@ -726,7 +840,7 @@ basics/max1/CMakeFiles/max1.dir/clean:
 basics/max2/CMakeFiles/max2.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/max2/CMakeFiles/max2.dir/build.make basics/max2/CMakeFiles/max2.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/max2/CMakeFiles/max2.dir/build.make basics/max2/CMakeFiles/max2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=13,14 "Built target max2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=21,22 "Built target max2"
 .PHONY : basics/max2/CMakeFiles/max2.dir/all
 
 # Build rule for subdir invocation for target.
@@ -753,7 +867,7 @@ basics/max2/CMakeFiles/max2.dir/clean:
 basics/max3ref/CMakeFiles/max3ref.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/max3ref/CMakeFiles/max3ref.dir/build.make basics/max3ref/CMakeFiles/max3ref.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/max3ref/CMakeFiles/max3ref.dir/build.make basics/max3ref/CMakeFiles/max3ref.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=15,16 "Built target max3ref"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=23,24 "Built target max3ref"
 .PHONY : basics/max3ref/CMakeFiles/max3ref.dir/all
 
 # Build rule for subdir invocation for target.
@@ -780,7 +894,7 @@ basics/max3ref/CMakeFiles/max3ref.dir/clean:
 basics/max3val/CMakeFiles/max3val.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/max3val/CMakeFiles/max3val.dir/build.make basics/max3val/CMakeFiles/max3val.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/max3val/CMakeFiles/max3val.dir/build.make basics/max3val/CMakeFiles/max3val.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=17,18 "Built target max3val"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=25,26 "Built target max3val"
 .PHONY : basics/max3val/CMakeFiles/max3val.dir/all
 
 # Build rule for subdir invocation for target.
@@ -807,7 +921,7 @@ basics/max3val/CMakeFiles/max3val.dir/clean:
 basics/max4/CMakeFiles/max4.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/max4/CMakeFiles/max4.dir/build.make basics/max4/CMakeFiles/max4.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/max4/CMakeFiles/max4.dir/build.make basics/max4/CMakeFiles/max4.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=19,20 "Built target max4"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=27,28 "Built target max4"
 .PHONY : basics/max4/CMakeFiles/max4.dir/all
 
 # Build rule for subdir invocation for target.
@@ -834,7 +948,7 @@ basics/max4/CMakeFiles/max4.dir/clean:
 basics/cref/CMakeFiles/cref.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/cref/CMakeFiles/cref.dir/build.make basics/cref/CMakeFiles/cref.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/cref/CMakeFiles/cref.dir/build.make basics/cref/CMakeFiles/cref.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=3,4 "Built target cref"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=9,10 "Built target cref"
 .PHONY : basics/cref/CMakeFiles/cref.dir/all
 
 # Build rule for subdir invocation for target.
@@ -861,7 +975,7 @@ basics/cref/CMakeFiles/cref.dir/clean:
 basics/stack1/CMakeFiles/stack1.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/stack1/CMakeFiles/stack1.dir/build.make basics/stack1/CMakeFiles/stack1.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/stack1/CMakeFiles/stack1.dir/build.make basics/stack1/CMakeFiles/stack1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=31,32 "Built target stack1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=39,40 "Built target stack1"
 .PHONY : basics/stack1/CMakeFiles/stack1.dir/all
 
 # Build rule for subdir invocation for target.
@@ -888,7 +1002,7 @@ basics/stack1/CMakeFiles/stack1.dir/clean:
 basics/stack3/CMakeFiles/stack3.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/stack3/CMakeFiles/stack3.dir/build.make basics/stack3/CMakeFiles/stack3.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/stack3/CMakeFiles/stack3.dir/build.make basics/stack3/CMakeFiles/stack3.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=33,34 "Built target stack3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=41,42 "Built target stack3"
 .PHONY : basics/stack3/CMakeFiles/stack3.dir/all
 
 # Build rule for subdir invocation for target.
@@ -915,7 +1029,7 @@ basics/stack3/CMakeFiles/stack3.dir/clean:
 basics/stack9/CMakeFiles/stack9.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/stack9/CMakeFiles/stack9.dir/build.make basics/stack9/CMakeFiles/stack9.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/stack9/CMakeFiles/stack9.dir/build.make basics/stack9/CMakeFiles/stack9.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=35,36 "Built target stack9"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=43,44 "Built target stack9"
 .PHONY : basics/stack9/CMakeFiles/stack9.dir/all
 
 # Build rule for subdir invocation for target.
@@ -942,7 +1056,7 @@ basics/stack9/CMakeFiles/stack9.dir/clean:
 basics/stacknontype/CMakeFiles/stacknontype.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/stacknontype/CMakeFiles/stacknontype.dir/build.make basics/stacknontype/CMakeFiles/stacknontype.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/stacknontype/CMakeFiles/stacknontype.dir/build.make basics/stacknontype/CMakeFiles/stacknontype.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=39,40 "Built target stacknontype"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=47,48 "Built target stacknontype"
 .PHONY : basics/stacknontype/CMakeFiles/stacknontype.dir/all
 
 # Build rule for subdir invocation for target.
@@ -969,7 +1083,7 @@ basics/stacknontype/CMakeFiles/stacknontype.dir/clean:
 basics/stackauto/CMakeFiles/stackauto.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/stackauto/CMakeFiles/stackauto.dir/build.make basics/stackauto/CMakeFiles/stackauto.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/stackauto/CMakeFiles/stackauto.dir/build.make basics/stackauto/CMakeFiles/stackauto.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=37,38 "Built target stackauto"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=45,46 "Built target stackauto"
 .PHONY : basics/stackauto/CMakeFiles/stackauto.dir/all
 
 # Build rule for subdir invocation for target.
@@ -996,7 +1110,7 @@ basics/stackauto/CMakeFiles/stackauto.dir/clean:
 basics/tmplparamref/CMakeFiles/tmplparamref.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/tmplparamref/CMakeFiles/tmplparamref.dir/build.make basics/tmplparamref/CMakeFiles/tmplparamref.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/tmplparamref/CMakeFiles/tmplparamref.dir/build.make basics/tmplparamref/CMakeFiles/tmplparamref.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=41,42 "Built target tmplparamref"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=49,50 "Built target tmplparamref"
 .PHONY : basics/tmplparamref/CMakeFiles/tmplparamref.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1023,7 +1137,7 @@ basics/tmplparamref/CMakeFiles/tmplparamref.dir/clean:
 basics/message/CMakeFiles/message.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/message/CMakeFiles/message.dir/build.make basics/message/CMakeFiles/message.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/message/CMakeFiles/message.dir/build.make basics/message/CMakeFiles/message.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=21,22 "Built target message"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=29,30 "Built target message"
 .PHONY : basics/message/CMakeFiles/message.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1050,7 +1164,7 @@ basics/message/CMakeFiles/message.dir/clean:
 basics/move1/CMakeFiles/move1.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/move1/CMakeFiles/move1.dir/build.make basics/move1/CMakeFiles/move1.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/move1/CMakeFiles/move1.dir/build.make basics/move1/CMakeFiles/move1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=23,24 "Built target move1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=31,32 "Built target move1"
 .PHONY : basics/move1/CMakeFiles/move1.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1077,7 +1191,7 @@ basics/move1/CMakeFiles/move1.dir/clean:
 basics/move2/CMakeFiles/move2.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/move2/CMakeFiles/move2.dir/build.make basics/move2/CMakeFiles/move2.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/move2/CMakeFiles/move2.dir/build.make basics/move2/CMakeFiles/move2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=25,26 "Built target move2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=33,34 "Built target move2"
 .PHONY : basics/move2/CMakeFiles/move2.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1104,7 +1218,7 @@ basics/move2/CMakeFiles/move2.dir/clean:
 basics/varusing/CMakeFiles/varusing.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/varusing/CMakeFiles/varusing.dir/build.make basics/varusing/CMakeFiles/varusing.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/varusing/CMakeFiles/varusing.dir/build.make basics/varusing/CMakeFiles/varusing.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=45,46 "Built target varusing"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=55,56 "Built target varusing"
 .PHONY : basics/varusing/CMakeFiles/varusing.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1131,7 +1245,7 @@ basics/varusing/CMakeFiles/varusing.dir/clean:
 basics/specialmemtmpl1/CMakeFiles/specialmemtmpl1.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/specialmemtmpl1/CMakeFiles/specialmemtmpl1.dir/build.make basics/specialmemtmpl1/CMakeFiles/specialmemtmpl1.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/specialmemtmpl1/CMakeFiles/specialmemtmpl1.dir/build.make basics/specialmemtmpl1/CMakeFiles/specialmemtmpl1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=27,28 "Built target specialmemtmpl1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=35,36 "Built target specialmemtmpl1"
 .PHONY : basics/specialmemtmpl1/CMakeFiles/specialmemtmpl1.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1158,7 +1272,7 @@ basics/specialmemtmpl1/CMakeFiles/specialmemtmpl1.dir/clean:
 basics/specialmemtmpl3/CMakeFiles/specialmemtmpl3.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/specialmemtmpl3/CMakeFiles/specialmemtmpl3.dir/build.make basics/specialmemtmpl3/CMakeFiles/specialmemtmpl3.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/specialmemtmpl3/CMakeFiles/specialmemtmpl3.dir/build.make basics/specialmemtmpl3/CMakeFiles/specialmemtmpl3.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=29,30 "Built target specialmemtmpl3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=37,38 "Built target specialmemtmpl3"
 .PHONY : basics/specialmemtmpl3/CMakeFiles/specialmemtmpl3.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1185,7 +1299,7 @@ basics/specialmemtmpl3/CMakeFiles/specialmemtmpl3.dir/clean:
 basics/foldtraverse/CMakeFiles/foldtraverse.dir/all:
 	$(MAKE) $(MAKESILENT) -f basics/foldtraverse/CMakeFiles/foldtraverse.dir/build.make basics/foldtraverse/CMakeFiles/foldtraverse.dir/depend
 	$(MAKE) $(MAKESILENT) -f basics/foldtraverse/CMakeFiles/foldtraverse.dir/build.make basics/foldtraverse/CMakeFiles/foldtraverse.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=5,6 "Built target foldtraverse"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=13,14 "Built target foldtraverse"
 .PHONY : basics/foldtraverse/CMakeFiles/foldtraverse.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1204,6 +1318,168 @@ foldtraverse: basics/foldtraverse/CMakeFiles/foldtraverse.dir/rule
 basics/foldtraverse/CMakeFiles/foldtraverse.dir/clean:
 	$(MAKE) $(MAKESILENT) -f basics/foldtraverse/CMakeFiles/foldtraverse.dir/build.make basics/foldtraverse/CMakeFiles/foldtraverse.dir/clean
 .PHONY : basics/foldtraverse/CMakeFiles/foldtraverse.dir/clean
+
+#=============================================================================
+# Target rules for target bridge/forupto1/CMakeFiles/brighe_forupto1.dir
+
+# All Build rule for target.
+bridge/forupto1/CMakeFiles/brighe_forupto1.dir/all:
+	$(MAKE) $(MAKESILENT) -f bridge/forupto1/CMakeFiles/brighe_forupto1.dir/build.make bridge/forupto1/CMakeFiles/brighe_forupto1.dir/depend
+	$(MAKE) $(MAKESILENT) -f bridge/forupto1/CMakeFiles/brighe_forupto1.dir/build.make bridge/forupto1/CMakeFiles/brighe_forupto1.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=3,4 "Built target brighe_forupto1"
+.PHONY : bridge/forupto1/CMakeFiles/brighe_forupto1.dir/all
+
+# Build rule for subdir invocation for target.
+bridge/forupto1/CMakeFiles/brighe_forupto1.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bridge/forupto1/CMakeFiles/brighe_forupto1.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" 0
+.PHONY : bridge/forupto1/CMakeFiles/brighe_forupto1.dir/rule
+
+# Convenience name for target.
+brighe_forupto1: bridge/forupto1/CMakeFiles/brighe_forupto1.dir/rule
+
+.PHONY : brighe_forupto1
+
+# clean rule for target.
+bridge/forupto1/CMakeFiles/brighe_forupto1.dir/clean:
+	$(MAKE) $(MAKESILENT) -f bridge/forupto1/CMakeFiles/brighe_forupto1.dir/build.make bridge/forupto1/CMakeFiles/brighe_forupto1.dir/clean
+.PHONY : bridge/forupto1/CMakeFiles/brighe_forupto1.dir/clean
+
+#=============================================================================
+# Target rules for target bridge/forupto2/CMakeFiles/brighe_forupto2.dir
+
+# All Build rule for target.
+bridge/forupto2/CMakeFiles/brighe_forupto2.dir/all:
+	$(MAKE) $(MAKESILENT) -f bridge/forupto2/CMakeFiles/brighe_forupto2.dir/build.make bridge/forupto2/CMakeFiles/brighe_forupto2.dir/depend
+	$(MAKE) $(MAKESILENT) -f bridge/forupto2/CMakeFiles/brighe_forupto2.dir/build.make bridge/forupto2/CMakeFiles/brighe_forupto2.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=5,6 "Built target brighe_forupto2"
+.PHONY : bridge/forupto2/CMakeFiles/brighe_forupto2.dir/all
+
+# Build rule for subdir invocation for target.
+bridge/forupto2/CMakeFiles/brighe_forupto2.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bridge/forupto2/CMakeFiles/brighe_forupto2.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" 0
+.PHONY : bridge/forupto2/CMakeFiles/brighe_forupto2.dir/rule
+
+# Convenience name for target.
+brighe_forupto2: bridge/forupto2/CMakeFiles/brighe_forupto2.dir/rule
+
+.PHONY : brighe_forupto2
+
+# clean rule for target.
+bridge/forupto2/CMakeFiles/brighe_forupto2.dir/clean:
+	$(MAKE) $(MAKESILENT) -f bridge/forupto2/CMakeFiles/brighe_forupto2.dir/build.make bridge/forupto2/CMakeFiles/brighe_forupto2.dir/clean
+.PHONY : bridge/forupto2/CMakeFiles/brighe_forupto2.dir/clean
+
+#=============================================================================
+# Target rules for target bridge/forupto3/CMakeFiles/brighe_forupto3.dir
+
+# All Build rule for target.
+bridge/forupto3/CMakeFiles/brighe_forupto3.dir/all:
+	$(MAKE) $(MAKESILENT) -f bridge/forupto3/CMakeFiles/brighe_forupto3.dir/build.make bridge/forupto3/CMakeFiles/brighe_forupto3.dir/depend
+	$(MAKE) $(MAKESILENT) -f bridge/forupto3/CMakeFiles/brighe_forupto3.dir/build.make bridge/forupto3/CMakeFiles/brighe_forupto3.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=7,8 "Built target brighe_forupto3"
+.PHONY : bridge/forupto3/CMakeFiles/brighe_forupto3.dir/all
+
+# Build rule for subdir invocation for target.
+bridge/forupto3/CMakeFiles/brighe_forupto3.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bridge/forupto3/CMakeFiles/brighe_forupto3.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" 0
+.PHONY : bridge/forupto3/CMakeFiles/brighe_forupto3.dir/rule
+
+# Convenience name for target.
+brighe_forupto3: bridge/forupto3/CMakeFiles/brighe_forupto3.dir/rule
+
+.PHONY : brighe_forupto3
+
+# clean rule for target.
+bridge/forupto3/CMakeFiles/brighe_forupto3.dir/clean:
+	$(MAKE) $(MAKESILENT) -f bridge/forupto3/CMakeFiles/brighe_forupto3.dir/build.make bridge/forupto3/CMakeFiles/brighe_forupto3.dir/clean
+.PHONY : bridge/forupto3/CMakeFiles/brighe_forupto3.dir/clean
+
+#=============================================================================
+# Target rules for target tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir
+
+# All Build rule for target.
+tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/all:
+	$(MAKE) $(MAKESILENT) -f tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/build.make tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/depend
+	$(MAKE) $(MAKESILENT) -f tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/build.make tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=51,52 "Built target tuple_compressedtuple1"
+.PHONY : tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/all
+
+# Build rule for subdir invocation for target.
+tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" 0
+.PHONY : tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/rule
+
+# Convenience name for target.
+tuple_compressedtuple1: tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/rule
+
+.PHONY : tuple_compressedtuple1
+
+# clean rule for target.
+tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/clean:
+	$(MAKE) $(MAKESILENT) -f tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/build.make tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/clean
+.PHONY : tuples/compressedtuple1/CMakeFiles/tuple_compressedtuple1.dir/clean
+
+#=============================================================================
+# Target rules for target tuples/indexsort/CMakeFiles/tuple_indexsort.dir
+
+# All Build rule for target.
+tuples/indexsort/CMakeFiles/tuple_indexsort.dir/all:
+	$(MAKE) $(MAKESILENT) -f tuples/indexsort/CMakeFiles/tuple_indexsort.dir/build.make tuples/indexsort/CMakeFiles/tuple_indexsort.dir/depend
+	$(MAKE) $(MAKESILENT) -f tuples/indexsort/CMakeFiles/tuple_indexsort.dir/build.make tuples/indexsort/CMakeFiles/tuple_indexsort.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=53,54 "Built target tuple_indexsort"
+.PHONY : tuples/indexsort/CMakeFiles/tuple_indexsort.dir/all
+
+# Build rule for subdir invocation for target.
+tuples/indexsort/CMakeFiles/tuple_indexsort.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tuples/indexsort/CMakeFiles/tuple_indexsort.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" 0
+.PHONY : tuples/indexsort/CMakeFiles/tuple_indexsort.dir/rule
+
+# Convenience name for target.
+tuple_indexsort: tuples/indexsort/CMakeFiles/tuple_indexsort.dir/rule
+
+.PHONY : tuple_indexsort
+
+# clean rule for target.
+tuples/indexsort/CMakeFiles/tuple_indexsort.dir/clean:
+	$(MAKE) $(MAKESILENT) -f tuples/indexsort/CMakeFiles/tuple_indexsort.dir/build.make tuples/indexsort/CMakeFiles/tuple_indexsort.dir/clean
+.PHONY : tuples/indexsort/CMakeFiles/tuple_indexsort.dir/clean
+
+#=============================================================================
+# Target rules for target debugging/CMakeFiles/debugging.dir
+
+# All Build rule for target.
+debugging/CMakeFiles/debugging.dir/all:
+	$(MAKE) $(MAKESILENT) -f debugging/CMakeFiles/debugging.dir/build.make debugging/CMakeFiles/debugging.dir/depend
+	$(MAKE) $(MAKESILENT) -f debugging/CMakeFiles/debugging.dir/build.make debugging/CMakeFiles/debugging.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" --progress-num=11,12 "Built target debugging"
+.PHONY : debugging/CMakeFiles/debugging.dir/all
+
+# Build rule for subdir invocation for target.
+debugging/CMakeFiles/debugging.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 debugging/CMakeFiles/debugging.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jhon/Sublime_tests/2_Шаблоны C++ Справочник разработчика/build/CMakeFiles" 0
+.PHONY : debugging/CMakeFiles/debugging.dir/rule
+
+# Convenience name for target.
+debugging: debugging/CMakeFiles/debugging.dir/rule
+
+.PHONY : debugging
+
+# clean rule for target.
+debugging/CMakeFiles/debugging.dir/clean:
+	$(MAKE) $(MAKESILENT) -f debugging/CMakeFiles/debugging.dir/build.make debugging/CMakeFiles/debugging.dir/clean
+.PHONY : debugging/CMakeFiles/debugging.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

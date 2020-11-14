@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/07_02_regex_match.dir/main.o -o 07_02_regex_match  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

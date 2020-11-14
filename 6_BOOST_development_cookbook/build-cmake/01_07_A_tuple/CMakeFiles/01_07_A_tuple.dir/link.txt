@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/01_07_A_tuple.dir/main.o -o 01_07_A_tuple  -llibpqxx -lboost_program_options -lQt5::Core -lQt5::Widgets 

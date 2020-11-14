@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/basics.dir/arrays.o -o basics 

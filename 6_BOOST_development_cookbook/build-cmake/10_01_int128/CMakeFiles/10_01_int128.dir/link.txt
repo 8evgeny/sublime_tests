@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/10_01_int128.dir/main.o -o 10_01_int128  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 
