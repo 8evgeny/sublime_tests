@@ -1,0 +1,35 @@
+{
+	"folders":
+	[
+		{
+			"path": "../"
+		}
+	],
+	"build_systems":
+	[
+		{
+			"name": "Implementing_server_applications_AsyncParallel - all",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "all"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_server_applications_AsyncParallel - clean",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "clean"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_server_applications_AsyncParallel - Implementing_server_applications_AsyncParallel",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_server_applications_AsyncParallel"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_server_applications_AsyncParallel - Implementing_server_applications_AsyncParallel/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_server_applications_AsyncParallel/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		}
+	]
+}

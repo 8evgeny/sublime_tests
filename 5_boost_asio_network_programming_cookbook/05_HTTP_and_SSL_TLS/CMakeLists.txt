@@ -1,7 +1,8 @@
-set(CMAKE_CXX_STANDARD 17)
-   
+add_subdirectory(HTTPClient)
 
-
+#add_subdirectory(HTTPServer)
+#add_subdirectory(SyncSSLClient)
+#add_subdirectory(SyncSSLServer)
 
 
 

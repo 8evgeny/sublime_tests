@@ -1,0 +1,35 @@
+{
+	"folders":
+	[
+		{
+			"path": "../"
+		}
+	],
+	"build_systems":
+	[
+		{
+			"name": "Other_SocketOptions - all",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "all"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Other_SocketOptions - clean",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "clean"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Other_SocketOptions - Other_SocketOptions",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Other_SocketOptions"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Other_SocketOptions - Other_SocketOptions/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Other_SocketOptions/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		}
+	]
+}

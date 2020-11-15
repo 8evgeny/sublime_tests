@@ -1,7 +1,7 @@
-set(CMAKE_CXX_STANDARD 17)
-   
-
-
-
+add_subdirectory(CompositeBuffersGatherOutput)
+add_subdirectory(CompositeBuffersScatterInput)
+add_subdirectory(SocketOptions)
+add_subdirectory(StreamBasedIO)
+add_subdirectory(Timers)
 
 

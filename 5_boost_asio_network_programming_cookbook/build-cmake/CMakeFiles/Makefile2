@@ -78,6 +78,7 @@ all: 03_Implementing_client_applications/all
 all: 04_Implementing_server_applications/all
 all: 05_HTTP_and_SSL_TLS/all
 all: 06_Other_Topics/all
+all: S-607_client_server/all
 
 .PHONY : all
 
@@ -88,6 +89,7 @@ preinstall: 03_Implementing_client_applications/preinstall
 preinstall: 04_Implementing_server_applications/preinstall
 preinstall: 05_HTTP_and_SSL_TLS/preinstall
 preinstall: 06_Other_Topics/preinstall
+preinstall: S-607_client_server/preinstall
 
 .PHONY : preinstall
 
@@ -98,6 +100,7 @@ clean: 03_Implementing_client_applications/clean
 clean: 04_Implementing_server_applications/clean
 clean: 05_HTTP_and_SSL_TLS/clean
 clean: 06_Other_Topics/clean
+clean: S-607_client_server/clean
 
 .PHONY : clean
 
@@ -123,91 +126,427 @@ clean: 06_Other_Topics/clean
 # Directory level rules for directory 02_IO_operations
 
 # Recursive "all" directory target.
-02_IO_operations/all:
+02_IO_operations/all: 02_IO_operations/ReadingFromTCPSockAsync/all
 
 .PHONY : 02_IO_operations/all
 
 # Recursive "preinstall" directory target.
-02_IO_operations/preinstall:
+02_IO_operations/preinstall: 02_IO_operations/ReadingFromTCPSockAsync/preinstall
 
 .PHONY : 02_IO_operations/preinstall
 
 # Recursive "clean" directory target.
-02_IO_operations/clean:
+02_IO_operations/clean: 02_IO_operations/ReadingFromTCPSockAsync/clean
 
 .PHONY : 02_IO_operations/clean
+
+#=============================================================================
+# Directory level rules for directory 02_IO_operations/ReadingFromTCPSockAsync
+
+# Recursive "all" directory target.
+02_IO_operations/ReadingFromTCPSockAsync/all: 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/all
+
+.PHONY : 02_IO_operations/ReadingFromTCPSockAsync/all
+
+# Recursive "preinstall" directory target.
+02_IO_operations/ReadingFromTCPSockAsync/preinstall:
+
+.PHONY : 02_IO_operations/ReadingFromTCPSockAsync/preinstall
+
+# Recursive "clean" directory target.
+02_IO_operations/ReadingFromTCPSockAsync/clean: 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/clean
+
+.PHONY : 02_IO_operations/ReadingFromTCPSockAsync/clean
 
 #=============================================================================
 # Directory level rules for directory 03_Implementing_client_applications
 
 # Recursive "all" directory target.
-03_Implementing_client_applications/all:
+03_Implementing_client_applications/all: 03_Implementing_client_applications/AsyncTCPClient/all
+03_Implementing_client_applications/all: 03_Implementing_client_applications/AsyncTCPClientMT/all
+03_Implementing_client_applications/all: 03_Implementing_client_applications/SyncTCPClient/all
+03_Implementing_client_applications/all: 03_Implementing_client_applications/SyncUDPClient/all
 
 .PHONY : 03_Implementing_client_applications/all
 
 # Recursive "preinstall" directory target.
-03_Implementing_client_applications/preinstall:
+03_Implementing_client_applications/preinstall: 03_Implementing_client_applications/AsyncTCPClient/preinstall
+03_Implementing_client_applications/preinstall: 03_Implementing_client_applications/AsyncTCPClientMT/preinstall
+03_Implementing_client_applications/preinstall: 03_Implementing_client_applications/SyncTCPClient/preinstall
+03_Implementing_client_applications/preinstall: 03_Implementing_client_applications/SyncUDPClient/preinstall
 
 .PHONY : 03_Implementing_client_applications/preinstall
 
 # Recursive "clean" directory target.
-03_Implementing_client_applications/clean:
+03_Implementing_client_applications/clean: 03_Implementing_client_applications/AsyncTCPClient/clean
+03_Implementing_client_applications/clean: 03_Implementing_client_applications/AsyncTCPClientMT/clean
+03_Implementing_client_applications/clean: 03_Implementing_client_applications/SyncTCPClient/clean
+03_Implementing_client_applications/clean: 03_Implementing_client_applications/SyncUDPClient/clean
 
 .PHONY : 03_Implementing_client_applications/clean
+
+#=============================================================================
+# Directory level rules for directory 03_Implementing_client_applications/AsyncTCPClient
+
+# Recursive "all" directory target.
+03_Implementing_client_applications/AsyncTCPClient/all: 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/all
+
+.PHONY : 03_Implementing_client_applications/AsyncTCPClient/all
+
+# Recursive "preinstall" directory target.
+03_Implementing_client_applications/AsyncTCPClient/preinstall:
+
+.PHONY : 03_Implementing_client_applications/AsyncTCPClient/preinstall
+
+# Recursive "clean" directory target.
+03_Implementing_client_applications/AsyncTCPClient/clean: 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/clean
+
+.PHONY : 03_Implementing_client_applications/AsyncTCPClient/clean
+
+#=============================================================================
+# Directory level rules for directory 03_Implementing_client_applications/AsyncTCPClientMT
+
+# Recursive "all" directory target.
+03_Implementing_client_applications/AsyncTCPClientMT/all: 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/all
+
+.PHONY : 03_Implementing_client_applications/AsyncTCPClientMT/all
+
+# Recursive "preinstall" directory target.
+03_Implementing_client_applications/AsyncTCPClientMT/preinstall:
+
+.PHONY : 03_Implementing_client_applications/AsyncTCPClientMT/preinstall
+
+# Recursive "clean" directory target.
+03_Implementing_client_applications/AsyncTCPClientMT/clean: 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/clean
+
+.PHONY : 03_Implementing_client_applications/AsyncTCPClientMT/clean
+
+#=============================================================================
+# Directory level rules for directory 03_Implementing_client_applications/SyncTCPClient
+
+# Recursive "all" directory target.
+03_Implementing_client_applications/SyncTCPClient/all: 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/all
+
+.PHONY : 03_Implementing_client_applications/SyncTCPClient/all
+
+# Recursive "preinstall" directory target.
+03_Implementing_client_applications/SyncTCPClient/preinstall:
+
+.PHONY : 03_Implementing_client_applications/SyncTCPClient/preinstall
+
+# Recursive "clean" directory target.
+03_Implementing_client_applications/SyncTCPClient/clean: 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/clean
+
+.PHONY : 03_Implementing_client_applications/SyncTCPClient/clean
+
+#=============================================================================
+# Directory level rules for directory 03_Implementing_client_applications/SyncUDPClient
+
+# Recursive "all" directory target.
+03_Implementing_client_applications/SyncUDPClient/all: 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/all
+
+.PHONY : 03_Implementing_client_applications/SyncUDPClient/all
+
+# Recursive "preinstall" directory target.
+03_Implementing_client_applications/SyncUDPClient/preinstall:
+
+.PHONY : 03_Implementing_client_applications/SyncUDPClient/preinstall
+
+# Recursive "clean" directory target.
+03_Implementing_client_applications/SyncUDPClient/clean: 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/clean
+
+.PHONY : 03_Implementing_client_applications/SyncUDPClient/clean
 
 #=============================================================================
 # Directory level rules for directory 04_Implementing_server_applications
 
 # Recursive "all" directory target.
-04_Implementing_server_applications/all:
+04_Implementing_server_applications/all: 04_Implementing_server_applications/AsyncParallel/all
+04_Implementing_server_applications/all: 04_Implementing_server_applications/SyncIterative/all
+04_Implementing_server_applications/all: 04_Implementing_server_applications/SyncParallel/all
 
 .PHONY : 04_Implementing_server_applications/all
 
 # Recursive "preinstall" directory target.
-04_Implementing_server_applications/preinstall:
+04_Implementing_server_applications/preinstall: 04_Implementing_server_applications/AsyncParallel/preinstall
+04_Implementing_server_applications/preinstall: 04_Implementing_server_applications/SyncIterative/preinstall
+04_Implementing_server_applications/preinstall: 04_Implementing_server_applications/SyncParallel/preinstall
 
 .PHONY : 04_Implementing_server_applications/preinstall
 
 # Recursive "clean" directory target.
-04_Implementing_server_applications/clean:
+04_Implementing_server_applications/clean: 04_Implementing_server_applications/AsyncParallel/clean
+04_Implementing_server_applications/clean: 04_Implementing_server_applications/SyncIterative/clean
+04_Implementing_server_applications/clean: 04_Implementing_server_applications/SyncParallel/clean
 
 .PHONY : 04_Implementing_server_applications/clean
+
+#=============================================================================
+# Directory level rules for directory 04_Implementing_server_applications/AsyncParallel
+
+# Recursive "all" directory target.
+04_Implementing_server_applications/AsyncParallel/all: 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/all
+
+.PHONY : 04_Implementing_server_applications/AsyncParallel/all
+
+# Recursive "preinstall" directory target.
+04_Implementing_server_applications/AsyncParallel/preinstall:
+
+.PHONY : 04_Implementing_server_applications/AsyncParallel/preinstall
+
+# Recursive "clean" directory target.
+04_Implementing_server_applications/AsyncParallel/clean: 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/clean
+
+.PHONY : 04_Implementing_server_applications/AsyncParallel/clean
+
+#=============================================================================
+# Directory level rules for directory 04_Implementing_server_applications/SyncIterative
+
+# Recursive "all" directory target.
+04_Implementing_server_applications/SyncIterative/all: 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/all
+
+.PHONY : 04_Implementing_server_applications/SyncIterative/all
+
+# Recursive "preinstall" directory target.
+04_Implementing_server_applications/SyncIterative/preinstall:
+
+.PHONY : 04_Implementing_server_applications/SyncIterative/preinstall
+
+# Recursive "clean" directory target.
+04_Implementing_server_applications/SyncIterative/clean: 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/clean
+
+.PHONY : 04_Implementing_server_applications/SyncIterative/clean
+
+#=============================================================================
+# Directory level rules for directory 04_Implementing_server_applications/SyncParallel
+
+# Recursive "all" directory target.
+04_Implementing_server_applications/SyncParallel/all: 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/all
+
+.PHONY : 04_Implementing_server_applications/SyncParallel/all
+
+# Recursive "preinstall" directory target.
+04_Implementing_server_applications/SyncParallel/preinstall:
+
+.PHONY : 04_Implementing_server_applications/SyncParallel/preinstall
+
+# Recursive "clean" directory target.
+04_Implementing_server_applications/SyncParallel/clean: 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/clean
+
+.PHONY : 04_Implementing_server_applications/SyncParallel/clean
 
 #=============================================================================
 # Directory level rules for directory 05_HTTP_and_SSL_TLS
 
 # Recursive "all" directory target.
-05_HTTP_and_SSL_TLS/all:
+05_HTTP_and_SSL_TLS/all: 05_HTTP_and_SSL_TLS/HTTPClient/all
 
 .PHONY : 05_HTTP_and_SSL_TLS/all
 
 # Recursive "preinstall" directory target.
-05_HTTP_and_SSL_TLS/preinstall:
+05_HTTP_and_SSL_TLS/preinstall: 05_HTTP_and_SSL_TLS/HTTPClient/preinstall
 
 .PHONY : 05_HTTP_and_SSL_TLS/preinstall
 
 # Recursive "clean" directory target.
-05_HTTP_and_SSL_TLS/clean:
+05_HTTP_and_SSL_TLS/clean: 05_HTTP_and_SSL_TLS/HTTPClient/clean
 
 .PHONY : 05_HTTP_and_SSL_TLS/clean
+
+#=============================================================================
+# Directory level rules for directory 05_HTTP_and_SSL_TLS/HTTPClient
+
+# Recursive "all" directory target.
+05_HTTP_and_SSL_TLS/HTTPClient/all: 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/all
+
+.PHONY : 05_HTTP_and_SSL_TLS/HTTPClient/all
+
+# Recursive "preinstall" directory target.
+05_HTTP_and_SSL_TLS/HTTPClient/preinstall:
+
+.PHONY : 05_HTTP_and_SSL_TLS/HTTPClient/preinstall
+
+# Recursive "clean" directory target.
+05_HTTP_and_SSL_TLS/HTTPClient/clean: 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/clean
+
+.PHONY : 05_HTTP_and_SSL_TLS/HTTPClient/clean
 
 #=============================================================================
 # Directory level rules for directory 06_Other_Topics
 
 # Recursive "all" directory target.
-06_Other_Topics/all:
+06_Other_Topics/all: 06_Other_Topics/CompositeBuffersGatherOutput/all
+06_Other_Topics/all: 06_Other_Topics/CompositeBuffersScatterInput/all
+06_Other_Topics/all: 06_Other_Topics/SocketOptions/all
+06_Other_Topics/all: 06_Other_Topics/StreamBasedIO/all
+06_Other_Topics/all: 06_Other_Topics/Timers/all
 
 .PHONY : 06_Other_Topics/all
 
 # Recursive "preinstall" directory target.
-06_Other_Topics/preinstall:
+06_Other_Topics/preinstall: 06_Other_Topics/CompositeBuffersGatherOutput/preinstall
+06_Other_Topics/preinstall: 06_Other_Topics/CompositeBuffersScatterInput/preinstall
+06_Other_Topics/preinstall: 06_Other_Topics/SocketOptions/preinstall
+06_Other_Topics/preinstall: 06_Other_Topics/StreamBasedIO/preinstall
+06_Other_Topics/preinstall: 06_Other_Topics/Timers/preinstall
 
 .PHONY : 06_Other_Topics/preinstall
 
 # Recursive "clean" directory target.
-06_Other_Topics/clean:
+06_Other_Topics/clean: 06_Other_Topics/CompositeBuffersGatherOutput/clean
+06_Other_Topics/clean: 06_Other_Topics/CompositeBuffersScatterInput/clean
+06_Other_Topics/clean: 06_Other_Topics/SocketOptions/clean
+06_Other_Topics/clean: 06_Other_Topics/StreamBasedIO/clean
+06_Other_Topics/clean: 06_Other_Topics/Timers/clean
 
 .PHONY : 06_Other_Topics/clean
+
+#=============================================================================
+# Directory level rules for directory 06_Other_Topics/CompositeBuffersGatherOutput
+
+# Recursive "all" directory target.
+06_Other_Topics/CompositeBuffersGatherOutput/all: 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/all
+
+.PHONY : 06_Other_Topics/CompositeBuffersGatherOutput/all
+
+# Recursive "preinstall" directory target.
+06_Other_Topics/CompositeBuffersGatherOutput/preinstall:
+
+.PHONY : 06_Other_Topics/CompositeBuffersGatherOutput/preinstall
+
+# Recursive "clean" directory target.
+06_Other_Topics/CompositeBuffersGatherOutput/clean: 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/clean
+
+.PHONY : 06_Other_Topics/CompositeBuffersGatherOutput/clean
+
+#=============================================================================
+# Directory level rules for directory 06_Other_Topics/CompositeBuffersScatterInput
+
+# Recursive "all" directory target.
+06_Other_Topics/CompositeBuffersScatterInput/all: 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/all
+
+.PHONY : 06_Other_Topics/CompositeBuffersScatterInput/all
+
+# Recursive "preinstall" directory target.
+06_Other_Topics/CompositeBuffersScatterInput/preinstall:
+
+.PHONY : 06_Other_Topics/CompositeBuffersScatterInput/preinstall
+
+# Recursive "clean" directory target.
+06_Other_Topics/CompositeBuffersScatterInput/clean: 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/clean
+
+.PHONY : 06_Other_Topics/CompositeBuffersScatterInput/clean
+
+#=============================================================================
+# Directory level rules for directory 06_Other_Topics/SocketOptions
+
+# Recursive "all" directory target.
+06_Other_Topics/SocketOptions/all: 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/all
+
+.PHONY : 06_Other_Topics/SocketOptions/all
+
+# Recursive "preinstall" directory target.
+06_Other_Topics/SocketOptions/preinstall:
+
+.PHONY : 06_Other_Topics/SocketOptions/preinstall
+
+# Recursive "clean" directory target.
+06_Other_Topics/SocketOptions/clean: 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/clean
+
+.PHONY : 06_Other_Topics/SocketOptions/clean
+
+#=============================================================================
+# Directory level rules for directory 06_Other_Topics/StreamBasedIO
+
+# Recursive "all" directory target.
+06_Other_Topics/StreamBasedIO/all: 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/all
+
+.PHONY : 06_Other_Topics/StreamBasedIO/all
+
+# Recursive "preinstall" directory target.
+06_Other_Topics/StreamBasedIO/preinstall:
+
+.PHONY : 06_Other_Topics/StreamBasedIO/preinstall
+
+# Recursive "clean" directory target.
+06_Other_Topics/StreamBasedIO/clean: 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/clean
+
+.PHONY : 06_Other_Topics/StreamBasedIO/clean
+
+#=============================================================================
+# Directory level rules for directory 06_Other_Topics/Timers
+
+# Recursive "all" directory target.
+06_Other_Topics/Timers/all: 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/all
+
+.PHONY : 06_Other_Topics/Timers/all
+
+# Recursive "preinstall" directory target.
+06_Other_Topics/Timers/preinstall:
+
+.PHONY : 06_Other_Topics/Timers/preinstall
+
+# Recursive "clean" directory target.
+06_Other_Topics/Timers/clean: 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/clean
+
+.PHONY : 06_Other_Topics/Timers/clean
+
+#=============================================================================
+# Directory level rules for directory S-607_client_server
+
+# Recursive "all" directory target.
+S-607_client_server/all: S-607_client_server/boost_client/all
+S-607_client_server/all: S-607_client_server/boost_server/all
+
+.PHONY : S-607_client_server/all
+
+# Recursive "preinstall" directory target.
+S-607_client_server/preinstall: S-607_client_server/boost_client/preinstall
+S-607_client_server/preinstall: S-607_client_server/boost_server/preinstall
+
+.PHONY : S-607_client_server/preinstall
+
+# Recursive "clean" directory target.
+S-607_client_server/clean: S-607_client_server/boost_client/clean
+S-607_client_server/clean: S-607_client_server/boost_server/clean
+
+.PHONY : S-607_client_server/clean
+
+#=============================================================================
+# Directory level rules for directory S-607_client_server/boost_client
+
+# Recursive "all" directory target.
+S-607_client_server/boost_client/all: S-607_client_server/boost_client/CMakeFiles/boost_client.dir/all
+
+.PHONY : S-607_client_server/boost_client/all
+
+# Recursive "preinstall" directory target.
+S-607_client_server/boost_client/preinstall:
+
+.PHONY : S-607_client_server/boost_client/preinstall
+
+# Recursive "clean" directory target.
+S-607_client_server/boost_client/clean: S-607_client_server/boost_client/CMakeFiles/boost_client.dir/clean
+
+.PHONY : S-607_client_server/boost_client/clean
+
+#=============================================================================
+# Directory level rules for directory S-607_client_server/boost_server
+
+# Recursive "all" directory target.
+S-607_client_server/boost_server/all: S-607_client_server/boost_server/CMakeFiles/boost_server.dir/all
+
+.PHONY : S-607_client_server/boost_server/all
+
+# Recursive "preinstall" directory target.
+S-607_client_server/boost_server/preinstall:
+
+.PHONY : S-607_client_server/boost_server/preinstall
+
+# Recursive "clean" directory target.
+S-607_client_server/boost_server/clean: S-607_client_server/boost_server/CMakeFiles/boost_server.dir/clean
+
+.PHONY : S-607_client_server/boost_server/clean
 
 #=============================================================================
 # Target rules for target 01_Basic/CMakeFiles/basic.dir
@@ -216,7 +555,7 @@ clean: 06_Other_Topics/clean
 01_Basic/CMakeFiles/basic.dir/all:
 	$(MAKE) $(MAKESILENT) -f 01_Basic/CMakeFiles/basic.dir/build.make 01_Basic/CMakeFiles/basic.dir/depend
 	$(MAKE) $(MAKESILENT) -f 01_Basic/CMakeFiles/basic.dir/build.make 01_Basic/CMakeFiles/basic.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=1,2 "Built target basic"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=29,30 "Built target basic"
 .PHONY : 01_Basic/CMakeFiles/basic.dir/all
 
 # Build rule for subdir invocation for target.
@@ -235,6 +574,438 @@ basic: 01_Basic/CMakeFiles/basic.dir/rule
 01_Basic/CMakeFiles/basic.dir/clean:
 	$(MAKE) $(MAKESILENT) -f 01_Basic/CMakeFiles/basic.dir/build.make 01_Basic/CMakeFiles/basic.dir/clean
 .PHONY : 01_Basic/CMakeFiles/basic.dir/clean
+
+#=============================================================================
+# Target rules for target 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir
+
+# All Build rule for target.
+02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/all:
+	$(MAKE) $(MAKESILENT) -f 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build.make 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/depend
+	$(MAKE) $(MAKESILENT) -f 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build.make 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=3,4 "Built target IO_operations_ReadingFromTCPSockAsync"
+.PHONY : 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/all
+
+# Build rule for subdir invocation for target.
+02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/rule
+
+# Convenience name for target.
+IO_operations_ReadingFromTCPSockAsync: 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/rule
+
+.PHONY : IO_operations_ReadingFromTCPSockAsync
+
+# clean rule for target.
+02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build.make 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/clean
+.PHONY : 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/clean
+
+#=============================================================================
+# Target rules for target 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir
+
+# All Build rule for target.
+03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/all:
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/build.make 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/depend
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/build.make 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=5,6 "Built target Implementing_client_applications_AsyncTCPClient"
+.PHONY : 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/all
+
+# Build rule for subdir invocation for target.
+03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/rule
+
+# Convenience name for target.
+Implementing_client_applications_AsyncTCPClient: 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/rule
+
+.PHONY : Implementing_client_applications_AsyncTCPClient
+
+# clean rule for target.
+03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/build.make 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/clean
+.PHONY : 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/clean
+
+#=============================================================================
+# Target rules for target 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir
+
+# All Build rule for target.
+03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/all:
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/build.make 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/depend
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/build.make 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=7,8 "Built target Implementing_client_applications_AsyncTCPClientMT"
+.PHONY : 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/all
+
+# Build rule for subdir invocation for target.
+03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/rule
+
+# Convenience name for target.
+Implementing_client_applications_AsyncTCPClientMT: 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/rule
+
+.PHONY : Implementing_client_applications_AsyncTCPClientMT
+
+# clean rule for target.
+03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/build.make 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/clean
+.PHONY : 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/clean
+
+#=============================================================================
+# Target rules for target 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir
+
+# All Build rule for target.
+03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/all:
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build.make 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/depend
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build.make 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=9,10 "Built target Implementing_client_applications_SyncTCPClient"
+.PHONY : 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/all
+
+# Build rule for subdir invocation for target.
+03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/rule
+
+# Convenience name for target.
+Implementing_client_applications_SyncTCPClient: 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/rule
+
+.PHONY : Implementing_client_applications_SyncTCPClient
+
+# clean rule for target.
+03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build.make 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/clean
+.PHONY : 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/clean
+
+#=============================================================================
+# Target rules for target 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir
+
+# All Build rule for target.
+03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/all:
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/build.make 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/depend
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/build.make 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=11,12 "Built target Implementing_client_applications_SyncUDPClient"
+.PHONY : 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/all
+
+# Build rule for subdir invocation for target.
+03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/rule
+
+# Convenience name for target.
+Implementing_client_applications_SyncUDPClient: 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/rule
+
+.PHONY : Implementing_client_applications_SyncUDPClient
+
+# clean rule for target.
+03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/build.make 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/clean
+.PHONY : 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/clean
+
+#=============================================================================
+# Target rules for target 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir
+
+# All Build rule for target.
+04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/all:
+	$(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/build.make 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/depend
+	$(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/build.make 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=13,14 "Built target Implementing_server_applications_AsyncParallel"
+.PHONY : 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/all
+
+# Build rule for subdir invocation for target.
+04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/rule
+
+# Convenience name for target.
+Implementing_server_applications_AsyncParallel: 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/rule
+
+.PHONY : Implementing_server_applications_AsyncParallel
+
+# clean rule for target.
+04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/build.make 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/clean
+.PHONY : 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/clean
+
+#=============================================================================
+# Target rules for target 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir
+
+# All Build rule for target.
+04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/all:
+	$(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build.make 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/depend
+	$(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build.make 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=15,16 "Built target Implementing_server_applications_SyncIterative"
+.PHONY : 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/all
+
+# Build rule for subdir invocation for target.
+04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/rule
+
+# Convenience name for target.
+Implementing_server_applications_SyncIterative: 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/rule
+
+.PHONY : Implementing_server_applications_SyncIterative
+
+# clean rule for target.
+04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build.make 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/clean
+.PHONY : 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/clean
+
+#=============================================================================
+# Target rules for target 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir
+
+# All Build rule for target.
+04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/all:
+	$(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build.make 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/depend
+	$(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build.make 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=17,18 "Built target Implementing_server_applications_SyncParallel"
+.PHONY : 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/all
+
+# Build rule for subdir invocation for target.
+04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/rule
+
+# Convenience name for target.
+Implementing_server_applications_SyncParallel: 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/rule
+
+.PHONY : Implementing_server_applications_SyncParallel
+
+# clean rule for target.
+04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build.make 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/clean
+.PHONY : 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/clean
+
+#=============================================================================
+# Target rules for target 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir
+
+# All Build rule for target.
+05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/all:
+	$(MAKE) $(MAKESILENT) -f 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build.make 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/depend
+	$(MAKE) $(MAKESILENT) -f 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build.make 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=1,2 "Built target HTTP_and_SSL_TLS_HTTPClient"
+.PHONY : 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/all
+
+# Build rule for subdir invocation for target.
+05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/rule
+
+# Convenience name for target.
+HTTP_and_SSL_TLS_HTTPClient: 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/rule
+
+.PHONY : HTTP_and_SSL_TLS_HTTPClient
+
+# clean rule for target.
+05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build.make 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/clean
+.PHONY : 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/clean
+
+#=============================================================================
+# Target rules for target 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir
+
+# All Build rule for target.
+06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/all:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build.make 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/depend
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build.make 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=19,20 "Built target Other_CompositeBuffersGatherOutput"
+.PHONY : 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/all
+
+# Build rule for subdir invocation for target.
+06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/rule
+
+# Convenience name for target.
+Other_CompositeBuffersGatherOutput: 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/rule
+
+.PHONY : Other_CompositeBuffersGatherOutput
+
+# clean rule for target.
+06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build.make 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/clean
+.PHONY : 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/clean
+
+#=============================================================================
+# Target rules for target 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir
+
+# All Build rule for target.
+06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/all:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build.make 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/depend
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build.make 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=21,22 "Built target Other_CompositeBuffersScatterInput"
+.PHONY : 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/all
+
+# Build rule for subdir invocation for target.
+06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/rule
+
+# Convenience name for target.
+Other_CompositeBuffersScatterInput: 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/rule
+
+.PHONY : Other_CompositeBuffersScatterInput
+
+# clean rule for target.
+06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build.make 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/clean
+.PHONY : 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/clean
+
+#=============================================================================
+# Target rules for target 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir
+
+# All Build rule for target.
+06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/all:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build.make 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/depend
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build.make 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=23,24 "Built target Other_SocketOptions"
+.PHONY : 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/all
+
+# Build rule for subdir invocation for target.
+06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/rule
+
+# Convenience name for target.
+Other_SocketOptions: 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/rule
+
+.PHONY : Other_SocketOptions
+
+# clean rule for target.
+06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build.make 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/clean
+.PHONY : 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/clean
+
+#=============================================================================
+# Target rules for target 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir
+
+# All Build rule for target.
+06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/all:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build.make 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/depend
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build.make 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=25,26 "Built target Other_StreamBasedIO"
+.PHONY : 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/all
+
+# Build rule for subdir invocation for target.
+06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/rule
+
+# Convenience name for target.
+Other_StreamBasedIO: 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/rule
+
+.PHONY : Other_StreamBasedIO
+
+# clean rule for target.
+06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build.make 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/clean
+.PHONY : 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/clean
+
+#=============================================================================
+# Target rules for target 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir
+
+# All Build rule for target.
+06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/all:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build.make 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/depend
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build.make 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=27,28 "Built target Other_Timers"
+.PHONY : 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/all
+
+# Build rule for subdir invocation for target.
+06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/rule
+
+# Convenience name for target.
+Other_Timers: 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/rule
+
+.PHONY : Other_Timers
+
+# clean rule for target.
+06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build.make 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/clean
+.PHONY : 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/clean
+
+#=============================================================================
+# Target rules for target S-607_client_server/boost_client/CMakeFiles/boost_client.dir
+
+# All Build rule for target.
+S-607_client_server/boost_client/CMakeFiles/boost_client.dir/all:
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build.make S-607_client_server/boost_client/CMakeFiles/boost_client.dir/depend
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build.make S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=31,32 "Built target boost_client"
+.PHONY : S-607_client_server/boost_client/CMakeFiles/boost_client.dir/all
+
+# Build rule for subdir invocation for target.
+S-607_client_server/boost_client/CMakeFiles/boost_client.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 S-607_client_server/boost_client/CMakeFiles/boost_client.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : S-607_client_server/boost_client/CMakeFiles/boost_client.dir/rule
+
+# Convenience name for target.
+boost_client: S-607_client_server/boost_client/CMakeFiles/boost_client.dir/rule
+
+.PHONY : boost_client
+
+# clean rule for target.
+S-607_client_server/boost_client/CMakeFiles/boost_client.dir/clean:
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build.make S-607_client_server/boost_client/CMakeFiles/boost_client.dir/clean
+.PHONY : S-607_client_server/boost_client/CMakeFiles/boost_client.dir/clean
+
+#=============================================================================
+# Target rules for target S-607_client_server/boost_server/CMakeFiles/boost_server.dir
+
+# All Build rule for target.
+S-607_client_server/boost_server/CMakeFiles/boost_server.dir/all:
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/boost_server/CMakeFiles/boost_server.dir/build.make S-607_client_server/boost_server/CMakeFiles/boost_server.dir/depend
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/boost_server/CMakeFiles/boost_server.dir/build.make S-607_client_server/boost_server/CMakeFiles/boost_server.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=33,34 "Built target boost_server"
+.PHONY : S-607_client_server/boost_server/CMakeFiles/boost_server.dir/all
+
+# Build rule for subdir invocation for target.
+S-607_client_server/boost_server/CMakeFiles/boost_server.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 S-607_client_server/boost_server/CMakeFiles/boost_server.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : S-607_client_server/boost_server/CMakeFiles/boost_server.dir/rule
+
+# Convenience name for target.
+boost_server: S-607_client_server/boost_server/CMakeFiles/boost_server.dir/rule
+
+.PHONY : boost_server
+
+# clean rule for target.
+S-607_client_server/boost_server/CMakeFiles/boost_server.dir/clean:
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/boost_server/CMakeFiles/boost_server.dir/build.make S-607_client_server/boost_server/CMakeFiles/boost_server.dir/clean
+.PHONY : S-607_client_server/boost_server/CMakeFiles/boost_server.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

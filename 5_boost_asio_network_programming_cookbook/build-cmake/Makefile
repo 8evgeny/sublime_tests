@@ -142,6 +142,214 @@ basic/fast:
 	$(MAKE) $(MAKESILENT) -f 01_Basic/CMakeFiles/basic.dir/build.make 01_Basic/CMakeFiles/basic.dir/build
 .PHONY : basic/fast
 
+#=============================================================================
+# Target rules for targets named IO_operations_ReadingFromTCPSockAsync
+
+# Build rule for target.
+IO_operations_ReadingFromTCPSockAsync: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 IO_operations_ReadingFromTCPSockAsync
+.PHONY : IO_operations_ReadingFromTCPSockAsync
+
+# fast build rule for target.
+IO_operations_ReadingFromTCPSockAsync/fast:
+	$(MAKE) $(MAKESILENT) -f 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build.make 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build
+.PHONY : IO_operations_ReadingFromTCPSockAsync/fast
+
+#=============================================================================
+# Target rules for targets named Implementing_client_applications_AsyncTCPClient
+
+# Build rule for target.
+Implementing_client_applications_AsyncTCPClient: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Implementing_client_applications_AsyncTCPClient
+.PHONY : Implementing_client_applications_AsyncTCPClient
+
+# fast build rule for target.
+Implementing_client_applications_AsyncTCPClient/fast:
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/build.make 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/build
+.PHONY : Implementing_client_applications_AsyncTCPClient/fast
+
+#=============================================================================
+# Target rules for targets named Implementing_client_applications_AsyncTCPClientMT
+
+# Build rule for target.
+Implementing_client_applications_AsyncTCPClientMT: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Implementing_client_applications_AsyncTCPClientMT
+.PHONY : Implementing_client_applications_AsyncTCPClientMT
+
+# fast build rule for target.
+Implementing_client_applications_AsyncTCPClientMT/fast:
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/build.make 03_Implementing_client_applications/AsyncTCPClientMT/CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/build
+.PHONY : Implementing_client_applications_AsyncTCPClientMT/fast
+
+#=============================================================================
+# Target rules for targets named Implementing_client_applications_SyncTCPClient
+
+# Build rule for target.
+Implementing_client_applications_SyncTCPClient: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Implementing_client_applications_SyncTCPClient
+.PHONY : Implementing_client_applications_SyncTCPClient
+
+# fast build rule for target.
+Implementing_client_applications_SyncTCPClient/fast:
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build.make 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build
+.PHONY : Implementing_client_applications_SyncTCPClient/fast
+
+#=============================================================================
+# Target rules for targets named Implementing_client_applications_SyncUDPClient
+
+# Build rule for target.
+Implementing_client_applications_SyncUDPClient: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Implementing_client_applications_SyncUDPClient
+.PHONY : Implementing_client_applications_SyncUDPClient
+
+# fast build rule for target.
+Implementing_client_applications_SyncUDPClient/fast:
+	$(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/build.make 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/build
+.PHONY : Implementing_client_applications_SyncUDPClient/fast
+
+#=============================================================================
+# Target rules for targets named Implementing_server_applications_AsyncParallel
+
+# Build rule for target.
+Implementing_server_applications_AsyncParallel: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Implementing_server_applications_AsyncParallel
+.PHONY : Implementing_server_applications_AsyncParallel
+
+# fast build rule for target.
+Implementing_server_applications_AsyncParallel/fast:
+	$(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/build.make 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/build
+.PHONY : Implementing_server_applications_AsyncParallel/fast
+
+#=============================================================================
+# Target rules for targets named Implementing_server_applications_SyncIterative
+
+# Build rule for target.
+Implementing_server_applications_SyncIterative: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Implementing_server_applications_SyncIterative
+.PHONY : Implementing_server_applications_SyncIterative
+
+# fast build rule for target.
+Implementing_server_applications_SyncIterative/fast:
+	$(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build.make 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build
+.PHONY : Implementing_server_applications_SyncIterative/fast
+
+#=============================================================================
+# Target rules for targets named Implementing_server_applications_SyncParallel
+
+# Build rule for target.
+Implementing_server_applications_SyncParallel: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Implementing_server_applications_SyncParallel
+.PHONY : Implementing_server_applications_SyncParallel
+
+# fast build rule for target.
+Implementing_server_applications_SyncParallel/fast:
+	$(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build.make 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build
+.PHONY : Implementing_server_applications_SyncParallel/fast
+
+#=============================================================================
+# Target rules for targets named HTTP_and_SSL_TLS_HTTPClient
+
+# Build rule for target.
+HTTP_and_SSL_TLS_HTTPClient: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 HTTP_and_SSL_TLS_HTTPClient
+.PHONY : HTTP_and_SSL_TLS_HTTPClient
+
+# fast build rule for target.
+HTTP_and_SSL_TLS_HTTPClient/fast:
+	$(MAKE) $(MAKESILENT) -f 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build.make 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build
+.PHONY : HTTP_and_SSL_TLS_HTTPClient/fast
+
+#=============================================================================
+# Target rules for targets named Other_CompositeBuffersGatherOutput
+
+# Build rule for target.
+Other_CompositeBuffersGatherOutput: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Other_CompositeBuffersGatherOutput
+.PHONY : Other_CompositeBuffersGatherOutput
+
+# fast build rule for target.
+Other_CompositeBuffersGatherOutput/fast:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build.make 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build
+.PHONY : Other_CompositeBuffersGatherOutput/fast
+
+#=============================================================================
+# Target rules for targets named Other_CompositeBuffersScatterInput
+
+# Build rule for target.
+Other_CompositeBuffersScatterInput: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Other_CompositeBuffersScatterInput
+.PHONY : Other_CompositeBuffersScatterInput
+
+# fast build rule for target.
+Other_CompositeBuffersScatterInput/fast:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build.make 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build
+.PHONY : Other_CompositeBuffersScatterInput/fast
+
+#=============================================================================
+# Target rules for targets named Other_SocketOptions
+
+# Build rule for target.
+Other_SocketOptions: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Other_SocketOptions
+.PHONY : Other_SocketOptions
+
+# fast build rule for target.
+Other_SocketOptions/fast:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build.make 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build
+.PHONY : Other_SocketOptions/fast
+
+#=============================================================================
+# Target rules for targets named Other_StreamBasedIO
+
+# Build rule for target.
+Other_StreamBasedIO: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Other_StreamBasedIO
+.PHONY : Other_StreamBasedIO
+
+# fast build rule for target.
+Other_StreamBasedIO/fast:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build.make 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build
+.PHONY : Other_StreamBasedIO/fast
+
+#=============================================================================
+# Target rules for targets named Other_Timers
+
+# Build rule for target.
+Other_Timers: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Other_Timers
+.PHONY : Other_Timers
+
+# fast build rule for target.
+Other_Timers/fast:
+	$(MAKE) $(MAKESILENT) -f 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build.make 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build
+.PHONY : Other_Timers/fast
+
+#=============================================================================
+# Target rules for targets named boost_client
+
+# Build rule for target.
+boost_client: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 boost_client
+.PHONY : boost_client
+
+# fast build rule for target.
+boost_client/fast:
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build.make S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build
+.PHONY : boost_client/fast
+
+#=============================================================================
+# Target rules for targets named boost_server
+
+# Build rule for target.
+boost_server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 boost_server
+.PHONY : boost_server
+
+# fast build rule for target.
+boost_server/fast:
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/boost_server/CMakeFiles/boost_server.dir/build.make S-607_client_server/boost_server/CMakeFiles/boost_server.dir/build
+.PHONY : boost_server/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -150,7 +358,23 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... HTTP_and_SSL_TLS_HTTPClient"
+	@echo "... IO_operations_ReadingFromTCPSockAsync"
+	@echo "... Implementing_client_applications_AsyncTCPClient"
+	@echo "... Implementing_client_applications_AsyncTCPClientMT"
+	@echo "... Implementing_client_applications_SyncTCPClient"
+	@echo "... Implementing_client_applications_SyncUDPClient"
+	@echo "... Implementing_server_applications_AsyncParallel"
+	@echo "... Implementing_server_applications_SyncIterative"
+	@echo "... Implementing_server_applications_SyncParallel"
+	@echo "... Other_CompositeBuffersGatherOutput"
+	@echo "... Other_CompositeBuffersScatterInput"
+	@echo "... Other_SocketOptions"
+	@echo "... Other_StreamBasedIO"
+	@echo "... Other_Timers"
 	@echo "... basic"
+	@echo "... boost_client"
+	@echo "... boost_server"
 .PHONY : help
 
 

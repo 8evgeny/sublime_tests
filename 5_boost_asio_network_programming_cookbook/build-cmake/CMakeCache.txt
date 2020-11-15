@@ -222,13 +222,91 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 EXECUTABLE_OUTPUT_PATH:PATH=
 
 //Value Computed by CMake
-IO_operations_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/02_IO_operations
+HTTP_and_SSL_TLS_HTTPClient_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/05_HTTP_and_SSL_TLS/HTTPClient
 
 //Value Computed by CMake
-IO_operations_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/02_IO_operations
+HTTP_and_SSL_TLS_HTTPClient_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/05_HTTP_and_SSL_TLS/HTTPClient
+
+//Value Computed by CMake
+IO_operations_ReadingFromTCPSockAsync_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/02_IO_operations/ReadingFromTCPSockAsync
+
+//Value Computed by CMake
+IO_operations_ReadingFromTCPSockAsync_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/02_IO_operations/ReadingFromTCPSockAsync
+
+//Value Computed by CMake
+Implementing_client_applications_AsyncTCPClientMT_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/AsyncTCPClientMT
+
+//Value Computed by CMake
+Implementing_client_applications_AsyncTCPClientMT_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/03_Implementing_client_applications/AsyncTCPClientMT
+
+//Value Computed by CMake
+Implementing_client_applications_AsyncTCPClient_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/AsyncTCPClient
+
+//Value Computed by CMake
+Implementing_client_applications_AsyncTCPClient_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/03_Implementing_client_applications/AsyncTCPClient
+
+//Value Computed by CMake
+Implementing_client_applications_SyncTCPClient_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/SyncTCPClient
+
+//Value Computed by CMake
+Implementing_client_applications_SyncTCPClient_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/03_Implementing_client_applications/SyncTCPClient
+
+//Value Computed by CMake
+Implementing_client_applications_SyncUDPClient_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/SyncUDPClient
+
+//Value Computed by CMake
+Implementing_client_applications_SyncUDPClient_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/03_Implementing_client_applications/SyncUDPClient
+
+//Value Computed by CMake
+Implementing_server_applications_AsyncParallel_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/AsyncParallel
+
+//Value Computed by CMake
+Implementing_server_applications_AsyncParallel_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/AsyncParallel
+
+//Value Computed by CMake
+Implementing_server_applications_SyncIterative_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncIterative
+
+//Value Computed by CMake
+Implementing_server_applications_SyncIterative_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncIterative
+
+//Value Computed by CMake
+Implementing_server_applications_SyncParallel_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncParallel
+
+//Value Computed by CMake
+Implementing_server_applications_SyncParallel_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncParallel
 
 //Single output directory for building all libraries.
 LIBRARY_OUTPUT_PATH:PATH=
+
+//Value Computed by CMake
+Other_CompositeBuffersGatherOutput_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/CompositeBuffersGatherOutput
+
+//Value Computed by CMake
+Other_CompositeBuffersGatherOutput_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersGatherOutput
+
+//Value Computed by CMake
+Other_CompositeBuffersScatterInput_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/CompositeBuffersScatterInput
+
+//Value Computed by CMake
+Other_CompositeBuffersScatterInput_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersScatterInput
+
+//Value Computed by CMake
+Other_SocketOptions_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/SocketOptions
+
+//Value Computed by CMake
+Other_SocketOptions_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/SocketOptions
+
+//Value Computed by CMake
+Other_StreamBasedIO_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/StreamBasedIO
+
+//Value Computed by CMake
+Other_StreamBasedIO_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/StreamBasedIO
+
+//Value Computed by CMake
+Other_Timers_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/Timers
+
+//Value Computed by CMake
+Other_Timers_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/Timers
 
 //Value Computed by CMake
 Project_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake
@@ -236,14 +314,38 @@ Project_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programm
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook
 
-//No help, variable specified on the command line.
-QT_QMAKE_EXECUTABLE:STRING=/home/jhon/Qt/5.14.2/gcc_64/bin/qmake
+//The directory containing a CMake configuration file for Qt5Core.
+Qt5Core_DIR:PATH=/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Core
+
+//The directory containing a CMake configuration file for Qt5Gui.
+Qt5Gui_DIR:PATH=/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Gui
+
+//The directory containing a CMake configuration file for Qt5Sql.
+Qt5Sql_DIR:PATH=/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Sql
+
+//The directory containing a CMake configuration file for Qt5Widgets.
+Qt5Widgets_DIR:PATH=/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Widgets
+
+//The directory containing a CMake configuration file for Qt5.
+Qt5_DIR:PATH=/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5
 
 //Value Computed by CMake
 basic_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/01_Basic
 
 //Value Computed by CMake
 basic_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/01_Basic
+
+//Value Computed by CMake
+boost_client_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/boost_client
+
+//Value Computed by CMake
+boost_client_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/boost_client
+
+//Value Computed by CMake
+boost_server_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/boost_server
+
+//Value Computed by CMake
+boost_server_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/boost_server
 
 
 ########################
@@ -350,7 +452,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=24
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

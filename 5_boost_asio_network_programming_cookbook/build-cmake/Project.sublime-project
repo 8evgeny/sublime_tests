@@ -42,6 +42,198 @@
 			"cmd": ["/usr/bin/make", "-f", "Makefile", "basic/fast"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "IO_operations_ReadingFromTCPSockAsync - IO_operations_ReadingFromTCPSockAsync",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "IO_operations_ReadingFromTCPSockAsync"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "IO_operations_ReadingFromTCPSockAsync - IO_operations_ReadingFromTCPSockAsync/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "IO_operations_ReadingFromTCPSockAsync/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_client_applications_AsyncTCPClient - Implementing_client_applications_AsyncTCPClient",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_client_applications_AsyncTCPClient"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_client_applications_AsyncTCPClient - Implementing_client_applications_AsyncTCPClient/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_client_applications_AsyncTCPClient/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_client_applications_AsyncTCPClientMT - Implementing_client_applications_AsyncTCPClientMT",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_client_applications_AsyncTCPClientMT"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_client_applications_AsyncTCPClientMT - Implementing_client_applications_AsyncTCPClientMT/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_client_applications_AsyncTCPClientMT/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_client_applications_SyncTCPClient - Implementing_client_applications_SyncTCPClient",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_client_applications_SyncTCPClient"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_client_applications_SyncTCPClient - Implementing_client_applications_SyncTCPClient/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_client_applications_SyncTCPClient/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_client_applications_SyncUDPClient - Implementing_client_applications_SyncUDPClient",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_client_applications_SyncUDPClient"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_client_applications_SyncUDPClient - Implementing_client_applications_SyncUDPClient/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_client_applications_SyncUDPClient/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_server_applications_AsyncParallel - Implementing_server_applications_AsyncParallel",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_server_applications_AsyncParallel"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_server_applications_AsyncParallel - Implementing_server_applications_AsyncParallel/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_server_applications_AsyncParallel/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_server_applications_SyncIterative - Implementing_server_applications_SyncIterative",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_server_applications_SyncIterative"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_server_applications_SyncIterative - Implementing_server_applications_SyncIterative/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_server_applications_SyncIterative/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_server_applications_SyncParallel - Implementing_server_applications_SyncParallel",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_server_applications_SyncParallel"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_server_applications_SyncParallel - Implementing_server_applications_SyncParallel/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_server_applications_SyncParallel/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "HTTP_and_SSL_TLS_HTTPClient - HTTP_and_SSL_TLS_HTTPClient",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "HTTP_and_SSL_TLS_HTTPClient"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "HTTP_and_SSL_TLS_HTTPClient - HTTP_and_SSL_TLS_HTTPClient/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "HTTP_and_SSL_TLS_HTTPClient/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Other_CompositeBuffersGatherOutput - Other_CompositeBuffersGatherOutput",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Other_CompositeBuffersGatherOutput"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Other_CompositeBuffersGatherOutput - Other_CompositeBuffersGatherOutput/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Other_CompositeBuffersGatherOutput/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Other_CompositeBuffersScatterInput - Other_CompositeBuffersScatterInput",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Other_CompositeBuffersScatterInput"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Other_CompositeBuffersScatterInput - Other_CompositeBuffersScatterInput/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Other_CompositeBuffersScatterInput/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Other_SocketOptions - Other_SocketOptions",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Other_SocketOptions"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Other_SocketOptions - Other_SocketOptions/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Other_SocketOptions/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Other_StreamBasedIO - Other_StreamBasedIO",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Other_StreamBasedIO"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Other_StreamBasedIO - Other_StreamBasedIO/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Other_StreamBasedIO/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Other_Timers - Other_Timers",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Other_Timers"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Other_Timers - Other_Timers/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Other_Timers/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "boost_client - boost_client",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "boost_client"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "boost_client - boost_client/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "boost_client/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "boost_server - boost_server",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "boost_server"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "boost_server - boost_server/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "boost_server/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		}
 	]
 }

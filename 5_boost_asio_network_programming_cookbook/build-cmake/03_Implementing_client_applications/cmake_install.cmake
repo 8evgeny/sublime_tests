@@ -42,3 +42,12 @@ if(NOT DEFINED CMAKE_OBJDUMP)
   set(CMAKE_OBJDUMP "/usr/bin/objdump")
 endif()
 
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for each subdirectory.
+  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/AsyncTCPClient/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/AsyncTCPClientMT/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/SyncTCPClient/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/SyncUDPClient/cmake_install.cmake")
+
+endif()
+

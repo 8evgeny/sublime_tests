@@ -1,0 +1,35 @@
+{
+	"folders":
+	[
+		{
+			"path": "../"
+		}
+	],
+	"build_systems":
+	[
+		{
+			"name": "Implementing_client_applications_SyncTCPClient - all",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "all"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_client_applications_SyncTCPClient - clean",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "clean"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_client_applications_SyncTCPClient - Implementing_client_applications_SyncTCPClient",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_client_applications_SyncTCPClient"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "Implementing_client_applications_SyncTCPClient - Implementing_client_applications_SyncTCPClient/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "Implementing_client_applications_SyncTCPClient/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		}
+	]
+}

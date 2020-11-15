@@ -1,0 +1,89 @@
+char *request = new char[message.length() + 1];
+strcpy(request, message.c_str());
+
+
+std::string readFile(const std::string& fileName) {
+return std::string((std::istreambuf_iterator<char>(std::ifstream(fileName))),
+std::istreambuf_iterator<char>());
+}
+
+//file to string
+std::string readFile(const std::string& fileName) {
+    std::ifstream f(fileName);
+    std::stringstream ss;
+    ss << f.rdbuf();
+    return ss.str();
+}
+
+std::string readFile(const std::string& fileName) {
+    std::ifstream f(fileName);
+    f.seekg(0, std::ios::end);
+    size_t size = f.tellg();
+    std::string s(size, ' ');
+    f.seekg(0);
+    f.read(&s[0], size); // по стандарту можно в C++11, по факту работает и на старых компиляторах
+    return s;
+}
+
+std::string readFile(const std::string& fileName) {
+    //file to string
+    std::ifstream f(fileName);
+    std::stringstream ss;
+    ss << f.rdbuf();
+    return ss.str();
+}
+
+void writeFile(std::string &data){
+    //тестовая запись файла
+        FILE *name;
+        name = fopen("received_file", "wb");
+        fwrite (data.c_str(), data.size(), 1, name);
+}
+
+//меняем размер сокета
+            asio::ip::tcp::socket::send_buffer_size sbs(8192);
+            m_sock->set_option(sbs);
+
+
+
+//        std::vector<char> vv;
+//        vv.reserve(2500000);
+//        while(!f.eof()){
+//        vv.push_back(f.get()); }
+//        int fileLenth = vv.size();
+//        std::cout<<"file in vector. lenth: "<<fileLenth<<std::endl;
+//        auto iter = vv.begin();
+//        int BLOCK = 1024;
+//        char * buffer = new char [BLOCK];
+//        for(int i = 0; i< BLOCK; ++i){
+//        buffer[i] = *iter;
+//        ++iter;
+//        if(iter == vv.end())break;
+//        }
+
+
+
+//        f.seekg (0, f.beg);
+//        ss << "test_string "<<f.rdbuf();
+
+//        f.seekg(0);
+//     std::cout<<"tellg1: "<<f.tellg()<<std::endl;
+//        f.getline(buffer, 1024); ss<<buffer;
+
+//        while(f.tellg()>0) {
+//        f.getline(buffer, 1024);
+//        ss<<buffer;
+//     std::cout<<"tellg: "<<f.tellg()<<std::endl;
+//       }
+
+//         ss<<"test_string "<<std::endl;
+
+
+//    auto iter = allfile.begin();
+//    std::string request =  &*(iter+1024);
+
+
+//тестовая запись файла
+//    writeFile(std::string(request));
+std::ofstream f("test_test", std::ios::out | std::ios::binary);
+f<<allfile;

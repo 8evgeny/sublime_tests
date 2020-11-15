@@ -1,0 +1,639 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						4,
+						9,
+						13,
+						15,
+						21
+					],
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "01_Basic",
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "01_Basic",
+					"targetIndexes" : 
+					[
+						14
+					]
+				},
+				{
+					"build" : "02_IO_operations",
+					"childIndexes" : 
+					[
+						3
+					],
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "02_IO_operations"
+				},
+				{
+					"build" : "02_IO_operations/ReadingFromTCPSockAsync",
+					"parentIndex" : 2,
+					"projectIndex" : 2,
+					"source" : "02_IO_operations/ReadingFromTCPSockAsync",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "03_Implementing_client_applications",
+					"childIndexes" : 
+					[
+						5,
+						6,
+						7,
+						8
+					],
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "03_Implementing_client_applications"
+				},
+				{
+					"build" : "03_Implementing_client_applications/AsyncTCPClient",
+					"parentIndex" : 4,
+					"projectIndex" : 3,
+					"source" : "03_Implementing_client_applications/AsyncTCPClient",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "03_Implementing_client_applications/AsyncTCPClientMT",
+					"parentIndex" : 4,
+					"projectIndex" : 4,
+					"source" : "03_Implementing_client_applications/AsyncTCPClientMT",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "03_Implementing_client_applications/SyncTCPClient",
+					"parentIndex" : 4,
+					"projectIndex" : 5,
+					"source" : "03_Implementing_client_applications/SyncTCPClient",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "03_Implementing_client_applications/SyncUDPClient",
+					"parentIndex" : 4,
+					"projectIndex" : 6,
+					"source" : "03_Implementing_client_applications/SyncUDPClient",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "04_Implementing_server_applications",
+					"childIndexes" : 
+					[
+						10,
+						11,
+						12
+					],
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "04_Implementing_server_applications"
+				},
+				{
+					"build" : "04_Implementing_server_applications/AsyncParallel",
+					"parentIndex" : 9,
+					"projectIndex" : 7,
+					"source" : "04_Implementing_server_applications/AsyncParallel",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "04_Implementing_server_applications/SyncIterative",
+					"parentIndex" : 9,
+					"projectIndex" : 8,
+					"source" : "04_Implementing_server_applications/SyncIterative",
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"build" : "04_Implementing_server_applications/SyncParallel",
+					"parentIndex" : 9,
+					"projectIndex" : 9,
+					"source" : "04_Implementing_server_applications/SyncParallel",
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"build" : "05_HTTP_and_SSL_TLS",
+					"childIndexes" : 
+					[
+						14
+					],
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "05_HTTP_and_SSL_TLS"
+				},
+				{
+					"build" : "05_HTTP_and_SSL_TLS/HTTPClient",
+					"parentIndex" : 13,
+					"projectIndex" : 10,
+					"source" : "05_HTTP_and_SSL_TLS/HTTPClient",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "06_Other_Topics",
+					"childIndexes" : 
+					[
+						16,
+						17,
+						18,
+						19,
+						20
+					],
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "06_Other_Topics"
+				},
+				{
+					"build" : "06_Other_Topics/CompositeBuffersGatherOutput",
+					"parentIndex" : 15,
+					"projectIndex" : 11,
+					"source" : "06_Other_Topics/CompositeBuffersGatherOutput",
+					"targetIndexes" : 
+					[
+						9
+					]
+				},
+				{
+					"build" : "06_Other_Topics/CompositeBuffersScatterInput",
+					"parentIndex" : 15,
+					"projectIndex" : 12,
+					"source" : "06_Other_Topics/CompositeBuffersScatterInput",
+					"targetIndexes" : 
+					[
+						10
+					]
+				},
+				{
+					"build" : "06_Other_Topics/SocketOptions",
+					"parentIndex" : 15,
+					"projectIndex" : 13,
+					"source" : "06_Other_Topics/SocketOptions",
+					"targetIndexes" : 
+					[
+						11
+					]
+				},
+				{
+					"build" : "06_Other_Topics/StreamBasedIO",
+					"parentIndex" : 15,
+					"projectIndex" : 14,
+					"source" : "06_Other_Topics/StreamBasedIO",
+					"targetIndexes" : 
+					[
+						12
+					]
+				},
+				{
+					"build" : "06_Other_Topics/Timers",
+					"parentIndex" : 15,
+					"projectIndex" : 15,
+					"source" : "06_Other_Topics/Timers",
+					"targetIndexes" : 
+					[
+						13
+					]
+				},
+				{
+					"build" : "S-607_client_server",
+					"childIndexes" : 
+					[
+						22,
+						23
+					],
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "S-607_client_server"
+				},
+				{
+					"build" : "S-607_client_server/boost_client",
+					"parentIndex" : 21,
+					"projectIndex" : 16,
+					"source" : "S-607_client_server/boost_client",
+					"targetIndexes" : 
+					[
+						15
+					]
+				},
+				{
+					"build" : "S-607_client_server/boost_server",
+					"parentIndex" : 21,
+					"projectIndex" : 17,
+					"source" : "S-607_client_server/boost_server",
+					"targetIndexes" : 
+					[
+						16
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						2,
+						4,
+						9,
+						13,
+						15,
+						21
+					],
+					"name" : "Project"
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "basic",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						14
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "IO_operations_ReadingFromTCPSockAsync",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						5
+					],
+					"name" : "Implementing_client_applications_AsyncTCPClient",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						6
+					],
+					"name" : "Implementing_client_applications_AsyncTCPClientMT",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						7
+					],
+					"name" : "Implementing_client_applications_SyncTCPClient",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						8
+					],
+					"name" : "Implementing_client_applications_SyncUDPClient",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						10
+					],
+					"name" : "Implementing_server_applications_AsyncParallel",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						11
+					],
+					"name" : "Implementing_server_applications_SyncIterative",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						12
+					],
+					"name" : "Implementing_server_applications_SyncParallel",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						14
+					],
+					"name" : "HTTP_and_SSL_TLS_HTTPClient",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						16
+					],
+					"name" : "Other_CompositeBuffersGatherOutput",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						9
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						17
+					],
+					"name" : "Other_CompositeBuffersScatterInput",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						10
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						18
+					],
+					"name" : "Other_SocketOptions",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						11
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						19
+					],
+					"name" : "Other_StreamBasedIO",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						12
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						20
+					],
+					"name" : "Other_Timers",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						13
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						22
+					],
+					"name" : "boost_client",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						15
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						23
+					],
+					"name" : "boost_server",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						16
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 14,
+					"id" : "HTTP_and_SSL_TLS_HTTPClient::@a869d6397c98a07d25bc",
+					"jsonFile" : "target-HTTP_and_SSL_TLS_HTTPClient-Debug-2f6ee068bc246868b661.json",
+					"name" : "HTTP_and_SSL_TLS_HTTPClient",
+					"projectIndex" : 10
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "IO_operations_ReadingFromTCPSockAsync::@41168be0055e5546b446",
+					"jsonFile" : "target-IO_operations_ReadingFromTCPSockAsync-Debug-8fba99bab572eb23a048.json",
+					"name" : "IO_operations_ReadingFromTCPSockAsync",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "Implementing_client_applications_AsyncTCPClient::@8b4cfc71136b7db56fdb",
+					"jsonFile" : "target-Implementing_client_applications_AsyncTCPClient-Debug-4a08c257003a7fd03c22.json",
+					"name" : "Implementing_client_applications_AsyncTCPClient",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "Implementing_client_applications_AsyncTCPClientMT::@b0572ec19cca4de40bf3",
+					"jsonFile" : "target-Implementing_client_applications_AsyncTCPClientMT-Debug-eba3c41111c524b11be5.json",
+					"name" : "Implementing_client_applications_AsyncTCPClientMT",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "Implementing_client_applications_SyncTCPClient::@77f469a919334cfbf05b",
+					"jsonFile" : "target-Implementing_client_applications_SyncTCPClient-Debug-eadc579de88062697c55.json",
+					"name" : "Implementing_client_applications_SyncTCPClient",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "Implementing_client_applications_SyncUDPClient::@6901fc1102dd3582e900",
+					"jsonFile" : "target-Implementing_client_applications_SyncUDPClient-Debug-d1d10824f213539c7a0c.json",
+					"name" : "Implementing_client_applications_SyncUDPClient",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 10,
+					"id" : "Implementing_server_applications_AsyncParallel::@2c7a4e8bb1ff1a2aa6d4",
+					"jsonFile" : "target-Implementing_server_applications_AsyncParallel-Debug-6a9d0a56a80a28fdd0a8.json",
+					"name" : "Implementing_server_applications_AsyncParallel",
+					"projectIndex" : 7
+				},
+				{
+					"directoryIndex" : 11,
+					"id" : "Implementing_server_applications_SyncIterative::@11ba9936ac7e65eb6029",
+					"jsonFile" : "target-Implementing_server_applications_SyncIterative-Debug-0fe3c7a22f54f1d97c3a.json",
+					"name" : "Implementing_server_applications_SyncIterative",
+					"projectIndex" : 8
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "Implementing_server_applications_SyncParallel::@84be3fc87eb0511884d7",
+					"jsonFile" : "target-Implementing_server_applications_SyncParallel-Debug-5b36b3d8028f01fa233d.json",
+					"name" : "Implementing_server_applications_SyncParallel",
+					"projectIndex" : 9
+				},
+				{
+					"directoryIndex" : 16,
+					"id" : "Other_CompositeBuffersGatherOutput::@530203c40f7c95fd841e",
+					"jsonFile" : "target-Other_CompositeBuffersGatherOutput-Debug-0e669830391fd571da02.json",
+					"name" : "Other_CompositeBuffersGatherOutput",
+					"projectIndex" : 11
+				},
+				{
+					"directoryIndex" : 17,
+					"id" : "Other_CompositeBuffersScatterInput::@228c89d11580e3ea669c",
+					"jsonFile" : "target-Other_CompositeBuffersScatterInput-Debug-32f41845cc956b9a36ee.json",
+					"name" : "Other_CompositeBuffersScatterInput",
+					"projectIndex" : 12
+				},
+				{
+					"directoryIndex" : 18,
+					"id" : "Other_SocketOptions::@ce313e400a8d9e9a1c04",
+					"jsonFile" : "target-Other_SocketOptions-Debug-81d62a7a0b039bfc4a17.json",
+					"name" : "Other_SocketOptions",
+					"projectIndex" : 13
+				},
+				{
+					"directoryIndex" : 19,
+					"id" : "Other_StreamBasedIO::@cd95a38f014aade33dc5",
+					"jsonFile" : "target-Other_StreamBasedIO-Debug-bdfbbec738122647566f.json",
+					"name" : "Other_StreamBasedIO",
+					"projectIndex" : 14
+				},
+				{
+					"directoryIndex" : 20,
+					"id" : "Other_Timers::@331a3b664b47d8c8263d",
+					"jsonFile" : "target-Other_Timers-Debug-f5afefb3d425d8bb2f31.json",
+					"name" : "Other_Timers",
+					"projectIndex" : 15
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "basic::@bfb0204f80562858025f",
+					"jsonFile" : "target-basic-Debug-dd0adfda95d284199339.json",
+					"name" : "basic",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 22,
+					"id" : "boost_client::@98b84b28916bcd6ab3cd",
+					"jsonFile" : "target-boost_client-Debug-54b38a5f0d6a5d8576e7.json",
+					"name" : "boost_client",
+					"projectIndex" : 16
+				},
+				{
+					"directoryIndex" : 23,
+					"id" : "boost_server::@7f346ead9282e5c2e2ca",
+					"jsonFile" : "target-boost_server-Debug-340acd3c414a7f7c6ed6.json",
+					"name" : "boost_server",
+					"projectIndex" : 17
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake",
+		"source" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 1
+	}
+}

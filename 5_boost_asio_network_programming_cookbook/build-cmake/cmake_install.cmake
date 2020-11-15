@@ -50,6 +50,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/cmake_install.cmake")
   include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/05_HTTP_and_SSL_TLS/cmake_install.cmake")
   include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/cmake_install.cmake")
 
 endif()
 

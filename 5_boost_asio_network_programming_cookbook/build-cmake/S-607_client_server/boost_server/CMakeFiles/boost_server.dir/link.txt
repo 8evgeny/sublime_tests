@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/boost_server.dir/sources/server_b.o -o boost_server   -L/home/jhon/Qt/5.14.2/gcc_64/lib  -Wl,-rpath,/home/jhon/Qt/5.14.2/gcc_64/lib /home/jhon/Qt/5.14.2/gcc_64/lib/libQt5Widgets.so.5.14.2 -lpthread /home/jhon/Qt/5.14.2/gcc_64/lib/libQt5Gui.so.5.14.2 /home/jhon/Qt/5.14.2/gcc_64/lib/libQt5Core.so.5.14.2 

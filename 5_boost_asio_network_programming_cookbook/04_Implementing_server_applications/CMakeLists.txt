@@ -1,6 +1,6 @@
-set(CMAKE_CXX_STANDARD 17)
-   
-
+add_subdirectory(AsyncParallel)
+add_subdirectory(SyncIterative)   
+add_subdirectory(SyncParallel)
 
 
 

@@ -4,4 +4,4 @@ add_subdirectory(03_Implementing_client_applications)
 add_subdirectory(04_Implementing_server_applications)
 add_subdirectory(05_HTTP_and_SSL_TLS)
 add_subdirectory(06_Other_Topics)
-
+add_subdirectory(S-607_client_server)

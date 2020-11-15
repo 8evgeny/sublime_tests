@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.o -o Implementing_client_applications_SyncTCPClient  -lpthread 
