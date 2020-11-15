@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.2, 2020-11-15T11:36:05. -->
+<!-- Written by QtCreator 4.13.2, 2020-11-15T12:27:40. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -231,6 +231,7 @@
     <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseTerminal">false</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/01_Basic</value>
    </valuemap>

@@ -35,7 +35,9 @@ int main()
 		asio::ip::tcp::socket sock(ios);
 
 		// Step 7. Processing the next connection request and 
-		// connecting the active socket to the client.
+        // connecting the active socket to the client.
+
+        std::cout<<"Wait connection ..."<<std::endl;
 		acceptor.accept(sock);
 
 		// At this point 'sock' socket is connected to 
