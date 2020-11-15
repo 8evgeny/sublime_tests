@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/SocketOptions/SocketOptions.cpp
+boost/asio.hpp
+-
+iostream
+-
+

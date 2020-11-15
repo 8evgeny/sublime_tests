@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersScatterInput/CompositeBuffersScatterInput.cpp
+boost/asio.hpp
+-
+

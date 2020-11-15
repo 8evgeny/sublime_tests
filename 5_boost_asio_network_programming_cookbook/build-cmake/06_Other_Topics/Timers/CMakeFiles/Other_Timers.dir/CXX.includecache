@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/Timers/Timers.cpp
+boost/asio/steady_timer.hpp
+-
+boost/asio.hpp
+-
+iostream
+-
+

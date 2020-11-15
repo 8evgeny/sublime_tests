@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncParallel/SyncParallel.cpp
+boost/asio.hpp
+-
+thread
+-
+atomic
+-
+memory
+-
+iostream
+-
+
