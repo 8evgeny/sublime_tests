@@ -1,0 +1,129 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "01_Basic",
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "01_Basic",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "02_IO_operations",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "02_IO_operations"
+				},
+				{
+					"build" : "03_Implementing_client_applications",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "03_Implementing_client_applications"
+				},
+				{
+					"build" : "04_Implementing_server_applications",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "04_Implementing_server_applications"
+				},
+				{
+					"build" : "05_HTTP_and_SSL_TLS",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "05_HTTP_and_SSL_TLS"
+				},
+				{
+					"build" : "06_Other_Topics",
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "06_Other_Topics"
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						3,
+						4,
+						5,
+						6
+					],
+					"name" : "Project"
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "basic",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "IO_operations",
+					"parentIndex" : 0
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "basic::@bfb0204f80562858025f",
+					"jsonFile" : "target-basic-Debug-e1aecd10ca23fdceffca.json",
+					"name" : "basic",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake",
+		"source" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 1
+	}
+}
