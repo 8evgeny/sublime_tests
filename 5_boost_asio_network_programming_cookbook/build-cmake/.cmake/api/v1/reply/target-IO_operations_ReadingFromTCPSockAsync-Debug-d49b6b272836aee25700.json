@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "03_Implementing_client_applications/SyncTCPClient/Implementing_client_applications_SyncTCPClient"
+			"path" : "02_IO_operations/ReadingFromTCPSockAsync/IO_operations_ReadingFromTCPSockAsync"
 		}
 	],
 	"backtrace" : 1,
@@ -10,11 +10,12 @@
 	{
 		"commands" : 
 		[
-			"ADD_EXECUTABLE"
+			"ADD_EXECUTABLE",
+			"target_link_libraries"
 		],
 		"files" : 
 		[
-			"03_Implementing_client_applications/SyncTCPClient/CMakeLists.txt"
+			"02_IO_operations/ReadingFromTCPSockAsync/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -25,6 +26,12 @@
 				"command" : 0,
 				"file" : 0,
 				"line" : 9,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 11,
 				"parent" : 0
 			}
 		]
@@ -48,7 +55,7 @@
 			]
 		}
 	],
-	"id" : "Implementing_client_applications_SyncTCPClient::@77f469a919334cfbf05b",
+	"id" : "IO_operations_ReadingFromTCPSockAsync::@41168be0055e5546b446",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -58,22 +65,23 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-rdynamic",
+				"fragment" : "",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-lpthread",
+				"backtrace" : 2,
+				"fragment" : "/usr/lib/libpthread.so",
 				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
-	"name" : "Implementing_client_applications_SyncTCPClient",
-	"nameOnDisk" : "Implementing_client_applications_SyncTCPClient",
+	"name" : "IO_operations_ReadingFromTCPSockAsync",
+	"nameOnDisk" : "IO_operations_ReadingFromTCPSockAsync",
 	"paths" : 
 	{
-		"build" : "03_Implementing_client_applications/SyncTCPClient",
-		"source" : "03_Implementing_client_applications/SyncTCPClient"
+		"build" : "02_IO_operations/ReadingFromTCPSockAsync",
+		"source" : "02_IO_operations/ReadingFromTCPSockAsync"
 	},
 	"sourceGroups" : 
 	[
@@ -90,7 +98,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "03_Implementing_client_applications/SyncTCPClient/SyncTCPClient.cpp",
+			"path" : "02_IO_operations/ReadingFromTCPSockAsync/ReadingFromTCPSockAsync.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

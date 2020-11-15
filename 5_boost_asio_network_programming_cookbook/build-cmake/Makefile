@@ -350,6 +350,32 @@ boost_server/fast:
 	$(MAKE) $(MAKESILENT) -f S-607_client_server/boost_server/CMakeFiles/boost_server.dir/build.make S-607_client_server/boost_server/CMakeFiles/boost_server.dir/build
 .PHONY : boost_server/fast
 
+#=============================================================================
+# Target rules for targets named qt_client
+
+# Build rule for target.
+qt_client: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 qt_client
+.PHONY : qt_client
+
+# fast build rule for target.
+qt_client/fast:
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/qt_client/CMakeFiles/qt_client.dir/build.make S-607_client_server/qt_client/CMakeFiles/qt_client.dir/build
+.PHONY : qt_client/fast
+
+#=============================================================================
+# Target rules for targets named qt_server
+
+# Build rule for target.
+qt_server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 qt_server
+.PHONY : qt_server
+
+# fast build rule for target.
+qt_server/fast:
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/qt_server/CMakeFiles/qt_server.dir/build.make S-607_client_server/qt_server/CMakeFiles/qt_server.dir/build
+.PHONY : qt_server/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -375,6 +401,8 @@ help:
 	@echo "... basic"
 	@echo "... boost_client"
 	@echo "... boost_server"
+	@echo "... qt_client"
+	@echo "... qt_server"
 .PHONY : help
 
 

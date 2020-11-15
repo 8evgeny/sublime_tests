@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "S-607_client_server/boost_client/boost_client"
+			"path" : "S-607_client_server/boost_server/boost_server"
 		}
 	],
 	"backtrace" : 1,
@@ -16,7 +16,7 @@
 		],
 		"files" : 
 		[
-			"S-607_client_server/boost_client/CMakeLists.txt"
+			"S-607_client_server/boost_server/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -78,11 +78,11 @@
 			[
 				{
 					"backtrace" : 3,
-					"path" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/boost_client/headers"
+					"path" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/boost_server/headers"
 				},
 				{
 					"backtrace" : 3,
-					"path" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/boost_client/sources"
+					"path" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/boost_server/sources"
 				},
 				{
 					"backtrace" : 2,
@@ -117,7 +117,7 @@
 			]
 		}
 	],
-	"id" : "boost_client::@98b84b28916bcd6ab3cd",
+	"id" : "boost_server::@7f346ead9282e5c2e2ca",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -127,12 +127,8 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-rdynamic",
+				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "-L/home/jhon/Qt/5.14.2/gcc_64/lib",
-				"role" : "libraryPath"
 			},
 			{
 				"fragment" : "-Wl,-rpath,/home/jhon/Qt/5.14.2/gcc_64/lib",
@@ -159,12 +155,12 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "boost_client",
-	"nameOnDisk" : "boost_client",
+	"name" : "boost_server",
+	"nameOnDisk" : "boost_server",
 	"paths" : 
 	{
-		"build" : "S-607_client_server/boost_client",
-		"source" : "S-607_client_server/boost_client"
+		"build" : "S-607_client_server/boost_server",
+		"source" : "S-607_client_server/boost_server"
 	},
 	"sourceGroups" : 
 	[
@@ -187,13 +183,13 @@
 	[
 		{
 			"backtrace" : 1,
-			"path" : "S-607_client_server/boost_client/headers/client.h",
+			"path" : "S-607_client_server/boost_server/headers/server.h",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "S-607_client_server/boost_client/sources/client_b.cpp",
+			"path" : "S-607_client_server/boost_server/sources/server_b.cpp",
 			"sourceGroupIndex" : 1
 		}
 	],

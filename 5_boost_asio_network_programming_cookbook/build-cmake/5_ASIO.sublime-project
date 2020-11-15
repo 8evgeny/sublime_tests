@@ -8,25 +8,25 @@
 	"build_systems":
 	[
 		{
-			"name": "Project - all",
+			"name": "5_ASIO - all",
 			"cmd": ["/usr/bin/make", "-f", "Makefile", "all"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},
 		{
-			"name": "Project - clean",
+			"name": "5_ASIO - clean",
 			"cmd": ["/usr/bin/make", "-f", "Makefile", "clean"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},
 		{
-			"name": "Project - rebuild_cache",
+			"name": "5_ASIO - rebuild_cache",
 			"cmd": ["/usr/bin/make", "-f", "Makefile", "rebuild_cache"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		},
 		{
-			"name": "Project - edit_cache",
+			"name": "5_ASIO - edit_cache",
 			"cmd": ["/usr/bin/make", "-f", "Makefile", "edit_cache"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"

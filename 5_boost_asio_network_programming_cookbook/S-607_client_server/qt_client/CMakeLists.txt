@@ -5,7 +5,7 @@ PROJECT (qt_client)
 include_directories(headers sources)
 FILE(GLOB SRC_FILES sources/* headers/* )
 
-#find_package(Qt5 CONFIG REQUIRED Core Sql Widgets Gui )
+find_package(Qt5 CONFIG REQUIRED Core Sql Widgets Gui Network)
 
 add_executable(${PROJECT_NAME}  ${SRC_FILES})
 

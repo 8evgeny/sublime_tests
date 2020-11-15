@@ -65,7 +65,7 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-rdynamic",
+				"fragment" : "",
 				"role" : "flags"
 			},
 			{
@@ -83,7 +83,8 @@
 				"role" : "libraries"
 			},
 			{
-				"fragment" : "-lpthread",
+				"backtrace" : 2,
+				"fragment" : "/usr/lib/libpthread.so",
 				"role" : "libraries"
 			}
 		],

@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.5)
+project(5_ASIO)
 add_subdirectory(01_Basic)
 add_subdirectory(02_IO_operations)
 add_subdirectory(03_Implementing_client_applications)

@@ -497,18 +497,24 @@ clean: S-607_client_server/clean
 # Recursive "all" directory target.
 S-607_client_server/all: S-607_client_server/boost_client/all
 S-607_client_server/all: S-607_client_server/boost_server/all
+S-607_client_server/all: S-607_client_server/qt_client/all
+S-607_client_server/all: S-607_client_server/qt_server/all
 
 .PHONY : S-607_client_server/all
 
 # Recursive "preinstall" directory target.
 S-607_client_server/preinstall: S-607_client_server/boost_client/preinstall
 S-607_client_server/preinstall: S-607_client_server/boost_server/preinstall
+S-607_client_server/preinstall: S-607_client_server/qt_client/preinstall
+S-607_client_server/preinstall: S-607_client_server/qt_server/preinstall
 
 .PHONY : S-607_client_server/preinstall
 
 # Recursive "clean" directory target.
 S-607_client_server/clean: S-607_client_server/boost_client/clean
 S-607_client_server/clean: S-607_client_server/boost_server/clean
+S-607_client_server/clean: S-607_client_server/qt_client/clean
+S-607_client_server/clean: S-607_client_server/qt_server/clean
 
 .PHONY : S-607_client_server/clean
 
@@ -547,6 +553,42 @@ S-607_client_server/boost_server/preinstall:
 S-607_client_server/boost_server/clean: S-607_client_server/boost_server/CMakeFiles/boost_server.dir/clean
 
 .PHONY : S-607_client_server/boost_server/clean
+
+#=============================================================================
+# Directory level rules for directory S-607_client_server/qt_client
+
+# Recursive "all" directory target.
+S-607_client_server/qt_client/all: S-607_client_server/qt_client/CMakeFiles/qt_client.dir/all
+
+.PHONY : S-607_client_server/qt_client/all
+
+# Recursive "preinstall" directory target.
+S-607_client_server/qt_client/preinstall:
+
+.PHONY : S-607_client_server/qt_client/preinstall
+
+# Recursive "clean" directory target.
+S-607_client_server/qt_client/clean: S-607_client_server/qt_client/CMakeFiles/qt_client.dir/clean
+
+.PHONY : S-607_client_server/qt_client/clean
+
+#=============================================================================
+# Directory level rules for directory S-607_client_server/qt_server
+
+# Recursive "all" directory target.
+S-607_client_server/qt_server/all: S-607_client_server/qt_server/CMakeFiles/qt_server.dir/all
+
+.PHONY : S-607_client_server/qt_server/all
+
+# Recursive "preinstall" directory target.
+S-607_client_server/qt_server/preinstall:
+
+.PHONY : S-607_client_server/qt_server/preinstall
+
+# Recursive "clean" directory target.
+S-607_client_server/qt_server/clean: S-607_client_server/qt_server/CMakeFiles/qt_server.dir/clean
+
+.PHONY : S-607_client_server/qt_server/clean
 
 #=============================================================================
 # Target rules for target 01_Basic/CMakeFiles/basic.dir
@@ -1006,6 +1048,60 @@ boost_server: S-607_client_server/boost_server/CMakeFiles/boost_server.dir/rule
 S-607_client_server/boost_server/CMakeFiles/boost_server.dir/clean:
 	$(MAKE) $(MAKESILENT) -f S-607_client_server/boost_server/CMakeFiles/boost_server.dir/build.make S-607_client_server/boost_server/CMakeFiles/boost_server.dir/clean
 .PHONY : S-607_client_server/boost_server/CMakeFiles/boost_server.dir/clean
+
+#=============================================================================
+# Target rules for target S-607_client_server/qt_client/CMakeFiles/qt_client.dir
+
+# All Build rule for target.
+S-607_client_server/qt_client/CMakeFiles/qt_client.dir/all:
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/qt_client/CMakeFiles/qt_client.dir/build.make S-607_client_server/qt_client/CMakeFiles/qt_client.dir/depend
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/qt_client/CMakeFiles/qt_client.dir/build.make S-607_client_server/qt_client/CMakeFiles/qt_client.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=35,36,37 "Built target qt_client"
+.PHONY : S-607_client_server/qt_client/CMakeFiles/qt_client.dir/all
+
+# Build rule for subdir invocation for target.
+S-607_client_server/qt_client/CMakeFiles/qt_client.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 S-607_client_server/qt_client/CMakeFiles/qt_client.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : S-607_client_server/qt_client/CMakeFiles/qt_client.dir/rule
+
+# Convenience name for target.
+qt_client: S-607_client_server/qt_client/CMakeFiles/qt_client.dir/rule
+
+.PHONY : qt_client
+
+# clean rule for target.
+S-607_client_server/qt_client/CMakeFiles/qt_client.dir/clean:
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/qt_client/CMakeFiles/qt_client.dir/build.make S-607_client_server/qt_client/CMakeFiles/qt_client.dir/clean
+.PHONY : S-607_client_server/qt_client/CMakeFiles/qt_client.dir/clean
+
+#=============================================================================
+# Target rules for target S-607_client_server/qt_server/CMakeFiles/qt_server.dir
+
+# All Build rule for target.
+S-607_client_server/qt_server/CMakeFiles/qt_server.dir/all:
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/qt_server/CMakeFiles/qt_server.dir/build.make S-607_client_server/qt_server/CMakeFiles/qt_server.dir/depend
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/qt_server/CMakeFiles/qt_server.dir/build.make S-607_client_server/qt_server/CMakeFiles/qt_server.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=38,39,40 "Built target qt_server"
+.PHONY : S-607_client_server/qt_server/CMakeFiles/qt_server.dir/all
+
+# Build rule for subdir invocation for target.
+S-607_client_server/qt_server/CMakeFiles/qt_server.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 S-607_client_server/qt_server/CMakeFiles/qt_server.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : S-607_client_server/qt_server/CMakeFiles/qt_server.dir/rule
+
+# Convenience name for target.
+qt_server: S-607_client_server/qt_server/CMakeFiles/qt_server.dir/rule
+
+.PHONY : qt_server
+
+# clean rule for target.
+S-607_client_server/qt_server/CMakeFiles/qt_server.dir/clean:
+	$(MAKE) $(MAKESILENT) -f S-607_client_server/qt_server/CMakeFiles/qt_server.dir/build.make S-607_client_server/qt_server/CMakeFiles/qt_server.dir/clean
+.PHONY : S-607_client_server/qt_server/CMakeFiles/qt_server.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

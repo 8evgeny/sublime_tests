@@ -2,6 +2,30 @@
 	"entries" : 
 	[
 		{
+			"name" : "5_ASIO_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake"
+		},
+		{
+			"name" : "5_ASIO_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook"
+		},
+		{
 			"name" : "CMAKE_ADDR2LINE",
 			"properties" : 
 			[
@@ -32,18 +56,6 @@
 			],
 			"type" : "FILEPATH",
 			"value" : "/usr/bin/ar"
-		},
-		{
-			"name" : "CMAKE_BACKWARDS_COMPATIBILITY",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "For backwards compatibility, what version of CMake commands and syntax should this version of CMake try to support."
-				}
-			],
-			"type" : "STRING",
-			"value" : "2.4"
 		},
 		{
 			"name" : "CMAKE_BUILD_TYPE",
@@ -771,7 +783,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "24"
+			"value" : "26"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -863,7 +875,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "Project"
+			"value" : "5_ASIO"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1158,18 +1170,6 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "EXECUTABLE_OUTPUT_PATH",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Single output directory for building all executables."
-				}
-			],
-			"type" : "PATH",
-			"value" : ""
-		},
-		{
 			"name" : "HTTP_and_SSL_TLS_HTTPClient_BINARY_DIR",
 			"properties" : 
 			[
@@ -1386,18 +1386,6 @@
 			"value" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncParallel"
 		},
 		{
-			"name" : "LIBRARY_OUTPUT_PATH",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Single output directory for building all libraries."
-				}
-			],
-			"type" : "PATH",
-			"value" : ""
-		},
-		{
 			"name" : "Other_CompositeBuffersGatherOutput_BINARY_DIR",
 			"properties" : 
 			[
@@ -1518,30 +1506,6 @@
 			"value" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/Timers"
 		},
 		{
-			"name" : "Project_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake"
-		},
-		{
-			"name" : "Project_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook"
-		},
-		{
 			"name" : "Qt5Core_DIR",
 			"properties" : 
 			[
@@ -1564,6 +1528,18 @@
 			],
 			"type" : "PATH",
 			"value" : "/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Gui"
+		},
+		{
+			"name" : "Qt5Network_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt5Network."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Network"
 		},
 		{
 			"name" : "Qt5Sql_DIR",
@@ -1672,6 +1648,54 @@
 			],
 			"type" : "STATIC",
 			"value" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/boost_server"
+		},
+		{
+			"name" : "qt_client_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/qt_client"
+		},
+		{
+			"name" : "qt_client_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/qt_client"
+		},
+		{
+			"name" : "qt_server_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/qt_server"
+		},
+		{
+			"name" : "qt_server_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/qt_server"
 		}
 	],
 	"kind" : "cache",

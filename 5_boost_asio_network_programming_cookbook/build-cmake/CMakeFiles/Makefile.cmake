@@ -55,6 +55,11 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Gui/Qt5Gui_QXcbGlxIntegrationPlugin.cmake"
   "/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Gui/Qt5Gui_QXcbIntegrationPlugin.cmake"
   "/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Gui/Qt5Gui_QXdgDesktopPortalThemePlugin.cmake"
+  "/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Network/Qt5NetworkConfig.cmake"
+  "/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Network/Qt5NetworkConfigVersion.cmake"
+  "/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Network/Qt5Network_QConnmanEnginePlugin.cmake"
+  "/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Network/Qt5Network_QGenericEnginePlugin.cmake"
+  "/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Network/Qt5Network_QNetworkManagerEnginePlugin.cmake"
   "/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Sql/Qt5SqlConfig.cmake"
   "/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Sql/Qt5SqlConfigVersion.cmake"
   "/home/jhon/Qt/5.14.2/gcc_64/lib/cmake/Qt5Sql/Qt5Sql_QODBCDriverPlugin.cmake"
@@ -90,6 +95,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../S-607_client_server/boost_client/config/config.ini"
   "../S-607_client_server/boost_server/CMakeLists.txt"
   "../S-607_client_server/boost_server/config/config.ini"
+  "../S-607_client_server/qt_client/CMakeLists.txt"
+  "../S-607_client_server/qt_client/config/config.ini"
+  "../S-607_client_server/qt_server/CMakeLists.txt"
+  "../S-607_client_server/qt_server/config/config.ini"
   "CMakeFiles/3.18.4/CMakeCCompiler.cmake"
   "CMakeFiles/3.18.4/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.18.4/CMakeSystem.cmake"
@@ -221,6 +230,10 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "S-607_client_server/boost_client/CMakeFiles/CMakeDirectoryInformation.cmake"
   "S-607_client_server/boost_server/config_boost_server.ini"
   "S-607_client_server/boost_server/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "S-607_client_server/qt_client/config_qt_client.ini"
+  "S-607_client_server/qt_client/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "S-607_client_server/qt_server/config_qt_server.ini"
+  "S-607_client_server/qt_server/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -242,4 +255,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/DependInfo.cmake"
   "S-607_client_server/boost_client/CMakeFiles/boost_client.dir/DependInfo.cmake"
   "S-607_client_server/boost_server/CMakeFiles/boost_server.dir/DependInfo.cmake"
+  "S-607_client_server/qt_client/CMakeFiles/qt_client.dir/DependInfo.cmake"
+  "S-607_client_server/qt_server/CMakeFiles/qt_server.dir/DependInfo.cmake"
   )

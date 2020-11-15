@@ -10,7 +10,8 @@
 	{
 		"commands" : 
 		[
-			"ADD_EXECUTABLE"
+			"ADD_EXECUTABLE",
+			"target_link_libraries"
 		],
 		"files" : 
 		[
@@ -25,6 +26,12 @@
 				"command" : 0,
 				"file" : 0,
 				"line" : 9,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 11,
 				"parent" : 0
 			}
 		]
@@ -58,11 +65,12 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-rdynamic",
+				"fragment" : "",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-lpthread",
+				"backtrace" : 2,
+				"fragment" : "/usr/lib/libpthread.so",
 				"role" : "libraries"
 			}
 		],

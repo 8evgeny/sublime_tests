@@ -16,11 +16,19 @@
 						15,
 						21
 					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"projectIndex" : 0,
 					"source" : "."
 				},
 				{
 					"build" : "01_Basic",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 0,
 					"projectIndex" : 1,
 					"source" : "01_Basic",
@@ -35,12 +43,20 @@
 					[
 						3
 					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 0,
 					"projectIndex" : 0,
 					"source" : "02_IO_operations"
 				},
 				{
 					"build" : "02_IO_operations/ReadingFromTCPSockAsync",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 2,
 					"projectIndex" : 2,
 					"source" : "02_IO_operations/ReadingFromTCPSockAsync",
@@ -58,12 +74,20 @@
 						7,
 						8
 					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 0,
 					"projectIndex" : 0,
 					"source" : "03_Implementing_client_applications"
 				},
 				{
 					"build" : "03_Implementing_client_applications/AsyncTCPClient",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 4,
 					"projectIndex" : 3,
 					"source" : "03_Implementing_client_applications/AsyncTCPClient",
@@ -74,6 +98,10 @@
 				},
 				{
 					"build" : "03_Implementing_client_applications/AsyncTCPClientMT",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 4,
 					"projectIndex" : 4,
 					"source" : "03_Implementing_client_applications/AsyncTCPClientMT",
@@ -84,6 +112,10 @@
 				},
 				{
 					"build" : "03_Implementing_client_applications/SyncTCPClient",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 4,
 					"projectIndex" : 5,
 					"source" : "03_Implementing_client_applications/SyncTCPClient",
@@ -94,6 +126,10 @@
 				},
 				{
 					"build" : "03_Implementing_client_applications/SyncUDPClient",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 4,
 					"projectIndex" : 6,
 					"source" : "03_Implementing_client_applications/SyncUDPClient",
@@ -110,12 +146,20 @@
 						11,
 						12
 					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 0,
 					"projectIndex" : 0,
 					"source" : "04_Implementing_server_applications"
 				},
 				{
 					"build" : "04_Implementing_server_applications/AsyncParallel",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 9,
 					"projectIndex" : 7,
 					"source" : "04_Implementing_server_applications/AsyncParallel",
@@ -126,6 +170,10 @@
 				},
 				{
 					"build" : "04_Implementing_server_applications/SyncIterative",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 9,
 					"projectIndex" : 8,
 					"source" : "04_Implementing_server_applications/SyncIterative",
@@ -136,6 +184,10 @@
 				},
 				{
 					"build" : "04_Implementing_server_applications/SyncParallel",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 9,
 					"projectIndex" : 9,
 					"source" : "04_Implementing_server_applications/SyncParallel",
@@ -150,12 +202,20 @@
 					[
 						14
 					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 0,
 					"projectIndex" : 0,
 					"source" : "05_HTTP_and_SSL_TLS"
 				},
 				{
 					"build" : "05_HTTP_and_SSL_TLS/HTTPClient",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 13,
 					"projectIndex" : 10,
 					"source" : "05_HTTP_and_SSL_TLS/HTTPClient",
@@ -174,12 +234,20 @@
 						19,
 						20
 					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 0,
 					"projectIndex" : 0,
 					"source" : "06_Other_Topics"
 				},
 				{
 					"build" : "06_Other_Topics/CompositeBuffersGatherOutput",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 15,
 					"projectIndex" : 11,
 					"source" : "06_Other_Topics/CompositeBuffersGatherOutput",
@@ -190,6 +258,10 @@
 				},
 				{
 					"build" : "06_Other_Topics/CompositeBuffersScatterInput",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 15,
 					"projectIndex" : 12,
 					"source" : "06_Other_Topics/CompositeBuffersScatterInput",
@@ -200,6 +272,10 @@
 				},
 				{
 					"build" : "06_Other_Topics/SocketOptions",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 15,
 					"projectIndex" : 13,
 					"source" : "06_Other_Topics/SocketOptions",
@@ -210,6 +286,10 @@
 				},
 				{
 					"build" : "06_Other_Topics/StreamBasedIO",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 15,
 					"projectIndex" : 14,
 					"source" : "06_Other_Topics/StreamBasedIO",
@@ -220,6 +300,10 @@
 				},
 				{
 					"build" : "06_Other_Topics/Timers",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 15,
 					"projectIndex" : 15,
 					"source" : "06_Other_Topics/Timers",
@@ -233,14 +317,24 @@
 					"childIndexes" : 
 					[
 						22,
-						23
+						23,
+						24,
+						25
 					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 0,
 					"projectIndex" : 0,
 					"source" : "S-607_client_server"
 				},
 				{
 					"build" : "S-607_client_server/boost_client",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 21,
 					"projectIndex" : 16,
 					"source" : "S-607_client_server/boost_client",
@@ -251,12 +345,44 @@
 				},
 				{
 					"build" : "S-607_client_server/boost_server",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
 					"parentIndex" : 21,
 					"projectIndex" : 17,
 					"source" : "S-607_client_server/boost_server",
 					"targetIndexes" : 
 					[
 						16
+					]
+				},
+				{
+					"build" : "S-607_client_server/qt_client",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 21,
+					"projectIndex" : 18,
+					"source" : "S-607_client_server/qt_client",
+					"targetIndexes" : 
+					[
+						17
+					]
+				},
+				{
+					"build" : "S-607_client_server/qt_server",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 21,
+					"projectIndex" : 19,
+					"source" : "S-607_client_server/qt_server",
+					"targetIndexes" : 
+					[
+						18
 					]
 				}
 			],
@@ -282,7 +408,9 @@
 						14,
 						15,
 						16,
-						17
+						17,
+						18,
+						19
 					],
 					"directoryIndexes" : 
 					[
@@ -294,7 +422,7 @@
 						15,
 						21
 					],
-					"name" : "Project"
+					"name" : "5_ASIO"
 				},
 				{
 					"directoryIndexes" : 
@@ -499,6 +627,30 @@
 					[
 						16
 					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						24
+					],
+					"name" : "qt_client",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						17
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						25
+					],
+					"name" : "qt_server",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						18
+					]
 				}
 			],
 			"targets" : 
@@ -506,121 +658,135 @@
 				{
 					"directoryIndex" : 14,
 					"id" : "HTTP_and_SSL_TLS_HTTPClient::@a869d6397c98a07d25bc",
-					"jsonFile" : "target-HTTP_and_SSL_TLS_HTTPClient-Debug-2f6ee068bc246868b661.json",
+					"jsonFile" : "target-HTTP_and_SSL_TLS_HTTPClient-Debug-449897ca4f5933a1405c.json",
 					"name" : "HTTP_and_SSL_TLS_HTTPClient",
 					"projectIndex" : 10
 				},
 				{
 					"directoryIndex" : 3,
 					"id" : "IO_operations_ReadingFromTCPSockAsync::@41168be0055e5546b446",
-					"jsonFile" : "target-IO_operations_ReadingFromTCPSockAsync-Debug-8fba99bab572eb23a048.json",
+					"jsonFile" : "target-IO_operations_ReadingFromTCPSockAsync-Debug-d49b6b272836aee25700.json",
 					"name" : "IO_operations_ReadingFromTCPSockAsync",
 					"projectIndex" : 2
 				},
 				{
 					"directoryIndex" : 5,
 					"id" : "Implementing_client_applications_AsyncTCPClient::@8b4cfc71136b7db56fdb",
-					"jsonFile" : "target-Implementing_client_applications_AsyncTCPClient-Debug-4a08c257003a7fd03c22.json",
+					"jsonFile" : "target-Implementing_client_applications_AsyncTCPClient-Debug-77e6090ffd68d0f495c3.json",
 					"name" : "Implementing_client_applications_AsyncTCPClient",
 					"projectIndex" : 3
 				},
 				{
 					"directoryIndex" : 6,
 					"id" : "Implementing_client_applications_AsyncTCPClientMT::@b0572ec19cca4de40bf3",
-					"jsonFile" : "target-Implementing_client_applications_AsyncTCPClientMT-Debug-eba3c41111c524b11be5.json",
+					"jsonFile" : "target-Implementing_client_applications_AsyncTCPClientMT-Debug-b89ca416d58efab85e46.json",
 					"name" : "Implementing_client_applications_AsyncTCPClientMT",
 					"projectIndex" : 4
 				},
 				{
 					"directoryIndex" : 7,
 					"id" : "Implementing_client_applications_SyncTCPClient::@77f469a919334cfbf05b",
-					"jsonFile" : "target-Implementing_client_applications_SyncTCPClient-Debug-eadc579de88062697c55.json",
+					"jsonFile" : "target-Implementing_client_applications_SyncTCPClient-Debug-464346db3d127d41c82a.json",
 					"name" : "Implementing_client_applications_SyncTCPClient",
 					"projectIndex" : 5
 				},
 				{
 					"directoryIndex" : 8,
 					"id" : "Implementing_client_applications_SyncUDPClient::@6901fc1102dd3582e900",
-					"jsonFile" : "target-Implementing_client_applications_SyncUDPClient-Debug-d1d10824f213539c7a0c.json",
+					"jsonFile" : "target-Implementing_client_applications_SyncUDPClient-Debug-917563d6cee61b60cea7.json",
 					"name" : "Implementing_client_applications_SyncUDPClient",
 					"projectIndex" : 6
 				},
 				{
 					"directoryIndex" : 10,
 					"id" : "Implementing_server_applications_AsyncParallel::@2c7a4e8bb1ff1a2aa6d4",
-					"jsonFile" : "target-Implementing_server_applications_AsyncParallel-Debug-6a9d0a56a80a28fdd0a8.json",
+					"jsonFile" : "target-Implementing_server_applications_AsyncParallel-Debug-c0812182090f97fe525b.json",
 					"name" : "Implementing_server_applications_AsyncParallel",
 					"projectIndex" : 7
 				},
 				{
 					"directoryIndex" : 11,
 					"id" : "Implementing_server_applications_SyncIterative::@11ba9936ac7e65eb6029",
-					"jsonFile" : "target-Implementing_server_applications_SyncIterative-Debug-0fe3c7a22f54f1d97c3a.json",
+					"jsonFile" : "target-Implementing_server_applications_SyncIterative-Debug-4008a28b01d6d4e4ac84.json",
 					"name" : "Implementing_server_applications_SyncIterative",
 					"projectIndex" : 8
 				},
 				{
 					"directoryIndex" : 12,
 					"id" : "Implementing_server_applications_SyncParallel::@84be3fc87eb0511884d7",
-					"jsonFile" : "target-Implementing_server_applications_SyncParallel-Debug-5b36b3d8028f01fa233d.json",
+					"jsonFile" : "target-Implementing_server_applications_SyncParallel-Debug-f5f1cc337f33c965e882.json",
 					"name" : "Implementing_server_applications_SyncParallel",
 					"projectIndex" : 9
 				},
 				{
 					"directoryIndex" : 16,
 					"id" : "Other_CompositeBuffersGatherOutput::@530203c40f7c95fd841e",
-					"jsonFile" : "target-Other_CompositeBuffersGatherOutput-Debug-0e669830391fd571da02.json",
+					"jsonFile" : "target-Other_CompositeBuffersGatherOutput-Debug-64c9f1a486e253a9d185.json",
 					"name" : "Other_CompositeBuffersGatherOutput",
 					"projectIndex" : 11
 				},
 				{
 					"directoryIndex" : 17,
 					"id" : "Other_CompositeBuffersScatterInput::@228c89d11580e3ea669c",
-					"jsonFile" : "target-Other_CompositeBuffersScatterInput-Debug-32f41845cc956b9a36ee.json",
+					"jsonFile" : "target-Other_CompositeBuffersScatterInput-Debug-aea3cbfce29d99c3480c.json",
 					"name" : "Other_CompositeBuffersScatterInput",
 					"projectIndex" : 12
 				},
 				{
 					"directoryIndex" : 18,
 					"id" : "Other_SocketOptions::@ce313e400a8d9e9a1c04",
-					"jsonFile" : "target-Other_SocketOptions-Debug-81d62a7a0b039bfc4a17.json",
+					"jsonFile" : "target-Other_SocketOptions-Debug-28e8f323d09548c5d094.json",
 					"name" : "Other_SocketOptions",
 					"projectIndex" : 13
 				},
 				{
 					"directoryIndex" : 19,
 					"id" : "Other_StreamBasedIO::@cd95a38f014aade33dc5",
-					"jsonFile" : "target-Other_StreamBasedIO-Debug-bdfbbec738122647566f.json",
+					"jsonFile" : "target-Other_StreamBasedIO-Debug-d2b1cf1c2a90f003fad5.json",
 					"name" : "Other_StreamBasedIO",
 					"projectIndex" : 14
 				},
 				{
 					"directoryIndex" : 20,
 					"id" : "Other_Timers::@331a3b664b47d8c8263d",
-					"jsonFile" : "target-Other_Timers-Debug-f5afefb3d425d8bb2f31.json",
+					"jsonFile" : "target-Other_Timers-Debug-aadcc7c4054fbc21d9f9.json",
 					"name" : "Other_Timers",
 					"projectIndex" : 15
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "basic::@bfb0204f80562858025f",
-					"jsonFile" : "target-basic-Debug-dd0adfda95d284199339.json",
+					"jsonFile" : "target-basic-Debug-63a8fa07d7e0ea463b3c.json",
 					"name" : "basic",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 22,
 					"id" : "boost_client::@98b84b28916bcd6ab3cd",
-					"jsonFile" : "target-boost_client-Debug-54b38a5f0d6a5d8576e7.json",
+					"jsonFile" : "target-boost_client-Debug-1c9c2a7c2e2bad88b2af.json",
 					"name" : "boost_client",
 					"projectIndex" : 16
 				},
 				{
 					"directoryIndex" : 23,
 					"id" : "boost_server::@7f346ead9282e5c2e2ca",
-					"jsonFile" : "target-boost_server-Debug-340acd3c414a7f7c6ed6.json",
+					"jsonFile" : "target-boost_server-Debug-7a23b7382fdcb2723fe2.json",
 					"name" : "boost_server",
 					"projectIndex" : 17
+				},
+				{
+					"directoryIndex" : 24,
+					"id" : "qt_client::@0522f51cae9839386cb3",
+					"jsonFile" : "target-qt_client-Debug-37e4bb0d53cf9d8af700.json",
+					"name" : "qt_client",
+					"projectIndex" : 18
+				},
+				{
+					"directoryIndex" : 25,
+					"id" : "qt_server::@9b7c98957732274c368c",
+					"jsonFile" : "target-qt_server-Debug-caec535587c690bd9861.json",
+					"name" : "qt_server",
+					"projectIndex" : 19
 				}
 			]
 		}

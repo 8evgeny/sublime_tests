@@ -63,3 +63,9 @@
 /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/boost_server/CMakeFiles/edit_cache.dir
 /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/boost_server/CMakeFiles/rebuild_cache.dir
 /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/boost_server/CMakeFiles/boost_server.dir
+/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/qt_client/CMakeFiles/edit_cache.dir
+/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/qt_client/CMakeFiles/rebuild_cache.dir
+/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/qt_client/CMakeFiles/qt_client.dir
+/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/qt_server/CMakeFiles/rebuild_cache.dir
+/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/qt_server/CMakeFiles/edit_cache.dir
+/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/qt_server/CMakeFiles/qt_server.dir
