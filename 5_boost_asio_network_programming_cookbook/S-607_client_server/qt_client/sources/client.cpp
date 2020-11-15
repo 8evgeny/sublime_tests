@@ -1,7 +1,7 @@
 #include <QtWidgets>
 #include <QtGui>
 #include "client.h"
-#include "inih/INIReader.h"
+#include "INIReader.h"
 constexpr char kConfigFile[] = "../config/config_client.ini";
 QString img;
 QString str_from_server;
