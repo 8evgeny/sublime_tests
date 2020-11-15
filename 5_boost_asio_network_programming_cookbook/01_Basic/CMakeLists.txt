@@ -1,10 +1,15 @@
-cmake_minimum_required(VERSION 3.5)
+set(CMAKE_CXX_STANDARD 17)
 
-project(ASIO_1)
+project(basic)
 
-set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(SOURCE_FILES main.cpp)
+
+set(src Accepting_a_connection.cpp)
+
+ADD_EXECUTABLE(${PROJECT_NAME} ${src})
+target_link_libraries(
+
+    )
    
 
 

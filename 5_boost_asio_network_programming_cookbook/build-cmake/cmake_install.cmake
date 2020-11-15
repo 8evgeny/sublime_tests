@@ -44,12 +44,12 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/01_Code/cmake_install.cmake")
-  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/02_Code/cmake_install.cmake")
-  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Code/cmake_install.cmake")
-  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Code/cmake_install.cmake")
-  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/05_Code/cmake_install.cmake")
-  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Code/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/01_Basic/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/02_IO_operations/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/05_HTTP_and_SSL_TLS/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/cmake_install.cmake")
 
 endif()
 

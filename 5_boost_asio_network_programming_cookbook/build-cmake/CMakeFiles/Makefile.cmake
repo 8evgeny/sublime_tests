@@ -7,12 +7,12 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "../01_Code/CMakeLists.txt"
-  "../02_Code/CMakeLists.txt"
-  "../03_Code/CMakeLists.txt"
-  "../04_Code/CMakeLists.txt"
-  "../05_Code/CMakeLists.txt"
-  "../06_Code/CMakeLists.txt"
+  "../01_Basic/CMakeLists.txt"
+  "../02_IO_operations/CMakeLists.txt"
+  "../03_Implementing_client_applications/CMakeLists.txt"
+  "../04_Implementing_server_applications/CMakeLists.txt"
+  "../05_HTTP_and_SSL_TLS/CMakeLists.txt"
+  "../06_Other_Topics/CMakeLists.txt"
   "../CMakeLists.txt"
   "CMakeFiles/3.18.4/CMakeCCompiler.cmake"
   "CMakeFiles/3.18.4/CMakeCXXCompiler.cmake"
@@ -48,14 +48,15 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "01_Code/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "02_Code/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "03_Code/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "04_Code/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "05_Code/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "06_Code/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "01_Basic/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "02_IO_operations/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "03_Implementing_client_applications/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "04_Implementing_server_applications/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "05_HTTP_and_SSL_TLS/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "06_Other_Topics/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "01_Basic/CMakeFiles/basic.dir/DependInfo.cmake"
   )

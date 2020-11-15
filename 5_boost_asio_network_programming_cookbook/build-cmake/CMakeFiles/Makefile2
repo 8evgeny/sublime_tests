@@ -72,142 +72,169 @@ CMAKE_BINARY_DIR = /home/jhon/Sublime_tests/5_boost_asio_network_programming_coo
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: 01_Code/all
-all: 02_Code/all
-all: 03_Code/all
-all: 04_Code/all
-all: 05_Code/all
-all: 06_Code/all
+all: 01_Basic/all
+all: 02_IO_operations/all
+all: 03_Implementing_client_applications/all
+all: 04_Implementing_server_applications/all
+all: 05_HTTP_and_SSL_TLS/all
+all: 06_Other_Topics/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall: 01_Code/preinstall
-preinstall: 02_Code/preinstall
-preinstall: 03_Code/preinstall
-preinstall: 04_Code/preinstall
-preinstall: 05_Code/preinstall
-preinstall: 06_Code/preinstall
+preinstall: 01_Basic/preinstall
+preinstall: 02_IO_operations/preinstall
+preinstall: 03_Implementing_client_applications/preinstall
+preinstall: 04_Implementing_server_applications/preinstall
+preinstall: 05_HTTP_and_SSL_TLS/preinstall
+preinstall: 06_Other_Topics/preinstall
 
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: 01_Code/clean
-clean: 02_Code/clean
-clean: 03_Code/clean
-clean: 04_Code/clean
-clean: 05_Code/clean
-clean: 06_Code/clean
+clean: 01_Basic/clean
+clean: 02_IO_operations/clean
+clean: 03_Implementing_client_applications/clean
+clean: 04_Implementing_server_applications/clean
+clean: 05_HTTP_and_SSL_TLS/clean
+clean: 06_Other_Topics/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Directory level rules for directory 01_Code
+# Directory level rules for directory 01_Basic
 
 # Recursive "all" directory target.
-01_Code/all:
+01_Basic/all: 01_Basic/CMakeFiles/basic.dir/all
 
-.PHONY : 01_Code/all
+.PHONY : 01_Basic/all
 
 # Recursive "preinstall" directory target.
-01_Code/preinstall:
+01_Basic/preinstall:
 
-.PHONY : 01_Code/preinstall
+.PHONY : 01_Basic/preinstall
 
 # Recursive "clean" directory target.
-01_Code/clean:
+01_Basic/clean: 01_Basic/CMakeFiles/basic.dir/clean
 
-.PHONY : 01_Code/clean
+.PHONY : 01_Basic/clean
 
 #=============================================================================
-# Directory level rules for directory 02_Code
+# Directory level rules for directory 02_IO_operations
 
 # Recursive "all" directory target.
-02_Code/all:
+02_IO_operations/all:
 
-.PHONY : 02_Code/all
+.PHONY : 02_IO_operations/all
 
 # Recursive "preinstall" directory target.
-02_Code/preinstall:
+02_IO_operations/preinstall:
 
-.PHONY : 02_Code/preinstall
+.PHONY : 02_IO_operations/preinstall
 
 # Recursive "clean" directory target.
-02_Code/clean:
+02_IO_operations/clean:
 
-.PHONY : 02_Code/clean
+.PHONY : 02_IO_operations/clean
 
 #=============================================================================
-# Directory level rules for directory 03_Code
+# Directory level rules for directory 03_Implementing_client_applications
 
 # Recursive "all" directory target.
-03_Code/all:
+03_Implementing_client_applications/all:
 
-.PHONY : 03_Code/all
+.PHONY : 03_Implementing_client_applications/all
 
 # Recursive "preinstall" directory target.
-03_Code/preinstall:
+03_Implementing_client_applications/preinstall:
 
-.PHONY : 03_Code/preinstall
+.PHONY : 03_Implementing_client_applications/preinstall
 
 # Recursive "clean" directory target.
-03_Code/clean:
+03_Implementing_client_applications/clean:
 
-.PHONY : 03_Code/clean
+.PHONY : 03_Implementing_client_applications/clean
 
 #=============================================================================
-# Directory level rules for directory 04_Code
+# Directory level rules for directory 04_Implementing_server_applications
 
 # Recursive "all" directory target.
-04_Code/all:
+04_Implementing_server_applications/all:
 
-.PHONY : 04_Code/all
+.PHONY : 04_Implementing_server_applications/all
 
 # Recursive "preinstall" directory target.
-04_Code/preinstall:
+04_Implementing_server_applications/preinstall:
 
-.PHONY : 04_Code/preinstall
+.PHONY : 04_Implementing_server_applications/preinstall
 
 # Recursive "clean" directory target.
-04_Code/clean:
+04_Implementing_server_applications/clean:
 
-.PHONY : 04_Code/clean
+.PHONY : 04_Implementing_server_applications/clean
 
 #=============================================================================
-# Directory level rules for directory 05_Code
+# Directory level rules for directory 05_HTTP_and_SSL_TLS
 
 # Recursive "all" directory target.
-05_Code/all:
+05_HTTP_and_SSL_TLS/all:
 
-.PHONY : 05_Code/all
+.PHONY : 05_HTTP_and_SSL_TLS/all
 
 # Recursive "preinstall" directory target.
-05_Code/preinstall:
+05_HTTP_and_SSL_TLS/preinstall:
 
-.PHONY : 05_Code/preinstall
+.PHONY : 05_HTTP_and_SSL_TLS/preinstall
 
 # Recursive "clean" directory target.
-05_Code/clean:
+05_HTTP_and_SSL_TLS/clean:
 
-.PHONY : 05_Code/clean
+.PHONY : 05_HTTP_and_SSL_TLS/clean
 
 #=============================================================================
-# Directory level rules for directory 06_Code
+# Directory level rules for directory 06_Other_Topics
 
 # Recursive "all" directory target.
-06_Code/all:
+06_Other_Topics/all:
 
-.PHONY : 06_Code/all
+.PHONY : 06_Other_Topics/all
 
 # Recursive "preinstall" directory target.
-06_Code/preinstall:
+06_Other_Topics/preinstall:
 
-.PHONY : 06_Code/preinstall
+.PHONY : 06_Other_Topics/preinstall
 
 # Recursive "clean" directory target.
-06_Code/clean:
+06_Other_Topics/clean:
 
-.PHONY : 06_Code/clean
+.PHONY : 06_Other_Topics/clean
+
+#=============================================================================
+# Target rules for target 01_Basic/CMakeFiles/basic.dir
+
+# All Build rule for target.
+01_Basic/CMakeFiles/basic.dir/all:
+	$(MAKE) $(MAKESILENT) -f 01_Basic/CMakeFiles/basic.dir/build.make 01_Basic/CMakeFiles/basic.dir/depend
+	$(MAKE) $(MAKESILENT) -f 01_Basic/CMakeFiles/basic.dir/build.make 01_Basic/CMakeFiles/basic.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=1,2 "Built target basic"
+.PHONY : 01_Basic/CMakeFiles/basic.dir/all
+
+# Build rule for subdir invocation for target.
+01_Basic/CMakeFiles/basic.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 01_Basic/CMakeFiles/basic.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles 0
+.PHONY : 01_Basic/CMakeFiles/basic.dir/rule
+
+# Convenience name for target.
+basic: 01_Basic/CMakeFiles/basic.dir/rule
+
+.PHONY : basic
+
+# clean rule for target.
+01_Basic/CMakeFiles/basic.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 01_Basic/CMakeFiles/basic.dir/build.make 01_Basic/CMakeFiles/basic.dir/clean
+.PHONY : 01_Basic/CMakeFiles/basic.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -14,12 +14,6 @@
 # EXTERNAL cache entries
 ########################
 
-//Value Computed by CMake
-ASIO_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake
-
-//Value Computed by CMake
-ASIO_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook
-
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
 
@@ -227,14 +221,14 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 //Single output directory for building all executables.
 EXECUTABLE_OUTPUT_PATH:PATH=
 
+//Value Computed by CMake
+IO_operations_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/02_IO_operations
+
+//Value Computed by CMake
+IO_operations_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/02_IO_operations
+
 //Single output directory for building all libraries.
 LIBRARY_OUTPUT_PATH:PATH=
-
-//Value Computed by CMake
-POCO_1_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/02_Code
-
-//Value Computed by CMake
-POCO_1_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/02_Code
 
 //Value Computed by CMake
 Project_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake
@@ -244,6 +238,12 @@ Project_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programm
 
 //No help, variable specified on the command line.
 QT_QMAKE_EXECUTABLE:STRING=/home/jhon/Qt/5.14.2/gcc_64/bin/qmake
+
+//Value Computed by CMake
+basic_BINARY_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/01_Basic
+
+//Value Computed by CMake
+basic_SOURCE_DIR:STATIC=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/01_Basic
 
 
 ########################

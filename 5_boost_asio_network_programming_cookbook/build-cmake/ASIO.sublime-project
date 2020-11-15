@@ -30,6 +30,18 @@
 			"cmd": ["/usr/bin/make", "-f", "Makefile", "edit_cache"],
 			"working_dir": "${project_path}",
 			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "basic - basic",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "basic"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
+		},
+		{
+			"name": "basic - basic/fast",
+			"cmd": ["/usr/bin/make", "-f", "Makefile", "basic/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*)(?::|\\()([0-9]+)(?::|\\))(?:([0-9]+):)?\\s*(.*)"
 		}
 	]
 }
