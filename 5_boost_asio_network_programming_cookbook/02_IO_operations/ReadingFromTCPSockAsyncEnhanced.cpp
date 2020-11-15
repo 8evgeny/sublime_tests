@@ -22,7 +22,7 @@ void callback(const boost::system::error_code& ec,
 	std::size_t bytes_transferred,
 	std::shared_ptr<Session> s)
 {
-	if (ec != 0) {
+    if (ec.value() != 0) {
 		std::cout << "Error occured! Error code = "
 			<< ec.value()
 			<< ". Message: " << ec.message();

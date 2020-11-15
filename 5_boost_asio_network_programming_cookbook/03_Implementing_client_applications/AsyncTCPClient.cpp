@@ -1,4 +1,5 @@
 #include <boost/predef.h> // Tools to identify the OS.
+#include <boost/core/noncopyable.hpp>
 
 // We need this to enable cancelling of I/O operations on
 // Windows XP, Windows Server 2003 and earlier.
@@ -113,7 +114,7 @@ public:
 		session->m_sock.async_connect(session->m_ep, 
 [this, session](const system::error_code& ec) 
 {
-			if (ec != 0) {
+            if (ec.value() != 0) {
 				session->m_ec = ec;
 				onRequestComplete(session);
 				return;
@@ -132,7 +133,7 @@ asio::buffer(session->m_request),
 [this, session](const boost::system::error_code& ec,
 std::size_t bytes_transferred) 
 {
-			if (ec != 0) {
+            if (ec.value() != 0) {
 				session->m_ec = ec;
 				onRequestComplete(session);
 				return;
@@ -152,7 +153,7 @@ session->m_response_buf,
 [this, session](const boost::system::error_code& ec,
 					std::size_t bytes_transferred) 
 {
-			if (ec != 0) {
+            if (ec.value() != 0) {
 				session->m_ec = ec;
 			} else {
 				std::istream strm(&session->m_response_buf);
@@ -211,7 +212,7 @@ private:
 
 		boost::system::error_code ec;
 
-		if (session->m_ec == 0 && session->m_was_cancelled)
+        if (session->m_ec.value() == 0 && session->m_was_cancelled)
 			ec = asio::error::operation_aborted;
 		else
 			ec = session->m_ec;
@@ -233,7 +234,7 @@ void handler(unsigned int request_id,
 			const std::string& response, 
 const system::error_code& ec) 
 {
-	if (ec == 0) {
+    if (ec.value() == 0) {
 		std::cout << "Request #" << request_id
 			<< " has completed. Response: "
 			<< response << std::endl;

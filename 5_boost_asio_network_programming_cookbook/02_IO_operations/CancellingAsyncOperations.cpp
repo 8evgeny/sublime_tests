@@ -42,7 +42,7 @@ int main()
 			// cancelled or an error occured during
 			// executon, ec contains corresponding
 			// error code.
-			if (ec != 0) {
+            if (ec.value() != 0) {
 				if (ec == asio::error::operation_aborted) {
 					std::cout << "Operation cancelled!";
 				}
