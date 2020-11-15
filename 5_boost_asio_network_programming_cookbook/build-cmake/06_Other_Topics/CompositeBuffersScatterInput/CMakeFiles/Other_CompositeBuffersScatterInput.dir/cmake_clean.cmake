@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.o"
+  "CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.o"
   "Other_CompositeBuffersScatterInput"
   "Other_CompositeBuffersScatterInput.pdb"
 )

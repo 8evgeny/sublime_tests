@@ -76,27 +76,27 @@ include 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementin
 # Include the compile flags for this target's objects.
 include 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/flags.make
 
-03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.o: 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/flags.make
-03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.o: ../03_Implementing_client_applications/SyncTCPClient/SyncTCPClient.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.o"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/SyncTCPClient && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/03_Implementing_client_applications/SyncTCPClient/SyncTCPClient.cpp
+03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.o: 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/flags.make
+03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.o: ../03_Implementing_client_applications/SyncTCPClient/SyncTCPClient.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.o"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/SyncTCPClient && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/03_Implementing_client_applications/SyncTCPClient/SyncTCPClient.cpp
 
-03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.i"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/SyncTCPClient && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/03_Implementing_client_applications/SyncTCPClient/SyncTCPClient.cpp > CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.i
+03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.i"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/SyncTCPClient && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/03_Implementing_client_applications/SyncTCPClient/SyncTCPClient.cpp > CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.i
 
-03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.s"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/SyncTCPClient && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/03_Implementing_client_applications/SyncTCPClient/SyncTCPClient.cpp -o CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.s
+03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.s"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/SyncTCPClient && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/03_Implementing_client_applications/SyncTCPClient/SyncTCPClient.cpp -o CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.s
 
 # Object files for target Implementing_client_applications_SyncTCPClient
 Implementing_client_applications_SyncTCPClient_OBJECTS = \
-"CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.o"
+"CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.o"
 
 # External object files for target Implementing_client_applications_SyncTCPClient
 Implementing_client_applications_SyncTCPClient_EXTERNAL_OBJECTS =
 
-03_Implementing_client_applications/SyncTCPClient/Implementing_client_applications_SyncTCPClient: 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.o
+03_Implementing_client_applications/SyncTCPClient/Implementing_client_applications_SyncTCPClient: 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.o
 03_Implementing_client_applications/SyncTCPClient/Implementing_client_applications_SyncTCPClient: 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build.make
 03_Implementing_client_applications/SyncTCPClient/Implementing_client_applications_SyncTCPClient: /usr/lib/libpthread.so
 03_Implementing_client_applications/SyncTCPClient/Implementing_client_applications_SyncTCPClient: 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/link.txt

@@ -144,20 +144,32 @@ Other_StreamBasedIO/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build.make 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build
 .PHONY : Other_StreamBasedIO/fast
 
-# target to build an object file
-StreamBasedIO.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build.make 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.o
+StreamBasedIO.o: StreamBasedIO.cpp.o
+
 .PHONY : StreamBasedIO.o
 
-# target to preprocess a source file
-StreamBasedIO.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build.make 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.i
+# target to build an object file
+StreamBasedIO.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build.make 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.o
+.PHONY : StreamBasedIO.cpp.o
+
+StreamBasedIO.i: StreamBasedIO.cpp.i
+
 .PHONY : StreamBasedIO.i
 
-# target to generate assembly for a file
-StreamBasedIO.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build.make 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.s
+# target to preprocess a source file
+StreamBasedIO.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build.make 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.i
+.PHONY : StreamBasedIO.cpp.i
+
+StreamBasedIO.s: StreamBasedIO.cpp.s
+
 .PHONY : StreamBasedIO.s
+
+# target to generate assembly for a file
+StreamBasedIO.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build.make 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.s
+.PHONY : StreamBasedIO.cpp.s
 
 # Help Target
 help:

@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/SyncUDPClient.o -o Implementing_client_applications_SyncUDPClient  -lpthread 
+/usr/bin/g++ -g CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/SyncUDPClient.cpp.o -o Implementing_client_applications_SyncUDPClient  /usr/lib/libpthread.so 

@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.o -o Implementing_server_applications_SyncIterative  -lpthread 
+/usr/bin/g++ -g CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.o -o Implementing_server_applications_SyncIterative  /usr/lib/libpthread.so 

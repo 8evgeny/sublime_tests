@@ -76,27 +76,27 @@ include 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/progres
 # Include the compile flags for this target's objects.
 include 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/flags.make
 
-06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.o: 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/flags.make
-06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.o: ../06_Other_Topics/StreamBasedIO/StreamBasedIO.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.o"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/StreamBasedIO && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/StreamBasedIO/StreamBasedIO.cpp
+06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.o: 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/flags.make
+06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.o: ../06_Other_Topics/StreamBasedIO/StreamBasedIO.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.o"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/StreamBasedIO && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/StreamBasedIO/StreamBasedIO.cpp
 
-06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.i"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/StreamBasedIO && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/StreamBasedIO/StreamBasedIO.cpp > CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.i
+06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.i"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/StreamBasedIO && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/StreamBasedIO/StreamBasedIO.cpp > CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.i
 
-06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.s"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/StreamBasedIO && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/StreamBasedIO/StreamBasedIO.cpp -o CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.s
+06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.s"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/StreamBasedIO && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/StreamBasedIO/StreamBasedIO.cpp -o CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.s
 
 # Object files for target Other_StreamBasedIO
 Other_StreamBasedIO_OBJECTS = \
-"CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.o"
+"CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.o"
 
 # External object files for target Other_StreamBasedIO
 Other_StreamBasedIO_EXTERNAL_OBJECTS =
 
-06_Other_Topics/StreamBasedIO/Other_StreamBasedIO: 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.o
+06_Other_Topics/StreamBasedIO/Other_StreamBasedIO: 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.o
 06_Other_Topics/StreamBasedIO/Other_StreamBasedIO: 06_Other_Topics/StreamBasedIO/CMakeFiles/Other_StreamBasedIO.dir/build.make
 06_Other_Topics/StreamBasedIO/Other_StreamBasedIO: /home/jhon/boost/boost_1_75_0/stage/lib/libboost_system.so
 06_Other_Topics/StreamBasedIO/Other_StreamBasedIO: /home/jhon/boost/boost_1_75_0/stage/lib/libboost_thread.so

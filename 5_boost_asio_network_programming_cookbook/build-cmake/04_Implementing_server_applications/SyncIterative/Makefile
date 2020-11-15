@@ -144,20 +144,32 @@ Implementing_server_applications_SyncIterative/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build.make 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build
 .PHONY : Implementing_server_applications_SyncIterative/fast
 
-# target to build an object file
-SyncIterative.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build.make 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.o
+SyncIterative.o: SyncIterative.cpp.o
+
 .PHONY : SyncIterative.o
 
-# target to preprocess a source file
-SyncIterative.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build.make 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.i
+# target to build an object file
+SyncIterative.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build.make 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.o
+.PHONY : SyncIterative.cpp.o
+
+SyncIterative.i: SyncIterative.cpp.i
+
 .PHONY : SyncIterative.i
 
-# target to generate assembly for a file
-SyncIterative.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build.make 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.s
+# target to preprocess a source file
+SyncIterative.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build.make 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.i
+.PHONY : SyncIterative.cpp.i
+
+SyncIterative.s: SyncIterative.cpp.s
+
 .PHONY : SyncIterative.s
+
+# target to generate assembly for a file
+SyncIterative.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build.make 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.s
+.PHONY : SyncIterative.cpp.s
 
 # Help Target
 help:

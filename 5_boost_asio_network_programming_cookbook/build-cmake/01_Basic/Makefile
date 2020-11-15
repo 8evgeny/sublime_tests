@@ -144,20 +144,32 @@ basic/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 01_Basic/CMakeFiles/basic.dir/build.make 01_Basic/CMakeFiles/basic.dir/build
 .PHONY : basic/fast
 
-# target to build an object file
-Accepting_a_connection.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 01_Basic/CMakeFiles/basic.dir/build.make 01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.o
+Accepting_a_connection.o: Accepting_a_connection.cpp.o
+
 .PHONY : Accepting_a_connection.o
 
-# target to preprocess a source file
-Accepting_a_connection.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 01_Basic/CMakeFiles/basic.dir/build.make 01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.i
+# target to build an object file
+Accepting_a_connection.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 01_Basic/CMakeFiles/basic.dir/build.make 01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.cpp.o
+.PHONY : Accepting_a_connection.cpp.o
+
+Accepting_a_connection.i: Accepting_a_connection.cpp.i
+
 .PHONY : Accepting_a_connection.i
 
-# target to generate assembly for a file
-Accepting_a_connection.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 01_Basic/CMakeFiles/basic.dir/build.make 01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.s
+# target to preprocess a source file
+Accepting_a_connection.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 01_Basic/CMakeFiles/basic.dir/build.make 01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.cpp.i
+.PHONY : Accepting_a_connection.cpp.i
+
+Accepting_a_connection.s: Accepting_a_connection.cpp.s
+
 .PHONY : Accepting_a_connection.s
+
+# target to generate assembly for a file
+Accepting_a_connection.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 01_Basic/CMakeFiles/basic.dir/build.make 01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.cpp.s
+.PHONY : Accepting_a_connection.cpp.s
 
 # Help Target
 help:

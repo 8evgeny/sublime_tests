@@ -76,27 +76,27 @@ include 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeB
 # Include the compile flags for this target's objects.
 include 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/flags.make
 
-06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.o: 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/flags.make
-06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.o: ../06_Other_Topics/CompositeBuffersGatherOutput/CompositeBuffersGatherOutput.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.o"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/CompositeBuffersGatherOutput && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersGatherOutput/CompositeBuffersGatherOutput.cpp
+06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.o: 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/flags.make
+06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.o: ../06_Other_Topics/CompositeBuffersGatherOutput/CompositeBuffersGatherOutput.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.o"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/CompositeBuffersGatherOutput && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersGatherOutput/CompositeBuffersGatherOutput.cpp
 
-06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.i"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/CompositeBuffersGatherOutput && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersGatherOutput/CompositeBuffersGatherOutput.cpp > CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.i
+06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.i"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/CompositeBuffersGatherOutput && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersGatherOutput/CompositeBuffersGatherOutput.cpp > CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.i
 
-06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.s"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/CompositeBuffersGatherOutput && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersGatherOutput/CompositeBuffersGatherOutput.cpp -o CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.s
+06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.s"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/CompositeBuffersGatherOutput && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersGatherOutput/CompositeBuffersGatherOutput.cpp -o CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.s
 
 # Object files for target Other_CompositeBuffersGatherOutput
 Other_CompositeBuffersGatherOutput_OBJECTS = \
-"CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.o"
+"CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.o"
 
 # External object files for target Other_CompositeBuffersGatherOutput
 Other_CompositeBuffersGatherOutput_EXTERNAL_OBJECTS =
 
-06_Other_Topics/CompositeBuffersGatherOutput/Other_CompositeBuffersGatherOutput: 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.o
+06_Other_Topics/CompositeBuffersGatherOutput/Other_CompositeBuffersGatherOutput: 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.o
 06_Other_Topics/CompositeBuffersGatherOutput/Other_CompositeBuffersGatherOutput: 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build.make
 06_Other_Topics/CompositeBuffersGatherOutput/Other_CompositeBuffersGatherOutput: /home/jhon/boost/boost_1_75_0/stage/lib/libboost_system.so
 06_Other_Topics/CompositeBuffersGatherOutput/Other_CompositeBuffersGatherOutput: /home/jhon/boost/boost_1_75_0/stage/lib/libboost_thread.so

@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.o"
+  "CMakeFiles/Other_StreamBasedIO.dir/StreamBasedIO.cpp.o"
   "Other_StreamBasedIO"
   "Other_StreamBasedIO.pdb"
 )

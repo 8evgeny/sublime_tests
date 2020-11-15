@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.o"
+  "CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.o"
   "Other_CompositeBuffersGatherOutput"
   "Other_CompositeBuffersGatherOutput.pdb"
 )

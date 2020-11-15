@@ -144,20 +144,32 @@ Other_SocketOptions/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build.make 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build
 .PHONY : Other_SocketOptions/fast
 
-# target to build an object file
-SocketOptions.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build.make 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.o
+SocketOptions.o: SocketOptions.cpp.o
+
 .PHONY : SocketOptions.o
 
-# target to preprocess a source file
-SocketOptions.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build.make 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.i
+# target to build an object file
+SocketOptions.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build.make 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.o
+.PHONY : SocketOptions.cpp.o
+
+SocketOptions.i: SocketOptions.cpp.i
+
 .PHONY : SocketOptions.i
 
-# target to generate assembly for a file
-SocketOptions.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build.make 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.s
+# target to preprocess a source file
+SocketOptions.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build.make 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.i
+.PHONY : SocketOptions.cpp.i
+
+SocketOptions.s: SocketOptions.cpp.s
+
 .PHONY : SocketOptions.s
+
+# target to generate assembly for a file
+SocketOptions.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build.make 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.s
+.PHONY : SocketOptions.cpp.s
 
 # Help Target
 help:

@@ -144,20 +144,32 @@ Implementing_server_applications_AsyncParallel/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/build.make 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/build
 .PHONY : Implementing_server_applications_AsyncParallel/fast
 
-# target to build an object file
-AsyncParallel.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/build.make 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/AsyncParallel.o
+AsyncParallel.o: AsyncParallel.cpp.o
+
 .PHONY : AsyncParallel.o
 
-# target to preprocess a source file
-AsyncParallel.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/build.make 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/AsyncParallel.i
+# target to build an object file
+AsyncParallel.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/build.make 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/AsyncParallel.cpp.o
+.PHONY : AsyncParallel.cpp.o
+
+AsyncParallel.i: AsyncParallel.cpp.i
+
 .PHONY : AsyncParallel.i
 
-# target to generate assembly for a file
-AsyncParallel.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/build.make 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/AsyncParallel.s
+# target to preprocess a source file
+AsyncParallel.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/build.make 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/AsyncParallel.cpp.i
+.PHONY : AsyncParallel.cpp.i
+
+AsyncParallel.s: AsyncParallel.cpp.s
+
 .PHONY : AsyncParallel.s
+
+# target to generate assembly for a file
+AsyncParallel.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/build.make 04_Implementing_server_applications/AsyncParallel/CMakeFiles/Implementing_server_applications_AsyncParallel.dir/AsyncParallel.cpp.s
+.PHONY : AsyncParallel.cpp.s
 
 # Help Target
 help:

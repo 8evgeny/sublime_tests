@@ -76,27 +76,27 @@ include 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_Readin
 # Include the compile flags for this target's objects.
 include 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/flags.make
 
-02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.o: 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/flags.make
-02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.o: ../02_IO_operations/ReadingFromTCPSockAsync/ReadingFromTCPSockAsync.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.o"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/02_IO_operations/ReadingFromTCPSockAsync && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/02_IO_operations/ReadingFromTCPSockAsync/ReadingFromTCPSockAsync.cpp
+02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.o: 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/flags.make
+02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.o: ../02_IO_operations/ReadingFromTCPSockAsync/ReadingFromTCPSockAsync.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.o"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/02_IO_operations/ReadingFromTCPSockAsync && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/02_IO_operations/ReadingFromTCPSockAsync/ReadingFromTCPSockAsync.cpp
 
-02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.i"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/02_IO_operations/ReadingFromTCPSockAsync && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/02_IO_operations/ReadingFromTCPSockAsync/ReadingFromTCPSockAsync.cpp > CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.i
+02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.i"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/02_IO_operations/ReadingFromTCPSockAsync && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/02_IO_operations/ReadingFromTCPSockAsync/ReadingFromTCPSockAsync.cpp > CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.i
 
-02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.s"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/02_IO_operations/ReadingFromTCPSockAsync && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/02_IO_operations/ReadingFromTCPSockAsync/ReadingFromTCPSockAsync.cpp -o CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.s
+02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.s"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/02_IO_operations/ReadingFromTCPSockAsync && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/02_IO_operations/ReadingFromTCPSockAsync/ReadingFromTCPSockAsync.cpp -o CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.s
 
 # Object files for target IO_operations_ReadingFromTCPSockAsync
 IO_operations_ReadingFromTCPSockAsync_OBJECTS = \
-"CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.o"
+"CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.o"
 
 # External object files for target IO_operations_ReadingFromTCPSockAsync
 IO_operations_ReadingFromTCPSockAsync_EXTERNAL_OBJECTS =
 
-02_IO_operations/ReadingFromTCPSockAsync/IO_operations_ReadingFromTCPSockAsync: 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.o
+02_IO_operations/ReadingFromTCPSockAsync/IO_operations_ReadingFromTCPSockAsync: 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.o
 02_IO_operations/ReadingFromTCPSockAsync/IO_operations_ReadingFromTCPSockAsync: 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build.make
 02_IO_operations/ReadingFromTCPSockAsync/IO_operations_ReadingFromTCPSockAsync: /usr/lib/libpthread.so
 02_IO_operations/ReadingFromTCPSockAsync/IO_operations_ReadingFromTCPSockAsync: 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/link.txt

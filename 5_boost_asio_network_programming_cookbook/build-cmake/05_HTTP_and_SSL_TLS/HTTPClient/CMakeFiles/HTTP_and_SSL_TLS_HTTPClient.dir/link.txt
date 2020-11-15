@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.o -o HTTP_and_SSL_TLS_HTTPClient  -lpthread 
+/usr/bin/g++ -g CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.o -o HTTP_and_SSL_TLS_HTTPClient  /usr/lib/libpthread.so 

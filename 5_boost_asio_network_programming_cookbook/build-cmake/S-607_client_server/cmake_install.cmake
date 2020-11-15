@@ -46,6 +46,8 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/boost_client/cmake_install.cmake")
   include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/boost_server/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/qt_client/cmake_install.cmake")
+  include("/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/qt_server/cmake_install.cmake")
 
 endif()
 

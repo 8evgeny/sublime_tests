@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/boost_client.dir/sources/client_b.o"
+  "CMakeFiles/boost_client.dir/sources/client_b.cpp.o"
   "boost_client"
   "boost_client.pdb"
 )

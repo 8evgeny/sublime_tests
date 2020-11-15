@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.o"
+  "CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.o"
   "Implementing_server_applications_SyncIterative"
   "Implementing_server_applications_SyncIterative.pdb"
 )

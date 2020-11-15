@@ -76,27 +76,27 @@ include 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.di
 # Include the compile flags for this target's objects.
 include 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/flags.make
 
-05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.o: 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/flags.make
-05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.o: ../05_HTTP_and_SSL_TLS/HTTPClient/HTTPClient.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.o"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/05_HTTP_and_SSL_TLS/HTTPClient && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/05_HTTP_and_SSL_TLS/HTTPClient/HTTPClient.cpp
+05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.o: 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/flags.make
+05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.o: ../05_HTTP_and_SSL_TLS/HTTPClient/HTTPClient.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.o"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/05_HTTP_and_SSL_TLS/HTTPClient && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/05_HTTP_and_SSL_TLS/HTTPClient/HTTPClient.cpp
 
-05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.i"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/05_HTTP_and_SSL_TLS/HTTPClient && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/05_HTTP_and_SSL_TLS/HTTPClient/HTTPClient.cpp > CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.i
+05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.i"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/05_HTTP_and_SSL_TLS/HTTPClient && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/05_HTTP_and_SSL_TLS/HTTPClient/HTTPClient.cpp > CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.i
 
-05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.s"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/05_HTTP_and_SSL_TLS/HTTPClient && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/05_HTTP_and_SSL_TLS/HTTPClient/HTTPClient.cpp -o CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.s
+05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.s"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/05_HTTP_and_SSL_TLS/HTTPClient && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/05_HTTP_and_SSL_TLS/HTTPClient/HTTPClient.cpp -o CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.s
 
 # Object files for target HTTP_and_SSL_TLS_HTTPClient
 HTTP_and_SSL_TLS_HTTPClient_OBJECTS = \
-"CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.o"
+"CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.o"
 
 # External object files for target HTTP_and_SSL_TLS_HTTPClient
 HTTP_and_SSL_TLS_HTTPClient_EXTERNAL_OBJECTS =
 
-05_HTTP_and_SSL_TLS/HTTPClient/HTTP_and_SSL_TLS_HTTPClient: 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.o
+05_HTTP_and_SSL_TLS/HTTPClient/HTTP_and_SSL_TLS_HTTPClient: 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.o
 05_HTTP_and_SSL_TLS/HTTPClient/HTTP_and_SSL_TLS_HTTPClient: 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build.make
 05_HTTP_and_SSL_TLS/HTTPClient/HTTP_and_SSL_TLS_HTTPClient: /usr/lib/libpthread.so
 05_HTTP_and_SSL_TLS/HTTPClient/HTTP_and_SSL_TLS_HTTPClient: 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/link.txt

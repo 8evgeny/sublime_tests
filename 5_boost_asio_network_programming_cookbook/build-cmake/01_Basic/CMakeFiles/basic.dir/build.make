@@ -76,27 +76,27 @@ include 01_Basic/CMakeFiles/basic.dir/progress.make
 # Include the compile flags for this target's objects.
 include 01_Basic/CMakeFiles/basic.dir/flags.make
 
-01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.o: 01_Basic/CMakeFiles/basic.dir/flags.make
-01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.o: ../01_Basic/Accepting_a_connection.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.o"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/01_Basic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/basic.dir/Accepting_a_connection.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/01_Basic/Accepting_a_connection.cpp
+01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.cpp.o: 01_Basic/CMakeFiles/basic.dir/flags.make
+01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.cpp.o: ../01_Basic/Accepting_a_connection.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.cpp.o"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/01_Basic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/basic.dir/Accepting_a_connection.cpp.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/01_Basic/Accepting_a_connection.cpp
 
-01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/basic.dir/Accepting_a_connection.i"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/01_Basic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/01_Basic/Accepting_a_connection.cpp > CMakeFiles/basic.dir/Accepting_a_connection.i
+01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/basic.dir/Accepting_a_connection.cpp.i"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/01_Basic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/01_Basic/Accepting_a_connection.cpp > CMakeFiles/basic.dir/Accepting_a_connection.cpp.i
 
-01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/basic.dir/Accepting_a_connection.s"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/01_Basic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/01_Basic/Accepting_a_connection.cpp -o CMakeFiles/basic.dir/Accepting_a_connection.s
+01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/basic.dir/Accepting_a_connection.cpp.s"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/01_Basic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/01_Basic/Accepting_a_connection.cpp -o CMakeFiles/basic.dir/Accepting_a_connection.cpp.s
 
 # Object files for target basic
 basic_OBJECTS = \
-"CMakeFiles/basic.dir/Accepting_a_connection.o"
+"CMakeFiles/basic.dir/Accepting_a_connection.cpp.o"
 
 # External object files for target basic
 basic_EXTERNAL_OBJECTS =
 
-01_Basic/basic: 01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.o
+01_Basic/basic: 01_Basic/CMakeFiles/basic.dir/Accepting_a_connection.cpp.o
 01_Basic/basic: 01_Basic/CMakeFiles/basic.dir/build.make
 01_Basic/basic: /usr/lib/libpthread.so
 01_Basic/basic: 01_Basic/CMakeFiles/basic.dir/link.txt

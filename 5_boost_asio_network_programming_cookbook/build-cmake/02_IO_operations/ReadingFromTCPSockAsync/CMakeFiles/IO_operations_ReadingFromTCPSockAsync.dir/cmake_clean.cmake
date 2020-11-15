@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.o"
+  "CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.o"
   "IO_operations_ReadingFromTCPSockAsync"
   "IO_operations_ReadingFromTCPSockAsync.pdb"
 )

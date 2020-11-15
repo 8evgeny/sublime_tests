@@ -144,20 +144,32 @@ Implementing_client_applications_AsyncTCPClient/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/build.make 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/build
 .PHONY : Implementing_client_applications_AsyncTCPClient/fast
 
-# target to build an object file
-AsyncTCPClient.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/build.make 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/AsyncTCPClient.o
+AsyncTCPClient.o: AsyncTCPClient.cpp.o
+
 .PHONY : AsyncTCPClient.o
 
-# target to preprocess a source file
-AsyncTCPClient.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/build.make 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/AsyncTCPClient.i
+# target to build an object file
+AsyncTCPClient.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/build.make 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/AsyncTCPClient.cpp.o
+.PHONY : AsyncTCPClient.cpp.o
+
+AsyncTCPClient.i: AsyncTCPClient.cpp.i
+
 .PHONY : AsyncTCPClient.i
 
-# target to generate assembly for a file
-AsyncTCPClient.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/build.make 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/AsyncTCPClient.s
+# target to preprocess a source file
+AsyncTCPClient.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/build.make 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/AsyncTCPClient.cpp.i
+.PHONY : AsyncTCPClient.cpp.i
+
+AsyncTCPClient.s: AsyncTCPClient.cpp.s
+
 .PHONY : AsyncTCPClient.s
+
+# target to generate assembly for a file
+AsyncTCPClient.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/build.make 03_Implementing_client_applications/AsyncTCPClient/CMakeFiles/Implementing_client_applications_AsyncTCPClient.dir/AsyncTCPClient.cpp.s
+.PHONY : AsyncTCPClient.cpp.s
 
 # Help Target
 help:

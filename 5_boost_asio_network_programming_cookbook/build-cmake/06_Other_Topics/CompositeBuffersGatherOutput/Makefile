@@ -144,20 +144,32 @@ Other_CompositeBuffersGatherOutput/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build.make 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build
 .PHONY : Other_CompositeBuffersGatherOutput/fast
 
-# target to build an object file
-CompositeBuffersGatherOutput.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build.make 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.o
+CompositeBuffersGatherOutput.o: CompositeBuffersGatherOutput.cpp.o
+
 .PHONY : CompositeBuffersGatherOutput.o
 
-# target to preprocess a source file
-CompositeBuffersGatherOutput.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build.make 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.i
+# target to build an object file
+CompositeBuffersGatherOutput.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build.make 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.o
+.PHONY : CompositeBuffersGatherOutput.cpp.o
+
+CompositeBuffersGatherOutput.i: CompositeBuffersGatherOutput.cpp.i
+
 .PHONY : CompositeBuffersGatherOutput.i
 
-# target to generate assembly for a file
-CompositeBuffersGatherOutput.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build.make 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.s
+# target to preprocess a source file
+CompositeBuffersGatherOutput.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build.make 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.i
+.PHONY : CompositeBuffersGatherOutput.cpp.i
+
+CompositeBuffersGatherOutput.s: CompositeBuffersGatherOutput.cpp.s
+
 .PHONY : CompositeBuffersGatherOutput.s
+
+# target to generate assembly for a file
+CompositeBuffersGatherOutput.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/build.make 06_Other_Topics/CompositeBuffersGatherOutput/CMakeFiles/Other_CompositeBuffersGatherOutput.dir/CompositeBuffersGatherOutput.cpp.s
+.PHONY : CompositeBuffersGatherOutput.cpp.s
 
 # Help Target
 help:

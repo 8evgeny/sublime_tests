@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/basic.dir/Accepting_a_connection.o"
+  "CMakeFiles/basic.dir/Accepting_a_connection.cpp.o"
   "basic"
   "basic.pdb"
 )

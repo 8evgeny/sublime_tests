@@ -76,27 +76,27 @@ include 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/progres
 # Include the compile flags for this target's objects.
 include 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/flags.make
 
-06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.o: 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/flags.make
-06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.o: ../06_Other_Topics/SocketOptions/SocketOptions.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.o"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/SocketOptions && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Other_SocketOptions.dir/SocketOptions.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/SocketOptions/SocketOptions.cpp
+06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.o: 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/flags.make
+06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.o: ../06_Other_Topics/SocketOptions/SocketOptions.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.o"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/SocketOptions && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/SocketOptions/SocketOptions.cpp
 
-06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Other_SocketOptions.dir/SocketOptions.i"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/SocketOptions && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/SocketOptions/SocketOptions.cpp > CMakeFiles/Other_SocketOptions.dir/SocketOptions.i
+06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.i"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/SocketOptions && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/SocketOptions/SocketOptions.cpp > CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.i
 
-06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Other_SocketOptions.dir/SocketOptions.s"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/SocketOptions && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/SocketOptions/SocketOptions.cpp -o CMakeFiles/Other_SocketOptions.dir/SocketOptions.s
+06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.s"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/SocketOptions && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/SocketOptions/SocketOptions.cpp -o CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.s
 
 # Object files for target Other_SocketOptions
 Other_SocketOptions_OBJECTS = \
-"CMakeFiles/Other_SocketOptions.dir/SocketOptions.o"
+"CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.o"
 
 # External object files for target Other_SocketOptions
 Other_SocketOptions_EXTERNAL_OBJECTS =
 
-06_Other_Topics/SocketOptions/Other_SocketOptions: 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.o
+06_Other_Topics/SocketOptions/Other_SocketOptions: 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.o
 06_Other_Topics/SocketOptions/Other_SocketOptions: 06_Other_Topics/SocketOptions/CMakeFiles/Other_SocketOptions.dir/build.make
 06_Other_Topics/SocketOptions/Other_SocketOptions: /home/jhon/boost/boost_1_75_0/stage/lib/libboost_system.so
 06_Other_Topics/SocketOptions/Other_SocketOptions: /home/jhon/boost/boost_1_75_0/stage/lib/libboost_thread.so

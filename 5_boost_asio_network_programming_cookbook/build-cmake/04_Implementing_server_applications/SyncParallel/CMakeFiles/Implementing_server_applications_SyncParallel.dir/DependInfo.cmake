@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncParallel/SyncParallel.cpp" "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.o"
+  "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncParallel/SyncParallel.cpp" "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

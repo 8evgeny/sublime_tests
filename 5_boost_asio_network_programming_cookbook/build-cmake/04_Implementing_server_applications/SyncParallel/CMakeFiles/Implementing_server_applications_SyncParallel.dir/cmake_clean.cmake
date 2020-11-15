@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.o"
+  "CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.o"
   "Implementing_server_applications_SyncParallel"
   "Implementing_server_applications_SyncParallel.pdb"
 )

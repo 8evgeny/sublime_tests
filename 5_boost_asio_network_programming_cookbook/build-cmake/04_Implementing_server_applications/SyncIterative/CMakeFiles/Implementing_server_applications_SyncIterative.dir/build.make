@@ -76,27 +76,27 @@ include 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementin
 # Include the compile flags for this target's objects.
 include 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/flags.make
 
-04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.o: 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/flags.make
-04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.o: ../04_Implementing_server_applications/SyncIterative/SyncIterative.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.o"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncIterative && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncIterative/SyncIterative.cpp
+04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.o: 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/flags.make
+04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.o: ../04_Implementing_server_applications/SyncIterative/SyncIterative.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.o"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncIterative && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncIterative/SyncIterative.cpp
 
-04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.i"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncIterative && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncIterative/SyncIterative.cpp > CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.i
+04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.i"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncIterative && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncIterative/SyncIterative.cpp > CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.i
 
-04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.s"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncIterative && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncIterative/SyncIterative.cpp -o CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.s
+04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.s"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncIterative && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncIterative/SyncIterative.cpp -o CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.s
 
 # Object files for target Implementing_server_applications_SyncIterative
 Implementing_server_applications_SyncIterative_OBJECTS = \
-"CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.o"
+"CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.o"
 
 # External object files for target Implementing_server_applications_SyncIterative
 Implementing_server_applications_SyncIterative_EXTERNAL_OBJECTS =
 
-04_Implementing_server_applications/SyncIterative/Implementing_server_applications_SyncIterative: 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.o
+04_Implementing_server_applications/SyncIterative/Implementing_server_applications_SyncIterative: 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/SyncIterative.cpp.o
 04_Implementing_server_applications/SyncIterative/Implementing_server_applications_SyncIterative: 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/build.make
 04_Implementing_server_applications/SyncIterative/Implementing_server_applications_SyncIterative: /usr/lib/libpthread.so
 04_Implementing_server_applications/SyncIterative/Implementing_server_applications_SyncIterative: 04_Implementing_server_applications/SyncIterative/CMakeFiles/Implementing_server_applications_SyncIterative.dir/link.txt

@@ -144,20 +144,32 @@ IO_operations_ReadingFromTCPSockAsync/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build.make 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build
 .PHONY : IO_operations_ReadingFromTCPSockAsync/fast
 
-# target to build an object file
-ReadingFromTCPSockAsync.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build.make 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.o
+ReadingFromTCPSockAsync.o: ReadingFromTCPSockAsync.cpp.o
+
 .PHONY : ReadingFromTCPSockAsync.o
 
-# target to preprocess a source file
-ReadingFromTCPSockAsync.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build.make 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.i
+# target to build an object file
+ReadingFromTCPSockAsync.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build.make 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.o
+.PHONY : ReadingFromTCPSockAsync.cpp.o
+
+ReadingFromTCPSockAsync.i: ReadingFromTCPSockAsync.cpp.i
+
 .PHONY : ReadingFromTCPSockAsync.i
 
-# target to generate assembly for a file
-ReadingFromTCPSockAsync.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build.make 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.s
+# target to preprocess a source file
+ReadingFromTCPSockAsync.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build.make 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.i
+.PHONY : ReadingFromTCPSockAsync.cpp.i
+
+ReadingFromTCPSockAsync.s: ReadingFromTCPSockAsync.cpp.s
+
 .PHONY : ReadingFromTCPSockAsync.s
+
+# target to generate assembly for a file
+ReadingFromTCPSockAsync.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/build.make 02_IO_operations/ReadingFromTCPSockAsync/CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.s
+.PHONY : ReadingFromTCPSockAsync.cpp.s
 
 # Help Target
 help:

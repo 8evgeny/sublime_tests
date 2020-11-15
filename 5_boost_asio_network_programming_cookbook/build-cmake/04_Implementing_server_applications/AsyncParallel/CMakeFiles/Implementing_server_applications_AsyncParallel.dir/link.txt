@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/Implementing_server_applications_AsyncParallel.dir/AsyncParallel.o -o Implementing_server_applications_AsyncParallel  -lpthread 
+/usr/bin/g++ -g CMakeFiles/Implementing_server_applications_AsyncParallel.dir/AsyncParallel.cpp.o -o Implementing_server_applications_AsyncParallel  /usr/lib/libpthread.so 

@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.o -o IO_operations_ReadingFromTCPSockAsync  -lpthread 
+/usr/bin/g++ -g CMakeFiles/IO_operations_ReadingFromTCPSockAsync.dir/ReadingFromTCPSockAsync.cpp.o -o IO_operations_ReadingFromTCPSockAsync  /usr/lib/libpthread.so 

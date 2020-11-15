@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.o"
+  "CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.o"
   "Implementing_client_applications_SyncTCPClient"
   "Implementing_client_applications_SyncTCPClient.pdb"
 )

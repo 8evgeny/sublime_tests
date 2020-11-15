@@ -76,27 +76,27 @@ include 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeB
 # Include the compile flags for this target's objects.
 include 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/flags.make
 
-06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.o: 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/flags.make
-06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.o: ../06_Other_Topics/CompositeBuffersScatterInput/CompositeBuffersScatterInput.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.o"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/CompositeBuffersScatterInput && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersScatterInput/CompositeBuffersScatterInput.cpp
+06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.o: 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/flags.make
+06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.o: ../06_Other_Topics/CompositeBuffersScatterInput/CompositeBuffersScatterInput.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.o"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/CompositeBuffersScatterInput && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersScatterInput/CompositeBuffersScatterInput.cpp
 
-06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.i"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/CompositeBuffersScatterInput && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersScatterInput/CompositeBuffersScatterInput.cpp > CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.i
+06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.i"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/CompositeBuffersScatterInput && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersScatterInput/CompositeBuffersScatterInput.cpp > CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.i
 
-06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.s"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/CompositeBuffersScatterInput && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersScatterInput/CompositeBuffersScatterInput.cpp -o CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.s
+06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.s"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/CompositeBuffersScatterInput && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/CompositeBuffersScatterInput/CompositeBuffersScatterInput.cpp -o CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.s
 
 # Object files for target Other_CompositeBuffersScatterInput
 Other_CompositeBuffersScatterInput_OBJECTS = \
-"CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.o"
+"CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.o"
 
 # External object files for target Other_CompositeBuffersScatterInput
 Other_CompositeBuffersScatterInput_EXTERNAL_OBJECTS =
 
-06_Other_Topics/CompositeBuffersScatterInput/Other_CompositeBuffersScatterInput: 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.o
+06_Other_Topics/CompositeBuffersScatterInput/Other_CompositeBuffersScatterInput: 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.o
 06_Other_Topics/CompositeBuffersScatterInput/Other_CompositeBuffersScatterInput: 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build.make
 06_Other_Topics/CompositeBuffersScatterInput/Other_CompositeBuffersScatterInput: /home/jhon/boost/boost_1_75_0/stage/lib/libboost_system.so
 06_Other_Topics/CompositeBuffersScatterInput/Other_CompositeBuffersScatterInput: /home/jhon/boost/boost_1_75_0/stage/lib/libboost_thread.so

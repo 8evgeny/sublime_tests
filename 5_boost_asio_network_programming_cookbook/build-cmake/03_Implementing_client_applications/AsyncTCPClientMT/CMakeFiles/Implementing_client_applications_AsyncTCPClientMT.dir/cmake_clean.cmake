@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/AsyncTCPClientMT.o"
+  "CMakeFiles/Implementing_client_applications_AsyncTCPClientMT.dir/AsyncTCPClientMT.cpp.o"
   "Implementing_client_applications_AsyncTCPClientMT"
   "Implementing_client_applications_AsyncTCPClientMT.pdb"
 )

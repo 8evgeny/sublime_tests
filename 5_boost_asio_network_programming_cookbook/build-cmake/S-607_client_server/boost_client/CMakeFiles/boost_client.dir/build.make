@@ -76,27 +76,27 @@ include S-607_client_server/boost_client/CMakeFiles/boost_client.dir/progress.ma
 # Include the compile flags for this target's objects.
 include S-607_client_server/boost_client/CMakeFiles/boost_client.dir/flags.make
 
-S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.o: S-607_client_server/boost_client/CMakeFiles/boost_client.dir/flags.make
-S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.o: ../S-607_client_server/boost_client/sources/client_b.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.o"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/boost_client && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/boost_client.dir/sources/client_b.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/boost_client/sources/client_b.cpp
+S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.cpp.o: S-607_client_server/boost_client/CMakeFiles/boost_client.dir/flags.make
+S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.cpp.o: ../S-607_client_server/boost_client/sources/client_b.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.cpp.o"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/boost_client && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/boost_client.dir/sources/client_b.cpp.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/boost_client/sources/client_b.cpp
 
-S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/boost_client.dir/sources/client_b.i"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/boost_client && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/boost_client/sources/client_b.cpp > CMakeFiles/boost_client.dir/sources/client_b.i
+S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/boost_client.dir/sources/client_b.cpp.i"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/boost_client && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/boost_client/sources/client_b.cpp > CMakeFiles/boost_client.dir/sources/client_b.cpp.i
 
-S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/boost_client.dir/sources/client_b.s"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/boost_client && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/boost_client/sources/client_b.cpp -o CMakeFiles/boost_client.dir/sources/client_b.s
+S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/boost_client.dir/sources/client_b.cpp.s"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/S-607_client_server/boost_client && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/S-607_client_server/boost_client/sources/client_b.cpp -o CMakeFiles/boost_client.dir/sources/client_b.cpp.s
 
 # Object files for target boost_client
 boost_client_OBJECTS = \
-"CMakeFiles/boost_client.dir/sources/client_b.o"
+"CMakeFiles/boost_client.dir/sources/client_b.cpp.o"
 
 # External object files for target boost_client
 boost_client_EXTERNAL_OBJECTS =
 
-S-607_client_server/boost_client/boost_client: S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.o
+S-607_client_server/boost_client/boost_client: S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.cpp.o
 S-607_client_server/boost_client/boost_client: S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build.make
 S-607_client_server/boost_client/boost_client: /home/jhon/Qt/5.14.2/gcc_64/lib/libQt5Widgets.so.5.14.2
 S-607_client_server/boost_client/boost_client: /home/jhon/Qt/5.14.2/gcc_64/lib/libQt5Gui.so.5.14.2

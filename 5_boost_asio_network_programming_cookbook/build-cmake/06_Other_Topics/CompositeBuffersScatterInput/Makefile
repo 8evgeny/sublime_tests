@@ -144,20 +144,32 @@ Other_CompositeBuffersScatterInput/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build.make 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build
 .PHONY : Other_CompositeBuffersScatterInput/fast
 
-# target to build an object file
-CompositeBuffersScatterInput.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build.make 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.o
+CompositeBuffersScatterInput.o: CompositeBuffersScatterInput.cpp.o
+
 .PHONY : CompositeBuffersScatterInput.o
 
-# target to preprocess a source file
-CompositeBuffersScatterInput.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build.make 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.i
+# target to build an object file
+CompositeBuffersScatterInput.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build.make 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.o
+.PHONY : CompositeBuffersScatterInput.cpp.o
+
+CompositeBuffersScatterInput.i: CompositeBuffersScatterInput.cpp.i
+
 .PHONY : CompositeBuffersScatterInput.i
 
-# target to generate assembly for a file
-CompositeBuffersScatterInput.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build.make 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.s
+# target to preprocess a source file
+CompositeBuffersScatterInput.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build.make 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.i
+.PHONY : CompositeBuffersScatterInput.cpp.i
+
+CompositeBuffersScatterInput.s: CompositeBuffersScatterInput.cpp.s
+
 .PHONY : CompositeBuffersScatterInput.s
+
+# target to generate assembly for a file
+CompositeBuffersScatterInput.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/build.make 06_Other_Topics/CompositeBuffersScatterInput/CMakeFiles/Other_CompositeBuffersScatterInput.dir/CompositeBuffersScatterInput.cpp.s
+.PHONY : CompositeBuffersScatterInput.cpp.s
 
 # Help Target
 help:

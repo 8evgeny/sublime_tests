@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/03_Implementing_client_applications/SyncUDPClient/SyncUDPClient.cpp" "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/SyncUDPClient.o"
+  "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/03_Implementing_client_applications/SyncUDPClient/SyncUDPClient.cpp" "/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/SyncUDPClient.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

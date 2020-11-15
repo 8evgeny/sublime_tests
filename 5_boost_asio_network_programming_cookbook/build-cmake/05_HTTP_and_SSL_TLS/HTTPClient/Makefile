@@ -144,20 +144,32 @@ HTTP_and_SSL_TLS_HTTPClient/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build.make 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build
 .PHONY : HTTP_and_SSL_TLS_HTTPClient/fast
 
-# target to build an object file
-HTTPClient.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build.make 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.o
+HTTPClient.o: HTTPClient.cpp.o
+
 .PHONY : HTTPClient.o
 
-# target to preprocess a source file
-HTTPClient.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build.make 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.i
+# target to build an object file
+HTTPClient.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build.make 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.o
+.PHONY : HTTPClient.cpp.o
+
+HTTPClient.i: HTTPClient.cpp.i
+
 .PHONY : HTTPClient.i
 
-# target to generate assembly for a file
-HTTPClient.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build.make 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.s
+# target to preprocess a source file
+HTTPClient.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build.make 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.i
+.PHONY : HTTPClient.cpp.i
+
+HTTPClient.s: HTTPClient.cpp.s
+
 .PHONY : HTTPClient.s
+
+# target to generate assembly for a file
+HTTPClient.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/build.make 05_HTTP_and_SSL_TLS/HTTPClient/CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.s
+.PHONY : HTTPClient.cpp.s
 
 # Help Target
 help:

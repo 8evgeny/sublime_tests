@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.o"
+  "CMakeFiles/HTTP_and_SSL_TLS_HTTPClient.dir/HTTPClient.cpp.o"
   "HTTP_and_SSL_TLS_HTTPClient"
   "HTTP_and_SSL_TLS_HTTPClient.pdb"
 )

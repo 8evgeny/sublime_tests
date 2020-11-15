@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/Other_SocketOptions.dir/SocketOptions.o -o Other_SocketOptions  -Wl,-rpath,/home/jhon/boost/boost_1_75_0/stage/lib /home/jhon/boost/boost_1_75_0/stage/lib/libboost_system.so /home/jhon/boost/boost_1_75_0/stage/lib/libboost_thread.so -lpthread 
+/usr/bin/g++ -g CMakeFiles/Other_SocketOptions.dir/SocketOptions.cpp.o -o Other_SocketOptions  -Wl,-rpath,/home/jhon/boost/boost_1_75_0/stage/lib /home/jhon/boost/boost_1_75_0/stage/lib/libboost_system.so /home/jhon/boost/boost_1_75_0/stage/lib/libboost_thread.so /usr/lib/libpthread.so 

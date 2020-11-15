@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/SyncUDPClient.o"
+  "CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/SyncUDPClient.cpp.o"
   "Implementing_client_applications_SyncUDPClient"
   "Implementing_client_applications_SyncUDPClient.pdb"
 )

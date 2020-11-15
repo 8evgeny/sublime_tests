@@ -144,20 +144,32 @@ Implementing_server_applications_SyncParallel/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build.make 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build
 .PHONY : Implementing_server_applications_SyncParallel/fast
 
-# target to build an object file
-SyncParallel.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build.make 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.o
+SyncParallel.o: SyncParallel.cpp.o
+
 .PHONY : SyncParallel.o
 
-# target to preprocess a source file
-SyncParallel.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build.make 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.i
+# target to build an object file
+SyncParallel.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build.make 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.o
+.PHONY : SyncParallel.cpp.o
+
+SyncParallel.i: SyncParallel.cpp.i
+
 .PHONY : SyncParallel.i
 
-# target to generate assembly for a file
-SyncParallel.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build.make 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.s
+# target to preprocess a source file
+SyncParallel.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build.make 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.i
+.PHONY : SyncParallel.cpp.i
+
+SyncParallel.s: SyncParallel.cpp.s
+
 .PHONY : SyncParallel.s
+
+# target to generate assembly for a file
+SyncParallel.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build.make 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.s
+.PHONY : SyncParallel.cpp.s
 
 # Help Target
 help:

@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Other_Timers.dir/Timers.o"
+  "CMakeFiles/Other_Timers.dir/Timers.cpp.o"
   "Other_Timers"
   "Other_Timers.pdb"
 )

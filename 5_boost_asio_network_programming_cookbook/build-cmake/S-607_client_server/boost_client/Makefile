@@ -144,20 +144,32 @@ boost_client/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build.make S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build
 .PHONY : boost_client/fast
 
-# target to build an object file
-sources/client_b.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build.make S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.o
+sources/client_b.o: sources/client_b.cpp.o
+
 .PHONY : sources/client_b.o
 
-# target to preprocess a source file
-sources/client_b.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build.make S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.i
+# target to build an object file
+sources/client_b.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build.make S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.cpp.o
+.PHONY : sources/client_b.cpp.o
+
+sources/client_b.i: sources/client_b.cpp.i
+
 .PHONY : sources/client_b.i
 
-# target to generate assembly for a file
-sources/client_b.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build.make S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.s
+# target to preprocess a source file
+sources/client_b.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build.make S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.cpp.i
+.PHONY : sources/client_b.cpp.i
+
+sources/client_b.s: sources/client_b.cpp.s
+
 .PHONY : sources/client_b.s
+
+# target to generate assembly for a file
+sources/client_b.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f S-607_client_server/boost_client/CMakeFiles/boost_client.dir/build.make S-607_client_server/boost_client/CMakeFiles/boost_client.dir/sources/client_b.cpp.s
+.PHONY : sources/client_b.cpp.s
 
 # Help Target
 help:

@@ -144,20 +144,32 @@ Implementing_client_applications_SyncUDPClient/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/build.make 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/build
 .PHONY : Implementing_client_applications_SyncUDPClient/fast
 
-# target to build an object file
-SyncUDPClient.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/build.make 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/SyncUDPClient.o
+SyncUDPClient.o: SyncUDPClient.cpp.o
+
 .PHONY : SyncUDPClient.o
 
-# target to preprocess a source file
-SyncUDPClient.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/build.make 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/SyncUDPClient.i
+# target to build an object file
+SyncUDPClient.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/build.make 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/SyncUDPClient.cpp.o
+.PHONY : SyncUDPClient.cpp.o
+
+SyncUDPClient.i: SyncUDPClient.cpp.i
+
 .PHONY : SyncUDPClient.i
 
-# target to generate assembly for a file
-SyncUDPClient.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/build.make 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/SyncUDPClient.s
+# target to preprocess a source file
+SyncUDPClient.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/build.make 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/SyncUDPClient.cpp.i
+.PHONY : SyncUDPClient.cpp.i
+
+SyncUDPClient.s: SyncUDPClient.cpp.s
+
 .PHONY : SyncUDPClient.s
+
+# target to generate assembly for a file
+SyncUDPClient.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/build.make 03_Implementing_client_applications/SyncUDPClient/CMakeFiles/Implementing_client_applications_SyncUDPClient.dir/SyncUDPClient.cpp.s
+.PHONY : SyncUDPClient.cpp.s
 
 # Help Target
 help:

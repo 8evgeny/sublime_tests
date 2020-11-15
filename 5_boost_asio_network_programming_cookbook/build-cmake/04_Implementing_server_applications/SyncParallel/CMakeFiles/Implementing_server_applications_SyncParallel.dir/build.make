@@ -76,27 +76,27 @@ include 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing
 # Include the compile flags for this target's objects.
 include 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/flags.make
 
-04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.o: 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/flags.make
-04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.o: ../04_Implementing_server_applications/SyncParallel/SyncParallel.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.o"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncParallel && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncParallel/SyncParallel.cpp
+04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.o: 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/flags.make
+04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.o: ../04_Implementing_server_applications/SyncParallel/SyncParallel.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.o"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncParallel && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncParallel/SyncParallel.cpp
 
-04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.i"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncParallel && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncParallel/SyncParallel.cpp > CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.i
+04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.i"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncParallel && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncParallel/SyncParallel.cpp > CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.i
 
-04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.s"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncParallel && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncParallel/SyncParallel.cpp -o CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.s
+04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.s"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/04_Implementing_server_applications/SyncParallel && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/04_Implementing_server_applications/SyncParallel/SyncParallel.cpp -o CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.s
 
 # Object files for target Implementing_server_applications_SyncParallel
 Implementing_server_applications_SyncParallel_OBJECTS = \
-"CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.o"
+"CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.o"
 
 # External object files for target Implementing_server_applications_SyncParallel
 Implementing_server_applications_SyncParallel_EXTERNAL_OBJECTS =
 
-04_Implementing_server_applications/SyncParallel/Implementing_server_applications_SyncParallel: 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.o
+04_Implementing_server_applications/SyncParallel/Implementing_server_applications_SyncParallel: 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/SyncParallel.cpp.o
 04_Implementing_server_applications/SyncParallel/Implementing_server_applications_SyncParallel: 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/build.make
 04_Implementing_server_applications/SyncParallel/Implementing_server_applications_SyncParallel: /usr/lib/libpthread.so
 04_Implementing_server_applications/SyncParallel/Implementing_server_applications_SyncParallel: 04_Implementing_server_applications/SyncParallel/CMakeFiles/Implementing_server_applications_SyncParallel.dir/link.txt

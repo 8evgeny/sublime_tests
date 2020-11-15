@@ -144,20 +144,32 @@ Implementing_client_applications_SyncTCPClient/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build.make 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build
 .PHONY : Implementing_client_applications_SyncTCPClient/fast
 
-# target to build an object file
-SyncTCPClient.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build.make 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.o
+SyncTCPClient.o: SyncTCPClient.cpp.o
+
 .PHONY : SyncTCPClient.o
 
-# target to preprocess a source file
-SyncTCPClient.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build.make 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.i
+# target to build an object file
+SyncTCPClient.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build.make 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.o
+.PHONY : SyncTCPClient.cpp.o
+
+SyncTCPClient.i: SyncTCPClient.cpp.i
+
 .PHONY : SyncTCPClient.i
 
-# target to generate assembly for a file
-SyncTCPClient.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build.make 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.s
+# target to preprocess a source file
+SyncTCPClient.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build.make 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.i
+.PHONY : SyncTCPClient.cpp.i
+
+SyncTCPClient.s: SyncTCPClient.cpp.s
+
 .PHONY : SyncTCPClient.s
+
+# target to generate assembly for a file
+SyncTCPClient.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/build.make 03_Implementing_client_applications/SyncTCPClient/CMakeFiles/Implementing_client_applications_SyncTCPClient.dir/SyncTCPClient.cpp.s
+.PHONY : SyncTCPClient.cpp.s
 
 # Help Target
 help:

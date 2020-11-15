@@ -144,20 +144,32 @@ Other_Timers/fast:
 	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build.make 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build
 .PHONY : Other_Timers/fast
 
-# target to build an object file
-Timers.o:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build.make 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.o
+Timers.o: Timers.cpp.o
+
 .PHONY : Timers.o
 
-# target to preprocess a source file
-Timers.i:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build.make 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.i
+# target to build an object file
+Timers.cpp.o:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build.make 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.cpp.o
+.PHONY : Timers.cpp.o
+
+Timers.i: Timers.cpp.i
+
 .PHONY : Timers.i
 
-# target to generate assembly for a file
-Timers.s:
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build.make 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.s
+# target to preprocess a source file
+Timers.cpp.i:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build.make 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.cpp.i
+.PHONY : Timers.cpp.i
+
+Timers.s: Timers.cpp.s
+
 .PHONY : Timers.s
+
+# target to generate assembly for a file
+Timers.cpp.s:
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake && $(MAKE) $(MAKESILENT) -f 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build.make 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.cpp.s
+.PHONY : Timers.cpp.s
 
 # Help Target
 help:

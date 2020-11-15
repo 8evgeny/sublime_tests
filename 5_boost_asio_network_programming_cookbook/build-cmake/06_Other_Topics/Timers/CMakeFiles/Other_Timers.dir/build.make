@@ -76,27 +76,27 @@ include 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/progress.make
 # Include the compile flags for this target's objects.
 include 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/flags.make
 
-06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.o: 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/flags.make
-06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.o: ../06_Other_Topics/Timers/Timers.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.o"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/Timers && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Other_Timers.dir/Timers.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/Timers/Timers.cpp
+06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.cpp.o: 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/flags.make
+06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.cpp.o: ../06_Other_Topics/Timers/Timers.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.cpp.o"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/Timers && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Other_Timers.dir/Timers.cpp.o -c /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/Timers/Timers.cpp
 
-06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Other_Timers.dir/Timers.i"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/Timers && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/Timers/Timers.cpp > CMakeFiles/Other_Timers.dir/Timers.i
+06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Other_Timers.dir/Timers.cpp.i"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/Timers && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/Timers/Timers.cpp > CMakeFiles/Other_Timers.dir/Timers.cpp.i
 
-06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Other_Timers.dir/Timers.s"
-	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/Timers && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/Timers/Timers.cpp -o CMakeFiles/Other_Timers.dir/Timers.s
+06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Other_Timers.dir/Timers.cpp.s"
+	cd /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/build-cmake/06_Other_Topics/Timers && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jhon/Sublime_tests/5_boost_asio_network_programming_cookbook/06_Other_Topics/Timers/Timers.cpp -o CMakeFiles/Other_Timers.dir/Timers.cpp.s
 
 # Object files for target Other_Timers
 Other_Timers_OBJECTS = \
-"CMakeFiles/Other_Timers.dir/Timers.o"
+"CMakeFiles/Other_Timers.dir/Timers.cpp.o"
 
 # External object files for target Other_Timers
 Other_Timers_EXTERNAL_OBJECTS =
 
-06_Other_Topics/Timers/Other_Timers: 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.o
+06_Other_Topics/Timers/Other_Timers: 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/Timers.cpp.o
 06_Other_Topics/Timers/Other_Timers: 06_Other_Topics/Timers/CMakeFiles/Other_Timers.dir/build.make
 06_Other_Topics/Timers/Other_Timers: /home/jhon/boost/boost_1_75_0/stage/lib/libboost_system.so
 06_Other_Topics/Timers/Other_Timers: /home/jhon/boost/boost_1_75_0/stage/lib/libboost_thread.so

@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Implementing_server_applications_AsyncParallel.dir/AsyncParallel.o"
+  "CMakeFiles/Implementing_server_applications_AsyncParallel.dir/AsyncParallel.cpp.o"
   "Implementing_server_applications_AsyncParallel"
   "Implementing_server_applications_AsyncParallel.pdb"
 )
