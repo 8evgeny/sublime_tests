@@ -17,14 +17,13 @@ int main()
 
 	// Step 3. Creating and opening an acceptor socket.
 	asio::ip::tcp::acceptor acceptor(ios, ep.protocol());
-
 	boost::system::error_code ec;
 
 	// Step 4. Binding the acceptor socket.
-	acceptor.bind(ep, ec);
-
-	// Handling errors if any.
-	if (ec != 0) {
+    acceptor.bind(ep, ec);
+    const int err_code =0;
+    // Handling errors if any.
+    if (ec.value() != 0) {
 		// Failed to bind the acceptor socket. Breaking execution.
 		std::cout << "Failed to bind the acceptor socket."
 			<< "Error code = " << ec.value() << ". Message: "
