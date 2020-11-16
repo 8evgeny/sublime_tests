@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/05_07_thread_specific_ptr.dir/main.o -o 05_07_thread_specific_ptr 

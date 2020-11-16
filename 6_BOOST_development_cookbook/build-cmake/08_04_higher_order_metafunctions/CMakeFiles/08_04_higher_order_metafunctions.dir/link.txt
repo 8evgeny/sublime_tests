@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/08_04_higher_order_metafunctions.dir/main.o -o 08_04_higher_order_metafunctions  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/11_03_interprocess_basics.dir/main.o -o 11_03_interprocess_basics  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

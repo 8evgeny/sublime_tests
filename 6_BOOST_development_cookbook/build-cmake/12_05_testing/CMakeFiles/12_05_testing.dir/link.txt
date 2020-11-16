@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/12_05_testing.dir/main.o -o 12_05_testing  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

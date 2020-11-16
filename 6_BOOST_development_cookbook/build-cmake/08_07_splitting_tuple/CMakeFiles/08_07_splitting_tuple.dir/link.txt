@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/08_07_splitting_tuple.dir/main.o -o 08_07_splitting_tuple  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

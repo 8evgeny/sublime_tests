@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/07_01_case_conv.dir/main.o -o 07_01_case_conv  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

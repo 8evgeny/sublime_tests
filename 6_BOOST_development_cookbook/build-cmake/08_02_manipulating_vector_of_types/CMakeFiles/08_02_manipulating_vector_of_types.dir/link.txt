@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/08_02_manipulating_vector_of_types.dir/main.o -o 08_02_manipulating_vector_of_types  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

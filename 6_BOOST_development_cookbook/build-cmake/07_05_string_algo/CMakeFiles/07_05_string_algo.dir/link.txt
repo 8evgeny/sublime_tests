@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/07_05_string_algo.dir/main.o -o 07_05_string_algo  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

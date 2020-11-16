@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/08_05_lazy.dir/main.o -o 08_05_lazy  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/09_03_bimap.dir/main.o -o 09_03_bimap  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

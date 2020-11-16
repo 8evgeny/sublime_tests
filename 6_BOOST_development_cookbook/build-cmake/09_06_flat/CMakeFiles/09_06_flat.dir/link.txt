@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/09_06_flat.dir/main.o -o 09_06_flat  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

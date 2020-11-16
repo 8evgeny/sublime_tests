@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/10_06_export_import.dir/main.o -o 10_06_export_import  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

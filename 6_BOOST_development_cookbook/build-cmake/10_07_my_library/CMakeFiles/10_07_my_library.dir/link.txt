@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/10_07_my_library.dir/my_library.o -o 10_07_my_library  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/12_04_math.dir/main.o -o 12_04_math  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

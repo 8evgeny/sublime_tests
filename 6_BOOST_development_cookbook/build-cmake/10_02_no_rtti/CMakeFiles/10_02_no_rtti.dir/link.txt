@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/10_02_no_rtti.dir/main.o -o 10_02_no_rtti  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 

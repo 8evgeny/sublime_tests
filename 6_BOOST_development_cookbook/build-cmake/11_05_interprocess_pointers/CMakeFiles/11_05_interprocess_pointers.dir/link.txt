@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/11_05_interprocess_pointers.dir/main.o -o 11_05_interprocess_pointers  -llibpqxx -lboost_thread -lboost_system -lQt5::Core -lQt5::Widgets 
