@@ -1,14 +1,23 @@
 set(CMAKE_CXX_STANDARD 17)
-   
 
-ADD_EXECUTABLE(06_01_tasks_processor_base main.cpp  tasks_processor_base.hpp)
+project(06_01_tasks_processor_base)
+ADD_EXECUTABLE(${PROJECT_NAME} main.cpp tasks_processor_base.hpp )
 
-target_link_libraries(06_01_tasks_processor_base
-    /usr/lib/libboost_thread.so
-    /usr/lib/libboost_system.so
-    /usr/lib/libpthread.so
-#    ${Boost}
+set (Boost_NO_SYSTEM_PATHS ON)
+set (Boost_USE_MULTITHREADED ON)
+set (Boost_USE_STATIC_LIBS ON)
+set (Boost_USE_STATIC_RUNTIME OFF)
+set (BOOST_ALL_DYN_LINK OFF)
+
+find_package (Boost REQUIRED COMPONENTS  thread system filesystem)
+
+if (Boost_FOUND)
+    message(${Boost_INCLUDE_DIR})
+    include_directories (SYSTEM ${Boost_INCLUDE_DIR})
+endif ()
+
+target_link_libraries(
+    ${PROJECT_NAME}
+    ${Boost_LIBRARIES}
     )
-
-
 

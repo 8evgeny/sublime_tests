@@ -16,13 +16,9 @@ add_subdirectory(01_11_noncopyable)
 add_subdirectory(01_12_A_noncopyable_movable)
 add_subdirectory(01_13_algorithm)
 add_subdirectory(02_01_scoped_ptr)
-
 add_subdirectory(02_02_shared_ptr)
-
 add_subdirectory(02_03_scoped_array)
-
-#add_subdirectory(02_04_shared_array)
-
+add_subdirectory(02_04_shared_array)
 add_subdirectory(02_05_function_fobject)
 add_subdirectory(02_06_function_fpointer)
 add_subdirectory(02_07_function_lambda_c++11)
@@ -52,6 +48,7 @@ add_subdirectory(05_06_thread_group)
 add_subdirectory(05_07_thread_specific_ptr)
 add_subdirectory(05_08_work_queue)
 add_subdirectory(06_01_tasks_processor_base)
+
 #add_subdirectory(06_02_tasks_processor_timers)
 #add_subdirectory(06_03_tasks_processor_network)
 #add_subdirectory(06_04_tasks_processor_multithread)
@@ -59,6 +56,7 @@ add_subdirectory(06_01_tasks_processor_base)
 #add_subdirectory(06_06_nonblocking_barrier)
 #add_subdirectory(06_07_exception_ptr)
 #add_subdirectory(06_08_tasks_processor_signals)
+
 #add_subdirectory(07_01_case_conv)
 #add_subdirectory(07_02_regex_match)
 #add_subdirectory(07_03_regex_replace)

@@ -1,3 +1,6 @@
+#include <boost/shared_ptr.hpp>
+#include <boost/make_shared.hpp>
+
 class foo_class {
 public:
     char data[10000000];
