@@ -1,3 +1,12 @@
+температура на Хадасе каждые 1 сек
+watch -n 1 cat /sys/class/thermal/thermal_zone0/temp /sys/class/thermal/thermal_zone1/temp
+
+watch -n 1 cat /sys/class/thermal/thermal_zone0/temp /sys/class/thermal/thermal_zone1/temp /sys/class/thermal/cooling_device0/cur_state /sys/class/thermal/cooling_device1/cur_state /sys/class/thermal/cooling_device2/cur_state /sys/class/thermal/cooling_device3/cur_state /sys/class/thermal/cooling_device4/cur_state /sys/class/thermal/cooling_device5/cur_state
+
+
+Message from syslogd@sp-156 at Nov 12 12:32:26 ...
+ kernel:[ 7338.358663@0] thermal thermal_zone1: critical temperature reached(110 C),shutting down
+
 
 journalctl -S 2020-11-10
 
