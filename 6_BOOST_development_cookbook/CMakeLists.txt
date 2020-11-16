@@ -49,9 +49,7 @@ add_subdirectory(05_03_mutex)
 add_subdirectory(05_04_shared_lock)
 add_subdirectory(05_05_thread)
 add_subdirectory(05_06_thread_group)
-
 add_subdirectory(05_07_thread_specific_ptr)
-
 add_subdirectory(05_08_work_queue)
 add_subdirectory(06_01_tasks_processor_base)
 #add_subdirectory(06_02_tasks_processor_timers)
