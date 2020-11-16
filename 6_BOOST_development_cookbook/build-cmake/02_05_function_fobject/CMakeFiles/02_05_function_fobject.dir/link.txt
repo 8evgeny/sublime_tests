@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/02_05_function_fobject.dir/main.o -o 02_05_function_fobject 

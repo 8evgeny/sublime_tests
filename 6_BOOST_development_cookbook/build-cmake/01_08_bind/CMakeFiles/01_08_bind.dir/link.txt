@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/01_08_bind.dir/main.o -o 01_08_bind 

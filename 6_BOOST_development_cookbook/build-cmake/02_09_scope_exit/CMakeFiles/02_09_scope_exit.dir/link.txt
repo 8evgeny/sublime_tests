@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/02_09_scope_exit.dir/main.o -o 02_09_scope_exit 

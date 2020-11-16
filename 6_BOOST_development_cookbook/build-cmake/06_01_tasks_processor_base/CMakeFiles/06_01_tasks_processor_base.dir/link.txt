@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/06_01_tasks_processor_base.dir/main.o -o 06_01_tasks_processor_base  -lboost_thread -lboost_system 
