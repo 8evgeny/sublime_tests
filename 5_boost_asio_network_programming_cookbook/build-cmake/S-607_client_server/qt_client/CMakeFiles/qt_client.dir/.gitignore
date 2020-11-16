@@ -5,3 +5,5 @@
 /flags.make
 /link.txt
 /progress.make
+*.includecache
+*.internal

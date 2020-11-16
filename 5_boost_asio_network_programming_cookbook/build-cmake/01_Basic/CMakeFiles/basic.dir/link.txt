@@ -1,1 +1,0 @@
-/usr/bin/g++ -g CMakeFiles/basic.dir/Accepting_a_connection.cpp.o -o basic  /usr/lib/libpthread.so 
