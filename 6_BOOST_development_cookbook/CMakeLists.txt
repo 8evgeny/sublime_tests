@@ -17,7 +17,7 @@ add_subdirectory(01_12_A_noncopyable_movable)
 add_subdirectory(01_13_algorithm)
 add_subdirectory(02_01_scoped_ptr)
 
-#add_subdirectory(02_02_shared_ptr)
+add_subdirectory(02_02_shared_ptr)
 
 add_subdirectory(02_03_scoped_array)
 
