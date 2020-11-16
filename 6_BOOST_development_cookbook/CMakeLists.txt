@@ -1,3 +1,6 @@
+cmake_minimum_required(VERSION 3.5)
+project(6_BOOST_development_cookbook)
+
 add_subdirectory(01_02_any)
 add_subdirectory(01_03_variant)
 add_subdirectory(01_04_A_any_db_example)
@@ -41,7 +44,7 @@ add_subdirectory(04_05_mpl_int_)
 add_subdirectory(04_06_static_assert)
 add_subdirectory(04_07_typeof)
 
-#add_subdirectory(05_01_atomics)
+add_subdirectory(05_01_atomics)
 
 #add_subdirectory(05_02_interruptions)
 #add_subdirectory(05_03_mutex)

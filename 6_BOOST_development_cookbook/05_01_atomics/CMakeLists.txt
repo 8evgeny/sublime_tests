@@ -15,6 +15,7 @@ target_link_libraries(
     05_01_atomics
     /usr/lib/libboost_thread.so
     /usr/lib/libboost_system.so
+    /usr/lib/libpthread.so
 #    ${Boost}
     )
 
