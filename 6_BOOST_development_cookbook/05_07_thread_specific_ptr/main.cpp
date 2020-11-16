@@ -1,3 +1,4 @@
+#include <cassert>
 #include <boost/noncopyable.hpp>
 class connection: boost::noncopyable {
 public:

@@ -1,6 +1,6 @@
 set(CMAKE_CXX_STANDARD 17)
-   
-ADD_EXECUTABLE(05_01_atomics main.cpp  )
+project(05_01_atomics)
+ADD_EXECUTABLE(${PROJECT_NAME} main.cpp  )
 
 #find_package(Boost COMPONENTS boost_thread  REQUIRED)
 #if(NOT Boost_FOUND)
@@ -12,7 +12,7 @@ ADD_EXECUTABLE(05_01_atomics main.cpp  )
 
 
 target_link_libraries(
-    05_01_atomics
+    ${PROJECT_NAME}
     /usr/lib/libboost_thread.so
     /usr/lib/libboost_system.so
     /usr/lib/libpthread.so
