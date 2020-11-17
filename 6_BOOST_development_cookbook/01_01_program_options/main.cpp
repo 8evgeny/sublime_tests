@@ -2,7 +2,8 @@
 #include <iostream>
 namespace opt = boost::program_options;
 
-//аргументы запуска --apples 10  --oranges 20(или --o 20)  либо --help
+//аргументы запуска --apples 10(или --a 20)  --oranges 20(или --o 20)  либо --help
+//либо  --o 20
 int main(int argc, char *argv[])
 {
 // Constructing an options describing variable and giving it a textual description "All options".
@@ -18,20 +19,14 @@ desc.add_options()
 
 // 'a' is a short option name for apples. Use as '-a 10'.
 // If no value provided, then the default value is used.
-("apples,a", opt::value<int>()->default_value(10), "apples that you have");
-
-//("oranges", opt::value<int>(), "how many oranges do you have") //простая форма
-
+("apples,a", opt::value<int>()->default_value(10), "apples that you have")
+//("oranges", opt::value<int>(), "how many oranges do you have"); //простая форма
 // ProgramOptions stores the option value into the variable that is passed by pointer.
 //Here value of "--oranges" option will be stored into 'oranges_var'.
-
-("oranges,o", opt::value<int>(&oranges_var)->required(), "oranges you have") ("help", "produce help message")
+("oranges,o", opt::value<int>(&oranges_var)->required(), "oranges you have") ("help", "produce help message");
 
 // 'name' option is not marked with 'required()', so user may not provide it.
-("name", opt::value<std::string>(), "your name");
-
-
-
+//("name", opt::value<std::string>(), "your name");
 
 // Let's parse the command line:
  opt::variables_map vm; // Variable to store our command line arguments.
