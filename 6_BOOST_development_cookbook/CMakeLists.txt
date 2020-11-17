@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(6_BOOST_development_cookbook)
 
+add_subdirectory(01_01_program_options)
 add_subdirectory(01_02_any)
 add_subdirectory(01_03_variant)
 add_subdirectory(01_04_A_any_db_example)
@@ -58,7 +59,7 @@ add_subdirectory(06_01_tasks_processor_base)
 #add_subdirectory(06_08_tasks_processor_signals)
 
 add_subdirectory(07_01_case_conv)
-add_subdirectory(07_02_regex_match)
+#add_subdirectory(07_02_regex_match)
 #add_subdirectory(07_03_regex_replace)
 #add_subdirectory(07_04_format)
 #add_subdirectory(07_05_string_algo)
