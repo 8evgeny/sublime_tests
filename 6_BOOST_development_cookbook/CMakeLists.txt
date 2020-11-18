@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 project(6_BOOST_development_cookbook)
 
 add_subdirectory(01_01_program_options)
+add_subdirectory(01_01_program_options_config)
 add_subdirectory(01_02_any)
 add_subdirectory(01_03_variant)
 add_subdirectory(01_04_A_any_db_example)
