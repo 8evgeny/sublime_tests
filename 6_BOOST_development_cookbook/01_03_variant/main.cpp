@@ -41,4 +41,5 @@ int main() {
     s += " That is great!\n";
     std::cout << s;
     example_func();
+    example_func1();
 }

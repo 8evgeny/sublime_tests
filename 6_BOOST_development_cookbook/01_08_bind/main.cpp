@@ -4,44 +4,34 @@
 #include <functional>
 #include <string>
 #include <assert.h>
+#include <iostream>
+using namespace std;
 
 void test1() {
     boost::array<int, 12> v = {{1, 2, 3, 4, 5, 6, 7, 100, 99, 98, 97, 96}};
 
-    const std::size_t count0 = std::count_if(v.begin(), v.end(), [](int x) {
-        return 5 < x ;
-    });
-    const std::size_t count1 = std::count_if(v.begin(), v.end(),
-        boost::bind(std::less<int>(), 5, _1)
-    );
+    const std::size_t count0 = std::count_if(v.begin(), v.end(), [](int x) {return 5 < x;  });
+    const std::size_t count1 = std::count_if(v.begin(), v.end(), boost::bind(std::less<int>(), 5, _1));
+    cout<<count0<<endl;
     assert(count0 == count1);
 }
 
 void test2() {
     boost::array<std::string, 3> v = {{"We ", "are", " the champions!"}};
 
-    const std::size_t count0 = std::count_if(v.begin(), v.end(), [](const std::string& s) {
-        return s.empty();
-    });
-    const std::size_t count1 = std::count_if(v.begin(), v.end(),
-        boost::bind(&std::string::empty, _1)
-    );
+    const std::size_t count0 = std::count_if(v.begin(), v.end(), [](const std::string& s) {return s.empty();}  );
+    const std::size_t count1 = std::count_if(v.begin(), v.end(), boost::bind(&std::string::empty, _1)  );
+    cout<<count0<<endl;
     assert(count0 == count1);
 }
 
 void test3() {
     boost::array<std::string, 3> v = {{"We ", "are", " the champions!"}}; 
 
-    const std::size_t count0 = std::count_if(v.begin(), v.end(), 
-        [](const std::string& s) {  return s.size() < 5; }
-    ); 
-    const std::size_t count1 = std::count_if(v.begin(), v.end(), 
-        boost::bind(
-            std::less<std::size_t>(),
-            boost::bind(&std::string::size, _1),
-            5
-        )
-    ); 
+    const std::size_t count0 = std::count_if(v.begin(), v.end(), [](const std::string& s) {  return s.size() < 5; } );
+    const std::size_t count1 = std::count_if (v.begin(), v.end(),
+    boost::bind( std::less<std::size_t>(), boost::bind(&std::string::size, _1), 5  )  );
+    cout<<count0<<endl;
     assert(count0 == count1);  
 }
 
@@ -49,12 +39,10 @@ void test4() {
     boost::array<std::string, 3> v = {{"We ", "are", " the champions!"}}; 
     std::string s("Expensive copy constructor is called when binding"); 
 
-    const std::size_t count0 = std::count_if(v.begin(), v.end(),
-        [&s](const std::string& x) {  return x < s; }
-    ); 
+    const std::size_t count0 = std::count_if(v.begin(), v.end(), [&s](const std::string& x) {  return x < s; }  );
     const std::size_t count1 = std::count_if(v.begin(), v.end(), 
-        boost::bind(std::less<std::string>(), _1, s)
-    ); 
+        boost::bind(std::less<std::string>(), _1, s)  );
+    cout<<count0<<endl;
     assert(count0 == count1);
 }
 
