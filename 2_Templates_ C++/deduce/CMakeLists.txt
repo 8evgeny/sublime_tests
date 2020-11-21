@@ -1,0 +1,3 @@
+add_subdirectory(aliastemplate)
+add_subdirectory(initlist)
+add_subdirectory(resulttypetmpl)

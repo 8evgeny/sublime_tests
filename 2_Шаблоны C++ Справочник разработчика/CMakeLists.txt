@@ -1,6 +1,0 @@
-set(CMAKE_CXX_STANDARD 17)
-project("2_Шаблоны C++. Справочник разработчика")
-add_subdirectory(basics)
-add_subdirectory(bridge)
-add_subdirectory(tuples)
-add_subdirectory(debugging)

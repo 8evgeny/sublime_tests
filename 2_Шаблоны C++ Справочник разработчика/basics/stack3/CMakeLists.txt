@@ -1,9 +1,0 @@
-set(CMAKE_CXX_STANDARD 17)
-
-project(stack3)
-
-ADD_EXECUTABLE(${PROJECT_NAME} ${PROJECT_NAME}test.cpp  ${PROJECT_NAME}.hpp)
-
-
-
-
