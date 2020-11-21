@@ -12,3 +12,5 @@
 Makefile
 **.*.o
 *~
+*.txt.user
+*.json
