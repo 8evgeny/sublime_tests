@@ -2,8 +2,5 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(tuple_compressedtuple1)
 
-FILE (GLOB src_file *.cpp *.hpp)
-ADD_EXECUTABLE(${PROJECT_NAME} ${src_file} )
-
-
+ADD_EXECUTABLE(${PROJECT_NAME} compressedtuple1.cpp  tupleelt1.hpp  tuplestorage3.hpp)
 
