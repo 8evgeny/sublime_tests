@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/stack9.dir/stack9test.o -o stack9 

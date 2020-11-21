@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/stack3.dir/stack3test.o -o stack3 

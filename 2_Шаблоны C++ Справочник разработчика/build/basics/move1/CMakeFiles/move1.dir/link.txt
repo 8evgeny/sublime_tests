@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/move1.dir/move1.o -o move1 

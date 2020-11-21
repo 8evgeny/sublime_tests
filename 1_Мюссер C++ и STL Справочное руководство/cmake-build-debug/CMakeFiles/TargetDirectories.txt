@@ -1,3 +1,0 @@
-/home/jhon/Sublime_tests/1_Мюссер C++ и STL Справочное руководство/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/jhon/Sublime_tests/1_Мюссер C++ и STL Справочное руководство/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/jhon/Sublime_tests/1_Мюссер C++ и STL Справочное руководство/cmake-build-debug/CMakeFiles/C++_STL.dir

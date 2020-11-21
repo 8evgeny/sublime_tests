@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/move2.dir/move2.o -o move2 

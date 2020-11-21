@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/brighe_forupto2.dir/forupto2.o -o brighe_forupto2 
