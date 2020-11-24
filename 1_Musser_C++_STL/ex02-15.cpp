@@ -20,7 +20,7 @@ int main()
   cout << "Values to be added: " << endl;
 
   vector<float>::iterator i;
-  cout.precision(10);
+  cout.precision(14); //точность
   for (i = vector1.begin(); i != vector1.end(); ++i)
     cout << *i << endl;
   cout << endl;

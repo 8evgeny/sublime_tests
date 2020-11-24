@@ -24,3 +24,6 @@ Makefile
 /2_Шаблоны C++ Справочник разработчика/build/tuples/indexsort/Makefile
 /2_Templates_ C++/build-cmake-Debug/basics/foldtraverse/CMakeFiles/basics_foldtraverse.dir/link.txt
 /1_Musser_C++_STL/cmake-build-debug/CMakeFiles/ex02-04_STL_map.dir/link.txt
+/3_STL_C++/build-cmake-Debug/algo/CMakeFiles/algo.dir/link.txt
+*.out
+/1_Musser_C++_STL/cmake-build-debug/CMakeCache.txt
