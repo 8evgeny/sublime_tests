@@ -1,8 +1,6 @@
-set(CMAKE_CXX_STANDARD 17)
-   
-
-ADD_EXECUTABLE(algo accumulate1.cpp  )
-
-
-
-
+add_subdirectory(accumulate1)
+add_subdirectory(adjacentdiff1)
+add_subdirectory(adjacentfind1)
+add_subdirectory(allanynone1)
+add_subdirectory(binarysearch1)
+add_subdirectory(bounds1)
