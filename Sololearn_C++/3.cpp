@@ -1,4 +1,4 @@
-#include <conio.h>
+// #include <conio.h>
 #include <iostream>
 #include <cstdlib>
 using namespace std;
@@ -20,7 +20,6 @@ int main() {
     MyClass obj;
     obj.myPrint();
 
- getch(); // Ожидаем символ
 
  return 0;   
 }  

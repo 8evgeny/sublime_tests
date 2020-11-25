@@ -1,6 +1,6 @@
 #include <string>
 #include <iostream>
-#include <conio.h>
+// #include <conio.h>
 int main ()
 {
 using namespace std;
@@ -41,7 +41,7 @@ cout << "The char* representation of the string is: ";
 cout << strSTLString.c_str () << endl;
 
 
-getch(); 
+
 return 0;
 }
 

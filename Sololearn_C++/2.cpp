@@ -1,5 +1,5 @@
 
-#include <conio.h>
+// #include <conio.h>
 #include <iostream>
 #include <cstdlib>
 using namespace std;
@@ -13,7 +13,6 @@ int main () {
     cout << 1 + rand()  << endl;
   }
 
-getch(); // Ожидаем символ
 
  return 0;
 }
