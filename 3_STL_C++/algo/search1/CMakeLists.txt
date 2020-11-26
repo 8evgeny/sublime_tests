@@ -1,5 +1,5 @@
 set(CMAKE_CXX_STANDARD 17)
-set(name iota1)
+set(name search1)
 project(algo_${name})
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${name}.cpp)
