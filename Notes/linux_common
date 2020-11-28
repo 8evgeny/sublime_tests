@@ -1,3 +1,6 @@
+
+nm /usr/lib32/librt.a | grep ' T ' | grep -v ' __'
+
 температура на Хадасе каждые 1 сек
 watch -n 1 cat /sys/class/thermal/thermal_zone0/temp /sys/class/thermal/thermal_zone1/temp
 
