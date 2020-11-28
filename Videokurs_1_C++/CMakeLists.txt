@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.5)
+
 project(Videokurs_1_C++)
 
 add_subdirectory(2)
@@ -8,3 +10,10 @@ add_subdirectory(6)
 add_subdirectory(7)
 add_subdirectory(8)
 add_subdirectory(9)
+add_subdirectory(11)
+add_subdirectory(12)
+add_subdirectory(13)
+#add_subdirectory(14)
+#add_subdirectory(15)
+#add_subdirectory(16)
+#add_subdirectory(17)
