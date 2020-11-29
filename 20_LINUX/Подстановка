@@ -1,0 +1,70 @@
+Для подстановки арифметических выражений используется следующий формат:
+$((выражение))
+[me@linuxbox ~]$ echo $((2 + 2))
+4
+
+[me@linuxbox ~]$ echo $(($((5**2)) * 3))
+75
+[me@linuxbox ~]$ echo $(((5**2) * 3))
+75
+[me@linuxbox ~]$ echo Пять разделить на два будет $((5/2))
+Пять разделить на два будет 2
+[me@linuxbox ~]$ echo и $((5%2)) в остатке.
+и 1 в остатке.
+
+
+Подстановка фигурных скобок
+[me@linuxbox ~]$ echo Число_{1..5}
+Число_1 Число_2 Число_3 Число_4 Число_5
+
+[me@linuxbox ~]$ echo {Z..A}
+Z Y X W V U T S R Q P O N M L K J I H G F E D C B A
+
+[me@linuxbox ~]$ echo a{A{1,2},B{3,4}}b
+aA1b aA2b aB3b aB4b
+
+[jhon@jhon-pc ~]$ echo a{A{1..3},B{4..6}}b
+aA1b aA2b aA3b aB4b aB5b aB6b
+
+[me@linuxbox Pics]$ mkdir {2009..2011}-0{1..9} {2009..2011}-{10..12}
+[me@linuxbox Pics]$ ls
+2009-01 2009-07 2010-01 2010-07 2011-01 2011-07
+2009-02 2009-08 2010-02 2010-08 2011-02 2011-08
+2009-03 2009-09 2010-03 2010-09 2011-03 2011-09
+2009-04 2009-10 2010-04 2010-10 2011-04 2011-10
+2009-05 2009-11 2010-05 2010-11 2011-05 2011-11
+2009-06 2009-12 2010-06 2010-12 2011-06 2011-12
+
+Чтобы увидеть список доступных переменных, выполните следующую команду:
+[me@linuxbox ~]$ printenv | less
+
+Подстановка команд
+Подстановка команд позволяет использовать поток вывода команд в качестве ар-
+гументов других команд:
+[me@linuxbox ~]$ echo $(ls)
+Desktop Documents ls-output.txt Music Pictures Public Templates Videos
+
+
+[jhon@jhon-pc ~]$ ls -l $(which cp)
+-rwxr-xr-x 1 root root 125096 мар  6  2020 /usr/bin/cp
+[jhon@jhon-pc ~]$ 
+
+[me@linuxbox ~]$ file $(ls /usr/bin/* | grep zip)
+/usr/bin/bunzip2: symbolic link to `bzip2'
+/usr/bin/bzip2: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV 
+), dynamically linked (uses shared libs), for GNU/Linux 2.6.9, stripped
+/usr/bin/bzip2recover: ELF 32-bit LSB executable, Intel 80386, version 1 
+(SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.9, stripped
+/usr/bin/funzip: ELF 32-bit LSB executable, Intel 80386, version 1 
+(SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.9, stripped
+/usr/bin/gpg-zip: Bourne shell script text executable
+/usr/bin/gunzip: symbolic link to `../../bin/gunzip'
+/usr/bin/gzip: symbolic link to `../../bin/gzip'
+/usr/bin/mzip: symbolic link to `mtools'
+
+Механизм подстановки команд имеет альтернативный синтаксис, унаследо-
+ванный от более старых командных оболочек, который также поддерживается
+в bash. В нем вместо знака доллара и круглых скобок используются обратные
+апострофы:
+[me@linuxbox ~]$ ls -l `which cp`
+-rwxr-xr-x 1 root root 71516 2012-12-05 08:58 /bin/cp
