@@ -1,0 +1,41 @@
+[alager@sp-34 ~]$ sudo rodos3 
+[sudo] password for alager: 
+Поиск устройств...
+RODOS-3 ID: 6368
+Найдено RODOS-3: 1
+[alager@sp-34 ~]$ sudo rodos3 --id 6368 -r
+ID: 6368 нагрузка отключена
+[alager@sp-34 ~]$ sudo rodos3 --id 6368 -n
+ID: 6368 нагрузка включена
+[alager@sp-34 ~]$ sudo rodos3 --id 6368 -f
+ID: 6368 нагрузка отключена
+[alager@sp-34 ~]$ sudo rodos3 --id 6368 -f
+[sudo] password for alager: 
+ID: 6368 нагрузка отключена
+[alager@sp-34 ~]$ sudo rodos3 --id 6368 -r
+ID: 6368 нагрузка отключена
+
+
+Скрипт
+#!/bin/bash
+
+# pacman -S wget
+pacman -S libusb
+cd /home/alager
+# wget https://silines.ru/software/RODOS/RODOS-3/RODOS3.tar.gz
+tar -xf RODOS3.tar.gz
+cd RODOS3
+make -j4
+mv RODOS3 rodos3
+cp rodos3 /usr/local/bin/
+
+# Активация интерфейса
+# nmcli dev 
+# cd /etc/NetworkManager/system-connections
+# nmcli cp  cdc-wdm0.connection  cdc-wdm1.connection
+# nmcli connection modify cdc-wdm1 apn alager.msk
+# nmcli dev connect  cdc-wdm1 
+
+
+
+

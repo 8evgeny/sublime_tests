@@ -10,9 +10,10 @@ minicom -D  /dev/ttyUSB0
 получаем доступ к плате
 
 Подключение UART к m4 - отдельный разьем 
+
 picocom -b 1500000 /dev/ttyUSB0
 
-minicom -l -8 -c on -s -D  /dev/ttyUSB0
+minicom -l -8 -c on -s -D  /dev/ttyUSB
 l - Отображения ANSI – графики
 8 - Восьмибитный режим ввода для русского языка
 с on - Включаем цветное отображение
