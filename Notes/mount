@@ -1,1 +1,7 @@
 sudo mount /dev/sda2 /mnt
+
+монтирование iso как настоящего cdrom'а
+losetup /dev/loop0 /where/is/file.iso
+ln -sf /dev/loop0 /dev/cdrom
+
+mount -o loop /home/spider/file.iso /mnt/iso
