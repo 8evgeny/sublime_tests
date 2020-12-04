@@ -8,7 +8,7 @@
 /5_boost_asio_network_programming_cookbook/**.*.cmake
 *.make
 **build.make
-
+/Cmake_Build_Debug/
 Makefile
 **.*.o
 *~
