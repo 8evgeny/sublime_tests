@@ -1,9 +1,8 @@
-// Using reverse_copy, a copying version of the 
-// generic reverse algorithm
+// Using reverse_copy, a copying version of the generic reverse algorithm
 #include <iostream>
 #include <algorithm>
 #include <cassert>
-#include <Windows.h>
+//#include <Windows.h>
 using namespace std;
 
 int main() {

@@ -1,5 +1,4 @@
-// Illustrating the generic min_element and
-// max_element algorithms
+// Illustrating the generic min_element and max_element algorithms
 #include <iostream>
 #include <cassert>
 #include <algorithm>

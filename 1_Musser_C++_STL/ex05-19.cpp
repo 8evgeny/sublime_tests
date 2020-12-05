@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <vector>
 #include <string>
+#include <cstring>
 using namespace std;
 template <typename Container>
 Container make(const char s[])

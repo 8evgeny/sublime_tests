@@ -3,6 +3,7 @@
 #include <cassert>
 #include <algorithm>
 #include <vector>
+#include <cstring>
 using namespace std;
 template <typename Container>
 Container make(const char s[])

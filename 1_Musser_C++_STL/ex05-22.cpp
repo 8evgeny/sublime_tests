@@ -1,5 +1,4 @@
-// Illustrating the generic sort, stable_sort, and
-// partial_sort algorithms
+// Illustrating the generic sort, stable_sort, and partial_sort algorithms
 #include <vector>
 #include <algorithm>
 #include <iostream>
