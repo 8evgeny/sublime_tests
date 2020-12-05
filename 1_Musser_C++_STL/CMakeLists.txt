@@ -16,4 +16,5 @@ ADD_EXECUTABLE(ex02-12_generic_accumulate_function ex02-12.cpp)
 ADD_EXECUTABLE(ex02-13_generic_accumulate_function_function_object ex02-13.cpp)
 ADD_EXECUTABLE(ex02-14_generic_accumulate_function_multiplies ex02-14.cpp)
 ADD_EXECUTABLE(ex02-15_generic_accumulate_algorithm_reverse_iterator ex02-15.cpp)
-
+ADD_EXECUTABLE(ex04-01_generic_find_algorithm_with_input_iterators_associated_with_arrays_lists_iostreams ex04-01.cpp)
+ADD_EXECUTABLE(ex05-01_in-place_generic_sort_algorithm ex05-01.cpp)

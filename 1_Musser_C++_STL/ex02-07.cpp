@@ -13,8 +13,7 @@ Container make(const char s[])
   
 int main()
 {
-  cout << "Demonstrating generic find algorithm with "
-       << "a list." << endl;
+  cout << "Demonstrating generic find algorithm with a list." << endl;
  
   list<char> list1 = make< list<char> >("C++ is a better C");
 

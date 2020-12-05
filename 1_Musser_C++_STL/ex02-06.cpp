@@ -13,11 +13,9 @@ Container make(const char s[])
 
 int main()
 {
-  cout << "Demonstrating generic find algorithm with "
-       << "a vector." << endl;
+  cout << "Demonstrating generic find algorithm with a vector." << endl;
 
-  vector<char> vector1 = 
-    make< vector<char> >("C++ is a better C");
+  vector<char> vector1 = make< vector<char> >("C++ is a better C");
 
   // Search for the first occurrence of the letter e:
   vector<char>::iterator

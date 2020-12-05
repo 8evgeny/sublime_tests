@@ -7,8 +7,7 @@ using namespace std;
  
 int main()
 {
-  cout << "Demonstrating generic find algorithm with "
-       << "an array." << endl;
+  cout << "Demonstrating generic find algorithm with an array." << endl;
   char s[] = "C++ is a better C";
   int len = strlen(s);
  

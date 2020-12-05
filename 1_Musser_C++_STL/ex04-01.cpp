@@ -1,5 +1,4 @@
-// Demonstrating the generic find algorithm with input iterators 
-// associated with arrays, lists, and iostreams
+// Demonstrating the generic find algorithm with input iterators associated with arrays, lists, and iostreams
 #include <iostream>
 #include <cassert>
 #include <algorithm>

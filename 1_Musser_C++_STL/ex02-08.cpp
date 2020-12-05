@@ -13,8 +13,7 @@ Container make(const char s[])
   
 int main()
 {
-  cout << "Demonstrating generic find algorithm with "
-       << "a deque." << endl;
+  cout << "Demonstrating generic find algorithm with a deque." << endl;
   deque<char> deque1 = make< deque<char> >("C++ is a better C");
 
   // Search for the first occurrence of the letter e:

@@ -2,7 +2,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cassert>
-#include <Windows.h>
+// #include <Windows.h>
 using namespace std;
 /*Эта программа сортирует массив а и помещает отсортированную последовательность
 обратно в а, т.е.массив заменяется отсортированной версией самого себя, поскольку
@@ -18,7 +18,7 @@ using namespace std;
 
 int main() {
 		setlocale(LC_ALL, "ru");
-  cout << "Использование алгоритма сортировки “на месте”" << endl;
+  cout << "Using an in-place generic sort algorithm" << endl;
   int a[1000];
   int i;
   for (i = 0; i < 1000; ++i) 
