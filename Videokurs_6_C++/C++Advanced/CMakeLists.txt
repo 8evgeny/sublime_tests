@@ -1,0 +1,1 @@
+add_subdirectory(001_Вывод_типов_при_использовании_шаблонов_auto_decltype)

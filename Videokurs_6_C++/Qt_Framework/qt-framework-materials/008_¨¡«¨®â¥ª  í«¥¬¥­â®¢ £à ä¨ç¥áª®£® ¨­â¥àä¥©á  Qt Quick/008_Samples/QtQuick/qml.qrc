@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>Visual.qml</file>
+        <file>Anchors.qml</file>
+        <file>Positioners.qml</file>
+        <file>Input.qml</file>
+        <file>States.qml</file>
+        <file>Data.qml</file>
+        <file>LayoutManager.qml</file>
+        <file>Logical.qml</file>
+    </qresource>
+</RCC>
