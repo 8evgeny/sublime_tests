@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(advanced_5)
+project(advanced_5_Treads)
 add_compile_options( -std=c++11 )
 
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
