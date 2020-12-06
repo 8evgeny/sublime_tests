@@ -272,13 +272,6 @@ int main (int argc, char *argv[])
     cout<<"Time encoding - "<<seconds1-seconds<<" seconds"<<endl;
 
 
-
-
-
-
-
-
-    system("pause");
     return 0;
 }
 
