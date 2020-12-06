@@ -157,7 +157,8 @@ int main (int argc, char *argv[])
 //Работаем с деревом
      while (t.size()!=1) // пока не останется 1 (горец)
      {
-        t.sort(execution::par,MyCompare());
+//  t.sort(execution::par, MyCompare());
+        t.sort(MyCompare());
         node *SONL = t.front();
         t.pop_front();
         node *SONR =t.front();
