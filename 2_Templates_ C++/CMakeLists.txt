@@ -1,5 +1,6 @@
 set(CMAKE_CXX_STANDARD 17)
 project("2_Templates_C++")
+
 add_subdirectory(basics)
 add_subdirectory(bridge)
 add_subdirectory(tuples)
