@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.5)
-
-project(Videokurs_6_C++)
-
-add_subdirectory(C++ Advanced)
-add_subdirectory(C++ Essential)
-add_subdirectory(C++ Starter)
-add_subdirectory(Qt Framework)
+add_subdirectory(1)
+#add_subdirectory(2)
+#add_subdirectory(3)
+#add_subdirectory(4)
+#add_subdirectory(5)
+#add_subdirectory(6)
+#add_subdirectory(7)
+#add_subdirectory(8)
