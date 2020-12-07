@@ -88,7 +88,84 @@ while [[ $STOP != 'true' ]]; do
         sleep $CHECK_INTERVAL
 done
 
-поток на Хадасе
+//Смотрим USB порты
+sudo dmesg |grep USB
+
+
+поток GPS на Хадасе
 cat /dev/ttyUSB1
+
+https://4pda.ru/forum/index.php?showtopic=935012&st=80
+
+Устанавливаем, что модем определился в устройстве
+lsusb && ls /dev/cdc-*
+
+Доступ получен!!
+заходим 
+sudo minicom -D /dev/ttyUSB2
+включаем local echo
+ATI
+
+Quectel                                                                                          
+EC25                                                                                             
+Revision: EC25EFAR02A08M4G                                                                       
+                                                                                                 
+OK    
+
+поток данных GPS
+cat /dev/ttyUSB1
+
+ATI
+AT+GMR
+AT+GSN - IMEI
+a/ - повтор команды
+https://www.it-fm.ru/?p=86
+
+!!!! - команды отправляются в minicom  а  ответ модема 
+sudo cat /dev/ttyUSB2
+
+!!!! - отправка команды в консоли - 
+root@sp-155:/home/alager# echo -e "ATI\r\n">/dev/ttyUSB2
+
+скрипт 
+#!/bin/bash
+echo -e "$1\r\n">/dev/ttyUSB2
+
+sudo ./send_AT_command.sh 'AT&V'
+
+
+AT+QPOWD  перезагрузка модема 
+
+AT+GMI  Request Manufacturer Identification
+
+AT+GMM  Request TA model Identification
+
+AT+GMR  Software
+AT+CGMR 
+
+AT+GSN  IMEI
+AT+CGSN
+
+AT+IPR=115200 - скорость
+
+AT&V - параметры
+
+AT+CFUN=?  Set Phone Functionality
+ 
+AT+CFUN? тип функционала
+
+AT+CFUN=<fun>[,<rst>] Установка
+<fun>
+EC20_AT_Commands_Manual pg 26 / 230
+
+AT+CFUN=0 - мин режим
+AT+CFUN=1 - макс режим
+
+AT+COPS?  проверка регистрации 
+AT+CPIN?  готовность сим-карты
+
+
+
+
 
 
