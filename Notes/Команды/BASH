@@ -116,3 +116,10 @@ var=$((var+1))
 let "var=var+1"
 let "var+=1" 
 let "var++"
+
+Например проверка строки bash на то, начинается ли она с символа y:
+
+#!/bin/bash
+x=yandex
+[[ $x == y* ]]
+echo $?
