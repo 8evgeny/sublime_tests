@@ -5,3 +5,5 @@ losetup /dev/loop0 /where/is/file.iso
 ln -sf /dev/loop0 /dev/cdrom
 
 mount -o loop /home/spider/file.iso /mnt/iso
+
+mount.cifs -o guest,vers=2.1 //192.168.77.80/share /mnt/smb
