@@ -1,0 +1,2 @@
+git clone https://github.com/WiringPi/WiringPi.git
+./build

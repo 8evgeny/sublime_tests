@@ -1,0 +1,15 @@
+бинарник - ping_arduino
+
+[Unit]
+Description=ping_arduino
+
+[Service]
+ExecStart=/home/alager/sadko/build/bin/ping_arduino
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
+
