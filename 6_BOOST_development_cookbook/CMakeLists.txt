@@ -61,8 +61,9 @@ add_subdirectory(06_01_tasks_processor_base)
 
 add_subdirectory(07_01_case_conv)
 #add_subdirectory(07_02_regex_match)
-#add_subdirectory(07_03_regex_replace)
-#add_subdirectory(07_04_format)
+
+add_subdirectory(07_03_regex_replace)
+add_subdirectory(07_04_format)
 #add_subdirectory(07_05_string_algo)
 #add_subdirectory(07_06_iterator_range)
 #add_subdirectory(07_07_string_ref)
