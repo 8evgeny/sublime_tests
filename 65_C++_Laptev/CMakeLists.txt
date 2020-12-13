@@ -1,3 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-
+project(65_C++_Laptev)
 add_subdirectory(1)
+add_subdirectory(2)
+add_subdirectory(3)
