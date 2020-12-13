@@ -12,7 +12,7 @@
     find_package (Boost REQUIRED COMPONENTS  regex thread system filesystem)
 
     if (Boost_FOUND)
-        message(${Boost_INCLUDE_DIR})
+        message("cmake message-" ${PROJECT_NAME} " boost include DIR: " ${Boost_INCLUDE_DIR})
         include_directories (SYSTEM ${Boost_INCLUDE_DIR})
     endif ()
 

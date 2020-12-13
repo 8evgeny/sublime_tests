@@ -64,7 +64,7 @@ add_subdirectory(07_01_case_conv)
 
 add_subdirectory(07_03_regex_replace)
 add_subdirectory(07_04_format)
-#add_subdirectory(07_05_string_algo)
+add_subdirectory(07_05_string_algo)
 #add_subdirectory(07_06_iterator_range)
 #add_subdirectory(07_07_string_ref)
 #add_subdirectory(08_01_vector_of_types)
