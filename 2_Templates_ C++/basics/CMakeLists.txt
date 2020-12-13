@@ -21,8 +21,6 @@ add_subdirectory(specialmemtmpl1)
 add_subdirectory(specialmemtmpl3)
 add_subdirectory(foldtraverse)
 
-
-
 #add_subdirectory(errornovel1)
 #add_subdirectory(myfirst)
 #add_subdirectory(myfirstmain)
