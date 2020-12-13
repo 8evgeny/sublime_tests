@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm> // for find
 #include <iterator>
+#include <cstring>
 using namespace std;
 template <typename Container>
 Container make(const char s[])

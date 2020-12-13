@@ -55,3 +55,6 @@ ADD_EXECUTABLE(ex06-01_simplest_vector_constructors ex06-01.cpp)
 
 ADD_EXECUTABLE(ex09-01_Illustrating_stack_adaptor ex09-01.cpp)
 ADD_EXECUTABLE(ex09-02_Illustrating_queue_adaptor ex09-02.cpp)
+ADD_EXECUTABLE(ex09-03_Illustrating_priority_queue_adaptor ex09-03.cpp)
+ADD_EXECUTABLE(ex10-01_Illustrating_normal_reverse_iteration ex10-01.cpp)
+ADD_EXECUTABLE(ex10-02_Using_find_with_normal_reverse_iteration ex10-02.cpp)
