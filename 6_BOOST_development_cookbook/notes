@@ -2,49 +2,48 @@
 find /usr/lib/ |grep libboost |grep so |grep '1.74'
 
 используются:
-	/usr/lib/libboost_regex.so.1.74.0
-	/usr/lib/libboost_filesystem.so.1.74.0
-	/usr/lib/libboost_chrono.so.1.74.0
-	/usr/lib/libboost_system.so.1.74.0
-	/usr/lib/libboost_thread.so.1.74.0
+regex
+filesystem
+chrono
+system
+thread
+timer
+context
+date_time
 
-
-/usr/lib/libboost_math_c99f.so.1.74.0
-/usr/lib/libboost_type_erasure.so.1.74.0
-/usr/lib/libboost_stacktrace_basic.so.1.74.0
-/usr/lib/libboost_log_setup.so.1.74.0
-/usr/lib/libboost_contract.so.1.74.0
-/usr/lib/libboost_context.so.1.74.0
-/usr/lib/libboost_stacktrace_noop.so.1.74.0
-/usr/lib/libboost_locale.so.1.74.0
-/usr/lib/libboost_math_tr1.so.1.74.0
-/usr/lib/libboost_math_c99.so.1.74.0
-/usr/lib/libboost_math_c99l.so.1.74.0
-/usr/lib/libboost_random.so.1.74.0
-/usr/lib/libboost_prg_exec_monitor.so.1.74.0
-/usr/lib/libboost_timer.so.1.74.0
-/usr/lib/libboost_numpy39.so.1.74.0
-/usr/lib/libboost_fiber.so.1.74.0
-/usr/lib/libboost_wave.so.1.74.0
-/usr/lib/libboost_nowide.so.1.74.0
-/usr/lib/libboost_program_options.so.1.74.0
-/usr/lib/libboost_graph_parallel.so.1.74.0
-/usr/lib/libboost_mpi.so.1.74.0
-/usr/lib/libboost_mpi_python39.so.1.74.0
-/usr/lib/libboost_coroutine.so.1.74.0
-/usr/lib/libboost_graph.so.1.74.0
-/usr/lib/libboost_container.so.1.74.0
-/usr/lib/libboost_stacktrace_addr2line.so.1.74.0
-/usr/lib/libboost_log.so.1.74.0
-/usr/lib/libboost_date_time.so.1.74.0
-/usr/lib/libboost_unit_test_framework.so.1.74.0
-/usr/lib/libboost_iostreams.so.1.74.0
-/usr/lib/libboost_serialization.so.1.74.0
-/usr/lib/libboost_atomic.so.1.74.0
-/usr/lib/libboost_math_tr1l.so.1.74.0
-/usr/lib/libboost_python39.so.1.74.0
-/usr/lib/libboost_math_tr1f.so.1.74.0
-/usr/lib/libboost_wserialization.so.1.74.0
+math_c99f
+type_erasure
+stacktrace_basic
+log_setup
+contract
+stacktrace_noop
+locale
+math_tr1
+math_c99
+math_c99l
+random
+prg_exec_monitor
+numpy39
+fiber
+wave
+nowide
+program_options
+graph_parallel
+mpi
+mpi_python39
+coroutine
+graph
+container
+stacktrace_addr2line
+log
+unit_test_framework
+iostreams
+serialization
+atomic
+math_tr1l
+python39
+math_tr1f
+wserialization
 
 
 

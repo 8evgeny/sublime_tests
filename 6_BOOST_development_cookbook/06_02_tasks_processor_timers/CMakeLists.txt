@@ -2,7 +2,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(06_02_tasks_processor_timers)
 
-file(GLOB src *
+file(GLOB src
+    *
     ../06_01_tasks_processor_base/tasks_processor_base.hpp
     )
 
@@ -15,10 +16,20 @@ set (Boost_USE_STATIC_RUNTIME OFF)
 set (BOOST_ALL_DYN_LINK OFF)
 
 
-find_package (Boost REQUIRED COMPONENTS  chrono timer context thread system filesystem)
+find_package (Boost REQUIRED COMPONENTS
+    chrono
+    regex
+    timer
+    context
+    thread
+    system
+    filesystem
+    date_time
+
+    )
 
 if (Boost_FOUND)
-    message(${Boost_INCLUDE_DIR})
+    message("cmake message-" ${PROJECT_NAME} " boost include DIR: " ${Boost_INCLUDE_DIR})
     include_directories (SYSTEM ${Boost_INCLUDE_DIR})
 endif ()
 
