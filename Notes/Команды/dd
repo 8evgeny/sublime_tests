@@ -235,3 +235,5 @@ dd if=/dev/sdc1 | gzip -c9 > /PATH/TO/BACKUP.gz
 gunzip -c /PATH/TO/BACKUP.gz | dd of=/dev/sdc1
 
 gunzip -c /home/jhon/Desktop/KHADAS/VIM3.krescue.sd.img.gz | sudo dd of=/dev/sdc conv=noerror 
+
+sudo dd if=Armbian_5.67_Nanopct4_Debian_stretch_default_4.4.166.img of=/dev/sdd bs=4M status=progress;sync
