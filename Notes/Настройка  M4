@@ -1,0 +1,12 @@
+1 - Флешка 
+sudo dd if=Armbian_5.67_Nanopct4_Debian_stretch_default_4.4.166.img of=/dev/sdd bs=4M status=progress;sync
+
+2 - создание пользователя
+пароль root  -  oofijeede
+alager  - alager
+
+3 - ip адреса
+ip a a 192.168.30.159/24 brd 192.168.30.255 dev eth0
+ip a a 172.31.0.159/24 brd 172.31.0.255 dev eth0
+ip a a 192.168.100.159/24 brd 192.168.100.255 dev eth0
+ip a a 192.168.77.159/24 brd 192.168.77.255 dev eth0
