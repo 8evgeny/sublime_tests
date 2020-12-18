@@ -17,3 +17,4 @@ mount.cifs -o guest,vers=2.1 //192.168.77.80/share /mnt/smb
 мой старый программатор avr910
 sudo avrdude -c  avr910  -p m328p -P /dev/ttyACM0 -b 19200 -U flash:w:led-blink.hex:i
 
+sudo avrdude -c  usbasp  -p m328p -P /dev/ttyS0 -b 19200 -U flash:w:Ping_M4_T4.hex:i
