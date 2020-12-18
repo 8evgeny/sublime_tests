@@ -237,3 +237,9 @@ gunzip -c /PATH/TO/BACKUP.gz | dd of=/dev/sdc1
 gunzip -c /home/jhon/Desktop/KHADAS/VIM3.krescue.sd.img.gz | sudo dd of=/dev/sdc conv=noerror 
 
 sudo dd if=Armbian_5.67_Nanopct4_Debian_stretch_default_4.4.166.img of=/dev/sdd bs=4M status=progress;sync
+
+
+dd if=/dev/zero of=/run/media/eparubets/BOOT/zerofile bs=1M
+sudo dd if=/dev/sdc bs=4M conv=noerror status=progress | gzip -c > khadas_157.iso.zip
+gunzip -c khadas_load.iso.zip | sudo dd of=/dev/sdc conv=noerror
+

@@ -1,0 +1,17 @@
+1 - http://download.friendlyarm.com/
+Загружаем образ rk3399-typec-friendlycore-bionic-4.4-arm64-20201027.zip
+
+ссылка на образ
+https://redirect.armbian.com/nanopct4/Focal_current_desktop
+
+2- echer  https://www.balena.io/etcher/
+
+
+2- пишем на флешку
+разделы  sudo cat /proc/partitions  
+
+
+Флешка 
+gunzip -c rk3399-typec-friendlycore-bionic-4.4-arm64-20201027.zip | sudo dd of=/dev/sdс conv=noerror bs=4M
+
+
