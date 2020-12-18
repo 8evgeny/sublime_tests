@@ -241,5 +241,6 @@ sudo dd if=Armbian_5.67_Nanopct4_Debian_stretch_default_4.4.166.img of=/dev/sdd 
 
 dd if=/dev/zero of=/run/media/eparubets/BOOT/zerofile bs=1M
 sudo dd if=/dev/sdc bs=4M conv=noerror status=progress | gzip -c > khadas_157.iso.zip
-gunzip -c khadas_load.iso.zip | sudo dd of=/dev/sdc conv=noerror
+gunzip -c khadas_157.iso.zip | sudo dd of=/dev/sdc conv=noerror
+watch progress
 
