@@ -1,0 +1,9 @@
+env  - переменные окружения
+
+[jhon@jhon-pc ~]$ whatis man
+[jhon@jhon-pc ~]$ export LANG=ru_RU.UTF-8
+[jhon@jhon-pc ~]$ whatis man
+[jhon@jhon-pc ~]$ echo $LANG
+ru_RU.UTF-8
+[jhon@jhon-pc ~]$ echo $BROWSER 
+/usr/bin/firefox
