@@ -232,3 +232,55 @@ Bus 001 Device 072: ID 12d1:1c05 Huawei Technologies Co., Ltd. Broadband stick (
 Можно прошивать заново
 
 ./balong_flash64 E3372h-153_Update_21.200.07.00.209_01.10.bin -p /dev/ttyUSB1
+ так шьется прошивка которая начинается на 21
+
+
+ После иголки
+ /dev/ttyUSB0
+ Bus 001 Device 119: ID 12d1:1443 Huawei Technologies Co., Ltd. USB COM
+
+./balong-usbdload usblsafe-3372h.bin
+модем прошивается и становится 
+Bus 001 Device 120: ID 12d1:1c05 Huawei Technologies Co., Ltd. Broadband stick (modem on)
+/dev/ttyUSB0  /dev/ttyUSB1  /dev/ttyUSB2
+sudo echo AT^GODLOAD > /dev/ttyUSB2
+
+./balong_flash64 E3372h-153_Update_22.200.15.00.00_M_AT_05.10.bin -p /dev/ttyUSB2
+
+Модем прошит 22 прошивкой
+
+Bus 001 Device 124: ID 12d1:1442 Huawei Technologies Co., Ltd. Vodafone (Huawei)
+после перезагрузки
+Bus 001 Device 125: ID 12d1:1f01 Huawei Technologies Co., Ltd. E353/E3131 (Mass storage mode)
+
+Разрешаем переключение sudo nano /etc/usb_modeswitch.conf 
+DisableSwitching=0
+и после перезагрузки имеем
+
+Bus 001 Device 004: ID 12d1:14dc Huawei Technologies Co., Ltd. E33372 LTE/UMTS/GSM HiLink Modem/Networkcard
+
+и появляется connection
+
+
+
+Переключение композиции
+AT команд переключения не предусмотрено.
+Автоматически переключиться можно в некоторых прошивках через WebUI. Либо с помощью usb_modeswitch (работает из коробки).
+
+usb_modeswitch -v12d1 -p 1f01 -M "5553424312345678000000000000001106хх00000101000100000000000000"
+Здесь xx и определяет тип сетевого адаптера:
+00 - rndis
+10 или 20 - cdc
+30 - режим gateway (эмуляция стик-модема)
+
+Переключение в режим сетевой карты 12d1:1f01 > 12d1:14dc
+usb_modeswitch -v12d1 -p 1f01 -M "55534243123456780000000000000011060000000101000100000000000000"
+Переключение в режим с COM портами 12d1:1f01 > 12d1:1001
+usb_modeswitch -v12d1 -p 1f01 -M "55534243123456780000000000000011063000000101000100000000000000"
+
+
+sudo usb_modeswitch -v 0x12d1 -p 0x14dc -V 0x12d1 -P 0x1f01 -M "55534243123456780000000000000011063000000101000100000000000000"
+
+sudo usb_modeswitch -v 0x12d1 -p 0x14dc -V 0x12d1 -P 0x14dc -M 55534243000000000000000000000011000000000000000000000000000000
+
+webui шьется сразу после прошивки до перезагрузки
