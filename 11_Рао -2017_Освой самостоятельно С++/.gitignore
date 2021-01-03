@@ -1,2 +1,7 @@
 /23.11 PartitionStablePartition
 *.12 LowerBoundUpperBound
+build/
+/17.Ex4 DequeListInit
+/2.2 UsingNamespaceDecl
+/6.12 RangeBasedFor
+/6.9 MultiplyAdd_do_while
