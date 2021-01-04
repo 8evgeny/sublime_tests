@@ -52,6 +52,8 @@ ADD_EXECUTABLE(ex05-32_generic_partial_sum_algorithm ex05-32.cpp)
 ADD_EXECUTABLE(ex05-33_generic_adjacent_difference_algorithm ex05-33.cpp)
 ADD_EXECUTABLE(ex05-34_generic_inner_product_algorithm ex05-34.cpp)
 ADD_EXECUTABLE(ex06-01_simplest_vector_constructors ex06-01.cpp)
+ADD_EXECUTABLE(ex06-02_vector_constructors_with_user-defined_type ex06-02.cpp)
+
 
 ADD_EXECUTABLE(ex09-01_Illustrating_stack_adaptor ex09-01.cpp)
 ADD_EXECUTABLE(ex09-02_Illustrating_queue_adaptor ex09-02.cpp)
