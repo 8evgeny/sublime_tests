@@ -1,0 +1,2 @@
+add_subdirectory(count-lines-stdcount)
+add_subdirectory(count-lines-transform)
