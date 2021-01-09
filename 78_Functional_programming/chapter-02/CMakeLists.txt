@@ -1,0 +1,6 @@
+add_subdirectory(average-score)
+add_subdirectory(count-lines-using-accumulate)
+add_subdirectory(filter-and-transform)
+add_subdirectory(filter-and-transform-combined)
+add_subdirectory(filtering-using-remove-if)
+add_subdirectory(move-selected)
