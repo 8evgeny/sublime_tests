@@ -21,3 +21,7 @@ $ pacman -U /путь_к_файлу/файл.tar.xz
 
 # или из сети
 $ pacman -U http://www.example.com/repo/example.pkg.tar.xz
+
+
+The solution is updating archlinux-keyring first:
+$ sudo pacman -S archlinux-keyring

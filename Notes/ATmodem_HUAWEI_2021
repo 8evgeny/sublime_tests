@@ -1,0 +1,192 @@
+После иголки:
+1.
+eparubets@ws031:~$ ls /dev/ttyUSB*
+/dev/ttyUSB0
+
+2.
+eparubets@ws031:~$ lsusb
+Bus 002 Device 002: ID 2001:4a00 D-Link Corp. DUB-1312 Gigabit Ethernet Adapter
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 085: ID 12d1:1443 Huawei Technologies Co., Ltd. USB COM
+Bus 001 Device 003: ID 413c:301a Dell Computer Corp. Dell MS116 Optical Mouse
+Bus 001 Device 002: ID 046d:c31c Logitech, Inc. Keyboard K120
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+3.
+шьем загрузчик
+./balong-usbdload usblsafe-3372h.bin
+
+4.
+eparubets@ws031:~$ ls /dev/ttyUSB*
+/dev/ttyUSB0  /dev/ttyUSB1  /dev/ttyUSB2
+
+eparubets@ws031:~$ lsusb
+Bus 002 Device 002: ID 2001:4a00 D-Link Corp. DUB-1312 Gigabit Ethernet Adapter
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 086: ID 12d1:1c05 Huawei Technologies Co., Ltd. Broadband stick (modem on)
+Bus 001 Device 003: ID 413c:301a Dell Computer Corp. Dell MS116 Optical Mouse
+Bus 001 Device 002: ID 046d:c31c Logitech, Inc. Keyboard K120
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+5. 
+шьем через старший порт
+eparubets@ws031:~/619/modem/Прошивка$ ./balong_flash64 E3372h-153_UPDATE_22.333.03.00.00.BIN -p2 -k
+
+ Программа для прошивки устройств на Balong-чипсете, V3.0.284, (c) forth32, 2015, GNU GPLv3
+--------------------------------------------------------------------------------------------------
+
+ Код файла прошивки: 9 (ONLY_FW)
+                                 
+ Цифровая подпись: 2958 байт
+ Хеш открытого ключа: 778A8D175E602B7B779D9E05C330B5279B0661BF2EED99A20445B366D63DD697
+ Версия прошивки: 22.333.03.00.00
+ Платформа:       BV7R11HS
+ Дата сборки:     2019.10.14 08:04:18
+ Заголовок: версия 1, код соответствия: HWEW11.1
+ Режим цифровой подписи: ONLY_FW (2958 байт)
+ Версия протокола: 7200B--SKCBADZM
+ Идентификатор устройства: HUAWEI BV7R11HS
+----------------------------------------------------
+
+##  ---- Имя раздела ---- записано
+00  Fastboot              100%
+01  M3Boot_R11            100%
+02  M3Boot-ptable         100%
+03  Kernel_R11            100%
+04  VxWorks_R11           100%
+05  M3Image_R11           100%
+06  DSP_R11               100%
+07  Nvdload_R11           100%
+08  System                100%
+09  APP                   100%
+
+6.
+шьем WEBUI
+
+./balong_flash64 Update_WEBUI_17.100.13.01.03_HILINK_Mod1.13.exe 
+
+ Программа для прошивки устройств на Balong-чипсете, V3.0.284, (c) forth32, 2015, GNU GPLv3
+--------------------------------------------------------------------------------------------------
+
+ Код файла прошивки: e (ISO_WEBUI)
+                                 
+ Цифровая подпись: 1110 байт
+ Хеш открытого ключа: 778A8D175E602B7B779D9E05C330B5279B0661BF2EED99A20445B366D63DD697
+ Версия прошивки: INPUT
+ Дата сборки:     2015.11.17 07:24:23
+ Заголовок: версия 1, код соответствия: HWEW11.1
+ Режим цифровой подписи: ISO_WEBUI (1110 байт)
+ Версия протокола: 7200B--SKCBADZM
+ Идентификатор устройства: HUAWEI BV7R11HS
+----------------------------------------------------
+
+##  ---- Имя раздела ---- записано
+00  Oeminfo               100%
+01  CDROMISO              100%
+02  WEBUI                 100%
+
+ Перезагрузка модема...
+eparubets@ws031:~/619/modem/Прошивка$ lsusb
+Bus 002 Device 002: ID 2001:4a00 D-Link Corp. DUB-1312 Gigabit Ethernet Adapter
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 098: ID 12d1:14dc Huawei Technologies Co., Ltd. E3372 LTE/UMTS/GSM HiLink Modem/Networkcard
+Bus 001 Device 003: ID 413c:301a Dell Computer Corp. Dell MS116 Optical Mouse
+Bus 001 Device 002: ID 046d:c31c Logitech, Inc. Keyboard K120
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+eparubets@ws031:~/619/modem/Прошивка$ 
+
+
+Новый модем:
+eparubets@ws031:~$ lsusb
+Bus 002 Device 002: ID 2001:4a00 D-Link Corp. DUB-1312 Gigabit Ethernet Adapter
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 042: ID 12d1:1f01 Huawei Technologies Co., Ltd. E353/E3131 (Mass storage mode)
+Bus 001 Device 041: ID 214b:7250 Huasheng Electronics USB2.0 HUB
+Bus 001 Device 003: ID 413c:301a Dell Computer Corp. Dell MS116 Optical Mouse
+Bus 001 Device 002: ID 046d:c31c Logitech, Inc. Keyboard K120
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+Переключаем
+sudo usb_modeswitch -v 0x12d1 -p 0x1f01 -V 0x12d1 -P 0x14dc -M 55534243000000000000000000000011000000000000000000000000000000
+
+eparubets@ws031:~$ ls /dev/ttyUSB*
+/dev/ttyUSB0
+
+echo AT^SFM=1 > /dev/ttyUSB0   (Factory Mode)
+
+теперь после перезагрузки 
+Bus 001 Device 022: ID 12d1:1c05 Huawei Technologies Co., Ltd. Broadband stick (modem on)
+
+и имеем !!
+/dev/ttyUSB0  /dev/ttyUSB1  /dev/ttyUSB2
+
+echo AT^GODLOAD > /dev/ttyUSB2  - перезагрузка 
+
+после перезагрузки виден только USB0
+
+шьем:
+
+eparubets@ws031:~$ lsusb
+Bus 001 Device 043: ID 12d1:1442 Huawei Technologies Co., Ltd. HUAWEI_MOBILE
+
+
+eparubets@ws031:~/619/modem/Прошивка$ ./balong_flash64 E3372h-153_Update_21.329.62.00.209_MGF_Dashboard_Win3.0.0_Mac3.0.0.bin 
+
+ Программа для прошивки устройств на Balong-чипсете, V3.0.284, (c) forth32, 2015, GNU GPLv3
+--------------------------------------------------------------------------------------------------
+
+ Код файла прошивки: b (FW_ISO)
+                                 
+ Цифровая подпись: 3486 байт
+ Хеш открытого ключа: 778A8D175E602B7B779D9E05C330B5279B0661BF2EED99A20445B366D63DD697
+ Версия прошивки: 21.329.62.00.209
+ Платформа:       BV7R11HS
+ Дата сборки:     2019.08.15 17:23:47
+ Заголовок: версия 1, код соответствия: HWEW11.1
+ Режим цифровой подписи: FW_ISO (3486 байт)
+ Версия протокола: 7200B--SKCBADZM
+ Идентификатор устройства: HUAWEI BV7R11HS
+----------------------------------------------------
+
+##  ---- Имя раздела ---- записано
+00  Fastboot              100%
+01  M3Boot_R11            100%
+02  M3Boot-ptable         100%
+03  Kernel_R11            100%
+04  VxWorks_R11           100%
+05  M3Image_R11           100%
+06  DSP_R11               100%
+07  Nvdload_R11           100%
+08  System                100%
+09  APP                   100%
+10  Oeminfo               100%
+11  CDROMISO              100%
+
+ Перезагрузка модема...
+
+появились 2 порта:
+eparubets@ws031:~$ ls /dev/ttyUSB*
+/dev/ttyUSB0  /dev/ttyUSB1
+
+eparubets@ws031:~$ lsusb
+Bus 001 Device 047: ID 12d1:1c05 Huawei Technologies Co., Ltd. Broadband stick (modem on)
+
+после перезагрузки
+Bus 001 Device 056: ID 12d1:1506 Huawei Technologies Co., Ltd. Modem/Networkcard
+
+
+команды принимает по USB1
+
+sudo nano /etc/usb_modeswitch.conf
+DisableSwitching=0
+
+точно работает ./balong_flash64 E3372h_22.333.01.00.00_WEBUI_19.100.11.10.03_HILINK.exe 
+
+Графическая прошивалка !!
+https://github.com/forth32/qhuaweiflash
+
+Графическая утилита для прошивки модемов и роутеров фирмы HUAWEI и редактирования файлов прошивок
+Данная утилита предназначена для:
+Прошивки модемов фирмы huawei, поддерживающих протокол прошивки, аналогичный применяемому в модемах на Balong V7. В том числе реализована полноценная работа с цифровыми подписями прошивок.
+Редактирования образов прошивок. Возможен просмотр, добавление, удаление, изменение отдельных разделов, изменение заголовков разделов. Реализовано редактирование образов разделов в HEX-коде и, частитчно, в форматном режиме (если раздел имеет какой-либо осмысленный формат).
+Загрузки в модем загрузчиков usbloader с применением патчей.
