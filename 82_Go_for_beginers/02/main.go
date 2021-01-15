@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	var arr [3]int
 
+	var arr [3]int
 	arr = fillArray(arr)
 
 	fmt.Println(arr)

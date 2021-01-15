@@ -17,7 +17,7 @@ Coord distance (GeoObj const& x1, GeoObj const& x2)
 // draw heterogeneous collection of GeoObjs
 void drawElems (std::vector<GeoObj*> const& elems)
 {
-    for (std::size_type i=0; i<elems.size(); ++i) {
+    for (std::size_t i=0; i<elems.size(); ++i) {
         elems[i]->draw();  // call draw() according to type of element
     }
 }

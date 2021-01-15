@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"errors"
+	"fmt"
 )
 
 const pi = 3.1415
@@ -14,7 +14,7 @@ func main() {
 func printCircleArea(radius int) {
 	circleArea, err := calculateCircleArea(radius)
 	if err != nil {
-		fmt.Println(err.Error())а
+		fmt.Println(err.Error())
 		return
 	}
 
