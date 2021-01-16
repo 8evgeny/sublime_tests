@@ -1,5 +1,5 @@
 set(CMAKE_CXX_STANDARD 17)
-set(name async1)
+set(name async2)
 project(concurrency_${name})
 
 add_executable(${PROJECT_NAME} ${name}.cpp)

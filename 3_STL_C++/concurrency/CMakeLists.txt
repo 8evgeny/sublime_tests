@@ -1,1 +1,5 @@
 add_subdirectory(async1)
+add_subdirectory(async2)
+add_subdirectory(async3)
+add_subdirectory(atomics1)
+add_subdirectory(condvar1)
