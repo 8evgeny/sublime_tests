@@ -1,5 +1,6 @@
-#include <iostream>
+//Листинг 2.12. Статические переменные в функции
 
+#include <iostream>
 using namespace std;
 
 double Average(double data){
