@@ -1,0 +1,28 @@
+M4 - флешка 64G - образ M4_16G_stend.img
+login pi  пароль pi
+адрес 
+ssh pi@192.168.77.151
+поиск
+sudo grep -r "192.168.100.151" /etc/
+/etc/NetworkManager/system-connection/wired (адреса изменены на 153)
+
+
+
+T4 - флешка 16G - образ M4_16G_stend.img
+
+sudo dd if=M4_16G_stend.img of=/dev/sdc bs=4M status=progress;sync
+
+адрес 
+ssh pi@192.168.77.153
+
+добавить маршрут
+sudo ip r add default via 192.168.77.1 dev eth0 proto static metric 100
+
+к Т4 примонтирован SSD 
+sudo mount /dev/nvme0n1p1 /home/pi/alager/
+
+ sudo mount --uuid="b386d309-05c1-42c8-8364-8d37270b69e0" /mnt
+
+ Посмотреть uuid для ваших разделов можно с помощью команды:
+
+ sudo blkid
