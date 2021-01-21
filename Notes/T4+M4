@@ -17,6 +17,9 @@ ssh pi@192.168.77.153
 
 добавить маршрут
 sudo ip r add default via 192.168.77.1 dev eth0 proto static metric 100
+sudo ip r d default via 192.168.77.1 dev eth0 proto static metric 100
+
+
 
 к Т4 примонтирован SSD 
 sudo mount /dev/nvme0n1p1 /home/pi/alager/
@@ -26,3 +29,32 @@ sudo mount /dev/nvme0n1p1 /home/pi/alager/
  Посмотреть uuid для ваших разделов можно с помощью команды:
 
  sudo blkid
+
+Добавил в /etc/fstab  для автомонтирования
+UUID=aea73c9c-2674-43ac-bd78-9e86b9becd1a /home/pi/alager auto nosuid,nodev,nofail,x-gvfs-show 0 0
+
+sudo crontab -e
+*/1 * * * * /home/pi/alager/S-852/build/bin/ping_arduino      запуск раз в минуту - не подходит - колл процессов растет
+
+запуск демона
+/etc/systemd/system      создаем файл  ping.service
+
+[Unit]
+Description=ping_arduino
+
+[Service]
+ExecStart=/home/pi/alager/S-852/build/bin/ping_arduino.sh
+
+[Install]
+WantedBy=multi-user.target
+
+
+запускаем systemctl start ping.service
+добавляем systemctl enable ping.service
+
+
+https://wifi-hotspot.zp.ua/wp/2011/01/ubuntu-3g-modem-terminal/
+Настройка модема
+sudo wvdialconf
+
+sudo wvdial
