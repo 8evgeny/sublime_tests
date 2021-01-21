@@ -1,10 +1,8 @@
 set(CMAKE_CXX_STANDARD 17)
 cmake_minimum_required(VERSION 3.5)
 project(simpleDB)
-set(src
-src/simpleDB.cpp
-src/simpleDB.h
-)
+
+file( GLOB src src/*.cpp src/*.h )
 
 find_package (Qt5Core)
 find_package (Qt5Widgets)

@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QComboBox>
 #include <QDateTimeEdit>
+#include <QString>
 #include <QDebug>
 #include <QDir>
 #include <QFileDialog>
@@ -24,10 +25,10 @@
 #include <QWidget>
 #include <iostream>
 
-using namespace std;
-
-void fill_vector(QStringList &, vector<string> &);
-void print_vector(vector<string>&);
+void fill_vector(QStringList &, std::vector<std::string> &);
+void print_vector(std::vector<std::string>&);
+void readDB();
+void input_new_data();
 //void copy_files(vector<QString> &, QString);
 //QString ts_to_date(string);
 //QString ts_to_date1(string);
@@ -36,3 +37,5 @@ void print_vector(vector<string>&);
 //QString str_to_qstr1(string);
 //qlonglong ts_in_string_to_ts_longlomg(string);
 //string parsing_ini_file(QString);  //возвращает мин ts
+
+
