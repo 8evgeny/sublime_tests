@@ -58,3 +58,43 @@ https://wifi-hotspot.zp.ua/wp/2011/01/ubuntu-3g-modem-terminal/
 sudo wvdialconf
 
 sudo wvdial
+--> WvDial: Internet dialer version 1.61
+--> Initializing modem.
+--> Sending: ATZ
+OK
+--> Sending: ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0
+ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0
+--> Sending: ATQ0
+ATQ0
+OK
+--> Re-Sending: ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0
+ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0
+OK
+--> Sending: AT+CGDCONT=1,"IP","internet"
+AT+CGDCONT=1,"IP","internet"
+OK
+--> Modem initialized.
+--> Sending: ATDT*99#
+--> Waiting for carrier.
+ATDT*99#
+CONNECT 150000000
+--> Carrier detected.  Starting PPP immediately.
+--> Starting pppd at Thu Jan 21 09:48:16 2021
+--> Pid of pppd: 10384
+--> Using interface ppp0
+--> local  IP address 10.177.82.132
+--> remote IP address 10.64.64.64
+--> primary   DNS address 10.177.83.1
+--> secondary DNS address 192.168.6.6
+
+
+
+для модема Huawei 
+Bus 007 Device 003: ID 12d1:14fe Huawei Technologies Co., Ltd. Modem (Mass Storage Mode)
+sudo usb_modeswitch -v 0x12d1 -p 0x14fe -V 0x12d1 -P 0x14dc -M 55534243000000000000000000000011000000000000000000000000000000
+Bus 007 Device 004: ID 12d1:1506 Huawei Technologies Co., Ltd. Modem/Networkcard
+появились порты!  
+pi@NanoPi-M4:~$ ls /dev/ttyUSB*
+/dev/ttyUSB0  /dev/ttyUSB1
+
+
