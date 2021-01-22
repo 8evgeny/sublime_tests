@@ -24,11 +24,12 @@
 #include <QValidator>
 #include <QWidget>
 #include <iostream>
-
+#include "person.h"
 void fill_vector(QStringList &, std::vector<std::string> &);
 void print_vector(std::vector<std::string>&);
 void readDB();
-void input_new_data();
+void input_data();
+
 //void copy_files(vector<QString> &, QString);
 //QString ts_to_date(string);
 //QString ts_to_date1(string);
