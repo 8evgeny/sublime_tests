@@ -2,17 +2,19 @@
 using namespace std;
 
 int main(int argc, char** argv) {
- char oper ;
+ char oper;
  while(1){
-  cout<<"Введите операцию:\n";
-  cout<<"1 - отображение существующих записей:\n";
-  cout<<"2 - ввод новых данных:\n";
-  cout<<"3 - завершить работу:\n";
+  cout<<"Введите операцию:\n"<<
+        "1 - отображение существующих записей:\n"<<
+        "2 - ввод новых данных:\n"<<
+        "3 - редактирование данных:\n"<<
+        "4 - завершить работу:\n";
   cin>>oper;
-  if((oper!='1')&&(oper!='2')&&(oper!='3')) cout<<"Повторите ввод\n";
-  if(oper == '1') readDB();
-  if(oper == '2') {input_data();break;}
-  if(oper == '3') return 0;
+  if((oper!='1')&&(oper!='2')&&(oper!='3')&&(oper!='4')) {system("clear"); cout<<"Повторите ввод\n\n";}
+  if(oper == '1') {system("clear");read_data();}
+  if(oper == '2') input_data();
+  if(oper == '3') edit_data();
+  if(oper == '4') return 0;
     }
 
 

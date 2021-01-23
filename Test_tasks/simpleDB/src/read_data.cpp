@@ -1,5 +1,5 @@
 #include "simpleDB.h"
-void readDB(){
+void read_data(){
     const QString settingsFile = "configDB.ini";
     QSettings settings(settingsFile, QSettings::IniFormat);
     settings.beginGroup("nameDIR");
@@ -10,6 +10,6 @@ void readDB(){
     dirDB.setPath(patch_to_DB);
     QStringList listFiles = dirDB.entryList(QDir::Files);
     fill_vector(listFiles, v);
-    std::cout<<"\nБД содержит следующие записи:\n";
+    std::cout<<"БД содержит следующие записи:\n";
     print_vector(v);
 };

@@ -27,9 +27,9 @@
 #include "person.h"
 void fill_vector(QStringList &, std::vector<std::string> &);
 void print_vector(std::vector<std::string>&);
-void readDB();
+void read_data();
 void input_data();
-
+void edit_data();
 
 
 

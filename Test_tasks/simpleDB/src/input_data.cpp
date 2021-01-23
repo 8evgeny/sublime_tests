@@ -4,8 +4,9 @@
 using namespace std;
 
 void input_data(){
+ system("clear");
  Person person;
- cout<<"\nВводим новые данные:\n";
+ cout<<"Вводим новые данные:\n";
  cout<<"\nВведите имя латиницей:\n";
  string inputname;
  while(1){
