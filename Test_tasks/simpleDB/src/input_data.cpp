@@ -1,4 +1,3 @@
-#pragma once
 #include "simpleDB.h"
 #include "person.h"
 #include <regex>

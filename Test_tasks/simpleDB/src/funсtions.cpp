@@ -13,6 +13,7 @@ void print_vector(vector<string>& v) {
         cout<<i<<" "<<element<<'\n';
         ++i;
     }
+    cout<<'\n';
 }
 
 
