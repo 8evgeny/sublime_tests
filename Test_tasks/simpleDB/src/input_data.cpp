@@ -1,14 +1,12 @@
 #include "simpleDB.h"
 #include "person.h"
-
 using namespace std;
-
 void input_data(){
  system("clear");
  Person person;
  cout<<"Вводим новые данные:\n";
  cout<<"\nВведите имя латиницей:\n";
- string iname, isex, ibighday, igrowth, iweight, ideath;
+ string iname, isex, ibighday, igrowth, iweight, inations, ideath;
 //Имя
  while(1){
   cin>>iname;
@@ -31,8 +29,7 @@ void input_data(){
  }
  cout << "Введен пол: "<<person.sex<<"\n"<<
      "\nВведите дату рождения в формате DD/MM/YYYY или DD-MM-YYYY:\n";
-
- //Дата рождения
+//Дата рождения
  const QString DateFormat = "dd/MM/yyyy";
  while(1){
   cin>>ibighday;
@@ -61,9 +58,28 @@ void input_data(){
          break;
      } else  cout << "Введите корректный рост!\n";
  }
- cout << "Введен рост: "<<person.growth<<"\n"<<
-     "\nВведите национальность. Выберите номер из списка:\n";
+ cout << "\nВведен рост: "<<person.growth<<"\n\n";
+ vector <pair<unsigned,string>> nations;
+ print_nation(nations);
+ cout<<"\nВведите национальность. Выберите номер из списка:\n";
+
+
+ while(1){
+     cin>>inations;
+     regex regexpr ("[1-9]{1}[0-9]{0,2}");
+     if (regex_match (inations,regexpr)) {
+     unsigned number_nation = stoi(inations)-1;
+     string nation = nations.at(number_nation).second;
+     person.nation = nation;
+     break;
+     } else  cout << "Введите корректный номер!\n";
+ }
+  cout << "\nВыбрана национальность: "<<person.nation<<"\n\n";
+
+
 
 
 
 };
+
+

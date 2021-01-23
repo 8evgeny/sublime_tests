@@ -1,6 +1,5 @@
 #include "simpleDB.h"
 void read_data(){
-    const QString settingsFile = "configDB.ini";
     QSettings settings(settingsFile, QSettings::IniFormat);
     settings.beginGroup("nameDIR");
     QString patch_to_DB = settings.value("patch_to_DB").toString();

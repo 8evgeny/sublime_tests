@@ -26,12 +26,18 @@
 #include <iostream>
 #include <regex>
 #include <string>
+#include <fstream>
+//#include <map>
+//#include <algorithm>
+//#include <execution>
 #include "person.h"
+const QString settingsFile = "configDB.ini";
 void fill_vector(QStringList &, std::vector<std::string> &);
 void print_vector(std::vector<std::string>&);
+void print_vector(std::vector<std::pair<unsigned,std::string>>&);
 void read_data();
 void input_data();
 void edit_data();
 void print_nation();
-
+void print_nation(std::vector<std::pair<unsigned,std::string>>&);
 

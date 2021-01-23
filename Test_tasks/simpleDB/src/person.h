@@ -2,7 +2,7 @@
 #include "simpleDB.h"
 class Person {
 public:
-    Person(std::string ,unsigned , unsigned ,unsigned , unsigned ,QString ,QDate );
+    Person(std::string ,unsigned , unsigned ,unsigned , unsigned ,std::string ,QDate );
     Person();
     ~Person();
     //имя, пол, возраст, рост, вес, национальность (выбор из внутреннего списка, например, подмножество https://tinyurl.com/q73okuc ),
@@ -12,7 +12,7 @@ public:
     unsigned age;
     unsigned growth;
     unsigned weight;
-    QString nation;
+    std::string nation;
     QDate bithday;
     QDate death;
 private:
