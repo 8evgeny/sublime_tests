@@ -52,7 +52,7 @@ void input_data(){
  << "\nВведите рост в сантиметрах: \n";
  while(1){
      cin>>igrowth;
-     regex regexpr ("[0-9][0-9][0-9]");
+     regex regexpr ("[1-9]{1}[0-9]{0,2}");
      if (regex_match (igrowth,regexpr)) {
          person.growth = stoi(igrowth);
          break;
