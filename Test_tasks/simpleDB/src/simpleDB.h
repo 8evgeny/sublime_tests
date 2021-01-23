@@ -24,12 +24,14 @@
 #include <QValidator>
 #include <QWidget>
 #include <iostream>
+#include <regex>
+#include <string>
 #include "person.h"
 void fill_vector(QStringList &, std::vector<std::string> &);
 void print_vector(std::vector<std::string>&);
 void read_data();
 void input_data();
 void edit_data();
-
+void print_nation();
 
 
