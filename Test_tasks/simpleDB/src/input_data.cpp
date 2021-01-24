@@ -29,8 +29,8 @@ void input_data(){
   cin>>isex;
    regex regexpr ("[12]");
   if (regex_match (isex,regexpr)) {
-       if(stoi(isex)==1)person.sex = "мужской";
-       else person.sex = "женский";
+       if(stoi(isex)==1)person.sex = "male";
+       else person.sex = "female";
      break;
   } else  cout << "Введите корректный пол!\n";
  }
