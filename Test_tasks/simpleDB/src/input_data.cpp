@@ -59,16 +59,15 @@ void input_data(){
      } else  cout << "Введите корректный рост!\n";
  }
  cout << "\nВведен рост: "<<person.growth<<"\n\n";
- vector <pair<unsigned,string>> nations;
- print_nation(nations);
- cout<<nations.size();
+ vector <pair<unsigned,string>> listnations;
+ print_nation(listnations);
  cout<<"\nВведите национальность. Выберите номер из списка:\n";
  while(1){
      cin>>inations;
      regex regexpr ("[1-9]{1}[0-9]{0,2}");
      if (regex_match (inations,regexpr)) {
-         if (stold(inations) <= nations.size()) {
-         string nation = nations.at(stoi(inations)-1).second;
+         if (stold(inations) <= listnations.size()) {
+         string nation = listnations.at(stoi(inations)-1).second;
          person.nation = nation;
          break;
          } else  cout << "Введите корректный номер!\n";
