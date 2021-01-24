@@ -9,8 +9,6 @@ void input_data(){
  int max_long_life  = settings.value("max_long_life").toInt();
  int max_growth  = settings.value("max_growth").toInt();
  int max_weight  = settings.value("max_weight").toInt();
- cout<<max_long_life<<"\n"<<max_growth<<"\n"<<max_weight<<"\n";
-
  settings.endGroup();
  cout<<"Вводим новые данные:\n";
  cout<<"\nВведите имя латиницей:\n";
@@ -83,18 +81,9 @@ void input_data(){
          break;
          } else  cout << "Введите корректный вес!\n";
      } else  cout << "Введите корректный вес!\n";
- }
- cout << "\nВведен рост: "<<person.growth<<"\n\n";
-
-
-
-
-
-
-
-
-
-
+  }
+ cout << "\nВведен вес: "<<person.weight<<"\n";
+//Национальность
  vector <pair<unsigned,string>> listnations;
  print_nation(listnations);
  cout<<"\nВведите национальность. Выберите номер из списка:\n";
@@ -109,7 +98,7 @@ void input_data(){
          } else  cout << "Введите корректный номер!\n";
      } else  cout << "Введите корректный номер!\n";
  }
-  cout << "Выбрана национальность: "<<person.nation<<"\n\n";
+  cout << "Выбрана национальность: "<<person.nation<<"\n";
 
   person.print();
 

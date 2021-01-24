@@ -23,10 +23,5 @@ void print_nation(vector<pair<unsigned,string>>&nations){
     }
     is.close();
     print_vector(nations);
-
-
     cout<<'\n';
-
-
-
 }
