@@ -75,7 +75,7 @@ void input_data(){
  }
   cout << "Выбрана национальность: "<<person.nation<<"\n\n";
 
-
+  person.print();
 
 
 

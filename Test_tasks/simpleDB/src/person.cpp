@@ -6,4 +6,16 @@
  name(name),sex(sex),age(age),growth(growth),weight(weight),nation(nation),bithday(bithday) {};
  Person::~Person(){};
 
+ void Person::print(){
+     std::cout
+         <<"Имя: "<<name<<"\n"
+         <<"Пол: "<<sex<<"\n"
+         <<"Возраст: "<<age<<"\n"
+         <<"Рост: "<<growth<<"\n"
+         <<"Вес: "<<weight<<"\n"
+         <<"Национальность: "<<nation<<"\n"
+         <<"Дата рождения: "<<Person::bithday.toString().toStdString()<<"\n"
+         <<"Дата смерти: "<<Person::death.toString().toStdString()<<"\n"
+         <<"\n";
+ }
 
