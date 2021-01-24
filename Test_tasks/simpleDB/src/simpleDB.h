@@ -42,3 +42,4 @@ void print_nation();
 void print_nation(std::vector<std::pair<unsigned,std::string>>&);
 void input_death(Person &);
 void save_person(Person &);
+void read_person(Person &,std::string);

@@ -11,7 +11,6 @@ int main(int argc, char** argv) {
         "3 - редактирование данных:\n"<<
         "4 - завершить работу:\n";
   cin>>oper;
-//  if((oper!="1") && (oper!="2")&& (oper!="3")&& (oper!="4")){system("clear");cout<<"Повторите ввод\n\n";}
   regex regexpr ("[1234]");
   if (regex_match (oper,regexpr)) {
   if(oper == "1") read_data();
