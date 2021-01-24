@@ -18,11 +18,11 @@ void input_data(){
   cin>>iname;
   regex regexpr ("[A-Za-z]+");
   if (regex_match (iname,regexpr)) {
-     person.name = iname;
+      person.name = QString::fromStdString(iname);
      break;
   } else  cout << "Введите корректное имя!\n";
  }
- cout << "Введено имя: "<<person.name<<"\n"<<
+ cout << "Введено имя: "<<person.name.toStdString()<<"\n"<<
       "\nВведите пол:\n"<<"1 - мужчина\n"<<"2 - женщина\n";
 //Пол
  while(1){
@@ -34,7 +34,7 @@ void input_data(){
      break;
   } else  cout << "Введите корректный пол!\n";
  }
- cout << "Введен пол: "<<person.sex<<"\n"<<
+ cout << "Введен пол: "<<person.sex.toStdString()<<"\n"<<
      "\nВведите дату рождения в формате DD/MM/YYYY или DD-MM-YYYY:\n";
 //Дата рождения
  const QString DateFormat = "dd/MM/yyyy";
@@ -101,12 +101,12 @@ void input_data(){
      if (regex_match (inations,regexpr)) {
          if (stold(inations) <= listnations.size()) {
          string nation = listnations.at(stoi(inations)-1).second;
-         person.nation = nation;
+         person.nation = QString::fromStdString(nation);
          break;
          } else  cout << "Введите корректный номер!\n";
      } else  cout << "Введите корректный номер!\n";
  }
-  cout << "Выбрана национальность: "<<person.nation<<"\n";
+  cout << "Выбрана национальность: "<<person.nation.toStdString()<<"\n";
 
   if(person.live){
       cout<<"введите 1 если человек жив или 2  если нет\n";

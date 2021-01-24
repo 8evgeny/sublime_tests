@@ -7,12 +7,12 @@ public:
     ~Person();
     //имя, пол, возраст, рост, вес, национальность (выбор из внутреннего списка, например, подмножество https://tinyurl.com/q73okuc ),
     //    дата рождения,    дата смерти (может отсутствовать, ситуация должна быть корректно обработана).
-    std::string name;
-    std::string sex;
+    QString name;
+    QString sex;
     unsigned age;
     unsigned growth;
     unsigned weight;
-    std::string nation;
+    QString nation;
     QDate bithday;
     QDate death;
     bool live;
