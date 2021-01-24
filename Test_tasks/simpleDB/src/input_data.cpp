@@ -38,6 +38,7 @@ void input_data(){
      "\nВведите дату рождения в формате DD/MM/YYYY или DD-MM-YYYY:\n";
 //Дата рождения
  const QString DateFormat = "dd/MM/yyyy";
+ QDate date, current_date;
  while(1){
   cin>>ibighday;
   regex regexpr (
@@ -47,7 +48,6 @@ void input_data(){
    string day = ibighday.substr(0,2);
    string mounth = ibighday.substr(3,2);
    string year = ibighday.substr(6,4);
-   QDate date, current_date;
    date.setDate(stoi(year),stoi(mounth),stoi(day));
    person.bithday = date;
    current_date=QDate::currentDate();
@@ -55,10 +55,16 @@ void input_data(){
    break;
   } else  cout << "Введите корректную дату!\n";
  }
- cout<<"введена дата: "<<
- person.bithday.toString(DateFormat).toStdString()<<"\n"
+  cout<<"введена дата: "<<
+     person.bithday.toString(DateFormat).toStdString()<<"\n";
+//Возраст
+  int days = date.daysTo(current_date);
+  int age = days/365;
+  if (age>max_long_life) input_death(person);
+  if (age<=max_long_life) person.age = age;
+  cout<<"\nВозраст: "<<person.age<<"\n";
 //Рост
- << "\nВведите рост в сантиметрах: \n";
+ cout<< "\nВведите рост в сантиметрах: \n";
  while(1){
      cin>>igrowth;
      regex regexpr ("[1-9]{1}[0-9]{0,2}");

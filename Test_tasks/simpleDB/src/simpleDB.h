@@ -40,4 +40,4 @@ void input_data();
 void edit_data();
 void print_nation();
 void print_nation(std::vector<std::pair<unsigned,std::string>>&);
-
+void input_death(Person &);
