@@ -1,7 +1,8 @@
 #include "simpleDB.h"
 #include "person.h"
 
- Person::Person(){};
+ Person::Person(){
+     live=true;};
  Person::Person (std::string name,
                 std::string sex,
                 unsigned age,
@@ -10,7 +11,8 @@
                 std::string nation,
                 QDate bithday):
  name(name),sex(sex),age(age),growth(growth),weight(weight),nation(nation),bithday(bithday) {};
- Person::~Person(){};
+ Person::~Person(){
+     live=true;};
 
  void Person::print(){
      std::cout

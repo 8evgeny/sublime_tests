@@ -12,7 +12,7 @@ void input_data(){
  settings.endGroup();
  cout<<"Вводим новые данные:\n";
  cout<<"\nВведите имя латиницей:\n";
- string iname, isex, ibighday, igrowth, iweight, inations, ideath;
+ string iname, isex, ibighday, igrowth, iweight, inations, ilive;
 //Имя
  while(1){
   cin>>iname;
@@ -60,7 +60,10 @@ void input_data(){
 //Возраст
   int days = date.daysTo(current_date);
   int age = days/365;
-  if (age>max_long_life) input_death(person);
+  if (age>max_long_life) {
+      person.live = false;
+      input_death(person);
+  }
   if (age<=max_long_life) person.age = age;
   cout<<"\nВозраст: "<<person.age<<"\n";
 //Рост
@@ -105,6 +108,20 @@ void input_data(){
      } else  cout << "Введите корректный номер!\n";
  }
   cout << "Выбрана национальность: "<<person.nation<<"\n";
+
+  if(person.live){
+      cout<<"введите 1 если человек жив или 2  если нет\n";
+      while(1){
+          cin>>ilive;
+          regex regexpr ("[12]");
+          if (regex_match (isex,regexpr)) {
+              if(stoi(ilive)==2){
+                  person.live = false;
+                  input_death(person);
+                  break;}
+          } else  cout << "Введите корректный номер!\n";
+      }
+  }
 
   person.print();
 

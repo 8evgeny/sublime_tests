@@ -15,6 +15,7 @@ public:
     std::string nation;
     QDate bithday;
     QDate death;
+    bool live;
     void print();
 
 private:
