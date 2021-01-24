@@ -11,7 +11,7 @@ void edit_data(){
         cin>>iname;
         regex regexpr ("[A-Za-z]+");
         if (regex_match (iname,regexpr)) {
-            person.read_person(iname);
+            read_person(person,iname);
             break;
         } else  cout << "Введите корректное имя!\n";
     }

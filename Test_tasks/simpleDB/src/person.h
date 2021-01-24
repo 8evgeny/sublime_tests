@@ -18,6 +18,6 @@ public:
     bool live;
     void print();
     void save_person(Person &);
-    void read_person(std::string &);
+//    void read_person(std::string &);
 private:
 };

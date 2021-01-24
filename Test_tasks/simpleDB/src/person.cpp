@@ -34,29 +34,27 @@ using namespace std;
      //полный путь к файлу
      string path = patch_to_DB.toStdString()+"/"+person.name;
      ofstream file;
-     file.open(path,ofstream::binary);
+     file.open(path, ios::app | ios::out | ios::in | ios::binary);
      if(!file.is_open()) cout<<"ошибка открытия файла\n";
      else{
-         file.write((char*)&person, sizeof (Person));
+         int size = sizeof (person);
+         cout<<"размер: "<<size<<endl;
+         file.write((char*)&size, sizeof (int));
+         file.write((char*)&person, size);
+
+//       file.write((char*)&person.name, 10);
+//       file.write((char*)&person.sex, 10);
+//       file.write((char*)&person.age, 10);
+//       file.write((char*)&person.growth, 10);
+//       file.write((char*)&person.weight, 10);
+//       file.write((char*)&person.nation, 10);
+//       file.write((char*)&person.bithday, 10);
+//       file.write((char*)&person.death, 10);
+//       file.write((char*)&person.live, 10);
+
          cout<<"Данные успешно сохранены в файле: "<< person.name<<"\n";
      }
      file.close();
  }
 
- void Person::read_person(string & name){
-     QSettings settings(settingsFile, QSettings::IniFormat);
-     settings.beginGroup("person");
-     QString patch_to_DB = settings.value("patch_to_DB").toString();
-     settings.endGroup();
-     //полный путь к файлу
-     string path = patch_to_DB.toStdString()+"/"+name;
-     ifstream file;
-     file.open(path,ofstream::binary);
-     if(!file.is_open()) cout<<"ошибка открытия файла\n";
-     else{
-         while(file.read((char*)this, sizeof (Person)))
 
-             cout<<"Данные успешно прочитаны из файла: "<< name<<"\n";
-     }
-     file.close();
- }
