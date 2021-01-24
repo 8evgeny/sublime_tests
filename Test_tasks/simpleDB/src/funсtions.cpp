@@ -1,5 +1,4 @@
 #include "simpleDB.h"
-
 using namespace std;
 void fill_vector(QStringList& listFiles, vector<std::string>& v) {
     for (auto& file : listFiles) {

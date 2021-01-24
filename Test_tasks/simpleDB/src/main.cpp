@@ -3,6 +3,12 @@ using namespace std;
 //Регулярку даты доработать
 
 int main(int argc, char** argv) {
+
+//    Person person;
+//    string name = "aa";
+//    person.read_person(name);
+//    person.print();
+
  string oper ="0";
  while(1){
   cout<<"Введите операцию:\n"<<
@@ -19,6 +25,7 @@ int main(int argc, char** argv) {
   if(oper == "4") return 0;
   } else cout<<"Повторите ввод\n\n";
  }
+
 }
 
 

@@ -43,7 +43,7 @@ using namespace std;
      file.close();
  }
 
- void Person::read_person(Person & person,string & name){
+ void Person::read_person(string & name){
      QSettings settings(settingsFile, QSettings::IniFormat);
      settings.beginGroup("person");
      QString patch_to_DB = settings.value("patch_to_DB").toString();
@@ -54,7 +54,7 @@ using namespace std;
      file.open(path,ofstream::binary);
      if(!file.is_open()) cout<<"ошибка открытия файла\n";
      else{
-         while(file.read((char*)&person, sizeof (Person)))
+         while(file.read((char*)this, sizeof (Person)))
 
              cout<<"Данные успешно прочитаны из файла: "<< name<<"\n";
      }
