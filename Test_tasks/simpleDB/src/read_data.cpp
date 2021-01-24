@@ -1,7 +1,7 @@
 #include "simpleDB.h"
 void read_data(){
     QSettings settings(settingsFile, QSettings::IniFormat);
-    settings.beginGroup("nameDIR");
+    settings.beginGroup("person");
     QString patch_to_DB = settings.value("patch_to_DB").toString();
     settings.endGroup();
     std::vector<std::string> v;

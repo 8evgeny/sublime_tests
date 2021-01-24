@@ -4,6 +4,14 @@ using namespace std;
 void input_data(){
  system("clear");
  Person person;
+ QSettings settings(settingsFile, QSettings::IniFormat);
+ settings.beginGroup("person");
+ int max_long_life  = settings.value("max_long_life").toInt();
+ int max_growth  = settings.value("max_growth").toInt();
+ int max_weight  = settings.value("max_weight").toInt();
+ cout<<max_long_life<<"\n"<<max_growth<<"\n"<<max_weight<<"\n";
+
+ settings.endGroup();
  cout<<"Вводим новые данные:\n";
  cout<<"\nВведите имя латиницей:\n";
  string iname, isex, ibighday, igrowth, iweight, inations, ideath;
@@ -23,7 +31,8 @@ void input_data(){
   cin>>isex;
    regex regexpr ("[12]");
   if (regex_match (isex,regexpr)) {
-     person.sex = stoi(isex);
+       if(stoi(isex)==1)person.sex = "мужской";
+       else person.sex = "женский";
      break;
   } else  cout << "Введите корректный пол!\n";
  }
@@ -40,25 +49,52 @@ void input_data(){
    string day = ibighday.substr(0,2);
    string mounth = ibighday.substr(3,2);
    string year = ibighday.substr(6,4);
-   QDate date;
+   QDate date, current_date;
    date.setDate(stoi(year),stoi(mounth),stoi(day));
    person.bithday = date;
+   current_date=QDate::currentDate();
+   cout<<"Текущая дата: "<<current_date.toString().toStdString()<<"\n";
    break;
   } else  cout << "Введите корректную дату!\n";
  }
  cout<<"введена дата: "<<
  person.bithday.toString(DateFormat).toStdString()<<"\n"
- //Рост
+//Рост
  << "\nВведите рост в сантиметрах: \n";
  while(1){
      cin>>igrowth;
      regex regexpr ("[1-9]{1}[0-9]{0,2}");
      if (regex_match (igrowth,regexpr)) {
+         if(stoi(igrowth)<=max_growth){
          person.growth = stoi(igrowth);
          break;
+         } else  cout << "Введите корректный рост!\n";
      } else  cout << "Введите корректный рост!\n";
  }
+ cout << "\nВведен рост: "<<person.growth<<"\n\n"
+//Вес
+ << "\nВведите вес в килограммах: \n";
+ while(1){
+     cin>>iweight;
+     regex regexpr ("[1-9]{1}[0-9]{0,2}");
+     if (regex_match (iweight,regexpr)) {
+         if(stoi(iweight)<=max_weight){
+         person.weight = stoi(iweight);
+         break;
+         } else  cout << "Введите корректный вес!\n";
+     } else  cout << "Введите корректный вес!\n";
+ }
  cout << "\nВведен рост: "<<person.growth<<"\n\n";
+
+
+
+
+
+
+
+
+
+
  vector <pair<unsigned,string>> listnations;
  print_nation(listnations);
  cout<<"\nВведите национальность. Выберите номер из списка:\n";
