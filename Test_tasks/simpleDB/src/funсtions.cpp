@@ -76,7 +76,10 @@ person.age = stoi(age);
 person.growth = stoi(growth);
 person.weight = stoi(weight);
 person.nation = QString::fromStdString(nation);
-person.bithday = QDate::fromString(QString::fromStdString(bithday));
+//QDate::DateFormat(DateFormat)
+QString bd = QString::fromStdString(bithday);
+QDate da = QDate::fromString(bd);
+person.bithday = da;
 person.live = stoi(live);
 if(person.live == 0) person.death = QDate::fromString(QString::fromStdString(death));
     }
