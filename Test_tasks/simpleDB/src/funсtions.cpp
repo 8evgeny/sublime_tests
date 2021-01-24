@@ -30,19 +30,55 @@ void read_person(Person & person, string & name){
     settings.endGroup();
     //полный путь к файлу
     string path = patch_to_DB.toStdString()+"/"+name;
-    ifstream file;
-    file.open(path, ios::app | ios::out | ios::in | ios::binary);
+    fstream file;
+    file.open(path, fstream::app | fstream::out | fstream::in | fstream::binary);
     if(!file.is_open()) cout<<"ошибка открытия файла\n";
     else{
-        int size;
-        while(!file.eof()){
+//        int size;
+//        while(!file.eof()){
+//            file>>(char*)&person;
+//        file.read((char*)&size, sizeof (int));
+//        file.read((char*)&person, size);
+//        }
 
-        file.read((char*)&size, sizeof (int));
-        file.read((char*)&person, size);
-
-        }
-
-            cout<<"Данные успешно прочитаны из файла: "<< name<<"\n";
+string name;
+string sex;
+string age;
+string growth;
+string weight;
+string nation;
+string bithday;
+string death;
+string live;
+const QString DateFormat = "dd/MM/yyyy";
+file>>name;
+file>>sex;
+file>>age;
+file>>growth;
+file>>weight;
+file>>nation;
+file>>bithday;
+file>>death;
+file>>live;
+cout<<"name: "<<name<<"\n"
+<<"sex: "<<sex<<"\n"
+<<"age: "<<age<<"\n"
+<<"growth: "<<growth<<"\n"
+<<"weight: "<<weight<<"\n"
+<<"nation: "<<nation<<"\n"
+<<"bithday: "<<bithday<<"\n"
+<<"death: "<<death<<"\n"
+<<"live: "<<live<<"\n";
+cout<<"Данные успешно прочитаны из файла: "<< name<<"\n";
+person.name = QString::fromStdString(name);
+person.sex = QString::fromStdString(sex);
+person.age = stoi(age);
+person.growth = stoi(growth);
+person.weight = stoi(weight);
+person.nation = QString::fromStdString(nation);
+person.bithday = QDate::fromString(QString::fromStdString(bithday));
+person.live = stoi(live);
+if(person.live == 0) person.death = QDate::fromString(QString::fromStdString(death));
     }
     file.close();
 }

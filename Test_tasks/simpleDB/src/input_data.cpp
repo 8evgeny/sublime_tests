@@ -127,6 +127,7 @@ void input_data(){
   else{
       person.age = person.bithday.daysTo(person.death)/365;
   }
+
   system("clear");
   person.print();
   cout <<"Подтвердите правильность введенных данных:\n"
