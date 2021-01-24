@@ -17,5 +17,7 @@ public:
     QDate death;
     bool live;
     void print();
+    void save_person(Person &);
+    void read_person(Person & ,std::string &);
 private:
 };

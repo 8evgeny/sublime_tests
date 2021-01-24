@@ -135,7 +135,7 @@ void input_data(){
       cin>>isave;
       regex regexpr ("[12]");
       if (regex_match (isave,regexpr)) {
-          if(stoi(isave)==1) save_person(person);
+          if(stoi(isave)==1) person.save_person(person);
           if(stoi(isave)==2) {
            person.live = true;
           }
