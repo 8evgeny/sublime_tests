@@ -62,8 +62,6 @@ void input_data(){
  vector <pair<unsigned,string>> nations;
  print_nation(nations);
  cout<<"\nВведите национальность. Выберите номер из списка:\n";
-
-
  while(1){
      cin>>inations;
      regex regexpr ("[1-9]{1}[0-9]{0,2}");
@@ -74,7 +72,7 @@ void input_data(){
      break;
      } else  cout << "Введите корректный номер!\n";
  }
-  cout << "\nВыбрана национальность: "<<person.nation<<"\n\n";
+  cout << "Выбрана национальность: "<<person.nation<<"\n\n";
 
 
 

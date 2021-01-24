@@ -9,8 +9,6 @@ void print_nation(vector<pair<unsigned,string>>&nations){
     ifstream is(path.c_str());
     char c;
     string stchar;
-
-//    vector <pair<unsigned,string>> nations;
     pair<unsigned,string> p;
     unsigned i = 1;
     while (!is.eof()){
@@ -18,7 +16,7 @@ void print_nation(vector<pair<unsigned,string>>&nations){
         if(c!='\n')stchar.push_back(c);
         if(c =='\n'){
       pair<unsigned,string> p(i,stchar);
-      nations.push_back(p);
+      if(p.second !="")nations.push_back(p);
       stchar.clear();
       ++i;
       }
