@@ -12,7 +12,7 @@ void input_data(){
  settings.endGroup();
  cout<<"Вводим новые данные:\n";
  cout<<"\nВведите имя латиницей:\n";
- string iname, isex, ibighday, igrowth, iweight, inations, ilive;
+ string iname, isex, ibighday, igrowth, iweight, inations, ilive, isave;
 //Имя
  while(1){
   cin>>iname;
@@ -64,8 +64,7 @@ void input_data(){
       person.live = false;
       input_death(person);
   }
-  if (age<=max_long_life) person.age = age;
-  cout<<"\nВозраст: "<<person.age<<"\n";
+
 //Рост
  cout<< "\nВведите рост в сантиметрах: \n";
  while(1){
@@ -114,18 +113,35 @@ void input_data(){
       while(1){
           cin>>ilive;
           regex regexpr ("[12]");
-          if (regex_match (isex,regexpr)) {
+          if (regex_match (ilive,regexpr)) {
               if(stoi(ilive)==2){
-                  person.live = false;
-                  input_death(person);
-                  break;}
+                person.live = false;
+                input_death(person);
+              }
+              break;
           } else  cout << "Введите корректный номер!\n";
       }
   }
 
+  if (person.live) person.age = age;
+  else{
+      person.age = person.bithday.daysTo(person.death)/365;
+  }
+  system("clear");
   person.print();
-
-
+  cout <<"Подтвердите правильность введенных данных:\n"
+         "1 - сохранить данные в базе\n2 - не сохранять ";
+  while(1){
+      cin>>isave;
+      regex regexpr ("[12]");
+      if (regex_match (isave,regexpr)) {
+          if(stoi(isave)==1) save_person(person);
+          if(stoi(isave)==2) {
+           person.live = true;
+          }
+       break;
+      } else  cout << "Введите корректный номер!\n";
+  }
 
 };//end void input_data()
 

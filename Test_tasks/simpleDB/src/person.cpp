@@ -10,9 +10,8 @@
                 unsigned weight,
                 std::string nation,
                 QDate bithday):
- name(name),sex(sex),age(age),growth(growth),weight(weight),nation(nation),bithday(bithday) {};
- Person::~Person(){
-     live=true;};
+ name(name),sex(sex),age(age),growth(growth),weight(weight),nation(nation),bithday(bithday) {live=true;};
+ Person::~Person(){};
 
  void Person::print(){
      std::cout

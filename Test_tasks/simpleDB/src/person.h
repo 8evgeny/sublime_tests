@@ -17,6 +17,5 @@ public:
     QDate death;
     bool live;
     void print();
-
 private:
 };
