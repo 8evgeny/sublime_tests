@@ -25,13 +25,13 @@ using namespace std;
          <<"8\tДата смерти: "<<Person::death.toString().toStdString()<<"\n"
          <<"\n";
  }
- void Person::save_person(Person & person){
+ void Person::save_person(){
      QSettings settings(settingsFile, QSettings::IniFormat);
      settings.beginGroup("person");
      QString patch_to_DB = settings.value("patch_to_DB").toString();
      settings.endGroup();
      //полный путь к файлу
-     string path = patch_to_DB.toStdString()+"/"+person.name.toStdString();
+     string path = patch_to_DB.toStdString()+"/"+this->name.toStdString();
      fstream file;
      file.open(path, fstream::app | fstream::out | fstream::in | fstream::binary);
      if(!file.is_open()) cout<<"ошибка открытия файла\n";
@@ -50,17 +50,17 @@ using namespace std;
 //QDate death;
 //bool live;
 const QString DateFormat = "dd/MM/yyyy";
-        file<<person.name.toStdString()<<"\n";
-        file<<person.sex.toStdString()<<"\n";
-        file<<person.age<<"\n";
-        file<<person.growth<<"\n";
-        file<<person.weight<<"\n";
-        file<<person.nation.toStdString()<<"\n";
-        file<<person.bithday.toString(DateFormat).toStdString()<<"\n";
-        if (!person.live) file<<person.death.toString(DateFormat).toStdString()<<"\n";
-        if (person.live) file<<"no"<<"\n";
-        file<<person.live<<"\n";
-         cout<<"Данные успешно сохранены в файле: "<< person.name.toStdString()<<"\n";
+        file<<this->name.toStdString()<<"\n";
+        file<<this->sex.toStdString()<<"\n";
+        file<<this->age<<"\n";
+        file<<this->growth<<"\n";
+        file<<this->weight<<"\n";
+        file<<this->nation.toStdString()<<"\n";
+        file<<this->bithday.toString(DateFormat).toStdString()<<"\n";
+        if (!this->live) file<<this->death.toString(DateFormat).toStdString()<<"\n";
+        if (this->live) file<<"no"<<"\n";
+        file<<this->live<<"\n";
+         cout<<"Данные успешно сохранены в файле: "<< this->name.toStdString()<<"\n";
      }
      file.close();
  }
@@ -136,4 +136,52 @@ while(1){
        } else  cout << "Введите корректную дату!\n";
       }
       cout<<"Введена дата смерти: "<<this->death.toString(DateFormat).toStdString()<<"\n";
+ }
+ void Person::input_growth(int max_growth){
+ string igrowth;
+  cout<< "\nВведите рост в сантиметрах: \n";
+  while(1){
+      cin>>igrowth;
+      regex regexpr ("[1-9]{1}[0-9]{0,2}");
+      if (regex_match (igrowth,regexpr)) {
+          if(stoi(igrowth)<=max_growth){
+          this->growth = stoi(igrowth);
+          break;
+          } else  cout << "Введите корректный рост!\n";
+      } else  cout << "Введите корректный рост!\n";
+  }
+  cout << "\nВведен рост: "<<this->growth<<"\n\n";
+}
+ void Person::input_weight(int max_weight){
+ string iweight;
+ cout<< "\nВведите вес в килограммах: \n";
+ while(1){
+     cin>>iweight;
+     regex regexpr ("[1-9]{1}[0-9]{0,2}");
+     if (regex_match (iweight,regexpr)) {
+         if(stoi(iweight)<=max_weight){
+         this->weight = stoi(iweight);
+         break;
+         } else  cout << "Введите корректный вес!\n";
+     } else  cout << "Введите корректный вес!\n";
+  }
+ cout << "\nВведен вес: "<<this->weight<<"\n";
+ }
+ void Person::input_nation(){
+ string inations;
+  vector <pair<unsigned,string>> listnations;
+  print_nation(listnations);
+  cout<<"\nВведите национальность. Выберите номер из списка:\n";
+  while(1){
+      cin>>inations;
+      regex regexpr ("[1-9]{1}[0-9]{0,2}");
+      if (regex_match (inations,regexpr)) {
+          if (stold(inations) <= listnations.size()) {
+          string nation = listnations.at(stoi(inations)-1).second;
+          this->nation = QString::fromStdString(nation);
+          break;
+          } else  cout << "Введите корректный номер!\n";
+      } else  cout << "Введите корректный номер!\n";
+  }
+   cout << "Выбрана национальность: "<<this->nation.toStdString()<<"\n";
  }

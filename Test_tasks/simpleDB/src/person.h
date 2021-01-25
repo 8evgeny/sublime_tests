@@ -17,11 +17,14 @@ public:
     QDate death;
     bool live;
     void print();
-    void save_person(Person &);
+    void save_person();
     void input_name();
     void input_sex();
     void input_bithday();
     void input_death();
+    void input_growth(int);
+    void input_weight(int);
+    void input_nation();
 //    void read_person(std::string &);
 private:
 };
