@@ -16,7 +16,6 @@ using namespace std;
 //                QDate bithday):
 // name(name),sex(sex),age(age),growth(growth),weight(weight),nation(nation),bithday(bithday) {live=true;};
  Person::~Person(){};
-
  void Person::print(){
      std::cout
          <<"1\tИмя: "<<name.toStdString()<<"\n"
@@ -28,6 +27,58 @@ using namespace std;
          <<"7\tДата рождения: "<<Person::bithday.toString().toStdString()<<"\n"
          <<"8\tДата смерти: "<<Person::death.toString().toStdString()<<"\n"
          <<"\n";
+ }
+ void Person::read_person(string & name){
+     QSettings settings(settingsFile, QSettings::IniFormat);
+     settings.beginGroup("person");
+     QString patch_to_DB = settings.value("patch_to_DB").toString();
+     settings.endGroup();
+     //полный путь к файлу
+     string path = patch_to_DB.toStdString()+"/"+name;
+     fstream file;
+     file.open(path, fstream::out | fstream::in | fstream::binary);
+     if(!file.is_open()) cout<<"ошибка открытия файла\n";
+     else{
+ string name;
+ string sex;
+ string age;
+ string growth;
+ string weight;
+ string nation;
+ string bithday;
+ string death;
+ string live;
+ const QString DateFormat = "dd/MM/yyyy";
+ file>>name;
+ file>>sex;
+ file>>age;
+ file>>growth;
+ file>>weight;
+ file>>nation;
+ file>>bithday;
+ file>>death;
+ file>>live;
+ //cout<<"name: "<<name<<"\n"
+ //<<"sex: "<<sex<<"\n"
+ //<<"age: "<<age<<"\n"
+ //<<"growth: "<<growth<<"\n"
+ //<<"weight: "<<weight<<"\n"
+ //<<"nation: "<<nation<<"\n"
+ //<<"bithday: "<<bithday<<"\n"
+ //<<"death: "<<death<<"\n"
+ //<<"live: "<<live<<"\n";
+ cout<<"\nДанные успешно прочитаны из файла: "<< name<<"\n";
+ this->name = QString::fromStdString(name);
+ this->sex = QString::fromStdString(sex);
+ this->age = stoi(age);
+ this->growth = stoi(growth);
+ this->weight = stoi(weight);
+ this->nation = QString::fromStdString(nation);
+ this->bithday = string_toqtate(bithday);
+ this->live = stoi(live);
+ if(this->live == 0) this->death = string_toqtate(death);
+     }
+     file.close();
  }
  void Person::save_person(){
      QSettings settings(settingsFile, QSettings::IniFormat);

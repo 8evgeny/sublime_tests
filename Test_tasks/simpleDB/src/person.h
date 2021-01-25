@@ -18,6 +18,7 @@ public:
     bool live;
     void print();
     void save_person();
+    void read_person(std::string &);
     void input_name();
     void input_sex();
     void input_bithday();

@@ -40,6 +40,5 @@ void input_data();
 void edit_data();
 void print_nation();
 void print_nation(std::vector<std::pair<unsigned,std::string>> &);
-void read_person(Person &, std::string &);
 void delete_file(QString &);
 QDate string_toqtate(std::string);
