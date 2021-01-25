@@ -58,15 +58,6 @@ using namespace std;
  file>>bithday;
  file>>death;
  file>>live;
- //cout<<"name: "<<name<<"\n"
- //<<"sex: "<<sex<<"\n"
- //<<"age: "<<age<<"\n"
- //<<"growth: "<<growth<<"\n"
- //<<"weight: "<<weight<<"\n"
- //<<"nation: "<<nation<<"\n"
- //<<"bithday: "<<bithday<<"\n"
- //<<"death: "<<death<<"\n"
- //<<"live: "<<live<<"\n";
  cout<<"\nДанные успешно прочитаны из файла: "<< name<<"\n";
  this->name = QString::fromStdString(name);
  this->sex = QString::fromStdString(sex);
@@ -122,13 +113,12 @@ const QString DateFormat = "dd/MM/yyyy";
  void Person::input_sex(){
   string isex;
  cout <<"\nВведите пол:\n"<<"1 - мужчина\n"<<"2 - женщина\n";
-//Пол
  while(1){
   cin>>isex;
    regex regexpr ("[12]");
   if (regex_match (isex,regexpr)) {
-       if(stoi(isex)==1)this->sex = "male";
-       else this->sex = "female";
+       if(stoi(isex)==1)this->sex = "мужской";
+       else this->sex = "женский";
      break;
   } else  cout << "Введите корректный пол!\n";
  }

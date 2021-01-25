@@ -8,21 +8,28 @@ void edit_data(){
     int max_weight  = settings.value("max_weight").toInt();
     settings.endGroup();
 
-
-    string iname;
+    unsigned i;
+    string inum;
     Person person;
     system("clear");
     cout<<"\nРедактируем существующую запись в БД:\n";
-    read_data();
-    cout<<"введите имя персоны:\n";
+    unsigned number_person = read_data();
+    cout<<"введите номер записи для редактирования:\n";
+
     while(1){
-        cin>>iname;
-        regex regexpr ("[A-Za-z]+");
-        if (regex_match (iname,regexpr)) {
-            person.read_person(iname);
-            break;
-        } else  cout << "Введите корректное имя!\n";
+        cin>>inum;
+        regex regexpr ("[0-9]+");
+        if (regex_match (inum,regexpr)) {
+            i = stoi(inum);
+            if((i < number_person) && (i > 0)) {
+                break;
+            }else cout << "Введите корректный номер!\n";
+        } else  cout << "Введите корректный номер!\n";
     }
+    // i - номер записи для показа
+    string name = name_from_munber(i);
+    person.read_person(name);
+
     cout<<"Выводим данные о персоне:\n";
     person.print();
  cout<<"введите номер записи для редактирования: \n";
