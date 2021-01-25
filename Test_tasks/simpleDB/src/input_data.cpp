@@ -63,6 +63,6 @@ void input_data(){
       } else  cout << "Введите корректный номер!\n";
   }
 
-};//end void input_data()
+}
 
 

@@ -2,7 +2,11 @@
 #include "person.h"
 using namespace std;
  Person::Person(){
-     live=true;};
+     live=true;
+     age = 0;
+     weight=0;
+     growth=0;
+ };
 // Person::Person (string name,
 //                string sex,
 //                unsigned age,
@@ -36,19 +40,7 @@ using namespace std;
      file.open(path, fstream::app | fstream::out | fstream::in | fstream::binary);
      if(!file.is_open()) cout<<"ошибка открытия файла\n";
      else{
-//         int size = sizeof (person);
-//         cout<<"размер: "<<size<<endl;
-//         file.write((char*)&size, sizeof (int));
-//         file.write((char*)&person, size);
-//QString name;
-//QString sex;
-//unsigned age;
-//unsigned growth;
-//unsigned weight;
-//QString nation;
-//QDate bithday;
-//QDate death;
-//bool live;
+
 const QString DateFormat = "dd/MM/yyyy";
         file<<this->name.toStdString()<<"\n";
         file<<this->sex.toStdString()<<"\n";
