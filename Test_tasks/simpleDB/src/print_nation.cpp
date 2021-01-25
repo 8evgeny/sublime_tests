@@ -5,7 +5,7 @@ void print_nation(vector<pair<unsigned,string>>&nations){
     settings.beginGroup("nationDIR");
     QString patch_to_nation = settings.value("patch_to_nation").toString();
     settings.endGroup();
-    string path = patch_to_nation.toStdString()+"/nations1";
+    string path = patch_to_nation.toStdString()+"/nations";
     ifstream is(path.c_str());
     char c;
     string stchar;

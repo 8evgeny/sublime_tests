@@ -92,4 +92,13 @@ if(person.live == 0) person.death = string_toqtate(death);
     file.close();
 }
 
-
+void delete_file(QString & name){
+    QSettings settings(settingsFile, QSettings::IniFormat);
+    settings.beginGroup("person");
+    QString patch_to_DB = settings.value("patch_to_DB").toString();
+    settings.endGroup();
+    //полный путь к файлу
+    string path = patch_to_DB.toStdString()+"/" + name.toStdString();
+    string command = "rm " + path;
+    system(command.c_str()); //удаление файла
+}

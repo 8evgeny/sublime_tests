@@ -1,5 +1,6 @@
 #include "simpleDB.h"
 using namespace std;
+//При переименовании удалять старый файл
 
 int main(int argc, char** argv) {
 

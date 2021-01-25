@@ -28,7 +28,7 @@
 #include <string>
 #include <fstream>
 //#include <map>
-//#include <algorithm>
+#include <algorithm>
 //#include <execution>
 #include "person.h"
 const QString settingsFile = "configDB.ini";
@@ -41,4 +41,5 @@ void edit_data();
 void print_nation();
 void print_nation(std::vector<std::pair<unsigned,std::string>> &);
 void read_person(Person &, std::string &);
+void delete_file(QString &);
 QDate string_toqtate(std::string);

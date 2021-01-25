@@ -31,7 +31,11 @@ void edit_data(){
   cin>>num;
   regex regexpr ("[1245678]");
   if (regex_match (num,regexpr)) {
-   if(stoi(num)==1) person.input_name();
+   if(stoi(num)==1) {
+       QString old_name = person.name;
+       delete_file(old_name);
+       person.input_name();
+       }
    if(stoi(num)==2) person.input_sex();
    if(stoi(num)==4) person.input_growth(max_growth);
    if(stoi(num)==5) person.input_weight(max_weight);
@@ -48,7 +52,7 @@ void edit_data(){
 
 
    }
-
+  person.save_person();
    break;
         }else  cout << "Введите корректный номер!\n";
         }
