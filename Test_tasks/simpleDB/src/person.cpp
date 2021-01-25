@@ -37,10 +37,9 @@ using namespace std;
      //полный путь к файлу
      string path = patch_to_DB.toStdString()+"/"+this->name.toStdString();
      fstream file;
-     file.open(path, fstream::out | fstream::in | fstream::binary);
+     file.open(path, fstream::out | fstream::binary);
      if(!file.is_open()) cout<<"ошибка открытия файла\n";
      else{
-
 const QString DateFormat = "dd/MM/yyyy";
         file<<this->name.toStdString()<<"\n";
         file<<this->sex.toStdString()<<"\n";
@@ -86,7 +85,7 @@ const QString DateFormat = "dd/MM/yyyy";
  }
  void Person::input_bithday(){
   string ibighday;
- cout<<   "\nВведите дату рождения в формате DD/MM/YYYY или DD-MM-YYYY:\n";
+ cout<<   "\nВведите дату рождения в формате DD/MM/YYYY:\n";
 //Дата рождения
 const QString DateFormat = "dd/MM/yyyy";
 while(1){
