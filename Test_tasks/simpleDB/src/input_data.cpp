@@ -11,46 +11,20 @@ void input_data(){
  int max_weight  = settings.value("max_weight").toInt();
  settings.endGroup();
  cout<<"Вводим новые данные:\n";
- cout<<"\nВведите имя латиницей:\n";
- string isex, ibighday, igrowth, iweight, inations, ilive, isave;
+ string  igrowth, iweight, inations, ilive, isave;
  person.input_name();
-
- cout <<"\nВведите пол:\n"<<"1 - мужчина\n"<<"2 - женщина\n";
-//Пол
- while(1){
-  cin>>isex;
-   regex regexpr ("[12]");
-  if (regex_match (isex,regexpr)) {
-       if(stoi(isex)==1)person.sex = "male";
-       else person.sex = "female";
-     break;
-  } else  cout << "Введите корректный пол!\n";
- }
- cout << "Введен пол: "<<person.sex.toStdString()<<"\n"<<
-     "\nВведите дату рождения в формате DD/MM/YYYY или DD-MM-YYYY:\n";
-//Дата рождения
- const QString DateFormat = "dd/MM/yyyy";
+ person.input_sex();
+ person.input_bithday();
  QDate current_date;
- while(1){
-  cin>>ibighday;
-  regex regexpr (
- "(0[1-9]|[12][0-9]|3[01])[/](0?[1-9]|1[12])[/](1[0-9][0-9]{2}|[2][0][0-9]{2})"
- );
-  if (regex_match (ibighday,regexpr)) {
-   person.bithday = string_toqtate(ibighday);
-   current_date=QDate::currentDate();
-   cout<<"Текущая дата: "<<current_date.toString().toStdString()<<"\n";
-   break;
-  } else  cout << "Введите корректную дату!\n";
- }
-  cout<<"введена дата: "<<
-     person.bithday.toString(DateFormat).toStdString()<<"\n";
+ current_date=QDate::currentDate();
+ cout<<"Текущая дата: "<<current_date.toString().toStdString()<<"\n";
+
 //Возраст
   int days = person.bithday.daysTo(current_date);
   int age = days/365;
   if (age>max_long_life) {
       person.live = false;
-      input_death(person);
+      person.input_death();
   }
 
 //Рост
@@ -104,7 +78,7 @@ void input_data(){
           if (regex_match (ilive,regexpr)) {
               if(stoi(ilive)==2){
                 person.live = false;
-                input_death(person);
+                person.input_death();
               }
               break;
           } else  cout << "Введите корректный номер!\n";
