@@ -11,7 +11,6 @@ void input_data(){
  int max_weight  = settings.value("max_weight").toInt();
  settings.endGroup();
  cout<<"Вводим новые данные:\n";
- string  igrowth, iweight, inations, ilive, isave;
  person.input_name();
  person.input_sex();
  person.input_bithday();
@@ -28,6 +27,7 @@ void input_data(){
  person.input_growth(max_growth);
  person.input_weight(max_weight);
  person.input_nation();
+ string  ilive, isave;
  if(person.live){
       cout<<"введите 1 если человек жив или 2  если нет\n";
       while(1){
