@@ -45,11 +45,7 @@ void input_data(){
  "(0?[1-9]|[12][0-9]|3[01])[/ -](0?[1-9]|1[12])[/ -](19[0-9]{2}|[2][0-9][0-9]{2})"
  );
   if (regex_match (ibighday,regexpr)) {
-   string day = ibighday.substr(0,2);
-   string mounth = ibighday.substr(3,2);
-   string year = ibighday.substr(6,4);
-   date.setDate(stoi(year),stoi(mounth),stoi(day));
-   person.bithday = date;
+   person.bithday = string_toqtate(ibighday);
    current_date=QDate::currentDate();
    cout<<"Текущая дата: "<<current_date.toString().toStdString()<<"\n";
    break;

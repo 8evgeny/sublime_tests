@@ -23,6 +23,15 @@ void print_vector(vector<pair<unsigned,string>>& v) {
     cout<<'\n';
 }
 
+QDate string_toqtate(string stringdate){
+    QDate date;
+    string day = stringdate.substr(0,2);
+    string mounth = stringdate.substr(3,2);
+    string year = stringdate.substr(6,4);
+    date.setDate(stoi(year),stoi(mounth),stoi(day));
+    return date;
+}
+
 void read_person(Person & person, string & name){
     QSettings settings(settingsFile, QSettings::IniFormat);
     settings.beginGroup("person");
@@ -60,15 +69,15 @@ file>>nation;
 file>>bithday;
 file>>death;
 file>>live;
-cout<<"name: "<<name<<"\n"
-<<"sex: "<<sex<<"\n"
-<<"age: "<<age<<"\n"
-<<"growth: "<<growth<<"\n"
-<<"weight: "<<weight<<"\n"
-<<"nation: "<<nation<<"\n"
-<<"bithday: "<<bithday<<"\n"
-<<"death: "<<death<<"\n"
-<<"live: "<<live<<"\n";
+//cout<<"name: "<<name<<"\n"
+//<<"sex: "<<sex<<"\n"
+//<<"age: "<<age<<"\n"
+//<<"growth: "<<growth<<"\n"
+//<<"weight: "<<weight<<"\n"
+//<<"nation: "<<nation<<"\n"
+//<<"bithday: "<<bithday<<"\n"
+//<<"death: "<<death<<"\n"
+//<<"live: "<<live<<"\n";
 cout<<"Данные успешно прочитаны из файла: "<< name<<"\n";
 person.name = QString::fromStdString(name);
 person.sex = QString::fromStdString(sex);
@@ -76,12 +85,9 @@ person.age = stoi(age);
 person.growth = stoi(growth);
 person.weight = stoi(weight);
 person.nation = QString::fromStdString(nation);
-//QDate::DateFormat(DateFormat)
-QString bd = QString::fromStdString(bithday);
-QDate da = QDate::fromString(bd);
-person.bithday = da;
+person.bithday = string_toqtate(bithday);
 person.live = stoi(live);
-if(person.live == 0) person.death = QDate::fromString(QString::fromStdString(death));
+if(person.live == 0) person.death = string_toqtate(death);
     }
     file.close();
 }
