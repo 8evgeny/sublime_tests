@@ -25,7 +25,6 @@ using namespace std;
          <<"8\tДата смерти: "<<Person::death.toString().toStdString()<<"\n"
          <<"\n";
  }
-
  void Person::save_person(Person & person){
      QSettings settings(settingsFile, QSettings::IniFormat);
      settings.beginGroup("person");
@@ -65,5 +64,15 @@ const QString DateFormat = "dd/MM/yyyy";
      }
      file.close();
  }
-
-
+ void Person::input_name(){
+     string iname;
+      while(1){
+       cin>>iname;
+       regex regexpr ("[A-Za-z]+");
+       if (regex_match (iname,regexpr)) {
+           this->name = QString::fromStdString(iname);
+          break;
+       } else  cout << "Введите корректное имя!\n";
+      }
+      cout << "Введено имя: "<<this->name.toStdString()<<"\n";
+ }

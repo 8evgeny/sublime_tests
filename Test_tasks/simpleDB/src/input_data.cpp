@@ -12,18 +12,10 @@ void input_data(){
  settings.endGroup();
  cout<<"Вводим новые данные:\n";
  cout<<"\nВведите имя латиницей:\n";
- string iname, isex, ibighday, igrowth, iweight, inations, ilive, isave;
-//Имя
- while(1){
-  cin>>iname;
-  regex regexpr ("[A-Za-z]+");
-  if (regex_match (iname,regexpr)) {
-      person.name = QString::fromStdString(iname);
-     break;
-  } else  cout << "Введите корректное имя!\n";
- }
- cout << "Введено имя: "<<person.name.toStdString()<<"\n"<<
-      "\nВведите пол:\n"<<"1 - мужчина\n"<<"2 - женщина\n";
+ string isex, ibighday, igrowth, iweight, inations, ilive, isave;
+ person.input_name();
+
+ cout <<"\nВведите пол:\n"<<"1 - мужчина\n"<<"2 - женщина\n";
 //Пол
  while(1){
   cin>>isex;

@@ -206,3 +206,6 @@ sudo dd if=/dev/sdc bs=4M conv=noerror | gzip -c > M4_22_01_2021.iso.zip
 восстановление
 gunzip -c T4_22_01_2021.iso.zip | dd of=/dev/sdс conv=noerror bs=4M
 gunzip -c M4_22_01_2021.iso.zip | dd of=/dev/sdс conv=noerror bs=4M
+
+
+sudo dd if=/dev/sdc of=T4_25_01_2021.iso  bs=4M status=progress;sync
