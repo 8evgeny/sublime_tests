@@ -7,14 +7,7 @@ using namespace std;
      weight=0;
      growth=0;
  };
-// Person::Person (string name,
-//                string sex,
-//                unsigned age,
-//                unsigned growth,
-//                unsigned weight,
-//                string nation,
-//                QDate bithday):
-// name(name),sex(sex),age(age),growth(growth),weight(weight),nation(nation),bithday(bithday) {live=true;};
+
  Person::~Person(){};
  void Person::print(){
      std::cout

@@ -3,7 +3,8 @@ using namespace std;
 
 int main(int argc, char** argv) {
 //не просматривает и не редактирует последнюю запись
-
+//сделать удаление данных
+//edit  7 и 8  пункт
  string oper ="0";
  while(1){
   cout<<"Введите операцию:\n"<<

@@ -14,7 +14,7 @@ void edit_data(){
     system("clear");
     cout<<"\nРедактируем существующую запись в БД:\n";
     unsigned number_person = read_data();
-    cout<<"введите номер записи для редактирования:\n";
+    cout<<"введите номер поля для редактирования:\n";
 
     while(1){
         cin>>inum;

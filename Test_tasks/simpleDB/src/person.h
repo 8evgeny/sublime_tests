@@ -5,8 +5,6 @@ public:
     Person(std::string ,std::string , unsigned ,unsigned , unsigned ,std::string ,QDate );
     Person();
     ~Person();
-    //имя, пол, возраст, рост, вес, национальность (выбор из внутреннего списка, например, подмножество https://tinyurl.com/q73okuc ),
-    //    дата рождения,    дата смерти (может отсутствовать, ситуация должна быть корректно обработана).
     QString name;
     QString sex;
     unsigned age;
@@ -26,6 +24,5 @@ public:
     void input_growth(int);
     void input_weight(int);
     void input_nation();
-//    void read_person(std::string &);
 private:
 };
