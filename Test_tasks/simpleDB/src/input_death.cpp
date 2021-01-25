@@ -10,7 +10,7 @@ void input_death(Person & person){
  while(1){
   cin>>ideath;
   regex regexpr (
-"(0?[1-9]|[12][0-9]|3[01])[/ -](0?[1-9]|1[12])[/ -](19[0-9]{2}|[2][0-9][0-9]{2})"
+"(0[1-9]|[12][0-9]|3[01])[/](0?[1-9]|1[12])[/](1[0-9][0-9]{2}|[2][0][0-9]{2})"
   );
   if (regex_match (ideath,regexpr)) {
    string day = ideath.substr(0,2);
