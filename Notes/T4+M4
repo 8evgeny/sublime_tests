@@ -209,3 +209,7 @@ gunzip -c M4_22_01_2021.iso.zip | dd of=/dev/sdс conv=noerror bs=4M
 
 
 sudo dd if=/dev/sdc of=T4_25_01_2021.iso  bs=4M status=progress;sync
+sudo dd if=T4_25_01_2021.iso of=/dev/sdc  bs=4M status=progress;sync
+
+sudo dd if=/dev/sdc of=M4_25_01_2021.iso  bs=4M status=progress;sync
+sudo dd if=M4_25_01_2021.iso of=/dev/sdc  bs=4M status=progress;sync

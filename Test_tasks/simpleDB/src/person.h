@@ -19,6 +19,9 @@ public:
     void print();
     void save_person(Person &);
     void input_name();
+    void input_sex();
+    void input_bithday();
+    void input_death();
 //    void read_person(std::string &);
 private:
 };
