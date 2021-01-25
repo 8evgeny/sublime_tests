@@ -1,6 +1,6 @@
 #include "simpleDB.h"
 using namespace std;
-//При переименовании удалять старый файл
+//read_person перенести в класс
 
 int main(int argc, char** argv) {
 

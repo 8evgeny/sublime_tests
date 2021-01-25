@@ -40,7 +40,7 @@ void read_person(Person & person, string & name){
     //полный путь к файлу
     string path = patch_to_DB.toStdString()+"/"+name;
     fstream file;
-    file.open(path, fstream::app | fstream::out | fstream::in | fstream::binary);
+    file.open(path, fstream::out | fstream::in | fstream::binary);
     if(!file.is_open()) cout<<"ошибка открытия файла\n";
     else{
 //        int size;
