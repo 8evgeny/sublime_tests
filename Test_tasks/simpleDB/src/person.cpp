@@ -15,14 +15,14 @@ using namespace std;
 
  void Person::print(){
      std::cout
-         <<"Имя: "<<name.toStdString()<<"\n"
-         <<"Пол: "<<sex.toStdString()<<"\n"
-         <<"Возраст: "<<age<<"\n"
-         <<"Рост: "<<growth<<"\n"
-         <<"Вес: "<<weight<<"\n"
-         <<"Национальность: "<<nation.toStdString()<<"\n"
-         <<"Дата рождения: "<<Person::bithday.toString().toStdString()<<"\n"
-         <<"Дата смерти: "<<Person::death.toString().toStdString()<<"\n"
+         <<"1\tИмя: "<<name.toStdString()<<"\n"
+         <<"2\tПол: "<<sex.toStdString()<<"\n"
+         <<"3\tВозраст: "<<age<<"\n"
+         <<"4\tРост: "<<growth<<"\n"
+         <<"5\tВес: "<<weight<<"\n"
+         <<"6\tНациональность: "<<nation.toStdString()<<"\n"
+         <<"7\tДата рождения: "<<Person::bithday.toString().toStdString()<<"\n"
+         <<"8\tДата смерти: "<<Person::death.toString().toStdString()<<"\n"
          <<"\n";
  }
 
