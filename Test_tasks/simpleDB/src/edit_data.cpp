@@ -42,16 +42,19 @@ void edit_data(){
    if(stoi(num)==5) person.input_weight(max.max_weight);
    if(stoi(num)==6) person.input_nation();
    if(stoi(num)==7) {
-   QDate bd =  person.input_bithday();
-
-
-
+   person.input_bithday();
+   QDate current_date=QDate::currentDate();
+   int days = person.bithday.daysTo(current_date);
+   int age = days/365;
+    if (person.live) {
+     if (age>max.max_long_life) {
+         person.live = false;
+         person.input_death();
+     }
+    }
    }
    if(stoi(num)==8) {
-    QDate de = person.input_death();
-
-
-
+    person.input_death();
    }
   person.save_person();
    break;
