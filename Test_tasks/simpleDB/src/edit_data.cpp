@@ -1,16 +1,10 @@
 #include "simpleDB.h"
 using namespace std;
 void edit_data(){
-    QSettings settings(settingsFile, QSettings::IniFormat);
-    settings.beginGroup("person");
-    int max_long_life  = settings.value("max_long_life").toInt();
-    int max_growth  = settings.value("max_growth").toInt();
-    int max_weight  = settings.value("max_weight").toInt();
-    settings.endGroup();
-
+    Person person;
+    auto max = person.read_max();
     unsigned i;
     string inum;
-    Person person;
     system("clear");
     cout<<"\nРедактируем существующую запись в БД:\n";
     unsigned number_person = read_data();
@@ -44,8 +38,8 @@ void edit_data(){
        person.input_name();
        }
    if(stoi(num)==2) person.input_sex();
-   if(stoi(num)==4) person.input_growth(max_growth);
-   if(stoi(num)==5) person.input_weight(max_weight);
+   if(stoi(num)==4) person.input_growth(max.max_growth);
+   if(stoi(num)==5) person.input_weight(max.max_weight);
    if(stoi(num)==6) person.input_nation();
    if(stoi(num)==7) {
        person.input_bithday();

@@ -33,14 +33,10 @@ QDate string_toqtate(string stringdate){
 }
 
 void delete_file(QString & name){
-    QSettings settings(settingsFile, QSettings::IniFormat);
-    settings.beginGroup("person");
-    QString patch_to_DB = settings.value("patch_to_DB").toString();
-    settings.endGroup();
-    //полный путь к файлу
+    QString patch_to_DB = read_patch_DB();
     string path = patch_to_DB.toStdString()+"/" + name.toStdString();
     string command = "rm " + path;
-    system(command.c_str()); //удаление файла
+    system(command.c_str());
 }
 
 void view_data(){
@@ -67,13 +63,10 @@ void view_data(){
 
 unsigned read_data(){
     system("clear");
-    QSettings settings(settingsFile, QSettings::IniFormat);
-    settings.beginGroup("person");
-    QString patch_to_DB = settings.value("patch_to_DB").toString();
-    settings.endGroup();
     std::vector<std::string> v;
     QDir dirDB;
-    dirDB.setPath(patch_to_DB);
+    QString patch = read_patch_DB();
+    dirDB.setPath(patch);
     QStringList listFiles = dirDB.entryList(QDir::Files);
     fill_vector(listFiles, v);
     std::cout<<"БД содержит следующие записи:\n";
@@ -83,15 +76,20 @@ unsigned read_data(){
 
 string name_from_munber(int num){
     system("clear");
-    QSettings settings(settingsFile, QSettings::IniFormat);
-    settings.beginGroup("person");
-    QString patch_to_DB = settings.value("patch_to_DB").toString();
-    settings.endGroup();
     std::vector<std::string> v;
     QDir dirDB;
+    QString patch_to_DB = read_patch_DB();
     dirDB.setPath(patch_to_DB);
     QStringList listFiles = dirDB.entryList(QDir::Files);
     fill_vector(listFiles, v);
     return v.at(num-1);
 
+}
+
+QString read_patch_DB(){
+    QSettings settings(settingsFile, QSettings::IniFormat);
+    settings.beginGroup("person");
+    QString patch_to_DB = settings.value("patch_to_DB").toString();
+    settings.endGroup();
+    return patch_to_DB;
 }

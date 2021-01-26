@@ -6,7 +6,7 @@ using namespace std;
      age = 0;
      weight=0;
      growth=0;
- };
+    };
 
  Person::~Person(){};
  void Person::print(){
@@ -22,11 +22,7 @@ using namespace std;
          <<"\n";
  }
  void Person::read_person(string & name){
-     QSettings settings(settingsFile, QSettings::IniFormat);
-     settings.beginGroup("person");
-     QString patch_to_DB = settings.value("patch_to_DB").toString();
-     settings.endGroup();
-     //полный путь к файлу
+     QString patch_to_DB = read_patch_DB();
      string path = patch_to_DB.toStdString()+"/"+name;
      fstream file;
      file.open(path, fstream::out | fstream::in | fstream::binary);
@@ -65,11 +61,7 @@ using namespace std;
      file.close();
  }
  void Person::save_person(){
-     QSettings settings(settingsFile, QSettings::IniFormat);
-     settings.beginGroup("person");
-     QString patch_to_DB = settings.value("patch_to_DB").toString();
-     settings.endGroup();
-     //полный путь к файлу
+     QString patch_to_DB = read_patch_DB();
      string path = patch_to_DB.toStdString()+"/"+this->name.toStdString();
      fstream file;
      file.open(path, fstream::out | fstream::binary);
@@ -209,4 +201,15 @@ while(1){
       } else  cout << "Введите корректный номер!\n";
   }
    cout << "Выбрана национальность: "<<this->nation.toStdString()<<"\n";
+ }
+
+ Person::max Person::read_max(){
+     Person::max max;
+     QSettings settings(settingsFile, QSettings::IniFormat);
+     settings.beginGroup("person");
+     max.max_long_life  = settings.value("max_long_life").toInt();
+     max.max_growth  = settings.value("max_growth").toInt();
+     max.max_weight  = settings.value("max_weight").toInt();
+     settings.endGroup();
+     return max;
  }

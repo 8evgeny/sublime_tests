@@ -24,5 +24,10 @@ public:
     void input_growth(int);
     void input_weight(int);
     void input_nation();
+    struct max{int max_long_life;
+               int max_growth;
+               int max_weight;
+    };
+    max read_max();
 private:
 };

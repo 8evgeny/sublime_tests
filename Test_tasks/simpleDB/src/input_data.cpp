@@ -4,12 +4,7 @@ using namespace std;
 void input_data(){
  system("clear");
  Person person;
- QSettings settings(settingsFile, QSettings::IniFormat);
- settings.beginGroup("person");
- int max_long_life  = settings.value("max_long_life").toInt();
- int max_growth  = settings.value("max_growth").toInt();
- int max_weight  = settings.value("max_weight").toInt();
- settings.endGroup();
+ auto max = person.read_max();
  cout<<"Вводим новые данные:\n";
  person.input_name();
  person.input_sex();
@@ -20,12 +15,12 @@ void input_data(){
 
   int days = person.bithday.daysTo(current_date);
   int age = days/365;
-  if (age>max_long_life) {
+  if (age>max.max_long_life) {
       person.live = false;
       person.input_death();
   }
- person.input_growth(max_growth);
- person.input_weight(max_weight);
+ person.input_growth(max.max_growth);
+ person.input_weight(max.max_weight);
  person.input_nation();
  string  ilive, isave;
  if(person.live){
