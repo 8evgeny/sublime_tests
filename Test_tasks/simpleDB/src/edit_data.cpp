@@ -7,19 +7,21 @@ void edit_data(){
     string inum;
     system("clear");
     cout<<"\nРедактируем существующую запись в БД:\n";
+    while(1){
     unsigned number_person = read_data();
-    cout<<"введите номер записи для редактирования:\n";
-
+    cout<<"введите номер записи для редактирования:\n"<<
+        "для выхода в основное меню введите 0\n";
     while(1){
         cin>>inum;
         regex regexpr ("[0-9]+");
         if (regex_match (inum,regexpr)) {
             i = stoi(inum);
-            if((i <= number_person) && (i > 0)) {
+            if((i <= number_person) && (i >= 0)) {
                 break;
             }else cout << "Введите корректный номер!\n";
         } else  cout << "Введите корректный номер!\n";
     }
+    if(i == 0)break;
     // i - номер записи для показа
     string name = name_from_munber(i);
     person.read_person(name);
@@ -50,23 +52,21 @@ void edit_data(){
      if (age>max.max_long_life) {
          person.live = false;
          person.input_death();
-     }
+      }
     }
+   //меняем age
+    if(person.live) person.age = person.bithday.daysTo(current_date)/365;
+    else person.age = person.bithday.daysTo(person.death)/365;
    }
    if(stoi(num)==8) {
     person.input_death();
+    person.age = person.bithday.daysTo(person.death)/365;
    }
   person.save_person();
    break;
         }else  cout << "Введите корректный номер!\n";
         }
-
-
-
-
-
-
-
+    }
 
 }
 
