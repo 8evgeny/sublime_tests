@@ -109,7 +109,7 @@ const QString DateFormat = "dd/MM/yyyy";
  }
  cout << "Введен пол: "<<this->sex.toStdString()<<"\n";
  }
- void Person::input_bithday(){
+ QDate Person::input_bithday(){
   string ibighday;
  cout<<   "\nВведите дату рождения в формате DD/MM/YYYY:\n";
 //Дата рождения
@@ -126,8 +126,9 @@ while(1){
 }
  cout<<"введена дата: "<<
     this->bithday.toString(DateFormat).toStdString()<<"\n";
+ return this->bithday;
 }
- void Person::input_death(){
+ QDate Person::input_death(){
       string ideath;
       cout<< "\nВведите дату смерти в формате DD/MM/YYYY:\n";
       const QString DateFormat = "dd/MM/yyyy";
@@ -153,6 +154,7 @@ while(1){
        } else  cout << "Введите корректную дату!\n";
       }
       cout<<"Введена дата смерти: "<<this->death.toString(DateFormat).toStdString()<<"\n";
+      return this->death;
  }
  void Person::input_growth(int max_growth){
  string igrowth;

@@ -19,8 +19,8 @@ public:
     void read_person(std::string &);
     void input_name();
     void input_sex();
-    void input_bithday();
-    void input_death();
+    QDate input_bithday();
+    QDate input_death();
     void input_growth(int);
     void input_weight(int);
     void input_nation();

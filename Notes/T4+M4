@@ -33,6 +33,17 @@ sudo mount /dev/nvme0n1p1 /home/pi/alager/
 Добавил в /etc/fstab  для автомонтирования
 UUID=aea73c9c-2674-43ac-bd78-9e86b9becd1a /home/pi/alager auto nosuid,nodev,nofail,x-gvfs-show 0 0
 
+если SSD новый 
+sudo parted /dev/nvme0n1
+(parted) mklabel msdos
+(parted) mkpart primary ext4 1MiB 100%    Создаем один раздел
+Чтобы посмотреть, как выглядит таблица разделов после всех наших действий, выполним команду «print»:
+(parted) print
+Форматирование разделов в Linux выполняется следующей командой:
+
+sudo mkfs.ext4 /dev/nvme0n1p1
+далее определяем UID -  sudo blkid  и прописываем в fstab
+
 sudo crontab -e
 */1 * * * * /home/pi/alager/S-852/build/bin/ping_arduino      запуск раз в минуту - не подходит - колл процессов растет
 
@@ -213,3 +224,27 @@ sudo dd if=T4_25_01_2021.iso of=/dev/sdc  bs=4M status=progress;sync
 
 sudo dd if=/dev/sdc of=M4_25_01_2021.iso  bs=4M status=progress;sync
 sudo dd if=M4_25_01_2021.iso of=/dev/sdc  bs=4M status=progress;sync
+
+для M4 /etc/network/interfaces
+прописал static
+auto eth0
+iface eth0 inet static
+address 192.168.100.152
+netmask 255.255.255.0
+gateway 192.168.100.1
+dns-nameservers 8.8.8.8,8.8.4.4
+
+auto eth0
+iface eth0 inet static
+address 192.168.77.152
+netmask 255.255.255.0
+gateway 192.168.77.1
+dns-nameservers 8.8.8.8,8.8.4.4
+
+auto eth0
+iface eth0 inet static
+address 172.31.0.152
+netmask 255.255.255.0
+gateway 172.31.0.1
+dns-nameservers 8.8.8.8,8.8.4.4
+

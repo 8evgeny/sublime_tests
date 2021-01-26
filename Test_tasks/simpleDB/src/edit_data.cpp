@@ -42,13 +42,13 @@ void edit_data(){
    if(stoi(num)==5) person.input_weight(max.max_weight);
    if(stoi(num)==6) person.input_nation();
    if(stoi(num)==7) {
-       person.input_bithday();
+   QDate bd =  person.input_bithday();
 
 
 
    }
    if(stoi(num)==8) {
-       person.input_death();
+    QDate de = person.input_death();
 
 
 
