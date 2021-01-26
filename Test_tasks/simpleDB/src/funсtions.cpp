@@ -54,7 +54,7 @@ void view_data(){
         regex regexpr ("[0-9]+");
         if (regex_match (num,regexpr)) {
             i = stoi(num);
-            if((i < number_person) && (i > 0)) {
+            if((i <= number_person) && (i > 0)) {
             break;
             }else cout << "Введите корректный номер!\n";
         } else  cout << "Введите корректный номер!\n";

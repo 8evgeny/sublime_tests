@@ -91,11 +91,11 @@ const QString DateFormat = "dd/MM/yyyy";
      file.close();
  }
  void Person::input_name(){
-     cout<<"\nВведите имя латиницей:\n";
+     cout<<"\nВведите имя:\n";
      string iname;
       while(1){
        cin>>iname;
-       regex regexpr ("[A-Za-z]+");
+       regex regexpr ("[A-Za-zА-ЯЁа-яё]+");
        if (regex_match (iname,regexpr)) {
            this->name = QString::fromStdString(iname);
           break;

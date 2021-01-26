@@ -14,14 +14,14 @@ void edit_data(){
     system("clear");
     cout<<"\nРедактируем существующую запись в БД:\n";
     unsigned number_person = read_data();
-    cout<<"введите номер поля для редактирования:\n";
+    cout<<"введите номер записи для редактирования:\n";
 
     while(1){
         cin>>inum;
         regex regexpr ("[0-9]+");
         if (regex_match (inum,regexpr)) {
             i = stoi(inum);
-            if((i < number_person) && (i > 0)) {
+            if((i <= number_person) && (i > 0)) {
                 break;
             }else cout << "Введите корректный номер!\n";
         } else  cout << "Введите корректный номер!\n";
@@ -32,7 +32,7 @@ void edit_data(){
 
     cout<<"Выводим данные о персоне:\n";
     person.print();
- cout<<"введите номер записи для редактирования: \n";
+ cout<<"введите номер поля для редактирования: \n";
  string num;
  while(1){
   cin>>num;
