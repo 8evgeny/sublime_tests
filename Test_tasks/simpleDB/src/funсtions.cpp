@@ -93,3 +93,24 @@ QString read_patch_DB(){
     settings.endGroup();
     return patch_to_DB;
 }
+
+void remove_data(){
+string num;
+unsigned i;
+unsigned number_person = read_data();
+while(1){
+    cout<<"введите номер записи для удаления:\n";
+    cin>>num;
+    regex regexpr ("[0-9]+");
+    if (regex_match (num,regexpr)) {
+        i = stoi(num);
+        if((i <= number_person) && (i > 0)) {
+        break;
+        }else cout << "Введите корректный номер!\n";
+    } else  cout << "Введите корректный номер!\n";
+}
+// i - номер записи для удаления
+QString name_to_del = QString::fromStdString(name_from_munber(i));
+delete_file(name_to_del);
+cout<<"запись из базы удалена\n";
+}

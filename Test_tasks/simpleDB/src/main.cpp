@@ -2,24 +2,25 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-//сделать удаление данных
 //edit  7 и 8  пункт
  string oper ="0";
  while(1){
   cout<<"Введите операцию:\n"<<
         "1 - список всех данных:\n"<<
         "2 - просмотр записи:\n"<<
-        "3 - новая запись:\n"<<
+        "3 - создание новой записи:\n"<<
         "4 - редактирование записи:\n"<<
-        "5 - завершить работу:\n";
+        "5 - удаление записи:\n"<<
+        "6 - завершить работу:\n";
   cin>>oper;
-  regex regexpr ("[12345]");
+  regex regexpr ("[123456]");
   if (regex_match (oper,regexpr)) {
   if(oper == "1") read_data();
   if(oper == "2") view_data();
   if(oper == "3") input_data();
   if(oper == "4") edit_data();
-  if(oper == "5") return 0;
+  if(oper == "5") remove_data();
+  if(oper == "6") return 0;
   } else cout<<"Повторите ввод\n\n";
  }
 
