@@ -28,6 +28,7 @@
 #include <string>
 #include <fstream>
 #include "person.h"
+#include <cstdio>
 const QString settingsFile = "configDB.ini";
 void fill_vector(QStringList &, std::vector<std::string> &);
 void print_vector(std::vector<std::string>&);

@@ -34,9 +34,10 @@ QDate string_toqtate(string stringdate){
 
 void delete_file(QString & name){
     QString patch_to_DB = read_patch_DB();
-    string path = patch_to_DB.toStdString()+"/" + name.toStdString();
-    string command = "rm " + path;
-    system(command.c_str());
+    string patch = patch_to_DB.toStdString()+"/" + name.toStdString();
+    remove(patch.c_str());
+//    string command = "rm " + patch;
+//    system(command.c_str());
 }
 
 void view_data(){
