@@ -1,0 +1,1 @@
+gcc edit_data.cpp funсtions.cpp input_data.cpp main.cpp person.cpp person.h print_nation.cpp simpleDB.h -o test
