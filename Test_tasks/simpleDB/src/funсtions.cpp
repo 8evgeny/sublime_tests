@@ -36,8 +36,6 @@ void delete_file(QString & name){
     QString patch_to_DB = read_patch_DB();
     string patch = patch_to_DB.toStdString()+"/" + name.toStdString();
     remove(patch.c_str());
-//    string command = "rm " + patch;
-//    system(command.c_str());
 }
 
 void view_data(){
