@@ -43,7 +43,7 @@ void view_data(){
     string num;
     unsigned i;
     unsigned number_person = read_data();
-    cout<<"введите номер записи для просмотра: \n";
+    cout<<"input number: \n";
     while(1){
         cin>>num;
         regex regexpr ("[0-9]+");
@@ -51,8 +51,8 @@ void view_data(){
             i = stoi(num);
             if((i <= number_person) && (i > 0)) {
             break;
-            }else cout << "Введите корректный номер!\n";
-        } else  cout << "Введите корректный номер!\n";
+            }else cout << "incorrect!\n";
+        } else  cout << "incorrect!\n";
     }
    // i - номер записи для показа
     string name = name_from_munber(i);
@@ -68,7 +68,7 @@ unsigned read_data(){
     dirDB.setPath(patch);
     QStringList listFiles = dirDB.entryList(QDir::Files);
     fill_vector(listFiles, v);
-    std::cout<<"БД содержит следующие записи:\n";
+    std::cout<<"list all persons::\n";
     print_vector(v);
     return v.size();
 }
@@ -98,18 +98,18 @@ string num;
 unsigned i;
 unsigned number_person = read_data();
 while(1){
-    cout<<"введите номер записи для удаления:\n";
+    cout<<"input number for delete:\n";
     cin>>num;
     regex regexpr ("[0-9]+");
     if (regex_match (num,regexpr)) {
         i = stoi(num);
         if((i <= number_person) && (i > 0)) {
         break;
-        }else cout << "Введите корректный номер!\n";
-    } else  cout << "Введите корректный номер!\n";
+        }else cout << "incorrect!\n";
+    } else  cout << "incorrect!\n";
 }
 // i - номер записи для удаления
 QString name_to_del = QString::fromStdString(name_from_munber(i));
 delete_file(name_to_del);
-cout<<"запись из базы удалена\n";
+cout<<"person removed\n";
 }

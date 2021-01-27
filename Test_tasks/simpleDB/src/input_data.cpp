@@ -5,13 +5,13 @@ void input_data(){
  system("cls");
  Person person;
  auto max = person.read_max();
- cout<<"Вводим новые данные:\n";
+ cout<<"input new data:\n";
  person.input_name();
  person.input_sex();
  person.input_bithday();
  QDate current_date;
  current_date=QDate::currentDate();
- cout<<"Текущая дата: "<<current_date.toString().toStdString()<<"\n";
+ cout<<"current data: "<<current_date.toString().toStdString()<<"\n";
 
   int days = person.bithday.daysTo(current_date);
   int age = days/365;
@@ -24,7 +24,7 @@ void input_data(){
  person.input_nation();
  string  ilive, isave;
  if(person.live){
-      cout<<"введите 1 если человек жив или 2  если нет\n";
+      cout<<"input 1 - live or 2 - death\n";
       while(1){
           cin>>ilive;
           regex regexpr ("[12]");
@@ -34,7 +34,7 @@ void input_data(){
                 person.input_death();
               }
               break;
-          } else  cout << "Введите корректный номер!\n";
+          } else  cout << "incorrect!\n";
       }
   }
 
@@ -44,8 +44,8 @@ void input_data(){
   }
   system("cls");
   person.print();
-  cout <<"Подтвердите правильность введенных данных:\n"
-         "1 - сохранить данные в базе\n2 - не сохранять\n ";
+  cout <<"input data correct ?:\n"
+         "1 - save\n2 - exit\n ";
   while(1){
       cin>>isave;
       regex regexpr ("[12]");
@@ -55,7 +55,7 @@ void input_data(){
            person.live = true;
           }
        break;
-      } else  cout << "Введите корректный номер!\n";
+      } else  cout << "incorrect!\n";
   }
 
 }

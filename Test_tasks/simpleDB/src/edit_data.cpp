@@ -6,11 +6,11 @@ void edit_data(){
     unsigned i;
     string inum;
     system("cls");
-    cout<<"\nРедактируем существующую запись в БД:\n";
+    cout<<"\nediting existing person:\n";
     while(1){
     unsigned number_person = read_data();
-    cout<<"введите номер записи для редактирования:\n"<<
-        "для выхода в основное меню введите 0\n";
+    cout<<"input number:\n"<<
+        "to exit input 0\n";
     while(1){
         cin>>inum;
         regex regexpr ("[0-9]+");
@@ -18,17 +18,17 @@ void edit_data(){
             i = stoi(inum);
             if((i <= number_person) && (i >= 0)) {
                 break;
-            }else cout << "Введите корректный номер!\n";
-        } else  cout << "Введите корректный номер!\n";
+            }else cout << "incorrect!\n";
+        } else  cout << "incorrect!\n";
     }
     if(i == 0)break;
     // i - номер записи для показа
     string name = name_from_munber(i);
     person.read_person(name);
 
-    cout<<"Выводим данные о персоне:\n";
+    cout<<"print person:\n";
     person.print();
- cout<<"введите номер поля для редактирования: \n";
+ cout<<"input number: \n";
  string num;
  while(1){
   cin>>num;
@@ -64,7 +64,7 @@ void edit_data(){
    }
   person.save_person();
    break;
-        }else  cout << "Введите корректный номер!\n";
+        }else  cout << "incorrect!\n";
         }
     }
 
