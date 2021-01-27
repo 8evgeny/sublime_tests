@@ -5,7 +5,7 @@ void edit_data(){
     auto max = person.read_max();
     unsigned i;
     string inum;
-    system("clear");
+    system("cls");
     cout<<"\nРедактируем существующую запись в БД:\n";
     while(1){
     unsigned number_person = read_data();

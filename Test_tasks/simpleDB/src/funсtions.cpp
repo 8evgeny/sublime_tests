@@ -62,7 +62,7 @@ void view_data(){
 }
 
 unsigned read_data(){
-    system("clear");
+    system("cls");
     std::vector<std::string> v;
     QDir dirDB;
     QString patch = read_patch_DB();
@@ -75,7 +75,7 @@ unsigned read_data(){
 }
 
 string name_from_munber(int num){
-    system("clear");
+    system("cls");
     std::vector<std::string> v;
     QDir dirDB;
     QString patch_to_DB = read_patch_DB();

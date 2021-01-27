@@ -2,7 +2,7 @@
 #include "person.h"
 using namespace std;
 void input_data(){
- system("clear");
+ system("cls");
  Person person;
  auto max = person.read_max();
  cout<<"Вводим новые данные:\n";
@@ -42,7 +42,7 @@ void input_data(){
   else{
       person.age = person.bithday.daysTo(person.death)/365;
   }
-  system("clear");
+  system("cls");
   person.print();
   cout <<"Подтвердите правильность введенных данных:\n"
          "1 - сохранить данные в базе\n2 - не сохранять\n ";
