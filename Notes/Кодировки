@@ -209,3 +209,26 @@ setvbuf(stdout, nullptr, _IOFBF, 1000);
 std::string test = u8"Greek: αβγδ; German: Übergrößenträger";
 std::cout << test << std::endl;
 }
+
+
+!!!!   Рабочее решение
+https://ru.stackoverflow.com/questions/459154/Русский-язык-в-консоли/459299#459299
+
+#include <iostream>
+#include <io.h>
+#include <fcntl.h>
+
+int wmain(int argc, wchar_t* argv[])
+{
+    _setmode(_fileno(stdout), _O_U16TEXT);
+    _setmode(_fileno(stdin),  _O_U16TEXT);
+    _setmode(_fileno(stderr), _O_U16TEXT);
+
+    std::wcout << L"Unicode -- English -- Русский -- Ελληνικά -- Español." << std::endl;
+    // или
+    wprintf(L"%s", L"Unicode -- English -- Русский -- Ελληνικά -- Español.\n");
+
+    return 0;
+}
+
+Такой способ должен работать правильно с вводом и выводом, с именами файлов и перенаправлением потоков.
