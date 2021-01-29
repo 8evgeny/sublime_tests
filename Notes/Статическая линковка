@@ -1,0 +1,2 @@
+g++ -std=c++11 -o final.exe 866OEM.cpp -static -static-libgcc -static-libstdc++
+Ничего лишнего? И если можно, разъясните пожалуйста по каждому параметру в этой строке.

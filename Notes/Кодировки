@@ -1,0 +1,211 @@
+Windows до сих пор используются несколько кодировочных таблиц, а именно — cp866, cp1251. 
+В командной строке Windows кодировка символов соответствует стандарту cp866. То есть все символы в командной строке Windows закодированы по кодировочной таблице cp866. Причём поменять кодировку в командной строке Windows нельзя. Просмотреть стандарт кодирования символов в консоли можно, с помощью команды GRAFTABL 
+
+Решить данную проблему можно только одним способом — перед тем, как передать текст в консоль, необходимо его перекодировать  в стандарт кодирования символов cp866.
+Существует несколько способов преобразования кодов знаков из одного стандарта в другой, мы воспользуемся самым простым — настройка локали
+
+Локаль — это набор параметров: набор символов, язык пользователя, страна, часовой пояс и др. Локаль необходима для быстрой настройки пользовательского интерфейса, в зависимости от географического положения. В С++ есть функция setlocale(), которая выполняет перекодировку символов в соответствии с требуемым языком. Эта функция определена в заголовочном файле <clocale>.
+
+setlocale(LC_CTYPE, "rus"); // вызов функции настройки локали
+cout << "Кириллица в консоли\n";
+
+функция setlocale() работает только с потоком вывода. Но как же быть с потоком ввода??? Есть немало способов решать данную проблему, мы рассмотрим лишь один из них. Для этого подключаем к проекту заголовочный файл <windows.h>. В файле содержатся прототипы функций SetConsoleCP() и SetConsoleOutputCP(), они-то нам и нужны. Аргументом этих функций является идентификатор кодовой страницы, нужная нам страница win-cp 1251.
+Функция SetConsoleCP() устанавливает нужную кодовую таблицу, на поток ввода, тогда как функция SetConsoleOutputCP()  устанавливает нужную кодовую таблицу, на поток вывода.
+
+int main(int argc, char* argv[])
+{
+    SetConsoleCP(1251);// установка кодовой страницы win-cp 1251 в поток ввода
+    SetConsoleOutputCP(1251); // установка кодовой страницы win-cp 1251 в поток вывода
+ 
+    char string[20];
+    cin >> string; // вводим строку, используя Кириллицу
+    cout << "\nвывод: "<< string << endl; // ввывод строки
+    system("pause");
+    return 0;
+}
+
+установить вручную шрифт Lucida Console в свойствах окна консоли
+
+Можно еще так   system("chcp 1251");
+
+Есть вот такой вариант
+#include <iostream>
+#include <windows.h>
+
+// Функция перекодировки в кирилицу
+char* rus(char* st)
+{
+unsigned char* p = st; // при объявлении символов как char русские буквы
+// кодируются отрицательными числами
+while( *p ){
+if(*p >= 192) // здесь русская буква
+if(*p <= 239)
+*p -= 64;
+else
+*p -= 16;
+p++;
+}
+return st;
+}
+ int main()
+{
+cout << rus("Ура, получилось!") << endl;
+cin.get();
+return 0;
+}
+Эта байда работает норм вроде в любом компиляторе, но замеченны бока при использовании в циклах, хз почему появляются кракозябры на 2+ итерации.
+ЗЫ, ф-цию нагло спер не помню где.
+
+
+Еще есть вышезамеченный
+setlocale(LC_ALL,"");
+но вывод при этом должен выглядть примерно так
+wcout<<L"Дарова, мир!"<<endl;
+
+
+Примерно так:
+C++Выделить код
+#include <windows.h>
+void main()
+{
+char name[записываешь количество символов , которое состовляет русская строка];
+CharToOem(name, 'записываешь сам текст строки');
+cout<<name<<"\n";
+return 0;
+}
+
+
+setlocale - стандартный для Си способ, для С++ лучше использовать std::locale, так как это работает более локально(lol)
+
+std::locale loc("Russian");
+std::cout.imbue(loc);
+или аналог setlocale
+
+std::locale loc("Russian");
+std::locale::global(loc);
+
+
+
+# -*- coding: utf-8 -*-
+>>> import sys
+>>> import locale
+>>> print sys.getdefaultencoding()
+ascii
+>>> print locale.getpreferredencoding() # linux
+UTF-8
+>>> print locale.getpreferredencoding() # win32/rus
+cp1251
+# и самое интересное:
+>>> print sys.stdout.encoding # linux
+UTF-8
+>>> print sys.stdout.encoding # win32
+cp866
+
+
+//  Аналог printf, только русскими буквами, независимо от шрифта консоли.
+int PrintfRus (char* pString, ...)
+{
+    va_list args;
+    int size = 128,
+        count = 0;
+  
+    // Заводим временный буфер для строки
+    char* pTmp = (char*) malloc (size);
+  
+    if (pTmp == NULL)
+        return 0;
+  
+    while (1)
+    {
+        // Пытаемся напечатать строку в этот буфер
+        va_start (args, pString);
+        count = _vsnprintf (pTmp, size - 1, pString, args);
+        va_end (args);
+  
+        // Пока не получится
+        if (count > -1)
+            break;
+  
+        // Если не получилось - удваиваем размер буфера
+        size *= 2;
+        if ((pTmp = (char*) realloc (pTmp, size)) == NULL)
+            return 0;
+    }
+  
+    // Таки получилось!
+    // Теперь заводим буфер под русский вариант
+    char* pRus = (char*) malloc (count + 1);
+    if (pRus == NULL)
+    {
+        free (pTmp);
+        return 0;
+    }
+  
+    // Переводим на русский и печатаем
+    CharToOem (pTmp, pRus);
+    printf (pRus);
+    free (pRus);
+    free (pTmp);
+  
+    return count;
+}
+
+
+
+
+Попробуй:
+chcp 65001
+что изменит кодовую страницу на UTF-8. Кроме того, вам нужно использовать консольные шрифты Lucida.
+
+Буква L перед символьной константой означает, что записанная дальше строка , записана в широких символах wchar_t
+
+Для хранения юникода. В массиве char тоже можно хранить юникод (в utf-8), но это не всегда подходит. Например для windows нативным юникодом является utf-16, который как раз может храниться в wstring, в string его не запихнуть.
+
+По умолчанию cmd.exe использует кодировку cp866. Текущую кодировку можно посмотреть командой chcp. Иногда возникает необходимость использовать в терминале юникод. Для этого необходимо использовать шрифт "Lucida Console" и переключить кодировку командой
+>chcp <codepage>
+Где параметр <codepage> для UTF-8 равен 65001
+
+
+setlocale(LC_ALL, "en_US.UTF-8");
+
+
+Kenny_Dalglish, Если винда на русском
+C++Выделить код
+
+#include <locale>
+...
+int main()
+{
+    std::locale::global(std::locale(""));
+    ...
+}
+
+
+
+Гнать текст перед выводом через multibytetowidechar из utf-8 в unicode а потом обратной функцией из unicode в oem
+
+
+!!!!!   https://www.cyberforum.ru/cpp-beginners/thread1695222.html      !!!!!!
+h-файл операций над строками
+cpp-файл операций над строками
+файл гоняющий туда сюда между UTF-8 и ACP
+код гонящий из UTF-8 в OEM
+wstr_to_str(str_to_wstr(res, CP_UTF8), CP_OEMCP)
+
+!!!   https://web-answers.ru/c/kak-napechatat-stroki-utf-8-v-std-cout-v-windows.html
+
+#include <string>
+#include <iostream>
+#include <Windows.h>
+#include <cstdio>
+
+int main() {
+// Set console code page to UTF-8 so console known how to interpret string data
+SetConsoleOutputCP(CP_UTF8);
+
+// Enable buffering to prevent VS from chopping up UTF-8 byte sequences
+setvbuf(stdout, nullptr, _IOFBF, 1000);
+
+std::string test = u8"Greek: αβγδ; German: Übergrößenträger";
+std::cout << test << std::endl;
+}
