@@ -1,0 +1,86 @@
+В качестве основного вычислителя используется T4  в  качестве  дополнительного - M4.
+Основной вычислитель имеет NVME или SSD диск.  
+Запуск системы выполняется с флешки,  образа  для T4  и  M4 одинаковы. 
+Готовые образы выложены на /nfs/arch/ARM/M4_T4.
+SSD диск перед использованием необходимо прописать в /etc/fstab  для монтирования в точку  /home/pi/alager
+UUID=uid_диска /home/pi/alager auto nosuid,nodev,nofail,x-gvfs-show 0 
+sudo blkid - узнать uid 
+
+если SSD новый - создаем раздел и форматируем его
+sudo parted /dev/nvme0n1
+(parted) mklabel msdos
+(parted) mkpart primary ext4 1MiB 100%    Создаем один раздел
+Чтобы посмотреть, как выглядит таблица разделов после всех наших действий, выполним команду «print»:
+(parted) print
+Форматирование разделов в Linux выполняется следующей командой:
+sudo mkfs.ext4 /dev/nvme0n1p1
+
+создаем  демона
+/etc/systemd/system/ping.servise      
+[Unit]
+Description=ping_arduino
+[Service]
+ExecStart=/home/pi/alager/S-852/build/bin/ping_arduino.sh
+[Install]
+WantedBy=multi-user.target
+
+скрипт ping_arduino.sh:
+#!/bin/bash
+cd  /home/pi/alager/S-852/build/bin
+./ping_arduino
+
+запускаем systemctl start ping.service
+добавляем systemctl enable ping.service
+
+создаем  демона
+/etc/systemd/system/modem_switch.servise 
+[Unit]
+Description=modem_switch
+[Service]
+ExecStart=/home/pi/alager/S-852/build/bin/modem_switch.sh
+[Install]
+WantedBy=multi-user.target
+
+скрипт modem_switch.sh:
+#!/bin/bash
+usb_modeswitch -v 0x12d1 -p 0x14fe -V 0x12d1 -P 0x1506 -M 55534243000000000000000000000011000000000000000000000000000000
+sleep 5
+wvdial
+
+запускаем systemctl start modem_switch.servise
+добавляем systemctl enable modem_switch.servise
+
+Модем предварительно должен быть прошит в режим STICK
+Для данного модема существуют 2 принципиально разных типа прошивок - STICK и HILINK
+
+Проверка того, что модем прошит -  
+вводим команду lsusb - должны получить: 
+ID 12d1:1506 Huawei Technologies Co., Ltd. Modem/Networkcard
+
+Подробные инструкции по прошивке модема: https://4pda.ru/forum/index.php?showtopic=582284&st=20#entry38688416
+
+смена адресов у T4 - редактируем файл:
+/etc/NetworkManager/system-connection/wired
+
+у M4 прописываем статические адреса в файле /etc/network/inrerfaces
+auto eth0
+iface eth0 inet static
+address 192.168.100.152
+netmask 255.255.255.0
+gateway 192.168.100.1
+dns-nameservers 8.8.8.8,8.8.4.4
+
+auto eth0
+iface eth0 inet static
+address 192.168.77.152
+netmask 255.255.255.0
+gateway 192.168.77.1
+dns-nameservers 8.8.8.8,8.8.4.4
+
+auto eth0
+iface eth0 inet static
+address 172.31.0.152
+netmask 255.255.255.0
+gateway 172.31.0.1
+dns-nameservers 8.8.8.8,8.8.4.4
+
