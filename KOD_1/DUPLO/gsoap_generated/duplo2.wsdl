@@ -1,0 +1,188 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" name="MessengerService" targetNamespace="http://service/">
+<wsdl:types>
+<xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service/">
+<xs:element name="getVersion" type="tns:getVersion"/>
+<xs:element name="getVersionResponse" type="tns:getVersionResponse"/>
+<xs:element name="process" type="tns:process"/>
+<xs:element name="processGetInfo" type="tns:processGetInfo"/>
+<xs:element name="processGetInfoResponse" type="tns:processGetInfoResponse"/>
+<xs:element name="processResponse" type="tns:processResponse"/>
+<xs:complexType name="processGetInfo">
+<xs:sequence>
+<xs:element minOccurs="0" name="camera" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="processGetInfoResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:cameraInfo"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="cameraInfo">
+<xs:sequence>
+<xs:element minOccurs="0" name="azimut" type="xs:decimal"/>
+<xs:element minOccurs="0" name="camera" type="xs:string"/>
+<xs:element minOccurs="0" name="camera_id" type="xs:int"/>
+<xs:element minOccurs="0" name="camera_model" type="xs:string"/>
+<xs:element minOccurs="0" name="camera_place" type="xs:string"/>
+<xs:element minOccurs="0" name="gps_x" type="xs:decimal"/>
+<xs:element minOccurs="0" name="gps_y" type="xs:decimal"/>
+<xs:element minOccurs="0" name="lane_num" type="xs:int"/>
+<xs:element minOccurs="0" name="p_node" type="xs:int"/>
+<xs:element minOccurs="0" name="print_name" type="xs:string"/>
+<xs:element minOccurs="0" name="priz_arh" type="xs:string"/>
+<xs:element minOccurs="0" name="serial_no" type="xs:string"/>
+<xs:element minOccurs="0" name="type" type="xs:string"/>
+<xs:element minOccurs="0" name="v_class" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="duploFault">
+<xs:sequence>
+<xs:element minOccurs="0" name="faultCode" type="xs:string"/>
+<xs:element minOccurs="0" name="faultMessage" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="process">
+<xs:sequence>
+<xs:element minOccurs="0" name="message" type="tns:message"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="message">
+<xs:sequence>
+<xs:element name="tr_checkIn" type="tns:trCheckIn"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="photo_extra" type="tns:photoExtra"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="trCheckIn">
+<xs:sequence>
+<xs:element name="v_time_check" type="xs:dateTime"/>
+<xs:element name="v_camera" type="xs:string"/>
+<xs:element minOccurs="0" name="v_gps_x" type="xs:decimal"/>
+<xs:element minOccurs="0" name="v_gps_y" type="xs:decimal"/>
+<xs:element minOccurs="0" name="v_azimut" type="xs:decimal"/>
+<xs:element minOccurs="0" name="v_direction" type="xs:string"/>
+<xs:element minOccurs="0" name="v_speed_limit" type="xs:int"/>
+<xs:element minOccurs="0" name="v_speed" type="xs:decimal"/>
+<xs:element minOccurs="0" name="v_regno_country_id" type="xs:string"/>
+<xs:element minOccurs="0" name="v_regno_color_id" type="xs:int"/>
+<xs:element minOccurs="0" name="v_recognition_accuracy" type="xs:decimal"/>
+<xs:element minOccurs="0" name="v_regno" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="v_pr_viol" type="xs:int"/>
+<xs:element minOccurs="0" name="v_parking_num" type="xs:int"/>
+<xs:element minOccurs="0" name="v_parking_zone" type="xs:int"/>
+<xs:element minOccurs="0" name="v_lane_num" type="xs:int"/>
+<xs:element minOccurs="0" name="v_camera_place" type="xs:string"/>
+<xs:element minOccurs="0" name="v_photo_grz" type="xs:base64Binary"/>
+<xs:element minOccurs="0" name="v_photo_ts" type="xs:base64Binary"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="photoExtra">
+<xs:sequence>
+<xs:element minOccurs="0" name="v_frame_datetime" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="v_photo_extra" type="xs:base64Binary"/>
+<xs:element minOccurs="0" name="v_type_photo" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="processResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getVersion">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getVersionResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Version"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Version">
+<xs:sequence>
+<xs:element minOccurs="0" name="buildVer" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="DuploFault" nillable="true" type="tns:duploFault"/>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="processGetInfo">
+<wsdl:part element="tns:processGetInfo" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="DuploException">
+<wsdl:part element="tns:DuploFault" name="DuploException"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="process">
+<wsdl:part element="tns:process" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getVersion">
+<wsdl:part element="tns:getVersion" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="processGetInfoResponse">
+<wsdl:part element="tns:processGetInfoResponse" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="processResponse">
+<wsdl:part element="tns:processResponse" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getVersionResponse">
+<wsdl:part element="tns:getVersionResponse" name="parameters"> </wsdl:part>
+</wsdl:message>
+<wsdl:portType name="MessengerSEI">
+<wsdl:operation name="processGetInfo">
+<wsdl:input message="tns:processGetInfo" name="processGetInfo"> </wsdl:input>
+<wsdl:output message="tns:processGetInfoResponse" name="processGetInfoResponse"> </wsdl:output>
+<wsdl:fault message="tns:DuploException" name="DuploException"> </wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="process">
+<wsdl:input message="tns:process" name="process"> </wsdl:input>
+<wsdl:output message="tns:processResponse" name="processResponse"> </wsdl:output>
+<wsdl:fault message="tns:DuploException" name="DuploException"> </wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getVersion">
+<wsdl:input message="tns:getVersion" name="getVersion"> </wsdl:input>
+<wsdl:output message="tns:getVersionResponse" name="getVersionResponse"> </wsdl:output>
+<wsdl:fault message="tns:DuploException" name="DuploException"> </wsdl:fault>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="MessengerServiceSoapBinding" type="tns:MessengerSEI">
+<soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="process">
+<soap12:operation soapAction="" style="document"/>
+<wsdl:input name="process">
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="processResponse">
+<soap12:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="DuploException">
+<soap12:fault name="DuploException" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="processGetInfo">
+<soap12:operation soapAction="" style="document"/>
+<wsdl:input name="processGetInfo">
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="processGetInfoResponse">
+<soap12:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="DuploException">
+<soap12:fault name="DuploException" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getVersion">
+<soap12:operation soapAction="" style="document"/>
+<wsdl:input name="getVersion">
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getVersionResponse">
+<soap12:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="DuploException">
+<soap12:fault name="DuploException" use="literal"/>
+</wsdl:fault>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="MessengerService">
+<wsdl:port binding="tns:MessengerServiceSoapBinding" name="MessengerSEIPort">
+<soap12:address location="http://services.stdpr.ru:8092/duplo/services/duplo2"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

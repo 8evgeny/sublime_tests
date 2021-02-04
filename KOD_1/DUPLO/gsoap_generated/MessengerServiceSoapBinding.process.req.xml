@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+    xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
+    xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ns1="http://service/">
+ <SOAP-ENV:Body>
+   <ns1:process>
+    <message>
+     <tr_checkIn>
+      <v_time_check>2018-12-20T16:30:25Z</v_time_check>
+      <v_camera></v_camera>
+      <v_gps_x>0.0</v_gps_x>
+      <v_gps_y>0.0</v_gps_y>
+      <v_azimut>0.0</v_azimut>
+      <v_direction></v_direction>
+      <v_speed_limit>0</v_speed_limit>
+      <v_speed>0.0</v_speed>
+      <v_regno_country_id></v_regno_country_id>
+      <v_regno_color_id>0</v_regno_color_id>
+      <v_recognition_accuracy>0.0</v_recognition_accuracy>
+      <v_regno></v_regno>
+      <v_pr_viol>0</v_pr_viol>
+      <v_parking_num>0</v_parking_num>
+      <v_parking_zone>0</v_parking_zone>
+      <v_lane_num>0</v_lane_num>
+      <v_camera_place></v_camera_place>
+      <v_photo_grz></v_photo_grz>
+      <v_photo_ts></v_photo_ts>
+     </tr_checkIn>
+     <photo_extra>
+      <v_frame_datetime>2018-12-20T16:30:25Z</v_frame_datetime>
+      <v_photo_extra></v_photo_extra>
+      <v_type_photo></v_type_photo>
+     </photo_extra>
+    </message>
+   </ns1:process>
+ </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

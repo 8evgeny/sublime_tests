@@ -1,0 +1,1 @@
+export LD_LIBRARY_PATH=/home/evgeny/sadko/third-party/installed/lib:$LD_LIBRARY_PATH

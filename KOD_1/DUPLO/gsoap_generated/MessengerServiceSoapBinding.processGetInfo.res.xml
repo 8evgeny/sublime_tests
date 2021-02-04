@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+    xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
+    xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ns1="http://service/">
+ <SOAP-ENV:Body>
+  <ns1:processGetInfoResponse>
+   <return>
+    <azimut>0.0</azimut>
+    <camera></camera>
+    <camera_id>0</camera_id>
+    <camera_model></camera_model>
+    <camera_place></camera_place>
+    <gps_x>0.0</gps_x>
+    <gps_y>0.0</gps_y>
+    <lane_num>0</lane_num>
+    <p_node>0</p_node>
+    <print_name></print_name>
+    <priz_arh></priz_arh>
+    <serial_no></serial_no>
+    <type></type>
+    <v_class></v_class>
+   </return>
+  </ns1:processGetInfoResponse>
+ </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
