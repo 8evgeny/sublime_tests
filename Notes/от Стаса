@@ -1,2 +1,41 @@
+############################################################################################
+Вместо создания экземпляра класса создаем указатель и затем инициализируем его в нужное время
 
+brightness_adjustment.cpp
 
+#include <logger/logger.h>
+#include <settings.h>
+
+#include "brightness_adjustor/brightness_adjustor.h"
+#include "modules/module.h"
+using namespace runtime;
+namespace brightness_adjustment {
+class BrightnessAdjustment : public Module {
+ public:
+  bool Init(std::shared_ptr<const domain::Settings> settings) override {
+    ba = std::make_shared<BrightnessAdjustor>(settings);
+    return true;
+  }
+  //  BrightnessAdjustment();
+  ModuleResult Run(const hardware::ImagePtr& image,
+                   const ModulesData& previous_modules_output) override {
+    return ba->Run(image, previous_modules_output);
+  }
+  bool ApplySettings(const Feedback&) override {
+    // TODO replace _thresholds with new values
+    return false;
+  }
+  const std::string& name() const override { return _name; }
+
+ private:
+  const std::string _name = "brightness_adjustment";
+  std::shared_ptr<BrightnessAdjustor> ba;
+};
+extern "C" BrightnessAdjustment* Create() { return new BrightnessAdjustment(); }
+extern "C" void Destroy(BrightnessAdjustment* m) { delete m; }
+}  // namespace brightness_adjustment
+
+строка 29 - вместо создания экземпляра класса создаем указатель на класс !
+строка 13 - в методе Init  инициализируем класс - передаем в конструктор settings !
+
+###############################################################################################
