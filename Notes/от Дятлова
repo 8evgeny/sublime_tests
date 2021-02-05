@@ -1,3 +1,5 @@
 rdesktop -g 1440x900 -P -z -x l -r sound:off -u Administrator 192.168.77.222
 rdesktop -g 1920x1080 -P -z -x l -r sound:off -u Administrator 192.168.77.222
 12345Qwe#
+
+mount -t nfs 192.168.77.199:/nfs/emc_smb /mnt/share
