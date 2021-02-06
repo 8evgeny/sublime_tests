@@ -80,3 +80,22 @@ psql -f update_object_point.sql
 
 снятие дампа с любой машины
 pg_dump -U user db_ti_2 -h 192.168.77.247 > dump_from_host
+
+
+
+Перезапуск кластера
+https://wiki.archlinux.org/index.php/PostgreSQL#Upgrading_PostgreSQL
+
+When you are ready, stop the postgresql service, upgrade the following packages: postgresql, postgresql-libs, and postgresql-old-upgrade. Finally upgrade the databases cluster.
+Stop and make sure PostgreSQL is stopped:
+# systemctl stop postgresql.service
+# systemctl status postgresql.service
+Make sure that PostgresSQL was stopped correctly. If it failed, pg_upgrade will fail too.
+Upgrade the packages:
+# pacman -S postgresql postgresql-libs postgresql-old-upgrade
+Rename the databases cluster directory, and create an empty one:
+# mv /var/lib/postgres/data /var/lib/postgres/olddata
+# mkdir /var/lib/postgres/data /var/lib/postgres/tmp
+# chown postgres:postgres /var/lib/postgres/data /var/lib/postgres/tmp
+[postgres]$ cd /var/lib/postgres/tmp
+[postgres]$ initdb -D /var/lib/postgres/data
