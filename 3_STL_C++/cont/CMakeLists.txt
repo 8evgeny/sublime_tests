@@ -1,5 +1,8 @@
-add_subdirectory(array1)
-add_subdirectory(cstylearray1)
-add_subdirectory(cstylearray1old)
-add_subdirectory(deque1)
-#Не завершено
+add_subdirectory(array)
+add_subdirectory(deque)
+add_subdirectory(forwardlist)
+add_subdirectory(list)
+#add_subdirectory(set)
+add_subdirectory(map)
+add_subdirectory(vector)
+

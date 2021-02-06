@@ -1,0 +1,10 @@
+set(CMAKE_CXX_STANDARD 17)
+set(name map)
+project(cont_${name})
+
+add_executable(${PROJECT_NAME}1 ${name}1.cpp)
+add_executable(${PROJECT_NAME}2 ${name}2.cpp)
+add_executable(${PROJECT_NAME}cmp ${name}cmp1.cpp)
+add_executable(${PROJECT_NAME}find ${name}find1.cpp)
+add_executable(${PROJECT_NAME}_multi multi${name}1.cpp)
+add_executable(${PROJECT_NAME}_unord_multi unordmulti${name}1.cpp)
