@@ -1,0 +1,13 @@
+set(CMAKE_CXX_STANDARD 17)
+set(name set)
+project(cont_${name})
+
+add_executable(${PROJECT_NAME}1 ${name}1.cpp)
+add_executable(${PROJECT_NAME}_hashfunc1 hashfunc1.cpp)
+add_executable(${PROJECT_NAME}_hashfunc2 hashfunc2.cpp)
+add_executable(${PROJECT_NAME}_multi multi${name}1.cpp)
+add_executable(${PROJECT_NAME}_cmp ${name}cmp1.cpp)
+add_executable(${PROJECT_NAME}_range ${name}range1.cpp)
+add_executable(${PROJECT_NAME}_sort sort${name}.cpp)
+add_executable(${PROJECT_NAME}_unorder unord${name}1.cpp)
+add_executable(${PROJECT_NAME}_unorder_multi unordmulti${name}1.cpp)
