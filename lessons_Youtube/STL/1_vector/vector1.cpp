@@ -3,7 +3,14 @@
 #include <vector>  // Подключаем
 using namespace std;
 
-
+void print(vector<int> &v){
+    // for(unsigned int i=0 ; i<myVector.size() ; i++)
+    for (auto &i : v)
+{
+        cout<<"vector's element "<<i<<": "<<v[i]<<endl;
+    }
+    cout<<endl;
+}
 
 int main()
 {
@@ -21,25 +28,12 @@ myVector.push_back(97);
 
 
 cout<<"number elements in vector: "<<myVector.size()<<endl;
-// for(unsigned int i=0 ; i<myVector.size() ; i++)
-for (auto &i : myVector) 
-
-{
-cout<<"vector's element "<<i<<": "<<myVector[i]<<endl;
-}
-cout<<endl;
+print(myVector);
 
 myVector.pop_back(); // метод удаляет последний элемент
 
 cout<<" pop_back() number elements in vector: "<<myVector.size()<<endl;
-for(unsigned int i=0 ; i<myVector.size() ; i++)
-
-
-
-{
-cout<<"vector's element "<<i<<": "<<myVector[i]<<endl;
-}
-cout<<endl;
+print(myVector);
 
 
 myVector[0] = 1000; //Доступ к элементу
@@ -48,11 +42,7 @@ myVector[3] = 25000;
 myVector.at(0) = 1000; //Безопасный доступ к элементу работает медленнее
 myVector.at(3) = 25000;
 
-
-for(unsigned int i=0 ; i <myVector.size() ; i++)
-{
-cout<<"vector's element "<<i<<": "<<myVector.at(i)<<endl;
-}
+print(myVector);
 
 myVector.clear(); //очистка всех элементов
 cout<<" clear()  number elements in vector: "<<myVector.size()<<endl;
