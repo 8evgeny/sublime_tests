@@ -16,10 +16,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 add_executable(${PROJECT_NAME}_1 ${name}1.cpp)
-target_link_libraries(${PROJECT_NAME}_1  pthread )
+target_link_libraries(${PROJECT_NAME}_1 pthread )
 add_executable(${PROJECT_NAME}_2 ${name}2.cpp)
-target_link_libraries(${PROJECT_NAME}_2  pthread )
+target_link_libraries(${PROJECT_NAME}_2 pthread )
 add_executable(${PROJECT_NAME}_3 ${name}3.cpp)
-target_link_libraries(${PROJECT_NAME}_3  pthread )
-
-
+target_link_libraries(${PROJECT_NAME}_3 pthread )
+add_executable(${PROJECT_NAME}_4 ${name}4.cpp)
+target_link_libraries(${PROJECT_NAME}_4 pthread )
