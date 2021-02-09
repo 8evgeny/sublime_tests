@@ -39,3 +39,7 @@ extern "C" void Destroy(BrightnessAdjustment* m) { delete m; }
 строка 13 - в методе Init  инициализируем класс - передаем в конструктор settings !
 
 ###############################################################################################
+
+
+sudo LOG_REGIME=console bash -c "../scripts/shooter/run_shooter.sh viewer"
+
