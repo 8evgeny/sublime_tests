@@ -42,4 +42,4 @@ extern "C" void Destroy(BrightnessAdjustment* m) { delete m; }
 
 
 sudo LOG_REGIME=console bash -c "../scripts/shooter/run_shooter.sh viewer"
-
+sudo LOG_REGIME=console ./shooter/run_shooter.sh viewer
