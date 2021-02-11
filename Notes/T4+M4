@@ -251,7 +251,7 @@ dns-nameservers 8.8.8.8,8.8.4.4
 
 
 Для скрипта
-sudo usermod -a -G dialout pi
+sudo usermod -a -G dialout pi - оказалось не нужно
 
 сервис убит
 sudo systemctl disable modem_switch.service

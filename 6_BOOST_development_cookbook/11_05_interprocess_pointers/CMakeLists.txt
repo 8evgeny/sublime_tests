@@ -19,7 +19,8 @@ endif ()
 target_link_libraries(
     ${PROJECT_NAME}
     ${Boost_LIBRARIES}
-    my_library
+#    my_library
+rt
     )
 
 
