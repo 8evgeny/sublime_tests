@@ -22,8 +22,16 @@ ParsingFiles::Impl::Impl(){}
 
 
 
-ParsingFiles::ParsingFiles() : _d(std::make_unique<Impl>()) {}
+ParsingFiles::ParsingFiles(std::string i) : pImpl{new Impl{i}} {}
 
+ParsingFiles::ReadDir(){
+    boost::filesystem::directory_iterator  p("/home/jhon");
+    for (boost::filesystem::directory_entry& x : boost::filesystem::directory_iterator(p)){
+        boost::filesystem::file_status fs = x.status();
+        if(fs.type()==boost::filesystem::regular_file)
+            std::cout << x.path() << '\n';
+    }
 
+}
 
 
