@@ -81,13 +81,16 @@ string ParsingFiles::Impl::ReadSingleFile(string& fileName) {
 deque<string> ParsingFiles::Impl::ParsingString(string& text,
                                                 list<string>& sep) {
   deque<string> res;
-  res.push_back(text);   //входную строку в дек
+  res.push_back(text);  //входную строку в дек
+  int k = 0;  //номер обрабатываемой строки в деке
+
   for (auto& x : sep) {  //по разделителям
     cout << "Разделитель: " << x << endl;
 
-    auto pos = search(res[0].begin(), res[0].end(),  // range
+    auto pos = search(res[k].begin(), res[k].end(),  // range
                       x.begin(), x.end());           // subrange
-    if (pos != res[0].end()) {  // делим res[0] на 2 строки и вторую пушим
+
+    if (pos != res[k].end()) {  // делим res[0] на 2 строки и вторую пушим
                                 //Изменить цикл с диапазонного на обычный при
                                 //нахождении pos --i при ненахождении pos i не
                                 //меняем - переходим на следующий разделитель
