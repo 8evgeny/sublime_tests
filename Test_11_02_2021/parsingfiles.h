@@ -10,7 +10,7 @@ class ParsingFiles {
   //    ParsingFiles(std::string);
   ParsingFiles();
   ~ParsingFiles();
-  void ParsingDir(std::string);
+  void ParsingDir(std::string, std::string);
   struct Impl;
 
  private:
