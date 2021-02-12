@@ -1,7 +1,11 @@
 set(CMAKE_CXX_STANDARD 17)
 
-project(test_task)
-ADD_EXECUTABLE(${PROJECT_NAME} main.cpp )
+project(test)
+ADD_EXECUTABLE(${PROJECT_NAME}
+    main.cpp
+    parsingfiles.cpp
+    impl.cpp
+    )
 
 set (Boost_USE_MULTITHREADED ON)
 
