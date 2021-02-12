@@ -12,15 +12,13 @@ struct ParsingFiles::Impl {
   vector<string> ReadDir(string);
   void PrintDir(vector<string> v);
   void ReadFile();
-  vector<string> ReadSeparators();
+  void ReadSeparators();
 
   vector<string> listfiles;
+  vector<string> listseparators;
 };
-
 ParsingFiles::Impl::Impl() {}
-
 ParsingFiles::ParsingFiles() : _d{make_unique<Impl>()} {}
-
 ParsingFiles::~ParsingFiles() {}
 
 void ParsingFiles::ParsingDir(string p) {
@@ -48,16 +46,14 @@ void ParsingFiles::Impl::PrintDir(vector<string> vdir) {
   cout << endl;
 }
 
-vector<string> ParsingFiles::Impl::ReadSeparators() {
-  vector<string> v;
+void ParsingFiles::Impl::ReadSeparators() {
   fstream f("../separators.ini", ios::in | ios::binary);
   string s;
   cout << "Для парсинга содержимого файлов используются следующие сепараторы: "
        << endl;
   while (f >> s) {
-    v.push_back(s);
+    listseparators.push_back(s);
     cout << s << endl;
   }
   cout << endl;
-  return v;
 };
