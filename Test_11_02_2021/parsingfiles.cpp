@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <boost/filesystem/operations.hpp>
 #include <boost/lexical_cast.hpp>
+#include <cstddef>
+#include <deque>
 #include <fstream>
 using namespace std;
 namespace bf = boost::filesystem;
@@ -13,11 +15,11 @@ struct ParsingFiles::Impl {
   void PrintDir(vector<string>&);
   string ReadSingleFile(string&);
   void ReadSeparators();
-  vector<string> ParsingString(string&, vector<string>&);
+  deque<string> ParsingString(string&, list<string>&);
 
   vector<string> listfiles;
-  vector<string> listseparators;
-  vector<vector<string>> result;
+  list<string> listseparators;
+  vector<deque<string>> result;
 };
 ParsingFiles::Impl::Impl() {}
 ParsingFiles::ParsingFiles() : _d{make_unique<Impl>()} {}
@@ -29,7 +31,7 @@ void ParsingFiles::ParsingDir(string dir, string outfile) {
   _d->ReadSeparators();  //Получаем разделители из файла
   for (auto& file : _d->listfiles) {  //Парсим в цикле  все файлы
     string data_from_file = _d->ReadSingleFile(file);
-    vector<string> result_parcing_single_file =
+    deque<string> result_parcing_single_file =
         _d->ParsingString(data_from_file, _d->listseparators);
     _d->result.push_back(result_parcing_single_file);
   }
@@ -76,12 +78,21 @@ string ParsingFiles::Impl::ReadSingleFile(string& fileName) {
   return s;
 }
 
-vector<string> ParsingFiles::Impl::ParsingString(string& text,
-                                                 vector<string>& sep) {
-  vector<string> result_parsing_string;
-  string::iterator pos = find_first_of(text.begin(), text.end(),  // range
-                                       sep.begin(), sep.end());   // subrange
-                                                                  //
-  //
-  return result_parsing_string;
+deque<string> ParsingFiles::Impl::ParsingString(string& text,
+                                                list<string>& sep) {
+  deque<string> res;
+  res.push_back(text);   //входную строку в дек
+  for (auto& x : sep) {  //по разделителям
+    cout << "Разделитель: " << x << endl;
+
+    auto pos = search(res[0].begin(), res[0].end(),  // range
+                      x.begin(), x.end());           // subrange
+    if (pos != res[0].end()) {  // делим res[0] на 2 строки и вторую пушим
+                                //Изменить цикл с диапазонного на обычный при
+                                //нахождении pos --i при ненахождении pos i не
+                                //меняем - переходим на следующий разделитель
+    }
+    //
+  }  //по разделителям
+  return res;
 }
