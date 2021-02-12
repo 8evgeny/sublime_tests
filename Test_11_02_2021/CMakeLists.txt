@@ -9,7 +9,13 @@ ADD_EXECUTABLE(${PROJECT_NAME}
 
 set (Boost_USE_MULTITHREADED ON)
 
-find_package (Boost REQUIRED COMPONENTS  regex thread system filesystem)
+find_package (Boost REQUIRED COMPONENTS
+    program_options
+    regex
+    thread
+    system
+    filesystem
+    )
 
 if (Boost_FOUND)
     message("cmake message-" ${PROJECT_NAME} " boost include DIR: " ${Boost_INCLUDE_DIR})

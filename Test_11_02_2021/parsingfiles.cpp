@@ -1,6 +1,9 @@
 #include "parsingfiles.h"
 using namespace std;
-#define bf boost::filesystem
+namespace bf = boost::filesystem;
+
+#include <boost/lexical_cast.hpp>
+
 struct ParsingFiles::Impl {
   Impl();
 
@@ -9,7 +12,8 @@ struct ParsingFiles::Impl {
   void ReadFile();
 
   std::vector<bf::directory_entry> v;
-};
+  std::vector<std::string> vv;
+};  // namespace boost::filesystemstructParsingFiles::Impl
 
 ParsingFiles::Impl::Impl() {}
 
@@ -29,6 +33,7 @@ std::vector<bf::directory_entry> ParsingFiles::Impl::ReadDir(
     bf::file_status f = x.status();
     if (f.type() == bf::regular_file) {
       v.push_back(x);
+      vv.push_back(boost::lexical_cast<std::string>(x));
     }
   }
   return v;
