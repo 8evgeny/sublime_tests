@@ -8,12 +8,11 @@ namespace bf = boost::filesystem;
 
 struct ParsingFiles::Impl {
   Impl();
-
   vector<string> ReadDir(string);
   void PrintDir(vector<string> v);
-  void ReadFile();
+  string ReadSingleFile(string);
   void ReadSeparators();
-
+  vector<string> ParsingSingleFile(string);
   vector<string> listfiles;
   vector<string> listseparators;
 };
@@ -57,3 +56,15 @@ void ParsingFiles::Impl::ReadSeparators() {
   }
   cout << endl;
 };
+
+string ReadSingleFile(string) {
+  //
+  //
+}
+
+vector<string> ParsingSingleFile(string) {
+  //
+  //
+  //
+  //
+}
