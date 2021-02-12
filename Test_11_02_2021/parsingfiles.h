@@ -1,22 +1,19 @@
 #pragma once
-#include <memory>
-#include <experimental/propagate_const>
 #include <boost/filesystem/operations.hpp>
+#include <experimental/propagate_const>
 #include <iostream>
+#include <memory>
 template <class T>
 using Pimpl = std::experimental::propagate_const<std::unique_ptr<T>>;
 
-class ParsingFiles  {
-public:
-//    ParsingFiles(std::string);
+class ParsingFiles {
+ public:
+  //    ParsingFiles(std::string);
   ParsingFiles();
   ~ParsingFiles();
-  void ReadDir();
+  void ParsingDir(std::string);
   struct Impl;
 
-
-private:
+ private:
   std::unique_ptr<Impl> _d;
 };
-
-
