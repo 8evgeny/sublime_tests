@@ -6,6 +6,7 @@
 #include <boost/lexical_cast.hpp>
 #include <cstddef>
 #include <cstring>
+#include <deque>
 #include <fstream>
 using namespace std;
 namespace bf = boost::filesystem;
@@ -15,11 +16,11 @@ struct ParsingFiles::Impl {
   vector<string> ReadDir(string);
   void PrintDir(vector<string>&);
   pair<string, vector<string>> ReadSingleFile(string&);
-  vector<string> ParsingSingleFile(pair<string, vector<string>>&);
+  deque<string> ParsingSingleFile(pair<string, vector<string>>&);
 
   vector<string> listfiles;
   list<string> listseparators;
-  vector<vector<string>> result;
+  vector<deque<string>> result;
 };
 ParsingFiles::Impl::Impl() {}
 ParsingFiles::ParsingFiles() : _d{make_unique<Impl>()} {}
@@ -33,7 +34,7 @@ void ParsingFiles::ParsingDir(string dir, string outfile) {
 
   for (auto& file : _d->listfiles) {  //Парсим в цикле  все файлы
     pair<string, vector<string>> data_from_file = _d->ReadSingleFile(file);
-    vector<string> result_parsing_single_file =
+    deque<string> result_parsing_single_file =
         _d->ParsingSingleFile(data_from_file);
     _d->result.push_back(result_parsing_single_file);
   }
@@ -83,45 +84,33 @@ pair<string, vector<string>> ParsingFiles::Impl::ReadSingleFile(
   return p;
 }
 
-vector<string> ParsingFiles::Impl::ParsingSingleFile(
+deque<string> ParsingFiles::Impl::ParsingSingleFile(
     pair<string, vector<string>>& pair) {
-  string in = pair.first;
-  vector<string> res;
+  string s = pair.first;
+  deque<string> res;
+  res.push_back(pair.first);
   auto i = pair.second.begin();  // i - разделитель с которым работаем
   //  for (; i != pair.second.end();) {  //по разделителям
   cout << "Ищем разделитель: " << *i << endl;
 
-  std::size_t pos = in.find(*i);
+  auto pos = res[0].find(*i);
   if (pos != std::string::npos) {
-    //  auto pos = search(pair.first.begin(),
-    //                    pair.first.end(),           // range
-    //                    (*i).begin(), (*i).end());  // subrange
-
-    //  if (pos != pair.first.end()) {
     cout << "Разделитель найден:" << endl;
-    //делим text на 2 строки и вторую пушим
-    string newtext(in, pos);
-    newtext.replace(
-        newtext.begin(), newtext.begin() + (*i).length(),
-        "");  // newtext - Новая строка без разделителя для дальнейшего парсинга
-    string s;
-    s.assign(in, pos);
-    //    copy(pair.first.begin(), pos, s);
-    int a = (*i).length();
-    //    s.replace(s.length() - a, s.end(), " ");
-    res.push_back(newtext);
-    //    cout << pair.first << endl;
-    cout << "Новая строка без разделителя: " << endl << newtext << endl << endl;
-    //удаляем из text найденную часть(до разделителя)
-    //
-    //Удаляем сам разделитель
-    //
-    //    cout << pair.first << endl;
+    //делим text на 2 строки и обе кладем в дек а исходную удаляем
+    string s1(s, pos + (*i).length());
+    cout << "в деке: " << res.size() << endl;
+    res.push_back(s1);
+    s.erase(pos);
+    res.push_back(s);
+    res.pop_front();
+    cout << "в деке: " << res.size() << endl;
+    cout << "Новые строки: " << endl << s << endl << s1 << endl;
   } else {
     cout << "Разделитель не найден:" << endl << endl;
-    //разделитель (*i) в строке не найден
-    //переходим к следующему разделителю
-    ++i;
+
+    if (i != pair.second.end()) {
+      ++i;
+    }
   }
   //
   //  }  //по разделителям
