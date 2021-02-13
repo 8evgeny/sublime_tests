@@ -1,10 +1,11 @@
 #include "parsingfiles.h"
 
-#include <algorithm>
+#include <string.h>
+
 #include <boost/filesystem/operations.hpp>
 #include <boost/lexical_cast.hpp>
 #include <cstddef>
-#include <deque>
+#include <cstring>
 #include <fstream>
 using namespace std;
 namespace bf = boost::filesystem;
@@ -13,36 +14,41 @@ struct ParsingFiles::Impl {
   Impl();
   vector<string> ReadDir(string);
   void PrintDir(vector<string>&);
-  string ReadSingleFile(string&);
-  void ReadSeparators();
-  deque<string> ParsingString(string&, list<string>&);
+  pair<string, vector<string>> ReadSingleFile(string&);
+  vector<string> ParsingSingleFile(pair<string, vector<string>>&);
 
   vector<string> listfiles;
   list<string> listseparators;
-  vector<deque<string>> result;
+  vector<vector<string>> result;
 };
 ParsingFiles::Impl::Impl() {}
 ParsingFiles::ParsingFiles() : _d{make_unique<Impl>()} {}
 ParsingFiles::~ParsingFiles() {}
+//
+//######## логика парсинга ##################################
 
 void ParsingFiles::ParsingDir(string dir, string outfile) {
   vector<string> v = _d->ReadDir(dir);  //Читаем директорию
-  _d->PrintDir(v);       //Печатаем список файлов
-  _d->ReadSeparators();  //Получаем разделители из файла
+  _d->PrintDir(v);  //Печатаем список файлов
+
   for (auto& file : _d->listfiles) {  //Парсим в цикле  все файлы
-    string data_from_file = _d->ReadSingleFile(file);
-    deque<string> result_parcing_single_file =
-        _d->ParsingString(data_from_file, _d->listseparators);
-    _d->result.push_back(result_parcing_single_file);
+    pair<string, vector<string>> data_from_file = _d->ReadSingleFile(file);
+    vector<string> result_parsing_single_file =
+        _d->ParsingSingleFile(data_from_file);
+    _d->result.push_back(result_parsing_single_file);
   }
 }
-
+//#############################################################
+//
 vector<string> ParsingFiles::Impl::ReadDir(string pathdir) {
   bf::directory_iterator p(pathdir);
   for (bf::directory_entry& x : bf::directory_iterator(p)) {
     bf::file_status f = x.status();
     if (f.type() == bf::regular_file) {
-      listfiles.push_back(boost::lexical_cast<string>(x));
+      string s = boost::lexical_cast<string>(x);
+      s.pop_back();
+      s.replace(0, 1, "");
+      listfiles.push_back(s);
     }
   }
   return listfiles;
@@ -56,46 +62,68 @@ void ParsingFiles::Impl::PrintDir(vector<string>& vdir) {
   cout << endl;
 }
 
-void ParsingFiles::Impl::ReadSeparators() {
-  fstream f("../separators.ini", ios::in | ios::binary);
-  string s;
-  cout << "Для парсинга содержимого файлов используются следующие разделители: "
-       << endl;
-  while (f >> s) {
-    listseparators.push_back(s);
-    cout << s << endl;
-  }
-  cout << endl;
-};
-
-string ParsingFiles::Impl::ReadSingleFile(string& fileName) {
-  string s;
-  ifstream in(fileName, ios::in | ios::binary);
+pair<string, vector<string>> ParsingFiles::Impl::ReadSingleFile(
+    string& fileName) {
+  cout << "Читаем файл: " << fileName << endl;
+  string input_string, sep;
+  vector<string> separators;
+  fstream in(fileName, ios::in | ios::binary);
+  in >> input_string;  //строка для парсинга
   while (!in.eof()) {
-    char c = in.get();
-    s.push_back(c);
+    in >> sep;  //разделители
+    separators.push_back(sep);
   }
-  return s;
+  separators
+      .pop_back();  //удаляем последний разделитель который записался дважды
+  pair p = make_pair(input_string, separators);
+  cout << "строка для парсинга: " << endl << input_string << endl;
+  cout << "разделители: " << endl;
+  for (auto& x : separators) cout << x << endl;
+  cout << endl;
+  return p;
 }
 
-deque<string> ParsingFiles::Impl::ParsingString(string& text,
-                                                list<string>& sep) {
-  deque<string> res;
-  res.push_back(text);  //входную строку в дек
-  int k = 0;  //номер обрабатываемой строки в деке
+vector<string> ParsingFiles::Impl::ParsingSingleFile(
+    pair<string, vector<string>>& pair) {
+  string in = pair.first;
+  vector<string> res;
+  auto i = pair.second.begin();  // i - разделитель с которым работаем
+  //  for (; i != pair.second.end();) {  //по разделителям
+  cout << "Ищем разделитель: " << *i << endl;
 
-  for (auto& x : sep) {  //по разделителям
-    cout << "Разделитель: " << x << endl;
+  std::size_t pos = in.find(*i);
+  if (pos != std::string::npos) {
+    //  auto pos = search(pair.first.begin(),
+    //                    pair.first.end(),           // range
+    //                    (*i).begin(), (*i).end());  // subrange
 
-    auto pos = search(res[k].begin(), res[k].end(),  // range
-                      x.begin(), x.end());           // subrange
-
-    if (pos != res[k].end()) {  // делим res[0] на 2 строки и вторую пушим
-                                //Изменить цикл с диапазонного на обычный при
-                                //нахождении pos --i при ненахождении pos i не
-                                //меняем - переходим на следующий разделитель
-    }
+    //  if (pos != pair.first.end()) {
+    cout << "Разделитель найден:" << endl;
+    //делим text на 2 строки и вторую пушим
+    string newtext(in, pos);
+    newtext.replace(
+        newtext.begin(), newtext.begin() + (*i).length(),
+        "");  // newtext - Новая строка без разделителя для дальнейшего парсинга
+    string s;
+    s.assign(in, pos);
+    //    copy(pair.first.begin(), pos, s);
+    int a = (*i).length();
+    //    s.replace(s.length() - a, s.end(), " ");
+    res.push_back(newtext);
+    //    cout << pair.first << endl;
+    cout << "Новая строка без разделителя: " << endl << newtext << endl << endl;
+    //удаляем из text найденную часть(до разделителя)
     //
-  }  //по разделителям
+    //Удаляем сам разделитель
+    //
+    //    cout << pair.first << endl;
+  } else {
+    cout << "Разделитель не найден:" << endl << endl;
+    //разделитель (*i) в строке не найден
+    //переходим к следующему разделителю
+    ++i;
+  }
+  //
+  //  }  //по разделителям
   return res;
 }
