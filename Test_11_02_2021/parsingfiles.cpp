@@ -1,13 +1,10 @@
 #include "parsingfiles.h"
 
-#include <string.h>
-
 #include <boost/filesystem/operations.hpp>
 #include <boost/lexical_cast.hpp>
-#include <cstddef>
-#include <cstring>
 #include <deque>
 #include <fstream>
+
 using namespace std;
 namespace bf = boost::filesystem;
 
@@ -17,9 +14,10 @@ struct ParsingFiles::Impl {
   void PrintDir(vector<string>&);
   pair<string, vector<string>> ReadSingleFile(string&);
   deque<string> ParsingSingleFile(pair<string, vector<string>>&);
+  void SaveResults(vector<deque<string>>&);
 
   vector<string> listfiles;
-  list<string> listseparators;
+  //  list<string> listseparators;
   vector<deque<string>> result;
 };
 ParsingFiles::Impl::Impl() {}
@@ -83,47 +81,49 @@ pair<string, vector<string>> ParsingFiles::Impl::ReadSingleFile(
   cout << endl;
   return p;
 }
+//
+//######## парсинг одного файла ##################################
 
 deque<string> ParsingFiles::Impl::ParsingSingleFile(
     pair<string, vector<string>>& pair) {
   deque<string> res{};
   res.push_back(pair.first);
-
   for (auto i = pair.second.begin(); i != pair.second.end();
        ++i) {  // i - разделитель с которым работаем
-
-    cout << "Ищем разделитель: " << *i << endl;
+               //    cout << "Ищем разделитель: " << *i << endl;
     bool a = true;
     unsigned long k = 0;  //элемент дека с которым работаем
+    auto it = res.begin();
+    ++it;
     while (a) {
       auto pos = res[k].find(*i);  //ищем разделитель
       if (pos != std::string::npos) {
-        cout << "Разделитель найден:" << endl;
-        //делим text на 2 строки и обе кладем в дек а исходную удаляем
-        string s1(
-            res[k],
-            pos + (*i).length());  // s1 - то что осталось после разделителя
-        string s2 = res[k].erase(pos);  // s2 - короткая строка до разделителя
+        //        cout << "Разделитель найден:" << endl;
+        //делим text на 2 строки ту что после разделителя пушим в дек а исходную
+        //укорачиваем
+        string s(res[k],
+                 pos + (*i).length());  // s - то что осталось после разделителя
+        res[k].erase(pos);  // остается короткая строка до разделителя
+        //        cout << "в деке: " << res.size() << endl;
+        //        cout << "k: " << k << endl;
 
-        cout << "в деке: " << res.size() << endl;
-        cout << "k: " << k << endl;
-        res.push_back(s1);
-        //        res.push_back(s2);
-        cout << "Новые строки: " << endl << s1 << endl << res[k] << endl;
-        //        res.pop_front();
-        cout << "в деке: " << res.size() << endl;
+        //        it.operator[](k);
+        res.insert(it, s);
       } else {
-        cout << "Разделитель не найден:" << endl << endl;
+        //        cout << "Разделитель не найден:" << endl << endl;
         if (k < res.size() - 1) {  //к следующей строке дека
           ++k;
+          ++it;
         } else {
           a = false;
         }
       }
     }  // end while
-       //
-  }    //по разделителям
-  cout << "выводим дек: " << endl;
+  }    // for по разделителям
+  cout << "Результат парсинга в deque: " << endl;
   for (auto& x : res) cout << x << endl;
+  cout << endl;
   return res;
 }
+//#############################################################
+//

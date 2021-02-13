@@ -5,9 +5,6 @@ add_executable(${PROJECT_NAME}
     main.cpp
     parsingfiles.cpp
     )
-add_executable(test_file_fore_parsing}
-    create.cpp
-    )
 
 set (Boost_USE_MULTITHREADED ON)
 
