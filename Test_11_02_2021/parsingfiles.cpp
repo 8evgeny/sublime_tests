@@ -94,7 +94,6 @@ deque<string> ParsingFiles::Impl::ParsingSingleFile(
     bool a = true;
     unsigned long k = 0;  //элемент дека с которым работаем
     auto it = res.begin();
-    ++it;
     while (a) {
       auto pos = res[k].find(*i);  //ищем разделитель
       if (pos != std::string::npos) {
@@ -107,13 +106,13 @@ deque<string> ParsingFiles::Impl::ParsingSingleFile(
         //        cout << "в деке: " << res.size() << endl;
         //        cout << "k: " << k << endl;
 
-        //        it.operator[](k);
+        it = res.begin();
+        advance(it, k + 1);
         res.insert(it, s);
       } else {
         //        cout << "Разделитель не найден:" << endl << endl;
         if (k < res.size() - 1) {  //к следующей строке дека
           ++k;
-          ++it;
         } else {
           a = false;
         }
