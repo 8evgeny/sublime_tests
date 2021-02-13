@@ -19,6 +19,7 @@ struct ParsingFiles::Impl {
   vector<string> listfiles;
   //  list<string> listseparators;
   vector<deque<string>> result;
+  string out;
 };
 ParsingFiles::Impl::Impl() {}
 ParsingFiles::ParsingFiles() : _d{make_unique<Impl>()} {}
@@ -27,6 +28,7 @@ ParsingFiles::~ParsingFiles() {}
 //######## логика парсинга ##################################
 
 void ParsingFiles::ParsingDir(string dir, string outfile) {
+  _d->out = outfile;
   vector<string> v = _d->ReadDir(dir);  //Читаем директорию
   _d->PrintDir(v);  //Печатаем список файлов
 
