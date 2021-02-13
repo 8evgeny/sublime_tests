@@ -88,39 +88,37 @@ deque<string> ParsingFiles::Impl::ParsingSingleFile(
     pair<string, vector<string>>& pair) {
   deque<string> res{};
   res.push_back(pair.first);
-  auto i = pair.second.begin();  // i - разделитель с которым работаем
-  unsigned long k = 0;  //элемент дека с которым работаем
-  //  for (; i != pair.second.end();) {  //по разделителям
-  cout << "Ищем разделитель: " << *i << endl;
-  bool a = true;
-  while (a) {
-    auto pos = res[k].find(*i);  //ищем разделитель
-    if (pos != std::string::npos) {
-      cout << "Разделитель найден:" << endl;
-      //делим text на 2 строки и обе кладем в дек а исходную удаляем
-      string s1(res[k], pos + (*i).length());
-      cout << "в деке: " << res.size() << endl;
-      cout << "k: " << k << endl;
-      res.push_back(s1);
-      res[k].erase(pos);
-      res.push_back(res[k]);
-      cout << "Новые строки: " << endl << res[k] << endl << s1 << endl;
-      res.pop_front();
-      cout << "в деке: " << res.size() << endl;
-    } else {
-      cout << "Разделитель не найден:" << endl << endl;
-      if (k < res.size() - 1) {  //к следующей строке дека
-        ++k;
+
+  for (auto i = pair.second.begin(); i != pair.second.end();
+       ++i) {  // i - разделитель с которым работаем
+    unsigned long k = 0;  //элемент дека с которым работаем
+    cout << "Ищем разделитель: " << *i << endl;
+    bool a = true;
+    while (a) {
+      auto pos = res[k].find(*i);  //ищем разделитель
+      if (pos != std::string::npos) {
+        cout << "Разделитель найден:" << endl;
+        //делим text на 2 строки и обе кладем в дек а исходную удаляем
+        string s1(res[k], pos + (*i).length());
+        cout << "в деке: " << res.size() << endl;
+        cout << "k: " << k << endl;
+        res.push_back(s1);
+        string s2 = res[k].erase(pos);
+        res.push_back(s2);
+        cout << "Новые строки: " << endl << s1 << endl << s2 << endl;
+        res.pop_front();
+        cout << "в деке: " << res.size() << endl;
       } else {
-        a = false;
+        cout << "Разделитель не найден:" << endl << endl;
+        if (k < res.size() - 1) {  //к следующей строке дека
+          ++k;
+        } else {
+          a = false;
+        }
       }
-      //      if (i != pair.second.end()) {
-      //        ++i;
-      //    }
-    }
-  }  // end while
-  //
-  //  }  //по разделителям
+    }  // end while
+       //
+  }    //по разделителям
   cout << "выводим дек: " << endl;
   for (auto& x : res) cout << x << endl;
   return res;
