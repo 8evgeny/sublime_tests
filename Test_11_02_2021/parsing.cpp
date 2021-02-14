@@ -11,13 +11,13 @@ struct ParsingFiles::Impl {
   vector<string> ReadDir(string);
   void PrintDir(vector<string>&);
   pair<string, vector<string>> ReadSingleFile(string&);
-  deque<string> ParsingSingleFile(pair<string, vector<string>>&, string&);
-  void SaveResults(vector<deque<string>>&);
+  deque<string> ParsingSingleFile(pair<string, vector<string>>&, string&,
+                                  string&);
 
   vector<string> listfiles;
   //  list<string> listseparators;
   vector<deque<string>> result;
-  string out;
+  //  string out;
 };
 ParsingFiles::Impl::Impl() {}
 ParsingFiles::ParsingFiles() : _d{make_unique<Impl>()} {}
@@ -26,14 +26,14 @@ ParsingFiles::~ParsingFiles() {}
 //######## логика парсинга ##################################
 
 void ParsingFiles::ParsingDir(string dir, string outfile) {
-  _d->out = outfile;
+  //  _d->out = outfile;
   vector<string> v = _d->ReadDir(dir);  //Читаем директорию
   _d->PrintDir(v);  //Печатаем список файлов
 
   for (auto& file : _d->listfiles) {  //Парсим в цикле  все файлы
     pair<string, vector<string>> data_from_file = _d->ReadSingleFile(file);
     deque<string> result_parsing_single_file =
-        _d->ParsingSingleFile(data_from_file, file);
+        _d->ParsingSingleFile(data_from_file, file, outfile);
     _d->result.push_back(result_parsing_single_file);
   }
 }
@@ -85,7 +85,7 @@ pair<string, vector<string>> ParsingFiles::Impl::ReadSingleFile(
 //######## парсинг одного файла ##################################
 
 deque<string> ParsingFiles::Impl::ParsingSingleFile(
-    pair<string, vector<string>>& pair, string& name) {
+    pair<string, vector<string>>& pair, string& name, string& outfile) {
   deque<string> res{};
   res.push_back(pair.first);
   for (auto i = pair.second.begin(); i != pair.second.end();
@@ -119,13 +119,19 @@ deque<string> ParsingFiles::Impl::ParsingSingleFile(
       }
     }  // end while
   }    // for по разделителям
-  cout << "Результат парсинга файла: " << name << endl;
+
+  fstream out(outfile, ios::out | ios::app);
+  cout << "[Имя файла " << name << " ]:" << endl;
+  out << "[Имя файла " << name << " ]:" << endl;
+
   int i = 0;
   for (auto& x : res) {
     ++i;
-    cout << "Подстока " << i << ": " << x << endl;
+    cout << "Подстока " << i << " файла " << name << ": " << x << endl;
+    out << "Подстока " << i << " файла " << name << ": " << x << endl;
   }
   cout << endl;
+  out << endl;
   return res;
 }
 //#############################################################
