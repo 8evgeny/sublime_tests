@@ -1,4 +1,4 @@
-#include "parsingfiles.h"
+#include "main.h"
 int main(int argc, char** argv) {
   if (argc != 3) {
     std::cout << "Expected parametr" << std::endl;

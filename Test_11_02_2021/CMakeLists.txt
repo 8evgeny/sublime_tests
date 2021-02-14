@@ -3,14 +3,12 @@ set(CMAKE_CXX_STANDARD 17)
 project(test)
 add_executable(${PROJECT_NAME}
     main.cpp
-    parsingfiles.cpp
+    parsing.cpp
     )
 
 set (Boost_USE_MULTITHREADED ON)
 
 find_package (Boost REQUIRED COMPONENTS
-    program_options
-    regex
     thread
     system
     filesystem

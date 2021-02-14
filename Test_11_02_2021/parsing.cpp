@@ -1,13 +1,11 @@
-#include "parsingfiles.h"
-
 #include <boost/filesystem/operations.hpp>
 #include <boost/lexical_cast.hpp>
 #include <deque>
 #include <fstream>
 
+#include "main.h"
 using namespace std;
 namespace bf = boost::filesystem;
-
 struct ParsingFiles::Impl {
   Impl();
   vector<string> ReadDir(string);
