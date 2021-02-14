@@ -2,6 +2,7 @@
 #include <boost/lexical_cast.hpp>
 #include <deque>
 #include <fstream>
+#include <thread>
 
 #include "main.h"
 using namespace std;
@@ -11,11 +12,9 @@ struct ParsingFiles::Impl {
   vector<string> ReadDir(string);
   void PrintDir(vector<string>&);
   pair<string, vector<string>> ReadSingleFile(string&);
-  deque<string> ParsingSingleFile(pair<string, vector<string>>&, string&,
-                                  string&);
+  void ParsingSingleFile(pair<string, vector<string>>&, string&, string&);
 
   vector<string> listfiles;
-  vector<deque<string>> result;
 };
 ParsingFiles::Impl::Impl() {}
 ParsingFiles::ParsingFiles() : _d{make_unique<Impl>()} {}
@@ -25,12 +24,15 @@ ParsingFiles::~ParsingFiles() {}
 void ParsingFiles::ParsingDir(string dir, string outfile) {
   vector<string> v = _d->ReadDir(dir);  //Читаем директорию
   _d->PrintDir(v);  //Печатаем список файлов
-
+  int t = 1;        //номер потока
   for (auto& file : _d->listfiles) {  //Парсим в цикле  все файлы
+
     pair<string, vector<string>> data_from_file = _d->ReadSingleFile(file);
-    deque<string> result_parsing_single_file =
-        _d->ParsingSingleFile(data_from_file, file, outfile);
-    _d->result.push_back(result_parsing_single_file);
+
+    //    thread t([&]() { _d->ParsingSingleFile(data_from_file, file, outfile);
+    //    });
+
+    _d->ParsingSingleFile(data_from_file, file, outfile);
   }
 }
 //#############################################################
@@ -78,8 +80,8 @@ pair<string, vector<string>> ParsingFiles::Impl::ReadSingleFile(
 }
 
 //######## парсинг одного файла ##################################
-deque<string> ParsingFiles::Impl::ParsingSingleFile(
-    pair<string, vector<string>>& pair, string& name, string& outfile) {
+void ParsingFiles::Impl::ParsingSingleFile(pair<string, vector<string>>& pair,
+                                           string& name, string& outfile) {
   deque<string> res{};
   res.push_back(pair.first);
   for (auto i = pair.second.begin(); i != pair.second.end();
@@ -126,8 +128,6 @@ deque<string> ParsingFiles::Impl::ParsingSingleFile(
   }
   cout << endl;
   out << endl;
-
-  return res;
 }
 //#############################################################
 //
