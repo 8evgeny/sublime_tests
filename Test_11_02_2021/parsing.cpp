@@ -15,18 +15,14 @@ struct ParsingFiles::Impl {
                                   string&);
 
   vector<string> listfiles;
-  //  list<string> listseparators;
   vector<deque<string>> result;
-  //  string out;
 };
 ParsingFiles::Impl::Impl() {}
 ParsingFiles::ParsingFiles() : _d{make_unique<Impl>()} {}
 ParsingFiles::~ParsingFiles() {}
-//
-//######## логика парсинга ##################################
 
+//######## логика парсинга ##################################
 void ParsingFiles::ParsingDir(string dir, string outfile) {
-  //  _d->out = outfile;
   vector<string> v = _d->ReadDir(dir);  //Читаем директорию
   _d->PrintDir(v);  //Печатаем список файлов
 
@@ -38,7 +34,7 @@ void ParsingFiles::ParsingDir(string dir, string outfile) {
   }
 }
 //#############################################################
-//
+
 vector<string> ParsingFiles::Impl::ReadDir(string pathdir) {
   bf::directory_iterator p(pathdir);
   for (bf::directory_entry& x : bf::directory_iterator(p)) {
@@ -63,7 +59,6 @@ void ParsingFiles::Impl::PrintDir(vector<string>& vdir) {
 
 pair<string, vector<string>> ParsingFiles::Impl::ReadSingleFile(
     string& fileName) {
-  //  cout << "Читаем файл: " << fileName << endl;
   string input_string, sep;
   vector<string> separators;
   fstream in(fileName, ios::in | ios::binary);
@@ -81,9 +76,8 @@ pair<string, vector<string>> ParsingFiles::Impl::ReadSingleFile(
   //  cout << endl;
   return p;
 }
-//
-//######## парсинг одного файла ##################################
 
+//######## парсинг одного файла ##################################
 deque<string> ParsingFiles::Impl::ParsingSingleFile(
     pair<string, vector<string>>& pair, string& name, string& outfile) {
   deque<string> res{};
@@ -120,10 +114,10 @@ deque<string> ParsingFiles::Impl::ParsingSingleFile(
     }  // end while
   }    // for по разделителям
 
+  // запись в файл
   fstream out(outfile, ios::out | ios::app);
   cout << "[Имя файла " << name << " ]:" << endl;
   out << "[Имя файла " << name << " ]:" << endl;
-
   int i = 0;
   for (auto& x : res) {
     ++i;
@@ -132,6 +126,7 @@ deque<string> ParsingFiles::Impl::ParsingSingleFile(
   }
   cout << endl;
   out << endl;
+
   return res;
 }
 //#############################################################
