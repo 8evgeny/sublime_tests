@@ -11,7 +11,7 @@ struct ParsingFiles::Impl {
   vector<string> ReadDir(string);
   void PrintDir(vector<string>&);
   pair<string, vector<string>> ReadSingleFile(string&);
-  deque<string> ParsingSingleFile(pair<string, vector<string>>&);
+  deque<string> ParsingSingleFile(pair<string, vector<string>>&, string&);
   void SaveResults(vector<deque<string>>&);
 
   vector<string> listfiles;
@@ -33,7 +33,7 @@ void ParsingFiles::ParsingDir(string dir, string outfile) {
   for (auto& file : _d->listfiles) {  //Парсим в цикле  все файлы
     pair<string, vector<string>> data_from_file = _d->ReadSingleFile(file);
     deque<string> result_parsing_single_file =
-        _d->ParsingSingleFile(data_from_file);
+        _d->ParsingSingleFile(data_from_file, file);
     _d->result.push_back(result_parsing_single_file);
   }
 }
@@ -63,7 +63,7 @@ void ParsingFiles::Impl::PrintDir(vector<string>& vdir) {
 
 pair<string, vector<string>> ParsingFiles::Impl::ReadSingleFile(
     string& fileName) {
-  cout << "Читаем файл: " << fileName << endl;
+  //  cout << "Читаем файл: " << fileName << endl;
   string input_string, sep;
   vector<string> separators;
   fstream in(fileName, ios::in | ios::binary);
@@ -75,17 +75,17 @@ pair<string, vector<string>> ParsingFiles::Impl::ReadSingleFile(
   separators
       .pop_back();  //удаляем последний разделитель который записался дважды
   pair p = make_pair(input_string, separators);
-  cout << "строка для парсинга: " << endl << input_string << endl;
-  cout << "разделители: " << endl;
-  for (auto& x : separators) cout << x << endl;
-  cout << endl;
+  //  cout << "строка для парсинга: " << endl << input_string << endl;
+  //  cout << "разделители: " << endl;
+  //  for (auto& x : separators) cout << x << endl;
+  //  cout << endl;
   return p;
 }
 //
 //######## парсинг одного файла ##################################
 
 deque<string> ParsingFiles::Impl::ParsingSingleFile(
-    pair<string, vector<string>>& pair) {
+    pair<string, vector<string>>& pair, string& name) {
   deque<string> res{};
   res.push_back(pair.first);
   for (auto i = pair.second.begin(); i != pair.second.end();
@@ -119,8 +119,12 @@ deque<string> ParsingFiles::Impl::ParsingSingleFile(
       }
     }  // end while
   }    // for по разделителям
-  cout << "Результат парсинга в deque: " << endl;
-  for (auto& x : res) cout << x << endl;
+  cout << "Результат парсинга файла: " << name << endl;
+  int i = 0;
+  for (auto& x : res) {
+    ++i;
+    cout << "Подстока " << i << ": " << x << endl;
+  }
   cout << endl;
   return res;
 }

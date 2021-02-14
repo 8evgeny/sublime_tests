@@ -5,7 +5,9 @@ add_executable(${PROJECT_NAME}
     main.cpp
     parsing.cpp
     )
-
+add_executable(create_parsing_string
+   create.cpp
+    )
 set (Boost_USE_MULTITHREADED ON)
 
 find_package (Boost REQUIRED COMPONENTS

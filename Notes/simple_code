@@ -87,3 +87,22 @@ void writeFile(std::string &data){
 //    writeFile(std::string(request));
 std::ofstream f("test_test", std::ios::out | std::ios::binary);
 f<<allfile;
+
+
+class MakeString {
+public:
+    template<class T>
+    MakeString& operator<< (const T& arg) {
+        m_stream << arg;
+        return *this;
+    }
+    operator std::string() const {
+        return m_stream.str();
+    }
+protected:
+    std::stringstream m_stream;
+};
+Работает это очень просто. С одной стороны, в классе MakeString перегружен оператор вывода (<<),
+который принимает в качестве аргумента константную ссылку на объект любого типа, тут же выводит этот
+объект в свой внутренний stringstream и возвращает ссылку на себя. С другой стороны, перегружен оператор
+преобразования к строке, который возвращает строку, сформированную stringstream'ом.
