@@ -2,6 +2,7 @@
 #include <boost/lexical_cast.hpp>
 #include <deque>
 #include <fstream>
+#include <mutex>
 #include <thread>
 
 #include "main.h"
@@ -14,6 +15,7 @@ struct ParsingFiles::Impl {
   pair<string, vector<string>> ReadSingleFile(string&);
   void ParsingSingleFile(pair<string, vector<string>>&, string&, string&);
 
+  mutex m;
   vector<string> listfiles;
 };
 ParsingFiles::Impl::Impl() {}
@@ -24,16 +26,23 @@ ParsingFiles::~ParsingFiles() {}
 void ParsingFiles::ParsingDir(string dir, string outfile) {
   vector<string> v = _d->ReadDir(dir);  //Читаем директорию
   _d->PrintDir(v);  //Печатаем список файлов
-  int t = 1;        //номер потока
+
+  vector<thread> th_vec;              //для потоков
   for (auto& file : _d->listfiles) {  //Парсим в цикле  все файлы
 
     pair<string, vector<string>> data_from_file = _d->ReadSingleFile(file);
 
-    //    thread t([&]() { _d->ParsingSingleFile(data_from_file, file, outfile);
-    //    });
+    //    th_vec.push_back(thread([&]() {
+    //      _d->ParsingSingleFile(data_from_file, file, outfile, _d->m);
+    //    }));
 
+    //однопоточный режим
     _d->ParsingSingleFile(data_from_file, file, outfile);
   }
+
+  //  for (ulong i = 0; i < _d->listfiles.size(); ++i) {
+  //    th_vec.at(i).join();
+  //  }
 }
 //#############################################################
 
@@ -82,7 +91,8 @@ pair<string, vector<string>> ParsingFiles::Impl::ReadSingleFile(
 //######## парсинг одного файла ##################################
 void ParsingFiles::Impl::ParsingSingleFile(pair<string, vector<string>>& pair,
                                            string& name, string& outfile) {
-  deque<string> res{};
+  //  m.lock();
+  deque<string> res;
   res.push_back(pair.first);
   for (auto i = pair.second.begin(); i != pair.second.end();
        ++i) {  // i - разделитель с которым работаем
@@ -94,8 +104,8 @@ void ParsingFiles::Impl::ParsingSingleFile(pair<string, vector<string>>& pair,
       auto pos = res[k].find(*i);  //ищем разделитель
       if (pos != std::string::npos) {
         //        cout << "Разделитель найден:" << endl;
-        //делим text на 2 строки ту что после разделителя пушим в дек а исходную
-        //укорачиваем
+        //делим text на 2 строки ту что после разделителя пушим в дек а
+        //исходную укорачиваем
         string s(res[k],
                  pos + (*i).length());  // s - то что осталось после разделителя
         res[k].erase(pos);  // остается короткая строка до разделителя
@@ -117,6 +127,9 @@ void ParsingFiles::Impl::ParsingSingleFile(pair<string, vector<string>>& pair,
   }    // for по разделителям
 
   // запись в файл
+
+  //    std::lock_guard<std::mutex> guard(m);
+
   fstream out(outfile, ios::out | ios::app);
   cout << "[Имя файла " << name << " ]:" << endl;
   out << "[Имя файла " << name << " ]:" << endl;
@@ -128,6 +141,8 @@ void ParsingFiles::Impl::ParsingSingleFile(pair<string, vector<string>>& pair,
   }
   cout << endl;
   out << endl;
+
+  //  m.unlock();
 }
 //#############################################################
 //

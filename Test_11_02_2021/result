@@ -1,5 +1,2524 @@
 [Имя файла ../Dir/file2 ]:
 Подстока 1 файла ../Dir/file2: cbydebc
+
+Подстока 2 файла ../Dir/file2: e
+
+Подстока 3 файла ../Dir/file2: cwljjowkdokoe**kd;kqw;dkw
+
+Подстока 4 файла ../Dir/file2: o;k;kw;kcwk@@c;ek;k;ckep;kcpp3kpp
+
+Подстока 5 файла ../Dir/file2: 3p333pp3p3p3p3p3pp3p3pp3
+
+[Имя файла ../Dir/file4 ]:
+Подстока 1 файла ../Dir/file4: T
+
+Подстока 2 файла ../Dir/file4: intT
+
+Подстока 3 файла ../Dir/file4: int
+
+Подстока 4 файла ../Dir/file4: U
+
+Подстока 5 файла ../Dir/file4: doubleFunctiontem
+
+Подстока 6 файла ../Dir/file4: tesmayonlybefullyspecialized:tem
+
+Подстока 7 файла ../Dir/file4: te<typenameT
+
+Подстока 8 файла ../Dir/file4: typenameU>voidfoo(Tt
+
+Подстока 9 файла ../Dir/file4: Uu){std::cout<<"Generalcase:"<<t<<""<<u<<std::endl;}//OK.tem
+
+Подстока 10 файла ../Dir/file4: te<>voidfoo<int
+
+Подстока 11 файла ../Dir/file4: int>(inta1
+
+Подстока 12 файла ../Dir/file4: inta2){std::cout<<"Twoints:"<<a1<<""<<a2<<std::endl;}voidinvoke
+
+Подстока 13 файла ../Dir/file4: foo(){foo(1
+
+Подстока 14 файла ../Dir/file4: 2.1);//Prints"Generalcase:12.1"foo(1
+
+Подстока 15 файла ../Dir/file4: 2);//Prints"Twoints:12"}GoalKicker.com–C++NotesforProfessionals419//Compilationerror:partialfunctionspecializationisnotallowed.tem
+
+Подстока 16 файла ../Dir/file4: te<typenameU>voidfoo<std::string
+
+Подстока 17 файла ../Dir/file4: U>(std::stringt
+
+Подстока 18 файла ../Dir/file4: Uu){std::cout<<"Generalcase:"<<t<<""<<u<<std::endl;}Section77.6:Tem
+
+Подстока 19 файла ../Dir/file4: teSpecializationYoucandefineimplementationforspecificinstantiationsofatem
+
+Подстока 20 файла ../Dir/file4: teclass/method.Forexampleifyouhave:tem
+
+Подстока 21 файла ../Dir/file4: te<typenameT>Tsqrt(Tt){/*Somegenericimplementation*/}Youcanthenwrite:tem
+
+Подстока 22 файла ../Dir/file4: te<>intsqrt<int>(inti){/*Highlyoptimizedintegerimplementation*/}Thenauserthatwritessqrt(4.0)willgetthegenericimplementationwhereassqrt(4)willgetthespecializedimplementation.Section77.7:Aliastem
+
+Подстока 23 файла ../Dir/file4: teVersion≥C++11Basicexample:tem
+
+Подстока 24 файла ../Dir/file4: te<typenameT>usingpointer
+
+Подстока 25 файла ../Dir/file4: T*;Thisdefinitionmakespointer<T>analiasofT*.Forexample:pointer<int>p
+
+Подстока 26 файла ../Dir/file4: newint;//equivalentto:int*p
+
+Подстока 27 файла ../Dir/file4: newint;Aliastem
+
+Подстока 28 файла ../Dir/file4: tescannotbespecialized.However
+
+Подстока 29 файла ../Dir/file4: thatfunctionalitycanbeobtainedindirectlybyhavingthemrefertoanestedtypeinastruct:tem
+
+Подстока 30 файла ../Dir/file4: te<typenameT>structnonconst
+
+Подстока 31 файла ../Dir/file4: pointer
+
+Подстока 32 файла ../Dir/file4: helper{typedefT*type;};tem
+
+Подстока 33 файла ../Dir/file4: te<typenameT>structnonconst
+
+Подстока 34 файла ../Dir/file4: pointer
+
+Подстока 35 файла ../Dir/file4: helper<Tconst>{typedefT*type;};tem
+
+Подстока 36 файла ../Dir/file4: te<typenameT>usingnonconst
+
+Подстока 37 файла ../Dir/file4: pointer
+
+Подстока 38 файла ../Dir/file4: nonconst
+
+Подстока 39 файла ../Dir/file4: pointer
+
+Подстока 40 файла ../Dir/file4: helper<T>::type;Section77.8:ExplicitinstantiationAnexplicitinstantiationdefinitioncreatesanddeclaresaconcreteclass
+
+Подстока 41 файла ../Dir/file4: function
+
+Подстока 42 файла ../Dir/file4: orvariablefromatem
+
+Подстока 43 файла ../Dir/file4: te
+
+Подстока 44 файла ../Dir/file4: withoutusingitjustyet.Anexplicitinstantiationcanbereferencedfromothertranslationunits.Thiscanbeusedtoavoiddefiningatem
+
+Подстока 45 файла ../Dir/file4: teinaheaderfile
+
+Подстока 46 файла ../Dir/file4: ifitwillonlybeinstantiatedwithafinitesetofarguments.Forexample://print
+
+Подстока 47 файла ../Dir/file4: string.htem
+
+Подстока 48 файла ../Dir/file4: te<classT>voidprint
+
+Подстока 49 файла ../Dir/file4: string(constT*str);GoalKicker.com–C++NotesforProfessionals420//print
+
+Подстока 50 файла ../Dir/file4: string.cpp#include"print
+
+Подстока 51 файла ../Dir/file4: string.h"tem
+
+Подстока 52 файла ../Dir/file4: tevoidprint
+
+Подстока 53 файла ../Dir/file4: string(constchar*);tem
+
+Подстока 54 файла ../Dir/file4: tevoidprint
+
+Подстока 55 файла ../Dir/file4: string(constwchar
+
+Подстока 56 файла ../Dir/file4: t*);Becauseprint
+
+Подстока 57 файла ../Dir/file4: string<char>andprint
+
+Подстока 58 файла ../Dir/file4: string<wchar
+
+Подстока 59 файла ../Dir/file4: t>areexplicitlyinstantiatedinprint
+
+Подстока 60 файла ../Dir/file4: string.cpp
+
+Подстока 61 файла ../Dir/file4: thelinkerwillbeabletofindthemeventhoughtheprint
+
+Подстока 62 файла ../Dir/file4: stringtem
+
+Подстока 63 файла ../Dir/file4: teisnotdefinedintheheader.Iftheseexplicitinstantiationdeclarationswerenotpresent
+
+Подстока 64 файла ../Dir/file4: alinkererrorwouldlikelyoccur.SeeWhycantem
+
+Подстока 65 файла ../Dir/file4: tesonlybeimplementedintheheaderfile?Version≥C++11Ifanexplicitinstantiationdefinitionisprecededbytheexternkeyword
+
+Подстока 66 файла ../Dir/file4: itbecomesanexplicitinstantiationdeclarationinstead.Thepresenceofanexplicitinstantiationdeclarationforagivenspecializationpreventstheimplicitinstantiationofthegivenspecializationwithinthecurrenttranslationunit.Instead
+
+Подстока 67 файла ../Dir/file4: areferencetothatspecializationthatwouldotherwisecauseanimplicitinstantiationcanrefertoanexplicitinstantiationdefinitioninthesameoranotherTU.foo.h#ifndefFOO
+
+Подстока 68 файла ../Dir/file4: H#defineFOO
+
+Подстока 69 файла ../Dir/file4: Htem
+
+Подстока 70 файла ../Dir/file4: te<classT>voidfoo(Tx){//complicatedimplementation}#endiffoo.cpp#include"foo.h"//explicitinstantiationdefinitionsforcommoncasestem
+
+Подстока 71 файла ../Dir/file4: tevoidfoo(int);tem
+
+Подстока 72 файла ../Dir/file4: tevoidfoo(double);main.cpp#include"foo.h"//wealreadyknowfoo.cpphasexplicitinstantiationdefinitionsfortheseexterntem
+
+Подстока 73 файла ../Dir/file4: tevoidfoo(double);intmain(){foo(42);//instantiatesfoo<int>here;//wastefulsincefoo.cppprovidesanexplicitinstantiationalready!foo(3.14);//doesnotinstantiatefoo<double>here;//usesinstantiationoffoo<double>infoo.cppinstead}Section77.9:Non-typetem
+
+Подстока 74 файла ../Dir/file4: teparameterApartfromtypesasatem
+
+Подстока 75 файла ../Dir/file4: teparameterweareallowedtodeclarevaluesofconstantexpressionsmeetingoneofthefollowingcriteria:integralorenumerationtype
+
+Подстока 76 файла ../Dir/file4: pointertoobjectorpointertofunction
+
+Подстока 77 файла ../Dir/file4: lvaluereferencetoobjectorlvaluereferencetofunction
+
+Подстока 78 файла ../Dir/file4: pointertomember
+
+Подстока 79 файла ../Dir/file4: std::nullptr
+
+Подстока 80 файла ../Dir/file4: t.GoalKicker.com–C++NotesforProfessionals421Likealltem
+
+Подстока 81 файла ../Dir/file4: teparameters
+
+Подстока 82 файла ../Dir/file4: non-typetem
+
+Подстока 83 файла ../Dir/file4: teparameterscanbeexplicitlyspecified
+
+Подстока 84 файла ../Dir/file4: defaulted
+
+Подстока 85 файла ../Dir/file4: orderivedimplicitlyviaTem
+
+Подстока 86 файла ../Dir/file4: teArgumentDeduction.Exampleofnon-typetem
+
+Подстока 87 файла ../Dir/file4: teparameterusage:#include<iostream>tem
+
+Подстока 88 файла ../Dir/file4: te<typenameT
+
+Подстока 89 файла ../Dir/file4: std::size
+
+Подстока 90 файла ../Dir/file4: tsize>std::size
+
+Подстока 91 файла ../Dir/file4: tsize
+
+Подстока 92 файла ../Dir/file4: of(T(&anArray)[size])//Passarraybyreference.Requires.{//anexactsize.Weallowallsizesreturnsize;//byusingatem
+
+Подстока 93 файла ../Dir/file4: te"size".}intmain(){charanArrayOfChar[15];std::cout<<"anArrayOfChar:"<<size
+
+Подстока 94 файла ../Dir/file4: of(anArrayOfChar)<<"\n";}intanArrayOfData[]
+
+Подстока 95 файла ../Dir/file4: {1
+
+Подстока 96 файла ../Dir/file4: 2
+
+Подстока 97 файла ../Dir/file4: 3
+
+Подстока 98 файла ../Dir/file4: 4
+
+Подстока 99 файла ../Dir/file4: 5
+
+Подстока 100 файла ../Dir/file4: 6
+
+Подстока 101 файла ../Dir/file4: 7
+
+Подстока 102 файла ../Dir/file4: 8
+
+Подстока 103 файла ../Dir/file4: 9};std::cout<<"anArrayOfData:"<<size
+
+Подстока 104 файла ../Dir/file4: of(anArrayOfData)<<"\n";Exampleofexplicitlyspecifyingbothtypeandnon-typetem
+
+Подстока 105 файла ../Dir/file4: teparameters:#include<array>intmain(){std::array<int
+
+Подстока 106 файла ../Dir/file4: 5>foo;//intisatypeparameter
+
+Подстока 107 файла ../Dir/file4: 5isnon-type}Non-typetem
+
+Подстока 108 файла ../Dir/file4: teparametersareoneofthewaystoachievetem
+
+Подстока 109 файла ../Dir/file4: terecurrenceandenablestodoMetaprogramming.Section77.10:Declaringnon-typetem
+
+Подстока 110 файла ../Dir/file4: teargumentswithautoPriortoC++17
+
+Подстока 111 файла ../Dir/file4: whenwritingatem
+
+Подстока 112 файла ../Dir/file4: tenon-typeparameter
+
+Подстока 113 файла ../Dir/file4: youhadtospecifyitstypefirst.Soacommonpatternbecamewritingsomethinglike:tem
+
+Подстока 114 файла ../Dir/file4: te<classT
+
+Подстока 115 файла ../Dir/file4: TN>structintegral
+
+Подстока 116 файла ../Dir/file4: constant{usingtype
+
+Подстока 117 файла ../Dir/file4: T;staticconstexprTvalue
+
+Подстока 118 файла ../Dir/file4: N;};usingfive
+
+Подстока 119 файла ../Dir/file4: integral
+
+Подстока 120 файла ../Dir/file4: constant<int
+
+Подстока 121 файла ../Dir/file4: 5>;Butforcomplicatedexpressions
+
+Подстока 122 файла ../Dir/file4: usingsomethinglikethisinvolveshavingtowritedecltype(expr)
+
+Подстока 123 файла ../Dir/file4: exprwheninstantiatingtem
+
+Подстока 124 файла ../Dir/file4: tes.Thesolutionistosimplifythisidiomandsimplyallowauto:Version≥C++17tem
+
+Подстока 125 файла ../Dir/file4: te<autoN>structintegral
+
+Подстока 126 файла ../Dir/file4: constant{usingtype
+
+Подстока 127 файла ../Dir/file4: decltype(N);staticconstexprtypevalue
+
+Подстока 128 файла ../Dir/file4: N;};GoalKicker.com–C++NotesforProfessionals422usingfive
+
+Подстока 129 файла ../Dir/file4: integral
+
+Подстока 130 файла ../Dir/file4: constant<5>;Emptycustomdeleterforunique
+
+Подстока 131 файла ../Dir/file4: ptrAnicemotivatingexamplecancomefromtryingtocombinetheemptybaseoptimizationwithacustomdeleterforunique
+
+Подстока 132 файла ../Dir/file4: ptr.DifferentCAPIdeletershavedifferentreturntypes
+
+Подстока 133 файла ../Dir/file4: butwedon'tcare-wejustwantsomethingtoworkforanyfunction:tem
+
+Подстока 134 файла ../Dir/file4: te<autoDeleteFn>structFunctionDeleter{tem
+
+Подстока 135 файла ../Dir/file4: te<classT>voidoperator()(T*ptr)const{DeleteFn(ptr);}};tem
+
+Подстока 136 файла ../Dir/file4: te<T
+
+Подстока 137 файла ../Dir/file4: autoDeleteFn>usingunique
+
+Подстока 138 файла ../Dir/file4: ptr
+
+Подстока 139 файла ../Dir/file4: deleter
+
+Подстока 140 файла ../Dir/file4: std::unique
+
+Подстока 141 файла ../Dir/file4: ptr<T
+
+Подстока 142 файла ../Dir/file4: FunctionDeleter<DeleteFn>>;AndnowyoucansimplyuseanyfunctionpointerthatcantakeanargumentoftypeTasatem
+
+Подстока 143 файла ../Dir/file4: tenon-typeparameter
+
+Подстока 144 файла ../Dir/file4: regardlessofreturntype
+
+Подстока 145 файла ../Dir/file4: andgetano-sizeoverheadunique
+
+Подстока 146 файла ../Dir/file4: ptroutofit:unique
+
+Подстока 147 файла ../Dir/file4: ptr
+
+Подстока 148 файла ../Dir/file4: deleter<std::FILE
+
+Подстока 149 файла ../Dir/file4: std::fclose>p;Section77.11:Tem
+
+Подстока 150 файла ../Dir/file4: tetem
+
+Подстока 151 файла ../Dir/file4: teparametersSometimeswewouldliketopassintothetem
+
+Подстока 152 файла ../Dir/file4: teatem
+
+Подстока 153 файла ../Dir/file4: tetypewithoutfixingitsvalues.Thisiswhattem
+
+Подстока 154 файла ../Dir/file4: tetem
+
+Подстока 155 файла ../Dir/file4: teparametersarecreatedfor.Verysimpletem
+
+Подстока 156 файла ../Dir/file4: tetem
+
+Подстока 157 файла ../Dir/file4: teparameterexamples:tem
+
+Подстока 158 файла ../Dir/file4: te<classT>structTag1{};tem
+
+Подстока 159 файла ../Dir/file4: te<classT>structTag2{};tem
+
+Подстока 160 файла ../Dir/file4: te<tem
+
+Подстока 161 файла ../Dir/file4: te<class>classTag>structIntTag{typedefTag<int>type;};intmain(){IntTag<Tag1>::typet;}Version≥C++11#include<vector>#include<iostream>tem
+
+Подстока 162 файла ../Dir/file4: te<classT
+
+Подстока 163 файла ../Dir/file4: tem
+
+Подстока 164 файла ../Dir/file4: te<class...>classC
+
+Подстока 165 файла ../Dir/file4: classU>C<T>cast
+
+Подстока 166 файла ../Dir/file4: all(constC<U>&c){C<T>result(c.begin()
+
+Подстока 167 файла ../Dir/file4: c.end());returnresult;}intmain(){std::vector<float>vf
+
+Подстока 168 файла ../Dir/file4: {1.2
+
+Подстока 169 файла ../Dir/file4: 2.6
+
+Подстока 170 файла ../Dir/file4: 3.7};autovi
+
+Подстока 171 файла ../Dir/file4: cast
+
+Подстока 172 файла ../Dir/file4: all<int>(vf);for(auto&&i:vi){std::cout<<i<<std::endl;}GoalKicker.com–C++NotesforProfessionals423}Section77.12:Defaulttem
+
+Подстока 173 файла ../Dir/file4: teparametervalueJustlikeincaseofthefunctionarguments
+
+Подстока 174 файла ../Dir/file4: tem
+
+Подстока 175 файла ../Dir/file4: teparameterscanhavetheirdefaultvalues.Alltem
+
+Подстока 176 файла ../Dir/file4: teparameterswithadefaultvaluehavetobedeclaredattheendofthetem
+
+Подстока 177 файла ../Dir/file4: teparameterlist.Thebasicideaisthatthetem
+
+Подстока 178 файла ../Dir/file4: teparameterswithdefaultvaluecanbeomittedwhiletem
+
+Подстока 179 файла ../Dir/file4: teinstantiation.Simpleexampleofdefaulttem
+
+Подстока 180 файла ../Dir/file4: teparametervalueusage:tem
+
+Подстока 181 файла ../Dir/file4: te<classT
+
+Подстока 182 файла ../Dir/file4: size
+
+Подстока 183 файла ../Dir/file4: tN
+
+Подстока 184 файла ../Dir/file4: 10>structmy
+
+Подстока 185 файла ../Dir/file4: array{Tarr[N];};intmain(){/*Defaultparameterisignored
+
+Подстока 186 файла ../Dir/file4: N
+
+Подстока 187 файла ../Dir/file4: 5*/my
+
+Подстока 188 файла ../Dir/file4: array<int
+
+Подстока 189 файла ../Dir/file4: 5>a;}/*Printthelengthofa.arr:5*/std::cout<<sizeof(a.arr)/sizeof(int)<<std::endl;/*Lastparameterisomitted
+
+Подстока 190 файла ../Dir/file4: N
+
+Подстока 191 файла ../Dir/file4: 10*/my
+
+Подстока 192 файла ../Dir/file4: array<int>b;/*Printthelengthofa.arr:10*/std::cout<<sizeof(b.arr)/sizeof(int)<<std::endl;GoalKicker.com–C++NotesforProfessionals424Chapter78:Expressiontem
+
+Подстока 193 файла ../Dir/file4: tesSection78.1:Abasicexampleillustratingexpressiontem
+
+Подстока 194 файла ../Dir/file4: tesAnexpressiontem
+
+Подстока 195 файла ../Dir/file4: teisacompile-timeoptimizationtechniqueusedmostlyinscientificcomputing.It'smainpurposeistoavoidunnecessarytemporariesandoptimizeloopcalculationsusingasinglepass(typicallywhenperformingoperationsonnumericalaggregates).Expressiontem
+
+Подстока 196 файла ../Dir/file4: teswereinitiallydevisedinordertocircumventtheinefficienciesofnaïveoperatoroverloadingwhenimplementingnumericalArrayorMatrixtypes.Anequivalentterminologyforexpressiontem
+
+Подстока 197 файла ../Dir/file4: teshasbeenintroducedbyBjarneStroustrup
+
+Подстока 198 файла ../Dir/file4: whocallsthem"fusedoperations"inthelatestversionofhisbook
+
+Подстока 199 файла ../Dir/file4: "TheC++ProgrammingLanguage".Beforeactuallydivingintoexpressiontem
+
+Подстока 200 файла ../Dir/file4: tes
+
+Подстока 201 файла ../Dir/file4: youshouldunderstandwhyyouneedtheminthefirst
+
+Подстока 202 файла ../Dir/file4: ce.Toillustratethis
+
+Подстока 203 файла ../Dir/file4: considertheverysimpleMatrixclassgivenbelow:tem
+
+Подстока 204 файла ../Dir/file4: te<typenameT
+
+Подстока 205 файла ../Dir/file4: std::size
+
+Подстока 206 файла ../Dir/file4: tCOL
+
+Подстока 207 файла ../Dir/file4: std::size
+
+Подстока 208 файла ../Dir/file4: tROW>classMatrix{public:usingvalue
+
+Подстока 209 файла ../Dir/file4: type
+
+Подстока 210 файла ../Dir/file4: T;Matrix():values(COL*ROW){}staticsize
+
+Подстока 211 файла ../Dir/file4: tcols(){returnCOL;}staticsize
+
+Подстока 212 файла ../Dir/file4: trows(){returnROW;}constT&operator()(size
+
+Подстока 213 файла ../Dir/file4: tx
+
+Подстока 214 файла ../Dir/file4: size
+
+Подстока 215 файла ../Dir/file4: ty)const{returnvalues[y*COL+x];}T&operator()(size
+
+Подстока 216 файла ../Dir/file4: tx
+
+Подстока 217 файла ../Dir/file4: size
+
+Подстока 218 файла ../Dir/file4: ty){returnvalues[y*COL+x];}private:std::vector<T>};values;tem
+
+Подстока 219 файла ../Dir/file4: te<typenameT
+
+Подстока 220 файла ../Dir/file4: std::size
+
+Подстока 221 файла ../Dir/file4: tCOL
+
+Подстока 222 файла ../Dir/file4: std::size
+
+Подстока 223 файла ../Dir/file4: tROW>Matrix<T
+
+Подстока 224 файла ../Dir/file4: COL
+
+Подстока 225 файла ../Dir/file4: ROW>operator+(constMatrix<T
+
+Подстока 226 файла ../Dir/file4: COL
+
+Подстока 227 файла ../Dir/file4: ROW>&lhs
+
+Подстока 228 файла ../Dir/file4: constMatrix<T
+
+Подстока 229 файла ../Dir/file4: COL
+
+Подстока 230 файла ../Dir/file4: ROW>&rhs){Matrix<T
+
+Подстока 231 файла ../Dir/file4: COL
+
+Подстока 232 файла ../Dir/file4: ROW>result;}for(size
+
+Подстока 233 файла ../Dir/file4: ty
+
+Подстока 234 файла ../Dir/file4: 0;y!
+
+Подстока 235 файла ../Dir/file4: lhs.rows();++y){for(size
+
+Подстока 236 файла ../Dir/file4: tx
+
+Подстока 237 файла ../Dir/file4: 0;x!
+
+Подстока 238 файла ../Dir/file4: lhs.cols();++x){result(x
+
+Подстока 239 файла ../Dir/file4: y)
+
+Подстока 240 файла ../Dir/file4: lhs(x
+
+Подстока 241 файла ../Dir/file4: y)+rhs(x
+
+Подстока 242 файла ../Dir/file4: y);}}returnresult;Giventhepreviousclassdefinition
+
+Подстока 243 файла ../Dir/file4: youcannowwriteMatrixexpressionssuchas:conststd::size
+
+Подстока 244 файла ../Dir/file4: tcols
+
+Подстока 245 файла ../Dir/file4: 2000;conststd::size
+
+Подстока 246 файла ../Dir/file4: trows
+
+Подстока 247 файла ../Dir/file4: 1000;Matrix<double
+
+Подстока 248 файла ../Dir/file4: cols
+
+Подстока 249 файла ../Dir/file4: rows>a
+
+Подстока 250 файла ../Dir/file4: b
+
+Подстока 251 файла ../Dir/file4: c;//initializea
+
+Подстока 252 файла ../Dir/file4: b&cfor(std::size
+
+Подстока 253 файла ../Dir/file4: ty
+
+Подстока 254 файла ../Dir/file4: 0;y!
+
+Подстока 255 файла ../Dir/file4: rows;++y){for(std::size
+
+Подстока 256 файла ../Dir/file4: tx
+
+Подстока 257 файла ../Dir/file4: 0;x!
+
+Подстока 258 файла ../Dir/file4: cols;++x){a(x
+
+Подстока 259 файла ../Dir/file4: y)
+
+Подстока 260 файла ../Dir/file4: 1.0;b(x
+
+Подстока 261 файла ../Dir/file4: y)
+
+Подстока 262 файла ../Dir/file4: 2.0;GoalKicker.com–C++NotesforProfessionals425}}c(x
+
+Подстока 263 файла ../Dir/file4: y)
+
+Подстока 264 файла ../Dir/file4: 3.0;Matrix<double
+
+Подстока 265 файла ../Dir/file4: cols
+
+Подстока 266 файла ../Dir/file4: rows>d
+
+Подстока 267 файла ../Dir/file4: a+b+c;//d(x
+
+Подстока 268 файла ../Dir/file4: y)
+
+Подстока 269 файла ../Dir/file4: 6Asillustratedabove
+
+Подстока 270 файла ../Dir/file4: beingabletooverloadoperator+()providesyouwithanotationwhichmimicsthenaturalmathematicalnotationformatrices.Unfortunately
+
+Подстока 271 файла ../Dir/file4: thepreviousimplementationisalsohighlyinefficientcomparedtoanequivalent"hand-crafted"version.Tounderstandwhy
+
+Подстока 272 файла ../Dir/file4: youhavetoconsiderwhathappenswhenyouwriteanexpressionsuchasMatrixd
+
+Подстока 273 файла ../Dir/file4: a+b+c.Thisinfactexpandsto((a+b)+c)oroperator+(operator+(a
+
+Подстока 274 файла ../Dir/file4: b)
+
+Подстока 275 файла ../Dir/file4: c).Inotherwords
+
+Подстока 276 файла ../Dir/file4: theloopinsideoperator+()isexecutedtwice
+
+Подстока 277 файла ../Dir/file4: whereasitcouldhavebeeneasilyperformedinasinglepass.Thisalsoresultsin2temporariesbeingcreated
+
+Подстока 278 файла ../Dir/file4: whichfurtherdegradesperformance.Inessence
+
+Подстока 279 файла ../Dir/file4: byaddingtheflexibilitytouseanotationclosetoitsmathematicalcounterpart
+
+Подстока 280 файла ../Dir/file4: youhavealsomadetheMatrixclasshighlyinefficient.Forexample
+
+Подстока 281 файла ../Dir/file4: withoutoperatoroverloading
+
+Подстока 282 файла ../Dir/file4: youcouldimplementafarmoreefficientMatrixsummationusingasinglepass:tem
+
+Подстока 283 файла ../Dir/file4: te<typenameT
+
+Подстока 284 файла ../Dir/file4: std::size
+
+Подстока 285 файла ../Dir/file4: tCOL
+
+Подстока 286 файла ../Dir/file4: std::size
+
+Подстока 287 файла ../Dir/file4: tROW>Matrix<T
+
+Подстока 288 файла ../Dir/file4: COL
+
+Подстока 289 файла ../Dir/file4: ROW>add3(constMatrix<T
+
+Подстока 290 файла ../Dir/file4: COL
+
+Подстока 291 файла ../Dir/file4: ROW>&a
+
+Подстока 292 файла ../Dir/file4: constMatrix<T
+
+Подстока 293 файла ../Dir/file4: COL
+
+Подстока 294 файла ../Dir/file4: ROW>&b
+
+Подстока 295 файла ../Dir/file4: constMatrix<T
+
+Подстока 296 файла ../Dir/file4: COL
+
+Подстока 297 файла ../Dir/file4: ROW>&c){Matrix<T
+
+Подстока 298 файла ../Dir/file4: COL
+
+Подстока 299 файла ../Dir/file4: ROW>result;for(size
+
+Подстока 300 файла ../Dir/file4: ty
+
+Подстока 301 файла ../Dir/file4: 0;y!
+
+Подстока 302 файла ../Dir/file4: ROW;++y){for(size
+
+Подстока 303 файла ../Dir/file4: tx
+
+Подстока 304 файла ../Dir/file4: 0;x!
+
+Подстока 305 файла ../Dir/file4: COL;++x){result(x
+
+Подстока 306 файла ../Dir/file4: y)
+
+Подстока 307 файла ../Dir/file4: a(x
+
+Подстока 308 файла ../Dir/file4: y)+b(x
+
+Подстока 309 файла ../Dir/file4: y)+c(x
+
+Подстока 310 файла ../Dir/file4: y);}}returnresult;}ThepreviousexamplehoweverhasitsowndisadvantagesbecauseitcreatesafarmoreconvolutedinterfacefortheMatrixclass(youwouldhavetoconsidermethodssuchasMatrix::add2()
+
+Подстока 311 файла ../Dir/file4: Matrix::AddMultiply()andsoon).InsteadletustakeastepbackandseehowwecanadaptoperatoroverloadingtoperforminamoreefficientwayTheproblemstemsfromthefactthattheexpressionMatrixd
+
+Подстока 312 файла ../Dir/file4: a+b+cisevaluatedtoo"eagerly"beforeyouhavehadanopportunitytobuildtheentireexpressiontree.Inotherwords
+
+Подстока 313 файла ../Dir/file4: whatyoureallywanttoachieveistoevaluatea+b+cinonepassandonlyonceyouactuallyneedtoassigntheresultingexpressingtod.Thisisthecoreideabehindexpressiontem
+
+Подстока 314 файла ../Dir/file4: tes:insteadofhavingoperator+()evaluateimmediatelytheresultofaddingtwoMatrixinstances
+
+Подстока 315 файла ../Dir/file4: itwillreturnan"expressiontem
+
+Подстока 316 файла ../Dir/file4: te"forfutureevaluationoncetheentireexpressiontreehasbeenbuilt.Forexample
+
+Подстока 317 файла ../Dir/file4: hereisapossibleimplementationforanexpressiontem
+
+Подстока 318 файла ../Dir/file4: tecorrespondingtothesummationof2types:tem
+
+Подстока 319 файла ../Dir/file4: te<typenameLHS
+
+Подстока 320 файла ../Dir/file4: typenameRHS>classMatrixSum{public:usingvalue
+
+Подстока 321 файла ../Dir/file4: type
+
+Подстока 322 файла ../Dir/file4: typenameLHS::value
+
+Подстока 323 файла ../Dir/file4: type;GoalKicker.com–C++NotesforProfessionals426MatrixSum(constLHS&lhs
+
+Подстока 324 файла ../Dir/file4: constRHS&rhs):rhs(rhs)
+
+Подстока 325 файла ../Dir/file4: lhs(lhs){}value
+
+Подстока 326 файла ../Dir/file4: typeoperator()(intx
+
+Подстока 327 файла ../Dir/file4: inty)const{returnlhs(x
+
+Подстока 328 файла ../Dir/file4: y)+rhs(x
+
+Подстока 329 файла ../Dir/file4: y);}private:constLHS&lhs;constRHS&rhs;};Andhereistheupdatedversionofoperator+()tem
+
+Подстока 330 файла ../Dir/file4: te<typenameLHS
+
+Подстока 331 файла ../Dir/file4: typenameRHS>MatrixSum<LHS
+
+Подстока 332 файла ../Dir/file4: RHS>operator+(constLHS&lhs
+
+Подстока 333 файла ../Dir/file4: constLHS&rhs){returnMatrixSum<LHS
+
+Подстока 334 файла ../Dir/file4: RHS>(lhs
+
+Подстока 335 файла ../Dir/file4: rhs);}Asyoucansee
+
+Подстока 336 файла ../Dir/file4: operator+()nolongerreturnsan"eagerevaluation"oftheresultofadding2Matrixinstances(whichwouldbeanotherMatrixinstance)
+
+Подстока 337 файла ../Dir/file4: butinsteadanexpressiontem
+
+Подстока 338 файла ../Dir/file4: terepresentingtheadditionoperation.Themostimportantpointtokeepinmindisthattheexpressionhasnotbeenevaluatedyet.Itmerelyholdsreferencestoitsoperands.Infact
+
+Подстока 339 файла ../Dir/file4: nothingstopsyoufrominstantiatingtheMatrixSum<>expressiontem
+
+Подстока 340 файла ../Dir/file4: teasfollows:MatrixSum<Matrix<double>
+
+Подстока 341 файла ../Dir/file4: Matrix<double>>SumAB(a
+
+Подстока 342 файла ../Dir/file4: b);Youcanhoweveratalaterstage
+
+Подстока 343 файла ../Dir/file4: whenyouactuallyneedtheresultofthesummation
+
+Подстока 344 файла ../Dir/file4: evaluatetheexpressiond
+
+Подстока 345 файла ../Dir/file4: a+basfollows:for(std::size
+
+Подстока 346 файла ../Dir/file4: ty
+
+Подстока 347 файла ../Dir/file4: 0;y!
+
+Подстока 348 файла ../Dir/file4: a.rows();++y){for(std::size
+
+Подстока 349 файла ../Dir/file4: tx
+
+Подстока 350 файла ../Dir/file4: 0;x!
+
+Подстока 351 файла ../Dir/file4: a.cols();++x){d(x
+
+Подстока 352 файла ../Dir/file4: y)
+
+Подстока 353 файла ../Dir/file4: SumAB(x
+
+Подстока 354 файла ../Dir/file4: y);}}Asyoucansee
+
+Подстока 355 файла ../Dir/file4: anotherbenefitofusinganexpressiontem
+
+Подстока 356 файла ../Dir/file4: te
+
+Подстока 357 файла ../Dir/file4: isthatyouhavebasicallymanagedtoevaluatethesumofaandbandassignittodinasinglepas
+
+[Имя файла ../Dir/file1 ]:
+Подстока 1 файла ../Dir/file1: zwzww*@
+
+Подстока 2 файла ../Dir/file1: @@##xnnx
+
+Подстока 3 файла ../Dir/file1: nedyeyd*eu
+
+Подстока 4 файла ../Dir/file1: ikrr88
+
+Подстока 5 файла ../Dir/file1: 388*33jj
+
+Подстока 6 файла ../Dir/file1: jjrryyryyfc
+
+Подстока 7 файла ../Dir/file1: hhc**e*ke
+
+[Имя файла ../Dir/file3 ]:
+Подстока 1 файла ../Dir/file3: dfdffe
+
+Подстока 2 файла ../Dir/file3: te#$#dtyey!
+
+Подстока 3 файла ../Dir/file3: !
+
+Подстока 4 файла ../Dir/file3: gduheijjjjjjjj
+
+Подстока 5 файла ../Dir/file3: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+
+Подстока 6 файла ../Dir/file3: wwyceyb#
+
+Подстока 7 файла ../Dir/file3: wkkkwkkwkwkkwiiii
+
+Подстока 8 файла ../Dir/file3: ididi
+
+[Имя файла ../Dir/file2 ]:
+Подстока 1 файла ../Dir/file2: cbydebc
+Подстока 2 файла ../Dir/file2: e
+Подстока 3 файла ../Dir/file2: cwljjowkdokoe**kd;kqw;dkw
+Подстока 4 файла ../Dir/file2: o;k;kw;kcwk@@c;ek;k;ckep;kcpp3kpp
+Подстока 5 файла ../Dir/file2: 3p333pp3p3p3p3p3pp3p3pp3
+
+[Имя файла ../Dir/file4 ]:
+Подстока 1 файла ../Dir/file4: T
+Подстока 2 файла ../Dir/file4: intT
+Подстока 3 файла ../Dir/file4: int
+Подстока 4 файла ../Dir/file4: U
+Подстока 5 файла ../Dir/file4: doubleFunctiontem
+Подстока 6 файла ../Dir/file4: tesmayonlybefullyspecialized:tem
+Подстока 7 файла ../Dir/file4: te<typenameT
+Подстока 8 файла ../Dir/file4: typenameU>voidfoo(Tt
+Подстока 9 файла ../Dir/file4: Uu){std::cout<<"Generalcase:"<<t<<""<<u<<std::endl;}//OK.tem
+Подстока 10 файла ../Dir/file4: te<>voidfoo<int
+Подстока 11 файла ../Dir/file4: int>(inta1
+Подстока 12 файла ../Dir/file4: inta2){std::cout<<"Twoints:"<<a1<<""<<a2<<std::endl;}voidinvoke
+Подстока 13 файла ../Dir/file4: foo(){foo(1
+Подстока 14 файла ../Dir/file4: 2.1);//Prints"Generalcase:12.1"foo(1
+Подстока 15 файла ../Dir/file4: 2);//Prints"Twoints:12"}GoalKicker.com–C++NotesforProfessionals419//Compilationerror:partialfunctionspecializationisnotallowed.tem
+Подстока 16 файла ../Dir/file4: te<typenameU>voidfoo<std::string
+Подстока 17 файла ../Dir/file4: U>(std::stringt
+Подстока 18 файла ../Dir/file4: Uu){std::cout<<"Generalcase:"<<t<<""<<u<<std::endl;}Section77.6:Tem
+Подстока 19 файла ../Dir/file4: teSpecializationYoucandefineimplementationforspecificinstantiationsofatem
+Подстока 20 файла ../Dir/file4: teclass/method.Forexampleifyouhave:tem
+Подстока 21 файла ../Dir/file4: te<typenameT>Tsqrt(Tt){/*Somegenericimplementation*/}Youcanthenwrite:tem
+Подстока 22 файла ../Dir/file4: te<>intsqrt<int>(inti){/*Highlyoptimizedintegerimplementation*/}Thenauserthatwritessqrt(4.0)willgetthegenericimplementationwhereassqrt(4)willgetthespecializedimplementation.Section77.7:Aliastem
+Подстока 23 файла ../Dir/file4: teVersion≥C++11Basicexample:tem
+Подстока 24 файла ../Dir/file4: te<typenameT>usingpointer
+Подстока 25 файла ../Dir/file4: T*;Thisdefinitionmakespointer<T>analiasofT*.Forexample:pointer<int>p
+Подстока 26 файла ../Dir/file4: newint;//equivalentto:int*p
+Подстока 27 файла ../Dir/file4: newint;Aliastem
+Подстока 28 файла ../Dir/file4: tescannotbespecialized.However
+Подстока 29 файла ../Dir/file4: thatfunctionalitycanbeobtainedindirectlybyhavingthemrefertoanestedtypeinastruct:tem
+Подстока 30 файла ../Dir/file4: te<typenameT>structnonconst
+Подстока 31 файла ../Dir/file4: pointer
+Подстока 32 файла ../Dir/file4: helper{typedefT*type;};tem
+Подстока 33 файла ../Dir/file4: te<typenameT>structnonconst
+Подстока 34 файла ../Dir/file4: pointer
+Подстока 35 файла ../Dir/file4: helper<Tconst>{typedefT*type;};tem
+Подстока 36 файла ../Dir/file4: te<typenameT>usingnonconst
+Подстока 37 файла ../Dir/file4: pointer
+Подстока 38 файла ../Dir/file4: nonconst
+Подстока 39 файла ../Dir/file4: pointer
+Подстока 40 файла ../Dir/file4: helper<T>::type;Section77.8:ExplicitinstantiationAnexplicitinstantiationdefinitioncreatesanddeclaresaconcreteclass
+Подстока 41 файла ../Dir/file4: function
+Подстока 42 файла ../Dir/file4: orvariablefromatem
+Подстока 43 файла ../Dir/file4: te
+Подстока 44 файла ../Dir/file4: withoutusingitjustyet.Anexplicitinstantiationcanbereferencedfromothertranslationunits.Thiscanbeusedtoavoiddefiningatem
+Подстока 45 файла ../Dir/file4: teinaheaderfile
+Подстока 46 файла ../Dir/file4: ifitwillonlybeinstantiatedwithafinitesetofarguments.Forexample://print
+Подстока 47 файла ../Dir/file4: string.htem
+Подстока 48 файла ../Dir/file4: te<classT>voidprint
+Подстока 49 файла ../Dir/file4: string(constT*str);GoalKicker.com–C++NotesforProfessionals420//print
+Подстока 50 файла ../Dir/file4: string.cpp#include"print
+Подстока 51 файла ../Dir/file4: string.h"tem
+Подстока 52 файла ../Dir/file4: tevoidprint
+Подстока 53 файла ../Dir/file4: string(constchar*);tem
+Подстока 54 файла ../Dir/file4: tevoidprint
+Подстока 55 файла ../Dir/file4: string(constwchar
+Подстока 56 файла ../Dir/file4: t*);Becauseprint
+Подстока 57 файла ../Dir/file4: string<char>andprint
+Подстока 58 файла ../Dir/file4: string<wchar
+Подстока 59 файла ../Dir/file4: t>areexplicitlyinstantiatedinprint
+Подстока 60 файла ../Dir/file4: string.cpp
+Подстока 61 файла ../Dir/file4: thelinkerwillbeabletofindthemeventhoughtheprint
+Подстока 62 файла ../Dir/file4: stringtem
+Подстока 63 файла ../Dir/file4: teisnotdefinedintheheader.Iftheseexplicitinstantiationdeclarationswerenotpresent
+Подстока 64 файла ../Dir/file4: alinkererrorwouldlikelyoccur.SeeWhycantem
+Подстока 65 файла ../Dir/file4: tesonlybeimplementedintheheaderfile?Version≥C++11Ifanexplicitinstantiationdefinitionisprecededbytheexternkeyword
+Подстока 66 файла ../Dir/file4: itbecomesanexplicitinstantiationdeclarationinstead.Thepresenceofanexplicitinstantiationdeclarationforagivenspecializationpreventstheimplicitinstantiationofthegivenspecializationwithinthecurrenttranslationunit.Instead
+Подстока 67 файла ../Dir/file4: areferencetothatspecializationthatwouldotherwisecauseanimplicitinstantiationcanrefertoanexplicitinstantiationdefinitioninthesameoranotherTU.foo.h#ifndefFOO
+Подстока 68 файла ../Dir/file4: H#defineFOO
+Подстока 69 файла ../Dir/file4: Htem
+Подстока 70 файла ../Dir/file4: te<classT>voidfoo(Tx){//complicatedimplementation}#endiffoo.cpp#include"foo.h"//explicitinstantiationdefinitionsforcommoncasestem
+Подстока 71 файла ../Dir/file4: tevoidfoo(int);tem
+Подстока 72 файла ../Dir/file4: tevoidfoo(double);main.cpp#include"foo.h"//wealreadyknowfoo.cpphasexplicitinstantiationdefinitionsfortheseexterntem
+Подстока 73 файла ../Dir/file4: tevoidfoo(double);intmain(){foo(42);//instantiatesfoo<int>here;//wastefulsincefoo.cppprovidesanexplicitinstantiationalready!foo(3.14);//doesnotinstantiatefoo<double>here;//usesinstantiationoffoo<double>infoo.cppinstead}Section77.9:Non-typetem
+Подстока 74 файла ../Dir/file4: teparameterApartfromtypesasatem
+Подстока 75 файла ../Dir/file4: teparameterweareallowedtodeclarevaluesofconstantexpressionsmeetingoneofthefollowingcriteria:integralorenumerationtype
+Подстока 76 файла ../Dir/file4: pointertoobjectorpointertofunction
+Подстока 77 файла ../Dir/file4: lvaluereferencetoobjectorlvaluereferencetofunction
+Подстока 78 файла ../Dir/file4: pointertomember
+Подстока 79 файла ../Dir/file4: std::nullptr
+Подстока 80 файла ../Dir/file4: t.GoalKicker.com–C++NotesforProfessionals421Likealltem
+Подстока 81 файла ../Dir/file4: teparameters
+Подстока 82 файла ../Dir/file4: non-typetem
+Подстока 83 файла ../Dir/file4: teparameterscanbeexplicitlyspecified
+Подстока 84 файла ../Dir/file4: defaulted
+Подстока 85 файла ../Dir/file4: orderivedimplicitlyviaTem
+Подстока 86 файла ../Dir/file4: teArgumentDeduction.Exampleofnon-typetem
+Подстока 87 файла ../Dir/file4: teparameterusage:#include<iostream>tem
+Подстока 88 файла ../Dir/file4: te<typenameT
+Подстока 89 файла ../Dir/file4: std::size
+Подстока 90 файла ../Dir/file4: tsize>std::size
+Подстока 91 файла ../Dir/file4: tsize
+Подстока 92 файла ../Dir/file4: of(T(&anArray)[size])//Passarraybyreference.Requires.{//anexactsize.Weallowallsizesreturnsize;//byusingatem
+Подстока 93 файла ../Dir/file4: te"size".}intmain(){charanArrayOfChar[15];std::cout<<"anArrayOfChar:"<<size
+Подстока 94 файла ../Dir/file4: of(anArrayOfChar)<<"\n";}intanArrayOfData[]
+Подстока 95 файла ../Dir/file4: {1
+Подстока 96 файла ../Dir/file4: 2
+Подстока 97 файла ../Dir/file4: 3
+Подстока 98 файла ../Dir/file4: 4
+Подстока 99 файла ../Dir/file4: 5
+Подстока 100 файла ../Dir/file4: 6
+Подстока 101 файла ../Dir/file4: 7
+Подстока 102 файла ../Dir/file4: 8
+Подстока 103 файла ../Dir/file4: 9};std::cout<<"anArrayOfData:"<<size
+Подстока 104 файла ../Dir/file4: of(anArrayOfData)<<"\n";Exampleofexplicitlyspecifyingbothtypeandnon-typetem
+Подстока 105 файла ../Dir/file4: teparameters:#include<array>intmain(){std::array<int
+Подстока 106 файла ../Dir/file4: 5>foo;//intisatypeparameter
+Подстока 107 файла ../Dir/file4: 5isnon-type}Non-typetem
+Подстока 108 файла ../Dir/file4: teparametersareoneofthewaystoachievetem
+Подстока 109 файла ../Dir/file4: terecurrenceandenablestodoMetaprogramming.Section77.10:Declaringnon-typetem
+Подстока 110 файла ../Dir/file4: teargumentswithautoPriortoC++17
+Подстока 111 файла ../Dir/file4: whenwritingatem
+Подстока 112 файла ../Dir/file4: tenon-typeparameter
+Подстока 113 файла ../Dir/file4: youhadtospecifyitstypefirst.Soacommonpatternbecamewritingsomethinglike:tem
+Подстока 114 файла ../Dir/file4: te<classT
+Подстока 115 файла ../Dir/file4: TN>structintegral
+Подстока 116 файла ../Dir/file4: constant{usingtype
+Подстока 117 файла ../Dir/file4: T;staticconstexprTvalue
+Подстока 118 файла ../Dir/file4: N;};usingfive
+Подстока 119 файла ../Dir/file4: integral
+Подстока 120 файла ../Dir/file4: constant<int
+Подстока 121 файла ../Dir/file4: 5>;Butforcomplicatedexpressions
+Подстока 122 файла ../Dir/file4: usingsomethinglikethisinvolveshavingtowritedecltype(expr)
+Подстока 123 файла ../Dir/file4: exprwheninstantiatingtem
+Подстока 124 файла ../Dir/file4: tes.Thesolutionistosimplifythisidiomandsimplyallowauto:Version≥C++17tem
+Подстока 125 файла ../Dir/file4: te<autoN>structintegral
+Подстока 126 файла ../Dir/file4: constant{usingtype
+Подстока 127 файла ../Dir/file4: decltype(N);staticconstexprtypevalue
+Подстока 128 файла ../Dir/file4: N;};GoalKicker.com–C++NotesforProfessionals422usingfive
+Подстока 129 файла ../Dir/file4: integral
+Подстока 130 файла ../Dir/file4: constant<5>;Emptycustomdeleterforunique
+Подстока 131 файла ../Dir/file4: ptrAnicemotivatingexamplecancomefromtryingtocombinetheemptybaseoptimizationwithacustomdeleterforunique
+Подстока 132 файла ../Dir/file4: ptr.DifferentCAPIdeletershavedifferentreturntypes
+Подстока 133 файла ../Dir/file4: butwedon'tcare-wejustwantsomethingtoworkforanyfunction:tem
+Подстока 134 файла ../Dir/file4: te<autoDeleteFn>structFunctionDeleter{tem
+Подстока 135 файла ../Dir/file4: te<classT>voidoperator()(T*ptr)const{DeleteFn(ptr);}};tem
+Подстока 136 файла ../Dir/file4: te<T
+Подстока 137 файла ../Dir/file4: autoDeleteFn>usingunique
+Подстока 138 файла ../Dir/file4: ptr
+Подстока 139 файла ../Dir/file4: deleter
+Подстока 140 файла ../Dir/file4: std::unique
+Подстока 141 файла ../Dir/file4: ptr<T
+Подстока 142 файла ../Dir/file4: FunctionDeleter<DeleteFn>>;AndnowyoucansimplyuseanyfunctionpointerthatcantakeanargumentoftypeTasatem
+Подстока 143 файла ../Dir/file4: tenon-typeparameter
+Подстока 144 файла ../Dir/file4: regardlessofreturntype
+Подстока 145 файла ../Dir/file4: andgetano-sizeoverheadunique
+Подстока 146 файла ../Dir/file4: ptroutofit:unique
+Подстока 147 файла ../Dir/file4: ptr
+Подстока 148 файла ../Dir/file4: deleter<std::FILE
+Подстока 149 файла ../Dir/file4: std::fclose>p;Section77.11:Tem
+Подстока 150 файла ../Dir/file4: tetem
+Подстока 151 файла ../Dir/file4: teparametersSometimeswewouldliketopassintothetem
+Подстока 152 файла ../Dir/file4: teatem
+Подстока 153 файла ../Dir/file4: tetypewithoutfixingitsvalues.Thisiswhattem
+Подстока 154 файла ../Dir/file4: tetem
+Подстока 155 файла ../Dir/file4: teparametersarecreatedfor.Verysimpletem
+Подстока 156 файла ../Dir/file4: tetem
+Подстока 157 файла ../Dir/file4: teparameterexamples:tem
+Подстока 158 файла ../Dir/file4: te<classT>structTag1{};tem
+Подстока 159 файла ../Dir/file4: te<classT>structTag2{};tem
+Подстока 160 файла ../Dir/file4: te<tem
+Подстока 161 файла ../Dir/file4: te<class>classTag>structIntTag{typedefTag<int>type;};intmain(){IntTag<Tag1>::typet;}Version≥C++11#include<vector>#include<iostream>tem
+Подстока 162 файла ../Dir/file4: te<classT
+Подстока 163 файла ../Dir/file4: tem
+Подстока 164 файла ../Dir/file4: te<class...>classC
+Подстока 165 файла ../Dir/file4: classU>C<T>cast
+Подстока 166 файла ../Dir/file4: all(constC<U>&c){C<T>result(c.begin()
+Подстока 167 файла ../Dir/file4: c.end());returnresult;}intmain(){std::vector<float>vf
+Подстока 168 файла ../Dir/file4: {1.2
+Подстока 169 файла ../Dir/file4: 2.6
+Подстока 170 файла ../Dir/file4: 3.7};autovi
+Подстока 171 файла ../Dir/file4: cast
+Подстока 172 файла ../Dir/file4: all<int>(vf);for(auto&&i:vi){std::cout<<i<<std::endl;}GoalKicker.com–C++NotesforProfessionals423}Section77.12:Defaulttem
+Подстока 173 файла ../Dir/file4: teparametervalueJustlikeincaseofthefunctionarguments
+Подстока 174 файла ../Dir/file4: tem
+Подстока 175 файла ../Dir/file4: teparameterscanhavetheirdefaultvalues.Alltem
+Подстока 176 файла ../Dir/file4: teparameterswithadefaultvaluehavetobedeclaredattheendofthetem
+Подстока 177 файла ../Dir/file4: teparameterlist.Thebasicideaisthatthetem
+Подстока 178 файла ../Dir/file4: teparameterswithdefaultvaluecanbeomittedwhiletem
+Подстока 179 файла ../Dir/file4: teinstantiation.Simpleexampleofdefaulttem
+Подстока 180 файла ../Dir/file4: teparametervalueusage:tem
+Подстока 181 файла ../Dir/file4: te<classT
+Подстока 182 файла ../Dir/file4: size
+Подстока 183 файла ../Dir/file4: tN
+Подстока 184 файла ../Dir/file4: 10>structmy
+Подстока 185 файла ../Dir/file4: array{Tarr[N];};intmain(){/*Defaultparameterisignored
+Подстока 186 файла ../Dir/file4: N
+Подстока 187 файла ../Dir/file4: 5*/my
+Подстока 188 файла ../Dir/file4: array<int
+Подстока 189 файла ../Dir/file4: 5>a;}/*Printthelengthofa.arr:5*/std::cout<<sizeof(a.arr)/sizeof(int)<<std::endl;/*Lastparameterisomitted
+Подстока 190 файла ../Dir/file4: N
+Подстока 191 файла ../Dir/file4: 10*/my
+Подстока 192 файла ../Dir/file4: array<int>b;/*Printthelengthofa.arr:10*/std::cout<<sizeof(b.arr)/sizeof(int)<<std::endl;GoalKicker.com–C++NotesforProfessionals424Chapter78:Expressiontem
+Подстока 193 файла ../Dir/file4: tesSection78.1:Abasicexampleillustratingexpressiontem
+Подстока 194 файла ../Dir/file4: tesAnexpressiontem
+Подстока 195 файла ../Dir/file4: teisacompile-timeoptimizationtechniqueusedmostlyinscientificcomputing.It'smainpurposeistoavoidunnecessarytemporariesandoptimizeloopcalculationsusingasinglepass(typicallywhenperformingoperationsonnumericalaggregates).Expressiontem
+Подстока 196 файла ../Dir/file4: teswereinitiallydevisedinordertocircumventtheinefficienciesofnaïveoperatoroverloadingwhenimplementingnumericalArrayorMatrixtypes.Anequivalentterminologyforexpressiontem
+Подстока 197 файла ../Dir/file4: teshasbeenintroducedbyBjarneStroustrup
+Подстока 198 файла ../Dir/file4: whocallsthem"fusedoperations"inthelatestversionofhisbook
+Подстока 199 файла ../Dir/file4: "TheC++ProgrammingLanguage".Beforeactuallydivingintoexpressiontem
+Подстока 200 файла ../Dir/file4: tes
+Подстока 201 файла ../Dir/file4: youshouldunderstandwhyyouneedtheminthefirst
+Подстока 202 файла ../Dir/file4: ce.Toillustratethis
+Подстока 203 файла ../Dir/file4: considertheverysimpleMatrixclassgivenbelow:tem
+Подстока 204 файла ../Dir/file4: te<typenameT
+Подстока 205 файла ../Dir/file4: std::size
+Подстока 206 файла ../Dir/file4: tCOL
+Подстока 207 файла ../Dir/file4: std::size
+Подстока 208 файла ../Dir/file4: tROW>classMatrix{public:usingvalue
+Подстока 209 файла ../Dir/file4: type
+Подстока 210 файла ../Dir/file4: T;Matrix():values(COL*ROW){}staticsize
+Подстока 211 файла ../Dir/file4: tcols(){returnCOL;}staticsize
+Подстока 212 файла ../Dir/file4: trows(){returnROW;}constT&operator()(size
+Подстока 213 файла ../Dir/file4: tx
+Подстока 214 файла ../Dir/file4: size
+Подстока 215 файла ../Dir/file4: ty)const{returnvalues[y*COL+x];}T&operator()(size
+Подстока 216 файла ../Dir/file4: tx
+Подстока 217 файла ../Dir/file4: size
+Подстока 218 файла ../Dir/file4: ty){returnvalues[y*COL+x];}private:std::vector<T>};values;tem
+Подстока 219 файла ../Dir/file4: te<typenameT
+Подстока 220 файла ../Dir/file4: std::size
+Подстока 221 файла ../Dir/file4: tCOL
+Подстока 222 файла ../Dir/file4: std::size
+Подстока 223 файла ../Dir/file4: tROW>Matrix<T
+Подстока 224 файла ../Dir/file4: COL
+Подстока 225 файла ../Dir/file4: ROW>operator+(constMatrix<T
+Подстока 226 файла ../Dir/file4: COL
+Подстока 227 файла ../Dir/file4: ROW>&lhs
+Подстока 228 файла ../Dir/file4: constMatrix<T
+Подстока 229 файла ../Dir/file4: COL
+Подстока 230 файла ../Dir/file4: ROW>&rhs){Matrix<T
+Подстока 231 файла ../Dir/file4: COL
+Подстока 232 файла ../Dir/file4: ROW>result;}for(size
+Подстока 233 файла ../Dir/file4: ty
+Подстока 234 файла ../Dir/file4: 0;y!
+Подстока 235 файла ../Dir/file4: lhs.rows();++y){for(size
+Подстока 236 файла ../Dir/file4: tx
+Подстока 237 файла ../Dir/file4: 0;x!
+Подстока 238 файла ../Dir/file4: lhs.cols();++x){result(x
+Подстока 239 файла ../Dir/file4: y)
+Подстока 240 файла ../Dir/file4: lhs(x
+Подстока 241 файла ../Dir/file4: y)+rhs(x
+Подстока 242 файла ../Dir/file4: y);}}returnresult;Giventhepreviousclassdefinition
+Подстока 243 файла ../Dir/file4: youcannowwriteMatrixexpressionssuchas:conststd::size
+Подстока 244 файла ../Dir/file4: tcols
+Подстока 245 файла ../Dir/file4: 2000;conststd::size
+Подстока 246 файла ../Dir/file4: trows
+Подстока 247 файла ../Dir/file4: 1000;Matrix<double
+Подстока 248 файла ../Dir/file4: cols
+Подстока 249 файла ../Dir/file4: rows>a
+Подстока 250 файла ../Dir/file4: b
+Подстока 251 файла ../Dir/file4: c;//initializea
+Подстока 252 файла ../Dir/file4: b&cfor(std::size
+Подстока 253 файла ../Dir/file4: ty
+Подстока 254 файла ../Dir/file4: 0;y!
+Подстока 255 файла ../Dir/file4: rows;++y){for(std::size
+Подстока 256 файла ../Dir/file4: tx
+Подстока 257 файла ../Dir/file4: 0;x!
+Подстока 258 файла ../Dir/file4: cols;++x){a(x
+Подстока 259 файла ../Dir/file4: y)
+Подстока 260 файла ../Dir/file4: 1.0;b(x
+Подстока 261 файла ../Dir/file4: y)
+Подстока 262 файла ../Dir/file4: 2.0;GoalKicker.com–C++NotesforProfessionals425}}c(x
+Подстока 263 файла ../Dir/file4: y)
+Подстока 264 файла ../Dir/file4: 3.0;Matrix<double
+Подстока 265 файла ../Dir/file4: cols
+Подстока 266 файла ../Dir/file4: rows>d
+Подстока 267 файла ../Dir/file4: a+b+c;//d(x
+Подстока 268 файла ../Dir/file4: y)
+Подстока 269 файла ../Dir/file4: 6Asillustratedabove
+Подстока 270 файла ../Dir/file4: beingabletooverloadoperator+()providesyouwithanotationwhichmimicsthenaturalmathematicalnotationformatrices.Unfortunately
+Подстока 271 файла ../Dir/file4: thepreviousimplementationisalsohighlyinefficientcomparedtoanequivalent"hand-crafted"version.Tounderstandwhy
+Подстока 272 файла ../Dir/file4: youhavetoconsiderwhathappenswhenyouwriteanexpressionsuchasMatrixd
+Подстока 273 файла ../Dir/file4: a+b+c.Thisinfactexpandsto((a+b)+c)oroperator+(operator+(a
+Подстока 274 файла ../Dir/file4: b)
+Подстока 275 файла ../Dir/file4: c).Inotherwords
+Подстока 276 файла ../Dir/file4: theloopinsideoperator+()isexecutedtwice
+Подстока 277 файла ../Dir/file4: whereasitcouldhavebeeneasilyperformedinasinglepass.Thisalsoresultsin2temporariesbeingcreated
+Подстока 278 файла ../Dir/file4: whichfurtherdegradesperformance.Inessence
+Подстока 279 файла ../Dir/file4: byaddingtheflexibilitytouseanotationclosetoitsmathematicalcounterpart
+Подстока 280 файла ../Dir/file4: youhavealsomadetheMatrixclasshighlyinefficient.Forexample
+Подстока 281 файла ../Dir/file4: withoutoperatoroverloading
+Подстока 282 файла ../Dir/file4: youcouldimplementafarmoreefficientMatrixsummationusingasinglepass:tem
+Подстока 283 файла ../Dir/file4: te<typenameT
+Подстока 284 файла ../Dir/file4: std::size
+Подстока 285 файла ../Dir/file4: tCOL
+Подстока 286 файла ../Dir/file4: std::size
+Подстока 287 файла ../Dir/file4: tROW>Matrix<T
+Подстока 288 файла ../Dir/file4: COL
+Подстока 289 файла ../Dir/file4: ROW>add3(constMatrix<T
+Подстока 290 файла ../Dir/file4: COL
+Подстока 291 файла ../Dir/file4: ROW>&a
+Подстока 292 файла ../Dir/file4: constMatrix<T
+Подстока 293 файла ../Dir/file4: COL
+Подстока 294 файла ../Dir/file4: ROW>&b
+Подстока 295 файла ../Dir/file4: constMatrix<T
+Подстока 296 файла ../Dir/file4: COL
+Подстока 297 файла ../Dir/file4: ROW>&c){Matrix<T
+Подстока 298 файла ../Dir/file4: COL
+Подстока 299 файла ../Dir/file4: ROW>result;for(size
+Подстока 300 файла ../Dir/file4: ty
+Подстока 301 файла ../Dir/file4: 0;y!
+Подстока 302 файла ../Dir/file4: ROW;++y){for(size
+Подстока 303 файла ../Dir/file4: tx
+Подстока 304 файла ../Dir/file4: 0;x!
+Подстока 305 файла ../Dir/file4: COL;++x){result(x
+Подстока 306 файла ../Dir/file4: y)
+Подстока 307 файла ../Dir/file4: a(x
+Подстока 308 файла ../Dir/file4: y)+b(x
+Подстока 309 файла ../Dir/file4: y)+c(x
+Подстока 310 файла ../Dir/file4: y);}}returnresult;}ThepreviousexamplehoweverhasitsowndisadvantagesbecauseitcreatesafarmoreconvolutedinterfacefortheMatrixclass(youwouldhavetoconsidermethodssuchasMatrix::add2()
+Подстока 311 файла ../Dir/file4: Matrix::AddMultiply()andsoon).InsteadletustakeastepbackandseehowwecanadaptoperatoroverloadingtoperforminamoreefficientwayTheproblemstemsfromthefactthattheexpressionMatrixd
+Подстока 312 файла ../Dir/file4: a+b+cisevaluatedtoo"eagerly"beforeyouhavehadanopportunitytobuildtheentireexpressiontree.Inotherwords
+Подстока 313 файла ../Dir/file4: whatyoureallywanttoachieveistoevaluatea+b+cinonepassandonlyonceyouactuallyneedtoassigntheresultingexpressingtod.Thisisthecoreideabehindexpressiontem
+Подстока 314 файла ../Dir/file4: tes:insteadofhavingoperator+()evaluateimmediatelytheresultofaddingtwoMatrixinstances
+Подстока 315 файла ../Dir/file4: itwillreturnan"expressiontem
+Подстока 316 файла ../Dir/file4: te"forfutureevaluationoncetheentireexpressiontreehasbeenbuilt.Forexample
+Подстока 317 файла ../Dir/file4: hereisapossibleimplementationforanexpressiontem
+Подстока 318 файла ../Dir/file4: tecorrespondingtothesummationof2types:tem
+Подстока 319 файла ../Dir/file4: te<typenameLHS
+Подстока 320 файла ../Dir/file4: typenameRHS>classMatrixSum{public:usingvalue
+Подстока 321 файла ../Dir/file4: type
+Подстока 322 файла ../Dir/file4: typenameLHS::value
+Подстока 323 файла ../Dir/file4: type;GoalKicker.com–C++NotesforProfessionals426MatrixSum(constLHS&lhs
+Подстока 324 файла ../Dir/file4: constRHS&rhs):rhs(rhs)
+Подстока 325 файла ../Dir/file4: lhs(lhs){}value
+Подстока 326 файла ../Dir/file4: typeoperator()(intx
+Подстока 327 файла ../Dir/file4: inty)const{returnlhs(x
+Подстока 328 файла ../Dir/file4: y)+rhs(x
+Подстока 329 файла ../Dir/file4: y);}private:constLHS&lhs;constRHS&rhs;};Andhereistheupdatedversionofoperator+()tem
+Подстока 330 файла ../Dir/file4: te<typenameLHS
+Подстока 331 файла ../Dir/file4: typenameRHS>MatrixSum<LHS
+Подстока 332 файла ../Dir/file4: RHS>operator+(constLHS&lhs
+Подстока 333 файла ../Dir/file4: constLHS&rhs){returnMatrixSum<LHS
+Подстока 334 файла ../Dir/file4: RHS>(lhs
+Подстока 335 файла ../Dir/file4: rhs);}Asyoucansee
+Подстока 336 файла ../Dir/file4: operator+()nolongerreturnsan"eagerevaluation"oftheresultofadding2Matrixinstances(whichwouldbeanotherMatrixinstance)
+Подстока 337 файла ../Dir/file4: butinsteadanexpressiontem
+Подстока 338 файла ../Dir/file4: terepresentingtheadditionoperation.Themostimportantpointtokeepinmindisthattheexpressionhasnotbeenevaluatedyet.Itmerelyholdsreferencestoitsoperands.Infact
+Подстока 339 файла ../Dir/file4: nothingstopsyoufrominstantiatingtheMatrixSum<>expressiontem
+Подстока 340 файла ../Dir/file4: teasfollows:MatrixSum<Matrix<double>
+Подстока 341 файла ../Dir/file4: Matrix<double>>SumAB(a
+Подстока 342 файла ../Dir/file4: b);Youcanhoweveratalaterstage
+Подстока 343 файла ../Dir/file4: whenyouactuallyneedtheresultofthesummation
+Подстока 344 файла ../Dir/file4: evaluatetheexpressiond
+Подстока 345 файла ../Dir/file4: a+basfollows:for(std::size
+Подстока 346 файла ../Dir/file4: ty
+Подстока 347 файла ../Dir/file4: 0;y!
+Подстока 348 файла ../Dir/file4: a.rows();++y){for(std::size
+Подстока 349 файла ../Dir/file4: tx
+Подстока 350 файла ../Dir/file4: 0;x!
+Подстока 351 файла ../Dir/file4: a.cols();++x){d(x
+Подстока 352 файла ../Dir/file4: y)
+Подстока 353 файла ../Dir/file4: SumAB(x
+Подстока 354 файла ../Dir/file4: y);}}Asyoucansee
+Подстока 355 файла ../Dir/file4: anotherbenefitofusinganexpressiontem
+Подстока 356 файла ../Dir/file4: te
+Подстока 357 файла ../Dir/file4: isthatyouhavebasicallymanagedtoevaluatethesumofaandbandassignittodinasinglepas
+
+[Имя файла ../Dir/file1 ]:
+Подстока 1 файла ../Dir/file1: zwzww*@
+Подстока 2 файла ../Dir/file1: @@##xnnx
+Подстока 3 файла ../Dir/file1: nedyeyd*eu
+Подстока 4 файла ../Dir/file1: ikrr88
+Подстока 5 файла ../Dir/file1: 388*33jj
+Подстока 6 файла ../Dir/file1: jjrryyryyfc
+Подстока 7 файла ../Dir/file1: hhc**e*ke
+
+[Имя файла ../Dir/file3 ]:
+Подстока 1 файла ../Dir/file3: dfdffe
+Подстока 2 файла ../Dir/file3: te#$#dtyey!
+Подстока 3 файла ../Dir/file3: !
+Подстока 4 файла ../Dir/file3: gduheijjjjjjjj
+Подстока 5 файла ../Dir/file3: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 6 файла ../Dir/file3: wwyceyb#
+Подстока 7 файла ../Dir/file3: wkkkwkkwkwkkwiiii
+Подстока 8 файла ../Dir/file3: ididi
+
+[Имя файла ../Dir/file2 ]:
+Подстока 1 файла ../Dir/file2: cbydebc
+Подстока 2 файла ../Dir/file2: e
+Подстока 3 файла ../Dir/file2: cwljjowkdokoe**kd;kqw;dkw
+Подстока 4 файла ../Dir/file2: o;k;kw;kcwk@@c;ek;k;ckep;kcpp3kpp
+Подстока 5 файла ../Dir/file2: 3p333pp3p3p3p3p3pp3p3pp3
+
+[Имя файла ../Dir/file4 ]:
+Подстока 1 файла ../Dir/file4: T
+Подстока 2 файла ../Dir/file4: intT
+Подстока 3 файла ../Dir/file4: int
+Подстока 4 файла ../Dir/file4: U
+Подстока 5 файла ../Dir/file4: doubleFunctiontem
+Подстока 6 файла ../Dir/file4: tesmayonlybefullyspecialized:tem
+Подстока 7 файла ../Dir/file4: te<typenameT
+Подстока 8 файла ../Dir/file4: typenameU>voidfoo(Tt
+Подстока 9 файла ../Dir/file4: Uu){std::cout<<"Generalcase:"<<t<<""<<u<<std::endl;}//OK.tem
+Подстока 10 файла ../Dir/file4: te<>voidfoo<int
+Подстока 11 файла ../Dir/file4: int>(inta1
+Подстока 12 файла ../Dir/file4: inta2){std::cout<<"Twoints:"<<a1<<""<<a2<<std::endl;}voidinvoke
+Подстока 13 файла ../Dir/file4: foo(){foo(1
+Подстока 14 файла ../Dir/file4: 2.1);//Prints"Generalcase:12.1"foo(1
+Подстока 15 файла ../Dir/file4: 2);//Prints"Twoints:12"}GoalKicker.com–C++NotesforProfessionals419//Compilationerror:partialfunctionspecializationisnotallowed.tem
+Подстока 16 файла ../Dir/file4: te<typenameU>voidfoo<std::string
+Подстока 17 файла ../Dir/file4: U>(std::stringt
+Подстока 18 файла ../Dir/file4: Uu){std::cout<<"Generalcase:"<<t<<""<<u<<std::endl;}Section77.6:Tem
+Подстока 19 файла ../Dir/file4: teSpecializationYoucandefineimplementationforspecificinstantiationsofatem
+Подстока 20 файла ../Dir/file4: teclass/method.Forexampleifyouhave:tem
+Подстока 21 файла ../Dir/file4: te<typenameT>Tsqrt(Tt){/*Somegenericimplementation*/}Youcanthenwrite:tem
+Подстока 22 файла ../Dir/file4: te<>intsqrt<int>(inti){/*Highlyoptimizedintegerimplementation*/}Thenauserthatwritessqrt(4.0)willgetthegenericimplementationwhereassqrt(4)willgetthespecializedimplementation.Section77.7:Aliastem
+Подстока 23 файла ../Dir/file4: teVersion≥C++11Basicexample:tem
+Подстока 24 файла ../Dir/file4: te<typenameT>usingpointer
+Подстока 25 файла ../Dir/file4: T*;Thisdefinitionmakespointer<T>analiasofT*.Forexample:pointer<int>p
+Подстока 26 файла ../Dir/file4: newint;//equivalentto:int*p
+Подстока 27 файла ../Dir/file4: newint;Aliastem
+Подстока 28 файла ../Dir/file4: tescannotbespecialized.However
+Подстока 29 файла ../Dir/file4: thatfunctionalitycanbeobtainedindirectlybyhavingthemrefertoanestedtypeinastruct:tem
+Подстока 30 файла ../Dir/file4: te<typenameT>structnonconst
+Подстока 31 файла ../Dir/file4: pointer
+Подстока 32 файла ../Dir/file4: helper{typedefT*type;};tem
+Подстока 33 файла ../Dir/file4: te<typenameT>structnonconst
+Подстока 34 файла ../Dir/file4: pointer
+Подстока 35 файла ../Dir/file4: helper<Tconst>{typedefT*type;};tem
+Подстока 36 файла ../Dir/file4: te<typenameT>usingnonconst
+Подстока 37 файла ../Dir/file4: pointer
+Подстока 38 файла ../Dir/file4: nonconst
+Подстока 39 файла ../Dir/file4: pointer
+Подстока 40 файла ../Dir/file4: helper<T>::type;Section77.8:ExplicitinstantiationAnexplicitinstantiationdefinitioncreatesanddeclaresaconcreteclass
+Подстока 41 файла ../Dir/file4: function
+Подстока 42 файла ../Dir/file4: orvariablefromatem
+Подстока 43 файла ../Dir/file4: te
+Подстока 44 файла ../Dir/file4: withoutusingitjustyet.Anexplicitinstantiationcanbereferencedfromothertranslationunits.Thiscanbeusedtoavoiddefiningatem
+Подстока 45 файла ../Dir/file4: teinaheaderfile
+Подстока 46 файла ../Dir/file4: ifitwillonlybeinstantiatedwithafinitesetofarguments.Forexample://print
+Подстока 47 файла ../Dir/file4: string.htem
+Подстока 48 файла ../Dir/file4: te<classT>voidprint
+Подстока 49 файла ../Dir/file4: string(constT*str);GoalKicker.com–C++NotesforProfessionals420//print
+Подстока 50 файла ../Dir/file4: string.cpp#include"print
+Подстока 51 файла ../Dir/file4: string.h"tem
+Подстока 52 файла ../Dir/file4: tevoidprint
+Подстока 53 файла ../Dir/file4: string(constchar*);tem
+Подстока 54 файла ../Dir/file4: tevoidprint
+Подстока 55 файла ../Dir/file4: string(constwchar
+Подстока 56 файла ../Dir/file4: t*);Becauseprint
+Подстока 57 файла ../Dir/file4: string<char>andprint
+Подстока 58 файла ../Dir/file4: string<wchar
+Подстока 59 файла ../Dir/file4: t>areexplicitlyinstantiatedinprint
+Подстока 60 файла ../Dir/file4: string.cpp
+Подстока 61 файла ../Dir/file4: thelinkerwillbeabletofindthemeventhoughtheprint
+Подстока 62 файла ../Dir/file4: stringtem
+Подстока 63 файла ../Dir/file4: teisnotdefinedintheheader.Iftheseexplicitinstantiationdeclarationswerenotpresent
+Подстока 64 файла ../Dir/file4: alinkererrorwouldlikelyoccur.SeeWhycantem
+Подстока 65 файла ../Dir/file4: tesonlybeimplementedintheheaderfile?Version≥C++11Ifanexplicitinstantiationdefinitionisprecededbytheexternkeyword
+Подстока 66 файла ../Dir/file4: itbecomesanexplicitinstantiationdeclarationinstead.Thepresenceofanexplicitinstantiationdeclarationforagivenspecializationpreventstheimplicitinstantiationofthegivenspecializationwithinthecurrenttranslationunit.Instead
+Подстока 67 файла ../Dir/file4: areferencetothatspecializationthatwouldotherwisecauseanimplicitinstantiationcanrefertoanexplicitinstantiationdefinitioninthesameoranotherTU.foo.h#ifndefFOO
+Подстока 68 файла ../Dir/file4: H#defineFOO
+Подстока 69 файла ../Dir/file4: Htem
+Подстока 70 файла ../Dir/file4: te<classT>voidfoo(Tx){//complicatedimplementation}#endiffoo.cpp#include"foo.h"//explicitinstantiationdefinitionsforcommoncasestem
+Подстока 71 файла ../Dir/file4: tevoidfoo(int);tem
+Подстока 72 файла ../Dir/file4: tevoidfoo(double);main.cpp#include"foo.h"//wealreadyknowfoo.cpphasexplicitinstantiationdefinitionsfortheseexterntem
+Подстока 73 файла ../Dir/file4: tevoidfoo(double);intmain(){foo(42);//instantiatesfoo<int>here;//wastefulsincefoo.cppprovidesanexplicitinstantiationalready!foo(3.14);//doesnotinstantiatefoo<double>here;//usesinstantiationoffoo<double>infoo.cppinstead}Section77.9:Non-typetem
+Подстока 74 файла ../Dir/file4: teparameterApartfromtypesasatem
+Подстока 75 файла ../Dir/file4: teparameterweareallowedtodeclarevaluesofconstantexpressionsmeetingoneofthefollowingcriteria:integralorenumerationtype
+Подстока 76 файла ../Dir/file4: pointertoobjectorpointertofunction
+Подстока 77 файла ../Dir/file4: lvaluereferencetoobjectorlvaluereferencetofunction
+Подстока 78 файла ../Dir/file4: pointertomember
+Подстока 79 файла ../Dir/file4: std::nullptr
+Подстока 80 файла ../Dir/file4: t.GoalKicker.com–C++NotesforProfessionals421Likealltem
+Подстока 81 файла ../Dir/file4: teparameters
+Подстока 82 файла ../Dir/file4: non-typetem
+Подстока 83 файла ../Dir/file4: teparameterscanbeexplicitlyspecified
+Подстока 84 файла ../Dir/file4: defaulted
+Подстока 85 файла ../Dir/file4: orderivedimplicitlyviaTem
+Подстока 86 файла ../Dir/file4: teArgumentDeduction.Exampleofnon-typetem
+Подстока 87 файла ../Dir/file4: teparameterusage:#include<iostream>tem
+Подстока 88 файла ../Dir/file4: te<typenameT
+Подстока 89 файла ../Dir/file4: std::size
+Подстока 90 файла ../Dir/file4: tsize>std::size
+Подстока 91 файла ../Dir/file4: tsize
+Подстока 92 файла ../Dir/file4: of(T(&anArray)[size])//Passarraybyreference.Requires.{//anexactsize.Weallowallsizesreturnsize;//byusingatem
+Подстока 93 файла ../Dir/file4: te"size".}intmain(){charanArrayOfChar[15];std::cout<<"anArrayOfChar:"<<size
+Подстока 94 файла ../Dir/file4: of(anArrayOfChar)<<"\n";}intanArrayOfData[]
+Подстока 95 файла ../Dir/file4: {1
+Подстока 96 файла ../Dir/file4: 2
+Подстока 97 файла ../Dir/file4: 3
+Подстока 98 файла ../Dir/file4: 4
+Подстока 99 файла ../Dir/file4: 5
+Подстока 100 файла ../Dir/file4: 6
+Подстока 101 файла ../Dir/file4: 7
+Подстока 102 файла ../Dir/file4: 8
+Подстока 103 файла ../Dir/file4: 9};std::cout<<"anArrayOfData:"<<size
+Подстока 104 файла ../Dir/file4: of(anArrayOfData)<<"\n";Exampleofexplicitlyspecifyingbothtypeandnon-typetem
+Подстока 105 файла ../Dir/file4: teparameters:#include<array>intmain(){std::array<int
+Подстока 106 файла ../Dir/file4: 5>foo;//intisatypeparameter
+Подстока 107 файла ../Dir/file4: 5isnon-type}Non-typetem
+Подстока 108 файла ../Dir/file4: teparametersareoneofthewaystoachievetem
+Подстока 109 файла ../Dir/file4: terecurrenceandenablestodoMetaprogramming.Section77.10:Declaringnon-typetem
+Подстока 110 файла ../Dir/file4: teargumentswithautoPriortoC++17
+Подстока 111 файла ../Dir/file4: whenwritingatem
+Подстока 112 файла ../Dir/file4: tenon-typeparameter
+Подстока 113 файла ../Dir/file4: youhadtospecifyitstypefirst.Soacommonpatternbecamewritingsomethinglike:tem
+Подстока 114 файла ../Dir/file4: te<classT
+Подстока 115 файла ../Dir/file4: TN>structintegral
+Подстока 116 файла ../Dir/file4: constant{usingtype
+Подстока 117 файла ../Dir/file4: T;staticconstexprTvalue
+Подстока 118 файла ../Dir/file4: N;};usingfive
+Подстока 119 файла ../Dir/file4: integral
+Подстока 120 файла ../Dir/file4: constant<int
+Подстока 121 файла ../Dir/file4: 5>;Butforcomplicatedexpressions
+Подстока 122 файла ../Dir/file4: usingsomethinglikethisinvolveshavingtowritedecltype(expr)
+Подстока 123 файла ../Dir/file4: exprwheninstantiatingtem
+Подстока 124 файла ../Dir/file4: tes.Thesolutionistosimplifythisidiomandsimplyallowauto:Version≥C++17tem
+Подстока 125 файла ../Dir/file4: te<autoN>structintegral
+Подстока 126 файла ../Dir/file4: constant{usingtype
+Подстока 127 файла ../Dir/file4: decltype(N);staticconstexprtypevalue
+Подстока 128 файла ../Dir/file4: N;};GoalKicker.com–C++NotesforProfessionals422usingfive
+Подстока 129 файла ../Dir/file4: integral
+Подстока 130 файла ../Dir/file4: constant<5>;Emptycustomdeleterforunique
+Подстока 131 файла ../Dir/file4: ptrAnicemotivatingexamplecancomefromtryingtocombinetheemptybaseoptimizationwithacustomdeleterforunique
+Подстока 132 файла ../Dir/file4: ptr.DifferentCAPIdeletershavedifferentreturntypes
+Подстока 133 файла ../Dir/file4: butwedon'tcare-wejustwantsomethingtoworkforanyfunction:tem
+Подстока 134 файла ../Dir/file4: te<autoDeleteFn>structFunctionDeleter{tem
+Подстока 135 файла ../Dir/file4: te<classT>voidoperator()(T*ptr)const{DeleteFn(ptr);}};tem
+Подстока 136 файла ../Dir/file4: te<T
+Подстока 137 файла ../Dir/file4: autoDeleteFn>usingunique
+Подстока 138 файла ../Dir/file4: ptr
+Подстока 139 файла ../Dir/file4: deleter
+Подстока 140 файла ../Dir/file4: std::unique
+Подстока 141 файла ../Dir/file4: ptr<T
+Подстока 142 файла ../Dir/file4: FunctionDeleter<DeleteFn>>;AndnowyoucansimplyuseanyfunctionpointerthatcantakeanargumentoftypeTasatem
+Подстока 143 файла ../Dir/file4: tenon-typeparameter
+Подстока 144 файла ../Dir/file4: regardlessofreturntype
+Подстока 145 файла ../Dir/file4: andgetano-sizeoverheadunique
+Подстока 146 файла ../Dir/file4: ptroutofit:unique
+Подстока 147 файла ../Dir/file4: ptr
+Подстока 148 файла ../Dir/file4: deleter<std::FILE
+Подстока 149 файла ../Dir/file4: std::fclose>p;Section77.11:Tem
+Подстока 150 файла ../Dir/file4: tetem
+Подстока 151 файла ../Dir/file4: teparametersSometimeswewouldliketopassintothetem
+Подстока 152 файла ../Dir/file4: teatem
+Подстока 153 файла ../Dir/file4: tetypewithoutfixingitsvalues.Thisiswhattem
+Подстока 154 файла ../Dir/file4: tetem
+Подстока 155 файла ../Dir/file4: teparametersarecreatedfor.Verysimpletem
+Подстока 156 файла ../Dir/file4: tetem
+Подстока 157 файла ../Dir/file4: teparameterexamples:tem
+Подстока 158 файла ../Dir/file4: te<classT>structTag1{};tem
+Подстока 159 файла ../Dir/file4: te<classT>structTag2{};tem
+Подстока 160 файла ../Dir/file4: te<tem
+Подстока 161 файла ../Dir/file4: te<class>classTag>structIntTag{typedefTag<int>type;};intmain(){IntTag<Tag1>::typet;}Version≥C++11#include<vector>#include<iostream>tem
+Подстока 162 файла ../Dir/file4: te<classT
+Подстока 163 файла ../Dir/file4: tem
+Подстока 164 файла ../Dir/file4: te<class...>classC
+Подстока 165 файла ../Dir/file4: classU>C<T>cast
+Подстока 166 файла ../Dir/file4: all(constC<U>&c){C<T>result(c.begin()
+Подстока 167 файла ../Dir/file4: c.end());returnresult;}intmain(){std::vector<float>vf
+Подстока 168 файла ../Dir/file4: {1.2
+Подстока 169 файла ../Dir/file4: 2.6
+Подстока 170 файла ../Dir/file4: 3.7};autovi
+Подстока 171 файла ../Dir/file4: cast
+Подстока 172 файла ../Dir/file4: all<int>(vf);for(auto&&i:vi){std::cout<<i<<std::endl;}GoalKicker.com–C++NotesforProfessionals423}Section77.12:Defaulttem
+Подстока 173 файла ../Dir/file4: teparametervalueJustlikeincaseofthefunctionarguments
+Подстока 174 файла ../Dir/file4: tem
+Подстока 175 файла ../Dir/file4: teparameterscanhavetheirdefaultvalues.Alltem
+Подстока 176 файла ../Dir/file4: teparameterswithadefaultvaluehavetobedeclaredattheendofthetem
+Подстока 177 файла ../Dir/file4: teparameterlist.Thebasicideaisthatthetem
+Подстока 178 файла ../Dir/file4: teparameterswithdefaultvaluecanbeomittedwhiletem
+Подстока 179 файла ../Dir/file4: teinstantiation.Simpleexampleofdefaulttem
+Подстока 180 файла ../Dir/file4: teparametervalueusage:tem
+Подстока 181 файла ../Dir/file4: te<classT
+Подстока 182 файла ../Dir/file4: size
+Подстока 183 файла ../Dir/file4: tN
+Подстока 184 файла ../Dir/file4: 10>structmy
+Подстока 185 файла ../Dir/file4: array{Tarr[N];};intmain(){/*Defaultparameterisignored
+Подстока 186 файла ../Dir/file4: N
+Подстока 187 файла ../Dir/file4: 5*/my
+Подстока 188 файла ../Dir/file4: array<int
+Подстока 189 файла ../Dir/file4: 5>a;}/*Printthelengthofa.arr:5*/std::cout<<sizeof(a.arr)/sizeof(int)<<std::endl;/*Lastparameterisomitted
+Подстока 190 файла ../Dir/file4: N
+Подстока 191 файла ../Dir/file4: 10*/my
+Подстока 192 файла ../Dir/file4: array<int>b;/*Printthelengthofa.arr:10*/std::cout<<sizeof(b.arr)/sizeof(int)<<std::endl;GoalKicker.com–C++NotesforProfessionals424Chapter78:Expressiontem
+Подстока 193 файла ../Dir/file4: tesSection78.1:Abasicexampleillustratingexpressiontem
+Подстока 194 файла ../Dir/file4: tesAnexpressiontem
+Подстока 195 файла ../Dir/file4: teisacompile-timeoptimizationtechniqueusedmostlyinscientificcomputing.It'smainpurposeistoavoidunnecessarytemporariesandoptimizeloopcalculationsusingasinglepass(typicallywhenperformingoperationsonnumericalaggregates).Expressiontem
+Подстока 196 файла ../Dir/file4: teswereinitiallydevisedinordertocircumventtheinefficienciesofnaïveoperatoroverloadingwhenimplementingnumericalArrayorMatrixtypes.Anequivalentterminologyforexpressiontem
+Подстока 197 файла ../Dir/file4: teshasbeenintroducedbyBjarneStroustrup
+Подстока 198 файла ../Dir/file4: whocallsthem"fusedoperations"inthelatestversionofhisbook
+Подстока 199 файла ../Dir/file4: "TheC++ProgrammingLanguage".Beforeactuallydivingintoexpressiontem
+Подстока 200 файла ../Dir/file4: tes
+Подстока 201 файла ../Dir/file4: youshouldunderstandwhyyouneedtheminthefirst
+Подстока 202 файла ../Dir/file4: ce.Toillustratethis
+Подстока 203 файла ../Dir/file4: considertheverysimpleMatrixclassgivenbelow:tem
+Подстока 204 файла ../Dir/file4: te<typenameT
+Подстока 205 файла ../Dir/file4: std::size
+Подстока 206 файла ../Dir/file4: tCOL
+Подстока 207 файла ../Dir/file4: std::size
+Подстока 208 файла ../Dir/file4: tROW>classMatrix{public:usingvalue
+Подстока 209 файла ../Dir/file4: type
+Подстока 210 файла ../Dir/file4: T;Matrix():values(COL*ROW){}staticsize
+Подстока 211 файла ../Dir/file4: tcols(){returnCOL;}staticsize
+Подстока 212 файла ../Dir/file4: trows(){returnROW;}constT&operator()(size
+Подстока 213 файла ../Dir/file4: tx
+Подстока 214 файла ../Dir/file4: size
+Подстока 215 файла ../Dir/file4: ty)const{returnvalues[y*COL+x];}T&operator()(size
+Подстока 216 файла ../Dir/file4: tx
+Подстока 217 файла ../Dir/file4: size
+Подстока 218 файла ../Dir/file4: ty){returnvalues[y*COL+x];}private:std::vector<T>};values;tem
+Подстока 219 файла ../Dir/file4: te<typenameT
+Подстока 220 файла ../Dir/file4: std::size
+Подстока 221 файла ../Dir/file4: tCOL
+Подстока 222 файла ../Dir/file4: std::size
+Подстока 223 файла ../Dir/file4: tROW>Matrix<T
+Подстока 224 файла ../Dir/file4: COL
+Подстока 225 файла ../Dir/file4: ROW>operator+(constMatrix<T
+Подстока 226 файла ../Dir/file4: COL
+Подстока 227 файла ../Dir/file4: ROW>&lhs
+Подстока 228 файла ../Dir/file4: constMatrix<T
+Подстока 229 файла ../Dir/file4: COL
+Подстока 230 файла ../Dir/file4: ROW>&rhs){Matrix<T
+Подстока 231 файла ../Dir/file4: COL
+Подстока 232 файла ../Dir/file4: ROW>result;}for(size
+Подстока 233 файла ../Dir/file4: ty
+Подстока 234 файла ../Dir/file4: 0;y!
+Подстока 235 файла ../Dir/file4: lhs.rows();++y){for(size
+Подстока 236 файла ../Dir/file4: tx
+Подстока 237 файла ../Dir/file4: 0;x!
+Подстока 238 файла ../Dir/file4: lhs.cols();++x){result(x
+Подстока 239 файла ../Dir/file4: y)
+Подстока 240 файла ../Dir/file4: lhs(x
+Подстока 241 файла ../Dir/file4: y)+rhs(x
+Подстока 242 файла ../Dir/file4: y);}}returnresult;Giventhepreviousclassdefinition
+Подстока 243 файла ../Dir/file4: youcannowwriteMatrixexpressionssuchas:conststd::size
+Подстока 244 файла ../Dir/file4: tcols
+Подстока 245 файла ../Dir/file4: 2000;conststd::size
+Подстока 246 файла ../Dir/file4: trows
+Подстока 247 файла ../Dir/file4: 1000;Matrix<double
+Подстока 248 файла ../Dir/file4: cols
+Подстока 249 файла ../Dir/file4: rows>a
+Подстока 250 файла ../Dir/file4: b
+Подстока 251 файла ../Dir/file4: c;//initializea
+Подстока 252 файла ../Dir/file4: b&cfor(std::size
+Подстока 253 файла ../Dir/file4: ty
+Подстока 254 файла ../Dir/file4: 0;y!
+Подстока 255 файла ../Dir/file4: rows;++y){for(std::size
+Подстока 256 файла ../Dir/file4: tx
+Подстока 257 файла ../Dir/file4: 0;x!
+Подстока 258 файла ../Dir/file4: cols;++x){a(x
+Подстока 259 файла ../Dir/file4: y)
+Подстока 260 файла ../Dir/file4: 1.0;b(x
+Подстока 261 файла ../Dir/file4: y)
+Подстока 262 файла ../Dir/file4: 2.0;GoalKicker.com–C++NotesforProfessionals425}}c(x
+Подстока 263 файла ../Dir/file4: y)
+Подстока 264 файла ../Dir/file4: 3.0;Matrix<double
+Подстока 265 файла ../Dir/file4: cols
+Подстока 266 файла ../Dir/file4: rows>d
+Подстока 267 файла ../Dir/file4: a+b+c;//d(x
+Подстока 268 файла ../Dir/file4: y)
+Подстока 269 файла ../Dir/file4: 6Asillustratedabove
+Подстока 270 файла ../Dir/file4: beingabletooverloadoperator+()providesyouwithanotationwhichmimicsthenaturalmathematicalnotationformatrices.Unfortunately
+Подстока 271 файла ../Dir/file4: thepreviousimplementationisalsohighlyinefficientcomparedtoanequivalent"hand-crafted"version.Tounderstandwhy
+Подстока 272 файла ../Dir/file4: youhavetoconsiderwhathappenswhenyouwriteanexpressionsuchasMatrixd
+Подстока 273 файла ../Dir/file4: a+b+c.Thisinfactexpandsto((a+b)+c)oroperator+(operator+(a
+Подстока 274 файла ../Dir/file4: b)
+Подстока 275 файла ../Dir/file4: c).Inotherwords
+Подстока 276 файла ../Dir/file4: theloopinsideoperator+()isexecutedtwice
+Подстока 277 файла ../Dir/file4: whereasitcouldhavebeeneasilyperformedinasinglepass.Thisalsoresultsin2temporariesbeingcreated
+Подстока 278 файла ../Dir/file4: whichfurtherdegradesperformance.Inessence
+Подстока 279 файла ../Dir/file4: byaddingtheflexibilitytouseanotationclosetoitsmathematicalcounterpart
+Подстока 280 файла ../Dir/file4: youhavealsomadetheMatrixclasshighlyinefficient.Forexample
+Подстока 281 файла ../Dir/file4: withoutoperatoroverloading
+Подстока 282 файла ../Dir/file4: youcouldimplementafarmoreefficientMatrixsummationusingasinglepass:tem
+Подстока 283 файла ../Dir/file4: te<typenameT
+Подстока 284 файла ../Dir/file4: std::size
+Подстока 285 файла ../Dir/file4: tCOL
+Подстока 286 файла ../Dir/file4: std::size
+Подстока 287 файла ../Dir/file4: tROW>Matrix<T
+Подстока 288 файла ../Dir/file4: COL
+Подстока 289 файла ../Dir/file4: ROW>add3(constMatrix<T
+Подстока 290 файла ../Dir/file4: COL
+Подстока 291 файла ../Dir/file4: ROW>&a
+Подстока 292 файла ../Dir/file4: constMatrix<T
+Подстока 293 файла ../Dir/file4: COL
+Подстока 294 файла ../Dir/file4: ROW>&b
+Подстока 295 файла ../Dir/file4: constMatrix<T
+Подстока 296 файла ../Dir/file4: COL
+Подстока 297 файла ../Dir/file4: ROW>&c){Matrix<T
+Подстока 298 файла ../Dir/file4: COL
+Подстока 299 файла ../Dir/file4: ROW>result;for(size
+Подстока 300 файла ../Dir/file4: ty
+Подстока 301 файла ../Dir/file4: 0;y!
+Подстока 302 файла ../Dir/file4: ROW;++y){for(size
+Подстока 303 файла ../Dir/file4: tx
+Подстока 304 файла ../Dir/file4: 0;x!
+Подстока 305 файла ../Dir/file4: COL;++x){result(x
+Подстока 306 файла ../Dir/file4: y)
+Подстока 307 файла ../Dir/file4: a(x
+Подстока 308 файла ../Dir/file4: y)+b(x
+Подстока 309 файла ../Dir/file4: y)+c(x
+Подстока 310 файла ../Dir/file4: y);}}returnresult;}ThepreviousexamplehoweverhasitsowndisadvantagesbecauseitcreatesafarmoreconvolutedinterfacefortheMatrixclass(youwouldhavetoconsidermethodssuchasMatrix::add2()
+Подстока 311 файла ../Dir/file4: Matrix::AddMultiply()andsoon).InsteadletustakeastepbackandseehowwecanadaptoperatoroverloadingtoperforminamoreefficientwayTheproblemstemsfromthefactthattheexpressionMatrixd
+Подстока 312 файла ../Dir/file4: a+b+cisevaluatedtoo"eagerly"beforeyouhavehadanopportunitytobuildtheentireexpressiontree.Inotherwords
+Подстока 313 файла ../Dir/file4: whatyoureallywanttoachieveistoevaluatea+b+cinonepassandonlyonceyouactuallyneedtoassigntheresultingexpressingtod.Thisisthecoreideabehindexpressiontem
+Подстока 314 файла ../Dir/file4: tes:insteadofhavingoperator+()evaluateimmediatelytheresultofaddingtwoMatrixinstances
+Подстока 315 файла ../Dir/file4: itwillreturnan"expressiontem
+Подстока 316 файла ../Dir/file4: te"forfutureevaluationoncetheentireexpressiontreehasbeenbuilt.Forexample
+Подстока 317 файла ../Dir/file4: hereisapossibleimplementationforanexpressiontem
+Подстока 318 файла ../Dir/file4: tecorrespondingtothesummationof2types:tem
+Подстока 319 файла ../Dir/file4: te<typenameLHS
+Подстока 320 файла ../Dir/file4: typenameRHS>classMatrixSum{public:usingvalue
+Подстока 321 файла ../Dir/file4: type
+Подстока 322 файла ../Dir/file4: typenameLHS::value
+Подстока 323 файла ../Dir/file4: type;GoalKicker.com–C++NotesforProfessionals426MatrixSum(constLHS&lhs
+Подстока 324 файла ../Dir/file4: constRHS&rhs):rhs(rhs)
+Подстока 325 файла ../Dir/file4: lhs(lhs){}value
+Подстока 326 файла ../Dir/file4: typeoperator()(intx
+Подстока 327 файла ../Dir/file4: inty)const{returnlhs(x
+Подстока 328 файла ../Dir/file4: y)+rhs(x
+Подстока 329 файла ../Dir/file4: y);}private:constLHS&lhs;constRHS&rhs;};Andhereistheupdatedversionofoperator+()tem
+Подстока 330 файла ../Dir/file4: te<typenameLHS
+Подстока 331 файла ../Dir/file4: typenameRHS>MatrixSum<LHS
+Подстока 332 файла ../Dir/file4: RHS>operator+(constLHS&lhs
+Подстока 333 файла ../Dir/file4: constLHS&rhs){returnMatrixSum<LHS
+Подстока 334 файла ../Dir/file4: RHS>(lhs
+Подстока 335 файла ../Dir/file4: rhs);}Asyoucansee
+Подстока 336 файла ../Dir/file4: operator+()nolongerreturnsan"eagerevaluation"oftheresultofadding2Matrixinstances(whichwouldbeanotherMatrixinstance)
+Подстока 337 файла ../Dir/file4: butinsteadanexpressiontem
+Подстока 338 файла ../Dir/file4: terepresentingtheadditionoperation.Themostimportantpointtokeepinmindisthattheexpressionhasnotbeenevaluatedyet.Itmerelyholdsreferencestoitsoperands.Infact
+Подстока 339 файла ../Dir/file4: nothingstopsyoufrominstantiatingtheMatrixSum<>expressiontem
+Подстока 340 файла ../Dir/file4: teasfollows:MatrixSum<Matrix<double>
+Подстока 341 файла ../Dir/file4: Matrix<double>>SumAB(a
+Подстока 342 файла ../Dir/file4: b);Youcanhoweveratalaterstage
+Подстока 343 файла ../Dir/file4: whenyouactuallyneedtheresultofthesummation
+Подстока 344 файла ../Dir/file4: evaluatetheexpressiond
+Подстока 345 файла ../Dir/file4: a+basfollows:for(std::size
+Подстока 346 файла ../Dir/file4: ty
+Подстока 347 файла ../Dir/file4: 0;y!
+Подстока 348 файла ../Dir/file4: a.rows();++y){for(std::size
+Подстока 349 файла ../Dir/file4: tx
+Подстока 350 файла ../Dir/file4: 0;x!
+Подстока 351 файла ../Dir/file4: a.cols();++x){d(x
+Подстока 352 файла ../Dir/file4: y)
+Подстока 353 файла ../Dir/file4: SumAB(x
+Подстока 354 файла ../Dir/file4: y);}}Asyoucansee
+Подстока 355 файла ../Dir/file4: anotherbenefitofusinganexpressiontem
+Подстока 356 файла ../Dir/file4: te
+Подстока 357 файла ../Dir/file4: isthatyouhavebasicallymanagedtoevaluatethesumofaandbandassignittodinasinglepas
+
+[Имя файла ../Dir/file1 ]:
+Подстока 1 файла ../Dir/file1: zwzww*@
+Подстока 2 файла ../Dir/file1: @@##xnnx
+Подстока 3 файла ../Dir/file1: nedyeyd*eu
+Подстока 4 файла ../Dir/file1: ikrr88
+Подстока 5 файла ../Dir/file1: 388*33jj
+Подстока 6 файла ../Dir/file1: jjrryyryyfc
+Подстока 7 файла ../Dir/file1: hhc**e*ke
+
+[Имя файла ../Dir/file3 ]:
+Подстока 1 файла ../Dir/file3: dfdffe
+Подстока 2 файла ../Dir/file3: te#$#dtyey!
+Подстока 3 файла ../Dir/file3: !
+Подстока 4 файла ../Dir/file3: gduheijjjjjjjj
+Подстока 5 файла ../Dir/file3: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 6 файла ../Dir/file3: wwyceyb#
+Подстока 7 файла ../Dir/file3: wkkkwkkwkwkkwiiii
+Подстока 8 файла ../Dir/file3: ididi
+
+[Имя файла ../Dir/file4 ]:
+Подстока 1 файла ../Dir/file4: zwzww*@
+Подстока 2 файла ../Dir/file4: @@##xnnx
+Подстока 3 файла ../Dir/file4: nedyeyd*eu
+Подстока 4 файла ../Dir/file4: ikrr88
+Подстока 5 файла ../Dir/file4: 388*33jj
+Подстока 6 файла ../Dir/file4: jjrryyryyfc
+Подстока 7 файла ../Dir/file4: hhc**e*ke
+
+[Имя файла ../Dir/file2 ]:
+Подстока 1 файла ../Dir/file2: e��U   ��U  yey!
+Подстока 2 файла ../Dir/file2: !
+Подстока 3 файла ../Dir/file2: gduheijjjjjjjj
+Подстока 4 файла ../Dir/file2: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 5 файла ../Dir/file2: wwyceyb#**wkkkwkkwkwkkwiiii
+Подстока 6 файла ../Dir/file2: ididi
+
+[Имя файла ../Dir/file1 ]:
+Подстока 1 файла ../Dir/file1: e��U   ��U  yey!
+Подстока 2 файла ../Dir/file1: !
+Подстока 3 файла ../Dir/file1: gduheijjjjjjjj
+Подстока 4 файла ../Dir/file1: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 5 файла ../Dir/file1: wwyceyb#**wkkkwkkwkwkkwiiii
+Подстока 6 файла ../Dir/file1: ididi
+
+[Имя файла ../Dir/file3 ]:
+Подстока 1 файла ../Dir/file3: e��U   ��U  yey!
+Подстока 2 файла ../Dir/file3: !
+Подстока 3 файла ../Dir/file3: gduheijjjjjjjj
+Подстока 4 файла ../Dir/file3: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 5 файла ../Dir/file3: wwyceyb#**wkkkwkkwkwkkwiiii
+Подстока 6 файла ../Dir/file3: ididi
+
+[Имя файла ../Dir/file2 ]:
+Подстока 1 файла ../Dir/file2: �.AV  �� V  wljjowkdokoe**kd;kqw;dkw
+Подстока 2 файла ../Dir/file2: o;k;kw;kcwk@@c;ek;k;ckep;kcpp3kpp***3p333pp3p3p3p3p3pp3p3pp3
+
+[Имя файла ../Dir/file4 ]:
+Подстока 1 файла ../Dir/file4: zwzww*@
+[Имя файла ../Dir/file1 ]:
+Подстока 1 файла ../Dir/file1: dfdffe
+Подстока 2 файла ../Dir/file1: te#$#dtyey!
+Подстока 3 файла ../Dir/file1: !
+Подстока 2 файла ../Dir/file4: @@##xnnx
+[Имя файла ../Dir/file3 ]:
+Подстока 3 файла ../Dir/file4: nedyeyd*eu
+Подстока 1 файла ../Dir/file3: �.AV  �� V  yey!
+Подстока 4 файла ../Dir/file4: ikrr88
+Подстока 4 файла ../Dir/file1: gduheijjjjjjjj
+Подстока 5 файла ../Dir/file4: 388*33jj
+Подстока 2 файла ../Dir/file3: !
+Подстока 5 файла ../Dir/file1: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 3 файла ../Dir/file3: gduheijjjjjjjj
+Подстока 6 файла ../Dir/file1: wwyceyb#
+Подстока 4 файла ../Dir/file3: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 7 файла ../Dir/file1: wkkkwkkwkwkkwiiii
+Подстока 5 файла ../Dir/file3: wwyceyb#**wkkkwkkwkwkkwiiii
+Подстока 8 файла ../Dir/file1: ididi
+Подстока 6 файла ../Dir/file3: ididi
+Подстока 6 файла ../Dir/file4: jjrryyryyfc
+
+
+Подстока 7 файла ../Dir/file4: hhc**e*ke
+
+[Имя файла ../Dir/file2 ]:
+Подстока 1 файла ../Dir/file2: �)9�U  �}b�U  wljjowkdokoe**kd;kqw;dkw
+Подстока 2 файла ../Dir/file2: o;k;kw;kcwk@@c;ek;k;ckep;kcpp3kpp***3p333pp3p3p3p3p3pp3p3pp3
+
+[Имя файла ../Dir/file4 ]:
+Подстока 1 файла ../Dir/file4: dfdffe
+Подстока 2 файла ../Dir/file4: te#$#dtyey!
+[Имя файла ../Dir/file3 ]:
+[Имя файла ../Dir/file1 ]:
+Подстока 1 файла ../Dir/file3: �)9�U  �}b�U  yey!
+Подстока 1 файла ../Dir/file1: �)9�U  �}b�U  yey!
+Подстока 2 файла ../Dir/file3: !
+Подстока 2 файла ../Dir/file1: !
+Подстока 3 файла ../Dir/file3: gduheijjjjjjjj
+Подстока 3 файла ../Dir/file1: gduheijjjjjjjj
+Подстока 4 файла ../Dir/file3: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 5 файла ../Dir/file3: wwyceyb#**wkkkwkkwkwkkwiiii
+Подстока 3 файла ../Dir/file4: !
+Подстока 4 файла ../Dir/file1: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 6 файла ../Dir/file3: ididi
+Подстока 5 файла ../Dir/file1: wwyceyb#**wkkkwkkwkwkkwiiii
+Подстока 4 файла ../Dir/file4: gduheijjjjjjjj
+Подстока 5 файла ../Dir/file4: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 6 файла ../Dir/file4: wwyceyb#
+
+Подстока 7 файла ../Dir/file4: wkkkwkkwkwkkwiiii
+Подстока 6 файла ../Dir/file1: ididi
+Подстока 8 файла ../Dir/file4: ididi
+
+
+[Имя файла ../Dir/file2 ]:
+Подстока 1 файла ../Dir/file2: �g��]U  P8�XU  wljjowkdokoe**kd;kqw;dkw
+Подстока 2 файла ../Dir/file2: o;k;kw;kcwk@@c;ek;k;ckep;kcpp3kpp***3p333pp3p3p3p3p3pp3p3pp3
+
+[Имя файла ../Dir/file4 ]:
+Подстока 1 файла ../Dir/file4: zwzww*@
+Подстока 2 файла ../Dir/file4: @@##xnnx
+[Имя файла ../Dir/file1 ]:
+Подстока 1 файла ../Dir/file1: dfdffe
+Подстока 3 файла ../Dir/file4: nedyeyd*eu
+Подстока 4 файла ../Dir/file4: ikrr88
+[Имя файла ../Dir/file4 ]:
+Подстока 1 файла ../Dir/file4: zwzww*@
+Подстока 2 файла ../Dir/file4: @@##xnnx
+Подстока 3 файла ../Dir/file4: nedyeyd*eu
+Подстока 4 файла ../Dir/file4: ikrr88
+Подстока 5 файла ../Dir/file4: 388*33jj
+[Имя файла ../Dir/file1 ]:
+Подстока 6 файла ../Dir/file4: jjrryyryyfc
+Подстока 1 файла ../Dir/file1: �Whx�U   I �U  yey!
+Подстока 2 файла ../Dir/file1: !
+Подстока 3 файла ../Dir/file1: gduheijjjjjjjj
+Подстока 7 файла ../Dir/file4: hhc**e*ke
+Подстока 4 файла ../Dir/file1: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 5 файла ../Dir/file1: wwyceyb#**wkkkwkkwkwkkwiiii
+
+Подстока 6 файла ../Dir/file1: ididi
+
+[Имя файла ../Dir/file2 ]:
+[Имя файла ../Dir/file3 ]:
+Подстока 1 файла ../Dir/file2: �Whx�U   I �U  yey!
+Подстока 1 файла ../Dir/file3: �Whx�U   I �U  yey!
+Подстока 2 файла ../Dir/file2: !
+Подстока 2 файла ../Dir/file3: !
+Подстока 3 файла ../Dir/file3: gduheijjjjjjjj
+Подстока 3 файла ../Dir/file2: gduheijjjjjjjj
+Подстока 4 файла ../Dir/file3: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 4 файла ../Dir/file2: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 5 файла ../Dir/file3: wwyceyb#**wkkkwkkwkwkkwiiii
+Подстока 5 файла ../Dir/file2: wwyceyb#**wkkkwkkwkwkkwiiii
+Подстока 6 файла ../Dir/file2: ididi
+Подстока 6 файла ../Dir/file3: ididi
+
+
+[Имя файла ../Dir/file2 ]:
+Подстока 1 файла ../Dir/file2: �x��U  �ʤ�U  wljjowkdokoe**kd;kqw;dkw
+Подстока 2 файла ../Dir/file2: o;k;kw;kcwk@@c;ek;k;ckep;kcpp3kpp***3p333pp3p3p3p3p3pp3p3pp3
+
+[Имя файла ../Dir/file1 ]:
+Подстока 1 файла ../Dir/file1: Z��U  �ʤ�U  nnx---nedyeyd*eu
+[Имя файла ../Dir/file4 ]:
+Подстока 1 файла ../Dir/file4: ���U  �ʤ�U  yey!
+Подстока 2 файла ../Dir/file4: !
+[Имя файла ../Dir/file3 ]:
+Подстока 3 файла ../Dir/file4: gduheijjjjjjjj
+Подстока 1 файла ../Dir/file3: ���U  �ʤ�U  yey!
+Подстока 4 файла ../Dir/file4: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 2 файла ../Dir/file3: !
+Подстока 5 файла ../Dir/file4: wwyceyb#**wkkkwkkwkwkkwiiii
+Подстока 3 файла ../Dir/file3: gduheijjjjjjjj
+Подстока 6 файла ../Dir/file4: ididi
+Подстока 4 файла ../Dir/file3: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+
+Подстока 5 файла ../Dir/file3: wwyceyb#**wkkkwkkwkwkkwiiii
+Подстока 6 файла ../Dir/file3: ididi
+
+Подстока 2 файла ../Dir/file1: ikrr88
+Подстока 3 файла ../Dir/file1: 388*33jj---jjrryyryyfc---hhc**e*ke
+
+[Имя файла ../Dir/file2 ]:
+Подстока 1 файла ../Dir/file2: s�V$�U  �{�U  wljjowkdokoe**kd;kqw;dkw
+Подстока 2 файла ../Dir/file2: o;k;kw;kcwk@@c;ek;k;ckep;kcpp3kpp***3p333pp3p3p3p3p3pp3p3pp3
+
+[Имя файла ../Dir/file4 ]:
+Подстока 1 файла ../Dir/file4: zwzww*@
+Подстока 2 файла ../Dir/file4: @@##xnnx
+Подстока 3 файла ../Dir/file4: nedyeyd*eu
+Подстока 4 файла ../Dir/file4: ikrr88
+Подстока 5 файла ../Dir/file4: 388*33jj
+Подстока 6 файла ../Dir/file4: jjrryyryyfc
+Подстока 7 файла ../Dir/file4: hhc**e*ke
+
+[Имя файла ../Dir/file3 ]:
+[Имя файла ../Dir/file1 ]:
+Подстока 1 файла ../Dir/file3: q�V$�U  �{�U  yey!
+Подстока 1 файла ../Dir/file1: q�V$�U  �{�U  yey!
+Подстока 2 файла ../Dir/file3: !
+Подстока 2 файла ../Dir/file1: !
+Подстока 3 файла ../Dir/file3: gduheijjjjjjjj
+Подстока 3 файла ../Dir/file1: gduheijjjjjjjj
+Подстока 4 файла ../Dir/file3: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 4 файла ../Dir/file1: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 5 файла ../Dir/file3: wwyceyb#**wkkkwkkwkwkkwiiii
+Подстока 5 файла ../Dir/file1: wwyceyb#**wkkkwkkwkwkkwiiii
+Подстока 6 файла ../Dir/file3: ididi
+Подстока 6 файла ../Dir/file1: ididi
+
+
+[Имя файла ../Dir/file2 ]:
+Подстока 1 файла ../Dir/file2: 9 6mbU  @D;gU  wljjowkdokoe**kd;kqw;dkw
+Подстока 2 файла ../Dir/file2: o;k;kw;kcwk@@c;ek;k;ckep;kcpp3kpp***3p333pp3p3p3p3p3pp3p3pp3
+
+[Имя файла ../Dir/file4 ]:
+Подстока 1 файла ../Dir/file4: zwzww*@
+Подстока 2 файла ../Dir/file4: @@##xnnx
+Подстока 3 файла ../Dir/file4: nedyeyd*eu
+Подстока 4 файла ../Dir/file4: ikrr88
+Подстока 5 файла ../Dir/file4: 388*33jj
+Подстока 6 файла ../Dir/file4: jjrryyryyfc
+Подстока 7 файла ../Dir/file4: hhc**e*ke
+
+[Имя файла ../Dir/file3 ]:
+Подстока 1 файла ../Dir/file3: 7'6mbU  @D;gU  yey!
+Подстока 2 файла ../Dir/file3: !
+Подстока 3 файла ../Dir/file3: gduheijjjjjjjj
+Подстока 4 файла ../Dir/file3: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 5 файла ../Dir/file3: wwyceyb#**wkkkwkkwkwkkwiiii
+[Имя файла ../Dir/file1 ]:
+Подстока 6 файла ../Dir/file3: ididi
+Подстока 1 файла ../Dir/file1: 7'6mbU  @D;gU  yey!
+
+Подстока 2 файла ../Dir/file1: !
+Подстока 3 файла ../Dir/file1: gduheijjjjjjjj
+Подстока 4 файла ../Dir/file1: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 5 файла ../Dir/file1: wwyceyb#**wkkkwkkwkwkkwiiii
+Подстока 6 файла ../Dir/file1: ididi
+
+[Имя файла ../Dir/file2 ]:
+Подстока 1 файла ../Dir/file2: cbydebc
+Подстока 2 файла ../Dir/file2: e
+Подстока 3 файла ../Dir/file2: cwljjowkdokoe**kd;kqw;dkw
+Подстока 4 файла ../Dir/file2: o;k;kw;kcwk@@c;ek;k;ckep;kcpp3kpp
+Подстока 5 файла ../Dir/file2: 3p333pp3p3p3p3p3pp3p3pp3
+
+[Имя файла ../Dir/file4 ]:
+Подстока 1 файла ../Dir/file4: T
+Подстока 2 файла ../Dir/file4: intT
+Подстока 3 файла ../Dir/file4: int
+Подстока 4 файла ../Dir/file4: U
+Подстока 5 файла ../Dir/file4: doubleFunctiontem
+Подстока 6 файла ../Dir/file4: tesmayonlybefullyspecialized:tem
+Подстока 7 файла ../Dir/file4: te<typenameT
+Подстока 8 файла ../Dir/file4: typenameU>voidfoo(Tt
+Подстока 9 файла ../Dir/file4: Uu){std::cout<<"Generalcase:"<<t<<""<<u<<std::endl;}//OK.tem
+Подстока 10 файла ../Dir/file4: te<>voidfoo<int
+Подстока 11 файла ../Dir/file4: int>(inta1
+Подстока 12 файла ../Dir/file4: inta2){std::cout<<"Twoints:"<<a1<<""<<a2<<std::endl;}voidinvoke
+Подстока 13 файла ../Dir/file4: foo(){foo(1
+Подстока 14 файла ../Dir/file4: 2.1);//Prints"Generalcase:12.1"foo(1
+Подстока 15 файла ../Dir/file4: 2);//Prints"Twoints:12"}GoalKicker.com–C++NotesforProfessionals419//Compilationerror:partialfunctionspecializationisnotallowed.tem
+Подстока 16 файла ../Dir/file4: te<typenameU>voidfoo<std::string
+Подстока 17 файла ../Dir/file4: U>(std::stringt
+Подстока 18 файла ../Dir/file4: Uu){std::cout<<"Generalcase:"<<t<<""<<u<<std::endl;}Section77.6:Tem
+Подстока 19 файла ../Dir/file4: teSpecializationYoucandefineimplementationforspecificinstantiationsofatem
+Подстока 20 файла ../Dir/file4: teclass/method.Forexampleifyouhave:tem
+Подстока 21 файла ../Dir/file4: te<typenameT>Tsqrt(Tt){/*Somegenericimplementation*/}Youcanthenwrite:tem
+Подстока 22 файла ../Dir/file4: te<>intsqrt<int>(inti){/*Highlyoptimizedintegerimplementation*/}Thenauserthatwritessqrt(4.0)willgetthegenericimplementationwhereassqrt(4)willgetthespecializedimplementation.Section77.7:Aliastem
+Подстока 23 файла ../Dir/file4: teVersion≥C++11Basicexample:tem
+Подстока 24 файла ../Dir/file4: te<typenameT>usingpointer
+Подстока 25 файла ../Dir/file4: T*;Thisdefinitionmakespointer<T>analiasofT*.Forexample:pointer<int>p
+Подстока 26 файла ../Dir/file4: newint;//equivalentto:int*p
+Подстока 27 файла ../Dir/file4: newint;Aliastem
+Подстока 28 файла ../Dir/file4: tescannotbespecialized.However
+Подстока 29 файла ../Dir/file4: thatfunctionalitycanbeobtainedindirectlybyhavingthemrefertoanestedtypeinastruct:tem
+Подстока 30 файла ../Dir/file4: te<typenameT>structnonconst
+Подстока 31 файла ../Dir/file4: pointer
+Подстока 32 файла ../Dir/file4: helper{typedefT*type;};tem
+Подстока 33 файла ../Dir/file4: te<typenameT>structnonconst
+Подстока 34 файла ../Dir/file4: pointer
+Подстока 35 файла ../Dir/file4: helper<Tconst>{typedefT*type;};tem
+Подстока 36 файла ../Dir/file4: te<typenameT>usingnonconst
+Подстока 37 файла ../Dir/file4: pointer
+Подстока 38 файла ../Dir/file4: nonconst
+Подстока 39 файла ../Dir/file4: pointer
+Подстока 40 файла ../Dir/file4: helper<T>::type;Section77.8:ExplicitinstantiationAnexplicitinstantiationdefinitioncreatesanddeclaresaconcreteclass
+Подстока 41 файла ../Dir/file4: function
+Подстока 42 файла ../Dir/file4: orvariablefromatem
+Подстока 43 файла ../Dir/file4: te
+Подстока 44 файла ../Dir/file4: withoutusingitjustyet.Anexplicitinstantiationcanbereferencedfromothertranslationunits.Thiscanbeusedtoavoiddefiningatem
+Подстока 45 файла ../Dir/file4: teinaheaderfile
+Подстока 46 файла ../Dir/file4: ifitwillonlybeinstantiatedwithafinitesetofarguments.Forexample://print
+Подстока 47 файла ../Dir/file4: string.htem
+Подстока 48 файла ../Dir/file4: te<classT>voidprint
+Подстока 49 файла ../Dir/file4: string(constT*str);GoalKicker.com–C++NotesforProfessionals420//print
+Подстока 50 файла ../Dir/file4: string.cpp#include"print
+Подстока 51 файла ../Dir/file4: string.h"tem
+Подстока 52 файла ../Dir/file4: tevoidprint
+Подстока 53 файла ../Dir/file4: string(constchar*);tem
+Подстока 54 файла ../Dir/file4: tevoidprint
+Подстока 55 файла ../Dir/file4: string(constwchar
+Подстока 56 файла ../Dir/file4: t*);Becauseprint
+Подстока 57 файла ../Dir/file4: string<char>andprint
+Подстока 58 файла ../Dir/file4: string<wchar
+Подстока 59 файла ../Dir/file4: t>areexplicitlyinstantiatedinprint
+Подстока 60 файла ../Dir/file4: string.cpp
+Подстока 61 файла ../Dir/file4: thelinkerwillbeabletofindthemeventhoughtheprint
+Подстока 62 файла ../Dir/file4: stringtem
+Подстока 63 файла ../Dir/file4: teisnotdefinedintheheader.Iftheseexplicitinstantiationdeclarationswerenotpresent
+Подстока 64 файла ../Dir/file4: alinkererrorwouldlikelyoccur.SeeWhycantem
+Подстока 65 файла ../Dir/file4: tesonlybeimplementedintheheaderfile?Version≥C++11Ifanexplicitinstantiationdefinitionisprecededbytheexternkeyword
+Подстока 66 файла ../Dir/file4: itbecomesanexplicitinstantiationdeclarationinstead.Thepresenceofanexplicitinstantiationdeclarationforagivenspecializationpreventstheimplicitinstantiationofthegivenspecializationwithinthecurrenttranslationunit.Instead
+Подстока 67 файла ../Dir/file4: areferencetothatspecializationthatwouldotherwisecauseanimplicitinstantiationcanrefertoanexplicitinstantiationdefinitioninthesameoranotherTU.foo.h#ifndefFOO
+Подстока 68 файла ../Dir/file4: H#defineFOO
+Подстока 69 файла ../Dir/file4: Htem
+Подстока 70 файла ../Dir/file4: te<classT>voidfoo(Tx){//complicatedimplementation}#endiffoo.cpp#include"foo.h"//explicitinstantiationdefinitionsforcommoncasestem
+Подстока 71 файла ../Dir/file4: tevoidfoo(int);tem
+Подстока 72 файла ../Dir/file4: tevoidfoo(double);main.cpp#include"foo.h"//wealreadyknowfoo.cpphasexplicitinstantiationdefinitionsfortheseexterntem
+Подстока 73 файла ../Dir/file4: tevoidfoo(double);intmain(){foo(42);//instantiatesfoo<int>here;//wastefulsincefoo.cppprovidesanexplicitinstantiationalready!foo(3.14);//doesnotinstantiatefoo<double>here;//usesinstantiationoffoo<double>infoo.cppinstead}Section77.9:Non-typetem
+Подстока 74 файла ../Dir/file4: teparameterApartfromtypesasatem
+Подстока 75 файла ../Dir/file4: teparameterweareallowedtodeclarevaluesofconstantexpressionsmeetingoneofthefollowingcriteria:integralorenumerationtype
+Подстока 76 файла ../Dir/file4: pointertoobjectorpointertofunction
+Подстока 77 файла ../Dir/file4: lvaluereferencetoobjectorlvaluereferencetofunction
+Подстока 78 файла ../Dir/file4: pointertomember
+Подстока 79 файла ../Dir/file4: std::nullptr
+Подстока 80 файла ../Dir/file4: t.GoalKicker.com–C++NotesforProfessionals421Likealltem
+Подстока 81 файла ../Dir/file4: teparameters
+Подстока 82 файла ../Dir/file4: non-typetem
+Подстока 83 файла ../Dir/file4: teparameterscanbeexplicitlyspecified
+Подстока 84 файла ../Dir/file4: defaulted
+Подстока 85 файла ../Dir/file4: orderivedimplicitlyviaTem
+Подстока 86 файла ../Dir/file4: teArgumentDeduction.Exampleofnon-typetem
+Подстока 87 файла ../Dir/file4: teparameterusage:#include<iostream>tem
+Подстока 88 файла ../Dir/file4: te<typenameT
+Подстока 89 файла ../Dir/file4: std::size
+Подстока 90 файла ../Dir/file4: tsize>std::size
+Подстока 91 файла ../Dir/file4: tsize
+Подстока 92 файла ../Dir/file4: of(T(&anArray)[size])//Passarraybyreference.Requires.{//anexactsize.Weallowallsizesreturnsize;//byusingatem
+Подстока 93 файла ../Dir/file4: te"size".}intmain(){charanArrayOfChar[15];std::cout<<"anArrayOfChar:"<<size
+Подстока 94 файла ../Dir/file4: of(anArrayOfChar)<<"\n";}intanArrayOfData[]
+Подстока 95 файла ../Dir/file4: {1
+Подстока 96 файла ../Dir/file4: 2
+Подстока 97 файла ../Dir/file4: 3
+Подстока 98 файла ../Dir/file4: 4
+Подстока 99 файла ../Dir/file4: 5
+Подстока 100 файла ../Dir/file4: 6
+Подстока 101 файла ../Dir/file4: 7
+Подстока 102 файла ../Dir/file4: 8
+Подстока 103 файла ../Dir/file4: 9};std::cout<<"anArrayOfData:"<<size
+Подстока 104 файла ../Dir/file4: of(anArrayOfData)<<"\n";Exampleofexplicitlyspecifyingbothtypeandnon-typetem
+Подстока 105 файла ../Dir/file4: teparameters:#include<array>intmain(){std::array<int
+Подстока 106 файла ../Dir/file4: 5>foo;//intisatypeparameter
+Подстока 107 файла ../Dir/file4: 5isnon-type}Non-typetem
+Подстока 108 файла ../Dir/file4: teparametersareoneofthewaystoachievetem
+Подстока 109 файла ../Dir/file4: terecurrenceandenablestodoMetaprogramming.Section77.10:Declaringnon-typetem
+Подстока 110 файла ../Dir/file4: teargumentswithautoPriortoC++17
+Подстока 111 файла ../Dir/file4: whenwritingatem
+Подстока 112 файла ../Dir/file4: tenon-typeparameter
+Подстока 113 файла ../Dir/file4: youhadtospecifyitstypefirst.Soacommonpatternbecamewritingsomethinglike:tem
+Подстока 114 файла ../Dir/file4: te<classT
+Подстока 115 файла ../Dir/file4: TN>structintegral
+Подстока 116 файла ../Dir/file4: constant{usingtype
+Подстока 117 файла ../Dir/file4: T;staticconstexprTvalue
+Подстока 118 файла ../Dir/file4: N;};usingfive
+Подстока 119 файла ../Dir/file4: integral
+Подстока 120 файла ../Dir/file4: constant<int
+Подстока 121 файла ../Dir/file4: 5>;Butforcomplicatedexpressions
+Подстока 122 файла ../Dir/file4: usingsomethinglikethisinvolveshavingtowritedecltype(expr)
+Подстока 123 файла ../Dir/file4: exprwheninstantiatingtem
+Подстока 124 файла ../Dir/file4: tes.Thesolutionistosimplifythisidiomandsimplyallowauto:Version≥C++17tem
+Подстока 125 файла ../Dir/file4: te<autoN>structintegral
+Подстока 126 файла ../Dir/file4: constant{usingtype
+Подстока 127 файла ../Dir/file4: decltype(N);staticconstexprtypevalue
+Подстока 128 файла ../Dir/file4: N;};GoalKicker.com–C++NotesforProfessionals422usingfive
+Подстока 129 файла ../Dir/file4: integral
+Подстока 130 файла ../Dir/file4: constant<5>;Emptycustomdeleterforunique
+Подстока 131 файла ../Dir/file4: ptrAnicemotivatingexamplecancomefromtryingtocombinetheemptybaseoptimizationwithacustomdeleterforunique
+Подстока 132 файла ../Dir/file4: ptr.DifferentCAPIdeletershavedifferentreturntypes
+Подстока 133 файла ../Dir/file4: butwedon'tcare-wejustwantsomethingtoworkforanyfunction:tem
+Подстока 134 файла ../Dir/file4: te<autoDeleteFn>structFunctionDeleter{tem
+Подстока 135 файла ../Dir/file4: te<classT>voidoperator()(T*ptr)const{DeleteFn(ptr);}};tem
+Подстока 136 файла ../Dir/file4: te<T
+Подстока 137 файла ../Dir/file4: autoDeleteFn>usingunique
+Подстока 138 файла ../Dir/file4: ptr
+Подстока 139 файла ../Dir/file4: deleter
+Подстока 140 файла ../Dir/file4: std::unique
+Подстока 141 файла ../Dir/file4: ptr<T
+Подстока 142 файла ../Dir/file4: FunctionDeleter<DeleteFn>>;AndnowyoucansimplyuseanyfunctionpointerthatcantakeanargumentoftypeTasatem
+Подстока 143 файла ../Dir/file4: tenon-typeparameter
+Подстока 144 файла ../Dir/file4: regardlessofreturntype
+Подстока 145 файла ../Dir/file4: andgetano-sizeoverheadunique
+Подстока 146 файла ../Dir/file4: ptroutofit:unique
+Подстока 147 файла ../Dir/file4: ptr
+Подстока 148 файла ../Dir/file4: deleter<std::FILE
+Подстока 149 файла ../Dir/file4: std::fclose>p;Section77.11:Tem
+Подстока 150 файла ../Dir/file4: tetem
+Подстока 151 файла ../Dir/file4: teparametersSometimeswewouldliketopassintothetem
+Подстока 152 файла ../Dir/file4: teatem
+Подстока 153 файла ../Dir/file4: tetypewithoutfixingitsvalues.Thisiswhattem
+Подстока 154 файла ../Dir/file4: tetem
+Подстока 155 файла ../Dir/file4: teparametersarecreatedfor.Verysimpletem
+Подстока 156 файла ../Dir/file4: tetem
+Подстока 157 файла ../Dir/file4: teparameterexamples:tem
+Подстока 158 файла ../Dir/file4: te<classT>structTag1{};tem
+Подстока 159 файла ../Dir/file4: te<classT>structTag2{};tem
+Подстока 160 файла ../Dir/file4: te<tem
+Подстока 161 файла ../Dir/file4: te<class>classTag>structIntTag{typedefTag<int>type;};intmain(){IntTag<Tag1>::typet;}Version≥C++11#include<vector>#include<iostream>tem
+Подстока 162 файла ../Dir/file4: te<classT
+Подстока 163 файла ../Dir/file4: tem
+Подстока 164 файла ../Dir/file4: te<class...>classC
+Подстока 165 файла ../Dir/file4: classU>C<T>cast
+Подстока 166 файла ../Dir/file4: all(constC<U>&c){C<T>result(c.begin()
+Подстока 167 файла ../Dir/file4: c.end());returnresult;}intmain(){std::vector<float>vf
+Подстока 168 файла ../Dir/file4: {1.2
+Подстока 169 файла ../Dir/file4: 2.6
+Подстока 170 файла ../Dir/file4: 3.7};autovi
+Подстока 171 файла ../Dir/file4: cast
+Подстока 172 файла ../Dir/file4: all<int>(vf);for(auto&&i:vi){std::cout<<i<<std::endl;}GoalKicker.com–C++NotesforProfessionals423}Section77.12:Defaulttem
+Подстока 173 файла ../Dir/file4: teparametervalueJustlikeincaseofthefunctionarguments
+Подстока 174 файла ../Dir/file4: tem
+Подстока 175 файла ../Dir/file4: teparameterscanhavetheirdefaultvalues.Alltem
+Подстока 176 файла ../Dir/file4: teparameterswithadefaultvaluehavetobedeclaredattheendofthetem
+Подстока 177 файла ../Dir/file4: teparameterlist.Thebasicideaisthatthetem
+Подстока 178 файла ../Dir/file4: teparameterswithdefaultvaluecanbeomittedwhiletem
+Подстока 179 файла ../Dir/file4: teinstantiation.Simpleexampleofdefaulttem
+Подстока 180 файла ../Dir/file4: teparametervalueusage:tem
+Подстока 181 файла ../Dir/file4: te<classT
+Подстока 182 файла ../Dir/file4: size
+Подстока 183 файла ../Dir/file4: tN
+Подстока 184 файла ../Dir/file4: 10>structmy
+Подстока 185 файла ../Dir/file4: array{Tarr[N];};intmain(){/*Defaultparameterisignored
+Подстока 186 файла ../Dir/file4: N
+Подстока 187 файла ../Dir/file4: 5*/my
+Подстока 188 файла ../Dir/file4: array<int
+Подстока 189 файла ../Dir/file4: 5>a;}/*Printthelengthofa.arr:5*/std::cout<<sizeof(a.arr)/sizeof(int)<<std::endl;/*Lastparameterisomitted
+Подстока 190 файла ../Dir/file4: N
+Подстока 191 файла ../Dir/file4: 10*/my
+Подстока 192 файла ../Dir/file4: array<int>b;/*Printthelengthofa.arr:10*/std::cout<<sizeof(b.arr)/sizeof(int)<<std::endl;GoalKicker.com–C++NotesforProfessionals424Chapter78:Expressiontem
+Подстока 193 файла ../Dir/file4: tesSection78.1:Abasicexampleillustratingexpressiontem
+Подстока 194 файла ../Dir/file4: tesAnexpressiontem
+Подстока 195 файла ../Dir/file4: teisacompile-timeoptimizationtechniqueusedmostlyinscientificcomputing.It'smainpurposeistoavoidunnecessarytemporariesandoptimizeloopcalculationsusingasinglepass(typicallywhenperformingoperationsonnumericalaggregates).Expressiontem
+Подстока 196 файла ../Dir/file4: teswereinitiallydevisedinordertocircumventtheinefficienciesofnaïveoperatoroverloadingwhenimplementingnumericalArrayorMatrixtypes.Anequivalentterminologyforexpressiontem
+Подстока 197 файла ../Dir/file4: teshasbeenintroducedbyBjarneStroustrup
+Подстока 198 файла ../Dir/file4: whocallsthem"fusedoperations"inthelatestversionofhisbook
+Подстока 199 файла ../Dir/file4: "TheC++ProgrammingLanguage".Beforeactuallydivingintoexpressiontem
+Подстока 200 файла ../Dir/file4: tes
+Подстока 201 файла ../Dir/file4: youshouldunderstandwhyyouneedtheminthefirst
+Подстока 202 файла ../Dir/file4: ce.Toillustratethis
+Подстока 203 файла ../Dir/file4: considertheverysimpleMatrixclassgivenbelow:tem
+Подстока 204 файла ../Dir/file4: te<typenameT
+Подстока 205 файла ../Dir/file4: std::size
+Подстока 206 файла ../Dir/file4: tCOL
+Подстока 207 файла ../Dir/file4: std::size
+Подстока 208 файла ../Dir/file4: tROW>classMatrix{public:usingvalue
+Подстока 209 файла ../Dir/file4: type
+Подстока 210 файла ../Dir/file4: T;Matrix():values(COL*ROW){}staticsize
+Подстока 211 файла ../Dir/file4: tcols(){returnCOL;}staticsize
+Подстока 212 файла ../Dir/file4: trows(){returnROW;}constT&operator()(size
+Подстока 213 файла ../Dir/file4: tx
+Подстока 214 файла ../Dir/file4: size
+Подстока 215 файла ../Dir/file4: ty)const{returnvalues[y*COL+x];}T&operator()(size
+Подстока 216 файла ../Dir/file4: tx
+Подстока 217 файла ../Dir/file4: size
+Подстока 218 файла ../Dir/file4: ty){returnvalues[y*COL+x];}private:std::vector<T>};values;tem
+Подстока 219 файла ../Dir/file4: te<typenameT
+Подстока 220 файла ../Dir/file4: std::size
+Подстока 221 файла ../Dir/file4: tCOL
+Подстока 222 файла ../Dir/file4: std::size
+Подстока 223 файла ../Dir/file4: tROW>Matrix<T
+Подстока 224 файла ../Dir/file4: COL
+Подстока 225 файла ../Dir/file4: ROW>operator+(constMatrix<T
+Подстока 226 файла ../Dir/file4: COL
+Подстока 227 файла ../Dir/file4: ROW>&lhs
+Подстока 228 файла ../Dir/file4: constMatrix<T
+Подстока 229 файла ../Dir/file4: COL
+Подстока 230 файла ../Dir/file4: ROW>&rhs){Matrix<T
+Подстока 231 файла ../Dir/file4: COL
+Подстока 232 файла ../Dir/file4: ROW>result;}for(size
+Подстока 233 файла ../Dir/file4: ty
+Подстока 234 файла ../Dir/file4: 0;y!
+Подстока 235 файла ../Dir/file4: lhs.rows();++y){for(size
+Подстока 236 файла ../Dir/file4: tx
+Подстока 237 файла ../Dir/file4: 0;x!
+Подстока 238 файла ../Dir/file4: lhs.cols();++x){result(x
+Подстока 239 файла ../Dir/file4: y)
+Подстока 240 файла ../Dir/file4: lhs(x
+Подстока 241 файла ../Dir/file4: y)+rhs(x
+Подстока 242 файла ../Dir/file4: y);}}returnresult;Giventhepreviousclassdefinition
+Подстока 243 файла ../Dir/file4: youcannowwriteMatrixexpressionssuchas:conststd::size
+Подстока 244 файла ../Dir/file4: tcols
+Подстока 245 файла ../Dir/file4: 2000;conststd::size
+Подстока 246 файла ../Dir/file4: trows
+Подстока 247 файла ../Dir/file4: 1000;Matrix<double
+Подстока 248 файла ../Dir/file4: cols
+Подстока 249 файла ../Dir/file4: rows>a
+Подстока 250 файла ../Dir/file4: b
+Подстока 251 файла ../Dir/file4: c;//initializea
+Подстока 252 файла ../Dir/file4: b&cfor(std::size
+Подстока 253 файла ../Dir/file4: ty
+Подстока 254 файла ../Dir/file4: 0;y!
+Подстока 255 файла ../Dir/file4: rows;++y){for(std::size
+Подстока 256 файла ../Dir/file4: tx
+Подстока 257 файла ../Dir/file4: 0;x!
+Подстока 258 файла ../Dir/file4: cols;++x){a(x
+Подстока 259 файла ../Dir/file4: y)
+Подстока 260 файла ../Dir/file4: 1.0;b(x
+Подстока 261 файла ../Dir/file4: y)
+Подстока 262 файла ../Dir/file4: 2.0;GoalKicker.com–C++NotesforProfessionals425}}c(x
+Подстока 263 файла ../Dir/file4: y)
+Подстока 264 файла ../Dir/file4: 3.0;Matrix<double
+Подстока 265 файла ../Dir/file4: cols
+Подстока 266 файла ../Dir/file4: rows>d
+Подстока 267 файла ../Dir/file4: a+b+c;//d(x
+Подстока 268 файла ../Dir/file4: y)
+Подстока 269 файла ../Dir/file4: 6Asillustratedabove
+Подстока 270 файла ../Dir/file4: beingabletooverloadoperator+()providesyouwithanotationwhichmimicsthenaturalmathematicalnotationformatrices.Unfortunately
+Подстока 271 файла ../Dir/file4: thepreviousimplementationisalsohighlyinefficientcomparedtoanequivalent"hand-crafted"version.Tounderstandwhy
+Подстока 272 файла ../Dir/file4: youhavetoconsiderwhathappenswhenyouwriteanexpressionsuchasMatrixd
+Подстока 273 файла ../Dir/file4: a+b+c.Thisinfactexpandsto((a+b)+c)oroperator+(operator+(a
+Подстока 274 файла ../Dir/file4: b)
+Подстока 275 файла ../Dir/file4: c).Inotherwords
+Подстока 276 файла ../Dir/file4: theloopinsideoperator+()isexecutedtwice
+Подстока 277 файла ../Dir/file4: whereasitcouldhavebeeneasilyperformedinasinglepass.Thisalsoresultsin2temporariesbeingcreated
+Подстока 278 файла ../Dir/file4: whichfurtherdegradesperformance.Inessence
+Подстока 279 файла ../Dir/file4: byaddingtheflexibilitytouseanotationclosetoitsmathematicalcounterpart
+Подстока 280 файла ../Dir/file4: youhavealsomadetheMatrixclasshighlyinefficient.Forexample
+Подстока 281 файла ../Dir/file4: withoutoperatoroverloading
+Подстока 282 файла ../Dir/file4: youcouldimplementafarmoreefficientMatrixsummationusingasinglepass:tem
+Подстока 283 файла ../Dir/file4: te<typenameT
+Подстока 284 файла ../Dir/file4: std::size
+Подстока 285 файла ../Dir/file4: tCOL
+Подстока 286 файла ../Dir/file4: std::size
+Подстока 287 файла ../Dir/file4: tROW>Matrix<T
+Подстока 288 файла ../Dir/file4: COL
+Подстока 289 файла ../Dir/file4: ROW>add3(constMatrix<T
+Подстока 290 файла ../Dir/file4: COL
+Подстока 291 файла ../Dir/file4: ROW>&a
+Подстока 292 файла ../Dir/file4: constMatrix<T
+Подстока 293 файла ../Dir/file4: COL
+Подстока 294 файла ../Dir/file4: ROW>&b
+Подстока 295 файла ../Dir/file4: constMatrix<T
+Подстока 296 файла ../Dir/file4: COL
+Подстока 297 файла ../Dir/file4: ROW>&c){Matrix<T
+Подстока 298 файла ../Dir/file4: COL
+Подстока 299 файла ../Dir/file4: ROW>result;for(size
+Подстока 300 файла ../Dir/file4: ty
+Подстока 301 файла ../Dir/file4: 0;y!
+Подстока 302 файла ../Dir/file4: ROW;++y){for(size
+Подстока 303 файла ../Dir/file4: tx
+Подстока 304 файла ../Dir/file4: 0;x!
+Подстока 305 файла ../Dir/file4: COL;++x){result(x
+Подстока 306 файла ../Dir/file4: y)
+Подстока 307 файла ../Dir/file4: a(x
+Подстока 308 файла ../Dir/file4: y)+b(x
+Подстока 309 файла ../Dir/file4: y)+c(x
+Подстока 310 файла ../Dir/file4: y);}}returnresult;}ThepreviousexamplehoweverhasitsowndisadvantagesbecauseitcreatesafarmoreconvolutedinterfacefortheMatrixclass(youwouldhavetoconsidermethodssuchasMatrix::add2()
+Подстока 311 файла ../Dir/file4: Matrix::AddMultiply()andsoon).InsteadletustakeastepbackandseehowwecanadaptoperatoroverloadingtoperforminamoreefficientwayTheproblemstemsfromthefactthattheexpressionMatrixd
+Подстока 312 файла ../Dir/file4: a+b+cisevaluatedtoo"eagerly"beforeyouhavehadanopportunitytobuildtheentireexpressiontree.Inotherwords
+Подстока 313 файла ../Dir/file4: whatyoureallywanttoachieveistoevaluatea+b+cinonepassandonlyonceyouactuallyneedtoassigntheresultingexpressingtod.Thisisthecoreideabehindexpressiontem
+Подстока 314 файла ../Dir/file4: tes:insteadofhavingoperator+()evaluateimmediatelytheresultofaddingtwoMatrixinstances
+Подстока 315 файла ../Dir/file4: itwillreturnan"expressiontem
+Подстока 316 файла ../Dir/file4: te"forfutureevaluationoncetheentireexpressiontreehasbeenbuilt.Forexample
+Подстока 317 файла ../Dir/file4: hereisapossibleimplementationforanexpressiontem
+Подстока 318 файла ../Dir/file4: tecorrespondingtothesummationof2types:tem
+Подстока 319 файла ../Dir/file4: te<typenameLHS
+Подстока 320 файла ../Dir/file4: typenameRHS>classMatrixSum{public:usingvalue
+Подстока 321 файла ../Dir/file4: type
+Подстока 322 файла ../Dir/file4: typenameLHS::value
+Подстока 323 файла ../Dir/file4: type;GoalKicker.com–C++NotesforProfessionals426MatrixSum(constLHS&lhs
+Подстока 324 файла ../Dir/file4: constRHS&rhs):rhs(rhs)
+Подстока 325 файла ../Dir/file4: lhs(lhs){}value
+Подстока 326 файла ../Dir/file4: typeoperator()(intx
+Подстока 327 файла ../Dir/file4: inty)const{returnlhs(x
+Подстока 328 файла ../Dir/file4: y)+rhs(x
+Подстока 329 файла ../Dir/file4: y);}private:constLHS&lhs;constRHS&rhs;};Andhereistheupdatedversionofoperator+()tem
+Подстока 330 файла ../Dir/file4: te<typenameLHS
+Подстока 331 файла ../Dir/file4: typenameRHS>MatrixSum<LHS
+Подстока 332 файла ../Dir/file4: RHS>operator+(constLHS&lhs
+Подстока 333 файла ../Dir/file4: constLHS&rhs){returnMatrixSum<LHS
+Подстока 334 файла ../Dir/file4: RHS>(lhs
+Подстока 335 файла ../Dir/file4: rhs);}Asyoucansee
+Подстока 336 файла ../Dir/file4: operator+()nolongerreturnsan"eagerevaluation"oftheresultofadding2Matrixinstances(whichwouldbeanotherMatrixinstance)
+Подстока 337 файла ../Dir/file4: butinsteadanexpressiontem
+Подстока 338 файла ../Dir/file4: terepresentingtheadditionoperation.Themostimportantpointtokeepinmindisthattheexpressionhasnotbeenevaluatedyet.Itmerelyholdsreferencestoitsoperands.Infact
+Подстока 339 файла ../Dir/file4: nothingstopsyoufrominstantiatingtheMatrixSum<>expressiontem
+Подстока 340 файла ../Dir/file4: teasfollows:MatrixSum<Matrix<double>
+Подстока 341 файла ../Dir/file4: Matrix<double>>SumAB(a
+Подстока 342 файла ../Dir/file4: b);Youcanhoweveratalaterstage
+Подстока 343 файла ../Dir/file4: whenyouactuallyneedtheresultofthesummation
+Подстока 344 файла ../Dir/file4: evaluatetheexpressiond
+Подстока 345 файла ../Dir/file4: a+basfollows:for(std::size
+Подстока 346 файла ../Dir/file4: ty
+Подстока 347 файла ../Dir/file4: 0;y!
+Подстока 348 файла ../Dir/file4: a.rows();++y){for(std::size
+Подстока 349 файла ../Dir/file4: tx
+Подстока 350 файла ../Dir/file4: 0;x!
+Подстока 351 файла ../Dir/file4: a.cols();++x){d(x
+Подстока 352 файла ../Dir/file4: y)
+Подстока 353 файла ../Dir/file4: SumAB(x
+Подстока 354 файла ../Dir/file4: y);}}Asyoucansee
+Подстока 355 файла ../Dir/file4: anotherbenefitofusinganexpressiontem
+Подстока 356 файла ../Dir/file4: te
+Подстока 357 файла ../Dir/file4: isthatyouhavebasicallymanagedtoevaluatethesumofaandbandassignittodinasinglepas
+
+[Имя файла ../Dir/file1 ]:
+Подстока 1 файла ../Dir/file1: zwzww*@
+Подстока 2 файла ../Dir/file1: @@##xnnx
+Подстока 3 файла ../Dir/file1: nedyeyd*eu
+Подстока 4 файла ../Dir/file1: ikrr88
+Подстока 5 файла ../Dir/file1: 388*33jj
+Подстока 6 файла ../Dir/file1: jjrryyryyfc
+Подстока 7 файла ../Dir/file1: hhc**e*ke
+
+[Имя файла ../Dir/file3 ]:
+Подстока 1 файла ../Dir/file3: dfdffe
+Подстока 2 файла ../Dir/file3: te#$#dtyey!
+Подстока 3 файла ../Dir/file3: !
+Подстока 4 файла ../Dir/file3: gduheijjjjjjjj
+Подстока 5 файла ../Dir/file3: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 6 файла ../Dir/file3: wwyceyb#
+Подстока 7 файла ../Dir/file3: wkkkwkkwkwkkwiiii
+Подстока 8 файла ../Dir/file3: ididi
+
+[Имя файла ../Dir/file2 ]:
+Подстока 1 файла ../Dir/file2: cbydebc
+Подстока 2 файла ../Dir/file2: e
+Подстока 3 файла ../Dir/file2: cwljjowkdokoe**kd;kqw;dkw
+Подстока 4 файла ../Dir/file2: o;k;kw;kcwk@@c;ek;k;ckep;kcpp3kpp
+Подстока 5 файла ../Dir/file2: 3p333pp3p3p3p3p3pp3p3pp3
+
+[Имя файла ../Dir/file4 ]:
+Подстока 1 файла ../Dir/file4: T
+Подстока 2 файла ../Dir/file4: intT
+Подстока 3 файла ../Dir/file4: int
+Подстока 4 файла ../Dir/file4: U
+Подстока 5 файла ../Dir/file4: doubleFunctiontem
+Подстока 6 файла ../Dir/file4: tesmayonlybefullyspecialized:tem
+Подстока 7 файла ../Dir/file4: te<typenameT
+Подстока 8 файла ../Dir/file4: typenameU>voidfoo(Tt
+Подстока 9 файла ../Dir/file4: Uu){std::cout<<"Generalcase:"<<t<<""<<u<<std::endl;}//OK.tem
+Подстока 10 файла ../Dir/file4: te<>voidfoo<int
+Подстока 11 файла ../Dir/file4: int>(inta1
+Подстока 12 файла ../Dir/file4: inta2){std::cout<<"Twoints:"<<a1<<""<<a2<<std::endl;}voidinvoke
+Подстока 13 файла ../Dir/file4: foo(){foo(1
+Подстока 14 файла ../Dir/file4: 2.1);//Prints"Generalcase:12.1"foo(1
+Подстока 15 файла ../Dir/file4: 2);//Prints"Twoints:12"}GoalKicker.com–C++NotesforProfessionals419//Compilationerror:partialfunctionspecializationisnotallowed.tem
+Подстока 16 файла ../Dir/file4: te<typenameU>voidfoo<std::string
+Подстока 17 файла ../Dir/file4: U>(std::stringt
+Подстока 18 файла ../Dir/file4: Uu){std::cout<<"Generalcase:"<<t<<""<<u<<std::endl;}Section77.6:Tem
+Подстока 19 файла ../Dir/file4: teSpecializationYoucandefineimplementationforspecificinstantiationsofatem
+Подстока 20 файла ../Dir/file4: teclass/method.Forexampleifyouhave:tem
+Подстока 21 файла ../Dir/file4: te<typenameT>Tsqrt(Tt){/*Somegenericimplementation*/}Youcanthenwrite:tem
+Подстока 22 файла ../Dir/file4: te<>intsqrt<int>(inti){/*Highlyoptimizedintegerimplementation*/}Thenauserthatwritessqrt(4.0)willgetthegenericimplementationwhereassqrt(4)willgetthespecializedimplementation.Section77.7:Aliastem
+Подстока 23 файла ../Dir/file4: teVersion≥C++11Basicexample:tem
+Подстока 24 файла ../Dir/file4: te<typenameT>usingpointer
+Подстока 25 файла ../Dir/file4: T*;Thisdefinitionmakespointer<T>analiasofT*.Forexample:pointer<int>p
+Подстока 26 файла ../Dir/file4: newint;//equivalentto:int*p
+Подстока 27 файла ../Dir/file4: newint;Aliastem
+Подстока 28 файла ../Dir/file4: tescannotbespecialized.However
+Подстока 29 файла ../Dir/file4: thatfunctionalitycanbeobtainedindirectlybyhavingthemrefertoanestedtypeinastruct:tem
+Подстока 30 файла ../Dir/file4: te<typenameT>structnonconst
+Подстока 31 файла ../Dir/file4: pointer
+Подстока 32 файла ../Dir/file4: helper{typedefT*type;};tem
+Подстока 33 файла ../Dir/file4: te<typenameT>structnonconst
+Подстока 34 файла ../Dir/file4: pointer
+Подстока 35 файла ../Dir/file4: helper<Tconst>{typedefT*type;};tem
+Подстока 36 файла ../Dir/file4: te<typenameT>usingnonconst
+Подстока 37 файла ../Dir/file4: pointer
+Подстока 38 файла ../Dir/file4: nonconst
+Подстока 39 файла ../Dir/file4: pointer
+Подстока 40 файла ../Dir/file4: helper<T>::type;Section77.8:ExplicitinstantiationAnexplicitinstantiationdefinitioncreatesanddeclaresaconcreteclass
+Подстока 41 файла ../Dir/file4: function
+Подстока 42 файла ../Dir/file4: orvariablefromatem
+Подстока 43 файла ../Dir/file4: te
+Подстока 44 файла ../Dir/file4: withoutusingitjustyet.Anexplicitinstantiationcanbereferencedfromothertranslationunits.Thiscanbeusedtoavoiddefiningatem
+Подстока 45 файла ../Dir/file4: teinaheaderfile
+Подстока 46 файла ../Dir/file4: ifitwillonlybeinstantiatedwithafinitesetofarguments.Forexample://print
+Подстока 47 файла ../Dir/file4: string.htem
+Подстока 48 файла ../Dir/file4: te<classT>voidprint
+Подстока 49 файла ../Dir/file4: string(constT*str);GoalKicker.com–C++NotesforProfessionals420//print
+Подстока 50 файла ../Dir/file4: string.cpp#include"print
+Подстока 51 файла ../Dir/file4: string.h"tem
+Подстока 52 файла ../Dir/file4: tevoidprint
+Подстока 53 файла ../Dir/file4: string(constchar*);tem
+Подстока 54 файла ../Dir/file4: tevoidprint
+Подстока 55 файла ../Dir/file4: string(constwchar
+Подстока 56 файла ../Dir/file4: t*);Becauseprint
+Подстока 57 файла ../Dir/file4: string<char>andprint
+Подстока 58 файла ../Dir/file4: string<wchar
+Подстока 59 файла ../Dir/file4: t>areexplicitlyinstantiatedinprint
+Подстока 60 файла ../Dir/file4: string.cpp
+Подстока 61 файла ../Dir/file4: thelinkerwillbeabletofindthemeventhoughtheprint
+Подстока 62 файла ../Dir/file4: stringtem
+Подстока 63 файла ../Dir/file4: teisnotdefinedintheheader.Iftheseexplicitinstantiationdeclarationswerenotpresent
+Подстока 64 файла ../Dir/file4: alinkererrorwouldlikelyoccur.SeeWhycantem
+Подстока 65 файла ../Dir/file4: tesonlybeimplementedintheheaderfile?Version≥C++11Ifanexplicitinstantiationdefinitionisprecededbytheexternkeyword
+Подстока 66 файла ../Dir/file4: itbecomesanexplicitinstantiationdeclarationinstead.Thepresenceofanexplicitinstantiationdeclarationforagivenspecializationpreventstheimplicitinstantiationofthegivenspecializationwithinthecurrenttranslationunit.Instead
+Подстока 67 файла ../Dir/file4: areferencetothatspecializationthatwouldotherwisecauseanimplicitinstantiationcanrefertoanexplicitinstantiationdefinitioninthesameoranotherTU.foo.h#ifndefFOO
+Подстока 68 файла ../Dir/file4: H#defineFOO
+Подстока 69 файла ../Dir/file4: Htem
+Подстока 70 файла ../Dir/file4: te<classT>voidfoo(Tx){//complicatedimplementation}#endiffoo.cpp#include"foo.h"//explicitinstantiationdefinitionsforcommoncasestem
+Подстока 71 файла ../Dir/file4: tevoidfoo(int);tem
+Подстока 72 файла ../Dir/file4: tevoidfoo(double);main.cpp#include"foo.h"//wealreadyknowfoo.cpphasexplicitinstantiationdefinitionsfortheseexterntem
+Подстока 73 файла ../Dir/file4: tevoidfoo(double);intmain(){foo(42);//instantiatesfoo<int>here;//wastefulsincefoo.cppprovidesanexplicitinstantiationalready!foo(3.14);//doesnotinstantiatefoo<double>here;//usesinstantiationoffoo<double>infoo.cppinstead}Section77.9:Non-typetem
+Подстока 74 файла ../Dir/file4: teparameterApartfromtypesasatem
+Подстока 75 файла ../Dir/file4: teparameterweareallowedtodeclarevaluesofconstantexpressionsmeetingoneofthefollowingcriteria:integralorenumerationtype
+Подстока 76 файла ../Dir/file4: pointertoobjectorpointertofunction
+Подстока 77 файла ../Dir/file4: lvaluereferencetoobjectorlvaluereferencetofunction
+Подстока 78 файла ../Dir/file4: pointertomember
+Подстока 79 файла ../Dir/file4: std::nullptr
+Подстока 80 файла ../Dir/file4: t.GoalKicker.com–C++NotesforProfessionals421Likealltem
+Подстока 81 файла ../Dir/file4: teparameters
+Подстока 82 файла ../Dir/file4: non-typetem
+Подстока 83 файла ../Dir/file4: teparameterscanbeexplicitlyspecified
+Подстока 84 файла ../Dir/file4: defaulted
+Подстока 85 файла ../Dir/file4: orderivedimplicitlyviaTem
+Подстока 86 файла ../Dir/file4: teArgumentDeduction.Exampleofnon-typetem
+Подстока 87 файла ../Dir/file4: teparameterusage:#include<iostream>tem
+Подстока 88 файла ../Dir/file4: te<typenameT
+Подстока 89 файла ../Dir/file4: std::size
+Подстока 90 файла ../Dir/file4: tsize>std::size
+Подстока 91 файла ../Dir/file4: tsize
+Подстока 92 файла ../Dir/file4: of(T(&anArray)[size])//Passarraybyreference.Requires.{//anexactsize.Weallowallsizesreturnsize;//byusingatem
+Подстока 93 файла ../Dir/file4: te"size".}intmain(){charanArrayOfChar[15];std::cout<<"anArrayOfChar:"<<size
+Подстока 94 файла ../Dir/file4: of(anArrayOfChar)<<"\n";}intanArrayOfData[]
+Подстока 95 файла ../Dir/file4: {1
+Подстока 96 файла ../Dir/file4: 2
+Подстока 97 файла ../Dir/file4: 3
+Подстока 98 файла ../Dir/file4: 4
+Подстока 99 файла ../Dir/file4: 5
+Подстока 100 файла ../Dir/file4: 6
+Подстока 101 файла ../Dir/file4: 7
+Подстока 102 файла ../Dir/file4: 8
+Подстока 103 файла ../Dir/file4: 9};std::cout<<"anArrayOfData:"<<size
+Подстока 104 файла ../Dir/file4: of(anArrayOfData)<<"\n";Exampleofexplicitlyspecifyingbothtypeandnon-typetem
+Подстока 105 файла ../Dir/file4: teparameters:#include<array>intmain(){std::array<int
+Подстока 106 файла ../Dir/file4: 5>foo;//intisatypeparameter
+Подстока 107 файла ../Dir/file4: 5isnon-type}Non-typetem
+Подстока 108 файла ../Dir/file4: teparametersareoneofthewaystoachievetem
+Подстока 109 файла ../Dir/file4: terecurrenceandenablestodoMetaprogramming.Section77.10:Declaringnon-typetem
+Подстока 110 файла ../Dir/file4: teargumentswithautoPriortoC++17
+Подстока 111 файла ../Dir/file4: whenwritingatem
+Подстока 112 файла ../Dir/file4: tenon-typeparameter
+Подстока 113 файла ../Dir/file4: youhadtospecifyitstypefirst.Soacommonpatternbecamewritingsomethinglike:tem
+Подстока 114 файла ../Dir/file4: te<classT
+Подстока 115 файла ../Dir/file4: TN>structintegral
+Подстока 116 файла ../Dir/file4: constant{usingtype
+Подстока 117 файла ../Dir/file4: T;staticconstexprTvalue
+Подстока 118 файла ../Dir/file4: N;};usingfive
+Подстока 119 файла ../Dir/file4: integral
+Подстока 120 файла ../Dir/file4: constant<int
+Подстока 121 файла ../Dir/file4: 5>;Butforcomplicatedexpressions
+Подстока 122 файла ../Dir/file4: usingsomethinglikethisinvolveshavingtowritedecltype(expr)
+Подстока 123 файла ../Dir/file4: exprwheninstantiatingtem
+Подстока 124 файла ../Dir/file4: tes.Thesolutionistosimplifythisidiomandsimplyallowauto:Version≥C++17tem
+Подстока 125 файла ../Dir/file4: te<autoN>structintegral
+Подстока 126 файла ../Dir/file4: constant{usingtype
+Подстока 127 файла ../Dir/file4: decltype(N);staticconstexprtypevalue
+Подстока 128 файла ../Dir/file4: N;};GoalKicker.com–C++NotesforProfessionals422usingfive
+Подстока 129 файла ../Dir/file4: integral
+Подстока 130 файла ../Dir/file4: constant<5>;Emptycustomdeleterforunique
+Подстока 131 файла ../Dir/file4: ptrAnicemotivatingexamplecancomefromtryingtocombinetheemptybaseoptimizationwithacustomdeleterforunique
+Подстока 132 файла ../Dir/file4: ptr.DifferentCAPIdeletershavedifferentreturntypes
+Подстока 133 файла ../Dir/file4: butwedon'tcare-wejustwantsomethingtoworkforanyfunction:tem
+Подстока 134 файла ../Dir/file4: te<autoDeleteFn>structFunctionDeleter{tem
+Подстока 135 файла ../Dir/file4: te<classT>voidoperator()(T*ptr)const{DeleteFn(ptr);}};tem
+Подстока 136 файла ../Dir/file4: te<T
+Подстока 137 файла ../Dir/file4: autoDeleteFn>usingunique
+Подстока 138 файла ../Dir/file4: ptr
+Подстока 139 файла ../Dir/file4: deleter
+Подстока 140 файла ../Dir/file4: std::unique
+Подстока 141 файла ../Dir/file4: ptr<T
+Подстока 142 файла ../Dir/file4: FunctionDeleter<DeleteFn>>;AndnowyoucansimplyuseanyfunctionpointerthatcantakeanargumentoftypeTasatem
+Подстока 143 файла ../Dir/file4: tenon-typeparameter
+Подстока 144 файла ../Dir/file4: regardlessofreturntype
+Подстока 145 файла ../Dir/file4: andgetano-sizeoverheadunique
+Подстока 146 файла ../Dir/file4: ptroutofit:unique
+Подстока 147 файла ../Dir/file4: ptr
+Подстока 148 файла ../Dir/file4: deleter<std::FILE
+Подстока 149 файла ../Dir/file4: std::fclose>p;Section77.11:Tem
+Подстока 150 файла ../Dir/file4: tetem
+Подстока 151 файла ../Dir/file4: teparametersSometimeswewouldliketopassintothetem
+Подстока 152 файла ../Dir/file4: teatem
+Подстока 153 файла ../Dir/file4: tetypewithoutfixingitsvalues.Thisiswhattem
+Подстока 154 файла ../Dir/file4: tetem
+Подстока 155 файла ../Dir/file4: teparametersarecreatedfor.Verysimpletem
+Подстока 156 файла ../Dir/file4: tetem
+Подстока 157 файла ../Dir/file4: teparameterexamples:tem
+Подстока 158 файла ../Dir/file4: te<classT>structTag1{};tem
+Подстока 159 файла ../Dir/file4: te<classT>structTag2{};tem
+Подстока 160 файла ../Dir/file4: te<tem
+Подстока 161 файла ../Dir/file4: te<class>classTag>structIntTag{typedefTag<int>type;};intmain(){IntTag<Tag1>::typet;}Version≥C++11#include<vector>#include<iostream>tem
+Подстока 162 файла ../Dir/file4: te<classT
+Подстока 163 файла ../Dir/file4: tem
+Подстока 164 файла ../Dir/file4: te<class...>classC
+Подстока 165 файла ../Dir/file4: classU>C<T>cast
+Подстока 166 файла ../Dir/file4: all(constC<U>&c){C<T>result(c.begin()
+Подстока 167 файла ../Dir/file4: c.end());returnresult;}intmain(){std::vector<float>vf
+Подстока 168 файла ../Dir/file4: {1.2
+Подстока 169 файла ../Dir/file4: 2.6
+Подстока 170 файла ../Dir/file4: 3.7};autovi
+Подстока 171 файла ../Dir/file4: cast
+Подстока 172 файла ../Dir/file4: all<int>(vf);for(auto&&i:vi){std::cout<<i<<std::endl;}GoalKicker.com–C++NotesforProfessionals423}Section77.12:Defaulttem
+Подстока 173 файла ../Dir/file4: teparametervalueJustlikeincaseofthefunctionarguments
+Подстока 174 файла ../Dir/file4: tem
+Подстока 175 файла ../Dir/file4: teparameterscanhavetheirdefaultvalues.Alltem
+Подстока 176 файла ../Dir/file4: teparameterswithadefaultvaluehavetobedeclaredattheendofthetem
+Подстока 177 файла ../Dir/file4: teparameterlist.Thebasicideaisthatthetem
+Подстока 178 файла ../Dir/file4: teparameterswithdefaultvaluecanbeomittedwhiletem
+Подстока 179 файла ../Dir/file4: teinstantiation.Simpleexampleofdefaulttem
+Подстока 180 файла ../Dir/file4: teparametervalueusage:tem
+Подстока 181 файла ../Dir/file4: te<classT
+Подстока 182 файла ../Dir/file4: size
+Подстока 183 файла ../Dir/file4: tN
+Подстока 184 файла ../Dir/file4: 10>structmy
+Подстока 185 файла ../Dir/file4: array{Tarr[N];};intmain(){/*Defaultparameterisignored
+Подстока 186 файла ../Dir/file4: N
+Подстока 187 файла ../Dir/file4: 5*/my
+Подстока 188 файла ../Dir/file4: array<int
+Подстока 189 файла ../Dir/file4: 5>a;}/*Printthelengthofa.arr:5*/std::cout<<sizeof(a.arr)/sizeof(int)<<std::endl;/*Lastparameterisomitted
+Подстока 190 файла ../Dir/file4: N
+Подстока 191 файла ../Dir/file4: 10*/my
+Подстока 192 файла ../Dir/file4: array<int>b;/*Printthelengthofa.arr:10*/std::cout<<sizeof(b.arr)/sizeof(int)<<std::endl;GoalKicker.com–C++NotesforProfessionals424Chapter78:Expressiontem
+Подстока 193 файла ../Dir/file4: tesSection78.1:Abasicexampleillustratingexpressiontem
+Подстока 194 файла ../Dir/file4: tesAnexpressiontem
+Подстока 195 файла ../Dir/file4: teisacompile-timeoptimizationtechniqueusedmostlyinscientificcomputing.It'smainpurposeistoavoidunnecessarytemporariesandoptimizeloopcalculationsusingasinglepass(typicallywhenperformingoperationsonnumericalaggregates).Expressiontem
+Подстока 196 файла ../Dir/file4: teswereinitiallydevisedinordertocircumventtheinefficienciesofnaïveoperatoroverloadingwhenimplementingnumericalArrayorMatrixtypes.Anequivalentterminologyforexpressiontem
+Подстока 197 файла ../Dir/file4: teshasbeenintroducedbyBjarneStroustrup
+Подстока 198 файла ../Dir/file4: whocallsthem"fusedoperations"inthelatestversionofhisbook
+Подстока 199 файла ../Dir/file4: "TheC++ProgrammingLanguage".Beforeactuallydivingintoexpressiontem
+Подстока 200 файла ../Dir/file4: tes
+Подстока 201 файла ../Dir/file4: youshouldunderstandwhyyouneedtheminthefirst
+Подстока 202 файла ../Dir/file4: ce.Toillustratethis
+Подстока 203 файла ../Dir/file4: considertheverysimpleMatrixclassgivenbelow:tem
+Подстока 204 файла ../Dir/file4: te<typenameT
+Подстока 205 файла ../Dir/file4: std::size
+Подстока 206 файла ../Dir/file4: tCOL
+Подстока 207 файла ../Dir/file4: std::size
+Подстока 208 файла ../Dir/file4: tROW>classMatrix{public:usingvalue
+Подстока 209 файла ../Dir/file4: type
+Подстока 210 файла ../Dir/file4: T;Matrix():values(COL*ROW){}staticsize
+Подстока 211 файла ../Dir/file4: tcols(){returnCOL;}staticsize
+Подстока 212 файла ../Dir/file4: trows(){returnROW;}constT&operator()(size
+Подстока 213 файла ../Dir/file4: tx
+Подстока 214 файла ../Dir/file4: size
+Подстока 215 файла ../Dir/file4: ty)const{returnvalues[y*COL+x];}T&operator()(size
+Подстока 216 файла ../Dir/file4: tx
+Подстока 217 файла ../Dir/file4: size
+Подстока 218 файла ../Dir/file4: ty){returnvalues[y*COL+x];}private:std::vector<T>};values;tem
+Подстока 219 файла ../Dir/file4: te<typenameT
+Подстока 220 файла ../Dir/file4: std::size
+Подстока 221 файла ../Dir/file4: tCOL
+Подстока 222 файла ../Dir/file4: std::size
+Подстока 223 файла ../Dir/file4: tROW>Matrix<T
+Подстока 224 файла ../Dir/file4: COL
+Подстока 225 файла ../Dir/file4: ROW>operator+(constMatrix<T
+Подстока 226 файла ../Dir/file4: COL
+Подстока 227 файла ../Dir/file4: ROW>&lhs
+Подстока 228 файла ../Dir/file4: constMatrix<T
+Подстока 229 файла ../Dir/file4: COL
+Подстока 230 файла ../Dir/file4: ROW>&rhs){Matrix<T
+Подстока 231 файла ../Dir/file4: COL
+Подстока 232 файла ../Dir/file4: ROW>result;}for(size
+Подстока 233 файла ../Dir/file4: ty
+Подстока 234 файла ../Dir/file4: 0;y!
+Подстока 235 файла ../Dir/file4: lhs.rows();++y){for(size
+Подстока 236 файла ../Dir/file4: tx
+Подстока 237 файла ../Dir/file4: 0;x!
+Подстока 238 файла ../Dir/file4: lhs.cols();++x){result(x
+Подстока 239 файла ../Dir/file4: y)
+Подстока 240 файла ../Dir/file4: lhs(x
+Подстока 241 файла ../Dir/file4: y)+rhs(x
+Подстока 242 файла ../Dir/file4: y);}}returnresult;Giventhepreviousclassdefinition
+Подстока 243 файла ../Dir/file4: youcannowwriteMatrixexpressionssuchas:conststd::size
+Подстока 244 файла ../Dir/file4: tcols
+Подстока 245 файла ../Dir/file4: 2000;conststd::size
+Подстока 246 файла ../Dir/file4: trows
+Подстока 247 файла ../Dir/file4: 1000;Matrix<double
+Подстока 248 файла ../Dir/file4: cols
+Подстока 249 файла ../Dir/file4: rows>a
+Подстока 250 файла ../Dir/file4: b
+Подстока 251 файла ../Dir/file4: c;//initializea
+Подстока 252 файла ../Dir/file4: b&cfor(std::size
+Подстока 253 файла ../Dir/file4: ty
+Подстока 254 файла ../Dir/file4: 0;y!
+Подстока 255 файла ../Dir/file4: rows;++y){for(std::size
+Подстока 256 файла ../Dir/file4: tx
+Подстока 257 файла ../Dir/file4: 0;x!
+Подстока 258 файла ../Dir/file4: cols;++x){a(x
+Подстока 259 файла ../Dir/file4: y)
+Подстока 260 файла ../Dir/file4: 1.0;b(x
+Подстока 261 файла ../Dir/file4: y)
+Подстока 262 файла ../Dir/file4: 2.0;GoalKicker.com–C++NotesforProfessionals425}}c(x
+Подстока 263 файла ../Dir/file4: y)
+Подстока 264 файла ../Dir/file4: 3.0;Matrix<double
+Подстока 265 файла ../Dir/file4: cols
+Подстока 266 файла ../Dir/file4: rows>d
+Подстока 267 файла ../Dir/file4: a+b+c;//d(x
+Подстока 268 файла ../Dir/file4: y)
+Подстока 269 файла ../Dir/file4: 6Asillustratedabove
+Подстока 270 файла ../Dir/file4: beingabletooverloadoperator+()providesyouwithanotationwhichmimicsthenaturalmathematicalnotationformatrices.Unfortunately
+Подстока 271 файла ../Dir/file4: thepreviousimplementationisalsohighlyinefficientcomparedtoanequivalent"hand-crafted"version.Tounderstandwhy
+Подстока 272 файла ../Dir/file4: youhavetoconsiderwhathappenswhenyouwriteanexpressionsuchasMatrixd
+Подстока 273 файла ../Dir/file4: a+b+c.Thisinfactexpandsto((a+b)+c)oroperator+(operator+(a
+Подстока 274 файла ../Dir/file4: b)
+Подстока 275 файла ../Dir/file4: c).Inotherwords
+Подстока 276 файла ../Dir/file4: theloopinsideoperator+()isexecutedtwice
+Подстока 277 файла ../Dir/file4: whereasitcouldhavebeeneasilyperformedinasinglepass.Thisalsoresultsin2temporariesbeingcreated
+Подстока 278 файла ../Dir/file4: whichfurtherdegradesperformance.Inessence
+Подстока 279 файла ../Dir/file4: byaddingtheflexibilitytouseanotationclosetoitsmathematicalcounterpart
+Подстока 280 файла ../Dir/file4: youhavealsomadetheMatrixclasshighlyinefficient.Forexample
+Подстока 281 файла ../Dir/file4: withoutoperatoroverloading
+Подстока 282 файла ../Dir/file4: youcouldimplementafarmoreefficientMatrixsummationusingasinglepass:tem
+Подстока 283 файла ../Dir/file4: te<typenameT
+Подстока 284 файла ../Dir/file4: std::size
+Подстока 285 файла ../Dir/file4: tCOL
+Подстока 286 файла ../Dir/file4: std::size
+Подстока 287 файла ../Dir/file4: tROW>Matrix<T
+Подстока 288 файла ../Dir/file4: COL
+Подстока 289 файла ../Dir/file4: ROW>add3(constMatrix<T
+Подстока 290 файла ../Dir/file4: COL
+Подстока 291 файла ../Dir/file4: ROW>&a
+Подстока 292 файла ../Dir/file4: constMatrix<T
+Подстока 293 файла ../Dir/file4: COL
+Подстока 294 файла ../Dir/file4: ROW>&b
+Подстока 295 файла ../Dir/file4: constMatrix<T
+Подстока 296 файла ../Dir/file4: COL
+Подстока 297 файла ../Dir/file4: ROW>&c){Matrix<T
+Подстока 298 файла ../Dir/file4: COL
+Подстока 299 файла ../Dir/file4: ROW>result;for(size
+Подстока 300 файла ../Dir/file4: ty
+Подстока 301 файла ../Dir/file4: 0;y!
+Подстока 302 файла ../Dir/file4: ROW;++y){for(size
+Подстока 303 файла ../Dir/file4: tx
+Подстока 304 файла ../Dir/file4: 0;x!
+Подстока 305 файла ../Dir/file4: COL;++x){result(x
+Подстока 306 файла ../Dir/file4: y)
+Подстока 307 файла ../Dir/file4: a(x
+Подстока 308 файла ../Dir/file4: y)+b(x
+Подстока 309 файла ../Dir/file4: y)+c(x
+Подстока 310 файла ../Dir/file4: y);}}returnresult;}ThepreviousexamplehoweverhasitsowndisadvantagesbecauseitcreatesafarmoreconvolutedinterfacefortheMatrixclass(youwouldhavetoconsidermethodssuchasMatrix::add2()
+Подстока 311 файла ../Dir/file4: Matrix::AddMultiply()andsoon).InsteadletustakeastepbackandseehowwecanadaptoperatoroverloadingtoperforminamoreefficientwayTheproblemstemsfromthefactthattheexpressionMatrixd
+Подстока 312 файла ../Dir/file4: a+b+cisevaluatedtoo"eagerly"beforeyouhavehadanopportunitytobuildtheentireexpressiontree.Inotherwords
+Подстока 313 файла ../Dir/file4: whatyoureallywanttoachieveistoevaluatea+b+cinonepassandonlyonceyouactuallyneedtoassigntheresultingexpressingtod.Thisisthecoreideabehindexpressiontem
+Подстока 314 файла ../Dir/file4: tes:insteadofhavingoperator+()evaluateimmediatelytheresultofaddingtwoMatrixinstances
+Подстока 315 файла ../Dir/file4: itwillreturnan"expressiontem
+Подстока 316 файла ../Dir/file4: te"forfutureevaluationoncetheentireexpressiontreehasbeenbuilt.Forexample
+Подстока 317 файла ../Dir/file4: hereisapossibleimplementationforanexpressiontem
+Подстока 318 файла ../Dir/file4: tecorrespondingtothesummationof2types:tem
+Подстока 319 файла ../Dir/file4: te<typenameLHS
+Подстока 320 файла ../Dir/file4: typenameRHS>classMatrixSum{public:usingvalue
+Подстока 321 файла ../Dir/file4: type
+Подстока 322 файла ../Dir/file4: typenameLHS::value
+Подстока 323 файла ../Dir/file4: type;GoalKicker.com–C++NotesforProfessionals426MatrixSum(constLHS&lhs
+Подстока 324 файла ../Dir/file4: constRHS&rhs):rhs(rhs)
+Подстока 325 файла ../Dir/file4: lhs(lhs){}value
+Подстока 326 файла ../Dir/file4: typeoperator()(intx
+Подстока 327 файла ../Dir/file4: inty)const{returnlhs(x
+Подстока 328 файла ../Dir/file4: y)+rhs(x
+Подстока 329 файла ../Dir/file4: y);}private:constLHS&lhs;constRHS&rhs;};Andhereistheupdatedversionofoperator+()tem
+Подстока 330 файла ../Dir/file4: te<typenameLHS
+Подстока 331 файла ../Dir/file4: typenameRHS>MatrixSum<LHS
+Подстока 332 файла ../Dir/file4: RHS>operator+(constLHS&lhs
+Подстока 333 файла ../Dir/file4: constLHS&rhs){returnMatrixSum<LHS
+Подстока 334 файла ../Dir/file4: RHS>(lhs
+Подстока 335 файла ../Dir/file4: rhs);}Asyoucansee
+Подстока 336 файла ../Dir/file4: operator+()nolongerreturnsan"eagerevaluation"oftheresultofadding2Matrixinstances(whichwouldbeanotherMatrixinstance)
+Подстока 337 файла ../Dir/file4: butinsteadanexpressiontem
+Подстока 338 файла ../Dir/file4: terepresentingtheadditionoperation.Themostimportantpointtokeepinmindisthattheexpressionhasnotbeenevaluatedyet.Itmerelyholdsreferencestoitsoperands.Infact
+Подстока 339 файла ../Dir/file4: nothingstopsyoufrominstantiatingtheMatrixSum<>expressiontem
+Подстока 340 файла ../Dir/file4: teasfollows:MatrixSum<Matrix<double>
+Подстока 341 файла ../Dir/file4: Matrix<double>>SumAB(a
+Подстока 342 файла ../Dir/file4: b);Youcanhoweveratalaterstage
+Подстока 343 файла ../Dir/file4: whenyouactuallyneedtheresultofthesummation
+Подстока 344 файла ../Dir/file4: evaluatetheexpressiond
+Подстока 345 файла ../Dir/file4: a+basfollows:for(std::size
+Подстока 346 файла ../Dir/file4: ty
+Подстока 347 файла ../Dir/file4: 0;y!
+Подстока 348 файла ../Dir/file4: a.rows();++y){for(std::size
+Подстока 349 файла ../Dir/file4: tx
+Подстока 350 файла ../Dir/file4: 0;x!
+Подстока 351 файла ../Dir/file4: a.cols();++x){d(x
+Подстока 352 файла ../Dir/file4: y)
+Подстока 353 файла ../Dir/file4: SumAB(x
+Подстока 354 файла ../Dir/file4: y);}}Asyoucansee
+Подстока 355 файла ../Dir/file4: anotherbenefitofusinganexpressiontem
+Подстока 356 файла ../Dir/file4: te
+Подстока 357 файла ../Dir/file4: isthatyouhavebasicallymanagedtoevaluatethesumofaandbandassignittodinasinglepas
+
+[Имя файла ../Dir/file1 ]:
+Подстока 1 файла ../Dir/file1: zwzww*@
+Подстока 2 файла ../Dir/file1: @@##xnnx
+Подстока 3 файла ../Dir/file1: nedyeyd*eu
+Подстока 4 файла ../Dir/file1: ikrr88
+Подстока 5 файла ../Dir/file1: 388*33jj
+Подстока 6 файла ../Dir/file1: jjrryyryyfc
+Подстока 7 файла ../Dir/file1: hhc**e*ke
+
+[Имя файла ../Dir/file3 ]:
+Подстока 1 файла ../Dir/file3: dfdffe
+Подстока 2 файла ../Dir/file3: te#$#dtyey!
+Подстока 3 файла ../Dir/file3: !
+Подстока 4 файла ../Dir/file3: gduheijjjjjjjj
+Подстока 5 файла ../Dir/file3: jjjjjjjswwwwww++wwwwwwww<<>>wwwwww#$#www
+Подстока 6 файла ../Dir/file3: wwyceyb#
+Подстока 7 файла ../Dir/file3: wkkkwkkwkwkkwiiii
+Подстока 8 файла ../Dir/file3: ididi
+
+[Имя файла ../Dir/file2 ]:
+Подстока 1 файла ../Dir/file2: cbydebc
 Подстока 2 файла ../Dir/file2: e
 Подстока 3 файла ../Dir/file2: cwljjowkdokoe**kd;kqw;dkw
 Подстока 4 файла ../Dir/file2: o;k;kw;kcwk@@c;ek;k;ckep;kcpp3kpp
