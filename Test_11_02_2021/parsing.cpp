@@ -26,18 +26,18 @@ ParsingFiles::~ParsingFiles() {}
 void ParsingFiles::ParsingDir(string dir, string outfile) {
   vector<string> v = _d->ReadDir(dir);  //Читаем директорию
   _d->PrintDir(v);  //Печатаем список файлов
-
+  int i = 0;
   vector<thread> th_vec;              //для потоков
   for (auto& file : _d->listfiles) {  //Парсим в цикле  все файлы
 
     pair<string, vector<string>> data_from_file = _d->ReadSingleFile(file);
 
-    //    th_vec.push_back(thread([&]() {
-    //      _d->ParsingSingleFile(data_from_file, file, outfile, _d->m);
-    //    }));
-
+    th_vec.push_back(thread(
+        [&]() { _d->ParsingSingleFile(data_from_file, file, outfile); }));
+    th_vec.at(i).join();
+    ++i;
     //однопоточный режим
-    _d->ParsingSingleFile(data_from_file, file, outfile);
+    //    _d->ParsingSingleFile(data_from_file, file, outfile);
   }
 
   //  for (ulong i = 0; i < _d->listfiles.size(); ++i) {
@@ -91,7 +91,6 @@ pair<string, vector<string>> ParsingFiles::Impl::ReadSingleFile(
 //######## парсинг одного файла ##################################
 void ParsingFiles::Impl::ParsingSingleFile(pair<string, vector<string>>& pair,
                                            string& name, string& outfile) {
-  //  m.lock();
   deque<string> res;
   res.push_back(pair.first);
   for (auto i = pair.second.begin(); i != pair.second.end();
@@ -128,8 +127,7 @@ void ParsingFiles::Impl::ParsingSingleFile(pair<string, vector<string>>& pair,
 
   // запись в файл
 
-  //    std::lock_guard<std::mutex> guard(m);
-
+  m.lock();
   fstream out(outfile, ios::out | ios::app);
   cout << "[Имя файла " << name << " ]:" << endl;
   out << "[Имя файла " << name << " ]:" << endl;
@@ -142,7 +140,7 @@ void ParsingFiles::Impl::ParsingSingleFile(pair<string, vector<string>>& pair,
   cout << endl;
   out << endl;
 
-  //  m.unlock();
+  m.unlock();
 }
 //#############################################################
 //
