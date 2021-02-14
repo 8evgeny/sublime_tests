@@ -39,10 +39,6 @@ void ParsingFiles::ParsingDir(string dir, string outfile) {
     //однопоточный режим
     //    _d->ParsingSingleFile(data_from_file, file, outfile);
   }
-
-  //  for (ulong i = 0; i < _d->listfiles.size(); ++i) {
-  //    th_vec.at(i).join();
-  //  }
 }
 //#############################################################
 
@@ -126,8 +122,8 @@ void ParsingFiles::Impl::ParsingSingleFile(pair<string, vector<string>>& pair,
   }    // for по разделителям
 
   // запись в файл
+  lock_guard<mutex> lg(m);
 
-  m.lock();
   fstream out(outfile, ios::out | ios::app);
   cout << "[Имя файла " << name << " ]:" << endl;
   out << "[Имя файла " << name << " ]:" << endl;
@@ -139,8 +135,6 @@ void ParsingFiles::Impl::ParsingSingleFile(pair<string, vector<string>>& pair,
   }
   cout << endl;
   out << endl;
-
-  m.unlock();
 }
 //#############################################################
 //
