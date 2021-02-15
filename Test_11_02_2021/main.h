@@ -7,7 +7,6 @@ using Pimpl = std::experimental::propagate_const<std::unique_ptr<T>>;
 #include <mutex>
 class ParsingFiles {
  public:
-  //    ParsingFiles(std::string);
   ParsingFiles();
   ~ParsingFiles();
   void ParsingDir(std::string, std::string);

@@ -14,22 +14,19 @@ struct ParsingFiles::Impl {
   void PrintDir(vector<string>&);
   pair<string, vector<string>> ReadSingleFile(string&);
   void ParsingSingleFile(pair<string, vector<string>>&, string&, string&);
-
   mutex m;
   vector<string> listfiles;
 };
 ParsingFiles::Impl::Impl() {}
 ParsingFiles::ParsingFiles() : _d{make_unique<Impl>()} {}
 ParsingFiles::~ParsingFiles() {}
-
-//######## логика парсинга ##################################
+//#############################################################
 void ParsingFiles::ParsingDir(string dir, string outfile) {
   vector<string> v = _d->ReadDir(dir);  //Читаем директорию
   _d->PrintDir(v);  //Печатаем список файлов
   int i = 0;
   vector<thread> th_vec;              //для потоков
   for (auto& file : _d->listfiles) {  //Парсим в цикле  все файлы
-
     pair<string, vector<string>> data_from_file = _d->ReadSingleFile(file);
 
     th_vec.push_back(thread(
@@ -41,7 +38,6 @@ void ParsingFiles::ParsingDir(string dir, string outfile) {
   }
 }
 //#############################################################
-
 vector<string> ParsingFiles::Impl::ReadDir(string pathdir) {
   bf::directory_iterator p(pathdir);
   for (bf::directory_entry& x : bf::directory_iterator(p)) {
@@ -55,7 +51,6 @@ vector<string> ParsingFiles::Impl::ReadDir(string pathdir) {
   }
   return listfiles;
 }
-
 void ParsingFiles::Impl::PrintDir(vector<string>& vdir) {
   cout << "Файлы для парсинга: " << endl;
   for (auto& filename : vdir) {
@@ -63,7 +58,6 @@ void ParsingFiles::Impl::PrintDir(vector<string>& vdir) {
   }
   cout << endl;
 }
-
 pair<string, vector<string>> ParsingFiles::Impl::ReadSingleFile(
     string& fileName) {
   string input_string, sep;
@@ -77,13 +71,8 @@ pair<string, vector<string>> ParsingFiles::Impl::ReadSingleFile(
   separators
       .pop_back();  //удаляем последний разделитель который записался дважды
   pair p = make_pair(input_string, separators);
-  //  cout << "строка для парсинга: " << endl << input_string << endl;
-  //  cout << "разделители: " << endl;
-  //  for (auto& x : separators) cout << x << endl;
-  //  cout << endl;
   return p;
 }
-
 //######## парсинг одного файла ##################################
 void ParsingFiles::Impl::ParsingSingleFile(pair<string, vector<string>>& pair,
                                            string& name, string& outfile) {
@@ -137,4 +126,3 @@ void ParsingFiles::Impl::ParsingSingleFile(pair<string, vector<string>>& pair,
   out << endl;
 }
 //#############################################################
-//
