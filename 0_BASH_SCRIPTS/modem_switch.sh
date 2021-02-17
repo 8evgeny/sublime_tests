@@ -18,7 +18,5 @@ fi;
 
 
 
-
-
 # nano /home/pi/alager/modem_switch.sh
 */1 * * * *  pi /home/pi/alager/modem_switch.sh

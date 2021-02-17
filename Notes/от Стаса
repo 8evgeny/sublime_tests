@@ -45,3 +45,27 @@ sudo LOG_REGIME=console bash -c "../scripts/shooter/run_shooter.sh viewer"
 sudo LOG_REGIME=console ./shooter/run_shooter.sh viewer
 
 sudo LOG_REGIME=console bash -c "./gdb_remote_run_shooter.sh viewer"
+
+sudo LOG_REGIME=files ./run_shooter.sh viewer 
+(перед скриптом - переменная явным образом)
+
+эта-же переменная в сервисе sudo LOG_REGIME=files ./run_shooter.sh viewer 
+[Unit]
+Description=shooter
+Wants=network-online.target ptpd.service wdkicker.service
+After=network.target network-online.target ptpd.service wdkicker.service
+
+[Install]
+WantedBy=multi-user.target
+[Service]
+Environment="LOG_REGIME=files"
+Type=simple
+Restart=on-failure
+RestartSec=20
+ExecStart=/usr/bin/bash __SCRIPT_PATH__/run_shooter.sh %i %n
+#ExecStop=/usr/bin/pkill -SIGINT shooter
+
+
+Убрана передача как позиционного параметра
+теперь передавать как именной параметр
+sudo LOG_REGIME=files LOG_LEVEL=DEBUG ./run_shooter.sh viewer
