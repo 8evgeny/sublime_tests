@@ -15,7 +15,8 @@ target_include_directories(eph PUBLIC include)
 set_target_properties(eph PROPERTIES LINKER_LANGUAGE C)
 
 add_executable(${PROJECT_NAME}
-    se.cpp
+    src/test.cpp
+#    se.cpp
     ${src}
     )
 target_include_directories(${PROJECT_NAME} PUBLIC eph)

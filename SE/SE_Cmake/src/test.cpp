@@ -1,3 +1,12 @@
+//#include <stdio.h>
+//#include <string.h>
+
+#include "swedll.h"
+#include "swejpl.h"
+#include "sweodef.h"
+#include "sweph.h"
+#include "swephexp.h"
+#include "swephlib.h"
 
 static char* infocmd0 =
     "\n\
@@ -734,7 +743,7 @@ static AS_BOOL show_file_limit = FALSE;
 #define ECL_SOL_ANNULAR 5
 #define ECL_SOL_TOTAL 6
 
-int test() {
+int main(int argc, char* argv[]) {
   char sdate_save[AS_MAXCH];
   char s1[AS_MAXCH], s2[AS_MAXCH];
   char *sp, *sp2;
