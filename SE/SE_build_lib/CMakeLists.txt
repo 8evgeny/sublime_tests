@@ -1,13 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 
-set (name se)
-project(${name} LANGUAGES C)
-#project(${name})
+project(BuildLibSE LANGUAGES C)
 file(GLOB src src/* include/*)
 
-#SET(MYCOMPILE_FLAGS "-g -Wall -fPIC")
-#set(CMAKE_CXX_FLAGS ${MYCOMPILE_FLAGS})
-#add_definitions(${MYCOMPILE_FLAGS})
+SET(MYCOMPILE_FLAGS "-g -Wall -fPIC")
+set(CMAKE_C_FLAGS ${MYCOMPILE_FLAGS})
 
 add_library(eph ${src} )
 target_include_directories(eph PUBLIC include)
@@ -15,8 +12,6 @@ target_include_directories(eph PUBLIC include)
 set_target_properties(eph PROPERTIES LINKER_LANGUAGE C)
 
 add_executable(${PROJECT_NAME}
-    src/test.cpp
-#    se.cpp
     ${src}
     )
 target_include_directories(${PROJECT_NAME} PUBLIC eph)

@@ -422,8 +422,9 @@ extern "C" {
 #define SE_EPHE_PATH ":ephe:"
 #else
 //#  define SE_EPHE_PATH    ".:/users/ephe2/:/users/ephe/"
-#define SE_EPHE_PATH                                                         \
-  ".:/home/jhon/Sublime_tests/SE/SE_Cmake/eph/:/home/jhon/Sublime_tests/SE/" \
+#define SE_EPHE_PATH                                                 \
+  ".:/home/eparubets/Sublime_test/SE/SE_Cmake/eph/:/home/eparubets/" \
+  "Sublime_tests/SE/"                                                \
   "SE_Cmake/eph/"
 /* At Astrodienst, we maintain two ephemeris areas for
    the thousands of asteroid files:
@@ -712,80 +713,80 @@ extern HANDLE dllhandle;  // set by swedllst::DllMain,
 #define ext_def(x) extern EXP32 x CALL_CONV
 /* ext_def(x) evaluates to x on Unix */
 
-ext_def(int32) swe_heliacal_ut(double tjdstart_ut, double *geopos, double *datm,
-                               double *dobs, char *ObjectName, int32 TypeEvent,
-                               int32 iflag, double *dret, char *serr);
+ext_def(int32) swe_heliacal_ut(double tjdstart_ut, double* geopos, double* datm,
+                               double* dobs, char* ObjectName, int32 TypeEvent,
+                               int32 iflag, double* dret, char* serr);
 ext_def(int32)
-    swe_heliacal_pheno_ut(double tjd_ut, double *geopos, double *datm,
-                          double *dobs, char *ObjectName, int32 TypeEvent,
-                          int32 helflag, double *darr, char *serr);
-ext_def(int32) swe_vis_limit_mag(double tjdut, double *geopos, double *datm,
-                                 double *dobs, char *ObjectName, int32 helflag,
-                                 double *dret, char *serr);
+    swe_heliacal_pheno_ut(double tjd_ut, double* geopos, double* datm,
+                          double* dobs, char* ObjectName, int32 TypeEvent,
+                          int32 helflag, double* darr, char* serr);
+ext_def(int32) swe_vis_limit_mag(double tjdut, double* geopos, double* datm,
+                                 double* dobs, char* ObjectName, int32 helflag,
+                                 double* dret, char* serr);
 
 /* the following are secret, for Victor Reijs' */
 ext_def(int32)
-    swe_heliacal_angle(double tjdut, double *dgeo, double *datm, double *dobs,
+    swe_heliacal_angle(double tjdut, double* dgeo, double* datm, double* dobs,
                        int32 helflag, double mag, double azi_obj,
                        double azi_sun, double azi_moon, double alt_moon,
-                       double *dret, char *serr);
+                       double* dret, char* serr);
 ext_def(int32)
-    swe_topo_arcus_visionis(double tjdut, double *dgeo, double *datm,
-                            double *dobs, int32 helflag, double mag,
+    swe_topo_arcus_visionis(double tjdut, double* dgeo, double* datm,
+                            double* dobs, int32 helflag, double mag,
                             double azi_obj, double alt_obj, double azi_sun,
-                            double azi_moon, double alt_moon, double *dret,
-                            char *serr);
+                            double azi_moon, double alt_moon, double* dret,
+                            char* serr);
 
 /* the following is secret, for Dieter, allows to test old models of
  * precession, nutation, etc. Search for SE_MODEL_... in this file */
-ext_def(void) swe_set_astro_models(char *samod, int32 iflag);
-ext_def(void) swe_get_astro_models(char *samod, char *sdet, int32 iflag);
+ext_def(void) swe_set_astro_models(char* samod, int32 iflag);
+ext_def(void) swe_get_astro_models(char* samod, char* sdet, int32 iflag);
 
 /****************************
  * exports from sweph.c
  ****************************/
 
-ext_def(char *) swe_version(char *);
-ext_def(char *) swe_get_library_path(char *);
+ext_def(char*) swe_version(char*);
+ext_def(char*) swe_get_library_path(char*);
 
 /* planets, moon, nodes etc. */
 ext_def(int32)
-    swe_calc(double tjd, int ipl, int32 iflag, double *xx, char *serr);
+    swe_calc(double tjd, int ipl, int32 iflag, double* xx, char* serr);
 
 ext_def(int32)
-    swe_calc_ut(double tjd_ut, int32 ipl, int32 iflag, double *xx, char *serr);
+    swe_calc_ut(double tjd_ut, int32 ipl, int32 iflag, double* xx, char* serr);
 
 ext_def(int32) swe_calc_pctr(double tjd, int32 ipl, int32 iplctr, int32 iflag,
-                             double *xxret, char *serr);
+                             double* xxret, char* serr);
 
 /* fixed stars */
 ext_def(int32)
-    swe_fixstar(char *star, double tjd, int32 iflag, double *xx, char *serr);
+    swe_fixstar(char* star, double tjd, int32 iflag, double* xx, char* serr);
 
-ext_def(int32) swe_fixstar_ut(char *star, double tjd_ut, int32 iflag,
-                              double *xx, char *serr);
+ext_def(int32) swe_fixstar_ut(char* star, double tjd_ut, int32 iflag,
+                              double* xx, char* serr);
 
-ext_def(int32) swe_fixstar_mag(char *star, double *mag, char *serr);
+ext_def(int32) swe_fixstar_mag(char* star, double* mag, char* serr);
 
 ext_def(int32)
-    swe_fixstar2(char *star, double tjd, int32 iflag, double *xx, char *serr);
+    swe_fixstar2(char* star, double tjd, int32 iflag, double* xx, char* serr);
 
-ext_def(int32) swe_fixstar2_ut(char *star, double tjd_ut, int32 iflag,
-                               double *xx, char *serr);
+ext_def(int32) swe_fixstar2_ut(char* star, double tjd_ut, int32 iflag,
+                               double* xx, char* serr);
 
-ext_def(int32) swe_fixstar2_mag(char *star, double *mag, char *serr);
+ext_def(int32) swe_fixstar2_mag(char* star, double* mag, char* serr);
 
 /* close Swiss Ephemeris */
 ext_def(void) swe_close(void);
 
 /* set directory path of ephemeris files */
-ext_def(void) swe_set_ephe_path(char *path);
+ext_def(void) swe_set_ephe_path(char* path);
 
 /* set file name of JPL file */
-ext_def(void) swe_set_jpl_file(char *fname);
+ext_def(void) swe_set_jpl_file(char* fname);
 
 /* get planet name */
-ext_def(char *) swe_get_planet_name(int ipl, char *spname);
+ext_def(char*) swe_get_planet_name(int ipl, char* spname);
 
 /* set geographic position of observer */
 ext_def(void) swe_set_topo(double geolon, double geolat, double geoalt);
@@ -795,15 +796,15 @@ ext_def(void) swe_set_sid_mode(int32 sid_mode, double t0, double ayan_t0);
 
 /* get ayanamsa */
 ext_def(int32)
-    swe_get_ayanamsa_ex(double tjd_et, int32 iflag, double *daya, char *serr);
-ext_def(int32) swe_get_ayanamsa_ex_ut(double tjd_ut, int32 iflag, double *daya,
-                                      char *serr);
+    swe_get_ayanamsa_ex(double tjd_et, int32 iflag, double* daya, char* serr);
+ext_def(int32) swe_get_ayanamsa_ex_ut(double tjd_ut, int32 iflag, double* daya,
+                                      char* serr);
 ext_def(double) swe_get_ayanamsa(double tjd_et);
 ext_def(double) swe_get_ayanamsa_ut(double tjd_ut);
 
-ext_def(const char *) swe_get_ayanamsa_name(int32 isidmode);
-ext_def(const char *) swe_get_current_file_data(int ifno, double *tfstart,
-                                                double *tfend, int *denum);
+ext_def(const char*) swe_get_ayanamsa_name(int32 isidmode);
+ext_def(const char*) swe_get_current_file_data(int ifno, double* tfstart,
+                                               double* tfend, int* denum);
 
 /*ext_def(void) swe_set_timeout(int32 tsec);*/
 
@@ -815,165 +816,165 @@ ext_def(int)
     swe_date_conversion(int y, int m, int d, /* year, month, day */
                         double utime, /* universal time in hours (decimal) */
                         char c,       /* calendar g[regorian]|j[ulian] */
-                        double *tjd);
+                        double* tjd);
 
 ext_def(double)
     swe_julday(int year, int month, int day, double hour, int gregflag);
 
-ext_def(void) swe_revjul(double jd, int gregflag, int *jyear, int *jmon,
-                         int *jday, double *jut);
+ext_def(void) swe_revjul(double jd, int gregflag, int* jyear, int* jmon,
+                         int* jday, double* jut);
 
 ext_def(int32) swe_utc_to_jd(int32 iyear, int32 imonth, int32 iday, int32 ihour,
                              int32 imin, double dsec, int32 gregflag,
-                             double *dret, char *serr);
+                             double* dret, char* serr);
 
 ext_def(void)
-    swe_jdet_to_utc(double tjd_et, int32 gregflag, int32 *iyear, int32 *imonth,
-                    int32 *iday, int32 *ihour, int32 *imin, double *dsec);
+    swe_jdet_to_utc(double tjd_et, int32 gregflag, int32* iyear, int32* imonth,
+                    int32* iday, int32* ihour, int32* imin, double* dsec);
 
 ext_def(void)
-    swe_jdut1_to_utc(double tjd_ut, int32 gregflag, int32 *iyear, int32 *imonth,
-                     int32 *iday, int32 *ihour, int32 *imin, double *dsec);
+    swe_jdut1_to_utc(double tjd_ut, int32 gregflag, int32* iyear, int32* imonth,
+                     int32* iday, int32* ihour, int32* imin, double* dsec);
 
 ext_def(void)
     swe_utc_time_zone(int32 iyear, int32 imonth, int32 iday, int32 ihour,
                       int32 imin, double dsec, double d_timezone,
-                      int32 *iyear_out, int32 *imonth_out, int32 *iday_out,
-                      int32 *ihour_out, int32 *imin_out, double *dsec_out);
+                      int32* iyear_out, int32* imonth_out, int32* iday_out,
+                      int32* ihour_out, int32* imin_out, double* dsec_out);
 
 /****************************
  * exports from swehouse.c
  ****************************/
 
 ext_def(int) swe_houses(double tjd_ut, double geolat, double geolon, int hsys,
-                        double *cusps, double *ascmc);
+                        double* cusps, double* ascmc);
 
 ext_def(int)
     swe_houses_ex(double tjd_ut, int32 iflag, double geolat, double geolon,
-                  int hsys, double *cusps, double *ascmc);
+                  int hsys, double* cusps, double* ascmc);
 
 ext_def(int)
     swe_houses_ex2(double tjd_ut, int32 iflag, double geolat, double geolon,
-                   int hsys, double *cusps, double *ascmc, double *cusp_speed,
-                   double *ascmc_speed, char *serr);
+                   int hsys, double* cusps, double* ascmc, double* cusp_speed,
+                   double* ascmc_speed, char* serr);
 
 ext_def(int) swe_houses_armc(double armc, double geolat, double eps, int hsys,
-                             double *cusps, double *ascmc);
+                             double* cusps, double* ascmc);
 
 ext_def(int)
     swe_houses_armc_ex2(double armc, double geolat, double eps, int hsys,
-                        double *cusps, double *ascmc, double *cusp_speed,
-                        double *ascmc_speed, char *serr);
+                        double* cusps, double* ascmc, double* cusp_speed,
+                        double* ascmc_speed, char* serr);
 
 ext_def(double) swe_house_pos(double armc, double geolat, double eps, int hsys,
-                              double *xpin, char *serr);
+                              double* xpin, char* serr);
 
-ext_def(char *) swe_house_name(int hsys);
+ext_def(char*) swe_house_name(int hsys);
 
 /****************************
  * exports from swecl.c
  ****************************/
 
 ext_def(int32)
-    swe_gauquelin_sector(double t_ut, int32 ipl, char *starname, int32 iflag,
-                         int32 imeth, double *geopos, double atpress,
-                         double attemp, double *dgsect, char *serr);
+    swe_gauquelin_sector(double t_ut, int32 ipl, char* starname, int32 iflag,
+                         int32 imeth, double* geopos, double atpress,
+                         double attemp, double* dgsect, char* serr);
 
 /* computes geographic location and attributes of solar
  * eclipse at a given tjd */
-ext_def(int32) swe_sol_eclipse_where(double tjd, int32 ifl, double *geopos,
-                                     double *attr, char *serr);
+ext_def(int32) swe_sol_eclipse_where(double tjd, int32 ifl, double* geopos,
+                                     double* attr, char* serr);
 
 ext_def(int32)
-    swe_lun_occult_where(double tjd, int32 ipl, char *starname, int32 ifl,
-                         double *geopos, double *attr, char *serr);
+    swe_lun_occult_where(double tjd, int32 ipl, char* starname, int32 ifl,
+                         double* geopos, double* attr, char* serr);
 
 /* computes attributes of a solar eclipse for given tjd, geolon, geolat */
-ext_def(int32) swe_sol_eclipse_how(double tjd, int32 ifl, double *geopos,
-                                   double *attr, char *serr);
+ext_def(int32) swe_sol_eclipse_how(double tjd, int32 ifl, double* geopos,
+                                   double* attr, char* serr);
 
 /* finds time of next local eclipse */
 ext_def(int32)
-    swe_sol_eclipse_when_loc(double tjd_start, int32 ifl, double *geopos,
-                             double *tret, double *attr, int32 backward,
-                             char *serr);
+    swe_sol_eclipse_when_loc(double tjd_start, int32 ifl, double* geopos,
+                             double* tret, double* attr, int32 backward,
+                             char* serr);
 
 ext_def(int32)
-    swe_lun_occult_when_loc(double tjd_start, int32 ipl, char *starname,
-                            int32 ifl, double *geopos, double *tret,
-                            double *attr, int32 backward, char *serr);
+    swe_lun_occult_when_loc(double tjd_start, int32 ipl, char* starname,
+                            int32 ifl, double* geopos, double* tret,
+                            double* attr, int32 backward, char* serr);
 
 /* finds time of next eclipse globally */
 ext_def(int32)
     swe_sol_eclipse_when_glob(double tjd_start, int32 ifl, int32 ifltype,
-                              double *tret, int32 backward, char *serr);
+                              double* tret, int32 backward, char* serr);
 
 /* finds time of next occultation globally */
 ext_def(int32)
-    swe_lun_occult_when_glob(double tjd_start, int32 ipl, char *starname,
-                             int32 ifl, int32 ifltype, double *tret,
-                             int32 backward, char *serr);
+    swe_lun_occult_when_glob(double tjd_start, int32 ipl, char* starname,
+                             int32 ifl, int32 ifltype, double* tret,
+                             int32 backward, char* serr);
 
 /* computes attributes of a lunar eclipse for given tjd */
-ext_def(int32) swe_lun_eclipse_how(double tjd_ut, int32 ifl, double *geopos,
-                                   double *attr, char *serr);
+ext_def(int32) swe_lun_eclipse_how(double tjd_ut, int32 ifl, double* geopos,
+                                   double* attr, char* serr);
 
 ext_def(int32) swe_lun_eclipse_when(double tjd_start, int32 ifl, int32 ifltype,
-                                    double *tret, int32 backward, char *serr);
+                                    double* tret, int32 backward, char* serr);
 
 ext_def(int32)
-    swe_lun_eclipse_when_loc(double tjd_start, int32 ifl, double *geopos,
-                             double *tret, double *attr, int32 backward,
-                             char *serr);
+    swe_lun_eclipse_when_loc(double tjd_start, int32 ifl, double* geopos,
+                             double* tret, double* attr, int32 backward,
+                             char* serr);
 
 /* planetary phenomena */
 ext_def(int32)
-    swe_pheno(double tjd, int32 ipl, int32 iflag, double *attr, char *serr);
+    swe_pheno(double tjd, int32 ipl, int32 iflag, double* attr, char* serr);
 
-ext_def(int32) swe_pheno_ut(double tjd_ut, int32 ipl, int32 iflag, double *attr,
-                            char *serr);
+ext_def(int32) swe_pheno_ut(double tjd_ut, int32 ipl, int32 iflag, double* attr,
+                            char* serr);
 
 ext_def(double)
     swe_refrac(double inalt, double atpress, double attemp, int32 calc_flag);
 
 ext_def(double) swe_refrac_extended(double inalt, double geoalt, double atpress,
                                     double attemp, double lapse_rate,
-                                    int32 calc_flag, double *dret);
+                                    int32 calc_flag, double* dret);
 
 ext_def(void) swe_set_lapse_rate(double lapse_rate);
 
 ext_def(void)
-    swe_azalt(double tjd_ut, int32 calc_flag, double *geopos, double atpress,
-              double attemp, double *xin, double *xaz);
+    swe_azalt(double tjd_ut, int32 calc_flag, double* geopos, double atpress,
+              double attemp, double* xin, double* xaz);
 
-ext_def(void) swe_azalt_rev(double tjd_ut, int32 calc_flag, double *geopos,
-                            double *xin, double *xout);
+ext_def(void) swe_azalt_rev(double tjd_ut, int32 calc_flag, double* geopos,
+                            double* xin, double* xout);
 
 ext_def(int32)
-    swe_rise_trans_true_hor(double tjd_ut, int32 ipl, char *starname,
-                            int32 epheflag, int32 rsmi, double *geopos,
+    swe_rise_trans_true_hor(double tjd_ut, int32 ipl, char* starname,
+                            int32 epheflag, int32 rsmi, double* geopos,
                             double atpress, double attemp, double horhgt,
-                            double *tret, char *serr);
+                            double* tret, char* serr);
 
 ext_def(int32)
-    swe_rise_trans(double tjd_ut, int32 ipl, char *starname, int32 epheflag,
-                   int32 rsmi, double *geopos, double atpress, double attemp,
-                   double *tret, char *serr);
+    swe_rise_trans(double tjd_ut, int32 ipl, char* starname, int32 epheflag,
+                   int32 rsmi, double* geopos, double atpress, double attemp,
+                   double* tret, char* serr);
 
 ext_def(int32) swe_nod_aps(double tjd_et, int32 ipl, int32 iflag, int32 method,
-                           double *xnasc, double *xndsc, double *xperi,
-                           double *xaphe, char *serr);
+                           double* xnasc, double* xndsc, double* xperi,
+                           double* xaphe, char* serr);
 
 ext_def(int32) swe_nod_aps_ut(double tjd_ut, int32 ipl, int32 iflag,
-                              int32 method, double *xnasc, double *xndsc,
-                              double *xperi, double *xaphe, char *serr);
+                              int32 method, double* xnasc, double* xndsc,
+                              double* xperi, double* xaphe, char* serr);
 ext_def(int32) swe_get_orbital_elements(double tjd_et, int32 ipl, int32 iflag,
-                                        double *dret, char *serr);
+                                        double* dret, char* serr);
 
 ext_def(int32)
     swe_orbit_max_min_true_distance(double tjd_et, int32 ipl, int32 iflag,
-                                    double *dmax, double *dmin, double *dtrue,
-                                    char *serr);
+                                    double* dmax, double* dmin, double* dtrue,
+                                    char* serr);
 
 /****************************
  * exports from swephlib.c
@@ -981,14 +982,14 @@ ext_def(int32)
 
 /* delta t */
 ext_def(double) swe_deltat(double tjd);
-ext_def(double) swe_deltat_ex(double tjd, int32 iflag, char *serr);
+ext_def(double) swe_deltat_ex(double tjd, int32 iflag, char* serr);
 
 /* equation of time */
-ext_def(int32) swe_time_equ(double tjd, double *te, char *serr);
+ext_def(int32) swe_time_equ(double tjd, double* te, char* serr);
 ext_def(int32)
-    swe_lmt_to_lat(double tjd_lmt, double geolon, double *tjd_lat, char *serr);
+    swe_lmt_to_lat(double tjd_lmt, double geolon, double* tjd_lat, char* serr);
 ext_def(int32)
-    swe_lat_to_lmt(double tjd_lat, double geolon, double *tjd_lmt, char *serr);
+    swe_lat_to_lmt(double tjd_lat, double geolon, double* tjd_lmt, char* serr);
 
 /* sidereal time */
 ext_def(double) swe_sidtime0(double tjd_ut, double eps, double nut);
@@ -996,8 +997,8 @@ ext_def(double) swe_sidtime(double tjd_ut);
 ext_def(void) swe_set_interpolate_nut(AS_BOOL do_interpolate);
 
 /* coordinate transformation polar -> polar */
-ext_def(void) swe_cotrans(double *xpo, double *xpn, double eps);
-ext_def(void) swe_cotrans_sp(double *xpo, double *xpn, double eps);
+ext_def(void) swe_cotrans(double* xpo, double* xpn, double eps);
+ext_def(void) swe_cotrans_sp(double* xpo, double* xpn, double eps);
 
 /* tidal acceleration to be used in swe_deltat() */
 ext_def(double) swe_get_tid_acc(void);
@@ -1013,8 +1014,8 @@ ext_def(double) swe_rad_midp(double x1, double x0);
 ext_def(double) swe_deg_midp(double x1, double x0);
 
 ext_def(void)
-    swe_split_deg(double ddeg, int32 roundflag, int32 *ideg, int32 *imin,
-                  int32 *isec, double *dsecfr, int32 *isgn);
+    swe_split_deg(double ddeg, int32 roundflag, int32* ideg, int32* imin,
+                  int32* isec, double* dsecfr, int32* isgn);
 
 /*******************************************************
  * other functions from swephlib.c;
@@ -1045,11 +1046,11 @@ ext_def(int32) swe_d2l(double x);
 /* monday = 0, ... sunday = 6 */
 ext_def(int) swe_day_of_week(double jd);
 
-ext_def(char *) swe_cs2timestr(CSEC t, int sep, AS_BOOL suppressZero, char *a);
+ext_def(char*) swe_cs2timestr(CSEC t, int sep, AS_BOOL suppressZero, char* a);
 
-ext_def(char *) swe_cs2lonlatstr(CSEC t, char pchar, char mchar, char *s);
+ext_def(char*) swe_cs2lonlatstr(CSEC t, char pchar, char mchar, char* s);
 
-ext_def(char *) swe_cs2degstr(CSEC t, char *a);
+ext_def(char*) swe_cs2degstr(CSEC t, char* a);
 
 #endif /* #ifndef _SWEDLL_H */
 
