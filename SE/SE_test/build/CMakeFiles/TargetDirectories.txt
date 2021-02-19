@@ -1,3 +1,0 @@
-/home/eparubets/Sublime_test/SE/SE_test/build/CMakeFiles/rebuild_cache.dir
-/home/eparubets/Sublime_test/SE/SE_test/build/CMakeFiles/edit_cache.dir
-/home/eparubets/Sublime_test/SE/SE_test/build/CMakeFiles/se.dir

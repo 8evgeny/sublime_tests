@@ -571,9 +571,9 @@ static char* infoexamp =
     list longitude, latitude and geocentric distance.\n";
 /**************************************************************/
 
-#include "src/sweph.h"
-#include "src/swephexp.h" /* this includes  "sweodef.h" */
-#include "src/swephlib.h"
+#include "sweph.h"
+#include "swephexp.h" /* this includes  "sweodef.h" */
+#include "swephlib.h"
 
 /*
  * programmers warning: It looks much worse than it is!

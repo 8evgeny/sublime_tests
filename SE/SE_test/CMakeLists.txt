@@ -5,6 +5,7 @@ project(${name} LANGUAGES CXX)
 find_library(eph ../SE_build_lib/build/)
 add_executable(${PROJECT_NAME}
         se.cpp
+        include/sweph.c
     )
 target_include_directories(${PROJECT_NAME} PUBLIC eph)
 target_include_directories(${PROJECT_NAME} PUBLIC include)

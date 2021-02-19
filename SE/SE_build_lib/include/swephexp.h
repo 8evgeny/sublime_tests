@@ -422,9 +422,9 @@ extern "C" {
 #define SE_EPHE_PATH ":ephe:"
 #else
 //#  define SE_EPHE_PATH    ".:/users/ephe2/:/users/ephe/"
-#define SE_EPHE_PATH                                                     \
-  ".:/home/eparubets/Sublime_test/SE/SE_build_lib/eph/:/home/eparubets/" \
-  "Sublime_tests/SE/"                                                    \
+#define SE_EPHE_PATH                                           \
+  ".:/home/jhon/Sublime_test/SE/SE_build_lib/eph/:/home/jhon/" \
+  "Sublime_tests/SE/"                                          \
   "SE_build_lib/eph/"
 /* At Astrodienst, we maintain two ephemeris areas for
    the thousands of asteroid files:
