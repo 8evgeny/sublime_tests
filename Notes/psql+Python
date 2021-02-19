@@ -1,0 +1,2 @@
+2. Создайте расширение PL/Python, выполнив следующую команду в psql:
+psql -U postgres  -d sadko -c "CREATE EXTENSION plpythonu"

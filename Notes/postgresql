@@ -97,5 +97,21 @@ Rename the databases cluster directory, and create an empty one:
 # mv /var/lib/postgres/data /var/lib/postgres/olddata
 # mkdir /var/lib/postgres/data /var/lib/postgres/tmp
 # chown postgres:postgres /var/lib/postgres/data /var/lib/postgres/tmp
+
 [postgres]$ cd /var/lib/postgres/tmp
 [postgres]$ initdb -D /var/lib/postgres/data
+
+настройка доступа к postgresql без пароля извне
+Допустим, есть комплекс 10.8.1.93
+Правим на нем:
+sudo mcedit /var/lib/postgres/data/pg_hba.conf
+добавить:
+host    all             all             0.0.0.0/0               trust
+sudo mcedit /var/lib/postgres/data/postgresql.conf
+listen_addresses='*'
+После этого со своей машины можно выполнять скрипты к базам комплекса напрямую.
+например:
+psql -U postgres -h 10.8.1.93 -d sadko -c "select count(*) from plates"
+
+развернуть дамп
+psql -U postgres -d sadko_93_20210215 -f ./sadko.dump
