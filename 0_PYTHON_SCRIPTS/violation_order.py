@@ -39,10 +39,11 @@ try:
     file.write("\n")
     for row in rows:
         file.write(str(row[0])+'\t\t\t\t\t'+str(row[1])+'\n')
-    file.close()
     print("Результаты запроса сохранены в файл: ",path_to_write+"newfile.txt")
 except psycopg2.Error as e:
         print("Ошибка запроса:\n", e.args[0])
 else:
     connection.commit()
     connection.close()
+
+
