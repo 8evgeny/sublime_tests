@@ -1,5 +1,4 @@
-path_to_write = "/home/jhon/Desktop/results/"
-
+path_to_write = "lists_violations/"
 from datetime import datetime
 time = datetime.now()
 code_violation = 0
@@ -18,26 +17,34 @@ try:
     )
     cur = connection.cursor()
     print("Подключение к комплексу "+str(host)+" - OK.\n")
-    codes = "SELECT DISTINCT violation_code from violation_order"
+    codes = "SELECT DISTINCT violation_code from violation_order ORDER BY violation_code"
     cur.execute(codes)
     codes_in_DB = cur.fetchall()
     for code in codes_in_DB:
         count_violations = "SELECT count(*) from violation_order where violation_code  = " + str(code)[1:-2]
         cur.execute(count_violations)
         row = cur.fetchall()
-        print("В базе данных нарушений с кодом",str(code)[1:-2]," -", str(row[0])[1:-2])
+        if str(code)[1:-2] == '0':
+            print("В базе данных проездов -", str(row[0])[1:-2])
+        else:
+            print("В базе данных нарушений с кодом",str(code)[1:-2]," -", str(row[0])[1:-2])
 
         reqest_violation = '''
         SELECT
         uid,fixation_timestamp
         FROM violation_order
-        where violation_code  = 
+        where violation_code  =
         '''\
         + str(code)[1:-2] + \
         '''
-        ORDER BY fixation_timestamp 
+        ORDER BY fixation_timestamp
         '''
-        name = path_to_write + str(host) + "_" + str(time.year) + "." + str(time.month) + "." + \
+        if str(code)[1:-2] == '0':
+            name = path_to_write + str(host) + "_" + str(time.year) + "." + str(time.month) + "." + \
+            str(time.day) + "_" + str(time.hour) + "." + str(time.minute) + "." + \
+            str(time.second) + "_" + "passeges.csv"
+        else:
+            name = path_to_write + str(host) + "_" + str(time.year) + "." + str(time.month) + "." + \
             str(time.day) + "_" + str(time.hour) + "." + str(time.minute) + "." + \
             str(time.second) + "_" + "violations_code" + str(code)[1:-2]+".csv"
         cur.execute(reqest_violation)

@@ -5,7 +5,7 @@ time = datetime.now()
 code_violation = 0
 # print ("\n\nВведите адрес хоста")
 # host = input()
-host = "localhost"
+host = "10.8.1.93"
 
 import psycopg2
 try:
@@ -37,7 +37,7 @@ try:
         '''
         ORDER BY fixation_timestamp 
         '''
-        name = path_to_write + str(time.year) + "." + str(time.month) + "." + \
+        name = path_to_write + str(host) + "_" + str(time.year) + "." + str(time.month) + "." + \
             str(time.day) + "_" + str(time.hour) + "." + str(time.minute) + "." + \
             str(time.second) + "_" + "violations_code" + str(code)[1:-2]+".csv"
         cur.execute(reqest_violation)
