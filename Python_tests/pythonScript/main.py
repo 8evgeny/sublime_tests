@@ -37,7 +37,7 @@ try:
         '''
         ORDER BY fixation_timestamp 
         '''
-        name = path_to_write + str(time.year) + "." + str(time.month) + "." + \
+        name = path_to_write + str(host) + "_" + str(time.year) + "." + str(time.month) + "." + \
             str(time.day) + "_" + str(time.hour) + "." + str(time.minute) + "." + \
             str(time.second) + "_" + "violations_code" + str(code)[1:-2]+".csv"
         cur.execute(reqest_violation)
