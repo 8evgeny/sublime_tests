@@ -1,11 +1,11 @@
 path_to_write = "lists_violations/"
-from datetime import datetime
+# import calendar
+from datetime import datetime , timedelta
 time = datetime.now()
-code_violation = 0
-print ("\n\nВведите адрес хоста")
-host = input()
+# print ("\n\nВведите адрес хоста")
+# host = input()
 # host = "localhost"
-
+host = "10.8.1.93"
 import psycopg2
 try:
     connection = psycopg2.connect(
@@ -17,6 +17,39 @@ try:
     )
     cur = connection.cursor()
     print("Подключение к комплексу "+str(host)+" - OK.\n")
+    print("Выберите интервал:")
+    print("0 - все записи")
+    print("1 - за год")
+    print("2 - за 3 месяца")
+    print("3 - за месяц")
+    print("4 - за неделю")
+    print("5 - за 3 суток")
+    print("6 - за сутки")
+    print("7 - за 3 часа")
+    print("8 - за 1 час")
+    print("9 - за 15 минут\n")
+
+    if interval == 1:
+        t0 = time - timedelta(days=365)
+    elif  interval == 2:
+        t0 = time - timedelta(days=90)
+    elif  interval == 3:
+        t0 = time - timedelta(days=30)
+    elif  interval == 4:
+        t0 = time - timedelta(days=7)
+    elif  interval == 5:
+        t0 = time - timedelta(days=3)
+    elif  interval == 6:
+        t0 = time - timedelta(days=1)
+    elif  interval == 7:
+        t0 = time - timedelta(hours=3)
+    elif  interval == 8:
+        t0 = time - timedelta(hours=1)
+    elif  interval == 9:
+        t0 = time - timedelta(minutes=15)
+    else:
+        t0 = time - timedelta(days=10000)
+        
     codes = "SELECT DISTINCT violation_code from violation_order ORDER BY violation_code"
     cur.execute(codes)
     codes_in_DB = cur.fetchall()
