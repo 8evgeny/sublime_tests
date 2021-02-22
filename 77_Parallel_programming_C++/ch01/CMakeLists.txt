@@ -1,6 +1,19 @@
+
+include(CMakeForceCompiler)
+
+
 FIND_PACKAGE( TBB REQUIRED COMPONENTS tbb tbbmalloc tbbmalloc_proxy
     tbb_preview
 )
+set( -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc)
+IF (MY_COMPILER_OPTION STREQUAL "Intel")
+  MESSAGE(STATUS "** Compiling with Intel settings **")
+  SET(CMAKE_CXX_COMPILER "icpc")
+  SET(CMAKE_CXX_FLAGS_RELEASE "-O3 -w")
+  SET(CMAKE_CXX_FLAGS_DEBUG "-g")
+ENDIF ()
+
+
 include_directories(${TBB_DIR})
 SET(GXX_TBB_FLAGS    "-ltbb")
 set (CMAKE_CXX_FLAGS ${GXX_TBB_FLAGS})

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/2_2_ожидание_завершения_потока.dir/listing_2.2.cpp.o -o 2_2_ожидание_завершения_потока  -lpthread 

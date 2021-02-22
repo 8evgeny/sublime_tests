@@ -1,0 +1,7 @@
+set(CMAKE_CXX_STANDARD 17)
+project(fo_lambda)
+add_executable(${PROJECT_NAME}2 lambda2.cpp)
+add_executable(${PROJECT_NAME}3 lambda3.cpp)
+add_executable(${PROJECT_NAME}4 lambda4.cpp)
+add_executable(${PROJECT_NAME}5 lambda5.cpp)
+add_executable(${PROJECT_NAME}6 lambda6.cpp)

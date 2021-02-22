@@ -1,0 +1,5 @@
+/home/jhon/Sublime_tests/72_Parallel_programming/build/CMakeFiles/rebuild_cache.dir
+/home/jhon/Sublime_tests/72_Parallel_programming/build/CMakeFiles/edit_cache.dir
+/home/jhon/Sublime_tests/72_Parallel_programming/build/CMakeFiles/2_1.dir
+/home/jhon/Sublime_tests/72_Parallel_programming/build/CMakeFiles/2_2_ожидание_завершения_потока.dir
+/home/jhon/Sublime_tests/72_Parallel_programming/build/CMakeFiles/1_1_helloworld.dir
