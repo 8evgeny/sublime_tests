@@ -105,5 +105,5 @@ try:
 except psycopg2.Error as e:
         print("Ошибка запроса:\n", e.args[0])
 else:
-    connection.commit()
+    # connection.commit()
     connection.close()
