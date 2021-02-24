@@ -322,3 +322,17 @@ alias gbda='git branch --no-color --merged | command grep -vE "^(\+|\*|\s*(maste
 
 Отправляем в мусор старые ветки и лишние коммиты
 git fetch --all --prune
+
+Вот несколько моих любимых псевдонимов команд, которыми я пользуюсь ежедневно:
+gst - git status 
+gc - git commit 
+gaa - git add --all 
+gco - git checkout 
+gp - git push 
+gl - git pull 
+gcb - git checkout -b 
+gm - git merge 
+grb - git rebase 
+gpsup - git push --set-upstream origin $(current_branch) 
+gbda - git branch --no-color --merged | command grep -vE "^(\+|\*|\s*(master|develop|dev)\s*$)" | command xargs -n 1 git branch -d 
+gfa - git fetch --all --prune
