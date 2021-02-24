@@ -84,3 +84,9 @@ psql -U postgres -h 10.8.1.93 -d sadko -c "select count(*) from plates"
 
 развернуть дамп
 psql -U postgres -d sadko_93_20210215 -f ./sadko.dump
+
+alias con40='sshpass -p a40-vbersi34 ssh alager@10.99.40.108'
+
+sshfs alager@10.99.40.108:/ /home/eparubets/share/novosib_40/
+
+alias fix_vpn='sudo systemctl restart openfortivpn && sudo systemctl restart openvpn-client@client'
