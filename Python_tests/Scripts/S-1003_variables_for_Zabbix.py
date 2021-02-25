@@ -27,8 +27,6 @@ path_3 = '/alager/sadko/build/data/kris/passage'
 # path_4 = '/home/eparubets/codd/Sync/v4'
 path_4 = '/alager/sadko/build/data/kris/'
 
-from datetime import datetime,timedelta
-time = datetime.now()
 host = "localhost"
 
 def scanDir(patch,variable):
