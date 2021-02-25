@@ -6,7 +6,6 @@
 # Постановления и проезды (забирать sql-запросом)
 #v5 db_violations_total- число сгенерированных постановлений по базе – всего,
 #v6 db_passages_total- число проездов по базе – всего.
-
 import os
 v1 = "kris_violations_to_send"
 v2 = "kris_violations_sent"
@@ -15,19 +14,22 @@ v4 = "kris_passages_bck"
 v5 = "db_violations_total"
 v6 = "db_passages_total"
 
-# zabbix_path = "/home/eparubets/tmp/zabbix_shooter/"
-zabbix_path = "/home/tmp/zabbix_shooter/"
-
-# path_1 = '/home/eparubets/codd/Sync/v1'
-path_1 = '/home/codd/Sync/violation'
-# path_2 = '/home/eparubets/codd/Sync/v2'
-path_2 = '/home/codd/Sync/.stversions/violation'
-# path_3 = '/home/eparubets/codd/Sync/v3'
-path_3 = '/alager/sadko/build/data/kris/passage'
-# path_4 = '/home/eparubets/codd/Sync/v4'
-path_4 = '/alager/sadko/build/data/kris/'
-
+zabbix_path = "/home/eparubets/tmp/zabbix_shooter/"
+# zabbix_path = "/home/tmp/zabbix_shooter/"
+path_1 = '/home/eparubets/codd/Sync/v1'
+# path_1 = '/home/codd/Sync/violation'
+path_2 = '/home/eparubets/codd/Sync/v2'
+# path_2 = '/home/codd/Sync/.stversions/violation'
+path_3 = '/home/eparubets/codd/Sync/v3'
+# path_3 = '/alager/sadko/build/data/kris/passage'
+path_4 = '/home/eparubets/codd/Sync/v4'
+# path_4 = '/alager/sadko/build/data/kris/'
 host = "localhost"
+
+def fileWrite(patch,value):
+    file = open(patch, "w")
+    file.write(str(value))
+    file.close()
 
 def scanDir(patch,variable):
     variable_path = zabbix_path + variable
@@ -36,9 +38,7 @@ def scanDir(patch,variable):
         for file in files:
             # print(file)
             value  +=1
-    file = open(variable_path, "w")
-    file.write(str(value))
-    file.close()
+    fileWrite(variable_path,str(value))
     print(variable," = ", value)
 
 scanDir(path_1,v1)
@@ -56,26 +56,21 @@ try:
       port="5432"
     )
     cur = connection.cursor()
-    # print("\nподключение к БД - OK.")
-
     count_violations = \
     "SELECT count(*) FROM violation_order "\
     "WHERE violation_code  > 0 "
     cur.execute(count_violations)
     row = cur.fetchall()
     print("нарушений в базе -", str(row[0])[1:-2])
-    file = open(zabbix_path + v5, "w")
-    file.write(str(row[0])[1:-2])
-    file.close()
+    fileWrite(zabbix_path + v5,str(row[0])[1:-2])
+
     count_passeges = \
     "SELECT count(*) FROM violation_order "\
     "WHERE violation_code  = 0 "
     cur.execute(count_passeges)
     row = cur.fetchall()
     print("проездов в базе -", str(row[0])[1:-2])
-    file = open(zabbix_path + v6, "w")
-    file.write(str(row[0])[1:-2])
-    file.close()
+    fileWrite(zabbix_path + v6, str(row[0])[1:-2])
 except psycopg2.Error as e:
         print("Ошибка запроса:\n", e.args[0])
 else:
