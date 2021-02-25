@@ -90,3 +90,18 @@ alias con40='sshpass -p a40-vbersi34 ssh alager@10.99.40.108'
 sshfs alager@10.99.40.108:/ /home/eparubets/share/novosib_40/
 
 alias fix_vpn='sudo systemctl restart openfortivpn && sudo systemctl restart openvpn-client@client'
+
+
+
+std::string exec(const char* cmd) {
+  std::array<char, 128> buffer;
+  std::string result;
+  std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
+  if (!pipe) {
+    throw std::runtime_error("popen() failed!");
+  }
+  while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+    result += buffer.data();
+  }
+  return result;
+}
