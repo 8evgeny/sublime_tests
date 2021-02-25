@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="94d244f9-978c-42bc-b860-124f9f6fee8a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Scripts/S-1003_variables_for_Zabbix.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Scripts/S-1003_variables_for_Zabbix.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Work/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Work/.idea/csv-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Work/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Work/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

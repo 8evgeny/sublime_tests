@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ec3842b7-26f3-4811-afa8-3dc3cc1c8aed" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Scripts/S-1003_variables_for_Zabbix.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Scripts/S-1003_variables_for_Zabbix.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pythonProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pythonProject/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +26,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Scripts/S-1003_variables_for_Zabbix.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../4_Sandbox" />
   </component>
   <component name="RunManager">
     <configuration name="S-1003_variables_for_Zabbix" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
