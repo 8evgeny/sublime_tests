@@ -21,4 +21,7 @@ add_executable(${PROJECT_NAME}_4_any_optional_variant any_optional_variant.cpp)
 add_executable(${PROJECT_NAME}_5_fallthrough fallthrough.cpp)
 add_executable(${PROJECT_NAME}_6_nodiscard nodiscard.cpp)
 add_executable(${PROJECT_NAME}_7_mayble_unused mayble_unused.cpp)
-#еще 4 примера в репозитории
+add_executable(${PROJECT_NAME}_8_non_type_tmpl_param_auto non_type_tmpl_param_auto.cpp)
+add_executable(${PROJECT_NAME}_9_cls_tmp_arg_deduction cls_tmp_arg_deduction.cpp)
+add_executable(${PROJECT_NAME}_10_decomposing decomposing.cpp)
+add_executable(${PROJECT_NAME}_11_tuple_apply tuple_apply.cpp)
