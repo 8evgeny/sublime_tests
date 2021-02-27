@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <iostream>
 
 using namespace std;
@@ -7,10 +7,10 @@ int main()
 {
 	int width = 10, height = 5;
 
-	// Динамическая инициализация переменной
+	// Р”РёРЅР°РјРёС‡РµСЃРєР°СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїРµСЂРµРјРµРЅРЅРѕР№
 	int perimetr = width * height;
 
-	// Задержка 
+	// Р—Р°РґРµСЂР¶РєР° 
 	cin.get();
     return 0;
 }

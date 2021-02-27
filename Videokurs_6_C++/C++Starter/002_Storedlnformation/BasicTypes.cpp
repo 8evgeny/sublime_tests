@@ -5,89 +5,86 @@
 
 using namespace std;
 
-int main()
-{
-	#pragma region ЦЕЛЫЕ ЧИСЛА
-    
-	//----------------- 16 bit -----------------
-	// Типу short соответствуют типы short int, signed short, signed short int 
-	// Целое со знаком
-	
-	short		a = -32768;
-	short int	b = +32767;
-	
-	// Целое без знака
-	
-	unsigned short		c = 0;
-	unsigned short int	d = 65535;
+int main() {
+  //#pragma region Г·в‰€Р‹Сџв‰€ вЂћВ»вЂ”Р‹С
 
-	//----------------- 32 bit -----------------
-	// Типу int соответствуют типы signed, signed int
-	// Целое со знаком
+  //----------------- 16 bit -----------------
+  // С‚РёРїСѓ short СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‚ С‚РёРїС‹ short int, signed short, signed short int
+  // С†РµР»РѕРµ СЃРѕ Р·РЅР°РєРѕРј
 
-	int		e = -2147483648;
-	int		f = +2147483647;
+  short a = -32768;
+  short int b = +32767;
 
-	// Типу unsigned соответствуют типы unsigned int, unsigned, unsigned int
-	// Целое без знака
+  // С†РµР»РѕРµ Р±РµР· Р·РЅР°РєР°
 
-	unsigned		g = 0;
-	unsigned int	h = 4294967295;
+  unsigned short c = 0;
+  unsigned short int d = 65535;
 
-	//----------------- 64 bit -----------------
-	// Типу long long соответствуют типы long int, signed long, signed long int 
-	// Целое со знаком
+  //----------------- 32 bit -----------------
+  // С‚РёРїСѓ int СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‚ С‚РёРїС‹ signed, signed int
+  // С†РµР»РѕРµ СЃРѕ Р·РЅР°РєРѕРј
 
-	long		i = -9223372036854775808;
-	long int	j = +9223372036854775807;
+  int e = -2147483648;
+  int f = +2147483647;
 
-	// Целое без знака
-	
-	unsigned long		k = 0;
-	unsigned long int	l = 18446744073709551615;
+  // С‚РёРїСѓ unsigned СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‚ С‚РёРїС‹ unsigned int, unsigned, unsigned int
+  // С†РµР»РѕРµ Р±РµР· Р·РЅР°РєР°
 
-	#pragma endregion
+  unsigned g = 0;
+  unsigned int h = 4294967295;
 
-	#pragma region ВЕЩЕСТВЕННЫЕ ЧИСЛА
+  //----------------- 64 bit -----------------
+  // С‚РёРїСѓ long long СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‚ С‚РёРїС‹ long int, signed long, signed long int
+  // С†РµР»РѕРµ СЃРѕ Р·РЅР°РєРѕРј
 
-	//----------------- 32 bit ----------------- 
+  long i = -9223372036854775808;
+  long int j = +9223372036854775807;
 
-	float m = 1.8E-38f;
-	float n = 3.4E+38f;
+  // С†РµР»РѕРµ Р±РµР· Р·РЅР°РєР°
 
-	//----------------- 64 bit -----------------
+  unsigned long k = 0;
+  unsigned long int l = 18446744073709551615;
 
-	double o = 2.2E-308;
-	double p = 1.8E+307;	
-	
-	#pragma endregion
+  //#pragma endregion
 
-	#pragma region ЛОГИЧЕСКИЙ ТИП
-	//----------------- 8 bit -----------------
+  //#pragma region В¬в‰€Сћв‰€вЂ”вЂњВ¬в‰€РЊРЊСџв‰€ вЂћВ»вЂ”Р‹С
 
-	// Логическая величина Истина\Ложь
+  //----------------- 32 bit -----------------
 
-	bool s = true;   // 0000 0001
-	bool t = false;  // 0000 0000
-	
-	#pragma endregion
+  float m = 1.8E-38f;
+  float n = 3.4E+38f;
 
-	#pragma region СИМВОЛЬНЫЙ ТИП
-	//----------------- 16 bit -----------------
-	
-	char u = 'A';
+  //----------------- 64 bit -----------------
 
-	#pragma endregion
-	
-	#pragma region СТРОКОВЫЙ ТИП
+  double o = 2.2E-308;
+  double p = 1.8E+307;
 
-	// Строка в формате UNICODE
+  //#pragma endregion
 
-	string w = "Hello world!";
+  //#pragma region Р‹Сњв€љВ»вЂћв‰€вЂ” В»вЂ¦ вЂњВ»С•
+  //----------------- 8 bit -----------------
 
-	#pragma endregion
+  // Р»РѕРіРёС‡РµСЃРєР°СЏ РІРµР»РёС‡РёРЅР° РёСЃС‚РёРЅР°\Р»РѕР¶СЊ
 
+  bool s = true;   // 0000 0001
+  bool t = false;  // 0000 0000
 
-    return 0;
+  //#pragma endregion
+
+  //#pragma region вЂ”В»С›В¬СњР‹в„–РЊСџвЂ¦ вЂњВ»С•
+  //----------------- 16 bit -----------------
+
+  char u = 'A';
+
+  //#pragma endregion
+
+  //#pragma region вЂ”вЂњвЂ“Сњ СњВ¬СџвЂ¦ вЂњВ»С•
+
+  // СЃС‚СЂРѕРєР° РІ С„РѕСЂРјР°С‚Рµ UNICODE
+
+  string w = "Hello world!";
+
+  //#pragma endregion
+
+  return 0;
 }
-

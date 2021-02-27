@@ -1,11 +1,11 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <iostream>
 
 using namespace std;
 
 int main()
 {
-	// ****** Ñàst *****
+	// ****** Ð¡Ð°st *****
 	
 	int a = 256;			// 0000 0000  0000 0000  0000 0001  0000 0000
 
@@ -15,7 +15,7 @@ int main()
 
 	cout << b << endl << c << endl;
 
-	// Çàäåðæêà
+	// Ð—Ð°Ð´ÐµÑ€Ð¶ÐºÐ°
 	cin.get();
 	return 0;
 }

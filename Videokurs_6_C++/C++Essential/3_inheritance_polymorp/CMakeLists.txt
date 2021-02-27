@@ -6,4 +6,4 @@ file(GLOB SOURCES
     ./*.h
     ./*.cpp
 )
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME}_inheritance_polymorp ${SOURCES})

@@ -1,6 +1,6 @@
 #add_subdirectory(001_Introduction)
 add_subdirectory(002_Storedlnformation)
-#add_subdirectory(003_DataTypes_GR)
+add_subdirectory(003_DataTypes_GR)
 #add_subdirectory(004_Conditionals)
 #add_subdirectory(005_Logic)
 #add_subdirectory(006_Cyclic)
