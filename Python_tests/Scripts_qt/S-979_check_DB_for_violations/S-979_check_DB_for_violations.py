@@ -87,13 +87,16 @@ try:
                             ORDER BY fixation_timestamp
                             '''
             if str(code)[1:-2] == '0':
-                name = path_to_write + str(host) + "_" + str(time.year) + "." + str(time.month) + "." + \
-                str(time.day) + "_" + str(time.hour) + "." + str(time.minute) + "." + \
-                str(time.second) + "_" + "passeges.csv"
+                name = path_to_write + str(host) + "_" + str(time.year) \
+                    + "." + str(time.month) + "." + str(time.day) + "_" \
+                    + str(time.hour) + "." + str(time.minute) + "." +   \
+                    str(time.second) + "_" + "passeges.csv"
             else:
-                name = path_to_write + str(host) + "_" + str(time.year) + "." + str(time.month) + "." + \
-                str(time.day) + "_" + str(time.hour) + "." + str(time.minute) + "." + \
-                str(time.second) + "_" + "violations_code" + str(code)[1:-2]+".csv"
+                name = path_to_write + str(host) + "_" + str(time.year) + \
+                    "." + str(time.month) + "." + str(time.day) + "_" +   \
+                    str(time.hour) + "." + str(time.minute) + "." +       \
+                    str(time.second) + "_" + "violations_code" +          \
+                    str(code)[1:-2] + ".csv"
             cur.execute(reqest_violation)
             rows = cur.fetchall()
 
@@ -104,7 +107,7 @@ try:
             print("Сохранены в файле: ", name)
 
 except psycopg2.Error as e:
-        print("Ошибка запроса:\n", e.args[0])
+    print("Ошибка запроса:\n", e.args[0])
 else:
     # connection.commit()
     connection.close()
