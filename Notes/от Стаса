@@ -108,3 +108,5 @@ std::string exec(const char* cmd) {
 
 
 /home/sfedorov/source/sadko/src/complex/commons/device_controller/test/camera_test.cpp
+
+sudo systemctl list-units | grep shooter

@@ -11,8 +11,8 @@ int main(int argc, char** argv) {
   double tjd, te, x2[6];
   int32 iflag, iflgret;
   int p;
-  swe_set_ephe_path(NULL);
-  //  swe_set_ephe_path(argv[1]);
+  //  swe_set_ephe_path(NULL);
+  swe_set_ephe_path(argv[1]);
   iflag = SEFLG_SPEED;
 
   //  while (TRUE) {
