@@ -105,3 +105,6 @@ std::string exec(const char* cmd) {
   }
   return result;
 }
+
+
+/home/sfedorov/source/sadko/src/complex/commons/device_controller/test/camera_test.cpp
