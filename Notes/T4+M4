@@ -285,3 +285,5 @@ fi;
 sudo ip l set enx180f7601128a down
 sudo ip l set enx180f7601128a mtu 4080
 sudo ip l set enx180f7601128a up
+
+sudo ip a a 192.168.100.154/24 brd 192.168.100.255 dev enx180f7601128a

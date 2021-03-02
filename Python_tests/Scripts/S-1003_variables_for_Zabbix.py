@@ -7,6 +7,7 @@
 #v5 db_violations_total- число сгенерированных постановлений по базе – всего,
 #v6 db_passages_total- число проездов по базе – всего.
 import os
+import psycopg2
 v1 = "kris_violations_to_send"
 v2 = "kris_violations_sent"
 v3 = "kris_passages_to_send"
@@ -14,8 +15,12 @@ v4 = "kris_passages_bck"
 v5 = "db_violations_total"
 v6 = "db_passages_total"
 
+database="sadko"
+user="postgres"
+host="localhost"
+
 zabbix_path = "/home/eparubets/tmp/zabbix_shooter/"
-# zabbix_path = "/home/tmp/zabbix_shooter/"
+# zabbix_path = "/tmp/zabbix_shooter/"
 path_1 = '/home/eparubets/codd/Sync/v1'
 # path_1 = '/home/codd/Sync/violation'
 path_2 = '/home/eparubets/codd/Sync/v2'
@@ -46,11 +51,10 @@ scanDir(path_2,v2)
 scanDir(path_3,v3)
 scanDir(path_4,v4)
 
-import psycopg2
 try:
     connection = psycopg2.connect(
-      database="sadko",
-      user="postgres",
+      database=database,
+      user=user,
       password="",
       host=host,
       port="5432"
