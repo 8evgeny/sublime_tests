@@ -29,7 +29,6 @@ path_3 = '/home/eparubets/codd/Sync/v3'
 # path_3 = '/alager/sadko/build/data/kris/passage'
 path_4 = '/home/eparubets/codd/Sync/v4'
 # path_4 = '/alager/sadko/build/data/kris/'
-host = "localhost"
 
 def fileWrite(patch,value):
     file = open(patch, "w")
