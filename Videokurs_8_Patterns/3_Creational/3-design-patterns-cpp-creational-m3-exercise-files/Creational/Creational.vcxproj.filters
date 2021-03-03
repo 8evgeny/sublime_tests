@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="CoffeeFactory.h">
+      <Filter>AbstractFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="DrinkFactory.h">
+      <Filter>AbstractFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="HotDrink.h">
+      <Filter>AbstractFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="HotDrinkFactory.h">
+      <Filter>AbstractFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="TeaFactory.h">
+      <Filter>AbstractFactory</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="AbstractFactory">
+      <UniqueIdentifier>{8a047387-3dbd-4774-b84c-4b5479894970}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AbstractFactory.cpp">
+      <Filter>AbstractFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="FactoryMethod.cpp" />
+    <ClCompile Include="InnerFactory.cpp" />
+  </ItemGroup>
+</Project>

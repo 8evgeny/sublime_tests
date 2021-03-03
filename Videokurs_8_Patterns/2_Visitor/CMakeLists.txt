@@ -1,0 +1,5 @@
+add_subdirectory(1_Observer)
+add_subdirectory(2_State)
+add_subdirectory(3_Strategy)
+add_subdirectory(4_TemplateMethod)
+add_subdirectory(5_Visitor)

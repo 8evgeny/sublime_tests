@@ -1,0 +1,14 @@
+﻿#pragma once
+
+struct Person
+{
+  std::string name;
+
+  struct PersonImpl;
+  PersonImpl *impl;
+
+  Person();
+  ~Person();
+
+  void greet();
+};

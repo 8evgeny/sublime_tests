@@ -1,0 +1,7 @@
+add_subdirectory(1_ChainOfResponsibility)
+#add_subdirectory(2_Command)
+#add_subdirectory(3_Interpreter)
+#add_subdirectory(3_Overmath)
+#add_subdirectory(4_Iterator)
+#add_subdirectory(5_Mediator)
+#add_subdirectory(6_Memento)
