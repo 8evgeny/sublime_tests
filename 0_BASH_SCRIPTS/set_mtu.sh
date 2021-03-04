@@ -1,6 +1,6 @@
 #!/bin/bash
 #проверяем установлен ли нужный mtu
-ret=$(ip a | grep [e]nx180f7601128a: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 4080 | wc -l)
+ret=$(ip a | grep mtu 4080 | wc -l)
 
 
 
