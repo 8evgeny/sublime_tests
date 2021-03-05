@@ -296,6 +296,14 @@ sudo ip l set eth0 up
 добавление роута на стенде
 sudo ip r a 192.168.100.0/24 dev enx180f7601128a proto kernel scope link src 192.168.100.153 metric 100
 
+статика на Т4
+nano /etc/network/interfaces
+auto enx180f7601128a
+iface enx180f7601128a inet static
+address 192.168.100.153
+netmask 255.255.255.0
+gateway 192.168.100.255
+dns-nameservers 8.8.8.8,8.8.4.4
 
 
 
