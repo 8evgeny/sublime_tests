@@ -4,8 +4,8 @@ project(Behavioral-cor-memento_Mediator)
 
 add_executable(${PROJECT_NAME}_chat
     chat.cpp
-    chatroom.cpp
-    person.cpp
+    ChatRoom.cpp
+    Person.cpp
     )
 add_executable(${PROJECT_NAME}_mediator  mediator.cpp)
 

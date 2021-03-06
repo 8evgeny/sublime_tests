@@ -1,5 +1,5 @@
-﻿#include "person.h"
-#include "chatroom.h"
+﻿#include "Person.h"
+#include "ChatRoom.h"
 
 Person::Person(const string& name): name(name)
 {

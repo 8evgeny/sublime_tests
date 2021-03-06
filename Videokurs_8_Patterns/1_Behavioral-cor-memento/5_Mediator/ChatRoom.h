@@ -1,20 +1,15 @@
 ﻿#pragma once
-
-struct ChatRoom
-{
+#include "Person.h"
+struct ChatRoom {
   vector<Person> people;
 
-  class PersonReference
-  {
+  class PersonReference {
     vector<Person>& people;
     unsigned int index;
-  public:
 
+   public:
     PersonReference(vector<Person>& persons, const unsigned index)
-      : people(persons),
-        index(index)
-    {
-    }
+        : people(persons), index(index) {}
 
     Person* operator->() const;
   };
