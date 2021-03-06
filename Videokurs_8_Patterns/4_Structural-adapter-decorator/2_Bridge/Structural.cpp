@@ -63,7 +63,6 @@ int main()
   raster_circle.resize(2);
   raster_circle.draw();
 
-  getchar();
   return 0;
 }
 

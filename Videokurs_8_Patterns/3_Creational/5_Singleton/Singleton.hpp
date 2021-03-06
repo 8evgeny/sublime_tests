@@ -1,28 +1,24 @@
 #pragma once
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <map>
 #include <boost/lexical_cast.hpp>
+#include <fstream>
+#include <iostream>
+#include <map>
+#include <string>
 #include <vector>
 
-class Database
-{
-public:
+class Database {
+ public:
   virtual int get_population(const std::string& name) = 0;
 };
 
-class SingletonDatabase : public Database
-{
-  SingletonDatabase()
-  {
+class SingletonDatabase : public Database {
+  SingletonDatabase() {
     std::cout << "Initializing database" << std::endl;
 
     std::ifstream ifs("capitals.txt");
 
     std::string s, s2;
-    while (getline(ifs, s))
-    {
+    while (getline(ifs, s)) {
       getline(ifs, s2);
       int pop = boost::lexical_cast<int>(s2);
       capitals[s] = pop;
@@ -32,20 +28,18 @@ class SingletonDatabase : public Database
 
   std::map<std::string, int> capitals;
 
-public:
+ public:
   static int instance_count;
 
   SingletonDatabase(SingletonDatabase const&) = delete;
   void operator=(SingletonDatabase const&) = delete;
 
-  static SingletonDatabase& get()
-  {
+  static SingletonDatabase& get() {
     static SingletonDatabase db;
     return db;
   }
 
-  int get_population(const std::string& name) override
-  {
+  int get_population(const std::string& name) override {
     return capitals[name];
   }
 
@@ -59,16 +53,13 @@ public:
   */
 };
 
-//int SingletonDatabase::instance_count = 0;
+// int SingletonDatabase::instance_count = 0;
 
-class DummyDatabase : public Database
-{
+class DummyDatabase : public Database {
   std::map<std::string, int> capitals;
-public:
 
-
-  DummyDatabase()
-  {
+ public:
+  DummyDatabase() {
     capitals["alpha"] = 1;
     capitals["beta"] = 2;
     capitals["gamma"] = 3;
@@ -79,10 +70,8 @@ public:
   }
 };
 
-struct SingletonRecordFinder
-{
-  int total_population(std::vector<std::string> names)
-  {
+struct SingletonRecordFinder {
+  int total_population(std::vector<std::string> names) {
     int result = 0;
     for (auto& name : names)
       result += SingletonDatabase::get().get_population(name);
@@ -90,18 +79,12 @@ struct SingletonRecordFinder
   }
 };
 
-struct ConfigurableRecordFinder
-{
-  explicit ConfigurableRecordFinder(Database& db)
-    : db{db}
-  {
-  }
+struct ConfigurableRecordFinder {
+  explicit ConfigurableRecordFinder(Database& db) : db{db} {}
 
-  int total_population(std::vector<std::string> names)
-  {
+  int total_population(std::vector<std::string> names) {
     int result = 0;
-    for (auto& name : names)
-      result += db.get_population(name);
+    for (auto& name : names) result += db.get_population(name);
     return result;
   }
 

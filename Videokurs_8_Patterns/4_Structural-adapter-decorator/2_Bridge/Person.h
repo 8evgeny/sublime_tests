@@ -1,11 +1,11 @@
 ﻿#pragma once
+#include <string>
 
-struct Person
-{
+struct Person {
   std::string name;
 
   struct PersonImpl;
-  PersonImpl *impl;
+  PersonImpl* impl;
 
   Person();
   ~Person();
