@@ -12,8 +12,15 @@ add_subdirectory(8_allocator)
 add_subdirectory(9_iterator_traits)
 add_subdirectory(11_patterns)
 add_subdirectory(12_patterns)
-#add_subdirectory(13)
-#add_subdirectory(14)
-#add_subdirectory(15)
-#add_subdirectory(16)
-#add_subdirectory(17)
+add_subdirectory(13_patterns)
+#13_iterator не собирается
+add_subdirectory(14_patterns)
+
+add_subdirectory(15_conteiners)
+#15_deque не собирается
+#15_unordered_multiset не собирается
+
+add_subdirectory(16_stl)
+#16_accumulate не собирается
+
+add_subdirectory(17_bitmap_circbufer_format_fusion_multiindex_progoption_test_tokenizer)
