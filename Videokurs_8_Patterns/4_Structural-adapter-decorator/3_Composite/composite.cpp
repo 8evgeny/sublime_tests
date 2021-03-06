@@ -82,6 +82,5 @@ int main(int ac, char* av)
   for (auto x : values) acc(x);
   cout << "average is " << mean(acc) << endl;
 
-  getchar();
   return 0;
 }
