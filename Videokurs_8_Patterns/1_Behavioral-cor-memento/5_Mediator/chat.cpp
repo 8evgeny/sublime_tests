@@ -6,7 +6,7 @@ using namespace std;
 #include "person.h"
 #include "chatroom.h"
 
-int main_()
+int main()
 {
   ChatRoom room;
 
@@ -21,6 +21,5 @@ int main_()
 
   jane->pm("simon", "glad you could join us, simon");
 
-  getchar();
   return 0;
 }

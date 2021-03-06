@@ -90,6 +90,5 @@ int main()
   player.score();
   player.score();
 
-  getchar();
   return 0;
 }

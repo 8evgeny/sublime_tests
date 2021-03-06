@@ -101,6 +101,5 @@ int main(int argc, char* argv[]) {
   cout << "We are done using the phone"
        << "\n";
 
-  getchar();
   return 0;
 }

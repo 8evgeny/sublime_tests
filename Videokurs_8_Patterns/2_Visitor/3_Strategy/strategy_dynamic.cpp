@@ -77,6 +77,5 @@ int main() {
   tp.append_list({"foo", "bar", "baz"});
   cout << tp.str() << endl;
 
-  getchar();
   return 0;
 }

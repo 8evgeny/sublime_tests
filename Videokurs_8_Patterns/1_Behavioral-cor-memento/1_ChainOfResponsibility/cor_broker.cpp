@@ -81,6 +81,5 @@ int main(int ac, char** av) {
 
   cout << goblin << endl;
 
-  getchar();
   return 0;
 }

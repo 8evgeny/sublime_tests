@@ -1,0 +1,5 @@
+add_subdirectory(1_Preliminaries)
+add_subdirectory(2_Builder)
+add_subdirectory(3_Factories)
+add_subdirectory(4_Prototype)
+add_subdirectory(5_Singleton)

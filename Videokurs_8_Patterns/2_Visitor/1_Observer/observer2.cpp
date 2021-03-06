@@ -99,6 +99,5 @@ int main() {
   p.ubsubscribe(&cl);
   p.set_age(17);
 
-  getchar();
   return 0;
 }

@@ -87,6 +87,5 @@ int main() {
 
   cout << goblin << endl;
 
-  getchar();
   return 0;
 }
