@@ -24,3 +24,11 @@ add_subdirectory(16_stl)
 #16_accumulate не собирается
 
 add_subdirectory(17_bitmap_circbufer_format_fusion_multiindex_progoption_test_tokenizer)
+
+add_subdirectory(19_thread)
+add_subdirectory(20_patterns_5)
+#add_subdirectory(21_asynchron_programming)
+#add_subdirectory(22_lockfree_DS)
+#add_subdirectory(27_key_value)
+#add_subdirectory(29_ORM)
+
