@@ -308,6 +308,6 @@ dns-nameservers 8.8.8.8,8.8.4.4
 
 
 
-sudo ip l set enx180f7601128a down
+sudo ip l set enx180f7601128a downip r
 sudo ip l set enx180f7601128a mtu 3072
 sudo ip l set enx180f7601128a up
