@@ -1,47 +1,46 @@
-#include <stdlib.h>
-#include <time.h> /* time_t, struct tm, difftime, time, mktime */
-
-#include <algorithm>
-#include <cstdlib>
-#include <execution>
-#include <fstream>
-#include <iostream>
-#include <list>
-#include <map>
-#include <string>
-#include <vector>
+#include "coding.h"
 using namespace std;
 
-// Узел дерева
-class Node {
- public:
-  int num_in_node{0};   // число в узле
-  char char_in_node{};  //символ в узле
-  Node* left_branch;
-  Node* right_branch;
-
-  Node() {  // Конструктор для потомков
-    left_branch = nullptr;
-    right_branch = nullptr;
-  }
-  Node(Node* left, Node* right) {  // Конструктор для создания родителя
-    left_branch = left;
-    right_branch = right;
-    num_in_node = left->num_in_node + left->num_in_node;
-  }
+struct Tree::Impl {
+  Impl();
+  void Print_tree(Node*, unsigned);
+  void BuildTable(Node*);
+  void PrintTable();
+  void readConfig(const char*);
+  int codding();
+  std::vector<bool> code;
+  std::map<char, std::vector<bool>> tabl;
+  po::variables_map config;
+  list<Node*> list_pNode;
 };
 
-// Структура для сортировки list
+Tree::Impl::Impl() {}
+Tree::Tree() : _d{make_unique<Impl>()} {
+  cout << "Tree_constructor" << endl;
+  _d->readConfig("../../config.ini");
+  _d->codding();
+}
+Tree::~Tree() {}
+
+Node::Node() {
+  left_branch = nullptr;
+  right_branch = nullptr;
+}
+Node::Node(Node* left, Node* right) {
+  left_branch = left;
+  right_branch = right;
+  num_in_node = left->num_in_node + left->num_in_node;
+}
+
 struct Compare_Node {
   bool operator()(const Node* l, const Node* r) const {
     return l->num_in_node < r->num_in_node;
-  }
+  };
 };
 
-// Печать дерева
-void PrintTree(Node* root, unsigned k = 0) {
+void Tree::Impl::Print_tree(Node* root, unsigned k = 0) {
   if (root != nullptr) {
-    PrintTree(root->left_branch, k + 4);
+    Print_tree(root->left_branch, k + 4);
     for (unsigned i = 0; i < k; i++) {
       cout << "  ";
     }
@@ -49,16 +48,12 @@ void PrintTree(Node* root, unsigned k = 0) {
       cout << root->num_in_node << " (" << root->char_in_node << ") " << endl;
     else
       cout << root->num_in_node << endl;
-    PrintTree(root->right_branch, k + 3);
+    Print_tree(root->right_branch, k + 3);
   }
 }
 
-//Глобальные переменные code  и  tabl
-vector<bool> code;
-map<char, vector<bool> > tabl;
-
 //Строим таблицу кодирования
-void BuildTable(Node* root) {
+void Tree::Impl::BuildTable(Node* root) {
   if (root->left_branch != nullptr) {
     code.push_back(0);
     BuildTable(root->left_branch);
@@ -75,7 +70,7 @@ void BuildTable(Node* root) {
                     // предыдущий элемент
 }
 
-void PrintTable() {
+void Tree::Impl::PrintTable() {
   cout << endl
        << "--------------------    CODDING TABL   ------------------------- "
        << endl;
@@ -92,15 +87,24 @@ void PrintTable() {
   }
 }
 
-// Вывод помощи о пользовании программой
-void help() { cout << "encoding name_input_file\n"; }
-
-int main_(int argc, char* argv[]) {
-  if (argc != 2) {
-    help();
-    exit(2);
+void Tree::Impl::readConfig(const char* conf_file) {
+  po::options_description desc("All options");
+  desc.add_options()("input_file,in", po::value<std::string>(), "input file")(
+      "output_path,out", po::value<std::string>(), "output path");
+  //  po::variables_map config;  // Variable to store our command line
+  //  arguments.
+  try {
+    po::store(po::parse_config_file<char>(conf_file, desc), config);
+  } catch (const po::reading_file& e) {
+    std::cout << "Error: " << e.what() << std::endl;
   }
+  po::notify(config);
 
+  std::cout << config["input_file"].as<std::string>() << std::endl;
+  std::cout << config["output_path"].as<std::string>() << std::endl;
+}
+
+int Tree::Impl::codding() {
   time_t timer;
   struct tm y2k = {0};
   double seconds;
@@ -114,10 +118,10 @@ int main_(int argc, char* argv[]) {
   time(&timer); /* get current time; same as: timer = time(NULL)  */
   seconds = difftime(timer, mktime(&y2k));
 
-  cout << "Encoding started" << endl;
-  setlocale(LC_ALL, "Russian");
-
-  ifstream in_sourse(argv[1], ios::in | ios::binary);
+  cout << "Coding file started" << endl;
+  cout << config["input_file"].as<std::string>() << endl;
+  ifstream in_sourse(config["input_file"].as<std::string>(),
+                     ios::in | ios::binary);
 
   map<char, int> m;
   cout << "First scan of the file" << endl;
@@ -129,19 +133,19 @@ int main_(int argc, char* argv[]) {
 
   // Выводим таблицу частоты символов
 
-  //        cout<<" ------------------  Character frequency table
-  //        --------------- "<<endl; int k =1; for(auto i=m.begin();i !=m.end();
-  //        ++i)
-  //        {
-  //        cout<< k<<"\t"<<i->first<<" - "<<i->second<<endl;
-  //        ++k;
-  //        }
+  cout << " ------------------  Character frequency table  --------------- "
+       << endl;
+  int k = 1;
+  for (auto i = m.begin(); i != m.end(); ++i) {
+    cout << k << "\t" << i->first << " - " << i->second << endl;
+    ++k;
+  }
 
   //Список указателей на узлы нашего дерева
-  list<Node*> list_pNode;
+  //  list<Node*> list_pNode;
   cout << "Creating a binary tree" << endl;
-  //Проходим по map и для каждого символа создаем узел дерева node и помещаем
-  //его в list
+  //Проходим по map и для каждого символа создаем узел дерева node и
+  //помещаем его в list
   map<char, int>::iterator itmap;
   for (itmap = m.begin(); itmap != m.end(); ++itmap) {
     Node* p = new Node;
@@ -191,7 +195,8 @@ int main_(int argc, char* argv[]) {
   while (!in_sourse.eof()) {
     //Получаем символ из файла
     char c = in_sourse.get();
-    //Код, соответствующий полученному символу берем из таблицы кодирования
+    //Код, соответствующий полученному символу берем из таблицы
+    //кодирования
     vector<bool> kod_simvola = tabl[c];
     //Формируем выходной поток битов (по 8)
     for (int n = 0; n < kod_simvola.size(); ++n) {
@@ -207,11 +212,12 @@ int main_(int argc, char* argv[]) {
   }
   in_sourse.close();
 
-  // Для декодирования нам нужно будет построить дерево - для этого нужно
-  // передать все символы и частоту вхождения каждого символа Выдаем колл.
-  // символов таблицы, колл символов сжатого файла и три массива
+  // Для декодирования нам нужно будет построить дерево - для этого
+  // нужно передать все символы и частоту вхождения каждого символа
+  // Выдаем колл. символов таблицы, колл символов сжатого файла и три
+  // массива
   FILE* out;
-  char* NAME = argv[1];
+  //  char* NAME = argv[1];
 
   //    char *SUFFIX = {".Huffman"};
   //    string NAME_STRING = NAME;
@@ -226,11 +232,11 @@ int main_(int argc, char* argv[]) {
   int DIG[m.size()];
   char SYM[m.size()];
 
-  int k = 0;
+  int l = 0;
   for (auto i = m.begin(); i != m.end(); ++i) {
-    DIG[k] = i->second;
-    SYM[k] = i->first;
-    ++k;
+    DIG[l] = i->second;
+    SYM[l] = i->first;
+    ++l;
   }
 
   fwrite(&NUMBER, sizeof NUMBER, 1, out);
