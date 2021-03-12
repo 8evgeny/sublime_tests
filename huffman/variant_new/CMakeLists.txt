@@ -1,9 +1,25 @@
 cmake_minimum_required(VERSION 3.5)
+set(CMAKE_CXX_STANDARD 17)
+project(huffman)
 
-project(huffman LANGUAGES CXX)
+#add_executable(${PROJECT_NAME}_decoding
+#    decoding.cpp
+#    )
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+add_executable(${PROJECT_NAME}_coding
+    coding.cpp
+    )
 
-#add_executable(decoding decoding.cpp)
-add_executable(coding coding.cpp)
+find_package (Boost REQUIRED COMPONENTS
+    system
+    filesystem
+    )
+#if (Boost_FOUND)
+#    message("cmake message-" ${PROJECT_NAME} " boost include DIR: " ${Boost_INCLUDE_DIR})
+#    include_directories (SYSTEM ${Boost_INCLUDE_DIR})
+#endif ()
+
+target_link_libraries(
+    ${PROJECT_NAME}_coding
+    ${Boost_LIBRARIES}
+     )
