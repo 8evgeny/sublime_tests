@@ -11,7 +11,7 @@ struct Tree::Impl {
   std::vector<bool> code;
   std::map<char, std::vector<bool>> tabl;
   po::variables_map config;
-  list<Node*> list_pNode;
+  list<Node*> list_pNode;  //Список указателей на узлы нашего дерева
 };
 
 Tree::Impl::Impl() {}
@@ -29,7 +29,7 @@ Node::Node() {
 Node::Node(Node* left, Node* right) {
   left_branch = left;
   right_branch = right;
-  num_in_node = left->num_in_node + left->num_in_node;
+  num_in_node = left->num_in_node + right->num_in_node;
 }
 
 struct Compare_Node {
@@ -141,18 +141,19 @@ int Tree::Impl::codding() {
     ++k;
   }
 
-  //Список указателей на узлы нашего дерева
-  //  list<Node*> list_pNode;
   cout << "Creating a binary tree" << endl;
   //Проходим по map и для каждого символа создаем узел дерева node и
   //помещаем его в list
+  int char_all{0};
   map<char, int>::iterator itmap;
   for (itmap = m.begin(); itmap != m.end(); ++itmap) {
     Node* p = new Node;
     p->char_in_node = itmap->first;
     p->num_in_node = itmap->second;
+    char_all += itmap->second;
     list_pNode.push_back(p);
   }
+  cout << "char_all: " << char_all - 1 << endl;
 
   //Работаем с деревом
   while (list_pNode.size() != 1) {  // пока не останется 1
@@ -167,8 +168,9 @@ int Tree::Impl::codding() {
   }
   // на выходе цикла остался 1 элемент - он-же корень
   Node* root = list_pNode.front();
+
   long lenth_in = root->num_in_node;
-  cout << "sourse file - " << lenth_in << " bytes" << endl;
+  cout << "sourse file - " << lenth_in - 1 << " bytes" << endl;
   //Печать дерева
 
   //    cout<<endl<<"--------------------    BINARE TREE
