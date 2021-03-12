@@ -13,38 +13,43 @@
 using namespace std;
 
 // Узел дерева
-class node {
+class Node {
  public:
-  node() { left = right = nullptr; }  // Конструктор для потомков
-  node(node* l, node* r)  // Конструктор для создания родителя
-  {
-    left = l;
-    right = r;
-    a = l->a + r->a;
+  int num_in_node{0};   // число в узле
+  char char_in_node{};  //символ в узле
+  Node* left_branch;
+  Node* right_branch;
+
+  Node() {  // Конструктор для потомков
+    left_branch = nullptr;
+    right_branch = nullptr;
   }
-  int a;   // число в узле
-  char c;  //символ в узле
-  node* left;
-  node* right;
+  Node(Node* left, Node* right) {  // Конструктор для создания родителя
+    left_branch = left;
+    right_branch = right;
+    num_in_node = left->num_in_node + left->num_in_node;
+  }
 };
 
 // Структура для сортировки list
-struct MyCompare {
-  bool operator()(const node* l, const node* r) const { return l->a < r->a; }
+struct Compare_Node {
+  bool operator()(const Node* l, const Node* r) const {
+    return l->num_in_node < r->num_in_node;
+  }
 };
 
 // Печать дерева
-void PrintTree(node* root, unsigned k = 0) {
+void PrintTree(Node* root, unsigned k = 0) {
   if (root != nullptr) {
-    PrintTree(root->left, k + 4);
+    PrintTree(root->left_branch, k + 4);
     for (unsigned i = 0; i < k; i++) {
       cout << "  ";
     }
-    if (root->c)
-      cout << root->a << " (" << root->c << ") " << endl;
+    if (root->char_in_node)
+      cout << root->num_in_node << " (" << root->char_in_node << ") " << endl;
     else
-      cout << root->a << endl;
-    PrintTree(root->right, k + 3);
+      cout << root->num_in_node << endl;
+    PrintTree(root->right_branch, k + 3);
   }
 }
 
@@ -53,19 +58,18 @@ vector<bool> code;
 map<char, vector<bool> > tabl;
 
 //Строим таблицу кодирования
-void BuildTable(node* root) {
-  if (root->left != nullptr) {
+void BuildTable(Node* root) {
+  if (root->left_branch != nullptr) {
     code.push_back(0);
-    BuildTable(root->left);
+    BuildTable(root->left_branch);
   }  // Рекурсия
-
-  if (root->right != nullptr) {
+  if (root->right_branch != nullptr) {
     code.push_back(1);
-    BuildTable(root->right);
+    BuildTable(root->right_branch);
   }
 
-  if (root->left == nullptr && root->right == nullptr)
-    tabl[root->c] = code;  //лист
+  if (root->left_branch == nullptr && root->right_branch == nullptr)
+    tabl[root->char_in_node] = code;  //лист
 
   code.pop_back();  // один символ из vector убираем - фактически встаем на
                     // предыдущий элемент
@@ -91,7 +95,7 @@ void PrintTable() {
 // Вывод помощи о пользовании программой
 void help() { cout << "encoding name_input_file\n"; }
 
-int main(int argc, char* argv[]) {
+int main_(int argc, char* argv[]) {
   if (argc != 2) {
     help();
     exit(2);
@@ -134,33 +138,32 @@ int main(int argc, char* argv[]) {
   //        }
 
   //Список указателей на узлы нашего дерева
-  list<node*> t;
+  list<Node*> list_pNode;
   cout << "Creating a binary tree" << endl;
   //Проходим по map и для каждого символа создаем узел дерева node и помещаем
   //его в list
   map<char, int>::iterator itmap;
   for (itmap = m.begin(); itmap != m.end(); ++itmap) {
-    node* p = new node;
-    p->c = itmap->first;
-    p->a = itmap->second;
-    t.push_back(p);
+    Node* p = new Node;
+    p->char_in_node = itmap->first;
+    p->num_in_node = itmap->second;
+    list_pNode.push_back(p);
   }
 
   //Работаем с деревом
-  while (t.size() != 1)  // пока не останется 1 (горец)
-  {
-    //  t.sort(execution::par, MyCompare());
-    t.sort(MyCompare());
-    node* SONL = t.front();
-    t.pop_front();
-    node* SONR = t.front();
-    t.pop_front();
-    node* parrent = new node(SONL, SONR);
-    t.push_back(parrent);
+  while (list_pNode.size() != 1) {  // пока не останется 1
+    //  list_pNode.sort(execution::par, Compare_Node());
+    list_pNode.sort(Compare_Node());
+    Node* left_son = list_pNode.front();
+    list_pNode.pop_front();
+    Node* right_son = list_pNode.front();
+    list_pNode.pop_front();
+    Node* parrent = new Node(left_son, right_son);
+    list_pNode.push_back(parrent);
   }
   // на выходе цикла остался 1 элемент - он-же корень
-  node* root = t.front();
-  long lenth_in = root->a;
+  Node* root = list_pNode.front();
+  long lenth_in = root->num_in_node;
   cout << "sourse file - " << lenth_in << " bytes" << endl;
   //Печать дерева
 
