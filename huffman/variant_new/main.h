@@ -1,8 +1,10 @@
 #pragma once
 #include <stdlib.h>
 #include <time.h> /* time_t, struct tm, difftime, time, mktime */
-#include <boost/program_options.hpp>
+
 #include <algorithm>
+#include <boost/program_options.hpp>
+#include <chrono>
 #include <cstdlib>
 #include <execution>
 #include <experimental/propagate_const>
@@ -11,6 +13,7 @@
 #include <list>
 #include <map>
 #include <memory>
+#include <sstream>
 #include <string>
 #include <vector>
 using namespace std;
@@ -29,13 +32,12 @@ class Node {
   Node(Node*, Node*);  // Конструктор для создания родителя
 };
 
-class Tree {
+class Codding {
  public:
-  Tree();
-  ~Tree();
+  Codding();
+  ~Codding();
   struct Impl;
 
  private:
   std::unique_ptr<Impl> _d;
 };
-

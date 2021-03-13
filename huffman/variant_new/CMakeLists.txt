@@ -1,12 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
 project(huffman)
 
-#add_executable(${PROJECT_NAME}_decoding
-#    decoding.cpp
-#    )
-
-add_executable(${PROJECT_NAME}_coding
+add_executable(${PROJECT_NAME}
     coding.cpp
+    decoding.cpp
     main.cpp
     )
 
@@ -16,7 +13,7 @@ find_package (Boost REQUIRED COMPONENTS
     program_options
     )
 
-set_target_properties(${PROJECT_NAME}_coding PROPERTIES
+set_target_properties(${PROJECT_NAME} PROPERTIES
             CXX_STANDARD 14
             CXX_EXTENSIONS ON
             )
@@ -28,6 +25,7 @@ set_target_properties(${PROJECT_NAME}_coding PROPERTIES
 #endif ()
 #target_compile_features(${PROJECT_NAME}_coding PRIVATE cxx_std_17)
 target_link_libraries(
-    ${PROJECT_NAME}_coding
+    ${PROJECT_NAME}
     ${Boost_LIBRARIES}
      )
+
