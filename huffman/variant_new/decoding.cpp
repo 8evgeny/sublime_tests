@@ -47,42 +47,59 @@ void Decoding::Impl::readConfig(const char* conf_file) {
 void Decoding::Impl::decoding() {
   cout << "Start decoding file" << endl;
 
-  int NUMBER;    //Общее число символов в таблице
-  int lenth_in;  //Длина сжатых данных
-  FILE* in;
-  in = fopen((config["decoding.input_path"].as<std::string>() +
-              config["decoding.input_name"].as<std::string>())
-                 .c_str(),
-             "rb");
+  int NUMBER = 0;    //Общее число символов в таблице
+  int lenth_in = 0;  //Длина сжатых данных
+                     //  FILE* in;
+  //  in = fopen((config["decoding.input_path"].as<std::string>() +
+  //              config["decoding.input_name"].as<std::string>())
+  //                 .c_str(),
+  //             "rb");
+
+  ifstream in((config["decoding.input_path"].as<std::string>() +
+               config["decoding.input_name"].as<std::string>())
+                  .c_str(),
+              ios::in | ios::binary);
+
   //Получаем длину таблицы и длину сжатого файла
-  fread(&NUMBER, sizeof NUMBER, 1, in);
-  fread(&lenth_in, sizeof lenth_in, 1, in);
+  //  fread(&NUMBER, sizeof NUMBER, 1, in);
+  in >> NUMBER;
+  in >> lenth_in;
+  //  fread(&lenth_in, sizeof lenth_in, 1, in);
   cout << "NUMBER:" << NUMBER << endl;
-  cout << "lenth_in:" << lenth_in << endl;
+  //  cout << "lenth_in:" << lenth_in << endl;
   //В зависимости от полученных значений создаем 3 массива
-  int DIG[NUMBER];
-  char SYM[NUMBER];
+  //  string DIG[NUMBER];
+
+  //  char SYM[NUMBER];
   vector<char> V_IN{};
   char cc;
   //Читаем в массивы данные
-  fread(SYM, sizeof SYM, 1, in);
-  fread(DIG, sizeof DIG, 1, in);
+  //  in >> SYM;
+  //  in >> DIG;
+  //  fread(SYM, sizeof SYM, 1, in);
+  //  fread(DIG, sizeof DIG, 1, in);
 
-  for (int z = 0; z < lenth_in; ++z) {
-    fread(&cc, sizeof cc, 1, in);
-    V_IN.push_back(cc);
-  }
+  //  for (int z = 0; z < lenth_in; ++z) {
+  //    fread(&cc, sizeof cc, 1, in);
+  //    V_IN.push_back(cc);
+  //  }
 
-  fclose(in);
+  //  fclose(in);
 
   // Восстанавливаем кодовую таблицу - создаем map
   pair<char, int> p;
   map<char, int> m;
   int i = 0;
   for (i = 0; i < NUMBER; ++i) {
-    p.first = SYM[i];
-    p.second = DIG[i];
+    in >> p.first;
+    in >> p.second;
     m.insert(p);
+    cout << "i:" << i << "char:" << p.first << "num:" << p.second << endl;
+  }
+  while (!in.eof()) {
+    in >> cc;
+    V_IN.push_back(cc);
+    ++lenth_in;
   }
 
   //Список указателей на узлы нашего дерева

@@ -284,7 +284,9 @@ void Coding::Impl::writeFile() {
   // нужно передать все символы и частоту вхождения каждого символа
   // Выдаем колл. символов таблицы, колл символов сжатого файла и три
   // массива
-  FILE* out;
+
+  //  FILE* out;
+
   //  char* NAME = argv[1];
 
   //    char *SUFFIX = {".Huffman"};
@@ -293,36 +295,39 @@ void Coding::Impl::writeFile() {
   //    string FULLNAME = NAME_STRING+SUFFIX_STRING;
   //    const char *NAME_CHAR = FULLNAME.c_str();
 
-  out = fopen((config["coding.output_path"].as<std::string>() +
-               config["coding.output_name"].as<std::string>())
-                  .c_str(),
-              "wb");
+  ofstream out((config["coding.output_path"].as<std::string>() +
+                config["coding.output_name"].as<std::string>())
+                   .c_str(),
+               ios::out | ios::binary);
 
-  int NUMBER;
-  NUMBER = m.size();
-  int DIG[m.size()];
-  char SYM[m.size()];
+  int NUMBER = m.size();
+  out << NUMBER;
+  //  string DIG[m.size()];
+  //  char SYM[m.size()];
 
-  int l = 0;
+  //  int l = 0;
   for (auto i = m.begin(); i != m.end(); ++i) {
-    DIG[l] = i->second;
-    SYM[l] = i->first;
-    ++l;
+    out << i->first << i->second;
+    //    DIG[l] = to_string(i->second);
+    //    SYM[l] = i->first;
+    //    ++l;
   }
   cout << "NUMBER:" << NUMBER << endl;
   cout << "lenth_out:" << lenth_out << endl;
 
-  fwrite(&NUMBER, sizeof NUMBER, 1, out);
-  fwrite(&lenth_out, sizeof lenth_out, 1, out);
-  fwrite(SYM, sizeof SYM, 1, out);
-  fwrite(DIG, sizeof DIG, 1, out);
+  //  fwrite(&NUMBER, sizeof NUMBER, 1, out);
+  //  out << NUMBER << SYM << DIG;
+  //  fwrite(&lenth_out, sizeof lenth_out, 1, out);
+  //  fwrite(SYM, sizeof SYM, 1, out);
+  //  fwrite(DIG, sizeof DIG, 1, out);
   char cc;
   for (int z = 0; z < lenth_out; ++z) {
     cc = codding_file[z];
-    fwrite(&cc, sizeof cc, 1, out);
+    out << cc;
+    //    fwrite(&cc, sizeof cc, 1, out);
   }
-
-  fclose(out);
+  out.close();
+  //  fclose(out);
 
   cout << "Creating file: " << config["coding.output_name"].as<std::string>()
        << " - " << lenth_out << " bytes" << endl;
