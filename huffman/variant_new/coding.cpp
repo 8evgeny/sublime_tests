@@ -41,13 +41,6 @@ Node::Node(Node* left, Node* right) {
   num_in_node = left->num_in_node + right->num_in_node;
 }
 
-class Compare_Node {
- public:
-  bool operator()(const Node* l, const Node* r) const {
-    return l->num_in_node < r->num_in_node;
-  };
-};
-
 void Coding::Impl::readConfig(const char* conf_file) {
   po::options_description coding("coding");
   coding.add_options()("coding.input_path_codding,in", po::value<std::string>(),

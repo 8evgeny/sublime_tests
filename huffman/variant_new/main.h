@@ -32,6 +32,13 @@ class Node {
   Node(Node*, Node*);  // Конструктор для создания родителя
 };
 
+class Compare_Node {
+ public:
+  bool operator()(const Node* l, const Node* r) const {
+    return l->num_in_node < r->num_in_node;
+  };
+};
+
 class Coding {
  public:
   Coding();
