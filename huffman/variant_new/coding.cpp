@@ -15,11 +15,11 @@ struct Coding::Impl {
   vector<bool> code;
   map<char, vector<bool>> codeTabl;
 
-  list<Node*> list_pNode;  //Список указателей на узлы нашего дерева
+  list<Node*> list_pNode{};  //Список указателей на узлы нашего дерева
   map<char, int> m;  //Главная map куда складываем символы
-  vector<char> codding_file;  //Закодированный файл
-  long lenth_in;
-  long lenth_out = 0;
+  vector<char> codding_file{};  //Закодированный файл
+  long lenth_in = 0;
+  int lenth_out = 0;
 };
 
 Coding::Impl::Impl() {}
@@ -258,7 +258,7 @@ void Coding::Impl::codding() {
       }
     }
   }
-
+  in.close();
   cout << "Codding finishing" << endl;
 
   const std::chrono::time_point<std::chrono::steady_clock> stop_stage2 =

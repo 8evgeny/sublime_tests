@@ -1,5 +1,3 @@
-// 23.11.2019_Многопоточность
-// encoding.cpp :
 #include <stdio.h> /* printf */
 #include <stdlib.h>
 #include <time.h> /* time_t, struct tm, difftime, time, mktime */
