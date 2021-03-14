@@ -43,16 +43,15 @@ Node::Node(Node* left, Node* right) {
 
 void Coding::Impl::readConfig(const char* conf_file) {
   po::options_description coding("coding");
-  coding.add_options()("coding.input_path_codding,in", po::value<std::string>(),
-                       "input_path")("coding.output_path_codding,out",
-                                     po::value<std::string>(),
-                                     "output path coding")(
-      "coding.name_input_codding,iname", po::value<std::string>(),
-      "name_input coding")("coding.name_output_codding,oname",
-                           po::value<std::string>(), "name_output coding")(
-      "coding.print_Character_frequency_table,print1", po::value<bool>(),
-      "print_Character_frequency_table")("coding.print_tree", po::value<bool>(),
-                                         "print_tree")(
+  coding.add_options()("coding.input_path,in", po::value<std::string>(),
+                       "input_path")(
+      "coding.output_path,out", po::value<std::string>(), "output path coding")(
+      "coding.input_name,iname", po::value<std::string>(), "input_name coding")(
+      "coding.output_name,oname", po::value<std::string>(),
+      "output_name coding")("coding.print_Character_frequency_table,print1",
+                            po::value<bool>(),
+                            "print_Character_frequency_table")(
+      "coding.print_tree", po::value<bool>(), "print_tree")(
       "coding.print_CODDING_TABL,print2", po::value<bool>(),
       "print_CODDING_TABL");
   po::options_description desc("Allowed options");
@@ -66,14 +65,10 @@ void Coding::Impl::readConfig(const char* conf_file) {
     std::cout << "Error: " << e.what() << std::endl;
   }
   po::notify(config);
-  std::cout << config["coding.input_path_codding"].as<std::string>()
-            << std::endl;
-  std::cout << config["coding.name_input_codding"].as<std::string>()
-            << std::endl;
-  std::cout << config["coding.output_path_codding"].as<std::string>()
-            << std::endl;
-  std::cout << config["coding.name_output_codding"].as<std::string>()
-            << std::endl;
+  std::cout << config["coding.input_path"].as<std::string>() << std::endl;
+  std::cout << config["coding.input_name"].as<std::string>() << std::endl;
+  std::cout << config["coding.output_path"].as<std::string>() << std::endl;
+  std::cout << config["coding.output_name"].as<std::string>() << std::endl;
 }
 
 void Coding::Impl::Print_tree(Node* root, unsigned k = 0) {
@@ -131,12 +126,12 @@ void Coding::Impl::codding() {
 
   cout << "Coding file started" << endl;
   cout << "read file: "
-       << config["coding.input_path_codding"].as<std::string>() +
-              config["coding.name_input_codding"].as<std::string>()
+       << config["coding.input_path"].as<std::string>() +
+              config["coding.input_name"].as<std::string>()
        << endl;
 
-  ifstream in_sourse(config["coding.input_path_codding"].as<std::string>() +
-                         config["coding.name_input_codding"].as<std::string>(),
+  ifstream in_sourse(config["coding.input_path"].as<std::string>() +
+                         config["coding.input_name"].as<std::string>(),
                      ios::in | ios::binary);
   string str{};
   while (!in_sourse.eof()) {
@@ -156,7 +151,7 @@ void Coding::Impl::codding() {
        << endl;
 
   cout << "First scan of the file: " +
-              config["coding.name_input_codding"].as<std::string>()
+              config["coding.input_name"].as<std::string>()
        << endl;
   while (!ss.eof()) {
     char c = ss.get();
@@ -233,7 +228,7 @@ void Coding::Impl::codding() {
 
   // Перемещаем указатель в начало файла
   cout << "Second scan of the file: " +
-              config["coding.name_input_codding"].as<std::string>() +
+              config["coding.input_name"].as<std::string>() +
               " - start encodding"
        << endl;
   //  in_sourse.clear();
@@ -298,8 +293,8 @@ void Coding::Impl::writeFile() {
   //    string FULLNAME = NAME_STRING+SUFFIX_STRING;
   //    const char *NAME_CHAR = FULLNAME.c_str();
 
-  out = fopen((config["coding.output_path_codding"].as<std::string>() +
-               config["coding.name_output_codding"].as<std::string>())
+  out = fopen((config["coding.output_path"].as<std::string>() +
+               config["coding.output_name"].as<std::string>())
                   .c_str(),
               "wb");
 
@@ -327,8 +322,7 @@ void Coding::Impl::writeFile() {
 
   fclose(out);
 
-  cout << "Creating file: "
-       << config["coding.name_output_codding"].as<std::string>() << " - "
-       << lenth_out << " bytes" << endl;
+  cout << "Creating file: " << config["coding.output_name"].as<std::string>()
+       << " - " << lenth_out << " bytes" << endl;
   cout << "ratio  " << 100 - (100 * lenth_out / lenth_in) << "%" << endl;
 }
