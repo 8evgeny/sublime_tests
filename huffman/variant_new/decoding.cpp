@@ -65,7 +65,8 @@ void Decoding::Impl::decoding() {
   in >> NUMBER;
   in >> lenth_in;
   //  fread(&lenth_in, sizeof lenth_in, 1, in);
-  cout << "NUMBER:" << NUMBER << endl;
+  cout << "m.size:" << NUMBER << endl;
+  cout << "data.size:" << lenth_in << endl;
   //  cout << "lenth_in:" << lenth_in << endl;
   //В зависимости от полученных значений создаем 3 массива
   //  string DIG[NUMBER];
@@ -80,7 +81,8 @@ void Decoding::Impl::decoding() {
   //  fread(DIG, sizeof DIG, 1, in);
 
   //  for (int z = 0; z < lenth_in; ++z) {
-  //    fread(&cc, sizeof cc, 1, in);
+  //    //      fread(&cc, sizeof cc, 1, in);
+  //    in >> cc;
   //    V_IN.push_back(cc);
   //  }
 
@@ -96,10 +98,12 @@ void Decoding::Impl::decoding() {
     m.insert(p);
     cout << "i:" << i << "char:" << p.first << "num:" << p.second << endl;
   }
-  while (!in.eof()) {
+  cout << "сам файл:" << endl;
+  int ii = lenth_in;
+  while (ii > 0) {
     in >> cc;
     V_IN.push_back(cc);
-    ++lenth_in;
+    --ii;
   }
 
   //Список указателей на узлы нашего дерева

@@ -300,8 +300,8 @@ void Coding::Impl::writeFile() {
                    .c_str(),
                ios::out | ios::binary);
 
-  int NUMBER = m.size();
-  out << NUMBER;
+  out << m.size() << endl;
+  out << lenth_out << endl;
   //  string DIG[m.size()];
   //  char SYM[m.size()];
 
@@ -312,7 +312,7 @@ void Coding::Impl::writeFile() {
     //    SYM[l] = i->first;
     //    ++l;
   }
-  cout << "NUMBER:" << NUMBER << endl;
+  cout << "m.size:" << m.size() << endl;
   cout << "lenth_out:" << lenth_out << endl;
 
   //  fwrite(&NUMBER, sizeof NUMBER, 1, out);
