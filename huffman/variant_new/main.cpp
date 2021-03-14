@@ -5,12 +5,12 @@ int main(int argc, char** argv) {
     switch (*argv[1]) {
       case 'c': {
         cout << "Codding file" << endl;
-        Codding codding;
+        Coding coding;
         break;
       }
       case 'd': {
         cout << "Decodding file" << endl;
-        //      Decodding decodding;
+        Decoding decoding;
         break;
       }
       default:

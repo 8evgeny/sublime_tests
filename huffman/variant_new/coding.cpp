@@ -1,18 +1,20 @@
 #include "main.h"
 using namespace std;
 
-struct Codding::Impl {
+struct Coding::Impl {
   Impl();
 
   void Print_tree(Node*, unsigned);
   void BuildCodeTable(Node*);
   void PrintTable();
   void readConfig(const char*);
+  po::variables_map config;
+
   void codding();
   void writeFile();
   vector<bool> code;
   map<char, vector<bool>> codeTabl;
-  po::variables_map config;
+
   list<Node*> list_pNode;  //Список указателей на узлы нашего дерева
   map<char, int> m;  //Главная map куда складываем символы
   vector<char> codding_file;  //Закодированный файл
@@ -20,14 +22,14 @@ struct Codding::Impl {
   long lenth_out = 0;
 };
 
-Codding::Impl::Impl() {}
-Codding::Codding() : _d{make_unique<Impl>()} {
+Coding::Impl::Impl() {}
+Coding::Coding() : _d{make_unique<Impl>()} {
   cout << "Codding_constructor" << endl;
   _d->readConfig("../../config.ini");
   _d->codding();
   _d->writeFile();
 }
-Codding::~Codding() {}
+Coding::~Coding() {}
 
 Node::Node() {
   left_branch = nullptr;
@@ -46,7 +48,42 @@ class Compare_Node {
   };
 };
 
-void Codding::Impl::Print_tree(Node* root, unsigned k = 0) {
+void Coding::Impl::readConfig(const char* conf_file) {
+  po::options_description coding("coding");
+  coding.add_options()("coding.input_path_codding,in", po::value<std::string>(),
+                       "input_path")("coding.output_path_codding,out",
+                                     po::value<std::string>(),
+                                     "output path coding")(
+      "coding.name_input_codding,iname", po::value<std::string>(),
+      "name_input coding")("coding.name_output_codding,oname",
+                           po::value<std::string>(), "name_output coding")(
+      "coding.print_Character_frequency_table,print1", po::value<bool>(),
+      "print_Character_frequency_table")("coding.print_tree", po::value<bool>(),
+                                         "print_tree")(
+      "coding.print_CODDING_TABL,print2", po::value<bool>(),
+      "print_CODDING_TABL");
+  po::options_description desc("Allowed options");
+  desc.add(coding);
+  try {
+    po::parsed_options parsed = po::parse_config_file<char>(
+        conf_file, desc,
+        true);  //флаг true разрешает незарегистрированные опции !
+    po::store(parsed, config);
+  } catch (const po::reading_file& e) {
+    std::cout << "Error: " << e.what() << std::endl;
+  }
+  po::notify(config);
+  std::cout << config["coding.input_path_codding"].as<std::string>()
+            << std::endl;
+  std::cout << config["coding.name_input_codding"].as<std::string>()
+            << std::endl;
+  std::cout << config["coding.output_path_codding"].as<std::string>()
+            << std::endl;
+  std::cout << config["coding.name_output_codding"].as<std::string>()
+            << std::endl;
+}
+
+void Coding::Impl::Print_tree(Node* root, unsigned k = 0) {
   if (root != nullptr) {
     Print_tree(root->left_branch, k + 4);
     for (unsigned i = 0; i < k; i++) {
@@ -61,7 +98,7 @@ void Codding::Impl::Print_tree(Node* root, unsigned k = 0) {
 }
 
 //Строим таблицу кодирования
-void Codding::Impl::BuildCodeTable(Node* root) {
+void Coding::Impl::BuildCodeTable(Node* root) {
   if (root->left_branch != nullptr) {
     code.push_back(0);
     BuildCodeTable(root->left_branch);
@@ -78,7 +115,7 @@ void Codding::Impl::BuildCodeTable(Node* root) {
                     // предыдущий элемент
 }
 
-void Codding::Impl::PrintTable() {
+void Coding::Impl::PrintTable() {
   cout << endl
        << "--------------------    CODDING TABL   ------------------------- "
        << endl;
@@ -95,41 +132,18 @@ void Codding::Impl::PrintTable() {
   }
 }
 
-void Codding::Impl::readConfig(const char* conf_file) {
-  po::options_description desc("All options");
-  desc.add_options()("input_path_codding,in", po::value<std::string>(),
-                     "input_path")("output_path_codding,out",
-                                   po::value<std::string>(), "output path")(
-      "name_input_codding,iname", po::value<std::string>(), "name_input")(
-      "name_output_codding,oname", po::value<std::string>(), "name_output")(
-      "print_Character_frequency_table,print1", po::value<bool>(),
-      "print_Character_frequency_table")("print_tree", po::value<bool>(),
-                                         "print_tree")(
-      "print_CODDING_TABL,print2", po::value<bool>(), "print_CODDING_TABL");
-  try {
-    po::store(po::parse_config_file<char>(conf_file, desc), config);
-  } catch (const po::reading_file& e) {
-    std::cout << "Error: " << e.what() << std::endl;
-  }
-  po::notify(config);
-  std::cout << config["input_path_codding"].as<std::string>() << std::endl;
-  std::cout << config["name_input_codding"].as<std::string>() << std::endl;
-  std::cout << config["output_path_codding"].as<std::string>() << std::endl;
-  std::cout << config["name_output_codding"].as<std::string>() << std::endl;
-}
-
-void Codding::Impl::codding() {
+void Coding::Impl::codding() {
   const std::chrono::time_point<std::chrono::steady_clock> start =
       std::chrono::steady_clock::now();
 
   cout << "Coding file started" << endl;
   cout << "read file: "
-       << config["input_path_codding"].as<std::string>() +
-              config["name_input_codding"].as<std::string>()
+       << config["coding.input_path_codding"].as<std::string>() +
+              config["coding.name_input_codding"].as<std::string>()
        << endl;
 
-  ifstream in_sourse(config["input_path_codding"].as<std::string>() +
-                         config["name_input_codding"].as<std::string>(),
+  ifstream in_sourse(config["coding.input_path_codding"].as<std::string>() +
+                         config["coding.name_input_codding"].as<std::string>(),
                      ios::in | ios::binary);
   string str{};
   while (!in_sourse.eof()) {
@@ -149,7 +163,7 @@ void Codding::Impl::codding() {
        << endl;
 
   cout << "First scan of the file: " +
-              config["name_input_codding"].as<std::string>()
+              config["coding.name_input_codding"].as<std::string>()
        << endl;
   while (!ss.eof()) {
     char c = ss.get();
@@ -157,7 +171,7 @@ void Codding::Impl::codding() {
     m[c]++;
   }
 
-  if (config["print_Character_frequency_table"].as<bool>()) {
+  if (config["coding.print_Character_frequency_table"].as<bool>()) {
     // Выводим таблицу частоты символов
     cout << " ------------------  Character frequency table  --------------- "
          << endl;
@@ -180,7 +194,7 @@ void Codding::Impl::codding() {
     char_all += itmap->second;
     list_pNode.push_back(p);
   }
-  cout << "char_all: " << char_all - 1 << endl;
+  cout << "char_all: " << char_all << endl;
 
   //Работаем с деревом
   while (list_pNode.size() != 1) {  // пока не останется 1
@@ -197,9 +211,9 @@ void Codding::Impl::codding() {
   Node* root = list_pNode.front();
 
   lenth_in = root->num_in_node;
-  cout << "sourse file - " << lenth_in - 1 << " bytes" << endl;
+  cout << "sourse file - " << lenth_in << " bytes" << endl;
 
-  if (config["print_tree"].as<bool>()) {
+  if (config["coding.print_tree"].as<bool>()) {
     //Печать дерева
     cout << endl
          << "--------------------    BINARE TREE    ------------------------- "
@@ -210,7 +224,7 @@ void Codding::Impl::codding() {
   // Ассоциируем символы с кодами - создаем структуру map  codeTabl
   BuildCodeTable(root);
 
-  if (config["print_CODDING_TABL"].as<bool>())
+  if (config["coding.print_CODDING_TABL"].as<bool>())
     // Печатаем codeTabl
     PrintTable();
 
@@ -226,7 +240,7 @@ void Codding::Impl::codding() {
 
   // Перемещаем указатель в начало файла
   cout << "Second scan of the file: " +
-              config["name_input_codding"].as<std::string>() +
+              config["coding.name_input_codding"].as<std::string>() +
               " - start encodding"
        << endl;
   //  in_sourse.clear();
@@ -277,7 +291,7 @@ void Codding::Impl::codding() {
        << endl;
 }
 
-void Codding::Impl::writeFile() {
+void Coding::Impl::writeFile() {
   // Для декодирования нам нужно будет построить дерево - для этого
   // нужно передать все символы и частоту вхождения каждого символа
   // Выдаем колл. символов таблицы, колл символов сжатого файла и три
@@ -291,8 +305,8 @@ void Codding::Impl::writeFile() {
   //    string FULLNAME = NAME_STRING+SUFFIX_STRING;
   //    const char *NAME_CHAR = FULLNAME.c_str();
 
-  out = fopen((config["output_path_codding"].as<std::string>() +
-               config["name_output_codding"].as<std::string>())
+  out = fopen((config["coding.output_path_codding"].as<std::string>() +
+               config["coding.name_output_codding"].as<std::string>())
                   .c_str(),
               "wb");
 
@@ -320,7 +334,8 @@ void Codding::Impl::writeFile() {
 
   fclose(out);
 
-  cout << "Creating file: " << config["name_output_codding"].as<std::string>()
-       << " - " << lenth_out << " bytes" << endl;
+  cout << "Creating file: "
+       << config["coding.name_output_codding"].as<std::string>() << " - "
+       << lenth_out << " bytes" << endl;
   cout << "ratio  " << 100 - (100 * lenth_out / lenth_in) << "%" << endl;
 }

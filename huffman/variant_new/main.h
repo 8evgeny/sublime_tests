@@ -32,10 +32,20 @@ class Node {
   Node(Node*, Node*);  // Конструктор для создания родителя
 };
 
-class Codding {
+class Coding {
  public:
-  Codding();
-  ~Codding();
+  Coding();
+  ~Coding();
+  struct Impl;
+
+ private:
+  std::unique_ptr<Impl> _d;
+};
+
+class Decoding {
+ public:
+  Decoding();
+  ~Decoding();
   struct Impl;
 
  private:
