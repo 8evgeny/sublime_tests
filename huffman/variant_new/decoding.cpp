@@ -13,7 +13,7 @@ Decoding::Impl::Impl() {}
 Decoding::Decoding() : _d{make_unique<Impl>()} {
   cout << "Decodding_constructor" << endl;
   _d->readConfig("../../config.ini");
-  //    _d->decodding();
+  _d->decoding();
   //    _d->writeFile();
 }
 Decoding::~Decoding() {}
@@ -45,8 +45,7 @@ void Decoding::Impl::readConfig(const char* conf_file) {
 }
 
 void Decoding::Impl::decoding() {
-  cout << "Start decoding file CODDING_DATA.HUFFMAN" << endl;
-  setlocale(LC_ALL, "Russian");
+  cout << "Start decoding file" << endl;
 
   int NUMBER;    //Общее число символов в таблице
   int lenth_in;  //Длина сжатых данных
@@ -58,10 +57,12 @@ void Decoding::Impl::decoding() {
   //Получаем длину таблицы и длину сжатого файла
   fread(&NUMBER, sizeof NUMBER, 1, in);
   fread(&lenth_in, sizeof lenth_in, 1, in);
+  cout << "NUMBER:" << NUMBER << endl;
+  cout << "lenth_in:" << lenth_in << endl;
   //В зависимости от полученных значений создаем 3 массива
   int DIG[NUMBER];
   char SYM[NUMBER];
-  vector<char> V_IN;
+  vector<char> V_IN{};
   char cc;
   //Читаем в массивы данные
   fread(SYM, sizeof SYM, 1, in);
@@ -115,13 +116,15 @@ void Decoding::Impl::decoding() {
   //               cout<<endl<<"--------------------    BINARE TREE
   //               ------------------------- "<<endl; PrintTree(root);
 
-  // Данные будем писать в файл ORIGINAL_DATA
-
+  cout << "Данные будем писать в файл"
+       << (config["decoding.output_path"].as<std::string>() +
+           config["decoding.output_name"].as<std::string>())
+       << endl;
   ofstream DATA_OUT((config["decoding.output_path"].as<std::string>() +
                      config["decoding.output_name"].as<std::string>())
                         .c_str(),
                     ios::out | ios::binary);
-
+  int numout = 0;
   Node* pp = root;
   int count = 0;
   char byte;
@@ -134,10 +137,11 @@ void Decoding::Impl::decoding() {
     else
       pp = pp->left_branch;
     if (pp->left_branch == nullptr && pp->right_branch == nullptr) {
+      ++numout;
       DATA_OUT << pp->char_in_node;
       pp = root;
     }
-    count++;
+    ++count;
     if (count == 8) {
       count = 0;
       byte = V_IN[i];
@@ -145,6 +149,6 @@ void Decoding::Impl::decoding() {
     }
   }
   DATA_OUT.close();
-  cout << "Creating file "
-       << "SOURSE_DATA" << endl;
+  cout << "numout:" << numout << endl;
+  cout << "Creating output file " << endl;
 }

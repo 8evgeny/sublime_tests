@@ -130,15 +130,15 @@ void Coding::Impl::codding() {
               config["coding.input_name"].as<std::string>()
        << endl;
 
-  ifstream in_sourse(config["coding.input_path"].as<std::string>() +
-                         config["coding.input_name"].as<std::string>(),
-                     ios::in | ios::binary);
-  string str{};
-  while (!in_sourse.eof()) {
-    char c = in_sourse.get();
-    str.append(&c);
-  }
-  stringstream ss{str};
+  ifstream in(config["coding.input_path"].as<std::string>() +
+                  config["coding.input_name"].as<std::string>(),
+              ios::in | ios::binary);
+  //  string str{};
+  //  while (!in.eof()) {
+  //    char c = in.get();
+  //    str.append(&c);
+  //  }
+  //  stringstream ss{str};
 
   const std::chrono::time_point<std::chrono::steady_clock> stop_read =
       std::chrono::steady_clock::now();
@@ -153,8 +153,8 @@ void Coding::Impl::codding() {
   cout << "First scan of the file: " +
               config["coding.input_name"].as<std::string>()
        << endl;
-  while (!ss.eof()) {
-    char c = ss.get();
+  while (!in.eof()) {
+    char c = in.get();
     //Записывааем символ в map и увеличиваем на 1 число вхождений
     m[c]++;
   }
@@ -231,18 +231,18 @@ void Coding::Impl::codding() {
               config["coding.input_name"].as<std::string>() +
               " - start encodding"
        << endl;
-  //  in_sourse.clear();
-  //  in_sourse.seekg(0);
-  ss.clear();
-  ss.seekg(0);
+  in.clear();
+  in.seekg(0);
+  //  ss.clear();
+  //  ss.seekg(0);
 
   //        ofstream out_code("CODDING_DATA", ios::out | ios::binary);
   int count = 0;
   char buf = 0;  //Буфер вывода
 
-  while (!ss.eof()) {
+  while (!in.eof()) {
     //Получаем символ из файла
-    char c = ss.get();
+    char c = in.get();
     //Код, соответствующий полученному символу берем из таблицы
     //кодирования
     vector<bool> kod_simvola = codeTabl[c];
@@ -309,6 +309,8 @@ void Coding::Impl::writeFile() {
     SYM[l] = i->first;
     ++l;
   }
+  cout << "NUMBER:" << NUMBER << endl;
+  cout << "lenth_out:" << lenth_out << endl;
 
   fwrite(&NUMBER, sizeof NUMBER, 1, out);
   fwrite(&lenth_out, sizeof lenth_out, 1, out);
