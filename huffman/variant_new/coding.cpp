@@ -1,4 +1,4 @@
-#include "main.h"
+﻿#include "main.h"
 using namespace std;
 
 struct Coding::Impl {
@@ -72,15 +72,19 @@ void Coding::Impl::readConfig(const char* conf_file) {
 
 void Coding::Impl::Print_tree(Node* root, unsigned k = 0) {
   if (root != nullptr) {
-    Print_tree(root->left_branch, k + 4);
+    Print_tree(root->left_branch, k + 2);
     for (unsigned i = 0; i < k; i++) {
       cout << "  ";
     }
-    if (root->char_in_node)
-      cout << root->num_in_node << " (" << root->char_in_node << ") " << endl;
+    if (root->char_in_node) {
+      printf("%.2d(", root->num_in_node);
+      printf("%.2X) \n", root->char_in_node);
+    }
+    //      cout << root->num_in_node << " (" << root->char_in_node << ") " <<
+    //      endl;
     else
       cout << root->num_in_node << endl;
-    Print_tree(root->right_branch, k + 3);
+    Print_tree(root->right_branch, k + 2);
   }
 }
 
@@ -104,11 +108,12 @@ void Coding::Impl::BuildCodeTable(Node* root) {
 
 void Coding::Impl::PrintTable() {
   cout << endl
-       << "--------------------    CODDING TABL   ------------------------- "
+       << "--------------------    codeTabl   ------------------------- "
        << endl;
   int l = 1;
   for (auto i : codeTabl) {
-    cout << l << "\t" << i.first << " - ";
+    printf("%.2X - ", i.first);
+
     auto itboolvector = i.second.begin();
     for (itboolvector = i.second.begin(); itboolvector != i.second.end();
          ++itboolvector) {
@@ -171,7 +176,9 @@ void Coding::Impl::codding() {
          << endl;
     int k = 1;
     for (auto i = m.begin(); i != m.end(); ++i) {
-      cout << k << "\t" << i->first << " - " << i->second << endl;
+      cout << k;
+      printf(" %.2X\t", i->first);
+      cout << i->second << endl;
       ++k;
     }
   }
@@ -246,12 +253,15 @@ void Coding::Impl::codding() {
   int count = 0;
   char buf = 0;  //Буфер вывода
 
-  while (!in.eof()) {
+  pos = end;
+  while (pos != 0) {
+    //  while (!in.eof()) {
     //Получаем символ из файла
     char c = in.get();
     //Код, соответствующий полученному символу берем из таблицы
     //кодирования
     vector<bool> kod_simvola = codeTabl[c];
+
     //Формируем выходной поток битов (по 8)
     for (int n = 0; n < kod_simvola.size(); ++n) {
       buf = buf | kod_simvola[n] << (7 - count);
@@ -263,6 +273,7 @@ void Coding::Impl::codding() {
         ++lenth_out;
       }
     }
+    --pos;
   }
   if (count != 0) {
     codding_file.push_back(buf);
