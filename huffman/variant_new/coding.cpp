@@ -20,6 +20,7 @@ struct Coding::Impl {
   vector<char> codding_file{};  //Закодированный файл
   long lenth_in = 0;
   int lenth_out = 0;
+  int numbit = 0;
 };
 
 Coding::Impl::Impl() {}
@@ -250,7 +251,7 @@ void Coding::Impl::codding() {
   //  ss.seekg(0);
 
   //        ofstream out_code("CODDING_DATA", ios::out | ios::binary);
-  int count = 0;
+
   char buf = 0;  //Буфер вывода
 
   pos = end;
@@ -264,10 +265,10 @@ void Coding::Impl::codding() {
 
     //Формируем выходной поток битов (по 8)
     for (int n = 0; n < kod_simvola.size(); ++n) {
-      buf = buf | kod_simvola[n] << (7 - count);
-      count++;
-      if (count == 8) {
-        count = 0;
+      buf = buf | kod_simvola[n] << (7 - numbit);
+      numbit++;
+      if (numbit == 8) {
+        numbit = 0;
         codding_file.push_back(buf);
         buf = 0;
         ++lenth_out;
@@ -275,7 +276,7 @@ void Coding::Impl::codding() {
     }
     --pos;
   }
-  if (count != 0) {
+  if (numbit != 0) {
     codding_file.push_back(buf);
     ++lenth_out;
   }
@@ -325,11 +326,11 @@ void Coding::Impl::writeFile() {
   }
   cout << "map_size:" << map_size << endl;
   cout << "lenth_out:" << lenth_out << endl;
-
   fwrite(&map_size, sizeof map_size, 1, out);
   fwrite(&lenth_out, sizeof lenth_out, 1, out);
   fwrite(char_array, sizeof char_array, 1, out);
   fwrite(digit_array, sizeof digit_array, 1, out);
+  fwrite(&numbit, sizeof numbit, 1, out);
   char cc;
   for (int z = 0; z < lenth_out; ++z) {
     cc = codding_file[z];

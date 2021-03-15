@@ -6,6 +6,7 @@ struct Decoding::Impl {
   void readConfig(const char*);
   void decoding();
   po::variables_map config;
+  int numbit = 0;
 };
 
 Decoding::Impl::Impl() {}
@@ -66,7 +67,7 @@ void Decoding::Impl::decoding() {
   //Читаем в массивы данные
   fread(SYM, sizeof SYM, 1, in);
   fread(DIG, sizeof DIG, 1, in);
-
+  fread(&numbit, sizeof numbit, 1, in);
   for (int z = 0; z < lenth_in; ++z) {
     fread(&cc, sizeof cc, 1, in);
     v_input_char.push_back(cc);
