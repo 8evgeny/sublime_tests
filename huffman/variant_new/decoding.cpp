@@ -68,6 +68,7 @@ void Decoding::Impl::decoding() {
   fread(SYM, sizeof SYM, 1, in);
   fread(DIG, sizeof DIG, 1, in);
   fread(&numbit, sizeof numbit, 1, in);
+  cout << "numbit:" << numbit << endl;
   for (int z = 0; z < lenth_in; ++z) {
     fread(&cc, sizeof cc, 1, in);
     v_input_char.push_back(cc);
@@ -129,22 +130,23 @@ void Decoding::Impl::decoding() {
   int count = 0;
   char byte;
   //Процедура декодирования
-  byte = v_input_char[0];
-  for (int i = 1; i < (lenth_in + 1);) {
+  for (int i = 0; i < (lenth_in);) {
+    byte = v_input_char[i];
     bool b = byte & (1 << (7 - count));
     if (b)
       pp = pp->right_branch;
     else
       pp = pp->left_branch;
+
     if (pp->left_branch == nullptr && pp->right_branch == nullptr) {
       ++numout;
       data_out << pp->char_in_node;
       pp = root;
     }
+
     ++count;
     if (count == 8) {
       count = 0;
-      byte = v_input_char[i];
       ++i;
     }
   }
