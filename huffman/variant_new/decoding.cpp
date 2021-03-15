@@ -46,7 +46,7 @@ void Decoding::Impl::readConfig(const char* conf_file) {
 void Decoding::Impl::decoding() {
   cout << "Start decoding file" << endl;
 
-  int NUMBER;    //Общее число символов в таблице
+  int map_size;  //Общее число символов в таблице
   int lenth_in;  //Длина сжатых данных
   FILE* in;
   in = fopen((config["decoding.input_path"].as<std::string>() +
@@ -54,13 +54,13 @@ void Decoding::Impl::decoding() {
                  .c_str(),
              "rb");
   //Получаем длину таблицы и длину сжатого файла
-  fread(&NUMBER, sizeof NUMBER, 1, in);
+  fread(&map_size, sizeof map_size, 1, in);
   fread(&lenth_in, sizeof lenth_in, 1, in);
-  cout << "NUMBER:" << NUMBER << endl;
+  cout << "map_size:" << map_size << endl;
   cout << "lenth_in:" << lenth_in << endl;
   //В зависимости от полученных значений создаем 3 массива
-  int DIG[NUMBER];
-  char SYM[NUMBER];
+  int DIG[map_size];
+  char SYM[map_size];
   vector<char> v_input_char{};
   char cc;
   //Читаем в массивы данные
@@ -78,7 +78,7 @@ void Decoding::Impl::decoding() {
   pair<char, int> p;
   map<char, int> m;
   int i = 0;
-  for (i = 0; i < NUMBER; ++i) {
+  for (i = 0; i < map_size; ++i) {
     p.first = SYM[i];
     p.second = DIG[i];
     m.insert(p);
@@ -129,7 +129,7 @@ void Decoding::Impl::decoding() {
   char byte;
   //Процедура декодирования
   byte = v_input_char[0];
-  for (int i = 1; i < (lenth_in);) {
+  for (int i = 1; i < (lenth_in + 1);) {
     bool b = byte & (1 << (7 - count));
     if (b)
       pp = pp->right_branch;

@@ -264,6 +264,10 @@ void Coding::Impl::codding() {
       }
     }
   }
+  if (count != 0) {
+    codding_file.push_back(buf);
+    ++lenth_out;
+  }
   in.close();
   cout << "Codding finishing" << endl;
 
