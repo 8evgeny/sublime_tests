@@ -11,7 +11,6 @@ struct Decoding::Impl {
 Decoding::Impl::Impl() {}
 
 Decoding::Decoding() : _d{make_unique<Impl>()} {
-  cout << "Decodding_constructor" << endl;
   _d->readConfig("../../config.ini");
   _d->decoding();
   //    _d->writeFile();
@@ -62,7 +61,7 @@ void Decoding::Impl::decoding() {
   //В зависимости от полученных значений создаем 3 массива
   int DIG[NUMBER];
   char SYM[NUMBER];
-  vector<char> V_IN{};
+  vector<char> v_input_char{};
   char cc;
   //Читаем в массивы данные
   fread(SYM, sizeof SYM, 1, in);
@@ -70,7 +69,7 @@ void Decoding::Impl::decoding() {
 
   for (int z = 0; z < lenth_in; ++z) {
     fread(&cc, sizeof cc, 1, in);
-    V_IN.push_back(cc);
+    v_input_char.push_back(cc);
   }
 
   fclose(in);
@@ -120,7 +119,7 @@ void Decoding::Impl::decoding() {
        << (config["decoding.output_path"].as<std::string>() +
            config["decoding.output_name"].as<std::string>())
        << endl;
-  ofstream DATA_OUT((config["decoding.output_path"].as<std::string>() +
+  ofstream data_out((config["decoding.output_path"].as<std::string>() +
                      config["decoding.output_name"].as<std::string>())
                         .c_str(),
                     ios::out | ios::binary);
@@ -129,7 +128,7 @@ void Decoding::Impl::decoding() {
   int count = 0;
   char byte;
   //Процедура декодирования
-  byte = V_IN[0];
+  byte = v_input_char[0];
   for (int i = 1; i < (lenth_in);) {
     bool b = byte & (1 << (7 - count));
     if (b)
@@ -138,17 +137,17 @@ void Decoding::Impl::decoding() {
       pp = pp->left_branch;
     if (pp->left_branch == nullptr && pp->right_branch == nullptr) {
       ++numout;
-      DATA_OUT << pp->char_in_node;
+      data_out << pp->char_in_node;
       pp = root;
     }
     ++count;
     if (count == 8) {
       count = 0;
-      byte = V_IN[i];
+      byte = v_input_char[i];
       ++i;
     }
   }
-  DATA_OUT.close();
+  data_out.close();
   cout << "numout:" << numout << endl;
   cout << "Creating output file " << endl;
 }

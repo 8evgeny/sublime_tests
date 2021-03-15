@@ -24,7 +24,6 @@ struct Coding::Impl {
 
 Coding::Impl::Impl() {}
 Coding::Coding() : _d{make_unique<Impl>()} {
-  cout << "Codding_constructor" << endl;
   _d->readConfig("../../config.ini");
   _d->codding();
   _d->writeFile();
@@ -65,10 +64,10 @@ void Coding::Impl::readConfig(const char* conf_file) {
     std::cout << "Error: " << e.what() << std::endl;
   }
   po::notify(config);
-  std::cout << config["coding.input_path"].as<std::string>() << std::endl;
-  std::cout << config["coding.input_name"].as<std::string>() << std::endl;
-  std::cout << config["coding.output_path"].as<std::string>() << std::endl;
-  std::cout << config["coding.output_name"].as<std::string>() << std::endl;
+  //  std::cout << config["coding.input_path"].as<std::string>() << std::endl;
+  //  std::cout << config["coding.input_name"].as<std::string>() << std::endl;
+  //  std::cout << config["coding.output_path"].as<std::string>() << std::endl;
+  //  std::cout << config["coding.output_name"].as<std::string>() << std::endl;
 }
 
 void Coding::Impl::Print_tree(Node* root, unsigned k = 0) {
@@ -133,12 +132,6 @@ void Coding::Impl::codding() {
   ifstream in(config["coding.input_path"].as<std::string>() +
                   config["coding.input_name"].as<std::string>(),
               ios::in | ios::binary);
-  //  string str{};
-  //  while (!in.eof()) {
-  //    char c = in.get();
-  //    str.append(&c);
-  //  }
-  //  stringstream ss{str};
 
   const std::chrono::time_point<std::chrono::steady_clock> stop_read =
       std::chrono::steady_clock::now();
@@ -153,10 +146,23 @@ void Coding::Impl::codding() {
   cout << "First scan of the file: " +
               config["coding.input_name"].as<std::string>()
        << endl;
-  while (!in.eof()) {
+  in.seekg(0, std::ios_base::end);  // смещаем каретку в конец файла
+  const std::streampos end = in.tellg();  // получаем позицию
+  cout << "char in file: " << end << endl;
+  in.clear();
+  in.seekg(0);
+  int pos = end;
+  int i = 0;
+  while (pos != 0) {
     char c = in.get();
     //Записывааем символ в map и увеличиваем на 1 число вхождений
     m[c]++;
+
+    //    ++i;
+    //    cout << i << " ";
+    //    printf("%.2X\n", c);  //выводим char в hex
+
+    --pos;
   }
 
   if (config["coding.print_Character_frequency_table"].as<bool>()) {
@@ -182,7 +188,7 @@ void Coding::Impl::codding() {
     char_all += itmap->second;
     list_pNode.push_back(p);
   }
-  cout << "char_all: " << char_all << endl;
+  //  cout << "char_in_map: " << char_all << endl;
 
   //Работаем с деревом
   while (list_pNode.size() != 1) {  // пока не останется 1
@@ -285,37 +291,30 @@ void Coding::Impl::writeFile() {
   // Выдаем колл. символов таблицы, колл символов сжатого файла и три
   // массива
   FILE* out;
-  //  char* NAME = argv[1];
-
-  //    char *SUFFIX = {".Huffman"};
-  //    string NAME_STRING = NAME;
-  //    string SUFFIX_STRING = SUFFIX;
-  //    string FULLNAME = NAME_STRING+SUFFIX_STRING;
-  //    const char *NAME_CHAR = FULLNAME.c_str();
 
   out = fopen((config["coding.output_path"].as<std::string>() +
                config["coding.output_name"].as<std::string>())
                   .c_str(),
               "wb");
 
-  int NUMBER;
-  NUMBER = m.size();
-  int DIG[m.size()];
-  char SYM[m.size()];
+  int map_size;
+  map_size = m.size();
+  int digit_array[m.size()];
+  char char_array[m.size()];
 
   int l = 0;
   for (auto i = m.begin(); i != m.end(); ++i) {
-    DIG[l] = i->second;
-    SYM[l] = i->first;
+    digit_array[l] = i->second;
+    char_array[l] = i->first;
     ++l;
   }
-  cout << "NUMBER:" << NUMBER << endl;
+  cout << "map_size:" << map_size << endl;
   cout << "lenth_out:" << lenth_out << endl;
 
-  fwrite(&NUMBER, sizeof NUMBER, 1, out);
+  fwrite(&map_size, sizeof map_size, 1, out);
   fwrite(&lenth_out, sizeof lenth_out, 1, out);
-  fwrite(SYM, sizeof SYM, 1, out);
-  fwrite(DIG, sizeof DIG, 1, out);
+  fwrite(char_array, sizeof char_array, 1, out);
+  fwrite(digit_array, sizeof digit_array, 1, out);
   char cc;
   for (int z = 0; z < lenth_out; ++z) {
     cc = codding_file[z];
