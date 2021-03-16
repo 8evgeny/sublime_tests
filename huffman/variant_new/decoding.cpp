@@ -7,6 +7,7 @@ struct Decoding::Impl {
   void decoding();
   po::variables_map config;
   int numbit = 0;
+  long lench_origin = 0;
 };
 
 Decoding::Impl::Impl() {}
@@ -67,7 +68,7 @@ void Decoding::Impl::decoding() {
   //Читаем в массивы данные
   fread(SYM, sizeof SYM, 1, in);
   fread(DIG, sizeof DIG, 1, in);
-  fread(&numbit, sizeof numbit, 1, in);
+  fread(&lench_origin, sizeof lench_origin, 1, in);
   cout << "numbit:" << numbit << endl;
   for (int z = 0; z < lenth_in; ++z) {
     fread(&cc, sizeof cc, 1, in);
@@ -130,7 +131,7 @@ void Decoding::Impl::decoding() {
   int count = 0;
   char byte;
   //Процедура декодирования
-  for (int i = 0; i < (lenth_in);) {
+  for (int i = 0; i < lenth_in;) {
     byte = v_input_char[i];
     bool b = byte & (1 << (7 - count));
     if (b)
@@ -142,6 +143,7 @@ void Decoding::Impl::decoding() {
       ++numout;
       data_out << pp->char_in_node;
       pp = root;
+      if (numout == lench_origin) break;
     }
 
     ++count;

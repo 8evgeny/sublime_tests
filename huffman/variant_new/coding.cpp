@@ -21,6 +21,7 @@ struct Coding::Impl {
   long lenth_in = 0;
   int lenth_out = 0;
   int numbit = 0;
+  long lench_origin = 0;
 };
 
 Coding::Impl::Impl() {}
@@ -154,6 +155,7 @@ void Coding::Impl::codding() {
        << endl;
   in.seekg(0, std::ios_base::end);  // смещаем каретку в конец файла
   const std::streampos end = in.tellg();  // получаем позицию
+  lench_origin = end;
   cout << "char in file: " << end << endl;
   in.clear();
   in.seekg(0);
@@ -330,7 +332,7 @@ void Coding::Impl::writeFile() {
   fwrite(&lenth_out, sizeof lenth_out, 1, out);
   fwrite(char_array, sizeof char_array, 1, out);
   fwrite(digit_array, sizeof digit_array, 1, out);
-  fwrite(&numbit, sizeof numbit, 1, out);
+  fwrite(&lench_origin, sizeof lench_origin, 1, out);
   char cc;
   for (int z = 0; z < lenth_out; ++z) {
     cc = codding_file[z];
