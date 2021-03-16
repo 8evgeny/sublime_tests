@@ -18,10 +18,10 @@ int main(int argc, char** argv) {
         break;
     }
   } else
-  // Без аргументов запускаем содирование а потом декодирование
+  // Без аргументов запускаем кодирование а потом декодирование
   {
     Coding coding;
-    cout << "wait 1s" << endl;
+    cout << "Wait..." << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
   }
 

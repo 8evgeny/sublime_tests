@@ -131,9 +131,7 @@ void Coding::Impl::codding() {
       std::chrono::steady_clock::now();
 
   cout << "Coding file started" << endl;
-  cout << "read file: "
-       << config["coding.input_path"].as<std::string>() +
-              config["coding.input_name"].as<std::string>()
+  cout << "Читаем файл: " << config["coding.input_name"].as<std::string>()
        << endl;
 
   ifstream in(config["coding.input_path"].as<std::string>() +
@@ -143,16 +141,14 @@ void Coding::Impl::codding() {
   const std::chrono::time_point<std::chrono::steady_clock> stop_read =
       std::chrono::steady_clock::now();
 
-  cout << "Time_read - "
-       << std::chrono::duration_cast<std::chrono::milliseconds>(stop_read -
-                                                                start)
-              .count()
-       << " milliseconds" << endl
-       << endl;
+  //  cout << "Time_read - "
+  //       << std::chrono::duration_cast<std::chrono::milliseconds>(stop_read -
+  //                                                                start)
+  //              .count()
+  //       << " milliseconds" << endl
+  //       << endl;
 
-  cout << "First scan of the file: " +
-              config["coding.input_name"].as<std::string>()
-       << endl;
+  cout << "First scan of the file " << endl;
   in.seekg(0, std::ios_base::end);  // смещаем каретку в конец файла
   const std::streampos end = in.tellg();  // получаем позицию
   lench_origin = end;
@@ -208,7 +204,7 @@ void Coding::Impl::codding() {
   Node* root = list_pNode.front();
 
   lenth_in = root->num_in_node;
-  cout << "sourse file - " << lenth_in << " bytes" << endl;
+  //  cout << "sourse file - " << lenth_in << " bytes" << endl;
 
   //Печать дерева
   if (config["coding.print_tree"].as<bool>()) {
@@ -234,10 +230,7 @@ void Coding::Impl::codding() {
        << endl;
 
   // Перемещаем указатель в начало файла
-  cout << "Second scan of the file: " +
-              config["coding.input_name"].as<std::string>() +
-              " - start encodding"
-       << endl;
+  cout << "Second scan - start codding" << endl;
   in.clear();
   in.seekg(0);
 

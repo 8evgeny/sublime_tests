@@ -109,10 +109,8 @@ void Decoding::Impl::decoding() {
   // на выходе цикла остался 1 элемент - он-же корень
   Node* root = t.front();
 
-  cout << "Данные будем писать в файл"
-       << (config["decoding.output_path"].as<std::string>() +
-           config["decoding.output_name"].as<std::string>())
-       << endl;
+  cout << "Записываем файл: "
+       << (config["decoding.output_name"].as<std::string>()) << endl;
   ofstream data_out((config["decoding.output_path"].as<std::string>() +
                      config["decoding.output_name"].as<std::string>())
                         .c_str(),
@@ -144,5 +142,5 @@ void Decoding::Impl::decoding() {
     }
   }
   data_out.close();
-  cout << "записано:" << numout << endl;
+  cout << "Записано: " << numout << endl;
 }
