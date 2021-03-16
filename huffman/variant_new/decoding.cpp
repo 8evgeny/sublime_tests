@@ -15,7 +15,6 @@ Decoding::Impl::Impl() {}
 Decoding::Decoding() : _d{make_unique<Impl>()} {
   _d->readConfig("../../config.ini");
   _d->decoding();
-  //    _d->writeFile();
 }
 Decoding::~Decoding() {}
 
@@ -59,12 +58,12 @@ void Decoding::Impl::decoding() {
   //Получаем длину таблицы и длину сжатого файла
   fread(&map_size, sizeof map_size, 1, in);
   fread(&lenth_in, sizeof lenth_in, 1, in);
-  int DIG[map_size];
-  char SYM[map_size];
+  int digit_array[map_size];
+  char char_array[map_size];
   vector<char> v_input_char{};
   char cc;
-  fread(SYM, sizeof SYM, 1, in);
-  fread(DIG, sizeof DIG, 1, in);
+  fread(char_array, sizeof char_array, 1, in);
+  fread(digit_array, sizeof digit_array, 1, in);
   fread(&lench_origin, sizeof lench_origin, 1, in);
   for (int z = 0; z < lenth_in; ++z) {
     fread(&cc, sizeof cc, 1, in);
@@ -78,8 +77,8 @@ void Decoding::Impl::decoding() {
   map<char, int> m;
   int i = 0;
   for (i = 0; i < map_size; ++i) {
-    p.first = SYM[i];
-    p.second = DIG[i];
+    p.first = char_array[i];
+    p.second = digit_array[i];
     m.insert(p);
   }
 
@@ -100,11 +99,11 @@ void Decoding::Impl::decoding() {
   while (t.size() != 1)  // Цикл пока в контейнере не останется корень
   {
     t.sort(Compare_Node());
-    Node* SONL = t.front();
+    Node* left_son = t.front();
     t.pop_front();
-    Node* SONR = t.front();
+    Node* right_son = t.front();
     t.pop_front();
-    Node* parrent = new Node(SONL, SONR);
+    Node* parrent = new Node(left_son, right_son);
     t.push_back(parrent);
   }
   // на выходе цикла остался 1 элемент - он-же корень
@@ -145,6 +144,5 @@ void Decoding::Impl::decoding() {
     }
   }
   data_out.close();
-  cout << "numout:" << numout << endl;
-  cout << "Creating output file " << endl;
+  cout << "записано:" << numout << endl;
 }

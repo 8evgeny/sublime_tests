@@ -165,16 +165,10 @@ void Coding::Impl::codding() {
     char c = in.get();
     //Записывааем символ в map и увеличиваем на 1 число вхождений
     m[c]++;
-
-    //    ++i;
-    //    cout << i << " ";
-    //    printf("%.2X\n", c);  //выводим char в hex
-
     --pos;
   }
 
   if (config["coding.print_Character_frequency_table"].as<bool>()) {
-    // Выводим таблицу частоты символов
     cout << " ------------------  Character frequency table  --------------- "
          << endl;
     int k = 1;
@@ -198,7 +192,6 @@ void Coding::Impl::codding() {
     char_all += itmap->second;
     list_pNode.push_back(p);
   }
-  //  cout << "char_in_map: " << char_all << endl;
 
   //Работаем с деревом
   while (list_pNode.size() != 1) {  // пока не останется 1
@@ -217,20 +210,18 @@ void Coding::Impl::codding() {
   lenth_in = root->num_in_node;
   cout << "sourse file - " << lenth_in << " bytes" << endl;
 
+  //Печать дерева
   if (config["coding.print_tree"].as<bool>()) {
-    //Печать дерева
     cout << endl
          << "--------------------    BINARE TREE    ------------------------- "
          << endl;
     Print_tree(root);
   }
-
   // Ассоциируем символы с кодами - создаем структуру map  codeTabl
   BuildCodeTable(root);
 
-  if (config["coding.print_CODDING_TABL"].as<bool>())
-    // Печатаем codeTabl
-    PrintTable();
+  // Печатаем codeTabl
+  if (config["coding.print_CODDING_TABL"].as<bool>()) PrintTable();
 
   const std::chrono::time_point<std::chrono::steady_clock> stop_stage1 =
       std::chrono::steady_clock::now();
@@ -249,20 +240,13 @@ void Coding::Impl::codding() {
        << endl;
   in.clear();
   in.seekg(0);
-  //  ss.clear();
-  //  ss.seekg(0);
-
-  //        ofstream out_code("CODDING_DATA", ios::out | ios::binary);
 
   char buf = 0;  //Буфер вывода
 
   pos = end;
   while (pos != 0) {
-    //  while (!in.eof()) {
-    //Получаем символ из файла
     char c = in.get();
-    //Код, соответствующий полученному символу берем из таблицы
-    //кодирования
+    //Соответствующий код полученному символу берем из таблицы кодирования
     vector<bool> kod_simvola = codeTabl[c];
 
     //Формируем выходной поток битов (по 8)
@@ -306,10 +290,7 @@ void Coding::Impl::codding() {
 void Coding::Impl::writeFile() {
   // Для декодирования нам нужно будет построить дерево - для этого
   // нужно передать все символы и частоту вхождения каждого символа
-  // Выдаем колл. символов таблицы, колл символов сжатого файла и три
-  // массива
   FILE* out;
-
   out = fopen((config["coding.output_path"].as<std::string>() +
                config["coding.output_name"].as<std::string>())
                   .c_str(),
@@ -330,8 +311,8 @@ void Coding::Impl::writeFile() {
   cout << "lenth_out:" << lenth_out << endl;
   fwrite(&map_size, sizeof map_size, 1, out);
   fwrite(&lenth_out, sizeof lenth_out, 1, out);
-  fwrite(char_array, sizeof char_array, 1, out);
-  fwrite(digit_array, sizeof digit_array, 1, out);
+  fwrite(&char_array, sizeof char_array, 1, out);
+  fwrite(&digit_array, sizeof digit_array, 1, out);
   fwrite(&lench_origin, sizeof lench_origin, 1, out);
 
   char cc;
@@ -343,6 +324,7 @@ void Coding::Impl::writeFile() {
   fclose(out);
 
   cout << "Creating file: " << config["coding.output_name"].as<std::string>()
-       << " - " << lenth_out << " bytes" << endl;
-  cout << "ratio  " << 100 - (100 * lenth_out / lenth_in) << "%" << endl;
+       << endl;
+  cout << "ratio  " << 100 - (100 * lenth_out / lenth_in) << "%" << endl
+       << endl;
 }
