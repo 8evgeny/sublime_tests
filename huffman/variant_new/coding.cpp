@@ -326,13 +326,14 @@ void Coding::Impl::writeFile() {
     char_array[l] = i->first;
     ++l;
   }
-  cout << "map_size:" << map_size << endl;
+
   cout << "lenth_out:" << lenth_out << endl;
   fwrite(&map_size, sizeof map_size, 1, out);
   fwrite(&lenth_out, sizeof lenth_out, 1, out);
   fwrite(char_array, sizeof char_array, 1, out);
   fwrite(digit_array, sizeof digit_array, 1, out);
   fwrite(&lench_origin, sizeof lench_origin, 1, out);
+
   char cc;
   for (int z = 0; z < lenth_out; ++z) {
     cc = codding_file[z];

@@ -39,10 +39,11 @@ void Decoding::Impl::readConfig(const char* conf_file) {
     std::cout << "Error: " << e.what() << std::endl;
   }
   po::notify(config);
-  std::cout << config["decoding.input_path"].as<std::string>() << std::endl;
-  std::cout << config["decoding.input_name"].as<std::string>() << std::endl;
-  std::cout << config["decoding.output_path"].as<std::string>() << std::endl;
-  std::cout << config["decoding.output_name"].as<std::string>() << std::endl;
+  //  std::cout << config["decoding.input_path"].as<std::string>() << std::endl;
+  //  std::cout << config["decoding.input_name"].as<std::string>() << std::endl;
+  //  std::cout << config["decoding.output_path"].as<std::string>() <<
+  //  std::endl; std::cout << config["decoding.output_name"].as<std::string>()
+  //  << std::endl;
 }
 
 void Decoding::Impl::decoding() {
@@ -58,18 +59,13 @@ void Decoding::Impl::decoding() {
   //Получаем длину таблицы и длину сжатого файла
   fread(&map_size, sizeof map_size, 1, in);
   fread(&lenth_in, sizeof lenth_in, 1, in);
-  cout << "map_size:" << map_size << endl;
-  cout << "lenth_in:" << lenth_in << endl;
-  //В зависимости от полученных значений создаем 3 массива
   int DIG[map_size];
   char SYM[map_size];
   vector<char> v_input_char{};
   char cc;
-  //Читаем в массивы данные
   fread(SYM, sizeof SYM, 1, in);
   fread(DIG, sizeof DIG, 1, in);
   fread(&lench_origin, sizeof lench_origin, 1, in);
-  cout << "numbit:" << numbit << endl;
   for (int z = 0; z < lenth_in; ++z) {
     fread(&cc, sizeof cc, 1, in);
     v_input_char.push_back(cc);
@@ -114,10 +110,6 @@ void Decoding::Impl::decoding() {
   // на выходе цикла остался 1 элемент - он-же корень
   Node* root = t.front();
 
-  //Печать дерева
-  //               cout<<endl<<"--------------------    BINARE TREE
-  //               ------------------------- "<<endl; PrintTree(root);
-
   cout << "Данные будем писать в файл"
        << (config["decoding.output_path"].as<std::string>() +
            config["decoding.output_name"].as<std::string>())
@@ -143,7 +135,7 @@ void Decoding::Impl::decoding() {
       ++numout;
       data_out << pp->char_in_node;
       pp = root;
-      if (numout == lench_origin) break;
+      if (numout == lench_origin) break;  //выведен последний символ
     }
 
     ++count;
