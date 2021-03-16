@@ -6,12 +6,13 @@ struct Decoding::Impl {
   void readConfig(const char*);
   void decoding();
   po::variables_map config;
+  int numbit = 0;
+  long lench_origin = 0;
 };
 
 Decoding::Impl::Impl() {}
 
 Decoding::Decoding() : _d{make_unique<Impl>()} {
-  cout << "Decodding_constructor" << endl;
   _d->readConfig("../../config.ini");
   _d->decoding();
   //    _d->writeFile();
@@ -38,72 +39,48 @@ void Decoding::Impl::readConfig(const char* conf_file) {
     std::cout << "Error: " << e.what() << std::endl;
   }
   po::notify(config);
-  std::cout << config["decoding.input_path"].as<std::string>() << std::endl;
-  std::cout << config["decoding.input_name"].as<std::string>() << std::endl;
-  std::cout << config["decoding.output_path"].as<std::string>() << std::endl;
-  std::cout << config["decoding.output_name"].as<std::string>() << std::endl;
+  //  std::cout << config["decoding.input_path"].as<std::string>() << std::endl;
+  //  std::cout << config["decoding.input_name"].as<std::string>() << std::endl;
+  //  std::cout << config["decoding.output_path"].as<std::string>() <<
+  //  std::endl; std::cout << config["decoding.output_name"].as<std::string>()
+  //  << std::endl;
 }
 
 void Decoding::Impl::decoding() {
   cout << "Start decoding file" << endl;
 
-  int NUMBER = 0;    //Общее число символов в таблице
-  int lenth_in = 0;  //Длина сжатых данных
-                     //  FILE* in;
-  //  in = fopen((config["decoding.input_path"].as<std::string>() +
-  //              config["decoding.input_name"].as<std::string>())
-  //                 .c_str(),
-  //             "rb");
-
-  ifstream in((config["decoding.input_path"].as<std::string>() +
-               config["decoding.input_name"].as<std::string>())
-                  .c_str(),
-              ios::in | ios::binary);
-
+  int map_size;  //Общее число символов в таблице
+  int lenth_in;  //Длина сжатых данных
+  FILE* in;
+  in = fopen((config["decoding.input_path"].as<std::string>() +
+              config["decoding.input_name"].as<std::string>())
+                 .c_str(),
+             "rb");
   //Получаем длину таблицы и длину сжатого файла
-  //  fread(&NUMBER, sizeof NUMBER, 1, in);
-  in >> NUMBER;
-  in >> lenth_in;
-  //  fread(&lenth_in, sizeof lenth_in, 1, in);
-  cout << "m.size:" << NUMBER << endl;
-  cout << "data.size:" << lenth_in << endl;
-  //  cout << "lenth_in:" << lenth_in << endl;
-  //В зависимости от полученных значений создаем 3 массива
-  //  string DIG[NUMBER];
-
-  //  char SYM[NUMBER];
-  vector<char> V_IN{};
+  fread(&map_size, sizeof map_size, 1, in);
+  fread(&lenth_in, sizeof lenth_in, 1, in);
+  int DIG[map_size];
+  char SYM[map_size];
+  vector<char> v_input_char{};
   char cc;
-  //Читаем в массивы данные
-  //  in >> SYM;
-  //  in >> DIG;
-  //  fread(SYM, sizeof SYM, 1, in);
-  //  fread(DIG, sizeof DIG, 1, in);
+  fread(SYM, sizeof SYM, 1, in);
+  fread(DIG, sizeof DIG, 1, in);
+  fread(&lench_origin, sizeof lench_origin, 1, in);
+  for (int z = 0; z < lenth_in; ++z) {
+    fread(&cc, sizeof cc, 1, in);
+    v_input_char.push_back(cc);
+  }
 
-  //  for (int z = 0; z < lenth_in; ++z) {
-  //    //      fread(&cc, sizeof cc, 1, in);
-  //    in >> cc;
-  //    V_IN.push_back(cc);
-  //  }
-
-  //  fclose(in);
+  fclose(in);
 
   // Восстанавливаем кодовую таблицу - создаем map
   pair<char, int> p;
   map<char, int> m;
   int i = 0;
-  for (i = 0; i < NUMBER; ++i) {
-    in >> p.first;
-    in >> p.second;
+  for (i = 0; i < map_size; ++i) {
+    p.first = SYM[i];
+    p.second = DIG[i];
     m.insert(p);
-    cout << "i:" << i << "char:" << p.first << "num:" << p.second << endl;
-  }
-  cout << "сам файл:" << endl;
-  int ii = lenth_in;
-  while (ii > 0) {
-    in >> cc;
-    V_IN.push_back(cc);
-    --ii;
   }
 
   //Список указателей на узлы нашего дерева
@@ -133,15 +110,11 @@ void Decoding::Impl::decoding() {
   // на выходе цикла остался 1 элемент - он-же корень
   Node* root = t.front();
 
-  //Печать дерева
-  //               cout<<endl<<"--------------------    BINARE TREE
-  //               ------------------------- "<<endl; PrintTree(root);
-
   cout << "Данные будем писать в файл"
        << (config["decoding.output_path"].as<std::string>() +
            config["decoding.output_name"].as<std::string>())
        << endl;
-  ofstream DATA_OUT((config["decoding.output_path"].as<std::string>() +
+  ofstream data_out((config["decoding.output_path"].as<std::string>() +
                      config["decoding.output_name"].as<std::string>())
                         .c_str(),
                     ios::out | ios::binary);
@@ -150,26 +123,28 @@ void Decoding::Impl::decoding() {
   int count = 0;
   char byte;
   //Процедура декодирования
-  byte = V_IN[0];
-  for (int i = 1; i < (lenth_in);) {
+  for (int i = 0; i < lenth_in;) {
+    byte = v_input_char[i];
     bool b = byte & (1 << (7 - count));
     if (b)
       pp = pp->right_branch;
     else
       pp = pp->left_branch;
+
     if (pp->left_branch == nullptr && pp->right_branch == nullptr) {
       ++numout;
-      DATA_OUT << pp->char_in_node;
+      data_out << pp->char_in_node;
       pp = root;
+      if (numout == lench_origin) break;  //выведен последний символ
     }
+
     ++count;
     if (count == 8) {
       count = 0;
-      byte = V_IN[i];
       ++i;
     }
   }
-  DATA_OUT.close();
+  data_out.close();
   cout << "numout:" << numout << endl;
   cout << "Creating output file " << endl;
 }

@@ -1,4 +1,4 @@
-#include "main.h"
+﻿#include "main.h"
 using namespace std;
 
 struct Coding::Impl {
@@ -20,11 +20,12 @@ struct Coding::Impl {
   vector<char> codding_file{};  //Закодированный файл
   long lenth_in = 0;
   int lenth_out = 0;
+  int numbit = 0;
+  long lench_origin = 0;
 };
 
 Coding::Impl::Impl() {}
 Coding::Coding() : _d{make_unique<Impl>()} {
-  cout << "Codding_constructor" << endl;
   _d->readConfig("../../config.ini");
   _d->codding();
   _d->writeFile();
@@ -65,23 +66,27 @@ void Coding::Impl::readConfig(const char* conf_file) {
     std::cout << "Error: " << e.what() << std::endl;
   }
   po::notify(config);
-  std::cout << config["coding.input_path"].as<std::string>() << std::endl;
-  std::cout << config["coding.input_name"].as<std::string>() << std::endl;
-  std::cout << config["coding.output_path"].as<std::string>() << std::endl;
-  std::cout << config["coding.output_name"].as<std::string>() << std::endl;
+  //  std::cout << config["coding.input_path"].as<std::string>() << std::endl;
+  //  std::cout << config["coding.input_name"].as<std::string>() << std::endl;
+  //  std::cout << config["coding.output_path"].as<std::string>() << std::endl;
+  //  std::cout << config["coding.output_name"].as<std::string>() << std::endl;
 }
 
 void Coding::Impl::Print_tree(Node* root, unsigned k = 0) {
   if (root != nullptr) {
-    Print_tree(root->left_branch, k + 4);
+    Print_tree(root->left_branch, k + 2);
     for (unsigned i = 0; i < k; i++) {
       cout << "  ";
     }
-    if (root->char_in_node)
-      cout << root->num_in_node << " (" << root->char_in_node << ") " << endl;
+    if (root->char_in_node) {
+      printf("%.2d(", root->num_in_node);
+      printf("%.2X) \n", root->char_in_node);
+    }
+    //      cout << root->num_in_node << " (" << root->char_in_node << ") " <<
+    //      endl;
     else
       cout << root->num_in_node << endl;
-    Print_tree(root->right_branch, k + 3);
+    Print_tree(root->right_branch, k + 2);
   }
 }
 
@@ -105,11 +110,12 @@ void Coding::Impl::BuildCodeTable(Node* root) {
 
 void Coding::Impl::PrintTable() {
   cout << endl
-       << "--------------------    CODDING TABL   ------------------------- "
+       << "--------------------    codeTabl   ------------------------- "
        << endl;
   int l = 1;
   for (auto i : codeTabl) {
-    cout << l << "\t" << i.first << " - ";
+    printf("%.2X - ", i.first);
+
     auto itboolvector = i.second.begin();
     for (itboolvector = i.second.begin(); itboolvector != i.second.end();
          ++itboolvector) {
@@ -133,12 +139,6 @@ void Coding::Impl::codding() {
   ifstream in(config["coding.input_path"].as<std::string>() +
                   config["coding.input_name"].as<std::string>(),
               ios::in | ios::binary);
-  //  string str{};
-  //  while (!in.eof()) {
-  //    char c = in.get();
-  //    str.append(&c);
-  //  }
-  //  stringstream ss{str};
 
   const std::chrono::time_point<std::chrono::steady_clock> stop_read =
       std::chrono::steady_clock::now();
@@ -153,10 +153,24 @@ void Coding::Impl::codding() {
   cout << "First scan of the file: " +
               config["coding.input_name"].as<std::string>()
        << endl;
-  while (!in.eof()) {
+  in.seekg(0, std::ios_base::end);  // смещаем каретку в конец файла
+  const std::streampos end = in.tellg();  // получаем позицию
+  lench_origin = end;
+  cout << "char in file: " << end << endl;
+  in.clear();
+  in.seekg(0);
+  int pos = end;
+  int i = 0;
+  while (pos != 0) {
     char c = in.get();
     //Записывааем символ в map и увеличиваем на 1 число вхождений
     m[c]++;
+
+    //    ++i;
+    //    cout << i << " ";
+    //    printf("%.2X\n", c);  //выводим char в hex
+
+    --pos;
   }
 
   if (config["coding.print_Character_frequency_table"].as<bool>()) {
@@ -165,7 +179,9 @@ void Coding::Impl::codding() {
          << endl;
     int k = 1;
     for (auto i = m.begin(); i != m.end(); ++i) {
-      cout << k << "\t" << i->first << " - " << i->second << endl;
+      cout << k;
+      printf(" %.2X\t", i->first);
+      cout << i->second << endl;
       ++k;
     }
   }
@@ -182,7 +198,7 @@ void Coding::Impl::codding() {
     char_all += itmap->second;
     list_pNode.push_back(p);
   }
-  cout << "char_all: " << char_all << endl;
+  //  cout << "char_in_map: " << char_all << endl;
 
   //Работаем с деревом
   while (list_pNode.size() != 1) {  // пока не останется 1
@@ -237,26 +253,34 @@ void Coding::Impl::codding() {
   //  ss.seekg(0);
 
   //        ofstream out_code("CODDING_DATA", ios::out | ios::binary);
-  int count = 0;
+
   char buf = 0;  //Буфер вывода
 
-  while (!in.eof()) {
+  pos = end;
+  while (pos != 0) {
+    //  while (!in.eof()) {
     //Получаем символ из файла
     char c = in.get();
     //Код, соответствующий полученному символу берем из таблицы
     //кодирования
     vector<bool> kod_simvola = codeTabl[c];
+
     //Формируем выходной поток битов (по 8)
     for (int n = 0; n < kod_simvola.size(); ++n) {
-      buf = buf | kod_simvola[n] << (7 - count);
-      count++;
-      if (count == 8) {
-        count = 0;
+      buf = buf | kod_simvola[n] << (7 - numbit);
+      numbit++;
+      if (numbit == 8) {
+        numbit = 0;
         codding_file.push_back(buf);
         buf = 0;
         ++lenth_out;
       }
     }
+    --pos;
+  }
+  if (numbit != 0) {
+    codding_file.push_back(buf);
+    ++lenth_out;
   }
   in.close();
   cout << "Codding finishing" << endl;
@@ -284,50 +308,39 @@ void Coding::Impl::writeFile() {
   // нужно передать все символы и частоту вхождения каждого символа
   // Выдаем колл. символов таблицы, колл символов сжатого файла и три
   // массива
+  FILE* out;
 
-  //  FILE* out;
+  out = fopen((config["coding.output_path"].as<std::string>() +
+               config["coding.output_name"].as<std::string>())
+                  .c_str(),
+              "wb");
 
-  //  char* NAME = argv[1];
+  int map_size;
+  map_size = m.size();
+  int digit_array[m.size()];
+  char char_array[m.size()];
 
-  //    char *SUFFIX = {".Huffman"};
-  //    string NAME_STRING = NAME;
-  //    string SUFFIX_STRING = SUFFIX;
-  //    string FULLNAME = NAME_STRING+SUFFIX_STRING;
-  //    const char *NAME_CHAR = FULLNAME.c_str();
-
-  ofstream out((config["coding.output_path"].as<std::string>() +
-                config["coding.output_name"].as<std::string>())
-                   .c_str(),
-               ios::out | ios::binary);
-
-  out << m.size() << endl;
-  out << lenth_out << endl;
-  //  string DIG[m.size()];
-  //  char SYM[m.size()];
-
-  //  int l = 0;
+  int l = 0;
   for (auto i = m.begin(); i != m.end(); ++i) {
-    out << i->first << i->second;
-    //    DIG[l] = to_string(i->second);
-    //    SYM[l] = i->first;
-    //    ++l;
+    digit_array[l] = i->second;
+    char_array[l] = i->first;
+    ++l;
   }
-  cout << "m.size:" << m.size() << endl;
-  cout << "lenth_out:" << lenth_out << endl;
 
-  //  fwrite(&NUMBER, sizeof NUMBER, 1, out);
-  //  out << NUMBER << SYM << DIG;
-  //  fwrite(&lenth_out, sizeof lenth_out, 1, out);
-  //  fwrite(SYM, sizeof SYM, 1, out);
-  //  fwrite(DIG, sizeof DIG, 1, out);
+  cout << "lenth_out:" << lenth_out << endl;
+  fwrite(&map_size, sizeof map_size, 1, out);
+  fwrite(&lenth_out, sizeof lenth_out, 1, out);
+  fwrite(char_array, sizeof char_array, 1, out);
+  fwrite(digit_array, sizeof digit_array, 1, out);
+  fwrite(&lench_origin, sizeof lench_origin, 1, out);
+
   char cc;
   for (int z = 0; z < lenth_out; ++z) {
     cc = codding_file[z];
-    out << cc;
-    //    fwrite(&cc, sizeof cc, 1, out);
+    fwrite(&cc, sizeof cc, 1, out);
   }
-  out.close();
-  //  fclose(out);
+
+  fclose(out);
 
   cout << "Creating file: " << config["coding.output_name"].as<std::string>()
        << " - " << lenth_out << " bytes" << endl;

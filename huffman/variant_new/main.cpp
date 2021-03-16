@@ -18,12 +18,17 @@ int main(int argc, char** argv) {
         break;
     }
   } else
-  // если аргументов нет сначала содируем а потом декодируем
+  // Без аргументов запускаем содирование а потом декодирование
   {
     Coding coding;
+    cout << "wait 1s" << endl;
+    this_thread::sleep_for(chrono::milliseconds(1000));
   }
-  cout << "wait 1 seconds" << endl;
-  this_thread::sleep_for(chrono::milliseconds(1000));
-  { Decoding decoding; }
+
+  {
+    Decoding decoding;
+    this_thread::sleep_for(chrono::milliseconds(500));
+  }
+
   return 0;
 }
