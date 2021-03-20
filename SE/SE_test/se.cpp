@@ -18,9 +18,9 @@ int main(int argc, char** argv) {
   //  while (TRUE) {
   //  printf("\nDate (d.m.y) ?");
 
-  //  swe_set_sid_mode(int32 sid_mode, double t0, double ayan_t0)
-  swe_set_sid_mode(SE_SIDM_LAHIRI, 0, 0);
-
+  //  swe_set_sid_mode(SE_SIDM_LAHIRI, 1900, 22.44597222);
+  swe_set_sid_mode(0, 1900, 22.44597222);
+  //  {J1900, 22.44597222, FALSE, SEMOD_PREC_NEWCOMB},  // 43: Lahiri (1940)
   cout << "Введите дату:(d.m.y)" << endl;
   /*gets(sdate);*/
   //  if (!fgets(sdate, sizeof(sdate) - 1, stdin)) return OK;

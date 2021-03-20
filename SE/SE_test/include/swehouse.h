@@ -1,6 +1,6 @@
 /*******************************************************
 module swehouse.h
-house and (simple) aspect calculation 
+house and (simple) aspect calculation
 
 *******************************************************/
 
@@ -14,7 +14,7 @@ house and (simple) aspect calculation
   Swiss Ephemeris is distributed with NO WARRANTY OF ANY KIND.  No author
   or distributor accepts any responsibility for the consequences of using it,
   or for whether it serves any particular purpose or works at all, unless he
-  or she says so in writing.  
+  or she says so in writing.
 
   Swiss Ephemeris is made available by its authors under a dual licensing
   system. The software developer, who uses any part of Swiss Ephemeris
@@ -33,7 +33,7 @@ house and (simple) aspect calculation
   See http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
   If the developer choses the Swiss Ephemeris Professional license,
-  he must follow the instructions as found in http://www.astro.com/swisseph/ 
+  he must follow the instructions as found in http://www.astro.com/swisseph/
   and purchase the Swiss Ephemeris Professional Edition from Astrodienst
   and sign the corresponding license contract.
 
@@ -58,40 +58,42 @@ house and (simple) aspect calculation
   for promoting such software, products or services.
 */
 
+#include "sweodef.h"
+
 struct houses {
-	  double cusp[37];
-	  double cusp_speed[37];
-	  double ac;
-	  double ac_speed;	// speed of ac
-	  double mc;
-	  double mc_speed;	// speed of mc
-	  double armc_speed;	// speed of armc
-	  double vertex;
-	  double vertex_speed;	// speed of vertex
-	  double equasc;
-	  double equasc_speed;	// speed
-	  double coasc1;
-	  double coasc1_speed;	// speed
-	  double coasc2;
-	  double coasc2_speed;	// speed
-	  double polasc;
-	  double polasc_speed;	// speed
-	  double sundec;	// declination of Sun for Sunshine houses
-	  AS_BOOL do_speed;
-	  AS_BOOL do_hspeed;
-	  AS_BOOL do_interpol;
-	  char serr[AS_MAXCH];
-	};
+  double cusp[37];
+  double cusp_speed[37];
+  double ac;
+  double ac_speed;  // speed of ac
+  double mc;
+  double mc_speed;    // speed of mc
+  double armc_speed;  // speed of armc
+  double vertex;
+  double vertex_speed;  // speed of vertex
+  double equasc;
+  double equasc_speed;  // speed
+  double coasc1;
+  double coasc1_speed;  // speed
+  double coasc2;
+  double coasc2_speed;  // speed
+  double polasc;
+  double polasc_speed;  // speed
+  double sundec;        // declination of Sun for Sunshine houses
+  AS_BOOL do_speed;
+  AS_BOOL do_hspeed;
+  AS_BOOL do_interpol;
+  char serr[AS_MAXCH];
+};
 
-#define HOUSES 	struct houses
-#define VERY_SMALL	1E-10
+#define HOUSES struct houses
+#define VERY_SMALL 1E-10
 
-#define degtocs(x)    (d2l((x) * DEG))
-#define cstodeg(x)    (double)((x) * CS2DEG)
+#define degtocs(x) (d2l((x)*DEG))
+#define cstodeg(x) (double)((x)*CS2DEG)
 
-#define sind(x) sin((x) * DEGTORAD)
-#define cosd(x) cos((x) * DEGTORAD)
-#define tand(x) tan((x) * DEGTORAD)
+#define sind(x) sin((x)*DEGTORAD)
+#define cosd(x) cos((x)*DEGTORAD)
+#define tand(x) tan((x)*DEGTORAD)
 #define asind(x) (asin(x) * RADTODEG)
 #define acosd(x) (acos(x) * RADTODEG)
 #define atand(x) (atan(x) * RADTODEG)

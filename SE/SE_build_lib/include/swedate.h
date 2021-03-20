@@ -12,7 +12,7 @@
   Swiss Ephemeris is distributed with NO WARRANTY OF ANY KIND.  No author
   or distributor accepts any responsibility for the consequences of using it,
   or for whether it serves any particular purpose or works at all, unless he
-  or she says so in writing.  
+  or she says so in writing.
 
   Swiss Ephemeris is made available by its authors under a dual licensing
   system. The software developer, who uses any part of Swiss Ephemeris
@@ -31,7 +31,7 @@
   See http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
   If the developer choses the Swiss Ephemeris Professional license,
-  he must follow the instructions as found in http://www.astro.com/swisseph/ 
+  he must follow the instructions as found in http://www.astro.com/swisseph/
   and purchase the Swiss Ephemeris Professional Edition from Astrodienst
   and sign the corresponding license contract.
 
@@ -56,25 +56,24 @@
   for promoting such software, products or services.
 */
 
+#include "swephexp.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #ifndef _SWEDLL_H
-extern EXP32 int swe_date_conversion (
-	int y , int m , int d ,		/* year, month, day */
-     	double utime, 	/* universal time in hours (decimal) */
-     	char c,  	/* calendar g[regorian]|j[ulian]|a[stro = greg] */
- 	double *tgmt);
+extern EXP32 int swe_date_conversion(
+    int y, int m, int d, /* year, month, day */
+    double utime,        /* universal time in hours (decimal) */
+    char c,              /* calendar g[regorian]|j[ulian]|a[stro = greg] */
+    double* tgmt);
 
-extern EXP32 double *swe_julday(
-	int year, int month, int day, double hour, 
-	int gregflag);
+extern EXP32 double* swe_julday(int year, int month, int day, double hour,
+                                int gregflag);
 
-extern EXP32 void swe_revjul (
-	double jd, 
-	int gregflag,
-     	int *jyear, int *jmon, int *jday, double *jut);
+extern EXP32 void swe_revjul(double jd, int gregflag, int* jyear, int* jmon,
+                             int* jday, double* jut);
 #endif
 #ifdef __cplusplus
 } /* extern C */

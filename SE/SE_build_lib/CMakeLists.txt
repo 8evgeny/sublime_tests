@@ -12,17 +12,17 @@ target_include_directories(eph PUBLIC include)
 set_target_properties(eph PROPERTIES LINKER_LANGUAGE C)
 
 #Не собирается - исследовать MakeFile
-#add_executable(test
-#    ${src}
-#    test.c
-#    )
-#target_include_directories(test PUBLIC eph)
-#target_include_directories(test PUBLIC include)
-#target_link_libraries(test
-#eph
-#-lm
-#-ldl
-#  )
+add_executable(test
+    ${src}
+    test.c
+    )
+target_include_directories(test PUBLIC eph)
+target_include_directories(test PUBLIC include)
+target_link_libraries(test
+eph
+-lm
+-ldl
+  )
 
 add_executable(swemini
     ${src}

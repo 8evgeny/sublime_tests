@@ -64,6 +64,9 @@
 
 #define SE_VERSION "2.10"
 
+#include "sweodef.h"
+#include "swephexp.h"
+
 #define J2000 2451545.0        /* 2000 January 1.5 */
 #define B1950 2433282.42345905 /* 1950 January 0.923 */
 #define J1900 2415020.0        /* 1900 January 0.5 */
@@ -661,11 +664,11 @@ struct plan_data {
   /* in addition, if reference ellipse is used: */
   double peri;
   double dperi;
-  double *refep; /* pointer to cheby coeffs of reference ellipse,
+  double* refep; /* pointer to cheby coeffs of reference ellipse,
                   * size of data is 2 x ncoe */
   /* unpacked segment information, only updated when a segment is read: */
   double tseg0, tseg1; /* start and end jd of current segment */
-  double *segp;        /* pointer to unpacked cheby coeffs of segment;
+  double* segp;        /* pointer to unpacked cheby coeffs of segment;
                         * the size is 3 x ncoe */
   int neval;           /* how many coefficients to evaluate. this may
                         * be less than ncoe */
@@ -690,31 +693,31 @@ struct plan_data {
 #define STR 4.8481368110953599359e-6 /* radians per arc second */
 
 /* moon, s. moshmoon.c */
-extern int swi_mean_node(double jd, double *x, char *serr);
-extern int swi_mean_apog(double jd, double *x, char *serr);
-extern int swi_moshmoon(double tjd, AS_BOOL do_save, double *xpm, char *serr);
-extern int swi_moshmoon2(double jd, double *x);
-extern int swi_intp_apsides(double J, double *pol, int ipli);
+extern int swi_mean_node(double jd, double* x, char* serr);
+extern int swi_mean_apog(double jd, double* x, char* serr);
+extern int swi_moshmoon(double tjd, AS_BOOL do_save, double* xpm, char* serr);
+extern int swi_moshmoon2(double jd, double* x);
+extern int swi_intp_apsides(double J, double* pol, int ipli);
 
 /* planets, s. moshplan.c */
-extern int swi_moshplan(double tjd, int ipli, AS_BOOL do_save, double *xpret,
-                        double *xeret, char *serr);
-extern int swi_moshplan2(double J, int iplm, double *pobj);
-extern int swi_osc_el_plan(double tjd, double *xp, int ipl, int ipli,
-                           double *xearth, double *xsun, char *serr);
-extern FILE *swi_fopen(int ifno, char *fname, char *ephepath, char *serr);
+extern int swi_moshplan(double tjd, int ipli, AS_BOOL do_save, double* xpret,
+                        double* xeret, char* serr);
+extern int swi_moshplan2(double J, int iplm, double* pobj);
+extern int swi_osc_el_plan(double tjd, double* xp, int ipl, int ipli,
+                           double* xearth, double* xsun, char* serr);
+extern FILE* swi_fopen(int ifno, char* fname, char* ephepath, char* serr);
 extern int32 swi_init_swed_if_start(void);
 extern int32 swi_set_tid_acc(double tjd_ut, int32 iflag, int32 denum,
-                             char *serr);
+                             char* serr);
 extern int32 swi_get_tid_acc(double tjd_ut, int32 iflag, int32 denum,
-                             int32 *denumret, double *tid_acc, char *serr);
+                             int32* denumret, double* tid_acc, char* serr);
 
-extern int32 swi_get_ayanamsa_ex(double tjd_et, int32 iflag, double *daya,
-                                 char *serr);
-extern int32 swi_get_ayanamsa_ex_ut(double tjd_ut, int32 iflag, double *daya,
-                                    char *serr);
+extern int32 swi_get_ayanamsa_ex(double tjd_et, int32 iflag, double* daya,
+                                 char* serr);
+extern int32 swi_get_ayanamsa_ex_ut(double tjd_ut, int32 iflag, double* daya,
+                                    char* serr);
 extern int32 swi_get_ayanamsa_with_speed(double tjd_et, int32 iflag,
-                                         double *daya, char *serr);
+                                         double* daya, char* serr);
 
 extern double swi_armc_to_mc(double armc, double eps);
 
@@ -731,10 +734,10 @@ struct nut {
 struct plantbl {
   char max_harmonic[9];
   char max_power_of_t;
-  signed char *arg_tbl;
-  double *lon_tbl;
-  double *lat_tbl;
-  double *rad_tbl;
+  signed char* arg_tbl;
+  double* lon_tbl;
+  double* lat_tbl;
+  double* rad_tbl;
   double distance;
 };
 
@@ -744,7 +747,7 @@ struct file_data {
   char astnam[50];            /* asteroid name, if asteroid file */
   int32 sweph_denum;          /* DE number of JPL ephemeris, which this file
                                * is derived from. */
-  FILE *fptr;                 /* ephemeris file pointer */
+  FILE* fptr;                 /* ephemeris file pointer */
   double tfstart;             /* file may be used from this date */
   double tfend;               /*      through this date          */
   int32 iflg;                 /* byte reorder flag and little/bigendian flag */
@@ -820,7 +823,7 @@ struct interpol {
 struct swe_data {
   AS_BOOL ephe_path_is_set;
   AS_BOOL jpl_file_is_open;
-  FILE *fixfp; /* fixed stars file pointer */
+  FILE* fixfp; /* fixed stars file pointer */
   char ephepath[AS_MAXCH];
   char jplfnam[AS_MAXCH];
   int32 jpldenum;
@@ -847,8 +850,8 @@ struct swe_data {
   char saved_planet_name[80];
   // double dpsi[36525];  /* works for 100 years after 1962 */
   // double deps[36525];
-  double *dpsi;
-  double *deps;
+  double* dpsi;
+  double* deps;
   int32 timeout;
   int32 astro_models[SEI_NMODELS];
   AS_BOOL do_interpolate_nut;
@@ -872,7 +875,7 @@ struct swe_data {
   AS_BOOL n_fixstars_real;     // real number of fixed stars in sefstars.txt
   AS_BOOL n_fixstars_named;    // number of fixed stars with tradtional name
   AS_BOOL n_fixstars_records;  // number of fixed stars records in fixed_stars
-  struct fixed_star *fixed_stars;
+  struct fixed_star* fixed_stars;
 };
 
 extern TLS struct swe_data swed;
