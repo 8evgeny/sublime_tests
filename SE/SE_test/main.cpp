@@ -1,4 +1,4 @@
-#include "swetest.h"
+#include "main.h"
 
 int main(int argc, char* argv[]) {
   char sdate_save[AS_MAXCH];
@@ -47,9 +47,7 @@ int main(int argc, char* argv[]) {
   dobs[4] = 0;
   dobs[5] = 0;
   serr[0] = serr_save[0] = serr_warn[0] = sdate_save[0] = '\0';
-#ifdef MACOS
-  argc = ccommand(&argv); /* display the arguments window */
-#endif
+
   *stimein = '\0';
   strcpy(ephepath, "");
   strcpy(fname, SE_FNAME_DFT);
@@ -503,6 +501,10 @@ int main(int argc, char* argv[]) {
   swe_set_topo(top_long, top_lat, top_elev);
   if (tid_acc != 0) swe_set_tid_acc(tid_acc);
   serr[0] = serr_save[0] = serr_warn[0] = '\0';
+
+  begindate = "17-11-1966";
+
+  //******************************************************************
   while (TRUE) {
     if (begindate == NULL) {
       printf("\nDate ?");
@@ -1156,6 +1158,9 @@ end_main:
   swe_close();
   return OK;
 }
+//**********************************************************************************
+
+//**********************************************************************************
 
 static int32 call_swe_fixstar(char* star, double te, int32 iflag, double* x,
                               char* serr) {
@@ -2360,8 +2365,8 @@ static int32 call_lunar_eclipse(double t_ut, int32 whicheph, int32 special_mode,
       swe_revjul(t_ut, gregflag, &jyear, &jmon, &jday, &jut);
       sgj = get_gregjul(gregflag, jyear);
       /*if ((eclflag = swe_lun_eclipse_how(t_ut, whicheph, geopos, attr, serr))
-      == ERR) { do_printf(serr); return ERR;
-      }*/
+== ERR) { do_printf(serr); return ERR;
+}*/
       dt = (tret[3] - tret[2]) * 24 * 60;
       sprintf(s1, "%d min %4.2f sec", (int)dt, fmod(dt, 1) * 60);
       /* short output:
@@ -2648,10 +2653,10 @@ static int32 call_solar_eclipse(double t_ut, int32 whicheph, int32 special_mode,
           }
           if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
 #if 0
-	  sprintf(sout + strlen(sout), "\t%d min %4.2f sec   %s %s %s %s", 
-                (int) dt, fmod(dt, 1) * 60, 
-                strcpy(s1, hms(fmod(tret[1] + 0.5, 1) * 24, BIT_LZEROES)), 
-                strcpy(s3, hms(fmod(tret[2] + 0.5, 1) * 24, BIT_LZEROES)), 
+      sprintf(sout + strlen(sout), "\t%d min %4.2f sec   %s %s %s %s",
+                (int) dt, fmod(dt, 1) * 60,
+                strcpy(s1, hms(fmod(tret[1] + 0.5, 1) * 24, BIT_LZEROES)),
+                strcpy(s3, hms(fmod(tret[2] + 0.5, 1) * 24, BIT_LZEROES)),
                 strcpy(s4, hms(fmod(tret[3] + 0.5, 1) * 24, BIT_LZEROES)),
                 strcpy(s2, hms(fmod(tret[4] + 0.5, 1) * 24, BIT_LZEROES)));
 #endif
@@ -2916,10 +2921,10 @@ static int32 call_lunar_occultation(double t_ut, int32 ipl, char* star,
             strcat(sout, "   -         ");
           if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
 #if 0
-	  sprintf(sout + strlen(sout), "\t%d min %4.2f sec   %s %s %s %s", 
-                (int) dt, fmod(dt, 1) * 60, 
-                strcpy(s1, hms(fmod(tret[1] + 0.5, 1) * 24, BIT_LZEROES)), 
-                strcpy(s3, hms(fmod(tret[2] + 0.5, 1) * 24, BIT_LZEROES)), 
+      sprintf(sout + strlen(sout), "\t%d min %4.2f sec   %s %s %s %s",
+                (int) dt, fmod(dt, 1) * 60,
+                strcpy(s1, hms(fmod(tret[1] + 0.5, 1) * 24, BIT_LZEROES)),
+                strcpy(s3, hms(fmod(tret[2] + 0.5, 1) * 24, BIT_LZEROES)),
                 strcpy(s4, hms(fmod(tret[3] + 0.5, 1) * 24, BIT_LZEROES)),
                 strcpy(s2, hms(fmod(tret[4] + 0.5, 1) * 24, BIT_LZEROES)));
 #endif
@@ -2941,7 +2946,7 @@ static int32 call_lunar_occultation(double t_ut, int32 ipl, char* star,
         return ERR;
       }
       if (eclflag == 0) { /* no occltation was found at next conjunction, try
-                             next conjunction */
+                 next conjunction */
         t_ut = tret[0] + direction;
         ii--;
         continue;
@@ -2967,8 +2972,8 @@ static int32 call_lunar_occultation(double t_ut, int32 ipl, char* star,
       t_ut = tret[0];
       swe_lun_occult_where(t_ut, ipl, star, whicheph, geopos_max, attr, serr);
       /* for (i = 0; i < 8; i++) {
-        printf("attr[%d]=%.17f\n", i, attr[i]);
-      } */
+printf("attr[%d]=%.17f\n", i, attr[i]);
+} */
       if (time_flag & (BIT_TIME_LMT | BIT_TIME_LAT)) {
         for (i = 0; i < 10; i++) {
           if (tret[i] != 0) {

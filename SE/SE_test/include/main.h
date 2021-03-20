@@ -1,29 +1,11 @@
 #pragma once
 
+#include <sys/stat.h>
+
+#include "main_info.h"
 #include "sweph.h"
 #include "swephexp.h" /* this includes  "sweodef.h" */
 #include "swephlib.h"
-#include "swetest_info.h"
-
-#if MSDOS
-#include <direct.h>
-#include <dos.h>
-#ifdef _MSC_VER
-#include <sys\types.h>
-#endif
-#ifdef __MINGW32__
-#include <sys/stat.h>
-#else
-#include <sys\stat.h>
-#endif
-#include <float.h>
-#else
-#ifdef MACOS
-#include <console.h>
-#else
-#include <sys/stat.h>
-#endif
-#endif
 
 #define J2000 2451545.0 /* 2000 January 1.5 */
 #define square_sum(x) (x[0] * x[0] + x[1] * x[1] + x[2] * x[2])

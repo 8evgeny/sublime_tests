@@ -12,7 +12,7 @@ SET(MYCOMPILE_FLAGS "-g -Wall -fPIC")
 set(CMAKE_C_FLAGS ${MYCOMPILE_FLAGS})
 
 add_executable(mini ${src} se.cpp )
-add_executable(test ${src} swetest.cpp )
+add_executable(test ${src} main.cpp test.cpp)
 
 target_include_directories(mini PUBLIC include)
 target_include_directories(test PUBLIC include)
