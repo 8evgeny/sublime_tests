@@ -81,6 +81,7 @@ int32 call_heliacal_event(double t_ut, int32 ipl, char* star, int32 whicheph,
                           double* geopos, double* datm, double* dobs,
                           char* serr);
 void do_print_heliacal(double* dret, int32 event_type, char* obj_name);
+void format_lon_lat(char* slon, char* slat, double lon, double lat);
 
 /* globals shared between main() and print_line() */
 static char* fmt = "PLBRS";
