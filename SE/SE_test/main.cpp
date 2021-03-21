@@ -710,7 +710,8 @@ int main(int argc, char* argv[]) {
       if (iflag_f >= 0) iflag = iflag_f;
       if (strchr(plsel, 'o') == NULL) {
         if (iflag & (SEFLG_NONUT | SEFLG_SIDEREAL)) {
-          printf("\n%-15s %s", "Epsilon (m)", dms(xobl[0], round_flag));
+          //          printf("\n%-15s %s", "Epsilon (m)", dms(xobl[0],
+          //          round_flag));
         } else {
           printf("\n%-15s %s%s", "Epsilon (t/m)", dms(xobl[0], round_flag),
                  gap);
@@ -733,8 +734,9 @@ int main(int argc, char* argv[]) {
         } else {
           strcpy(s1, dms(top_long, round_flag));
           strcpy(s2, dms(top_lat, round_flag));
-          printf("Houses system %c (%s) for long=%s, lat=%s\n", ihsy, shsy, s1,
-                 s2);
+          //          printf("Houses system %c (%s) for long=%s, lat=%s\n",
+          //          ihsy, shsy, s1,
+          //                 s2);
         }
       }
     }
