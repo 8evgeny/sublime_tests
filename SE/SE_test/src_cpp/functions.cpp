@@ -1195,3 +1195,336 @@ int32 call_solar_eclipse(double t_ut, int32 whicheph, int32 special_mode,
   if (with_chart_link) do_printf("</pre>\n");
   return OK;
 }
+
+void format_lon_lat(char* slon, char* slat, double lon, double lat) {
+  // print lon and lat string in minute precision
+  int roundflag, ideg, imin, isec, isgn;
+  double dsecfr;
+  char c;
+  roundflag = SE_SPLIT_DEG_ROUND_SEC;
+  swe_split_deg(lon, roundflag, &ideg, &imin, &isec, &dsecfr, &isgn);
+  c = (lon < 0) ? 'w' : 'e';
+  sprintf(slon, "%d%c%02d%02d", abs(ideg), c, imin, isec);
+  swe_split_deg(lat, roundflag, &ideg, &imin, &isec, &dsecfr, &isgn);
+  c = (lat < 0) ? 's' : 'n';
+  sprintf(slat, "%d%c%02d%02d", abs(ideg), c, imin, isec);
+}
+
+int32 call_lunar_eclipse(double t_ut, int32 whicheph, int32 special_mode,
+                         double* geopos, char* serr) {
+  int i, ii, retc = OK, eclflag, ecl_type = 0;
+  int rval, ihou, imin, isec, isgn;
+  double dfrc, attr[30], dt, xx[6], geopos_max[3];
+  char s1[AS_MAXCH], s2[AS_MAXCH], sout_short[AS_MAXCH], sfmt[AS_MAXCH],
+      *styp = "none", *sgj;
+  char slon[8], slat[8], saros[20];
+  geopos_max[0] = 0;
+  geopos_max[1] = 0;
+  /* no selective eclipse type set, set all */
+  if (with_chart_link) do_printf("<pre>");
+  if ((search_flag & SE_ECL_ALLTYPES_LUNAR) == 0)
+    search_flag |= SE_ECL_ALLTYPES_LUNAR;
+  // "geo. long 8.000000, lat 47.000000, alt 0.000000"
+  if (special_mode & SP_MODE_LOCAL) {
+    if (with_header)
+      printf("\ngeo. long %f, lat %f, alt %f", geopos[0], geopos[1], geopos[2]);
+  }
+  do_printf("\n");
+  for (ii = 0; ii < nstep; ii++, t_ut += direction) {
+    *sout = '\0';
+    /* swetest -lunecl -how
+     * type of lunar eclipse and percentage for a given time: */
+    if (special_mode & SP_MODE_HOW) {
+      if ((eclflag = swe_lun_eclipse_how(t_ut, whicheph, geopos, attr, serr)) ==
+          ERR) {
+        do_printf(serr);
+        return ERR;
+      } else {
+        if (eclflag & SE_ECL_TOTAL) {
+          ecl_type = ECL_LUN_TOTAL;
+          strcpy(sfmt, "total lunar eclipse: %f o/o \n");
+        } else if (eclflag & SE_ECL_PARTIAL) {
+          ecl_type = ECL_LUN_PARTIAL;
+          strcpy(sfmt, "partial lunar eclipse: %f o/o \n");
+        } else if (eclflag & SE_ECL_PENUMBRAL) {
+          ecl_type = ECL_LUN_PENUMBRAL;
+          strcpy(sfmt, "penumbral lunar eclipse: %f o/o \n");
+        } else {
+          strcpy(sfmt, "no lunar eclipse \n");
+        }
+        strcpy(sout, sfmt);
+        if (strchr(sfmt, '%') != NULL) {
+          sprintf(sout, sfmt, attr[0]);
+        }
+        do_printf(sout);
+      }
+      continue;
+    }
+    /* swetest -lunecl
+     * find next lunar eclipse: */
+    /* locally visible lunar eclipse */
+    if (special_mode & SP_MODE_LOCAL) {
+      if ((eclflag = swe_lun_eclipse_when_loc(t_ut, whicheph, geopos, tret,
+                                              attr, direction_flag, serr)) ==
+          ERR) {
+        do_printf(serr);
+        return ERR;
+      }
+      if (time_flag & (BIT_TIME_LMT | BIT_TIME_LAT)) {
+        for (i = 0; i < 10; i++) {
+          if (tret[i] != 0) {
+            retc = ut_to_lmt_lat(tret[i], geopos, &(tret[i]), serr);
+            if (retc == ERR) {
+              do_printf(serr);
+              return ERR;
+            }
+          }
+        }
+      }
+      t_ut = tret[0];
+      if ((eclflag & SE_ECL_TOTAL)) {
+        strcpy(sout, "total   ");
+        ecl_type = ECL_LUN_TOTAL;
+      }
+      if ((eclflag & SE_ECL_PENUMBRAL)) {
+        strcpy(sout, "penumb. ");
+        ecl_type = ECL_LUN_PENUMBRAL;
+      }
+      if ((eclflag & SE_ECL_PARTIAL)) {
+        strcpy(sout, "partial ");
+        ecl_type = ECL_LUN_PARTIAL;
+      }
+      strcat(sout, "lunar eclipse\t");
+      swe_revjul(t_ut, gregflag, &jyear, &jmon, &jday, &jut);
+      sgj = get_gregjul(gregflag, jyear);
+      /*if ((eclflag = swe_lun_eclipse_how(t_ut, whicheph, geopos, attr, serr))
+== ERR) { do_printf(serr); return ERR;
+}*/
+      dt = (tret[3] - tret[2]) * 24 * 60;
+      sprintf(s1, "%d min %4.2f sec", (int)dt, fmod(dt, 1) * 60);
+      /* short output:
+       * date, time of day, umbral magnitude, umbral duration, saros series,
+       * member number */
+      sprintf(saros, "%d/%d", (int)attr[9], (int)attr[10]);
+      sprintf(sout_short, "%s\t%2d.%2d.%4d%s\t%s\t%.3f\t%s\t%s\n", sout, jday,
+              jmon, jyear, sgj, hms(jut, 0), attr[8], s1, saros);
+      sprintf(sout + strlen(sout),
+              "%2d.%02d.%04d%s\t%s\t%.4f/%.4f\tsaros %s\t%.6f\n", jday, jmon,
+              jyear, sgj, hms(jut, BIT_LZEROES), attr[0], attr[1], saros, t_ut);
+      /* second line:
+       * eclipse times, penumbral, partial, total begin and end */
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      if (eclflag & SE_ECL_PENUMBBEG_VISIBLE)
+        sprintf(sout + strlen(sout), "  %s ", hms_from_tjd(tret[6]));
+      else
+        strcat(sout, "      -         ");
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      if (eclflag & SE_ECL_PARTBEG_VISIBLE)
+        sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[2]));
+      else
+        strcat(sout, "    -         ");
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      if (eclflag & SE_ECL_TOTBEG_VISIBLE)
+        sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[4]));
+      else
+        strcat(sout, "    -         ");
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      if (eclflag & SE_ECL_TOTEND_VISIBLE)
+        sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[5]));
+      else
+        strcat(sout, "    -         ");
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      if (eclflag & SE_ECL_PARTEND_VISIBLE)
+        sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[3]));
+      else
+        strcat(sout, "    -         ");
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      if (eclflag & SE_ECL_PENUMBEND_VISIBLE)
+        sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[7]));
+      else
+        strcat(sout, "    -         ");
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      sprintf(sout + strlen(sout), "dt=%.1f",
+              swe_deltat_ex(tret[0], whicheph, serr) * 86400.0);
+      strcat(sout, "\n");
+      /* global lunar eclipse */
+    } else {
+      if ((eclflag = swe_lun_eclipse_when(t_ut, whicheph, search_flag, tret,
+                                          direction_flag, serr)) == ERR) {
+        do_printf(serr);
+        return ERR;
+      }
+      t_ut = tret[0];
+      if ((eclflag & SE_ECL_TOTAL)) {
+        styp = "Total";
+        strcpy(sout, "total ");
+        ecl_type = ECL_LUN_TOTAL;
+      }
+      if ((eclflag & SE_ECL_PENUMBRAL)) {
+        styp = "Penumbral";
+        strcpy(sout, "penumb. ");
+        ecl_type = ECL_LUN_PENUMBRAL;
+      }
+      if ((eclflag & SE_ECL_PARTIAL)) {
+        styp = "Partial";
+        strcpy(sout, "partial ");
+        ecl_type = ECL_LUN_PARTIAL;
+      }
+      strcat(sout, "lunar eclipse\t");
+      if ((eclflag = swe_lun_eclipse_how(t_ut, whicheph, geopos, attr, serr)) ==
+          ERR) {
+        do_printf(serr);
+        return ERR;
+      }
+      if (time_flag & (BIT_TIME_LMT | BIT_TIME_LAT)) {
+        for (i = 0; i < 10; i++) {
+          if (tret[i] != 0) {
+            retc = ut_to_lmt_lat(tret[i], geopos, &(tret[i]), serr);
+            if (retc == ERR) {
+              do_printf(serr);
+              return ERR;
+            }
+          }
+        }
+      }
+      t_ut = tret[0];
+      rval = swe_calc_ut(t_ut, SE_MOON, whicheph | SEFLG_EQUATORIAL, xx, s1);
+      if (rval < 0) strcat(s1, "\n");
+      do_printf(s1);
+      swe_revjul(t_ut, gregflag, &jyear, &jmon, &jday, &jut);
+      geopos_max[0] = swe_degnorm(xx[0] - swe_sidtime(t_ut) * 15);
+      if (geopos_max[0] > 180) geopos_max[0] -= 360;
+      geopos_max[1] = xx[1];
+      sgj = get_gregjul(gregflag, jyear);
+      dt = (tret[3] - tret[2]) * 24 * 60;
+      sprintf(s1, "%d min %4.2f sec", (int)dt, fmod(dt, 1) * 60);
+      /* short output:
+       * date, time of day, umbral magnitude, umbral duration, saros series,
+       * member number */
+      sprintf(saros, "%d/%d", (int)attr[9], (int)attr[10]);
+      sprintf(sout_short, "%s\t%2d.%2d.%4d%s\t%s\t%.3f\t%s\t%s\n", sout, jday,
+              jmon, jyear, sgj, hms(jut, 0), attr[8], s1, saros);
+      // sprintf(sout + strlen(sout), "%2d.%02d.%04d%s\t%s\t%.4f/%.4f\tsaros
+      // %s\t%.6f\tdt=%.2f\n", jday, jmon, jyear, sgj, hms(jut,BIT_LZEROES),
+      // attr[0],attr[1], saros, t_ut, swe_deltat_ex(t_ut, whicheph, serr) *
+      // 86400);
+      sprintf(sout + strlen(sout),
+              "%2d.%02d.%04d%s\t%s\t%.4f/%.4f\tsaros %s\t%.6f\n", jday, jmon,
+              jyear, sgj, hms(jut, BIT_LZEROES), attr[0], attr[1], saros, t_ut);
+      /* second line:
+       * eclipse times, penumbral, partial, total begin and end */
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      sprintf(sout + strlen(sout), "  %s ", hms_from_tjd(tret[6]));
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      if (tret[2] != 0)
+        sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[2]));
+      else
+        strcat(sout, "   -         ");
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      if (tret[4] != 0)
+        sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[4]));
+      else
+        strcat(sout, "   -         ");
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      if (tret[5] != 0)
+        sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[5]));
+      else
+        strcat(sout, "   -         ");
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      if (tret[3] != 0)
+        sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[3]));
+      else
+        strcat(sout, "   -         ");
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      sprintf(sout + strlen(sout), "%s", hms_from_tjd(tret[7]));
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      sprintf(sout + strlen(sout), "dt=%.1f",
+              swe_deltat_ex(tret[0], whicheph, serr) * 86400.0);
+      strcat(sout, "\n");
+      if (special_mode & SP_MODE_HOCAL) {
+        swe_split_deg(jut, SE_SPLIT_DEG_ROUND_MIN, &ihou, &imin, &isec, &dfrc,
+                      &isgn);
+        sprintf(sout, "\"%04d%s %02d %02d %02d.%02d %d\",\n", jyear, sgj, jmon,
+                jday, ihou, imin, ecl_type);
+      }
+      sprintf(sout + strlen(sout), "\t%s\t%s\n",
+              strcpy(s1, dms(geopos_max[0], BIT_ROUND_SEC)),
+              strcpy(s2, dms(geopos_max[1], BIT_ROUND_SEC)));
+    }
+    // dt = (tret[7] - tret[6]) * 24 * 60;
+    // sprintf(sout + strlen(sout), "\t%d min %4.2f sec\n", (int) dt, fmod(dt,
+    // 1) * 60);
+    if (have_gap_parameter) insert_gap_string_for_tabs(sout, gap);
+    if (short_output) {
+      do_printf(sout_short);
+    } else {
+      do_printf(sout);
+    }
+    if (with_chart_link) {
+      char snat[AS_MAXCH];
+      char stim[AS_MAXCH];
+      int iflg = 0;
+      char cal = gregflag ? 'g' : 'j';
+      strcpy(stim, hms(jut, BIT_LZEROES));
+      format_lon_lat(slon, slat, geopos_max[0], geopos_max[1]);
+      while (*stim == ' ') our_strcpy(stim, stim + 1);
+      if (*stim == '0') our_strcpy(stim, stim + 1);
+      sprintf(snat,
+              "Lunar Eclipse %s,%s,e,%d,%d,%d,%s,h0e,%cnu,%d,Moon Zenith "
+              "location,,%s,%s,u,0,0,0",
+              saros, styp, jday, jmon, jyear, stim, cal, iflg, slon, slat);
+      sprintf(sout,
+              "<a "
+              "href='https://www.astro.com/cgi/"
+              "chart.cgi?muasp=1;nhor=1;act=chmnat;nd1=%s;rs=1;iseclipse=1' "
+              "target='eclipse'>chart link</a>\n\n",
+              snat);
+      do_printf(sout);
+    }
+  }
+  if (with_chart_link) do_printf("</pre>\n");
+  return OK;
+}
+
+int32 get_geocentric_relative_distance(double tjd_et, int32 ipl, int32 iflag,
+                                       char* serr) {
+  /* This function calculates the geocentric relative distance of a planet,
+   * where the closest position has value 1000, and remotest position has
+   * value 0.
+   * The value is returned as an integer. The algorithm does not allow
+   * much higher accuracy.
+   *
+   * With the Moon we measure the distance relative to the maximum and minimum
+   * found between 12000 BCE and 16000 CE.
+   * If the distance value were given relative to the momentary osculating
+   * ellipse, then the apogee would always have the value 1000 and the perigee
+   * the value 0. It is certainly more interesting to know how much it is
+   * relative to a greater time range.
+   */
+
+  int32 iflagi = (iflag & (SEFLG_EPHMASK | SEFLG_HELCTR | SEFLG_BARYCTR));
+  int32 retval;
+  double ar = 0;
+  double xx[6];
+  double dmax, dmin, dtrue;
+  if ((0) && ipl == SE_MOON) {
+    dmax = 0.002718774;  // jd = 283030.8
+    dmin = 0.002381834;  // jd = -1006731.3
+    if ((retval = swe_calc(tjd_et, SE_MOON,
+                           iflagi | SEFLG_J2000 | SEFLG_TRUEPOS, xx, serr)) ==
+        ERR)
+      return 0;
+    dtrue = xx[2];
+  } else {
+    if (swe_orbit_max_min_true_distance(tjd_et, ipl, iflagi, &dmax, &dmin,
+                                        &dtrue, serr) == ERR)
+      return 0;
+  }
+  if (dmax - dmin == 0) {
+    ar = 0;
+  } else {
+    ar = (1 - (dtrue - dmin) / (dmax - dmin)) * 1000.0;
+    ar += 0.5;  // rounding
+  }
+  return (int32)ar;
+}
