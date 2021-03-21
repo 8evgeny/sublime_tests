@@ -70,6 +70,17 @@ void insert_gap_string_for_tabs(char* sout, char* gap);
 char* get_gregjul(int gregflag, int year);
 int32 call_lunar_occultation(double t_ut, int32 ipl, char* star, int32 whicheph,
                              int32 special_mode, double* geopos, char* serr);
+int do_special_event(double tjd, int32 ipl, char* star, int32 special_event,
+                     int32 special_mode, double* geopos, double* datm,
+                     double* dobs, char* serr);
+int32 call_lunar_eclipse(double t_ut, int32 whicheph, int32 special_mode,
+                         double* geopos, char* serr);
+int32 call_solar_eclipse(double t_ut, int32 whicheph, int32 special_mode,
+                         double* geopos, char* serr);
+int32 call_heliacal_event(double t_ut, int32 ipl, char* star, int32 whicheph,
+                          double* geopos, double* datm, double* dobs,
+                          char* serr);
+void do_print_heliacal(double* dret, int32 event_type, char* obj_name);
 
 /* globals shared between main() and print_line() */
 static char* fmt = "PLBRS";
