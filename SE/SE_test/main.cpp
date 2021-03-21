@@ -14,7 +14,29 @@ Sa sa;
 Ra ra;
 Ke ke;
 As as;
-int main(int argc, char* argv[]) {
+
+int main() {
+  //
+  calc();
+
+  //
+  return 0;
+}
+
+int calc() {
+  int argc = 5;
+  char* argv[5];
+  string arg0 = "/home/jhon/Sublime_tests/SE/SE_test/build/test";
+  string arg1 = "-sid1";
+  string arg2 = "-ut01:50:00";
+  string arg3 = "-p0123456m";
+  string arg4 = "-house35.14,47.84,W";
+  argv[0] = (char*)arg0.c_str();
+  argv[1] = (char*)arg1.c_str();
+  argv[2] = (char*)arg2.c_str();
+  argv[3] = (char*)arg3.c_str();
+  argv[4] = (char*)arg4.c_str();
+
   char sdate_save[AS_MAXCH];
   char s1[AS_MAXCH], s2[AS_MAXCH];
   char *sp, *sp2;
@@ -1393,8 +1415,6 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
             case 10:
               ra.lon = x[0];
               cout << "\nRa-" << ra.lon;
-              break;
-            case 11:
               ke.lon = 180 + ra.lon;
               ke.lon > 360 ? ke.lon -= 360 : ke.lon;
               cout << "\nKe-" << ke.lon;
