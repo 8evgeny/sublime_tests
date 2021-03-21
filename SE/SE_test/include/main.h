@@ -62,7 +62,11 @@ int32 call_swe_fixstar(char* star, double te, int32 iflag, double* x,
 void jd_to_time_string(double jut, char* stimeout);
 char* our_strcpy(char* to, char* from);
 int32 ut_to_lmt_lat(double t_ut, double* geopos, double* t_ret, char* serr);
-
+int32 print_rise_set_line(double trise, double tset, double* geopos,
+                          char* serr);
+int32 call_rise_set(double t_ut, int32 ipl, char* star, int32 whicheph,
+                    double* geopos, char* serr);
+void insert_gap_string_for_tabs(char* sout, char* gap);
 /* globals shared between main() and print_line() */
 static char* fmt = "PLBRS";
 static char* gap = " ";

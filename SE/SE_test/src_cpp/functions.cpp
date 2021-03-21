@@ -280,3 +280,200 @@ int32 orbital_elements(double tjd_et, int32 ipl, int32 iflag, char* serr) {
   }
   return OK;
 }
+
+int32 call_rise_set(double t_ut, int32 ipl, char* star, int32 whicheph,
+                    double* geopos, char* serr) {
+  int ii, rval, loop_count;
+  int32 rsmi = 0;
+  double dayfrac = 0.0001;
+  double tret[10], trise, tset, tnext, tret1sv = 0;
+  AS_BOOL do_rise, do_set;
+  AS_BOOL last_was_empty = FALSE;
+  int32 retc = OK;
+  int rsmior = 0;
+  if (norefrac) rsmior |= SE_BIT_NO_REFRACTION;
+  if (disccenter) rsmior |= SE_BIT_DISC_CENTER;
+  if (discbottom) rsmior |= SE_BIT_DISC_BOTTOM;
+  if (hindu) rsmior |= SE_BIT_HINDU_RISING;
+  if (fabs(geopos[1]) < 60 && ipl >= SE_SUN && ipl <= SE_PLUTO) dayfrac = 0.01;
+  swe_set_topo(geopos[0], geopos[1], geopos[2]);
+  // "geo. long 8.000000, lat 47.000000, alt 0.000000"
+  if (with_header)
+    printf("\ngeo. long %f, lat %f, alt %f", geopos[0], geopos[1], geopos[2]);
+  do_printf("\n");
+  tnext = t_ut;
+  // the code is designed for looping with -nxxx over many days, during which
+  // the object might become circumpolar, or never rise at all.
+  while (special_event == SP_RISE_SET && tnext < t_ut + nstep) {
+    // the following 'if' avoids unnecessary calculations for circumpolar
+    // objects. even without it, the output would be correct, but
+    // could be considerably slower.
+    if (last_was_empty && (star == NULL || *star == '\0')) {
+      rval = swe_calc_ut(tnext, ipl, whicheph | SEFLG_EQUATORIAL, tret, serr);
+      if (rval >= 0) {
+        double edist = geopos[1] + tret[1];
+        double edist2 = geopos[1] - tret[1];
+        if ((edist - 2 > 90 || edist + 2 < -90) ||
+            (edist2 - 2 > 90 || edist2 + 2 < -90)) {
+          tnext += 1;
+          continue;
+        }
+      }
+    }
+    /* rising */
+    rsmi = SE_CALC_RISE | rsmior;
+    rval = swe_rise_trans(tnext, ipl, star, whicheph, rsmi, geopos, datm[0],
+                          datm[1], &trise, serr);
+    if (rval == ERR) {
+      do_printf(serr);
+      exit(0);
+    }
+    do_rise = (rval == OK);
+    /* setting */
+    rsmi = SE_CALC_SET | rsmior;
+    do_set = FALSE;
+    loop_count = 0;
+    // tnext = trise; // dieter 14-feb-17
+    while (!do_set && loop_count < 2) {
+      rval = swe_rise_trans(tnext, ipl, star, whicheph, rsmi, geopos, datm[0],
+                            datm[1], &tset, serr);
+      if (rval == ERR) {
+        do_printf(serr);
+        exit(0);
+      }
+      do_set = (rval == OK);
+      if (!do_set && do_rise) {
+        tnext = trise;
+      }
+      loop_count++;
+    }
+    if (do_rise && do_set && trise > tset) {
+      do_rise = FALSE;  // ignore rises happening before setting
+      trise =
+          0;  // we hope that exact time 0 never happens, is highly unlikely.
+    }
+    if (do_rise && do_set) {
+      rval = print_rise_set_line(trise, tset, geopos, serr);
+      last_was_empty = FALSE;
+      tnext = tset + dayfrac;
+    } else if (do_rise && !do_set) {
+      rval = print_rise_set_line(trise, 0, geopos, serr);
+      last_was_empty = FALSE;
+      tnext = trise + dayfrac;
+    } else if (do_set && !do_rise) {
+      tnext = tset + dayfrac;
+      rval = print_rise_set_line(0, tset, geopos, serr);
+      last_was_empty = FALSE;
+    } else {  // neither rise nor set
+      // for sequences of days without rise or set, the line '-   -' is printed
+      // only once.
+      if (!last_was_empty) rval = print_rise_set_line(0, 0, geopos, serr);
+      tnext += 1;
+      last_was_empty = TRUE;
+    }
+    if (rval == ERR) {
+      do_printf(serr);
+      exit(0);
+    }
+    if (nstep == 1) break;
+  }
+  /* swetest -metr
+   * calculate and print transits over meridian (midheaven and lower
+   * midheaven */
+  if (special_event == SP_MERIDIAN_TRANSIT) {
+    /* loop over days */
+    for (ii = 0; ii < nstep; ii++, t_ut = tret1sv + 0.001) {
+      /* transit over midheaven */
+      if (swe_rise_trans(t_ut, ipl, star, whicheph, SE_CALC_MTRANSIT, geopos,
+                         datm[0], datm[1], &(tret[0]), serr) != OK) {
+        do_printf(serr);
+        return ERR;
+      }
+      /* transit over lower midheaven */
+      if (swe_rise_trans(t_ut, ipl, star, whicheph, SE_CALC_ITRANSIT, geopos,
+                         datm[0], datm[1], &(tret[1]), serr) != OK) {
+        do_printf(serr);
+        return ERR;
+      }
+      tret1sv = tret[1];
+      if (time_flag & (BIT_TIME_LMT | BIT_TIME_LAT)) {
+        retc = ut_to_lmt_lat(tret[0], geopos, &(tret[0]), serr);
+        retc = ut_to_lmt_lat(tret[1], geopos, &(tret[1]), serr);
+      }
+      strcpy(sout, "mtransit ");
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      if (tret[0] == 0 || tret[0] > tret[1])
+        strcat(sout, "         -\t           -    ");
+      else {
+        swe_revjul(tret[0], gregflag, &jyear, &jmon, &jday, &jut);
+        sprintf(sout + strlen(sout), "%2d.%02d.%04d\t%s    ", jday, jmon, jyear,
+                hms(jut, BIT_LZEROES));
+      }
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      strcat(sout, "itransit ");
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      if (tret[1] == 0)
+        strcat(sout, "         -\t           -    \n");
+      else {
+        swe_revjul(tret[1], gregflag, &jyear, &jmon, &jday, &jut);
+        sprintf(sout + strlen(sout), "%2d.%02d.%04d\t%s\n", jday, jmon, jyear,
+                hms(jut, BIT_LZEROES));
+      }
+      if (have_gap_parameter) insert_gap_string_for_tabs(sout, gap);
+      do_printf(sout);
+    }
+  }
+  return retc;
+}
+
+int32 print_rise_set_line(double trise, double tset, double* geopos,
+                          char* serr) {
+  double t0;
+  int retc = OK;
+  *sout = '\0';
+  if (trise != 0) retc = ut_to_lmt_lat(trise, geopos, &(trise), serr);
+  if (tset != 0) retc = ut_to_lmt_lat(tset, geopos, &(tset), serr);
+  strcpy(sout, "rise     ");
+  if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+  if (trise == 0) {
+    strcat(sout, "         -\t           -    ");
+  } else {
+    swe_revjul(trise, gregflag, &jyear, &jmon, &jday, &jut);
+    sprintf(sout + strlen(sout), "%2d.%02d.%04d\t%s    ", jday, jmon, jyear,
+            hms(jut, BIT_LZEROES));
+  }
+  if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+  strcat(sout, "set      ");
+  if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+  if (tset == 0) {
+    strcat(sout, "         -\t           -    ");
+  } else {
+    swe_revjul(tset, gregflag, &jyear, &jmon, &jday, &jut);
+    sprintf(sout + strlen(sout), "%2d.%02d.%04d\t%s    ", jday, jmon, jyear,
+            hms(jut, BIT_LZEROES));
+  }
+  if (trise != 0 && tset != 0) {
+    if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+    sprintf(sout + strlen(sout), "dt =");
+    if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+    t0 = (tset - trise) * 24;
+    sprintf(sout + strlen(sout), "%s", hms(t0, BIT_LZEROES));
+  }
+  strcat(sout, "\n");
+  if (have_gap_parameter) insert_gap_string_for_tabs(sout, gap);
+  do_printf(sout);
+  return retc;
+}
+
+void insert_gap_string_for_tabs(char* sout, char* gap) {
+  char* sp;
+  char s[LEN_SOUT];
+  if (!have_gap_parameter) return;
+  if (*gap == '\t') return;
+  while ((sp = strchr(sout, '\t')) != NULL &&
+         strlen(sout) + strlen(gap) < LEN_SOUT) {
+    strcpy(s, sp + 1);
+    strcpy(sp, gap);
+    strcat(sp, s);
+  }
+}
