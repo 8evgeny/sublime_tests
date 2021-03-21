@@ -1885,14 +1885,8 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
   return OK;
 }
 
-char* get_gregjul(int gregflag, int year) {
-  if (gregflag == SE_JUL_CAL) return "jul";
-  if (year < 1700) return "greg";
-  return "";
-}
-
-// print lon and lat string in minute precision
 void format_lon_lat(char* slon, char* slat, double lon, double lat) {
+  // print lon and lat string in minute precision
   int roundflag, ideg, imin, isec, isgn;
   double dsecfr;
   char c;

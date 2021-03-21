@@ -67,6 +67,8 @@ int32 print_rise_set_line(double trise, double tset, double* geopos,
 int32 call_rise_set(double t_ut, int32 ipl, char* star, int32 whicheph,
                     double* geopos, char* serr);
 void insert_gap_string_for_tabs(char* sout, char* gap);
+char* get_gregjul(int gregflag, int year);
+
 /* globals shared between main() and print_line() */
 static char* fmt = "PLBRS";
 static char* gap = " ";

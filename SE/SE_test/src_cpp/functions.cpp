@@ -477,3 +477,9 @@ void insert_gap_string_for_tabs(char* sout, char* gap) {
     strcat(sp, s);
   }
 }
+
+char* get_gregjul(int gregflag, int year) {
+  if (gregflag == SE_JUL_CAL) return "jul";
+  if (year < 1700) return "greg";
+  return "";
+}
