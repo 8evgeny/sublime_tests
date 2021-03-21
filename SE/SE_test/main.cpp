@@ -1,8 +1,19 @@
 ﻿#include "main.h"
 
 #include <iostream>
-using namespace std;
 
+#include "test.h"
+using namespace std;
+Su su;
+Ch ch;
+Ma ma;
+Bu bu;
+Gu gu;
+Sk sk;
+Sa sa;
+Ra ra;
+Ke ke;
+As as;
 int main(int argc, char* argv[]) {
   char sdate_save[AS_MAXCH];
   char s1[AS_MAXCH], s2[AS_MAXCH];
@@ -1348,40 +1359,54 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         }
 
         //**********************************************************************
-        //Значениe  при *sp == 'L'
-        fputs(dms(x[0], round_flag), stdout);
+
         if (mode == 0) {
           switch (ipl) {
             case 0:
-              cout << "\nSu" << dms(x[0], round_flag);
+              su.lon = x[0];
+              cout << "\nSu-" << su.lon;
               break;
             case 1:
-              cout << "\nCh" << dms(x[0], round_flag);
+              ch.lon = x[0];
+              cout << "\nCh-" << ch.lon;
               break;
             case 2:
-              cout << "\nBu" << dms(x[0], round_flag);
+              bu.lon = x[0];
+              cout << "\nBu-" << bu.lon;
               break;
             case 3:
-              cout << "\nSk" << dms(x[0], round_flag);
+              sk.lon = x[0];
+              cout << "\nSk-" << sk.lon;
               break;
             case 4:
-              cout << "\nMa" << dms(x[0], round_flag);
+              ma.lon = x[0];
+              cout << "\nMa-" << ma.lon;
               break;
             case 5:
-              cout << "\nGu" << dms(x[0], round_flag);
+              gu.lon = x[0];
+              cout << "\nGu-" << gu.lon;
               break;
             case 6:
-              cout << "\nSa" << dms(x[0], round_flag);
+              sa.lon = x[0];
+              cout << "\nSa-" << sa.lon;
               break;
             case 10:
-              cout << "\nRa" << dms(x[0], round_flag);
+              ra.lon = x[0];
+              cout << "\nRa-" << ra.lon;
               break;
             case 11:
-              cout << "\nKe" << dms(x[0], round_flag);
+              ke.lon = 180 + ra.lon;
+              ke.lon > 360 ? ke.lon -= 360 : ke.lon;
+              cout << "\nKe-" << ke.lon;
               break;
           }
         }
-
+        if ((mode == 1) && (ipl == 13)) {
+          as.lon = x[0];
+          cout << "\nAs-" << as.lon;
+        }
+        //Значениe  при *sp == 'L'
+        fputs(dms(x[0], round_flag), stdout);
         //**********************************************************************
 
         break;
