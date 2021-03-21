@@ -14,9 +14,11 @@ Sa sa;
 Ra ra;
 Ke ke;
 As as;
+
 string bighday = "17-11-1966";
+string btime = "01:50:00";
 int main() {
-  calc(bighday);
+  calc(bighday, btime);
   cout << "As-" << as.lon << "\t " << as.speed << endl;
   cout << "Su-" << su.lon << "\t " << su.speed << endl;
   cout << "Ch-" << ch.lon << "\t " << ch.speed << endl;
@@ -842,12 +844,13 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
   return OK;
 }
 
-int calc(string date) {
+int calc(string date, string time) {
   int argc = 5;
   char* argv[5];
   string arg0 = "/home/jhon/Sublime_tests/SE/SE_test/build/test";
   string arg1 = "-sid1";
-  string arg2 = "-ut01:50:00";
+  //  string arg2 = "-ut01:50:00";
+  string arg2 = "-ut" + time;
   string arg3 = "-p0123456m";
   string arg4 = "-house35.14,47.84,W";
   argv[0] = (char*)arg0.c_str();
