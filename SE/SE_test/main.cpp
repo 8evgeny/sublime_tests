@@ -1885,18 +1885,6 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
   return OK;
 }
 
-int32 ut_to_lmt_lat(double t_ut, double* geopos, double* t_ret, char* serr) {
-  int32 iflgret = OK;
-  if (time_flag & (BIT_TIME_LMT | BIT_TIME_LAT)) {
-    t_ut += geopos[0] / 360.0;
-    if (time_flag & BIT_TIME_LAT) {
-      iflgret = swe_lmt_to_lat(t_ut, geopos[0], &t_ut, serr);
-    }
-  }
-  *t_ret = t_ut;
-  return iflgret;
-}
-
 int32 orbital_elements(double tjd_et, int32 ipl, int32 iflag, char* serr) {
   int32 retval;
   double dret[20], jut;

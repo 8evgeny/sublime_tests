@@ -61,6 +61,7 @@ int32 call_swe_fixstar(char* star, double te, int32 iflag, double* x,
                        char* serr);
 void jd_to_time_string(double jut, char* stimeout);
 char* our_strcpy(char* to, char* from);
+int32 ut_to_lmt_lat(double t_ut, double* geopos, double* t_ret, char* serr);
 
 /* globals shared between main() and print_line() */
 static char* fmt = "PLBRS";
