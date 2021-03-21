@@ -1,5 +1,8 @@
 #include "main.h"
 
+#include <iostream>
+using namespace std;
+
 int main(int argc, char* argv[]) {
   char sdate_save[AS_MAXCH];
   char s1[AS_MAXCH], s2[AS_MAXCH];
@@ -505,651 +508,642 @@ int main(int argc, char* argv[]) {
   begindate = "17-11-1966";
 
   //******************************************************************
-  while (TRUE) {
-    if (begindate == NULL) {
-      printf("\nDate ?");
-      sdate[0] = '\0';
-      if (!fgets(sdate, AS_MAXCH, stdin)) goto end_main;
+
+  strncpy(sdate, begindate, AS_MAXCH - 1);
+  sdate[AS_MAXCH - 1] = '\0';
+  begindate = "."; /* to exit afterwards */
+
+  if (strcmp(sdate, "-bary") == 0) {
+    iflag = iflag & ~SEFLG_HELCTR;
+    iflag |= SEFLG_BARYCTR;
+    *sdate = '\0';
+  } else if (strcmp(sdate, "-hel") == 0) {
+    iflag = iflag & ~SEFLG_BARYCTR;
+    iflag |= SEFLG_HELCTR;
+    *sdate = '\0';
+  } else if (strcmp(sdate, "-geo") == 0) {
+    iflag = iflag & ~SEFLG_BARYCTR;
+    iflag = iflag & ~SEFLG_HELCTR;
+    *sdate = '\0';
+  } else if (strcmp(sdate, "-ejpl") == 0) {
+    iflag &= ~SEFLG_EPHMASK;
+    iflag |= SEFLG_JPLEPH;
+    *sdate = '\0';
+  } else if (strcmp(sdate, "-eswe") == 0) {
+    iflag &= ~SEFLG_EPHMASK;
+    iflag |= SEFLG_SWIEPH;
+    *sdate = '\0';
+  } else if (strcmp(sdate, "-emos") == 0) {
+    iflag &= ~SEFLG_EPHMASK;
+    iflag |= SEFLG_MOSEPH;
+    *sdate = '\0';
+  } else if (strncmp(sdate, "-xs", 3) == 0) {
+    /* number of asteroid */
+    strcpy(sastno, sdate + 3);
+    *sdate = '\0';
+  }
+  sp = sdate;
+  if (*sp == '.') {
+    goto end_main;
+  } else if (*sp == '\0' || *sp == '\n' || *sp == '\r') {
+    strcpy(sdate, sdate_save);
+  } else {
+    strcpy(sdate_save, sdate);
+  }
+  if (*sdate == '\0') {
+    sprintf(sdate, "j%f", tjd);
+  }
+  if (*sp == 'j') { /* it's a day number */
+    if ((sp2 = strchr(sp, ',')) != NULL) *sp2 = '.';
+    sscanf(sp + 1, "%lf", &tjd);
+    if (tjd < 2299160.5)
+      gregflag = SE_JUL_CAL;
+    else
+      gregflag = SE_GREG_CAL;
+    if (strstr(sp, "jul") != NULL)
+      gregflag = SE_JUL_CAL;
+    else if (strstr(sp, "greg") != NULL)
+      gregflag = SE_GREG_CAL;
+    swe_revjul(tjd, gregflag, &jyear, &jmon, &jday, &jut);
+  } else if (*sp == '+') {
+    n = atoi(sp);
+    if (n == 0) n = 1;
+    tjd += n;
+    swe_revjul(tjd, gregflag, &jyear, &jmon, &jday, &jut);
+  } else if (*sp == '-') {
+    n = atoi(sp);
+    if (n == 0) n = -1;
+    tjd += n;
+    swe_revjul(tjd, gregflag, &jyear, &jmon, &jday, &jut);
+  } else {
+    if (sscanf(sp, "%d%*c%d%*c%d", &jday, &jmon, &jyear) < 1) exit(1);
+    if ((int32)jyear * 10000L + (int32)jmon * 100L + (int32)jday < 15821015L)
+      gregflag = SE_JUL_CAL;
+    else
+      gregflag = SE_GREG_CAL;
+    if (strstr(sp, "jul") != NULL)
+      gregflag = SE_JUL_CAL;
+    else if (strstr(sp, "greg") != NULL)
+      gregflag = SE_GREG_CAL;
+    jut = 0;
+    if (universal_time_utc) {
+      int ih = 0, im = 0;
+      double ds = 0.0;
+      if (*stimein != '\0') {
+        sscanf(stimein, "%d:%d:%lf", &ih, &im, &ds);
+      }
+      if (swe_utc_to_jd(jyear, jmon, jday, ih, im, ds, gregflag, tret, serr) ==
+          ERR) {
+        printf(" error in swe_utc_to_jd(): %s\n", serr);
+        exit(-1);
+      }
+      tjd = tret[1];
     } else {
-      strncpy(sdate, begindate, AS_MAXCH - 1);
-      sdate[AS_MAXCH - 1] = '\0';
-      begindate = "."; /* to exit afterwards */
+      tjd = swe_julday(jyear, jmon, jday, jut, gregflag);
+      tjd += thour / 24.0;
     }
-    if (strcmp(sdate, "-bary") == 0) {
-      iflag = iflag & ~SEFLG_HELCTR;
-      iflag |= SEFLG_BARYCTR;
-      *sdate = '\0';
-    } else if (strcmp(sdate, "-hel") == 0) {
-      iflag = iflag & ~SEFLG_BARYCTR;
-      iflag |= SEFLG_HELCTR;
-      *sdate = '\0';
-    } else if (strcmp(sdate, "-geo") == 0) {
-      iflag = iflag & ~SEFLG_BARYCTR;
-      iflag = iflag & ~SEFLG_HELCTR;
-      *sdate = '\0';
-    } else if (strcmp(sdate, "-ejpl") == 0) {
-      iflag &= ~SEFLG_EPHMASK;
-      iflag |= SEFLG_JPLEPH;
-      *sdate = '\0';
-    } else if (strcmp(sdate, "-eswe") == 0) {
-      iflag &= ~SEFLG_EPHMASK;
-      iflag |= SEFLG_SWIEPH;
-      *sdate = '\0';
-    } else if (strcmp(sdate, "-emos") == 0) {
-      iflag &= ~SEFLG_EPHMASK;
-      iflag |= SEFLG_MOSEPH;
-      *sdate = '\0';
-    } else if (strncmp(sdate, "-xs", 3) == 0) {
-      /* number of asteroid */
-      strcpy(sastno, sdate + 3);
-      *sdate = '\0';
-    }
-    sp = sdate;
-    if (*sp == '.') {
-      goto end_main;
-    } else if (*sp == '\0' || *sp == '\n' || *sp == '\r') {
-      strcpy(sdate, sdate_save);
-    } else {
-      strcpy(sdate_save, sdate);
-    }
-    if (*sdate == '\0') {
-      sprintf(sdate, "j%f", tjd);
-    }
-    if (*sp == 'j') { /* it's a day number */
-      if ((sp2 = strchr(sp, ',')) != NULL) *sp2 = '.';
-      sscanf(sp + 1, "%lf", &tjd);
-      if (tjd < 2299160.5)
-        gregflag = SE_JUL_CAL;
-      else
-        gregflag = SE_GREG_CAL;
-      if (strstr(sp, "jul") != NULL)
-        gregflag = SE_JUL_CAL;
-      else if (strstr(sp, "greg") != NULL)
-        gregflag = SE_GREG_CAL;
+  }
+  if (special_event > 0) {
+    do_special_event(tjd, ipl, star, special_event, special_mode, geopos, datm,
+                     dobs, serr);
+    swe_close();
+    return OK;
+  }
+  line_count = 0;
+  for (t = tjd, istep = 1; istep <= nstep; t += tstep, istep++) {
+    if (step_in_minutes) t = tjd + (istep - 1) * tstep / 1440;
+    if (step_in_seconds) t = tjd + (istep - 1) * tstep / 86400;
+    if (step_in_years) {
       swe_revjul(tjd, gregflag, &jyear, &jmon, &jday, &jut);
-    } else if (*sp == '+') {
-      n = atoi(sp);
-      if (n == 0) n = 1;
-      tjd += n;
-      swe_revjul(tjd, gregflag, &jyear, &jmon, &jday, &jut);
-    } else if (*sp == '-') {
-      n = atoi(sp);
-      if (n == 0) n = -1;
-      tjd += n;
-      swe_revjul(tjd, gregflag, &jyear, &jmon, &jday, &jut);
-    } else {
-      if (sscanf(sp, "%d%*c%d%*c%d", &jday, &jmon, &jyear) < 1) exit(1);
-      if ((int32)jyear * 10000L + (int32)jmon * 100L + (int32)jday < 15821015L)
-        gregflag = SE_JUL_CAL;
-      else
-        gregflag = SE_GREG_CAL;
-      if (strstr(sp, "jul") != NULL)
-        gregflag = SE_JUL_CAL;
-      else if (strstr(sp, "greg") != NULL)
-        gregflag = SE_GREG_CAL;
-      jut = 0;
-      if (universal_time_utc) {
-        int ih = 0, im = 0;
-        double ds = 0.0;
-        if (*stimein != '\0') {
-          sscanf(stimein, "%d:%d:%lf", &ih, &im, &ds);
-        }
-        if (swe_utc_to_jd(jyear, jmon, jday, ih, im, ds, gregflag, tret,
-                          serr) == ERR) {
-          printf(" error in swe_utc_to_jd(): %s\n", serr);
-          exit(-1);
-        }
-        tjd = tret[1];
-      } else {
-        tjd = swe_julday(jyear, jmon, jday, jut, gregflag);
-        tjd += thour / 24.0;
-      }
+      t = swe_julday(jyear + (istep - 1) * (int)tstep, jmon, jday, jut,
+                     gregflag);
     }
-    if (special_event > 0) {
-      do_special_event(tjd, ipl, star, special_event, special_mode, geopos,
-                       datm, dobs, serr);
-      swe_close();
-      return OK;
+    if (step_in_months) {
+      swe_revjul(tjd, gregflag, &jyear, &jmon, &jday, &jut);
+      jmon += (istep - 1) * (int)tstep;
+      jyear += (int)((jmon - 1) / 12);
+      jmon = ((jmon - 1) % 12) + 1;
+      t = swe_julday(jyear, jmon, jday, jut, gregflag);
     }
-    line_count = 0;
-    for (t = tjd, istep = 1; istep <= nstep; t += tstep, istep++) {
-      if (step_in_minutes) t = tjd + (istep - 1) * tstep / 1440;
-      if (step_in_seconds) t = tjd + (istep - 1) * tstep / 86400;
-      if (step_in_years) {
-        swe_revjul(tjd, gregflag, &jyear, &jmon, &jday, &jut);
-        t = swe_julday(jyear + (istep - 1) * (int)tstep, jmon, jday, jut,
-                       gregflag);
-      }
-      if (step_in_months) {
-        swe_revjul(tjd, gregflag, &jyear, &jmon, &jday, &jut);
-        jmon += (istep - 1) * (int)tstep;
-        jyear += (int)((jmon - 1) / 12);
-        jmon = ((jmon - 1) % 12) + 1;
-        t = swe_julday(jyear, jmon, jday, jut, gregflag);
-      }
-      if (t < 2299160.5)
-        gregflag = SE_JUL_CAL;
-      else
-        gregflag = SE_GREG_CAL;
-      if (strstr(sdate, "jul") != NULL)
-        gregflag = SE_JUL_CAL;
-      else if (strstr(sdate, "greg") != NULL)
-        gregflag = SE_GREG_CAL;
-      delt = swe_deltat_ex(t, iflag, serr);
-      if (!universal_time) {
-        delt = swe_deltat_ex(t - delt, iflag, serr);
-      }
-      t2 = t;
-      // output line:
-      // "date (dmy) 4.6.2017 greg.   2:07:00 TT		version 2.07.02"
-      swe_revjul(t2, gregflag, &jyear, &jmon, &jday, &jut);
-      if (with_header) {
+    if (t < 2299160.5)
+      gregflag = SE_JUL_CAL;
+    else
+      gregflag = SE_GREG_CAL;
+    if (strstr(sdate, "jul") != NULL)
+      gregflag = SE_JUL_CAL;
+    else if (strstr(sdate, "greg") != NULL)
+      gregflag = SE_GREG_CAL;
+    delt = swe_deltat_ex(t, iflag, serr);
+    if (!universal_time) {
+      delt = swe_deltat_ex(t - delt, iflag, serr);
+    }
+    t2 = t;
+    // output line:
+    // "date (dmy) 4.6.2017 greg.   2:07:00 TT		version 2.07.02"
+    swe_revjul(t2, gregflag, &jyear, &jmon, &jday, &jut);
+    if (with_header) {
 #ifndef NO_SWE_GLP  // -DNO_SWE_GLP to suppress this function
-        if (with_glp) {
-          swe_get_library_path(sout);
-          printf("\npath: %s", sout);
-        }
+      if (with_glp) {
+        swe_get_library_path(sout);
+        printf("\npath: %s", sout);
+      }
 #endif
-        printf("\ndate (dmy) %d.%d.%d", jday, jmon, jyear);
-        if (gregflag)
-          printf(" greg.");
-        else
-          printf(" jul.");
-        jd_to_time_string(jut, stimeout);
-        printf(stimeout);
-        if (universal_time) {
-          if (time_flag & BIT_TIME_LMT)
-            printf(" LMT");
-          else
-            printf(" UT");
-        } else {
-          printf(" TT");
-        }
-        printf("\t\tversion %s", swe_version(sout));
-      }
+      printf("\ndate (dmy) %d.%d.%d", jday, jmon, jyear);
+      if (gregflag)
+        printf(" greg.");
+      else
+        printf(" jul.");
+      jd_to_time_string(jut, stimeout);
+      printf(stimeout);
       if (universal_time) {
-        // "LMT: 2457908.588194444"
-        if (time_flag & BIT_TIME_LMT) {
-          if (with_header) {
-            printf("\nLMT: %.9f", t);
-            t -= geopos[0] / 15.0 / 24.0;
-          }
-        }
-        // "UT:  2457908.565972222     delta t: 68.761612 sec"
-        if (with_header) {
-          printf("\nUT:  %.9f", t);
-          printf("     delta t: %f sec", delt * 86400.0);
-        }
-        te = t + delt;
-        tut = t;
+        if (time_flag & BIT_TIME_LMT)
+          printf(" LMT");
+        else
+          printf(" UT");
       } else {
-        te = t;
-        tut = t - delt;
-        // "UT:  2457908.565972222     delta t: 68.761612 sec"
+        printf(" TT");
+      }
+      printf("\t\tversion %s", swe_version(sout));
+    }
+    if (universal_time) {
+      // "LMT: 2457908.588194444"
+      if (time_flag & BIT_TIME_LMT) {
         if (with_header) {
-          printf("\nUT:  %.9f", tut);
-          printf("     delta t: %f sec", delt * 86400.0);
+          printf("\nLMT: %.9f", t);
+          t -= geopos[0] / 15.0 / 24.0;
         }
       }
-      iflgret = swe_calc(te, SE_ECL_NUT, iflag, xobl, serr);
+      // "UT:  2457908.565972222     delta t: 68.761612 sec"
       if (with_header) {
-        // "TT:  2457908.566768074
-        printf("\nTT:  %.9f", te);
-        // "ayanamsa =   24° 5'51.6509 (Lahiri)"
-        if (iflag & SEFLG_SIDEREAL) {
-          if (swe_get_ayanamsa_ex(te, iflag, &daya, serr) == ERR) {
-            printf("   error in swe_get_ayanamsa_ex(): %s\n", serr);
-            exit(1);
-          }
-          printf("   ayanamsa = %s (%s)", dms(daya, round_flag),
-                 swe_get_ayanamsa_name(sid_mode));
-        }
-        // "geo. long 8.000000, lat 47.000000, alt 0.000000"
-        if (have_geopos) {
-          printf("\ngeo. long %f, lat %f, alt %f", geopos[0], geopos[1],
-                 geopos[2]);
-        }
-        if (iflag_f >= 0) iflag = iflag_f;
-        if (strchr(plsel, 'o') == NULL) {
-          if (iflag & (SEFLG_NONUT | SEFLG_SIDEREAL)) {
-            printf("\n%-15s %s", "Epsilon (m)", dms(xobl[0], round_flag));
-          } else {
-            printf("\n%-15s %s%s", "Epsilon (t/m)", dms(xobl[0], round_flag),
-                   gap);
-            printf("%s", dms(xobl[1], round_flag));
-          }
-        }
-        if (strchr(plsel, 'n') == NULL &&
-            !(iflag & (SEFLG_NONUT | SEFLG_SIDEREAL))) {
-          fputs("\nNutation        ", stdout);
-          fputs(dms(xobl[2], round_flag), stdout);
-          fputs(gap, stdout);
-          fputs(dms(xobl[3], round_flag), stdout);
-        }
-        printf("\n");
-        if (do_houses) {
-          char* shsy = swe_house_name(ihsy);
-          if (!universal_time) {
-            do_houses = FALSE;
-            printf("option -house requires option -ut for Universal Time\n");
-          } else {
-            strcpy(s1, dms(top_long, round_flag));
-            strcpy(s2, dms(top_lat, round_flag));
-            printf("Houses system %c (%s) for long=%s, lat=%s\n", ihsy, shsy,
-                   s1, s2);
-          }
-        }
+        printf("\nUT:  %.9f", t);
+        printf("     delta t: %f sec", delt * 86400.0);
       }
-      if (with_header && !with_header_always) with_header = FALSE;
-      if (do_ayanamsa) {
+      te = t + delt;
+      tut = t;
+    } else {
+      te = t;
+      tut = t - delt;
+      // "UT:  2457908.565972222     delta t: 68.761612 sec"
+      if (with_header) {
+        printf("\nUT:  %.9f", tut);
+        printf("     delta t: %f sec", delt * 86400.0);
+      }
+    }
+    iflgret = swe_calc(te, SE_ECL_NUT, iflag, xobl, serr);
+    if (with_header) {
+      // "TT:  2457908.566768074
+      printf("\nTT:  %.9f", te);
+      // "ayanamsa =   24° 5'51.6509 (Lahiri)"
+      if (iflag & SEFLG_SIDEREAL) {
         if (swe_get_ayanamsa_ex(te, iflag, &daya, serr) == ERR) {
           printf("   error in swe_get_ayanamsa_ex(): %s\n", serr);
           exit(1);
         }
-        x[0] = daya;
-        print_line(MODE_AYANAMSA, TRUE, sid_mode);
-        continue;
+        printf("   ayanamsa = %s (%s)", dms(daya, round_flag),
+               swe_get_ayanamsa_name(sid_mode));
       }
-      if (t == tjd && strchr(plsel, 'e')) {
-        if (list_hor) {
-          is_first = TRUE;
-          for (psp = plsel; *psp != '\0'; psp++) {
-            if (*psp == 'e') continue;
-            ipl = letter_to_ipl((int)*psp);
-            *spnam = '\0';
-            if (ipl >= SE_SUN && ipl <= SE_VESTA)
-              swe_get_planet_name(ipl, spnam);
-            print_line(MODE_LABEL, is_first, 0);
-            is_first = FALSE;
-          }
-          printf("\n");
+      // "geo. long 8.000000, lat 47.000000, alt 0.000000"
+      if (have_geopos) {
+        printf("\ngeo. long %f, lat %f, alt %f", geopos[0], geopos[1],
+               geopos[2]);
+      }
+      if (iflag_f >= 0) iflag = iflag_f;
+      if (strchr(plsel, 'o') == NULL) {
+        if (iflag & (SEFLG_NONUT | SEFLG_SIDEREAL)) {
+          printf("\n%-15s %s", "Epsilon (m)", dms(xobl[0], round_flag));
         } else {
-          print_line(MODE_LABEL, TRUE, 0);
+          printf("\n%-15s %s%s", "Epsilon (t/m)", dms(xobl[0], round_flag),
+                 gap);
+          printf("%s", dms(xobl[1], round_flag));
         }
       }
-      is_first = TRUE;
-      for (psp = plsel; *psp != '\0'; psp++) {
-        if (*psp == 'e') continue;
-        ipl = letter_to_ipl((int)*psp);
-        if (ipl == -2) {
-          printf("illegal parameter -p%s\n", plsel);
-          exit(1);
-        }
-        if (*psp == 'f')  // fixed star
-          ipl = SE_FIXSTAR;
-        else if (*psp == 's')  // asteroid
-          ipl = atoi(sastno) + 10000;
-        else if (*psp == 'v')  // planetary moon
-          ipl = atoi(sastno);
-        else if (*psp == 'z')  // fictitious object
-          ipl = atoi(shyp) + SE_FICT_OFFSET_1;
-        if (iflag & SEFLG_HELCTR) {
-          if (ipl == SE_SUN || ipl == SE_MEAN_NODE || ipl == SE_TRUE_NODE ||
-              ipl == SE_MEAN_APOG || ipl == SE_OSCU_APOG)
-            continue;
-        } else if (iflag & SEFLG_BARYCTR) {
-          if (ipl == SE_MEAN_NODE || ipl == SE_TRUE_NODE ||
-              ipl == SE_MEAN_APOG || ipl == SE_OSCU_APOG)
-            continue;
-        } else { /* geocentric */
-          if (ipl == SE_EARTH && !do_orbital_elements) continue;
-        }
-        /* ecliptic position */
-        if (iflag_f >= 0) iflag = iflag_f;
-        if (ipl == SE_FIXSTAR) {
-          iflgret = call_swe_fixstar(star, te, iflag, x, serr);
-          /* magnitude, etc. */
-          if (iflgret != ERR && strpbrk(fmt, "=") != NULL) {
-            double mag;
-            iflgret = swe_fixstar_mag(star, &mag, serr);
-            attr[4] = mag;
-          }
-          strcpy(se_pname, star);
-        } else if (do_planeto_centric) {
-          iflgret = swe_calc_pctr(te, ipl, iplctr, iflag, x, serr);
-          swe_get_planet_name(ipl, se_pname);
+      if (strchr(plsel, 'n') == NULL &&
+          !(iflag & (SEFLG_NONUT | SEFLG_SIDEREAL))) {
+        fputs("\nNutation        ", stdout);
+        fputs(dms(xobl[2], round_flag), stdout);
+        fputs(gap, stdout);
+        fputs(dms(xobl[3], round_flag), stdout);
+      }
+      printf("\n");
+      if (do_houses) {
+        char* shsy = swe_house_name(ihsy);
+        if (!universal_time) {
+          do_houses = FALSE;
+          printf("option -house requires option -ut for Universal Time\n");
         } else {
-          iflgret = swe_calc(te, ipl, iflag, x, serr);
-          /* phase, magnitude, etc. */
-          if (iflgret != ERR && strpbrk(fmt, "+-*/=") != NULL)
-            iflgret = swe_pheno(te, ipl, iflag, attr, serr);
-          swe_get_planet_name(ipl, se_pname);
-          if (show_file_limit && ipl > SE_AST_OFFSET) {
-            const char* fnam;
-            char sbeg[40], send[40];
-            double tfstart, tfend;
-            int denum;
-            fnam = swe_get_current_file_data(3, &tfstart, &tfend, &denum);
-            if (fnam != NULL) {
-              swe_revjul(tfstart, gregflag, &jyear, &jmon, &jday, &jut);
-              sprintf(sbeg, "%d.%02d.%04d", jday, jmon, jyear);
-              swe_revjul(tfend, gregflag, &jyear, &jmon, &jday, &jut);
-              sprintf(send, "%d.%02d.%04d", jday, jmon, jyear);
-              printf("range %s: %.1lf = %s to %.1lf = %s de=%d\n", fnam,
-                     tfstart, sbeg, tfend, send, denum);
-              show_file_limit = FALSE;
-            }
+          strcpy(s1, dms(top_long, round_flag));
+          strcpy(s2, dms(top_lat, round_flag));
+          printf("Houses system %c (%s) for long=%s, lat=%s\n", ihsy, shsy, s1,
+                 s2);
+        }
+      }
+    }
+    if (with_header && !with_header_always) with_header = FALSE;
+    if (do_ayanamsa) {
+      if (swe_get_ayanamsa_ex(te, iflag, &daya, serr) == ERR) {
+        printf("   error in swe_get_ayanamsa_ex(): %s\n", serr);
+        exit(1);
+      }
+      x[0] = daya;
+      print_line(MODE_AYANAMSA, TRUE, sid_mode);
+      continue;
+    }
+    if (t == tjd && strchr(plsel, 'e')) {
+      if (list_hor) {
+        is_first = TRUE;
+        for (psp = plsel; *psp != '\0'; psp++) {
+          if (*psp == 'e') continue;
+          ipl = letter_to_ipl((int)*psp);
+          *spnam = '\0';
+          if (ipl >= SE_SUN && ipl <= SE_VESTA) swe_get_planet_name(ipl, spnam);
+          print_line(MODE_LABEL, is_first, 0);
+          is_first = FALSE;
+        }
+        printf("\n");
+      } else {
+        print_line(MODE_LABEL, TRUE, 0);
+      }
+    }
+    is_first = TRUE;
+    for (psp = plsel; *psp != '\0'; psp++) {
+      if (*psp == 'e') continue;
+      ipl = letter_to_ipl((int)*psp);
+      if (ipl == -2) {
+        printf("illegal parameter -p%s\n", plsel);
+        exit(1);
+      }
+      if (*psp == 'f')  // fixed star
+        ipl = SE_FIXSTAR;
+      else if (*psp == 's')  // asteroid
+        ipl = atoi(sastno) + 10000;
+      else if (*psp == 'v')  // planetary moon
+        ipl = atoi(sastno);
+      else if (*psp == 'z')  // fictitious object
+        ipl = atoi(shyp) + SE_FICT_OFFSET_1;
+      if (iflag & SEFLG_HELCTR) {
+        if (ipl == SE_SUN || ipl == SE_MEAN_NODE || ipl == SE_TRUE_NODE ||
+            ipl == SE_MEAN_APOG || ipl == SE_OSCU_APOG)
+          continue;
+      } else if (iflag & SEFLG_BARYCTR) {
+        if (ipl == SE_MEAN_NODE || ipl == SE_TRUE_NODE || ipl == SE_MEAN_APOG ||
+            ipl == SE_OSCU_APOG)
+          continue;
+      } else { /* geocentric */
+        if (ipl == SE_EARTH && !do_orbital_elements) continue;
+      }
+      /* ecliptic position */
+      if (iflag_f >= 0) iflag = iflag_f;
+      if (ipl == SE_FIXSTAR) {
+        iflgret = call_swe_fixstar(star, te, iflag, x, serr);
+        /* magnitude, etc. */
+        if (iflgret != ERR && strpbrk(fmt, "=") != NULL) {
+          double mag;
+          iflgret = swe_fixstar_mag(star, &mag, serr);
+          attr[4] = mag;
+        }
+        strcpy(se_pname, star);
+      } else if (do_planeto_centric) {
+        iflgret = swe_calc_pctr(te, ipl, iplctr, iflag, x, serr);
+        swe_get_planet_name(ipl, se_pname);
+      } else {
+        iflgret = swe_calc(te, ipl, iflag, x, serr);
+        /* phase, magnitude, etc. */
+        if (iflgret != ERR && strpbrk(fmt, "+-*/=") != NULL)
+          iflgret = swe_pheno(te, ipl, iflag, attr, serr);
+        swe_get_planet_name(ipl, se_pname);
+        if (show_file_limit && ipl > SE_AST_OFFSET) {
+          const char* fnam;
+          char sbeg[40], send[40];
+          double tfstart, tfend;
+          int denum;
+          fnam = swe_get_current_file_data(3, &tfstart, &tfend, &denum);
+          if (fnam != NULL) {
+            swe_revjul(tfstart, gregflag, &jyear, &jmon, &jday, &jut);
+            sprintf(sbeg, "%d.%02d.%04d", jday, jmon, jyear);
+            swe_revjul(tfend, gregflag, &jyear, &jmon, &jday, &jut);
+            sprintf(send, "%d.%02d.%04d", jday, jmon, jyear);
+            printf("range %s: %.1lf = %s to %.1lf = %s de=%d\n", fnam, tfstart,
+                   sbeg, tfend, send, denum);
+            show_file_limit = FALSE;
           }
         }
-        if (*psp == 'q') { /* delta t */
-          x[0] = swe_deltat_ex(tut, iflag, serr) * 86400;
-          x[1] = x[2] = x[3] = 0;
-          x[1] = x[0] / 3600.0;  // to hours
-          strcpy(se_pname, "Delta T");
+      }
+      if (*psp == 'q') { /* delta t */
+        x[0] = swe_deltat_ex(tut, iflag, serr) * 86400;
+        x[1] = x[2] = x[3] = 0;
+        x[1] = x[0] / 3600.0;  // to hours
+        strcpy(se_pname, "Delta T");
+      }
+      if (*psp == 'x') { /* sidereal time */
+        x[0] = swe_degnorm(swe_sidtime(tut) * 15 + geopos[0]);
+        x[1] = x[2] = x[3] = 0;
+        strcpy(se_pname, "Sidereal Time");
+      }
+      if (*psp == 'o') { /* ecliptic is wanted, remove nutation */
+        x[2] = x[3] = 0;
+        strcpy(se_pname, "Ecl. Obl.");
+      }
+      if (*psp == 'n') { /* nutation is wanted, remove ecliptic */
+        x[0] = x[2];
+        x[1] = x[3];
+        x[2] = x[3] = 0;
+        strcpy(se_pname, "Nutation");
+      }
+      if (*psp == 'y') { /* time equation */
+        iflgret = swe_time_equ(tut, &(x[0]), serr);
+        x[0] *= 86400; /* in seconds */
+        ;
+        x[1] = x[2] = x[3] = 0;
+        strcpy(se_pname, "Time Equ.");
+      }
+      if (*psp == 'b') { /* ayanamsha */
+        if (swe_get_ayanamsa_ex(te, iflag, &(x[0]), serr) == ERR) {
+          printf("   error in swe_get_ayanamsa_ex(): %s\n", serr);
+          iflgret = -1;
         }
-        if (*psp == 'x') { /* sidereal time */
-          x[0] = swe_degnorm(swe_sidtime(tut) * 15 + geopos[0]);
-          x[1] = x[2] = x[3] = 0;
-          strcpy(se_pname, "Sidereal Time");
+        x[1] = 0;
+        strcpy(se_pname, "Ayanamsha");
+      }
+      if (iflgret < 0) {
+        if (strcmp(serr, serr_save) != 0 &&
+            (ipl == SE_SUN || ipl == SE_MOON || ipl <= SE_PLUTO ||
+             ipl == SE_MEAN_NODE || ipl == SE_TRUE_NODE || ipl == SE_CERES ||
+             ipl == SE_PALLAS || ipl == SE_JUNO || ipl == SE_VESTA ||
+             ipl == SE_CHIRON || ipl == SE_PHOLUS || ipl == SE_CUPIDO ||
+             ipl >= SE_PLMOON_OFFSET || ipl >= SE_AST_OFFSET ||
+             ipl == SE_FIXSTAR || *psp == 'y')) {
+          fputs("error: ", stdout);
+          fputs(serr, stdout);
+          fputs("\n", stdout);
         }
-        if (*psp == 'o') { /* ecliptic is wanted, remove nutation */
-          x[2] = x[3] = 0;
-          strcpy(se_pname, "Ecl. Obl.");
-        }
-        if (*psp == 'n') { /* nutation is wanted, remove ecliptic */
-          x[0] = x[2];
-          x[1] = x[3];
-          x[2] = x[3] = 0;
-          strcpy(se_pname, "Nutation");
-        }
-        if (*psp == 'y') { /* time equation */
-          iflgret = swe_time_equ(tut, &(x[0]), serr);
-          x[0] *= 86400; /* in seconds */
-          ;
-          x[1] = x[2] = x[3] = 0;
-          strcpy(se_pname, "Time Equ.");
-        }
-        if (*psp == 'b') { /* ayanamsha */
-          if (swe_get_ayanamsa_ex(te, iflag, &(x[0]), serr) == ERR) {
-            printf("   error in swe_get_ayanamsa_ex(): %s\n", serr);
-            iflgret = -1;
-          }
-          x[1] = 0;
-          strcpy(se_pname, "Ayanamsha");
-        }
+        strcpy(serr_save, serr);
+      } else if (*serr != '\0' && *serr_warn == '\0') {
+        if (strstr(serr, "'seorbel.txt' not found") == NULL)
+          strcpy(serr_warn, serr);
+      }
+      if (diff_mode) {
+        iflgret = swe_calc(te, ipldiff, iflag, x2, serr);
+        if (diff_mode == DIFF_GEOHEL)
+          iflgret = swe_calc(te, ipldiff, iflag | SEFLG_HELCTR, x2, serr);
         if (iflgret < 0) {
-          if (strcmp(serr, serr_save) != 0 &&
-              (ipl == SE_SUN || ipl == SE_MOON || ipl <= SE_PLUTO ||
-               ipl == SE_MEAN_NODE || ipl == SE_TRUE_NODE || ipl == SE_CERES ||
-               ipl == SE_PALLAS || ipl == SE_JUNO || ipl == SE_VESTA ||
-               ipl == SE_CHIRON || ipl == SE_PHOLUS || ipl == SE_CUPIDO ||
-               ipl >= SE_PLMOON_OFFSET || ipl >= SE_AST_OFFSET ||
-               ipl == SE_FIXSTAR || *psp == 'y')) {
-            fputs("error: ", stdout);
-            fputs(serr, stdout);
-            fputs("\n", stdout);
-          }
-          strcpy(serr_save, serr);
-        } else if (*serr != '\0' && *serr_warn == '\0') {
-          if (strstr(serr, "'seorbel.txt' not found") == NULL)
-            strcpy(serr_warn, serr);
+          fputs("error: ", stdout);
+          fputs(serr, stdout);
+          fputs("\n", stdout);
+        }
+        if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
+          for (i = 1; i < 6; i++) x[i] -= x2[i];
+          if ((iflag & SEFLG_RADIANS) == 0)
+            x[0] = swe_difdeg2n(x[0], x2[0]);
+          else
+            x[0] = swe_difrad2n(x[0], x2[0]);
+        } else { /* DIFF_MIDP */
+          for (i = 1; i < 6; i++) x[i] = (x[i] + x2[i]) / 2;
+          if ((iflag & SEFLG_RADIANS) == 0)
+            x[0] = swe_deg_midp(x[0], x2[0]);
+          else
+            x[0] = swe_rad_midp(x[0], x2[0]);
+        }
+      }
+      /* equator position */
+      if (strpbrk(fmt, "aADdQ") != NULL) {
+        iflag2 = iflag | SEFLG_EQUATORIAL;
+        if (ipl == SE_FIXSTAR) {
+          iflgret = call_swe_fixstar(star, te, iflag2, xequ, serr);
+        } else if (do_planeto_centric) {
+          iflgret = swe_calc_pctr(te, ipl, iplctr, iflag2, xequ, serr);
+        } else {
+          iflgret = swe_calc(te, ipl, iflag2, xequ, serr);
         }
         if (diff_mode) {
-          iflgret = swe_calc(te, ipldiff, iflag, x2, serr);
-          if (diff_mode == DIFF_GEOHEL)
-            iflgret = swe_calc(te, ipldiff, iflag | SEFLG_HELCTR, x2, serr);
-          if (iflgret < 0) {
-            fputs("error: ", stdout);
-            fputs(serr, stdout);
-            fputs("\n", stdout);
-          }
+          iflgret = swe_calc(te, ipldiff, iflag2, x2, serr);
           if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
-            for (i = 1; i < 6; i++) x[i] -= x2[i];
+            if (diff_mode == DIFF_GEOHEL)
+              iflgret = swe_calc(te, ipldiff, iflag2 | SEFLG_HELCTR, x2, serr);
+            for (i = 1; i < 6; i++) xequ[i] -= x2[i];
             if ((iflag & SEFLG_RADIANS) == 0)
-              x[0] = swe_difdeg2n(x[0], x2[0]);
+              xequ[0] = swe_difdeg2n(xequ[0], x2[0]);
             else
-              x[0] = swe_difrad2n(x[0], x2[0]);
+              xequ[0] = swe_difrad2n(xequ[0], x2[0]);
           } else { /* DIFF_MIDP */
-            for (i = 1; i < 6; i++) x[i] = (x[i] + x2[i]) / 2;
+            for (i = 1; i < 6; i++) xequ[i] = (xequ[i] + x2[i]) / 2;
             if ((iflag & SEFLG_RADIANS) == 0)
-              x[0] = swe_deg_midp(x[0], x2[0]);
+              xequ[0] = swe_deg_midp(xequ[0], x2[0]);
             else
-              x[0] = swe_rad_midp(x[0], x2[0]);
+              xequ[0] = swe_rad_midp(xequ[0], x2[0]);
           }
         }
-        /* equator position */
-        if (strpbrk(fmt, "aADdQ") != NULL) {
-          iflag2 = iflag | SEFLG_EQUATORIAL;
-          if (ipl == SE_FIXSTAR) {
-            iflgret = call_swe_fixstar(star, te, iflag2, xequ, serr);
-          } else if (do_planeto_centric) {
-            iflgret = swe_calc_pctr(te, ipl, iplctr, iflag2, xequ, serr);
+      }
+      /* azimuth and height */
+      if (strpbrk(fmt, "IiHhKk") != NULL) {
+        /* first, get topocentric equatorial positions */
+        iflgt = whicheph | SEFLG_EQUATORIAL | SEFLG_TOPOCTR;
+        if (ipl == SE_FIXSTAR)
+          iflgret = call_swe_fixstar(star, te, iflgt, xt, serr);
+        else
+          iflgret = swe_calc(te, ipl, iflgt, xt, serr);
+        /* to azimuth/height */
+        /* atmospheric pressure "0" has the effect that a value
+         * of 1013.25 mbar is assumed at 0 m above sea level.
+         * If the altitude of the observer is given (in geopos[2])
+         * pressure is estimated according to that */
+        swe_azalt(tut, SE_EQU2HOR, geopos, datm[0], datm[1], xt, xaz);
+        if (diff_mode) {
+          iflgret = swe_calc(te, ipldiff, iflgt, xt, serr);
+          swe_azalt(tut, SE_EQU2HOR, geopos, datm[0], datm[1], xt, x2);
+          if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
+            if (diff_mode ==
+                DIFF_GEOHEL) {  // makes little sense for a heliocentric
+              iflgret = swe_calc(te, ipldiff, iflgt | SEFLG_HELCTR, xt, serr);
+              swe_azalt(tut, SE_EQU2HOR, geopos, datm[0], datm[1], xt, x2);
+            }
+            for (i = 1; i < 3; i++) xaz[i] -= x2[i];
+            if ((iflag & SEFLG_RADIANS) == 0)
+              xaz[0] = swe_difdeg2n(xaz[0], x2[0]);
+            else
+              xaz[0] = swe_difrad2n(xaz[0], x2[0]);
+          } else { /* DIFF_MIDP */
+            for (i = 1; i < 3; i++) xaz[i] = (xaz[i] + x2[i]) / 2;
+            if ((iflag & SEFLG_RADIANS) == 0)
+              xaz[0] = swe_deg_midp(xaz[0], x2[0]);
+            else
+              xaz[0] = swe_rad_midp(xaz[0], x2[0]);
+          }
+        }
+      }
+      /* ecliptic cartesian position */
+      if (strpbrk(fmt, "XU") != NULL) {
+        iflag2 = iflag | SEFLG_XYZ;
+        if (ipl == SE_FIXSTAR)
+          iflgret = call_swe_fixstar(star, te, iflag2, xcart, serr);
+        else
+          iflgret = swe_calc(te, ipl, iflag2, xcart, serr);
+        if (diff_mode) {
+          iflgret = swe_calc(te, ipldiff, iflag2, x2, serr);
+          if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
+            if (diff_mode == DIFF_GEOHEL)
+              iflgret = swe_calc(te, ipldiff, iflag2 | SEFLG_HELCTR, x2, serr);
+            for (i = 0; i < 6; i++) xcart[i] -= x2[i];
           } else {
-            iflgret = swe_calc(te, ipl, iflag2, xequ, serr);
-          }
-          if (diff_mode) {
-            iflgret = swe_calc(te, ipldiff, iflag2, x2, serr);
-            if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
-              if (diff_mode == DIFF_GEOHEL)
-                iflgret =
-                    swe_calc(te, ipldiff, iflag2 | SEFLG_HELCTR, x2, serr);
-              for (i = 1; i < 6; i++) xequ[i] -= x2[i];
-              if ((iflag & SEFLG_RADIANS) == 0)
-                xequ[0] = swe_difdeg2n(xequ[0], x2[0]);
-              else
-                xequ[0] = swe_difrad2n(xequ[0], x2[0]);
-            } else { /* DIFF_MIDP */
-              for (i = 1; i < 6; i++) xequ[i] = (xequ[i] + x2[i]) / 2;
-              if ((iflag & SEFLG_RADIANS) == 0)
-                xequ[0] = swe_deg_midp(xequ[0], x2[0]);
-              else
-                xequ[0] = swe_rad_midp(xequ[0], x2[0]);
-            }
+            xcart[i] = (xcart[i] + x2[i]) / 2;
           }
         }
-        /* azimuth and height */
-        if (strpbrk(fmt, "IiHhKk") != NULL) {
-          /* first, get topocentric equatorial positions */
-          iflgt = whicheph | SEFLG_EQUATORIAL | SEFLG_TOPOCTR;
-          if (ipl == SE_FIXSTAR)
-            iflgret = call_swe_fixstar(star, te, iflgt, xt, serr);
-          else
-            iflgret = swe_calc(te, ipl, iflgt, xt, serr);
-          /* to azimuth/height */
-          /* atmospheric pressure "0" has the effect that a value
-           * of 1013.25 mbar is assumed at 0 m above sea level.
-           * If the altitude of the observer is given (in geopos[2])
-           * pressure is estimated according to that */
-          swe_azalt(tut, SE_EQU2HOR, geopos, datm[0], datm[1], xt, xaz);
-          if (diff_mode) {
-            iflgret = swe_calc(te, ipldiff, iflgt, xt, serr);
-            swe_azalt(tut, SE_EQU2HOR, geopos, datm[0], datm[1], xt, x2);
-            if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
-              if (diff_mode ==
-                  DIFF_GEOHEL) {  // makes little sense for a heliocentric
-                iflgret = swe_calc(te, ipldiff, iflgt | SEFLG_HELCTR, xt, serr);
-                swe_azalt(tut, SE_EQU2HOR, geopos, datm[0], datm[1], xt, x2);
-              }
-              for (i = 1; i < 3; i++) xaz[i] -= x2[i];
-              if ((iflag & SEFLG_RADIANS) == 0)
-                xaz[0] = swe_difdeg2n(xaz[0], x2[0]);
-              else
-                xaz[0] = swe_difrad2n(xaz[0], x2[0]);
-            } else { /* DIFF_MIDP */
-              for (i = 1; i < 3; i++) xaz[i] = (xaz[i] + x2[i]) / 2;
-              if ((iflag & SEFLG_RADIANS) == 0)
-                xaz[0] = swe_deg_midp(xaz[0], x2[0]);
-              else
-                xaz[0] = swe_rad_midp(xaz[0], x2[0]);
-            }
+      }
+      /* equator cartesian position */
+      if (strpbrk(fmt, "xu") != NULL) {
+        iflag2 = iflag | SEFLG_XYZ | SEFLG_EQUATORIAL;
+        if (ipl == SE_FIXSTAR)
+          iflgret = call_swe_fixstar(star, te, iflag2, xcartq, serr);
+        else
+          iflgret = swe_calc(te, ipl, iflag2, xcartq, serr);
+        if (diff_mode) {
+          iflgret = swe_calc(te, ipldiff, iflag2, x2, serr);
+          if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
+            if (diff_mode == DIFF_GEOHEL)
+              iflgret = swe_calc(te, ipldiff, iflag2 | SEFLG_HELCTR, x2, serr);
+            for (i = 0; i < 6; i++) xcartq[i] -= x2[i];
+          } else {
+            xcartq[i] = (xcart[i] + x2[i]) / 2;
           }
         }
-        /* ecliptic cartesian position */
-        if (strpbrk(fmt, "XU") != NULL) {
-          iflag2 = iflag | SEFLG_XYZ;
-          if (ipl == SE_FIXSTAR)
-            iflgret = call_swe_fixstar(star, te, iflag2, xcart, serr);
-          else
-            iflgret = swe_calc(te, ipl, iflag2, xcart, serr);
-          if (diff_mode) {
-            iflgret = swe_calc(te, ipldiff, iflag2, x2, serr);
-            if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
-              if (diff_mode == DIFF_GEOHEL)
-                iflgret =
-                    swe_calc(te, ipldiff, iflag2 | SEFLG_HELCTR, x2, serr);
-              for (i = 0; i < 6; i++) xcart[i] -= x2[i];
-            } else {
-              xcart[i] = (xcart[i] + x2[i]) / 2;
-            }
+      }
+      /* house position */
+      if (strpbrk(fmt, "gGj") != NULL) {
+        armc = swe_degnorm(swe_sidtime(tut) * 15 + geopos[0]);
+        for (i = 0; i < 6; i++) xsv[i] = x[i];
+        if (hpos_meth == 1) xsv[1] = 0;
+        if (ipl == SE_FIXSTAR)
+          strcpy(star2, star);
+        else
+          *star2 = '\0';
+        if (hpos_meth >= 2 && toupper(ihsy) == 'G') {
+          swe_gauquelin_sector(tut, ipl, star2, iflag, hpos_meth, geopos, 0, 0,
+                               &hposj, serr);
+        } else {
+          double cusp[100];
+          if (ihsy == 'i' || ihsy == 'I') {
+            iflgret = swe_houses_ex(t, iflag, top_lat, top_long, ihsy, cusp,
+                                    cusp + 13);
           }
+          hposj = swe_house_pos(armc, geopos[1], xobl[0], ihsy, xsv, serr);
         }
-        /* equator cartesian position */
-        if (strpbrk(fmt, "xu") != NULL) {
-          iflag2 = iflag | SEFLG_XYZ | SEFLG_EQUATORIAL;
-          if (ipl == SE_FIXSTAR)
-            iflgret = call_swe_fixstar(star, te, iflag2, xcartq, serr);
-          else
-            iflgret = swe_calc(te, ipl, iflag2, xcartq, serr);
-          if (diff_mode) {
-            iflgret = swe_calc(te, ipldiff, iflag2, x2, serr);
-            if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
-              if (diff_mode == DIFF_GEOHEL)
-                iflgret =
-                    swe_calc(te, ipldiff, iflag2 | SEFLG_HELCTR, x2, serr);
-              for (i = 0; i < 6; i++) xcartq[i] -= x2[i];
-            } else {
-              xcartq[i] = (xcart[i] + x2[i]) / 2;
-            }
-          }
-        }
-        /* house position */
-        if (strpbrk(fmt, "gGj") != NULL) {
-          armc = swe_degnorm(swe_sidtime(tut) * 15 + geopos[0]);
-          for (i = 0; i < 6; i++) xsv[i] = x[i];
+        if (toupper(ihsy) == 'G')
+          hpos = (hposj - 1) * 10;
+        else
+          hpos = (hposj - 1) * 30;
+        if (diff_mode) {
+          for (i = 0; i < 6; i++) xsv[i] = x2[i];
           if (hpos_meth == 1) xsv[1] = 0;
-          if (ipl == SE_FIXSTAR)
-            strcpy(star2, star);
+          hpos2 = swe_house_pos(armc, geopos[1], xobl[0], ihsy, xsv, serr);
+          if (toupper(ihsy) == 'G')
+            hpos2 = (hpos2 - 1) * 10;
           else
-            *star2 = '\0';
-          if (hpos_meth >= 2 && toupper(ihsy) == 'G') {
-            swe_gauquelin_sector(tut, ipl, star2, iflag, hpos_meth, geopos, 0,
-                                 0, &hposj, serr);
-          } else {
-            double cusp[100];
-            if (ihsy == 'i' || ihsy == 'I') {
-              iflgret = swe_houses_ex(t, iflag, top_lat, top_long, ihsy, cusp,
-                                      cusp + 13);
-            }
-            hposj = swe_house_pos(armc, geopos[1], xobl[0], ihsy, xsv, serr);
+            hpos2 = (hpos2 - 1) * 30;
+          if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
+            if ((iflag & SEFLG_RADIANS) == 0)
+              hpos = swe_difdeg2n(hpos, hpos2);
+            else
+              hpos = swe_difrad2n(hpos, hpos2);
+          } else { /* DIFF_MIDP */
+            if ((iflag & SEFLG_RADIANS) == 0)
+              hpos = swe_deg_midp(hpos, hpos2);
+            else
+              hpos = swe_rad_midp(hpos, hpos2);
           }
+        }
+      }
+      strcpy(spnam, se_pname);
+      print_line(0, is_first, 0);
+      is_first = FALSE;
+      if (!list_hor) line_count++;
+      if (do_orbital_elements) {
+        orbital_elements(te, ipl, iflag, serr);
+        continue;
+      }
+      if (line_count >= line_limit) {
+        printf("****** line count %d was exceeded\n", line_limit);
+        break;
+      }
+    } /* for psp */
+    if (list_hor) {
+      printf("\n");
+      line_count++;
+    }
+    if (do_houses) {
+      double cusp[37];
+      double cusp_speed[37];
+      double ascmc[10];
+      double ascmc_speed[10];
+      int iofs;
+      if (toupper(ihsy) == 'G')  // Gauquelin has 36 cusps
+        nhouses = 36;
+      iofs = nhouses + 1;
+      iflgret = swe_houses_ex2(t, iflag, top_lat, top_long, ihsy, cusp, ascmc,
+                               cusp_speed, ascmc_speed, serr);
+      // when swe_houses_ex() fails (e.g. with Placidus, Gauquelin,
+      // Makranski), it always returns Porphyry cusps instead
+      if (iflgret < 0) {
+        char* shsy = swe_house_name(ihsy);
+        sprintf(serr, "House method %s failed, Porphyry calculated instead",
+                shsy);
+        if (strcmp(serr, serr_save) != 0) {
+          fputs("error: ", stdout);
+          fputs(serr, stdout);
+          fputs("\n", stdout);
+        }
+        strcpy(serr_save, serr);
+        ihsy = 'O';
+        nhouses = 12;  // instead of 36 with 'G'
+        iofs = nhouses + 1;
+      }
+      is_first = TRUE;
+      for (ipl = 1; ipl < iofs + 8; ipl++) {
+        x[0] = cusp[ipl];
+        if (ipl >= iofs) {
+          x[0] = ascmc[ipl - iofs];
+          x[3] = ascmc_speed[ipl - iofs];
+        } else {
+          x[3] = cusp_speed[ipl];
+        }
+        x[1] = 0;              /* latitude */
+        x[2] = 1.0;            /* pseudo radius vector */
+        if (ipl == iofs + 2) { /* armc is already equatorial! */
+          xequ[0] = x[0];
+          xequ[1] = x[1];
+          xequ[2] = x[2];
+        } else if (strpbrk(fmt, "aADdQ") != NULL) {
+          swe_cotrans(x, xequ, -xobl[0]);
+        }
+        if (strpbrk(fmt, "IiHhKk") != NULL) {
+          double gpos[3];
+          gpos[0] = top_long;
+          gpos[1] = top_lat;
+          gpos[2] = 0;
+          swe_azalt(t, SE_ECL2HOR, gpos, datm[0], datm[1], x, xaz);
+        }
+        if (strpbrk(fmt, "gGj") != NULL) {
+          hposj = swe_house_pos(armc, geopos[1], xobl[0], ihsy, x, serr);
           if (toupper(ihsy) == 'G')
             hpos = (hposj - 1) * 10;
           else
             hpos = (hposj - 1) * 30;
-          if (diff_mode) {
-            for (i = 0; i < 6; i++) xsv[i] = x2[i];
-            if (hpos_meth == 1) xsv[1] = 0;
-            hpos2 = swe_house_pos(armc, geopos[1], xobl[0], ihsy, xsv, serr);
-            if (toupper(ihsy) == 'G')
-              hpos2 = (hpos2 - 1) * 10;
-            else
-              hpos2 = (hpos2 - 1) * 30;
-            if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
-              if ((iflag & SEFLG_RADIANS) == 0)
-                hpos = swe_difdeg2n(hpos, hpos2);
-              else
-                hpos = swe_difrad2n(hpos, hpos2);
-            } else { /* DIFF_MIDP */
-              if ((iflag & SEFLG_RADIANS) == 0)
-                hpos = swe_deg_midp(hpos, hpos2);
-              else
-                hpos = swe_rad_midp(hpos, hpos2);
-            }
-          }
         }
-        strcpy(spnam, se_pname);
-        print_line(0, is_first, 0);
+        print_line(MODE_HOUSE, is_first, 0);
         is_first = FALSE;
         if (!list_hor) line_count++;
-        if (do_orbital_elements) {
-          orbital_elements(te, ipl, iflag, serr);
-          continue;
-        }
-        if (line_count >= line_limit) {
-          printf("****** line count %d was exceeded\n", line_limit);
-          break;
-        }
-      } /* for psp */
+      }
       if (list_hor) {
         printf("\n");
         line_count++;
       }
-      if (do_houses) {
-        double cusp[37];
-        double cusp_speed[37];
-        double ascmc[10];
-        double ascmc_speed[10];
-        int iofs;
-        if (toupper(ihsy) == 'G')  // Gauquelin has 36 cusps
-          nhouses = 36;
-        iofs = nhouses + 1;
-        iflgret = swe_houses_ex2(t, iflag, top_lat, top_long, ihsy, cusp, ascmc,
-                                 cusp_speed, ascmc_speed, serr);
-        // when swe_houses_ex() fails (e.g. with Placidus, Gauquelin,
-        // Makranski), it always returns Porphyry cusps instead
-        if (iflgret < 0) {
-          char* shsy = swe_house_name(ihsy);
-          sprintf(serr, "House method %s failed, Porphyry calculated instead",
-                  shsy);
-          if (strcmp(serr, serr_save) != 0) {
-            fputs("error: ", stdout);
-            fputs(serr, stdout);
-            fputs("\n", stdout);
-          }
-          strcpy(serr_save, serr);
-          ihsy = 'O';
-          nhouses = 12;  // instead of 36 with 'G'
-          iofs = nhouses + 1;
-        }
-        is_first = TRUE;
-        for (ipl = 1; ipl < iofs + 8; ipl++) {
-          x[0] = cusp[ipl];
-          if (ipl >= iofs) {
-            x[0] = ascmc[ipl - iofs];
-            x[3] = ascmc_speed[ipl - iofs];
-          } else {
-            x[3] = cusp_speed[ipl];
-          }
-          x[1] = 0;              /* latitude */
-          x[2] = 1.0;            /* pseudo radius vector */
-          if (ipl == iofs + 2) { /* armc is already equatorial! */
-            xequ[0] = x[0];
-            xequ[1] = x[1];
-            xequ[2] = x[2];
-          } else if (strpbrk(fmt, "aADdQ") != NULL) {
-            swe_cotrans(x, xequ, -xobl[0]);
-          }
-          if (strpbrk(fmt, "IiHhKk") != NULL) {
-            double gpos[3];
-            gpos[0] = top_long;
-            gpos[1] = top_lat;
-            gpos[2] = 0;
-            swe_azalt(t, SE_ECL2HOR, gpos, datm[0], datm[1], x, xaz);
-          }
-          if (strpbrk(fmt, "gGj") != NULL) {
-            hposj = swe_house_pos(armc, geopos[1], xobl[0], ihsy, x, serr);
-            if (toupper(ihsy) == 'G')
-              hpos = (hposj - 1) * 10;
-            else
-              hpos = (hposj - 1) * 30;
-          }
-          print_line(MODE_HOUSE, is_first, 0);
-          is_first = FALSE;
-          if (!list_hor) line_count++;
-        }
-        if (list_hor) {
-          printf("\n");
-          line_count++;
-        }
-      }
-      if (line_count >= line_limit) break;
-    } /* for tjd */
-    if (*serr_warn != '\0') {
-      printf("\nwarning: ");
-      fputs(serr_warn, stdout);
-      printf("\n");
     }
-  } /* while 1 */
+    if (line_count >= line_limit) break;
+  } /* for tjd */
+  if (*serr_warn != '\0') {
+    printf("\nwarning: ");
+    fputs(serr_warn, stdout);
+    printf("\n");
+  }
+
 /* close open files and free allocated space */
 end_main:
   if (do_set_astro_models) {
@@ -1168,6 +1162,9 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
    * so that they are not repeated in list_hor (horizontal list) mode.
    * In list_hor mode, no newline is printed.
    */
+
+  //  cout << "mode-" << mode << ", is_first-" << is_first << ", sid_mode-"
+  //  << sid_mode << endl;
   char *sp, *sp2;
   double t2, ju2 = 0;
   double y_frac;
