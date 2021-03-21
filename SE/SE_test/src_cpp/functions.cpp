@@ -175,3 +175,25 @@ return_dms:;
   }
   return (s);
 }
+
+void jd_to_time_string(double jut, char* stimeout) {
+  double t2;
+  t2 = jut + 0.5 / 3600000.0;             // rounding to millisec
+  sprintf(stimeout, "  % 2d:", (int)t2);  // hour
+  t2 = (t2 - (int32)t2) * 60;
+  sprintf(stimeout + strlen(stimeout), "%02d:", (int)t2);  // min
+  t2 = (t2 - (int32)t2) * 60;
+  sprintf(stimeout + strlen(stimeout), "%02d", (int)t2);  // sec
+  t2 = (t2 - (int32)t2) * 1000;
+  if ((int32)t2 > 0) {
+    sprintf(stimeout + strlen(stimeout), ".%03d", (int)t2);  // millisec, if > 0
+  }
+}
+
+int32 call_swe_fixstar(char* star, double te, int32 iflag, double* x,
+                       char* serr) {
+  if (use_swe_fixstar2)
+    return swe_fixstar2(star, te, iflag, x, serr);
+  else
+    return swe_fixstar(star, te, iflag, x, serr);
+}
