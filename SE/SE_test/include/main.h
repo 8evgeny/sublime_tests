@@ -44,27 +44,23 @@ static char* zod_nam[] = {"ar", "ta", "ge", "cn", "le", "vi",
 static char star[AS_MAXCH] = "algol", star2[AS_MAXCH];
 static char sastno[AS_MAXCH] = "433";
 static char shyp[AS_MAXCH] = "1";
-static char* dms(double x, int32 iflag);
-static int make_ephemeris_path(char* argv0, char* ephepath);
-static int letter_to_ipl(int letter);
-static int print_line(int mode, AS_BOOL is_first, int sid_mode);
-static int do_special_event(double tjd, int32 ipl, char* star,
-                            int32 special_event, int32 special_mode,
-                            double* geopos, double* datm, double* dobs,
-                            char* serr);
-static int32 orbital_elements(double tjd_et, int32 ipl, int32 iflag,
-                              char* serr);
-static char* hms_from_tjd(double x);
-static void do_printf(char* info);
-static char* hms(double x, int32 iflag);
-static void remove_whitespace(char* s);
-#if MSDOS
-static int cut_str_any(char* s, char* cutlist, char* cpos[], int nmax);
-#endif
-static int32 call_swe_fixstar(char* star, double te, int32 iflag, double* x,
-                              char* serr);
-static void jd_to_time_string(double jut, char* stimeout);
-static char* our_strcpy(char* to, char* from);
+
+char* dms(double x, int32 iflag);
+int make_ephemeris_path(char* argv0, char* ephepath);
+int letter_to_ipl(int letter);
+int print_line(int mode, AS_BOOL is_first, int sid_mode);
+int do_special_event(double tjd, int32 ipl, char* star, int32 special_event,
+                     int32 special_mode, double* geopos, double* datm,
+                     double* dobs, char* serr);
+int32 orbital_elements(double tjd_et, int32 ipl, int32 iflag, char* serr);
+char* hms_from_tjd(double x);
+void do_printf(char* info);
+char* hms(double x, int32 iflag);
+void remove_whitespace(char* s);
+int32 call_swe_fixstar(char* star, double te, int32 iflag, double* x,
+                       char* serr);
+void jd_to_time_string(double jut, char* stimeout);
+char* our_strcpy(char* to, char* from);
 
 /* globals shared between main() and print_line() */
 static char* fmt = "PLBRS";

@@ -1158,33 +1158,45 @@ end_main:
   swe_close();
   return OK;
 }
-//**********************************************************************************
 
-//**********************************************************************************
+void jd_to_time_string(double jut, char* stimeout) {
+  double t2;
+  t2 = jut + 0.5 / 3600000.0;             // rounding to millisec
+  sprintf(stimeout, "  % 2d:", (int)t2);  // hour
+  t2 = (t2 - (int32)t2) * 60;
+  sprintf(stimeout + strlen(stimeout), "%02d:", (int)t2);  // min
+  t2 = (t2 - (int32)t2) * 60;
+  sprintf(stimeout + strlen(stimeout), "%02d", (int)t2);  // sec
+  t2 = (t2 - (int32)t2) * 1000;
+  if ((int32)t2 > 0) {
+    sprintf(stimeout + strlen(stimeout), ".%03d", (int)t2);  // millisec, if > 0
+  }
+}
 
-static int32 call_swe_fixstar(char* star, double te, int32 iflag, double* x,
-                              char* serr) {
+int32 call_swe_fixstar(char* star, double te, int32 iflag, double* x,
+                       char* serr) {
   if (use_swe_fixstar2)
     return swe_fixstar2(star, te, iflag, x, serr);
   else
     return swe_fixstar(star, te, iflag, x, serr);
 }
 
-/* This function calculates the geocentric relative distance of a planet,
- * where the closest position has value 1000, and remotest position has
- * value 0.
- * The value is returned as an integer. The algorithm does not allow
- * much higher accuracy.
- *
- * With the Moon we measure the distance relative to the maximum and minimum
- * found between 12000 BCE and 16000 CE.
- * If the distance value were given relative to the momentary osculating
- * ellipse, then the apogee would always have the value 1000 and the perigee
- * the value 0. It is certainly more interesting to know how much it is
- * relative to a greater time range.
- */
-static int32 get_geocentric_relative_distance(double tjd_et, int32 ipl,
-                                              int32 iflag, char* serr) {
+int32 get_geocentric_relative_distance(double tjd_et, int32 ipl, int32 iflag,
+                                       char* serr) {
+  /* This function calculates the geocentric relative distance of a planet,
+   * where the closest position has value 1000, and remotest position has
+   * value 0.
+   * The value is returned as an integer. The algorithm does not allow
+   * much higher accuracy.
+   *
+   * With the Moon we measure the distance relative to the maximum and minimum
+   * found between 12000 BCE and 16000 CE.
+   * If the distance value were given relative to the momentary osculating
+   * ellipse, then the apogee would always have the value 1000 and the perigee
+   * the value 0. It is certainly more interesting to know how much it is
+   * relative to a greater time range.
+   */
+
   int32 iflagi = (iflag & (SEFLG_EPHMASK | SEFLG_HELCTR | SEFLG_BARYCTR));
   int32 retval;
   double ar = 0;
@@ -1220,7 +1232,7 @@ static int32 get_geocentric_relative_distance(double tjd_et, int32 ipl,
  * so that they are not repeated in list_hor (horizontal list) mode.
  * In list_hor mode, no newline is printed.
  */
-static int print_line(int mode, AS_BOOL is_first, int sid_mode) {
+int print_line(int mode, AS_BOOL is_first, int sid_mode) {
   char *sp, *sp2;
   double t2, ju2 = 0;
   double y_frac;
@@ -1895,7 +1907,7 @@ static int print_line(int mode, AS_BOOL is_first, int sid_mode) {
   return OK;
 }
 
-static char* dms(double xv, int32 iflg) {
+char* dms(double xv, int32 iflg) {
   int izod;
   int32 k, kdeg, kmin, ksec;
   char* c = ODEGREE_STRING;
@@ -1975,7 +1987,7 @@ return_dms:;
   return (s);
 }
 
-static int letter_to_ipl(int letter) {
+int letter_to_ipl(int letter) {
   if (letter >= '0' && letter <= '9') return letter - '0' + SE_SUN;
   if (letter >= 'A' && letter <= 'I') return letter - 'A' + SE_MEAN_APOG;
   if (letter >= 'J' && letter <= 'Z') return letter - 'J' + SE_CUPIDO;
@@ -2012,8 +2024,7 @@ static int letter_to_ipl(int letter) {
   return -2;
 }
 
-static int32 ut_to_lmt_lat(double t_ut, double* geopos, double* t_ret,
-                           char* serr) {
+int32 ut_to_lmt_lat(double t_ut, double* geopos, double* t_ret, char* serr) {
   int32 iflgret = OK;
   if (time_flag & (BIT_TIME_LMT | BIT_TIME_LAT)) {
     t_ut += geopos[0] / 360.0;
@@ -2025,8 +2036,7 @@ static int32 ut_to_lmt_lat(double t_ut, double* geopos, double* t_ret,
   return iflgret;
 }
 
-static int32 orbital_elements(double tjd_et, int32 ipl, int32 iflag,
-                              char* serr) {
+int32 orbital_elements(double tjd_et, int32 ipl, int32 iflag, char* serr) {
   int32 retval;
   double dret[20], jut;
   int32 jyear, jmon, jday;
@@ -2060,7 +2070,7 @@ static int32 orbital_elements(double tjd_et, int32 ipl, int32 iflag,
   return OK;
 }
 
-static void insert_gap_string_for_tabs(char* sout, char* gap) {
+void insert_gap_string_for_tabs(char* sout, char* gap) {
   char* sp;
   char s[LEN_SOUT];
   if (!have_gap_parameter) return;
@@ -2073,8 +2083,8 @@ static void insert_gap_string_for_tabs(char* sout, char* gap) {
   }
 }
 
-static int32 print_rise_set_line(double trise, double tset, double* geopos,
-                                 char* serr) {
+int32 print_rise_set_line(double trise, double tset, double* geopos,
+                          char* serr) {
   double t0;
   int retc = OK;
   *sout = '\0';
@@ -2112,8 +2122,8 @@ static int32 print_rise_set_line(double trise, double tset, double* geopos,
   return retc;
 }
 
-static int32 call_rise_set(double t_ut, int32 ipl, char* star, int32 whicheph,
-                           double* geopos, char* serr) {
+int32 call_rise_set(double t_ut, int32 ipl, char* star, int32 whicheph,
+                    double* geopos, char* serr) {
   int ii, rval, loop_count;
   int32 rsmi = 0;
   double dayfrac = 0.0001;
@@ -2257,14 +2267,14 @@ static int32 call_rise_set(double t_ut, int32 ipl, char* star, int32 whicheph,
   return retc;
 }
 
-static char* get_gregjul(int gregflag, int year) {
+char* get_gregjul(int gregflag, int year) {
   if (gregflag == SE_JUL_CAL) return "jul";
   if (year < 1700) return "greg";
   return "";
 }
 
 // print lon and lat string in minute precision
-static void format_lon_lat(char* slon, char* slat, double lon, double lat) {
+void format_lon_lat(char* slon, char* slat, double lon, double lat) {
   int roundflag, ideg, imin, isec, isgn;
   double dsecfr;
   char c;
@@ -2277,8 +2287,8 @@ static void format_lon_lat(char* slon, char* slat, double lon, double lat) {
   sprintf(slat, "%d%c%02d%02d", abs(ideg), c, imin, isec);
 }
 
-static int32 call_lunar_eclipse(double t_ut, int32 whicheph, int32 special_mode,
-                                double* geopos, char* serr) {
+int32 call_lunar_eclipse(double t_ut, int32 whicheph, int32 special_mode,
+                         double* geopos, char* serr) {
   int i, ii, retc = OK, eclflag, ecl_type = 0;
   int rval, ihou, imin, isec, isgn;
   double dfrc, attr[30], dt, xx[6], geopos_max[3];
@@ -2553,8 +2563,8 @@ static int32 call_lunar_eclipse(double t_ut, int32 whicheph, int32 special_mode,
   return OK;
 }
 
-static int32 call_solar_eclipse(double t_ut, int32 whicheph, int32 special_mode,
-                                double* geopos, char* serr) {
+int32 call_solar_eclipse(double t_ut, int32 whicheph, int32 special_mode,
+                         double* geopos, char* serr) {
   int i, ii, retc = OK, eclflag, ecl_type = 0;
   double dt, tret[30], attr[30], geopos_max[3];
   char slon[8], slat[8], saros[20];
@@ -2806,9 +2816,8 @@ static int32 call_solar_eclipse(double t_ut, int32 whicheph, int32 special_mode,
   return OK;
 }
 
-static int32 call_lunar_occultation(double t_ut, int32 ipl, char* star,
-                                    int32 whicheph, int32 special_mode,
-                                    double* geopos, char* serr) {
+int32 call_lunar_occultation(double t_ut, int32 ipl, char* star, int32 whicheph,
+                             int32 special_mode, double* geopos, char* serr) {
   int i, ii, ecl_type = 0, eclflag, retc = OK;
   double dt, tret[30], attr[30], geopos_max[3];
   char s1[AS_MAXCH], s2[AS_MAXCH];
@@ -2946,7 +2955,7 @@ static int32 call_lunar_occultation(double t_ut, int32 ipl, char* star,
         return ERR;
       }
       if (eclflag == 0) { /* no occltation was found at next conjunction, try
-                 next conjunction */
+     next conjunction */
         t_ut = tret[0] + direction;
         ii--;
         continue;
@@ -3038,7 +3047,7 @@ printf("attr[%d]=%.17f\n", i, attr[i]);
   return OK;
 }
 
-static void do_print_heliacal(double* dret, int32 event_type, char* obj_name) {
+void do_print_heliacal(double* dret, int32 event_type, char* obj_name) {
   char* sevtname[] = {
       "",
       "heliacal rising ",
@@ -3085,9 +3094,9 @@ static void do_print_heliacal(double* dret, int32 event_type, char* obj_name) {
   do_printf(sout);
 }
 
-static int32 call_heliacal_event(double t_ut, int32 ipl, char* star,
-                                 int32 whicheph, double* geopos, double* datm,
-                                 double* dobs, char* serr) {
+int32 call_heliacal_event(double t_ut, int32 ipl, char* star, int32 whicheph,
+                          double* geopos, double* datm, double* dobs,
+                          char* serr) {
   int ii, retc = OK, event_type = 0, retflag;
   double dret[40], tsave1, tsave2 = 0;
   char obj_name[AS_MAXCH];
@@ -3242,10 +3251,9 @@ static int32 call_heliacal_event(double t_ut, int32 ipl, char* star,
   return OK;
 }
 
-static int do_special_event(double tjd, int32 ipl, char* star,
-                            int32 special_event, int32 special_mode,
-                            double* geopos, double* datm, double* dobs,
-                            char* serr) {
+int do_special_event(double tjd, int32 ipl, char* star, int32 special_event,
+                     int32 special_mode, double* geopos, double* datm,
+                     double* dobs, char* serr) {
   int retc = 0;
   /* risings, settings, meridian transits */
   if (special_event == SP_RISE_SET || special_event == SP_MERIDIAN_TRANSIT)
@@ -3267,7 +3275,7 @@ static int do_special_event(double tjd, int32 ipl, char* star,
   return retc;
 }
 
-static char* hms_from_tjd(double tjd) {
+char* hms_from_tjd(double tjd) {
   static char s[AS_MAXCH];
   double x;
   /* tjd may be negative, 0h corresponds to day number 9999999.5 */
@@ -3277,7 +3285,7 @@ static char* hms_from_tjd(double tjd) {
   return s;
 }
 
-static char* hms(double x, int32 iflag) {
+char* hms(double x, int32 iflag) {
   static char s[AS_MAXCH], s2[AS_MAXCH], *sp;
   char* c = ODEGREE_STRING;
   x += 0.5 / 36000.0; /* round to 0.1 sec */
@@ -3291,87 +3299,4 @@ static char* hms(double x, int32 iflag) {
     *(sp + 8) = '\0';
   }
   return s;
-}
-
-static void do_printf(char* info) {
-#ifdef _WINDOWS
-  fprintf(fp, info);
-#else
-  fputs(info, stdout);
-#endif
-}
-
-/* make_ephemeris_path().
- * ephemeris path includes
- *   current working directory
- *   + program directory
- *   + default path from swephexp.h on current drive
- *   +                              on program drive
- *   +                              on drive C:
- */
-static int make_ephemeris_path(char* argv0, char* path) {
-  char* sp;
-  char* dirglue = DIR_GLUE;
-  size_t pathlen = 0;
-  /* current working directory */
-  sprintf(path, ".%c", *PATH_SEPARATOR);
-  /* program directory */
-  sp = strrchr(argv0, *dirglue);
-  if (sp != NULL) {
-    pathlen = sp - argv0;
-    if (strlen(path) + pathlen < AS_MAXCH - 2) {
-      strncat(path, argv0, pathlen);
-      sprintf(path + strlen(path), "%c", *PATH_SEPARATOR);
-    }
-  }
-
-  if (strlen(path) + strlen(SE_EPHE_PATH) < AS_MAXCH - 1)
-    strcat(path, SE_EPHE_PATH);
-
-  return OK;
-}
-
-static void remove_whitespace(char* s) {
-  char *sp, s1[AS_MAXCH];
-  if (s == NULL) return;
-  for (sp = s; *sp == ' '; sp++)
-    ;
-  strcpy(s1, sp);
-  while (*(sp = s1 + strlen(s1) - 1) == ' ') *sp = '\0';
-  strcpy(s, s1);
-}
-
-static void jd_to_time_string(double jut, char* stimeout) {
-  double t2;
-  t2 = jut + 0.5 / 3600000.0;             // rounding to millisec
-  sprintf(stimeout, "  % 2d:", (int)t2);  // hour
-  t2 = (t2 - (int32)t2) * 60;
-  sprintf(stimeout + strlen(stimeout), "%02d:", (int)t2);  // min
-  t2 = (t2 - (int32)t2) * 60;
-  sprintf(stimeout + strlen(stimeout), "%02d", (int)t2);  // sec
-  t2 = (t2 - (int32)t2) * 1000;
-  if ((int32)t2 > 0) {
-    sprintf(stimeout + strlen(stimeout), ".%03d", (int)t2);  // millisec, if > 0
-  }
-}
-
-static char* our_strcpy(char* to, char* from) {
-  char *sp, s[AS_MAXCH];
-  if (*from == '\0') {
-    *to = '\0';
-    return to;
-  }
-  if (strlen(from) < AS_MAXCH) {
-    strcpy(s, from);
-    strcpy(to, s);
-  } else {
-    sp = strdup(from);
-    if (sp == NULL) {
-      strcpy(to, from);
-    } else {
-      strcpy(to, sp);
-      free(sp);
-    }
-  }
-  return to;
 }
