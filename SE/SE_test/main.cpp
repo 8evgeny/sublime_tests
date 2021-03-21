@@ -1,4 +1,4 @@
-#include "main.h"
+﻿#include "main.h"
 
 #include <iostream>
 using namespace std;
@@ -1201,7 +1201,13 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
   }
   for (sp = fmt; *sp != '\0'; sp++) {
     //*****************************************************************************
-    cout << " sp-" << sp;
+    //    is_label = true;
+    //    cout << " sp-" << sp;
+    if ((*(sp) == 'P') && (mode == 1) && (ipl != 13)) break;
+
+    if ((*(sp) == 'S') && (mode == 1)) break;
+
+    //    cout << " mode-" << mode << " ipl-" << ipl << "\t";
 
     //*****************************************************************************
 
@@ -1224,6 +1230,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         }
         printf("%d", jyear);
         break;
+
       case 'Y':
         if (list_hor && !is_first) {
           break;
@@ -1236,6 +1243,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         y_frac = (t - t2) / 365.0;
         printf("%.2f", jyear + y_frac);
         break;
+
       case 'p':
         if (is_label) {
           printf("obj.nr");
@@ -1251,15 +1259,13 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
           printf("%d", ipl);
         }
         break;
+
       case 'P':
+
         if (is_label) {
           printf("%-15s", "name");
           break;
         }
-
-        //***************************************************************
-        cout << " mode-" << mode << " ipl-" << ipl << "\t";
-        //***************************************************************
 
         if (is_house) {
           if (ipl <= nhouses) {
@@ -1278,6 +1284,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
           printf("%-15s", spnam);
         }
         break;
+
       case 'J':
         if (list_hor && !is_first) {
           break;
@@ -1293,6 +1300,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
           printf("%.2f", t);
         }
         break;
+
       case 'T':
         if (list_hor && !is_first) {
           break;
@@ -1315,6 +1323,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
             printf(" TT");
         }
         break;
+
       case 't':
         if (list_hor && !is_first) {
           break;
@@ -1325,6 +1334,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         }
         printf("%02d%02d%02d", jyear % 100, jmon, jday);
         break;
+
       case 'L':
         if (is_label) {
           printf(slon);
@@ -1338,8 +1348,40 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         }
 
         //**********************************************************************
-        //Значения домов
+        //Значениe  при *sp == 'L'
         fputs(dms(x[0], round_flag), stdout);
+        if (mode == 0) {
+          switch (ipl) {
+            case 0:
+              cout << "\nSu" << dms(x[0], round_flag);
+              break;
+            case 1:
+              cout << "\nCh" << dms(x[0], round_flag);
+              break;
+            case 2:
+              cout << "\nBu" << dms(x[0], round_flag);
+              break;
+            case 3:
+              cout << "\nSk" << dms(x[0], round_flag);
+              break;
+            case 4:
+              cout << "\nMa" << dms(x[0], round_flag);
+              break;
+            case 5:
+              cout << "\nGu" << dms(x[0], round_flag);
+              break;
+            case 6:
+              cout << "\nSa" << dms(x[0], round_flag);
+              break;
+            case 10:
+              cout << "\nRa" << dms(x[0], round_flag);
+              break;
+            case 11:
+              cout << "\nKe" << dms(x[0], round_flag);
+              break;
+          }
+        }
+
         //**********************************************************************
 
         break;
@@ -1353,6 +1395,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         else
           printf("%# 11.7f", x[0]);
         break;
+
       case 'G':
         if (is_label) {
           printf("housPos");
@@ -1526,7 +1569,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
           //*****************************************************************************
           //Градусы в день
 
-          //          fputs(dms(x[3], flag), stdout);
+          fputs(dms(x[3], flag), stdout);
 
           //*****************************************************************************
 
@@ -1541,7 +1584,13 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
             printf("%# 11.7f", x[3]);
         }
         break;
+
       case 'B':
+
+        //************************************
+        break;
+        //************************************
+
         if (is_label) {
           printf("lat.    ");
           break;
@@ -1563,6 +1612,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         else
           printf("%# 11.7f", x[1]);
         break;
+
       case 'A': /* right ascension */
         if (is_label) {
           printf("RA      ");
@@ -1587,6 +1637,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         }
         fputs(dms(xequ[1], round_flag), stdout);
         break;
+
       case 'd': /* declination */
         if (is_label) {
           printf("decl      ");
@@ -1597,6 +1648,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         else
           printf("%# 11.7f", xequ[1]);
         break;
+
       case 'I': /* azimuth */
         if (is_label) {
           printf("azimuth");
@@ -1604,6 +1656,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         }
         fputs(dms(xaz[0], round_flag), stdout);
         break;
+
       case 'i': /* azimuth */
         if (is_label) {
           printf("azimuth");
@@ -1611,6 +1664,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         }
         printf("%# 11.7f", xaz[0]);
         break;
+
       case 'H': /* height */
         if (is_label) {
           printf("height");
@@ -1618,6 +1672,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         }
         fputs(dms(xaz[1], round_flag), stdout);
         break;
+
       case 'h': /* height */
         if (is_label) {
           printf("height");
@@ -1625,6 +1680,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         }
         printf("%# 11.7f", xaz[1]);
         break;
+
       case 'K': /* height (apparent) */
         if (is_label) {
           printf("hgtApp");
@@ -1632,6 +1688,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         }
         fputs(dms(xaz[2], round_flag), stdout);
         break;
+
       case 'k': /* height (apparent) */
         if (is_label) {
           printf("hgtApp");
@@ -1639,7 +1696,12 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         }
         printf("%# 11.7f", xaz[2]);
         break;
+
       case 'R':
+        //************************************
+        break;
+        //************************************
+
         if (is_label) {
           printf("distAU   ");
           break;
