@@ -1166,7 +1166,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
    */
 
   //  cout << "mode-" << mode << ", is_first-" << is_first << ", sid_mode-"
-  //  << sid_mode << endl;
+  //       << sid_mode << endl;
   char *sp, *sp2;
   double t2, ju2 = 0;
   double y_frac;
@@ -1200,6 +1200,11 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
     sprintf(slon, "%-14s", "long.");
   }
   for (sp = fmt; *sp != '\0'; sp++) {
+    //*****************************************************************************
+    cout << " sp-" << sp;
+
+    //*****************************************************************************
+
     // if (is_house && ipl <= nhouses && strchr("bBsSrRxXuUQnNfFj+-*/=", *sp) !=
     // NULL) continue;
     if (is_house && strchr("bBrRxXuUQnNfFj+-*/=", *sp) != NULL) continue;
@@ -1207,6 +1212,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
     if (sp != fmt) fputs(gap, stdout);
     if (sp == fmt && list_hor && !is_first && strchr("yYJtT", *sp) == NULL)
       fputs(gap, stdout);
+
     switch (*sp) {
       case 'y':
         if (list_hor && !is_first) {
@@ -1250,6 +1256,11 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
           printf("%-15s", "name");
           break;
         }
+
+        //***************************************************************
+        cout << " mode-" << mode << " ipl-" << ipl << "\t";
+        //***************************************************************
+
         if (is_house) {
           if (ipl <= nhouses) {
             printf("house %2d       ", ipl);
@@ -1325,7 +1336,12 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
           printf("s");
           break;
         }
+
+        //**********************************************************************
+        //Значения домов
         fputs(dms(x[0], round_flag), stdout);
+        //**********************************************************************
+
         break;
       case 'l':
         if (is_label) {
@@ -1342,7 +1358,9 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
           printf("housPos");
           break;
         }
+
         fputs(dms(hpos, round_flag), stdout);
+
         break;
       case 'g':
         if (is_label) {
@@ -1504,7 +1522,14 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
             printf("deg/day");
             break;
           }
-          fputs(dms(x[3], flag), stdout);
+
+          //*****************************************************************************
+          //Градусы в день
+
+          //          fputs(dms(x[3], flag), stdout);
+
+          //*****************************************************************************
+
         } else {
           if (is_label) {
             printf("deg/day");
@@ -1835,8 +1860,8 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         if (*sp == 'V') printf(" %2d%%", swe_d2l(100 * fmod(xhds / 0.9375, 1)));
         break;
       }
-    } /* switch */
-  }   /* for sp */
+    }  // end swith sp
+  }    // end for sp = fmt
   if (!list_hor) printf("\n");
   return OK;
 }
