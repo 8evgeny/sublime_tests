@@ -483,3 +483,234 @@ char* get_gregjul(int gregflag, int year) {
   if (year < 1700) return "greg";
   return "";
 }
+
+int32 call_lunar_occultation(double t_ut, int32 ipl, char* star, int32 whicheph,
+                             int32 special_mode, double* geopos, char* serr) {
+  int i, ii, ecl_type = 0, eclflag, retc = OK;
+  double dt, tret[30], attr[30], geopos_max[3];
+  char s1[AS_MAXCH], s2[AS_MAXCH];
+  AS_BOOL has_found = FALSE;
+  int nloops = 0;
+  /* no selective eclipse type set, set all */
+  if ((search_flag & SE_ECL_ALLTYPES_SOLAR) == 0)
+    search_flag |= SE_ECL_ALLTYPES_SOLAR;
+  /* for local occultations: set geographic position of observer */
+  if (special_mode & SP_MODE_LOCAL) {
+    swe_set_topo(geopos[0], geopos[1], geopos[2]);
+    if (with_header)
+      printf("\ngeo. long %f, lat %f, alt %f", geopos[0], geopos[1], geopos[2]);
+  }
+  do_printf("\n");
+  for (ii = 0; ii < nstep; ii++) {
+    *sout = '\0';
+    nloops++;
+    if (nloops > SEARCH_RANGE_LUNAR_CYCLES) {
+      sprintf(serr, "event search ended after %d lunar cycles at jd=%f\n",
+              SEARCH_RANGE_LUNAR_CYCLES, t_ut);
+      do_printf(serr);
+      return ERR;
+    }
+    if (special_mode & SP_MODE_LOCAL) {
+      /* * local search for occultation, test one lunar cycle only
+       * (SE_ECL_ONE_TRY) */
+      if (ipl != SE_SUN) {
+        search_flag &= ~(SE_ECL_ANNULAR | SE_ECL_ANNULAR_TOTAL);
+        if (search_flag == 0) search_flag = SE_ECL_ALLTYPES_SOLAR;
+      }
+      if ((eclflag = swe_lun_occult_when_loc(
+               t_ut, ipl, star, whicheph, geopos, tret, attr,
+               direction_flag | SE_ECL_ONE_TRY, serr)) == ERR) {
+        do_printf(serr);
+        return ERR;
+      } else if (eclflag == 0) { /* event not found, try next conjunction */
+        t_ut = tret[0] +
+               direction * 10; /* try again with start date increased by 10 */
+        ii--;
+      } else {
+        t_ut = tret[0];
+        if (time_flag & (BIT_TIME_LMT | BIT_TIME_LAT)) {
+          for (i = 0; i < 10; i++) {
+            if (tret[i] != 0) {
+              retc = ut_to_lmt_lat(tret[i], geopos, &(tret[i]), serr);
+              if (retc == ERR) {
+                do_printf(serr);
+                return ERR;
+              }
+            }
+          }
+        }
+        has_found = FALSE;
+        *sout = '\0';
+        if ((search_flag & SE_ECL_TOTAL) && (eclflag & SE_ECL_TOTAL)) {
+          strcat(sout, "total");
+          has_found = TRUE;
+          ecl_type = ECL_SOL_TOTAL;
+        }
+        if ((search_flag & SE_ECL_ANNULAR) && (eclflag & SE_ECL_ANNULAR)) {
+          strcat(sout, "annular");
+          has_found = TRUE;
+          ecl_type = ECL_SOL_ANNULAR;
+        }
+        if ((search_flag & SE_ECL_PARTIAL) && (eclflag & SE_ECL_PARTIAL)) {
+          strcat(sout, "partial");
+          has_found = TRUE;
+          ecl_type = ECL_SOL_PARTIAL;
+        }
+        if (ipl != SE_SUN) {
+          if ((eclflag & SE_ECL_OCC_BEG_DAYLIGHT) &&
+              (eclflag & SE_ECL_OCC_END_DAYLIGHT))
+            strcat(sout, "(daytime)"); /* occultation occurs during the day */
+          else if (eclflag & SE_ECL_OCC_BEG_DAYLIGHT)
+            strcat(sout, "(sunset) "); /* occultation occurs during the day */
+          else if (eclflag & SE_ECL_OCC_END_DAYLIGHT)
+            strcat(sout, "(sunrise)"); /* occultation occurs during the day */
+        }
+        if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+        while (strlen(sout) < 17) strcat(sout, " ");
+        if (!has_found) {
+          ii--;
+        } else {
+          swe_calc_ut(t_ut, SE_ECL_NUT, 0, x, serr);
+          swe_revjul(tret[0], gregflag, &jyear, &jmon, &jday, &jut);
+          dt = (tret[3] - tret[2]) * 24 * 60;
+          sprintf(sout + strlen(sout), "%2d.%02d.%04d\t%s\t%f\t%.6f\n", jday,
+                  jmon, jyear, hms(jut, BIT_LZEROES), attr[0], tret[0]);
+          sprintf(sout + strlen(sout), "\t%d min %4.2f sec\t", (int)dt,
+                  fmod(dt, 1) * 60);
+          if (eclflag & SE_ECL_1ST_VISIBLE)
+            sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[1]));
+          else
+            strcat(sout, "   -         ");
+          if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+          if (eclflag & SE_ECL_2ND_VISIBLE)
+            sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[2]));
+          else
+            strcat(sout, "   -         ");
+          if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+          if (eclflag & SE_ECL_3RD_VISIBLE)
+            sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[3]));
+          else
+            strcat(sout, "   -         ");
+          if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+          if (eclflag & SE_ECL_4TH_VISIBLE)
+            sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[4]));
+          else
+            strcat(sout, "   -         ");
+          if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+#if 0
+      sprintf(sout + strlen(sout), "\t%d min %4.2f sec   %s %s %s %s",
+                (int) dt, fmod(dt, 1) * 60,
+                strcpy(s1, hms(fmod(tret[1] + 0.5, 1) * 24, BIT_LZEROES)),
+                strcpy(s3, hms(fmod(tret[2] + 0.5, 1) * 24, BIT_LZEROES)),
+                strcpy(s4, hms(fmod(tret[3] + 0.5, 1) * 24, BIT_LZEROES)),
+                strcpy(s2, hms(fmod(tret[4] + 0.5, 1) * 24, BIT_LZEROES)));
+#endif
+          sprintf(sout + strlen(sout), "dt=%.1f",
+                  swe_deltat_ex(tret[0], whicheph, serr) * 86400.0);
+          strcat(sout, "\n");
+          if (have_gap_parameter) insert_gap_string_for_tabs(sout, gap);
+          do_printf(sout);
+        }
+      }
+    } /* endif search_local */
+    if (!(special_mode & SP_MODE_LOCAL)) {
+      /* * global search for occultations, test one lunar cycle only
+       * (SE_ECL_ONE_TRY) */
+      if ((eclflag = swe_lun_occult_when_glob(
+               t_ut, ipl, star, whicheph, search_flag, tret,
+               direction_flag | SE_ECL_ONE_TRY, serr)) == ERR) {
+        do_printf(serr);
+        return ERR;
+      }
+      if (eclflag == 0) { /* no occltation was found at next conjunction, try
+next conjunction */
+        t_ut = tret[0] + direction;
+        ii--;
+        continue;
+      }
+      if ((eclflag & SE_ECL_TOTAL)) {
+        strcpy(sout, "total   ");
+        ecl_type = ECL_SOL_TOTAL;
+      }
+      if ((eclflag & SE_ECL_ANNULAR)) {
+        strcpy(sout, "annular ");
+        ecl_type = ECL_SOL_ANNULAR;
+      }
+      if ((eclflag & SE_ECL_ANNULAR_TOTAL)) {
+        strcpy(sout, "ann-tot ");
+        ecl_type = ECL_SOL_ANNULAR; /* by Alois: what is this ? */
+      }
+      if ((eclflag & SE_ECL_PARTIAL)) {
+        strcpy(sout, "partial ");
+        ecl_type = ECL_SOL_PARTIAL;
+      }
+      if ((eclflag & SE_ECL_NONCENTRAL) && !(eclflag & SE_ECL_PARTIAL))
+        strcat(sout, "non-central ");
+      t_ut = tret[0];
+      swe_lun_occult_where(t_ut, ipl, star, whicheph, geopos_max, attr, serr);
+      /* for (i = 0; i < 8; i++) {
+printf("attr[%d]=%.17f\n", i, attr[i]);
+} */
+      if (time_flag & (BIT_TIME_LMT | BIT_TIME_LAT)) {
+        for (i = 0; i < 10; i++) {
+          if (tret[i] != 0) {
+            retc = ut_to_lmt_lat(tret[i], geopos, &(tret[i]), serr);
+            if (retc == ERR) {
+              do_printf(serr);
+              return ERR;
+            }
+          }
+        }
+      }
+      swe_revjul(tret[0], gregflag, &jyear, &jmon, &jday, &jut);
+      sprintf(sout + strlen(sout), "%2d.%02d.%04d\t%s\t%f km\t%f\t%.6f\n", jday,
+              jmon, jyear, hms(jut, BIT_LZEROES), attr[3], attr[0], tret[0]);
+      sprintf(sout + strlen(sout), "\t%s ", hms_from_tjd(tret[2]));
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      if (tret[4] != 0)
+        sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[4]));
+      else
+        strcat(sout, "   -         ");
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      if (tret[5] != 0)
+        sprintf(sout + strlen(sout), "%s ", hms_from_tjd(tret[5]));
+      else
+        strcat(sout, "   -         ");
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      sprintf(sout + strlen(sout), "%s", hms_from_tjd(tret[3]));
+      if (have_gap_parameter) sprintf(sout + strlen(sout), "\t");
+      sprintf(sout + strlen(sout), "dt=%.1f",
+              swe_deltat_ex(tret[0], whicheph, serr) * 86400.0);
+      strcat(sout, "\n");
+      sprintf(sout + strlen(sout), "\t%s\t%s",
+              strcpy(s1, dms(geopos_max[0], BIT_ROUND_MIN)),
+              strcpy(s2, dms(geopos_max[1], BIT_ROUND_MIN)));
+      if (!(eclflag & SE_ECL_PARTIAL) && !(eclflag & SE_ECL_NONCENTRAL)) {
+        if ((eclflag = swe_lun_occult_when_loc(t_ut - 10, ipl, star, whicheph,
+                                               geopos_max, tret, attr, 0,
+                                               serr)) == ERR) {
+          do_printf(serr);
+          return ERR;
+        }
+        if (fabs(tret[0] - t_ut) > 2)
+          do_printf("when_loc returns wrong date\n");
+        dt = (tret[3] - tret[2]) * 24 * 60;
+        sprintf(sout + strlen(sout), "\t%d min %4.2f sec", (int)dt,
+                fmod(dt, 1) * 60);
+      }
+      strcat(sout, "\n");
+      if (have_gap_parameter) insert_gap_string_for_tabs(sout, gap);
+      if (special_mode & SP_MODE_HOCAL) {
+        int ihou, imin, isec, isgn;
+        double dfrc;
+        swe_split_deg(jut, SE_SPLIT_DEG_ROUND_MIN, &ihou, &imin, &isec, &dfrc,
+                      &isgn);
+        sprintf(sout, "\"%04d %02d %02d %02d.%02d %d\",\n", jyear, jmon, jday,
+                ihou, imin, ecl_type);
+      }
+      do_printf(sout);
+    }
+    t_ut += direction;
+  }
+  return OK;
+}

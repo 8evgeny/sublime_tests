@@ -68,6 +68,8 @@ int32 call_rise_set(double t_ut, int32 ipl, char* star, int32 whicheph,
                     double* geopos, char* serr);
 void insert_gap_string_for_tabs(char* sout, char* gap);
 char* get_gregjul(int gregflag, int year);
+int32 call_lunar_occultation(double t_ut, int32 ipl, char* star, int32 whicheph,
+                             int32 special_mode, double* geopos, char* serr);
 
 /* globals shared between main() and print_line() */
 static char* fmt = "PLBRS";
