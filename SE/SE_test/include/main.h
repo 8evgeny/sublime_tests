@@ -2,6 +2,8 @@
 
 #include <sys/stat.h>
 
+#include <string>
+
 #include "main_info.h"
 #include "sweph.h"
 #include "swephexp.h" /* this includes  "sweodef.h" */
@@ -84,8 +86,8 @@ void do_print_heliacal(double* dret, int32 event_type, char* obj_name);
 void format_lon_lat(char* slon, char* slat, double lon, double lat);
 int32 get_geocentric_relative_distance(double tjd_et, int32 ipl, int32 iflag,
                                        char* serr);
-int calc();
-/* globals shared between main() and print_line() */
+int calc(std::string);
+
 static char* fmt = "PLBRS";
 static char* gap = " ";
 static double t, te, tut, jut = 0;

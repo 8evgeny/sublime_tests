@@ -14,16 +14,835 @@ Sa sa;
 Ra ra;
 Ke ke;
 As as;
-
+string bighday = "17-11-1966";
 int main() {
-  //
-  calc();
+  calc(bighday);
+  cout << "As-" << as.lon << "\t " << as.speed << endl;
+  cout << "Su-" << su.lon << "\t " << su.speed << endl;
+  cout << "Ch-" << ch.lon << "\t " << ch.speed << endl;
+  cout << "Ma-" << ma.lon << "\t " << ma.speed << endl;
+  cout << "Bu-" << bu.lon << "\t " << bu.speed << endl;
+  cout << "Gu-" << gu.lon << "\t " << gu.speed << endl;
+  cout << "Sk-" << sk.lon << "\t " << sk.speed << endl;
+  cout << "Sa-" << sa.lon << "\t " << sa.speed << endl;
+  cout << "Ra-" << ra.lon << "\t " << ra.speed << endl;
+  cout << "Ke-" << ke.lon << "\t " << ke.speed << endl;
 
-  //
   return 0;
 }
 
-int calc() {
+int print_line(int mode, AS_BOOL is_first, int sid_mode) {
+  /*
+   * The string fmt contains a sequence of format specifiers;
+   * each character in fmt creates a column, the columns are
+   * sparated by the gap string.
+   * Time columns tTJyY are only printed, if is_first is TRUE,
+   * so that they are not repeated in list_hor (horizontal list) mode.
+   * In list_hor mode, no newline is printed.
+   */
+
+  //  cout << "mode-" << mode << ", is_first-" << is_first << ", sid_mode-"
+  //       << sid_mode << endl;
+  char *sp, *sp2;
+  double t2, ju2 = 0;
+  double y_frac;
+  double ar, sinp;
+  double dret[20];
+  char slon[20];
+  char pnam[30];
+  AS_BOOL is_house = ((mode & MODE_HOUSE) != 0);
+  AS_BOOL is_label = ((mode & MODE_LABEL) != 0);
+  AS_BOOL is_ayana = ((mode & MODE_AYANAMSA) != 0);
+  int32 iflgret, dar;
+  // build planet name column, just in case
+  if (is_house) {
+    if (ipl <= nhouses) {
+      sprintf(pnam, "house %2d       ", ipl);
+    } else {
+      sprintf(pnam, "%-15s", hs_nam[ipl - nhouses]);
+    }
+  } else if (diff_mode == DIFF_DIFF) {
+    sprintf(pnam, "%.3s-%.3s", spnam, spnam2);
+  } else if (diff_mode == DIFF_GEOHEL) {
+    sprintf(pnam, "%.3s-%.3sHel", spnam, spnam2);
+  } else if (diff_mode == DIFF_MIDP) {
+    sprintf(pnam, "%.3s/%.3s", spnam, spnam2);
+  } else {
+    sprintf(pnam, "%-15s", spnam);
+  }
+  if (list_hor && strchr(fmt, 'P') == NULL) {
+    sprintf(slon, "%.8s %s", pnam, "long.");
+  } else {
+    sprintf(slon, "%-14s", "long.");
+  }
+  for (sp = fmt; *sp != '\0'; sp++) {
+    //*****************************************************************************
+    //    is_label = true;
+    //    cout << " sp-" << sp;
+    if ((*(sp) == 'P') && (mode == 1) && (ipl != 13)) break;
+
+    if ((*(sp) == 'S') && (mode == 1)) break;
+
+    //    cout << " mode-" << mode << " ipl-" << ipl << "\t";
+
+    //*****************************************************************************
+
+    // if (is_house && ipl <= nhouses && strchr("bBsSrRxXuUQnNfFj+-*/=", *sp) !=
+    // NULL) continue;
+    if (is_house && strchr("bBrRxXuUQnNfFj+-*/=", *sp) != NULL) continue;
+    if (is_ayana && strchr("bBsSrRxXuUQnNfFj+-*/=", *sp) != NULL) continue;
+    if (sp != fmt) fputs(gap, stdout);
+    if (sp == fmt && list_hor && !is_first && strchr("yYJtT", *sp) == NULL)
+      fputs(gap, stdout);
+
+    switch (*sp) {
+      case 'y':
+        if (list_hor && !is_first) {
+          break;
+        }
+        if (is_label) {
+          printf("year");
+          break;
+        }
+        printf("%d", jyear);
+        break;
+
+      case 'Y':
+        if (list_hor && !is_first) {
+          break;
+        }
+        if (is_label) {
+          printf("year");
+          break;
+        }
+        t2 = swe_julday(jyear, 1, 1, ju2, gregflag);
+        y_frac = (t - t2) / 365.0;
+        printf("%.2f", jyear + y_frac);
+        break;
+
+      case 'p':
+        if (is_label) {
+          printf("obj.nr");
+          break;
+        }
+        if (!is_house && diff_mode == DIFF_DIFF) {
+          printf("%d-%d", ipl, ipldiff);
+        } else if (!is_house && diff_mode == DIFF_GEOHEL) {
+          printf("%d-%dhel", ipl, ipldiff);
+        } else if (!is_house && diff_mode == DIFF_MIDP) {
+          printf("%d/%d", ipl, ipldiff);
+        } else {
+          printf("%d", ipl);
+        }
+        break;
+
+      case 'P':
+
+        if (is_label) {
+          printf("%-15s", "name");
+          break;
+        }
+
+        if (is_house) {
+          if (ipl <= nhouses) {
+            printf("house %2d       ", ipl);
+          } else {
+            printf("%-15s", hs_nam[ipl - nhouses]);
+          }
+        } else if (is_ayana) {
+          // printf("Ayanamsha       ");
+          printf("Ayanamsha %s ", swe_get_ayanamsa_name(sid_mode));
+        } else if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
+          printf("%.3s-%.3s", spnam, spnam2);
+        } else if (diff_mode == DIFF_MIDP) {
+          printf("%.3s/%.3s", spnam, spnam2);
+        } else {
+          printf("%-15s", spnam);
+        }
+        break;
+
+      case 'J':
+        if (list_hor && !is_first) {
+          break;
+        }
+        if (is_label) {
+          printf("julday");
+          break;
+        }
+        y_frac = (t - floor(t)) * 100;
+        if (floor(y_frac) != y_frac) {
+          printf("%.5f", t);
+        } else {
+          printf("%.2f", t);
+        }
+        break;
+
+      case 'T':
+        if (list_hor && !is_first) {
+          break;
+        }
+        if (is_label) {
+          printf("date    ");
+          break;
+        }
+        printf("%02d.%02d.%d", jday, jmon, jyear);
+        if (jut != 0 || step_in_minutes || step_in_seconds) {
+          int h, m, s;
+          s = (int)(jut * 3600 + 0.5);
+          h = (int)(s / 3600.0);
+          m = (int)((s % 3600) / 60.0);
+          s %= 60;
+          printf(" %d:%02d:%02d", h, m, s);
+          if (universal_time)
+            printf(" UT");
+          else
+            printf(" TT");
+        }
+        break;
+
+      case 't':
+        if (list_hor && !is_first) {
+          break;
+        }
+        if (is_label) {
+          printf("date");
+          break;
+        }
+        printf("%02d%02d%02d", jyear % 100, jmon, jday);
+        break;
+
+      case 'L':
+        if (is_label) {
+          printf(slon);
+          break;
+        }
+        if (psp != NULL &&
+            (*psp == 'q' || *psp == 'y')) { /* delta t or time equation */
+          printf("%# 11.7f", x[0]);
+          printf("s");
+          break;
+        }
+
+        //**********************************************************************
+
+        if (mode == 0) {
+          switch (ipl) {
+            case 0:
+              su.lon = x[0];
+              break;
+            case 1:
+              ch.lon = x[0];
+              break;
+            case 2:
+              bu.lon = x[0];
+              break;
+            case 3:
+              sk.lon = x[0];
+              break;
+            case 4:
+              ma.lon = x[0];
+              break;
+            case 5:
+              gu.lon = x[0];
+              break;
+            case 6:
+              sa.lon = x[0];
+              break;
+            case 10:
+              ra.lon = x[0];
+              ke.lon = 180 + ra.lon;
+              ke.lon > 360 ? ke.lon -= 360 : ke.lon;
+              break;
+          }
+        }
+        if ((mode == 1) && (ipl == 13)) {
+          as.lon = x[0];
+        }
+        //Значениe  при *sp == 'L'
+        //        fputs(dms(x[0], round_flag), stdout);
+        //**********************************************************************
+
+        break;
+      case 'l':
+        if (is_label) {
+          printf(slon);
+          break;
+        }
+        if (output_extra_prec)
+          printf("%# 11.11f", x[0]);
+        else
+          printf("%# 11.7f", x[0]);
+        break;
+
+      case 'G':
+        if (is_label) {
+          printf("housPos");
+          break;
+        }
+
+        fputs(dms(hpos, round_flag), stdout);
+
+        break;
+      case 'g':
+        if (is_label) {
+          printf("housPos");
+          break;
+        }
+        printf("%# 11.7f", hpos);
+        break;
+      case 'j':
+        if (is_label) {
+          printf("houseNr");
+          break;
+        }
+        printf("%# 11.7f", hposj);
+        break;
+      case 'Z':
+        if (is_label) {
+          printf(slon);
+          break;
+        }
+        fputs(dms(x[0], round_flag | BIT_ZODIAC), stdout);
+        break;
+      case 'S':
+      case 's':
+        if (*(sp + 1) == 'S' || *(sp + 1) == 's' ||
+            strpbrk(fmt, "XUxu") != NULL) {
+          for (sp2 = fmt; *sp2 != '\0'; sp2++) {
+            if (sp2 != fmt) fputs(gap, stdout);
+            switch (*sp2) {
+              case 'L': /* speed! */
+              case 'Z': /* speed! */
+                if (is_label) {
+                  printf("lon/day");
+                  break;
+                }
+
+                fputs(dms(x[3], round_flag), stdout);
+
+                break;
+              case 'l': /* speed! */
+                if (is_label) {
+                  printf("lon/day");
+                  break;
+                }
+                if (output_extra_prec)
+                  printf("%# 11.9f", x[3]);
+                else
+                  printf("%# 11.7f", x[3]);
+                break;
+              case 'B': /* speed! */
+                if (is_label) {
+                  printf("lat/day");
+                  break;
+                }
+                fputs(dms(x[4], round_flag), stdout);
+                break;
+              case 'b': /* speed! */
+                if (is_label) {
+                  printf("lat/day");
+                  break;
+                }
+                if (output_extra_prec)
+                  printf("%# 11.9f", x[4]);
+                else
+                  printf("%# 11.7f", x[4]);
+                break;
+              case 'A': /* speed! */
+                if (is_label) {
+                  printf("RA/day");
+                  break;
+                }
+                fputs(dms(xequ[3] / 15, round_flag | SEFLG_EQUATORIAL), stdout);
+                break;
+              case 'a': /* speed! */
+                if (is_label) {
+                  printf("RA/day");
+                  break;
+                }
+                if (output_extra_prec)
+                  printf("%# 11.9f", xequ[3]);
+                else
+                  printf("%# 11.7f", xequ[3]);
+                break;
+              case 'D': /* speed! */
+                if (is_label) {
+                  printf("dcl/day");
+                  break;
+                }
+                fputs(dms(xequ[4], round_flag), stdout);
+                break;
+              case 'd': /* speed! */
+                if (is_label) {
+                  printf("dcl/day");
+                  break;
+                }
+                if (output_extra_prec)
+                  printf("%# 11.9f", xequ[4]);
+                else
+                  printf("%# 11.7f", xequ[4]);
+                break;
+              case 'R': /* speed! */
+              case 'r': /* speed! */
+                if (is_label) {
+                  printf("AU/day");
+                  break;
+                }
+                if (output_extra_prec)
+                  printf("%# 16.11f", x[5]);
+                else
+                  printf("%# 14.9f", x[5]);
+                break;
+              case 'U': /* speed! */
+              case 'X': /* speed! */
+                if (is_label) {
+                  fputs("speed_0", stdout);
+                  fputs(gap, stdout);
+                  fputs("speed_1", stdout);
+                  fputs(gap, stdout);
+                  fputs("speed_2", stdout);
+                  break;
+                }
+                if (*sp == 'U')
+                  ar = sqrt(square_sum(xcart));
+                else
+                  ar = 1;
+                printf("%# 14.9f", xcart[3] / ar);
+                fputs(gap, stdout);
+                printf("%# 14.9f", xcart[4] / ar);
+                fputs(gap, stdout);
+                printf("%# 14.9f", xcart[5] / ar);
+                break;
+              case 'u': /* speed! */
+              case 'x': /* speed! */
+                if (is_label) {
+                  fputs("speed_0", stdout);
+                  fputs(gap, stdout);
+                  fputs("speed_1", stdout);
+                  fputs(gap, stdout);
+                  fputs("speed_2", stdout);
+                  break;
+                }
+                if (*sp == 'u')
+                  ar = sqrt(square_sum(xcartq));
+                else
+                  ar = 1;
+                printf("%# 14.9f", xcartq[3] / ar);
+                fputs(gap, stdout);
+                printf("%# 14.9f", xcartq[4] / ar);
+                fputs(gap, stdout);
+                printf("%# 14.9f", xcartq[5] / ar);
+                break;
+              default:
+                break;
+            }
+          }
+          if (*(sp + 1) == 'S' || *(sp + 1) == 's') sp++;
+        } else if (*sp == 'S') {
+          int flag = round_flag;
+          if (is_house) flag |= BIT_ALLOW_361;  // speed of houses can be > 360
+          if (is_label) {
+            printf("deg/day");
+            break;
+          }
+
+          //*****************************************************************************
+          //Скорость (Градусы в день)
+
+          if (mode == 0) {
+            switch (ipl) {
+              case 0:
+
+                su.speed = x[3];
+                break;
+              case 1:
+                ch.speed = x[3];
+                break;
+              case 2:
+                bu.speed = x[3];
+                break;
+              case 3:
+                sk.speed = x[3];
+                break;
+              case 4:
+                ma.speed = x[3];
+                break;
+              case 5:
+                gu.speed = x[3];
+                break;
+              case 6:
+                sa.speed = x[3];
+                break;
+              case 10:
+                ra.speed = x[3];
+                ke.speed = x[3];
+                break;
+            }
+          }
+          if ((mode == 1) && (ipl == 13)) {
+            as.speed = x[3];
+          }
+
+          //          fputs(dms(x[3], flag), stdout);
+
+          //*****************************************************************************
+
+        } else {
+          if (is_label) {
+            printf("deg/day");
+            break;
+          }
+          if (output_extra_prec)
+            printf("%# 11.17f", x[3]);
+          else
+            printf("%# 11.7f", x[3]);
+        }
+        break;
+
+      case 'B':
+
+        //************************************
+        break;
+        //************************************
+
+        if (is_label) {
+          printf("lat.    ");
+          break;
+        }
+        if (*psp == 'q') { /* delta t */
+          printf("%# 11.7f", x[1]);
+          printf("h");
+          break;
+        }
+        fputs(dms(x[1], round_flag), stdout);
+        break;
+      case 'b':
+        if (is_label) {
+          printf("lat.    ");
+          break;
+        }
+        if (output_extra_prec)
+          printf("%# 11.11f", x[1]);
+        else
+          printf("%# 11.7f", x[1]);
+        break;
+
+      case 'A': /* right ascension */
+        if (is_label) {
+          printf("RA      ");
+          break;
+        }
+        fputs(dms(xequ[0] / 15, round_flag | SEFLG_EQUATORIAL), stdout);
+        break;
+      case 'a': /* right ascension */
+        if (is_label) {
+          printf("RA      ");
+          break;
+        }
+        if (output_extra_prec)
+          printf("%# 11.11f", xequ[0]);
+        else
+          printf("%# 11.7f", xequ[0]);
+        break;
+      case 'D': /* declination */
+        if (is_label) {
+          printf("decl      ");
+          break;
+        }
+        fputs(dms(xequ[1], round_flag), stdout);
+        break;
+
+      case 'd': /* declination */
+        if (is_label) {
+          printf("decl      ");
+          break;
+        }
+        if (output_extra_prec)
+          printf("%# 11.11f", xequ[1]);
+        else
+          printf("%# 11.7f", xequ[1]);
+        break;
+
+      case 'I': /* azimuth */
+        if (is_label) {
+          printf("azimuth");
+          break;
+        }
+        fputs(dms(xaz[0], round_flag), stdout);
+        break;
+
+      case 'i': /* azimuth */
+        if (is_label) {
+          printf("azimuth");
+          break;
+        }
+        printf("%# 11.7f", xaz[0]);
+        break;
+
+      case 'H': /* height */
+        if (is_label) {
+          printf("height");
+          break;
+        }
+        fputs(dms(xaz[1], round_flag), stdout);
+        break;
+
+      case 'h': /* height */
+        if (is_label) {
+          printf("height");
+          break;
+        }
+        printf("%# 11.7f", xaz[1]);
+        break;
+
+      case 'K': /* height (apparent) */
+        if (is_label) {
+          printf("hgtApp");
+          break;
+        }
+        fputs(dms(xaz[2], round_flag), stdout);
+        break;
+
+      case 'k': /* height (apparent) */
+        if (is_label) {
+          printf("hgtApp");
+          break;
+        }
+        printf("%# 11.7f", xaz[2]);
+        break;
+
+      case 'R':
+        //************************************
+        break;
+        //************************************
+
+        if (is_label) {
+          printf("distAU   ");
+          break;
+        }
+        printf("%# 14.9f", x[2]);
+        break;
+      case 'W':
+        if (is_label) {
+          printf("distLY   ");
+          break;
+        }
+        printf("%# 14.9f", x[2] * SE_AUNIT_TO_LIGHTYEAR);
+        break;
+      case 'w':
+        if (is_label) {
+          printf("distkm   ");
+          break;
+        }
+        printf("%# 14.9f", x[2] * SE_AUNIT_TO_KM);
+        break;
+      case 'r':
+        if (is_label) {
+          printf("dist");
+          break;
+        }
+        if (ipl == SE_MOON) { /* for moon print parallax */
+          /* geocentric horizontal parallax: */
+          if ((0)) {
+            sinp = 8.794 / x[2]; /* in seconds of arc */
+            ar = sinp * (1 + sinp * sinp * 3.917402e-12);
+            /* the factor is 1 / (3600^2 * (180/pi)^2 * 6) */
+            printf("%# 13.5f\" %# 13.5f'", ar, ar / 60.0);
+          }
+          swe_pheno(te, ipl, iflag, dret, serr);
+          printf("%# 13.5f\"", dret[5] * 3600);
+        } else {
+          printf("%# 14.9f", x[2] * SE_AUNIT_TO_LIGHTYEAR);
+        }
+        break;
+      case 'q':
+        if (is_label) {
+          printf("reldist");
+          break;
+        }
+        dar = get_geocentric_relative_distance(te, ipl, iflag, serr);
+        printf("% 5d", dar);
+        break;
+      case 'U':
+      case 'X':
+        if (*sp == 'U')
+          ar = sqrt(square_sum(xcart));
+        else
+          ar = 1;
+        printf("%# 14.9f", xcart[0] / ar);
+        fputs(gap, stdout);
+        printf("%# 14.9f", xcart[1] / ar);
+        fputs(gap, stdout);
+        printf("%# 14.9f", xcart[2] / ar);
+        break;
+      case 'u':
+      case 'x':
+        if (is_label) {
+          fputs("x0", stdout);
+          fputs(gap, stdout);
+          fputs("x1", stdout);
+          fputs(gap, stdout);
+          fputs("x2", stdout);
+          break;
+        }
+        if (*sp == 'u')
+          ar = sqrt(square_sum(xcartq));
+        else
+          ar = 1;
+        if (output_extra_prec) {
+          printf("%# .17f", xcartq[0] / ar);
+          fputs(gap, stdout);
+          printf("%# .17f", xcartq[1] / ar);
+          fputs(gap, stdout);
+          printf("%# .17f", xcartq[2] / ar);
+        } else {
+          printf("%# 14.9f", xcartq[0] / ar);
+          fputs(gap, stdout);
+          printf("%# 14.9f", xcartq[1] / ar);
+          fputs(gap, stdout);
+          printf("%# 14.9f", xcartq[2] / ar);
+        }
+        break;
+      case 'Q':
+        if (is_label) {
+          printf("Q");
+          break;
+        }
+        printf("%-15s", spnam);
+        fputs(dms(x[0], round_flag), stdout);
+        fputs(dms(x[1], round_flag), stdout);
+        printf("  %# 14.9f", x[2]);
+        fputs(dms(x[3], round_flag), stdout);
+        fputs(dms(x[4], round_flag), stdout);
+        printf("  %# 14.9f\n", x[5]);
+        printf("               %s", dms(xequ[0], round_flag));
+        fputs(dms(xequ[1], round_flag), stdout);
+        printf("                %s", dms(xequ[3], round_flag));
+        fputs(dms(xequ[4], round_flag), stdout);
+        break;
+      case 'N':
+      case 'n': {
+        double xasc[6], xdsc[6];
+        int imeth = (*sp == tolower(*sp)) ? SE_NODBIT_MEAN : SE_NODBIT_OSCU;
+        iflgret =
+            swe_nod_aps(te, ipl, iflag, imeth, xasc, xdsc, NULL, NULL, serr);
+        if (iflgret >= 0 && (ipl <= SE_NEPTUNE || *sp == 'N')) {
+          if (is_label) {
+            fputs("nodAsc", stdout);
+            fputs(gap, stdout);
+            fputs("nodDesc", stdout);
+            break;
+          }
+          if (use_dms)
+            fputs(dms(xasc[0], round_flag | BIT_ZODIAC), stdout);
+          else
+            printf("%# 11.7f", xasc[0]);
+          fputs(gap, stdout);
+          if (use_dms)
+            fputs(dms(xdsc[0], round_flag | BIT_ZODIAC), stdout);
+          else
+            printf("%# 11.7f", xdsc[0]);
+        }
+      }; break;
+      case 'F':
+      case 'f':
+        if (!is_house) {
+          double xfoc[6], xaph[6], xper[6];
+          int imeth = (*sp == tolower(*sp)) ? SE_NODBIT_MEAN : SE_NODBIT_OSCU;
+          //	fprintf(stderr, "c=%c\n", *sp);
+          iflgret =
+              swe_nod_aps(te, ipl, iflag, imeth, NULL, NULL, xper, xaph, serr);
+          if (iflgret >= 0 && (ipl <= SE_NEPTUNE || *sp == 'F')) {
+            if (is_label) {
+              fputs("peri", stdout);
+              fputs(gap, stdout);
+              fputs("apo", stdout);
+              fputs(gap, stdout);
+              fputs("focus", stdout);
+              break;
+            }
+            printf("%# 11.7f", xper[0]);
+            fputs(gap, stdout);
+            printf("%# 11.7f", xaph[0]);
+          }
+          imeth |= SE_NODBIT_FOPOINT;
+          iflgret =
+              swe_nod_aps(te, ipl, iflag, imeth, NULL, NULL, xper, xfoc, serr);
+          if (iflgret >= 0 && (ipl <= SE_NEPTUNE || *sp == 'F')) {
+            fputs(gap, stdout);
+            printf("%# 11.7f", xfoc[0]);
+          }
+        };
+        break;
+      case '+':
+        if (is_house) break;
+        if (is_label) {
+          printf("phase");
+          break;
+        }
+        fputs(dms(attr[0], round_flag), stdout);
+        break;
+      case '-':
+        if (is_label) {
+          printf("phase");
+          break;
+        }
+        if (is_house) break;
+        printf("  %# 14.9f", attr[1]);
+        break;
+      case '*':
+        if (is_label) {
+          printf("elong");
+          break;
+        }
+        if (is_house) break;
+        fputs(dms(attr[2], round_flag), stdout);
+        break;
+      case '/':
+        if (is_label) {
+          printf("diamet");
+          break;
+        }
+        if (is_house) break;
+        fputs(dms(attr[3], round_flag), stdout);
+        break;
+      case '=':
+        if (is_label) {
+          printf("magn");
+          break;
+        }
+        if (is_house) break;
+        printf("  %# 6.3fm", attr[4]);
+        break;
+      case 'V': /* human design gates */
+      case 'v': {
+        double xhds;
+        int igate, iline, ihex;
+        static int hexa[64] = {
+            1,  43, 14, 34, 9,  5,  26, 11, 10, 58, 38, 54, 61, 60, 41, 19,
+            13, 49, 30, 55, 37, 63, 22, 36, 25, 17, 21, 51, 42, 3,  27, 24,
+            2,  23, 8,  20, 16, 35, 45, 12, 15, 52, 39, 53, 62, 56, 31, 33,
+            7,  4,  29, 59, 40, 64, 47, 6,  46, 18, 48, 57, 32, 50, 28, 44};
+        if (is_label) {
+          printf("hds");
+          break;
+        }
+        if (is_house) break;
+        xhds = swe_degnorm(x[0] - 223.25);
+        ihex = (int)floor(xhds / 5.625);
+        iline = ((int)(floor(xhds / 0.9375))) % 6 + 1;
+        igate = hexa[ihex];
+        printf("%2d.%d", igate, iline);
+        if (*sp == 'V') printf(" %2d%%", swe_d2l(100 * fmod(xhds / 0.9375, 1)));
+        break;
+      }
+    }  // end swith sp
+  }    // end for sp = fmt
+  if (!list_hor) printf("\n");
+  return OK;
+}
+
+int calc(string date) {
   int argc = 5;
   char* argv[5];
   string arg0 = "/home/jhon/Sublime_tests/SE/SE_test/build/test";
@@ -58,6 +877,7 @@ int calc() {
   char fname[AS_MAXCH];
   char sdate[AS_MAXCH];
   char* begindate = NULL;
+  begindate = (char*)date.c_str();
   char stimein[AS_MAXCH];
   char stimeout[AS_MAXCH];
   int32 iflgret;
@@ -149,7 +969,7 @@ int calc() {
       iflag |= SEFLG_SIDEREAL;
       sid_mode = atol(argv[i] + 4);
       /*if (sid_mode > 0)
-        swe_set_sid_mode(sid_mode, 0, 0);*/
+  swe_set_sid_mode(sid_mode, 0, 0);*/
     } else if (strcmp(argv[i], "-jplhora") == 0) {
       iflag |= SEFLG_JPLHOR_APPROX;
     } else if (strcmp(argv[i], "-tpm") == 0) {
@@ -341,9 +1161,9 @@ int calc() {
       switch (*spno) {
         case 'd':
           /*
-          case '\0':
-          case ' ':
-          */
+    case '\0':
+    case ' ':
+    */
           plsel = PLSEL_D;
           break;
         case 'p':
@@ -423,7 +1243,7 @@ int calc() {
     } else if (strcmp(argv[i], "-roundmin") == 0) {
       round_flag |= BIT_ROUND_MIN;
       /*} else if (strncmp(argv[i], "-timeout", 8) == 0) {
-        swe_set_timeout(atoi(argv[i]) + 8);*/
+  swe_set_timeout(atoi(argv[i]) + 8);*/
     } else if (strncmp(argv[i], "-t", 2) == 0) {
       if (strlen(argv[i]) > 2) {
         strncat(stimein, argv[i] + 2, 30);
@@ -537,10 +1357,6 @@ int calc() {
   swe_set_topo(top_long, top_lat, top_elev);
   if (tid_acc != 0) swe_set_tid_acc(tid_acc);
   serr[0] = serr_save[0] = serr_warn[0] = '\0';
-
-  begindate = "17-11-1966";
-
-  //******************************************************************
 
   strncpy(sdate, begindate, AS_MAXCH - 1);
   sdate[AS_MAXCH - 1] = '\0';
@@ -1185,790 +2001,5 @@ end_main:
     printf(smod);
   }
   swe_close();
-  return OK;
-}
-
-int print_line(int mode, AS_BOOL is_first, int sid_mode) {
-  /*
-   * The string fmt contains a sequence of format specifiers;
-   * each character in fmt creates a column, the columns are
-   * sparated by the gap string.
-   * Time columns tTJyY are only printed, if is_first is TRUE,
-   * so that they are not repeated in list_hor (horizontal list) mode.
-   * In list_hor mode, no newline is printed.
-   */
-
-  //  cout << "mode-" << mode << ", is_first-" << is_first << ", sid_mode-"
-  //       << sid_mode << endl;
-  char *sp, *sp2;
-  double t2, ju2 = 0;
-  double y_frac;
-  double ar, sinp;
-  double dret[20];
-  char slon[20];
-  char pnam[30];
-  AS_BOOL is_house = ((mode & MODE_HOUSE) != 0);
-  AS_BOOL is_label = ((mode & MODE_LABEL) != 0);
-  AS_BOOL is_ayana = ((mode & MODE_AYANAMSA) != 0);
-  int32 iflgret, dar;
-  // build planet name column, just in case
-  if (is_house) {
-    if (ipl <= nhouses) {
-      sprintf(pnam, "house %2d       ", ipl);
-    } else {
-      sprintf(pnam, "%-15s", hs_nam[ipl - nhouses]);
-    }
-  } else if (diff_mode == DIFF_DIFF) {
-    sprintf(pnam, "%.3s-%.3s", spnam, spnam2);
-  } else if (diff_mode == DIFF_GEOHEL) {
-    sprintf(pnam, "%.3s-%.3sHel", spnam, spnam2);
-  } else if (diff_mode == DIFF_MIDP) {
-    sprintf(pnam, "%.3s/%.3s", spnam, spnam2);
-  } else {
-    sprintf(pnam, "%-15s", spnam);
-  }
-  if (list_hor && strchr(fmt, 'P') == NULL) {
-    sprintf(slon, "%.8s %s", pnam, "long.");
-  } else {
-    sprintf(slon, "%-14s", "long.");
-  }
-  for (sp = fmt; *sp != '\0'; sp++) {
-    //*****************************************************************************
-    //    is_label = true;
-    //    cout << " sp-" << sp;
-    if ((*(sp) == 'P') && (mode == 1) && (ipl != 13)) break;
-
-    if ((*(sp) == 'S') && (mode == 1)) break;
-
-    //    cout << " mode-" << mode << " ipl-" << ipl << "\t";
-
-    //*****************************************************************************
-
-    // if (is_house && ipl <= nhouses && strchr("bBsSrRxXuUQnNfFj+-*/=", *sp) !=
-    // NULL) continue;
-    if (is_house && strchr("bBrRxXuUQnNfFj+-*/=", *sp) != NULL) continue;
-    if (is_ayana && strchr("bBsSrRxXuUQnNfFj+-*/=", *sp) != NULL) continue;
-    if (sp != fmt) fputs(gap, stdout);
-    if (sp == fmt && list_hor && !is_first && strchr("yYJtT", *sp) == NULL)
-      fputs(gap, stdout);
-
-    switch (*sp) {
-      case 'y':
-        if (list_hor && !is_first) {
-          break;
-        }
-        if (is_label) {
-          printf("year");
-          break;
-        }
-        printf("%d", jyear);
-        break;
-
-      case 'Y':
-        if (list_hor && !is_first) {
-          break;
-        }
-        if (is_label) {
-          printf("year");
-          break;
-        }
-        t2 = swe_julday(jyear, 1, 1, ju2, gregflag);
-        y_frac = (t - t2) / 365.0;
-        printf("%.2f", jyear + y_frac);
-        break;
-
-      case 'p':
-        if (is_label) {
-          printf("obj.nr");
-          break;
-        }
-        if (!is_house && diff_mode == DIFF_DIFF) {
-          printf("%d-%d", ipl, ipldiff);
-        } else if (!is_house && diff_mode == DIFF_GEOHEL) {
-          printf("%d-%dhel", ipl, ipldiff);
-        } else if (!is_house && diff_mode == DIFF_MIDP) {
-          printf("%d/%d", ipl, ipldiff);
-        } else {
-          printf("%d", ipl);
-        }
-        break;
-
-      case 'P':
-
-        if (is_label) {
-          printf("%-15s", "name");
-          break;
-        }
-
-        if (is_house) {
-          if (ipl <= nhouses) {
-            printf("house %2d       ", ipl);
-          } else {
-            printf("%-15s", hs_nam[ipl - nhouses]);
-          }
-        } else if (is_ayana) {
-          // printf("Ayanamsha       ");
-          printf("Ayanamsha %s ", swe_get_ayanamsa_name(sid_mode));
-        } else if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
-          printf("%.3s-%.3s", spnam, spnam2);
-        } else if (diff_mode == DIFF_MIDP) {
-          printf("%.3s/%.3s", spnam, spnam2);
-        } else {
-          printf("%-15s", spnam);
-        }
-        break;
-
-      case 'J':
-        if (list_hor && !is_first) {
-          break;
-        }
-        if (is_label) {
-          printf("julday");
-          break;
-        }
-        y_frac = (t - floor(t)) * 100;
-        if (floor(y_frac) != y_frac) {
-          printf("%.5f", t);
-        } else {
-          printf("%.2f", t);
-        }
-        break;
-
-      case 'T':
-        if (list_hor && !is_first) {
-          break;
-        }
-        if (is_label) {
-          printf("date    ");
-          break;
-        }
-        printf("%02d.%02d.%d", jday, jmon, jyear);
-        if (jut != 0 || step_in_minutes || step_in_seconds) {
-          int h, m, s;
-          s = (int)(jut * 3600 + 0.5);
-          h = (int)(s / 3600.0);
-          m = (int)((s % 3600) / 60.0);
-          s %= 60;
-          printf(" %d:%02d:%02d", h, m, s);
-          if (universal_time)
-            printf(" UT");
-          else
-            printf(" TT");
-        }
-        break;
-
-      case 't':
-        if (list_hor && !is_first) {
-          break;
-        }
-        if (is_label) {
-          printf("date");
-          break;
-        }
-        printf("%02d%02d%02d", jyear % 100, jmon, jday);
-        break;
-
-      case 'L':
-        if (is_label) {
-          printf(slon);
-          break;
-        }
-        if (psp != NULL &&
-            (*psp == 'q' || *psp == 'y')) { /* delta t or time equation */
-          printf("%# 11.7f", x[0]);
-          printf("s");
-          break;
-        }
-
-        //**********************************************************************
-
-        if (mode == 0) {
-          switch (ipl) {
-            case 0:
-              su.lon = x[0];
-              cout << "\nSu-" << su.lon;
-              break;
-            case 1:
-              ch.lon = x[0];
-              cout << "\nCh-" << ch.lon;
-              break;
-            case 2:
-              bu.lon = x[0];
-              cout << "\nBu-" << bu.lon;
-              break;
-            case 3:
-              sk.lon = x[0];
-              cout << "\nSk-" << sk.lon;
-              break;
-            case 4:
-              ma.lon = x[0];
-              cout << "\nMa-" << ma.lon;
-              break;
-            case 5:
-              gu.lon = x[0];
-              cout << "\nGu-" << gu.lon;
-              break;
-            case 6:
-              sa.lon = x[0];
-              cout << "\nSa-" << sa.lon;
-              break;
-            case 10:
-              ra.lon = x[0];
-              cout << "\nRa-" << ra.lon;
-              ke.lon = 180 + ra.lon;
-              ke.lon > 360 ? ke.lon -= 360 : ke.lon;
-              cout << "\nKe-" << ke.lon;
-              break;
-          }
-        }
-        if ((mode == 1) && (ipl == 13)) {
-          as.lon = x[0];
-          cout << "\nAs-" << as.lon;
-        }
-        //Значениe  при *sp == 'L'
-        fputs(dms(x[0], round_flag), stdout);
-        //**********************************************************************
-
-        break;
-      case 'l':
-        if (is_label) {
-          printf(slon);
-          break;
-        }
-        if (output_extra_prec)
-          printf("%# 11.11f", x[0]);
-        else
-          printf("%# 11.7f", x[0]);
-        break;
-
-      case 'G':
-        if (is_label) {
-          printf("housPos");
-          break;
-        }
-
-        fputs(dms(hpos, round_flag), stdout);
-
-        break;
-      case 'g':
-        if (is_label) {
-          printf("housPos");
-          break;
-        }
-        printf("%# 11.7f", hpos);
-        break;
-      case 'j':
-        if (is_label) {
-          printf("houseNr");
-          break;
-        }
-        printf("%# 11.7f", hposj);
-        break;
-      case 'Z':
-        if (is_label) {
-          printf(slon);
-          break;
-        }
-        fputs(dms(x[0], round_flag | BIT_ZODIAC), stdout);
-        break;
-      case 'S':
-      case 's':
-        if (*(sp + 1) == 'S' || *(sp + 1) == 's' ||
-            strpbrk(fmt, "XUxu") != NULL) {
-          for (sp2 = fmt; *sp2 != '\0'; sp2++) {
-            if (sp2 != fmt) fputs(gap, stdout);
-            switch (*sp2) {
-              case 'L': /* speed! */
-              case 'Z': /* speed! */
-                if (is_label) {
-                  printf("lon/day");
-                  break;
-                }
-                fputs(dms(x[3], round_flag), stdout);
-                break;
-              case 'l': /* speed! */
-                if (is_label) {
-                  printf("lon/day");
-                  break;
-                }
-                if (output_extra_prec)
-                  printf("%# 11.9f", x[3]);
-                else
-                  printf("%# 11.7f", x[3]);
-                break;
-              case 'B': /* speed! */
-                if (is_label) {
-                  printf("lat/day");
-                  break;
-                }
-                fputs(dms(x[4], round_flag), stdout);
-                break;
-              case 'b': /* speed! */
-                if (is_label) {
-                  printf("lat/day");
-                  break;
-                }
-                if (output_extra_prec)
-                  printf("%# 11.9f", x[4]);
-                else
-                  printf("%# 11.7f", x[4]);
-                break;
-              case 'A': /* speed! */
-                if (is_label) {
-                  printf("RA/day");
-                  break;
-                }
-                fputs(dms(xequ[3] / 15, round_flag | SEFLG_EQUATORIAL), stdout);
-                break;
-              case 'a': /* speed! */
-                if (is_label) {
-                  printf("RA/day");
-                  break;
-                }
-                if (output_extra_prec)
-                  printf("%# 11.9f", xequ[3]);
-                else
-                  printf("%# 11.7f", xequ[3]);
-                break;
-              case 'D': /* speed! */
-                if (is_label) {
-                  printf("dcl/day");
-                  break;
-                }
-                fputs(dms(xequ[4], round_flag), stdout);
-                break;
-              case 'd': /* speed! */
-                if (is_label) {
-                  printf("dcl/day");
-                  break;
-                }
-                if (output_extra_prec)
-                  printf("%# 11.9f", xequ[4]);
-                else
-                  printf("%# 11.7f", xequ[4]);
-                break;
-              case 'R': /* speed! */
-              case 'r': /* speed! */
-                if (is_label) {
-                  printf("AU/day");
-                  break;
-                }
-                if (output_extra_prec)
-                  printf("%# 16.11f", x[5]);
-                else
-                  printf("%# 14.9f", x[5]);
-                break;
-              case 'U': /* speed! */
-              case 'X': /* speed! */
-                if (is_label) {
-                  fputs("speed_0", stdout);
-                  fputs(gap, stdout);
-                  fputs("speed_1", stdout);
-                  fputs(gap, stdout);
-                  fputs("speed_2", stdout);
-                  break;
-                }
-                if (*sp == 'U')
-                  ar = sqrt(square_sum(xcart));
-                else
-                  ar = 1;
-                printf("%# 14.9f", xcart[3] / ar);
-                fputs(gap, stdout);
-                printf("%# 14.9f", xcart[4] / ar);
-                fputs(gap, stdout);
-                printf("%# 14.9f", xcart[5] / ar);
-                break;
-              case 'u': /* speed! */
-              case 'x': /* speed! */
-                if (is_label) {
-                  fputs("speed_0", stdout);
-                  fputs(gap, stdout);
-                  fputs("speed_1", stdout);
-                  fputs(gap, stdout);
-                  fputs("speed_2", stdout);
-                  break;
-                }
-                if (*sp == 'u')
-                  ar = sqrt(square_sum(xcartq));
-                else
-                  ar = 1;
-                printf("%# 14.9f", xcartq[3] / ar);
-                fputs(gap, stdout);
-                printf("%# 14.9f", xcartq[4] / ar);
-                fputs(gap, stdout);
-                printf("%# 14.9f", xcartq[5] / ar);
-                break;
-              default:
-                break;
-            }
-          }
-          if (*(sp + 1) == 'S' || *(sp + 1) == 's') sp++;
-        } else if (*sp == 'S') {
-          int flag = round_flag;
-          if (is_house) flag |= BIT_ALLOW_361;  // speed of houses can be > 360
-          if (is_label) {
-            printf("deg/day");
-            break;
-          }
-
-          //*****************************************************************************
-          //Градусы в день
-
-          fputs(dms(x[3], flag), stdout);
-
-          //*****************************************************************************
-
-        } else {
-          if (is_label) {
-            printf("deg/day");
-            break;
-          }
-          if (output_extra_prec)
-            printf("%# 11.17f", x[3]);
-          else
-            printf("%# 11.7f", x[3]);
-        }
-        break;
-
-      case 'B':
-
-        //************************************
-        break;
-        //************************************
-
-        if (is_label) {
-          printf("lat.    ");
-          break;
-        }
-        if (*psp == 'q') { /* delta t */
-          printf("%# 11.7f", x[1]);
-          printf("h");
-          break;
-        }
-        fputs(dms(x[1], round_flag), stdout);
-        break;
-      case 'b':
-        if (is_label) {
-          printf("lat.    ");
-          break;
-        }
-        if (output_extra_prec)
-          printf("%# 11.11f", x[1]);
-        else
-          printf("%# 11.7f", x[1]);
-        break;
-
-      case 'A': /* right ascension */
-        if (is_label) {
-          printf("RA      ");
-          break;
-        }
-        fputs(dms(xequ[0] / 15, round_flag | SEFLG_EQUATORIAL), stdout);
-        break;
-      case 'a': /* right ascension */
-        if (is_label) {
-          printf("RA      ");
-          break;
-        }
-        if (output_extra_prec)
-          printf("%# 11.11f", xequ[0]);
-        else
-          printf("%# 11.7f", xequ[0]);
-        break;
-      case 'D': /* declination */
-        if (is_label) {
-          printf("decl      ");
-          break;
-        }
-        fputs(dms(xequ[1], round_flag), stdout);
-        break;
-
-      case 'd': /* declination */
-        if (is_label) {
-          printf("decl      ");
-          break;
-        }
-        if (output_extra_prec)
-          printf("%# 11.11f", xequ[1]);
-        else
-          printf("%# 11.7f", xequ[1]);
-        break;
-
-      case 'I': /* azimuth */
-        if (is_label) {
-          printf("azimuth");
-          break;
-        }
-        fputs(dms(xaz[0], round_flag), stdout);
-        break;
-
-      case 'i': /* azimuth */
-        if (is_label) {
-          printf("azimuth");
-          break;
-        }
-        printf("%# 11.7f", xaz[0]);
-        break;
-
-      case 'H': /* height */
-        if (is_label) {
-          printf("height");
-          break;
-        }
-        fputs(dms(xaz[1], round_flag), stdout);
-        break;
-
-      case 'h': /* height */
-        if (is_label) {
-          printf("height");
-          break;
-        }
-        printf("%# 11.7f", xaz[1]);
-        break;
-
-      case 'K': /* height (apparent) */
-        if (is_label) {
-          printf("hgtApp");
-          break;
-        }
-        fputs(dms(xaz[2], round_flag), stdout);
-        break;
-
-      case 'k': /* height (apparent) */
-        if (is_label) {
-          printf("hgtApp");
-          break;
-        }
-        printf("%# 11.7f", xaz[2]);
-        break;
-
-      case 'R':
-        //************************************
-        break;
-        //************************************
-
-        if (is_label) {
-          printf("distAU   ");
-          break;
-        }
-        printf("%# 14.9f", x[2]);
-        break;
-      case 'W':
-        if (is_label) {
-          printf("distLY   ");
-          break;
-        }
-        printf("%# 14.9f", x[2] * SE_AUNIT_TO_LIGHTYEAR);
-        break;
-      case 'w':
-        if (is_label) {
-          printf("distkm   ");
-          break;
-        }
-        printf("%# 14.9f", x[2] * SE_AUNIT_TO_KM);
-        break;
-      case 'r':
-        if (is_label) {
-          printf("dist");
-          break;
-        }
-        if (ipl == SE_MOON) { /* for moon print parallax */
-          /* geocentric horizontal parallax: */
-          if ((0)) {
-            sinp = 8.794 / x[2]; /* in seconds of arc */
-            ar = sinp * (1 + sinp * sinp * 3.917402e-12);
-            /* the factor is 1 / (3600^2 * (180/pi)^2 * 6) */
-            printf("%# 13.5f\" %# 13.5f'", ar, ar / 60.0);
-          }
-          swe_pheno(te, ipl, iflag, dret, serr);
-          printf("%# 13.5f\"", dret[5] * 3600);
-        } else {
-          printf("%# 14.9f", x[2] * SE_AUNIT_TO_LIGHTYEAR);
-        }
-        break;
-      case 'q':
-        if (is_label) {
-          printf("reldist");
-          break;
-        }
-        dar = get_geocentric_relative_distance(te, ipl, iflag, serr);
-        printf("% 5d", dar);
-        break;
-      case 'U':
-      case 'X':
-        if (*sp == 'U')
-          ar = sqrt(square_sum(xcart));
-        else
-          ar = 1;
-        printf("%# 14.9f", xcart[0] / ar);
-        fputs(gap, stdout);
-        printf("%# 14.9f", xcart[1] / ar);
-        fputs(gap, stdout);
-        printf("%# 14.9f", xcart[2] / ar);
-        break;
-      case 'u':
-      case 'x':
-        if (is_label) {
-          fputs("x0", stdout);
-          fputs(gap, stdout);
-          fputs("x1", stdout);
-          fputs(gap, stdout);
-          fputs("x2", stdout);
-          break;
-        }
-        if (*sp == 'u')
-          ar = sqrt(square_sum(xcartq));
-        else
-          ar = 1;
-        if (output_extra_prec) {
-          printf("%# .17f", xcartq[0] / ar);
-          fputs(gap, stdout);
-          printf("%# .17f", xcartq[1] / ar);
-          fputs(gap, stdout);
-          printf("%# .17f", xcartq[2] / ar);
-        } else {
-          printf("%# 14.9f", xcartq[0] / ar);
-          fputs(gap, stdout);
-          printf("%# 14.9f", xcartq[1] / ar);
-          fputs(gap, stdout);
-          printf("%# 14.9f", xcartq[2] / ar);
-        }
-        break;
-      case 'Q':
-        if (is_label) {
-          printf("Q");
-          break;
-        }
-        printf("%-15s", spnam);
-        fputs(dms(x[0], round_flag), stdout);
-        fputs(dms(x[1], round_flag), stdout);
-        printf("  %# 14.9f", x[2]);
-        fputs(dms(x[3], round_flag), stdout);
-        fputs(dms(x[4], round_flag), stdout);
-        printf("  %# 14.9f\n", x[5]);
-        printf("               %s", dms(xequ[0], round_flag));
-        fputs(dms(xequ[1], round_flag), stdout);
-        printf("                %s", dms(xequ[3], round_flag));
-        fputs(dms(xequ[4], round_flag), stdout);
-        break;
-      case 'N':
-      case 'n': {
-        double xasc[6], xdsc[6];
-        int imeth = (*sp == tolower(*sp)) ? SE_NODBIT_MEAN : SE_NODBIT_OSCU;
-        iflgret =
-            swe_nod_aps(te, ipl, iflag, imeth, xasc, xdsc, NULL, NULL, serr);
-        if (iflgret >= 0 && (ipl <= SE_NEPTUNE || *sp == 'N')) {
-          if (is_label) {
-            fputs("nodAsc", stdout);
-            fputs(gap, stdout);
-            fputs("nodDesc", stdout);
-            break;
-          }
-          if (use_dms)
-            fputs(dms(xasc[0], round_flag | BIT_ZODIAC), stdout);
-          else
-            printf("%# 11.7f", xasc[0]);
-          fputs(gap, stdout);
-          if (use_dms)
-            fputs(dms(xdsc[0], round_flag | BIT_ZODIAC), stdout);
-          else
-            printf("%# 11.7f", xdsc[0]);
-        }
-      }; break;
-      case 'F':
-      case 'f':
-        if (!is_house) {
-          double xfoc[6], xaph[6], xper[6];
-          int imeth = (*sp == tolower(*sp)) ? SE_NODBIT_MEAN : SE_NODBIT_OSCU;
-          //	fprintf(stderr, "c=%c\n", *sp);
-          iflgret =
-              swe_nod_aps(te, ipl, iflag, imeth, NULL, NULL, xper, xaph, serr);
-          if (iflgret >= 0 && (ipl <= SE_NEPTUNE || *sp == 'F')) {
-            if (is_label) {
-              fputs("peri", stdout);
-              fputs(gap, stdout);
-              fputs("apo", stdout);
-              fputs(gap, stdout);
-              fputs("focus", stdout);
-              break;
-            }
-            printf("%# 11.7f", xper[0]);
-            fputs(gap, stdout);
-            printf("%# 11.7f", xaph[0]);
-          }
-          imeth |= SE_NODBIT_FOPOINT;
-          iflgret =
-              swe_nod_aps(te, ipl, iflag, imeth, NULL, NULL, xper, xfoc, serr);
-          if (iflgret >= 0 && (ipl <= SE_NEPTUNE || *sp == 'F')) {
-            fputs(gap, stdout);
-            printf("%# 11.7f", xfoc[0]);
-          }
-        };
-        break;
-      case '+':
-        if (is_house) break;
-        if (is_label) {
-          printf("phase");
-          break;
-        }
-        fputs(dms(attr[0], round_flag), stdout);
-        break;
-      case '-':
-        if (is_label) {
-          printf("phase");
-          break;
-        }
-        if (is_house) break;
-        printf("  %# 14.9f", attr[1]);
-        break;
-      case '*':
-        if (is_label) {
-          printf("elong");
-          break;
-        }
-        if (is_house) break;
-        fputs(dms(attr[2], round_flag), stdout);
-        break;
-      case '/':
-        if (is_label) {
-          printf("diamet");
-          break;
-        }
-        if (is_house) break;
-        fputs(dms(attr[3], round_flag), stdout);
-        break;
-      case '=':
-        if (is_label) {
-          printf("magn");
-          break;
-        }
-        if (is_house) break;
-        printf("  %# 6.3fm", attr[4]);
-        break;
-      case 'V': /* human design gates */
-      case 'v': {
-        double xhds;
-        int igate, iline, ihex;
-        static int hexa[64] = {
-            1,  43, 14, 34, 9,  5,  26, 11, 10, 58, 38, 54, 61, 60, 41, 19,
-            13, 49, 30, 55, 37, 63, 22, 36, 25, 17, 21, 51, 42, 3,  27, 24,
-            2,  23, 8,  20, 16, 35, 45, 12, 15, 52, 39, 53, 62, 56, 31, 33,
-            7,  4,  29, 59, 40, 64, 47, 6,  46, 18, 48, 57, 32, 50, 28, 44};
-        if (is_label) {
-          printf("hds");
-          break;
-        }
-        if (is_house) break;
-        xhds = swe_degnorm(x[0] - 223.25);
-        ihex = (int)floor(xhds / 5.625);
-        iline = ((int)(floor(xhds / 0.9375))) % 6 + 1;
-        igate = hexa[ihex];
-        printf("%2d.%d", igate, iline);
-        if (*sp == 'V') printf(" %2d%%", swe_d2l(100 * fmod(xhds / 0.9375, 1)));
-        break;
-      }
-    }  // end swith sp
-  }    // end for sp = fmt
-  if (!list_hor) printf("\n");
   return OK;
 }
