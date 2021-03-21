@@ -246,3 +246,37 @@ int32 ut_to_lmt_lat(double t_ut, double* geopos, double* t_ret, char* serr) {
   *t_ret = t_ut;
   return iflgret;
 }
+
+int32 orbital_elements(double tjd_et, int32 ipl, int32 iflag, char* serr) {
+  int32 retval;
+  double dret[20], jut;
+  int32 jyear, jmon, jday;
+  char sdateperi[20];
+  retval = swe_get_orbital_elements(tjd_et, ipl, iflag, dret, serr);
+  if (retval == ERR) {
+    printf("%s\n", serr);
+    return ERR;
+  } else {
+    swe_revjul(dret[14], gregflag, &jyear, &jmon, &jday, &jut);
+    sprintf(sdateperi, "%2d.%02d.%04d,%s", jday, jmon, jyear,
+            hms(jut, BIT_LZEROES));
+    printf(
+        "semiaxis         \t%f\neccentricity     \t%f\ninclination      "
+        "\t%f\nasc. node       \t%f\narg. pericenter  \t%f\npericenter       "
+        "\t%f\n",
+        dret[0], dret[1], dret[2], dret[3], dret[4], dret[5]);
+    printf(
+        "mean longitude   \t%f\nmean anomaly     \t%f\necc. anomaly     "
+        "\t%f\ntrue anomaly     \t%f\n",
+        dret[9], dret[6], dret[8], dret[7]);
+    printf(
+        "time pericenter  \t%f %s\ndist. pericenter \t%f\ndist. apocenter  "
+        "\t%f\n",
+        dret[14], sdateperi, dret[15], dret[16]);
+    printf(
+        "mean daily motion\t%f\nsid. period (y)  \t%f\ntrop. period (y) "
+        "\t%f\nsynodic cycle (d)\t%f\n",
+        dret[11], dret[10], dret[12], dret[13]);
+  }
+  return OK;
+}
