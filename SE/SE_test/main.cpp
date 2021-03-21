@@ -1202,15 +1202,15 @@ int32 get_geocentric_relative_distance(double tjd_et, int32 ipl, int32 iflag,
   return (int32)ar;
 }
 
-/*
- * The string fmt contains a sequence of format specifiers;
- * each character in fmt creates a column, the columns are
- * sparated by the gap string.
- * Time columns tTJyY are only printed, if is_first is TRUE,
- * so that they are not repeated in list_hor (horizontal list) mode.
- * In list_hor mode, no newline is printed.
- */
 int print_line(int mode, AS_BOOL is_first, int sid_mode) {
+  /*
+   * The string fmt contains a sequence of format specifiers;
+   * each character in fmt creates a column, the columns are
+   * sparated by the gap string.
+   * Time columns tTJyY are only printed, if is_first is TRUE,
+   * so that they are not repeated in list_hor (horizontal list) mode.
+   * In list_hor mode, no newline is printed.
+   */
   char *sp, *sp2;
   double t2, ju2 = 0;
   double y_frac;
@@ -1883,43 +1883,6 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
   }   /* for sp */
   if (!list_hor) printf("\n");
   return OK;
-}
-
-int letter_to_ipl(int letter) {
-  if (letter >= '0' && letter <= '9') return letter - '0' + SE_SUN;
-  if (letter >= 'A' && letter <= 'I') return letter - 'A' + SE_MEAN_APOG;
-  if (letter >= 'J' && letter <= 'Z') return letter - 'J' + SE_CUPIDO;
-  switch (letter) {
-    case 'm':
-      return SE_MEAN_NODE;
-    case 'c':
-      return SE_INTP_APOG;
-    case 'g':
-      return SE_INTP_PERG;
-    case 'n':
-    case 'o':
-      return SE_ECL_NUT;
-    case 't':
-      return SE_TRUE_NODE;
-    case 'f':
-      return SE_FIXSTAR;
-    case 'w':
-      return SE_WALDEMATH;
-    case 'e': /* swetest: a line of labels */
-    case 'q': /* swetest: delta t */
-    case 'y': /* swetest: time equation */
-    case 'x': /* swetest: sidereal time */
-    case 'b': /* swetest: ayanamsha */
-    case 's': /* swetest: an asteroid, with number given in -xs[number] */
-    case 'v': /* swetest: a planetary moon, with number given in -xv[number] */
-    case 'z': /* swetest: a fictitious body, number given in -xz[number] */
-    case 'd': /* swetest: default (main) factors 0123456789mtABC */
-    case 'p': /* swetest: main factors ('d') plus main asteroids DEFGHI */
-    case 'h': /* swetest: fictitious factors JKLMNOPQRSTUVWXYZw */
-    case 'a': /* swetest: all factors, like 'p'+'h' */
-      return -1;
-  }
-  return -2;
 }
 
 int32 ut_to_lmt_lat(double t_ut, double* geopos, double* t_ret, char* serr) {

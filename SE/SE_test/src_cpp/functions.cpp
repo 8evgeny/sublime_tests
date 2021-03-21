@@ -197,3 +197,40 @@ int32 call_swe_fixstar(char* star, double te, int32 iflag, double* x,
   else
     return swe_fixstar(star, te, iflag, x, serr);
 }
+
+int letter_to_ipl(int letter) {
+  if (letter >= '0' && letter <= '9') return letter - '0' + SE_SUN;
+  if (letter >= 'A' && letter <= 'I') return letter - 'A' + SE_MEAN_APOG;
+  if (letter >= 'J' && letter <= 'Z') return letter - 'J' + SE_CUPIDO;
+  switch (letter) {
+    case 'm':
+      return SE_MEAN_NODE;
+    case 'c':
+      return SE_INTP_APOG;
+    case 'g':
+      return SE_INTP_PERG;
+    case 'n':
+    case 'o':
+      return SE_ECL_NUT;
+    case 't':
+      return SE_TRUE_NODE;
+    case 'f':
+      return SE_FIXSTAR;
+    case 'w':
+      return SE_WALDEMATH;
+    case 'e': /* swetest: a line of labels */
+    case 'q': /* swetest: delta t */
+    case 'y': /* swetest: time equation */
+    case 'x': /* swetest: sidereal time */
+    case 'b': /* swetest: ayanamsha */
+    case 's': /* swetest: an asteroid, with number given in -xs[number] */
+    case 'v': /* swetest: a planetary moon, with number given in -xv[number] */
+    case 'z': /* swetest: a fictitious body, number given in -xz[number] */
+    case 'd': /* swetest: default (main) factors 0123456789mtABC */
+    case 'p': /* swetest: main factors ('d') plus main asteroids DEFGHI */
+    case 'h': /* swetest: fictitious factors JKLMNOPQRSTUVWXYZw */
+    case 'a': /* swetest: all factors, like 'p'+'h' */
+      return -1;
+  }
+  return -2;
+}
