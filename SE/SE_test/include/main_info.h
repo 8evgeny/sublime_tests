@@ -1,3 +1,5 @@
+//-sid1 -ut04:50:00 -p0123456mt -house35,47,A
+
 static char* infocmd0 =
     "\n\
   Swetest computes a complete set of geocentric planetary positions,\n\
