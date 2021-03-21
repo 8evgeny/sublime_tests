@@ -69,3 +69,109 @@ void do_printf(char* info) {
   fputs(info, stdout);
 #endif
 }
+
+char* hms_from_tjd(double tjd) {
+  static char s[AS_MAXCH];
+  double x;
+  /* tjd may be negative, 0h corresponds to day number 9999999.5 */
+  x = fmod(tjd, 1);     /* may be negative ! */
+  x = fmod(x + 1.5, 1); /* is positive day fraction */
+  sprintf(s, "%s ", hms(x * 24, BIT_LZEROES));
+  return s;
+}
+
+char* hms(double x, int32 iflag) {
+  static char s[AS_MAXCH], s2[AS_MAXCH], *sp;
+  char* c = ODEGREE_STRING;
+  x += 0.5 / 36000.0; /* round to 0.1 sec */
+  strcpy(s, dms(x, iflag));
+  sp = strstr(s, c);
+  if (sp != NULL) {
+    *sp = ':';
+    strcpy(s2, sp + strlen(ODEGREE_STRING));
+    strcpy(sp + 1, s2);
+    *(sp + 3) = ':';
+    *(sp + 8) = '\0';
+  }
+  return s;
+}
+
+char* dms(double xv, int32 iflg) {
+  int izod;
+  int32 k, kdeg, kmin, ksec;
+  char* c = ODEGREE_STRING;
+  char *sp, s1[50];
+  static char s[50];
+  int sgn;
+
+  if (isnan(xv)) return "nan";
+
+  if (xv >= 360 && !(iflg & BIT_ALLOW_361)) xv = 0;
+  *s = '\0';
+  if (iflg & SEFLG_EQUATORIAL) c = "h";
+  if (xv < 0) {
+    xv = -xv;
+    sgn = -1;
+  } else {
+    sgn = 1;
+  }
+  if (iflg & BIT_ROUND_MIN) {
+    if (!(iflg & BIT_ALLOW_361)) xv = swe_degnorm(xv + 0.5 / 60);
+  } else if (iflg & BIT_ROUND_SEC) {
+    if (!(iflg & BIT_ALLOW_361)) xv = swe_degnorm(xv + 0.5 / 3600);
+  } else {
+    /* rounding 0.9999999999 to 1 */
+    if (output_extra_prec)
+      xv += (xv < 0 ? -1 : 1) * 0.000000005 / 3600.0;
+    else
+      xv += (xv < 0 ? -1 : 1) * 0.00005 / 3600.0;
+  }
+  if (iflg & BIT_ZODIAC) {
+    izod = (int)(xv / 30);
+    if (izod == 12) izod = 0;
+    xv = fmod(xv, 30);
+    kdeg = (int32)xv;
+    sprintf(s, "%2d %s ", kdeg, zod_nam[izod]);
+  } else {
+    kdeg = (int32)xv;
+    sprintf(s, " %3d%s", kdeg, c);
+  }
+  xv -= kdeg;
+  xv *= 60;
+  kmin = (int32)xv;
+  if ((iflg & BIT_ZODIAC) && (iflg & BIT_ROUND_MIN)) {
+    sprintf(s1, "%2d", kmin);
+  } else {
+    sprintf(s1, "%2d'", kmin);
+  }
+  strcat(s, s1);
+  if (iflg & BIT_ROUND_MIN) goto return_dms;
+  xv -= kmin;
+  xv *= 60;
+  ksec = (int32)xv;
+  if (iflg & BIT_ROUND_SEC) {
+    sprintf(s1, "%2d\"", ksec);
+  } else {
+    sprintf(s1, "%2d", ksec);
+  }
+  strcat(s, s1);
+  if (iflg & BIT_ROUND_SEC) goto return_dms;
+  xv -= ksec;
+  if (output_extra_prec) {
+    k = (int32)(xv * 100000000);
+    sprintf(s1, ".%08d", k);
+  } else {
+    k = (int32)(xv * 10000);
+    sprintf(s1, ".%04d", k);
+  }
+  strcat(s, s1);
+return_dms:;
+  if (sgn < 0) {
+    sp = strpbrk(s, "0123456789");
+    *(sp - 1) = '-';
+  }
+  if (iflg & BIT_LZEROES) {
+    while ((sp = strchr(s + 2, ' ')) != NULL) *sp = '0';
+  }
+  return (s);
+}
