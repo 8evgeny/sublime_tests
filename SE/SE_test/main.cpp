@@ -5,34 +5,35 @@
 #include "test.h"
 using namespace std;
 string ephPatch = "/home/eparubets/Sublime_test/SE/SE_test/eph";
-Su su;
-Ch ch;
-Ma ma;
-Bu bu;
-Gu gu;
-Sk sk;
-Sa sa;
-Ra ra;
-Ke ke;
-As as;
+// Su su;
+// Ch ch;
+// Ma ma;
+// Bu bu;
+// Gu gu;
+// Sk sk;
+// Sa sa;
+// Ra ra;
+// Ke ke;
+// As as;
 
-string bighday = "17-11-1966";
-string btime = "01:50:00";
-string lon = "35.14";  // my
-string lat = "47.84";  // my
+// string bighday = "17-11-1966";
+// string btime = "01:50:00";
+// string lon = "35.14";  // my
+// string lat = "47.84";  // my
 
+nativ n;
 int main() {
-  calc(bighday, btime, lon, lat);
-  cout << "As-" << as.lon << "\t " << as.speed << endl;
-  cout << "Su-" << su.lon << "\t " << su.speed << endl;
-  cout << "Ch-" << ch.lon << "\t " << ch.speed << endl;
-  cout << "Ma-" << ma.lon << "\t " << ma.speed << endl;
-  cout << "Bu-" << bu.lon << "\t " << bu.speed << endl;
-  cout << "Gu-" << gu.lon << "\t " << gu.speed << endl;
-  cout << "Sk-" << sk.lon << "\t " << sk.speed << endl;
-  cout << "Sa-" << sa.lon << "\t " << sa.speed << endl;
-  cout << "Ra-" << ra.lon << "\t " << ra.speed << endl;
-  cout << "Ke-" << ke.lon << "\t " << ke.speed << endl;
+  calc(n.bighday, n.btime, n.lon, n.lat);
+  cout << "As-" << n.as.lon << "\t " << n.as.speed << endl;
+  cout << "Su-" << n.su.lon << "\t " << n.su.speed << endl;
+  cout << "Ch-" << n.ch.lon << "\t " << n.ch.speed << endl;
+  cout << "Ma-" << n.ma.lon << "\t " << n.ma.speed << endl;
+  cout << "Bu-" << n.bu.lon << "\t " << n.bu.speed << endl;
+  cout << "Gu-" << n.gu.lon << "\t " << n.gu.speed << endl;
+  cout << "Sk-" << n.sk.lon << "\t " << n.sk.speed << endl;
+  cout << "Sa-" << n.sa.lon << "\t " << n.sa.speed << endl;
+  cout << "Ra-" << n.ra.lon << "\t " << n.ra.speed << endl;
+  cout << "Ke-" << n.ke.lon << "\t " << n.ke.speed << endl;
 
   return 0;
 }
@@ -236,35 +237,35 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
         if (mode == 0) {
           switch (ipl) {
             case 0:
-              su.lon = x[0];
+              n.su.lon = x[0];
               break;
             case 1:
-              ch.lon = x[0];
+              n.ch.lon = x[0];
               break;
             case 2:
-              bu.lon = x[0];
+              n.bu.lon = x[0];
               break;
             case 3:
-              sk.lon = x[0];
+              n.sk.lon = x[0];
               break;
             case 4:
-              ma.lon = x[0];
+              n.ma.lon = x[0];
               break;
             case 5:
-              gu.lon = x[0];
+              n.gu.lon = x[0];
               break;
             case 6:
-              sa.lon = x[0];
+              n.sa.lon = x[0];
               break;
             case 10:
-              ra.lon = x[0];
-              ke.lon = 180 + ra.lon;
-              ke.lon > 360 ? ke.lon -= 360 : ke.lon;
+              n.ra.lon = x[0];
+              n.ke.lon = 180 + n.ra.lon;
+              n.ke.lon > 360 ? n.ke.lon -= 360 : n.ke.lon;
               break;
           }
         }
         if ((mode == 1) && (ipl == 13)) {
-          as.lon = x[0];
+          n.as.lon = x[0];
         }
         //Значениe  при *sp == 'L'
         //        fputs(dms(x[0], round_flag), stdout);
@@ -461,34 +462,34 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
             switch (ipl) {
               case 0:
 
-                su.speed = x[3];
+                n.su.speed = x[3];
                 break;
               case 1:
-                ch.speed = x[3];
+                n.ch.speed = x[3];
                 break;
               case 2:
-                bu.speed = x[3];
+                n.bu.speed = x[3];
                 break;
               case 3:
-                sk.speed = x[3];
+                n.sk.speed = x[3];
                 break;
               case 4:
-                ma.speed = x[3];
+                n.ma.speed = x[3];
                 break;
               case 5:
-                gu.speed = x[3];
+                n.gu.speed = x[3];
                 break;
               case 6:
-                sa.speed = x[3];
+                n.sa.speed = x[3];
                 break;
               case 10:
-                ra.speed = x[3];
-                ke.speed = x[3];
+                n.ra.speed = x[3];
+                n.ke.speed = x[3];
                 break;
             }
           }
           if ((mode == 1) && (ipl == 13)) {
-            as.speed = x[3];
+            n.as.speed = x[3];
           }
 
           //          fputs(dms(x[3], flag), stdout);
@@ -854,8 +855,8 @@ int calc(string date, string time, string lon, string lat) {
   int argc = 6;
   char* argv[6];
   //  string arg0 = "/home/jhon/Sublime_tests/SE/SE_test/build/test";
-  string arg0 = "/home/eparubets/Sublime_tests/SE/SE_test/build/test";
-
+  //  string arg0 = "/home/eparubets/Sublime_tests/SE/SE_test/build/test";
+  string arg0 = "./test";
   string arg1 = "-sid1";
   string arg2 = "-ut" + time;
   string arg3 = "-p0123456m";

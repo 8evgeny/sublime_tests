@@ -24,3 +24,21 @@ class Sa : public planets {};
 class Ra : public planets {};
 class Ke : public planets {};
 class As : public planets {};
+
+struct nativ {
+  Su su;
+  Ch ch;
+  Ma ma;
+  Bu bu;
+  Gu gu;
+  Sk sk;
+  Sa sa;
+  Ra ra;
+  Ke ke;
+  As as;
+
+  string bighday = "17-11-1966";
+  string btime = "01:50:00";
+  string lon = "35.14";  // my
+  string lat = "47.84";  // my
+};
