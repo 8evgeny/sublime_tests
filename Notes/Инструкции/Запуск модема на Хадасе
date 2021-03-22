@@ -1,0 +1,70 @@
+Запуск модема на Хадасе
+
+- Модем должен быть прошит как модем а не как роутер
+
+- Если не установлен, то установить пакет usb-modeswitch  
+	sudo apt-get install usb-modeswitch
+
+- Править конфиг   
+	nano /etc/usb_modeswitch.conf
+	DisableSwitching=0
+	DisableMBIMGlobal=0
+	EnableLogging=0
+	HuaweiAltModeGlobal=0
+
+	DefaultVendor=0x12d1
+	DefaultProduct = 0x14fe
+	TargetVendor= 0x12d1
+	TargetProduct= 0x1506
+
+- Убедиться  что lsusb выдает: ID 12d1:1506 Huawei Technologies Co., Ltd. Modem/Networkcard
+
+- Убедиться что на модеме открыты два порта 
+	ls /dev/ttyUSB*
+	/dev/ttyUSB0  /dev/ttyUSB1
+
+- Если не установлен, то установить пакет wvdial  
+	sudo apt-get install wvdial
+
+- Править конфиг wvdial     
+	nano /etc/wvdial.conf
+	[Dialer Defaults]
+	Init1 = ATZ
+	Init2 = ATQ0 V1 E1 S0=0
+	Init3 = AT+CGDCONT=1,"IP","internet"
+	Password = 1
+	Phone = *99#
+	Modem Type = Analog Modem
+	Stupid Mode = 1
+	Baud = 9600
+	New PPPD = yes
+	Modem = /dev/ttyUSB1
+	ISDN = 0
+	Username = 1
+	; Phone = <Target Phone Number>
+	Auto Reconnect = on
+
+- Добавить на комплекс скрипт modem_switch.sh
+
+#!/bin/bash
+ret=$(ip a |grep "10.64.64.64/32"| wc -l);
+if [ $ret -ne 1 ]
+   then {
+            echo "connection NO!"
+            sudo pkill wvdial
+            sleep 5
+            usb_modeswitch -v 0x12d1 -p 0x14fe -V 0x12d1 -P 0x1506 -M 55534243000000000000000000000011000000000000000000000000000000
+            sleep 5
+            wvdial
+        }
+    else
+	{
+            echo "connection OK!"
+	}
+fi;
+
+- В root cron добавить строчку */1 * * * * /путь к скрипту/modem_switch.sh
+
+- если на модеме открыты другие порты (номера) - править конфиг wvdial
+
+- перезаргузить комплекс и убедиться что модем запускается (постоянно светится синий светодиод на модеме)

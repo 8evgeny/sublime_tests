@@ -5,3 +5,8 @@ rdesktop -g 1920x1080 -P -z -x l -r sound:off -u Administrator 192.168.77.222
 mount -t nfs 192.168.77.199:/nfs/emc_smb /mnt/share
 
 sudo ip ro a default via 10.177.82.132 dev ppp0
+
+root@sp-155:/home/alager# ip a a 192.168.77.127/24 dev eth0
+root@sp-155:/home/alager# ip ro a default via 192.168.77.1
+root@sp-155:/home/alager# systemctl restart openvpn-client@client
+

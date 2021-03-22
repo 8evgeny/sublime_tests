@@ -51,3 +51,24 @@ ExecUpPost='/usr/bin/ip link set eth0 mtu 4000'
 
 на Хадасе
 echo 4088 > /sys/devices/platform/ff500000.dwc3/xhci-hcd.0.auto/usb1/1-1/1-1.1/1-1.1:1.0/net/eth1/mtu
+
+
+Скрипт switch_mtu.sh
+#!/bin/bash
+ret=$(ip a |grep "mtu 3700"| wc -l);
+if [ $ret -ne 1 ]
+   then {
+         sudo ip l set eth0 down
+         sleep 1
+         sudo ip l set eth0 mtu 3700
+         sleep 1
+         sudo ip l set eth0 up
+        }
+    else
+        {
+            echo "MTU OK!"
+        }
+fi;
+
+в sudo crontab -e добавлено
+*/1 * * * * /alager/switch_mtu.sh

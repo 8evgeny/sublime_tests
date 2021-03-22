@@ -1,27 +1,15 @@
 #!/bin/bash
-#проверяем установлен ли нужный mtu
-ret=$(ip a | grep mtu 4080 | wc -l)
-
-
-
-
-
-
-
-
-
-	ret=$(ps aux | grep [h]top | wc -l)  
-	# если первую букву процесса взять в квадратные скобки, то ‘grep htop’ будет исключаться из списка.
-	if [ "$ret" -eq 0 ]
-then {
-	echo "Running Htop" #output text
-        sleep 1  #delay
-	htop #command for run program
-	exit 1
-}
-else 
-{
-	echo "EXIT. Htop already running!"
-	exit 1
-}
+ret=$(ip a |grep "mtu 3700"| wc -l);
+if [ $ret -ne 1 ]
+   then {
+         sudo ip l set eth0 down
+         sleep 1
+         sudo ip l set eth0 mtu 3700
+         sleep 1
+         sudo ip l set eth0 up
+        }
+    else
+        {
+            echo "MTU OK!"
+        }
 fi;
