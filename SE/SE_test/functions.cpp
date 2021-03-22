@@ -2,8 +2,43 @@
 
 #include "main.h"
 
+void datetimenow(string& datenow, string& timenow) {
+  std::chrono::duration<int, std::ratio<60 * 60 * 24> > one_day(1);
+  std::chrono::duration<int, std::ratio<60> > one_minut(1);
+  std::chrono::system_clock::time_point today =
+      std::chrono::system_clock::now();  // -
+  //      one_minut * 180;  // минус 3 часа ****!!!
+
+  std::chrono::system_clock::time_point tomorrow = today + one_day;
+
+  std::time_t tt, tt_tom;
+  tt = std::chrono::system_clock::to_time_t(today);
+  std::cout << "today is: " << ctime(&tt);
+  tt_tom = std::chrono::system_clock::to_time_t(tomorrow);
+  std::cout << "tomorrow will be: " << ctime(&tt_tom);
+  // вывод -  today is: Mon Mar 22 22:39:57 2021
+  // вывод -  tomorrow will be: Tue Mar 23 22:39:57 2021
+
+  //  time_t now1 = time(0); // это текущее
+  time_t now1 = tt;
+  struct tm tstruct;
+  char date[80];
+  char time1[80];
+  //  tstruct = *localtime(&now1);
+  tstruct = *gmtime(&now1);
+  //  strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct); //
+  //  2021-03-22.23:03:44
+  strftime(date, sizeof(date), "%d-%m-%Y", &tstruct);
+  strftime(time1, sizeof(time1), "%X", &tstruct);
+  cout << date << endl;
+  cout << time1 << endl;
+  datenow = date;
+  timenow = time1;
+}
+
 void printAll(nativ& n) {
   cout << n.name << endl;
+  cout << n.bday << "\t " << n.btime << endl;
   cout << "As-" << n.as.lon << "\t " << endl;
   cout << "Su-" << n.su.lon << "\t " << n.su.speed << endl;
   cout << "Ch-" << n.ch.lon << "\t " << n.ch.speed << endl;

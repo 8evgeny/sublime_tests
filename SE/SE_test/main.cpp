@@ -2,22 +2,22 @@
 
 #include "test.h"
 using namespace std;
-
 string ephPatch = "../eph";
 
 int main() {
   nativ my("Евгений:");
   nativ now("Текущее время:");
+  string datenow, timenow;
+  datetimenow(datenow, timenow);
+  now.bday = datenow;
+  now.btime = timenow;
+  now.lon = "37.51";
+  now.lat = "55.7";
 
   my.bday = "17-11-1966";
   my.btime = "01:50:00";
   my.lon = "35.14";
   my.lat = "47.84";
-
-  now.bday = "22-03-2021";
-  now.btime = "18:18:00";
-  now.lon = "37.51";
-  now.lat = "55.7";
 
   calc(now);
   calc(my);

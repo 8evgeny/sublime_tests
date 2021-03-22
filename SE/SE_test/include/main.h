@@ -2,6 +2,11 @@
 
 #include <sys/stat.h>
 
+#include <boost/program_options.hpp>
+#include <chrono>
+#include <ctime>    // localtime
+#include <iomanip>  // put_time
+#include <sstream>  // stringstream
 #include <string>
 
 #include "main_info.h"
@@ -90,6 +95,7 @@ int32 get_geocentric_relative_distance(double tjd_et, int32 ipl, int32 iflag,
 
 int calc(nativ&);
 void printAll(nativ& n);
+void datetimenow(string&, string&);
 static char* fmt = "PLBRS";
 static char* gap = " ";
 static double t, te, tut, jut = 0;
