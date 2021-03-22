@@ -5,21 +5,6 @@
 #include "test.h"
 using namespace std;
 string ephPatch = "/home/eparubets/Sublime_test/SE/SE_test/eph";
-// Su su;
-// Ch ch;
-// Ma ma;
-// Bu bu;
-// Gu gu;
-// Sk sk;
-// Sa sa;
-// Ra ra;
-// Ke ke;
-// As as;
-
-// string bighday = "17-11-1966";
-// string btime = "01:50:00";
-// string lon = "35.14";  // my
-// string lat = "47.84";  // my
 
 nativ n;
 int main() {
