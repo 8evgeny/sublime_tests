@@ -1,10 +1,10 @@
 #pragma once;
+#include <iostream>
 #include <string>
 using namespace std;
 class planets {
  public:
   planets();
-
   //  struct data {
   double lon{0};
   int house{0};
@@ -26,6 +26,7 @@ class Ke : public planets {};
 class As : public planets {};
 
 struct nativ {
+  nativ(string nn) { name = nn; };
   Su su;
   Ch ch;
   Ma ma;
@@ -36,7 +37,7 @@ struct nativ {
   Ra ra;
   Ke ke;
   As as;
-
+  string name;
   string bday = "";
   string btime = "";
   string lon = "";

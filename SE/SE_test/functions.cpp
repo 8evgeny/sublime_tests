@@ -1,4 +1,21 @@
-﻿#include "main.h"
+﻿#include <iostream>
+
+#include "main.h"
+
+void printAll(nativ& n) {
+  cout << n.name << endl;
+  cout << "As-" << n.as.lon << "\t " << endl;
+  cout << "Su-" << n.su.lon << "\t " << n.su.speed << endl;
+  cout << "Ch-" << n.ch.lon << "\t " << n.ch.speed << endl;
+  cout << "Ma-" << n.ma.lon << "\t " << n.ma.speed << endl;
+  cout << "Bu-" << n.bu.lon << "\t " << n.bu.speed << endl;
+  cout << "Gu-" << n.gu.lon << "\t " << n.gu.speed << endl;
+  cout << "Sk-" << n.sk.lon << "\t " << n.sk.speed << endl;
+  cout << "Sa-" << n.sa.lon << "\t " << n.sa.speed << endl;
+  cout << "Ra-" << n.ra.lon << "\t " << n.ra.speed << endl;
+  cout << "Ke-" << n.ke.lon << "\t " << n.ke.speed << endl;
+  cout << endl;
+}
 
 char* our_strcpy(char* to, char* from) {
   char *sp, s[AS_MAXCH];

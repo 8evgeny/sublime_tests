@@ -1,37 +1,28 @@
 ﻿#include "main.h"
 
-#include <iostream>
-
 #include "test.h"
 using namespace std;
-string ephPatch = "/home/eparubets/Sublime_test/SE/SE_test/eph";
 
-nativ my;
-nativ now;
+string ephPatch = "../eph";
 
 int main() {
+  nativ my("Евгений:");
+  nativ now("Текущее время:");
+
   my.bday = "17-11-1966";
   my.btime = "01:50:00";
   my.lon = "35.14";
   my.lat = "47.84";
 
   now.bday = "22-03-2021";
-  now.btime = "11:50:00";
-  now.lon = "35.14";
-  now.lat = "47.84";
+  now.btime = "18:18:00";
+  now.lon = "37.51";
+  now.lat = "55.7";
 
-  auto n = now;
-  calc(n);
-  cout << "As-" << n.as.lon << "\t " << n.as.speed << endl;
-  cout << "Su-" << n.su.lon << "\t " << n.su.speed << endl;
-  cout << "Ch-" << n.ch.lon << "\t " << n.ch.speed << endl;
-  cout << "Ma-" << n.ma.lon << "\t " << n.ma.speed << endl;
-  cout << "Bu-" << n.bu.lon << "\t " << n.bu.speed << endl;
-  cout << "Gu-" << n.gu.lon << "\t " << n.gu.speed << endl;
-  cout << "Sk-" << n.sk.lon << "\t " << n.sk.speed << endl;
-  cout << "Sa-" << n.sa.lon << "\t " << n.sa.speed << endl;
-  cout << "Ra-" << n.ra.lon << "\t " << n.ra.speed << endl;
-  cout << "Ke-" << n.ke.lon << "\t " << n.ke.speed << endl;
+  calc(now);
+  calc(my);
+  printAll(now);
+  printAll(my);
 
   return 0;
 }
