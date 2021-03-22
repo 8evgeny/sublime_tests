@@ -38,7 +38,7 @@
 #define SEARCH_RANGE_LUNAR_CYCLES 20000
 
 #define LEN_SOUT 1000  // length of output string variable
-
+using namespace std;
 static char se_pname[AS_MAXCH];
 static char* zod_nam[] = {"ar", "ta", "ge", "cn", "le", "vi",
                           "li", "sc", "sa", "cp", "aq", "pi"};
@@ -86,7 +86,7 @@ void do_print_heliacal(double* dret, int32 event_type, char* obj_name);
 void format_lon_lat(char* slon, char* slat, double lon, double lat);
 int32 get_geocentric_relative_distance(double tjd_et, int32 ipl, int32 iflag,
                                        char* serr);
-int calc(std::string, std::string);
+int calc(string, string, string, string);
 
 static char* fmt = "PLBRS";
 static char* gap = " ";

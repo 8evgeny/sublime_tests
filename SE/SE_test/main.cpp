@@ -4,6 +4,7 @@
 
 #include "test.h"
 using namespace std;
+string ephPatch = "/home/eparubets/Sublime_test/SE/SE_test/eph";
 Su su;
 Ch ch;
 Ma ma;
@@ -17,8 +18,11 @@ As as;
 
 string bighday = "17-11-1966";
 string btime = "01:50:00";
+string lon = "35.14";  // my
+string lat = "47.84";  // my
+
 int main() {
-  calc(bighday, btime);
+  calc(bighday, btime, lon, lat);
   cout << "As-" << as.lon << "\t " << as.speed << endl;
   cout << "Su-" << su.lon << "\t " << su.speed << endl;
   cout << "Ch-" << ch.lon << "\t " << ch.speed << endl;
@@ -81,7 +85,9 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
     //*****************************************************************************
     //    is_label = true;
     //    cout << " sp-" << sp;
-    if ((*(sp) == 'P') && (mode == 1) && (ipl != 13)) break;
+    if ((*(sp) == 'P') && (mode == 1) && (ipl != 13)) break;  // only As
+    // mode 0 - planets
+    // mode 1 - houses
 
     if ((*(sp) == 'S') && (mode == 1)) break;
 
@@ -844,20 +850,23 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
   return OK;
 }
 
-int calc(string date, string time) {
-  int argc = 5;
-  char* argv[5];
-  string arg0 = "/home/jhon/Sublime_tests/SE/SE_test/build/test";
+int calc(string date, string time, string lon, string lat) {
+  int argc = 6;
+  char* argv[6];
+  //  string arg0 = "/home/jhon/Sublime_tests/SE/SE_test/build/test";
+  string arg0 = "/home/eparubets/Sublime_tests/SE/SE_test/build/test";
+
   string arg1 = "-sid1";
-  //  string arg2 = "-ut01:50:00";
   string arg2 = "-ut" + time;
   string arg3 = "-p0123456m";
-  string arg4 = "-house35.14,47.84,W";
+  string arg4 = "-house" + lon + "," + lat + ",W";
+  string arg5 = "-edir" + ephPatch;
   argv[0] = (char*)arg0.c_str();
   argv[1] = (char*)arg1.c_str();
   argv[2] = (char*)arg2.c_str();
   argv[3] = (char*)arg3.c_str();
   argv[4] = (char*)arg4.c_str();
+  argv[5] = (char*)arg5.c_str();
 
   char sdate_save[AS_MAXCH];
   char s1[AS_MAXCH], s2[AS_MAXCH];
