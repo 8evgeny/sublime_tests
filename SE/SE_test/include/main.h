@@ -8,6 +8,7 @@
 #include "sweph.h"
 #include "swephexp.h" /* this includes  "sweodef.h" */
 #include "swephlib.h"
+#include "test.h"
 
 #define J2000 2451545.0 /* 2000 January 1.5 */
 #define square_sum(x) (x[0] * x[0] + x[1] * x[1] + x[2] * x[2])
@@ -86,8 +87,8 @@ void do_print_heliacal(double* dret, int32 event_type, char* obj_name);
 void format_lon_lat(char* slon, char* slat, double lon, double lat);
 int32 get_geocentric_relative_distance(double tjd_et, int32 ipl, int32 iflag,
                                        char* serr);
-int calc(string, string, string, string);
-
+// int calc(string, string, string, string);
+int calc(nativ&);
 static char* fmt = "PLBRS";
 static char* gap = " ";
 static double t, te, tut, jut = 0;

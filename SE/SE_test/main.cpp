@@ -6,9 +6,22 @@
 using namespace std;
 string ephPatch = "/home/eparubets/Sublime_test/SE/SE_test/eph";
 
-nativ n;
+nativ my;
+nativ now;
+
 int main() {
-  calc(n.bighday, n.btime, n.lon, n.lat);
+  my.bday = "17-11-1966";
+  my.btime = "01:50:00";
+  my.lon = "35.14";
+  my.lat = "47.84";
+
+  now.bday = "22-03-2021";
+  now.btime = "11:50:00";
+  now.lon = "35.14";
+  now.lat = "47.84";
+
+  auto n = now;
+  calc(n);
   cout << "As-" << n.as.lon << "\t " << n.as.speed << endl;
   cout << "Su-" << n.su.lon << "\t " << n.su.speed << endl;
   cout << "Ch-" << n.ch.lon << "\t " << n.ch.speed << endl;
@@ -23,7 +36,7 @@ int main() {
   return 0;
 }
 
-int print_line(int mode, AS_BOOL is_first, int sid_mode) {
+int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
   /*
    * The string fmt contains a sequence of format specifiers;
    * each character in fmt creates a column, the columns are
@@ -836,16 +849,17 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode) {
   return OK;
 }
 
-int calc(string date, string time, string lon, string lat) {
+// int calc(string date, string time, string lon, string lat) {
+int calc(nativ& nativ) {
   int argc = 6;
   char* argv[6];
   //  string arg0 = "/home/jhon/Sublime_tests/SE/SE_test/build/test";
   //  string arg0 = "/home/eparubets/Sublime_tests/SE/SE_test/build/test";
   string arg0 = "./test";
   string arg1 = "-sid1";
-  string arg2 = "-ut" + time;
+  string arg2 = "-ut" + nativ.btime;
   string arg3 = "-p0123456m";
-  string arg4 = "-house" + lon + "," + lat + ",W";
+  string arg4 = "-house" + nativ.lon + "," + nativ.lat + ",W";
   string arg5 = "-edir" + ephPatch;
   argv[0] = (char*)arg0.c_str();
   argv[1] = (char*)arg1.c_str();
@@ -875,7 +889,7 @@ int calc(string date, string time, string lon, string lat) {
   char fname[AS_MAXCH];
   char sdate[AS_MAXCH];
   char* begindate = NULL;
-  begindate = (char*)date.c_str();
+  begindate = (char*)nativ.bday.c_str();
   char stimein[AS_MAXCH];
   char stimeout[AS_MAXCH];
   int32 iflgret;
@@ -1594,7 +1608,7 @@ int calc(string date, string time, string lon, string lat) {
         exit(1);
       }
       x[0] = daya;
-      print_line(MODE_AYANAMSA, TRUE, sid_mode);
+      print_line(MODE_AYANAMSA, TRUE, sid_mode, nativ);
       continue;
     }
     if (t == tjd && strchr(plsel, 'e')) {
@@ -1605,12 +1619,12 @@ int calc(string date, string time, string lon, string lat) {
           ipl = letter_to_ipl((int)*psp);
           *spnam = '\0';
           if (ipl >= SE_SUN && ipl <= SE_VESTA) swe_get_planet_name(ipl, spnam);
-          print_line(MODE_LABEL, is_first, 0);
+          print_line(MODE_LABEL, is_first, 0, nativ);
           is_first = FALSE;
         }
         printf("\n");
       } else {
-        print_line(MODE_LABEL, TRUE, 0);
+        print_line(MODE_LABEL, TRUE, 0, nativ);
       }
     }
     is_first = TRUE;
@@ -1901,7 +1915,7 @@ int calc(string date, string time, string lon, string lat) {
         }
       }
       strcpy(spnam, se_pname);
-      print_line(0, is_first, 0);
+      print_line(0, is_first, 0, nativ);
       is_first = FALSE;
       if (!list_hor) line_count++;
       if (do_orbital_elements) {
@@ -1976,7 +1990,7 @@ int calc(string date, string time, string lon, string lat) {
           else
             hpos = (hposj - 1) * 30;
         }
-        print_line(MODE_HOUSE, is_first, 0);
+        print_line(MODE_HOUSE, is_first, 0, nativ);
         is_first = FALSE;
         if (!list_hor) line_count++;
       }
