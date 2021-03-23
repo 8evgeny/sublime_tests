@@ -5,7 +5,9 @@ using namespace std;
 string ephPatch = "../eph";
 
 int main() {
-  nativ my("Евгений:");
+  //  cout << "Читаем файл: " << conf["coding.input_name"].as<std::string>()
+  //       << endl;
+
   nativ now("Текущее время:");
   string datenow, timenow;
   datetimenow(datenow, timenow);
@@ -14,6 +16,7 @@ int main() {
   now.lon = "37.51";
   now.lat = "55.7";
 
+  nativ my("Евгений:");
   my.bday = "17-11-1966";
   my.btime = "01:50:00";
   my.lon = "35.14";

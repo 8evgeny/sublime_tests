@@ -2,6 +2,39 @@
 
 #include "main.h"
 
+// void readConfig(const char* conf_file) {
+//  po::options_description coding("coding");
+//  coding.add_options()("coding.input_path,in", po::value<std::string>(),
+//                       "input_path")(
+//      "coding.output_path,out", po::value<std::string>(), "output path
+//      coding")( "coding.input_name,iname", po::value<std::string>(),
+//      "input_name coding")( "coding.output_name,oname",
+//      po::value<std::string>(), "output_name
+//      coding")("coding.print_Character_frequency_table,print1",
+//                            po::value<bool>(),
+//                            "print_Character_frequency_table")(
+//      "coding.print_tree", po::value<bool>(), "print_tree")(
+//      "coding.print_CODDING_TABL,print2", po::value<bool>(),
+//      "print_CODDING_TABL");
+//  po::options_description desc("Allowed options");
+//  desc.add(coding);
+//  try {
+//    po::parsed_options parsed = po::parse_config_file<char>(
+//        conf_file, desc,
+//        true);  //флаг true разрешает незарегистрированные опции !
+//    po::store(parsed, conf);
+//  } catch (const po::reading_file& e) {
+//    std::cout << "Error: " << e.what() << std::endl;
+//  }
+//  po::notify(conf);
+//  //  std::cout << config["coding.input_path"].as<std::string>() << std::endl;
+//  //  std::cout << config["coding.input_name"].as<std::string>() << std::endl;
+//  //  std::cout << config["coding.output_path"].as<std::string>() <<
+//  std::endl;
+//  //  std::cout << config["coding.output_name"].as<std::string>() <<
+//  std::endl;
+//}
+
 void datetimenow(string& datenow, string& timenow) {
   std::chrono::duration<int, std::ratio<60 * 60 * 24> > one_day(1);
   std::chrono::duration<int, std::ratio<60> > one_minut(1);

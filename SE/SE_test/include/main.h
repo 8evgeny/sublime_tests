@@ -8,7 +8,8 @@
 #include <iomanip>  // put_time
 #include <sstream>  // stringstream
 #include <string>
-
+namespace po = boost::program_options;
+// po::variables_map conf;
 #include "main_info.h"
 #include "sweph.h"
 #include "swephexp.h" /* this includes  "sweodef.h" */
