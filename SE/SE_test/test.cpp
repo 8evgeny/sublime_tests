@@ -2,4 +2,4 @@
 
 #include "main.h"
 
-planets::planets() {}
+planet::planet() {}

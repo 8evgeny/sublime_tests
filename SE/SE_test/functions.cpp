@@ -23,8 +23,8 @@ void readConfig(const char* conf_file,
     std::cout << "Error: " << e.what() << std::endl;
   }
   po::notify(vm);
-  cout << "ephPath-" << vm["common.ephPatch"].as<string>() << endl;
-  cout << "print_calc-" << vm["common.print_calc"].as<bool>() << endl;
+  //  cout << "ephPath-" << vm["common.ephPatch"].as<string>() << endl;
+  //  cout << "print_calc-" << vm["common.print_calc"].as<bool>() << endl;
 }
 
 void datetimenow(string& datenow, string& timenow) {
@@ -34,13 +34,13 @@ void datetimenow(string& datenow, string& timenow) {
       std::chrono::system_clock::now();  // -
   //      one_minut * 180;  // минус 3 часа ****!!!
 
-  std::chrono::system_clock::time_point tomorrow = today + one_day;
+  std::chrono::system_clock::time_point tomorrow = today + one_day;  // !!!
 
   std::time_t tt, tt_tom;
   tt = std::chrono::system_clock::to_time_t(today);
-  std::cout << "today is: " << ctime(&tt);
+  //  std::cout << "today is: " << ctime(&tt);
   tt_tom = std::chrono::system_clock::to_time_t(tomorrow);
-  std::cout << "tomorrow will be: " << ctime(&tt_tom);
+  //  std::cout << "tomorrow will be: " << ctime(&tt_tom);
   // вывод -  today is: Mon Mar 22 22:39:57 2021
   // вывод -  tomorrow will be: Tue Mar 23 22:39:57 2021
 
@@ -55,14 +55,14 @@ void datetimenow(string& datenow, string& timenow) {
   //  2021-03-22.23:03:44
   strftime(date, sizeof(date), "%d-%m-%Y", &tstruct);
   strftime(time1, sizeof(time1), "%X", &tstruct);
-  cout << date << endl;
-  cout << time1 << endl;
+  //  cout << "date-" << date << endl;
+  //  cout << "time-" << time1 << endl;
   datenow = date;
   timenow = time1;
 }
 
 void printAll(nativ& n) {
-  cout << n.name << endl;
+  cout << endl << n.name << endl;
   cout << n.bday << "\t " << n.btime << endl;
   cout << "As-" << n.as.lon << "\t " << endl;
   cout << "Su-" << n.su.lon << "\t " << n.su.speed << endl;

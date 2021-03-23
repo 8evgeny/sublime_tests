@@ -6,26 +6,26 @@ boost::program_options::variables_map vm;
 
 int main() {
   readConfig("../config/config.ini", vm);
-
-  nativ now(vm["common.name_current"].as<std::string>());
   string datenow, timenow;
   datetimenow(datenow, timenow);
+  nativ now(vm["common.name_current"].as<std::string>());
+
   now.bday = datenow;
   now.btime = timenow;
-  now.lon = "37.51";
-  now.lat = "55.7";
+  now.lon = vm["common.lon_current"].as<std::string>();
+  now.lat = vm["common.lat_current"].as<std::string>();
 
   nativ my("Евгений:");
   my.bday = "17-11-1966";
   my.btime = "01:50:00";
-  my.lon = vm["common.lon_current"].as<std::string>();
-  my.lat = vm["common.lat_current"].as<std::string>();
+  my.lon = "35.14";
+  my.lat = "47.84";
 
   calc(now);
   calc(my);
   printAll(now);
   printAll(my);
-  cout << "Path: " << vm["common.ephPatch"].as<std::string>() << endl;
+  //  cout << "Path: " << vm["common.ephPatch"].as<std::string>() << endl;
   return 0;
 }
 
@@ -887,12 +887,9 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
   return OK;
 }
 
-// int calc(string date, string time, string lon, string lat) {
 int calc(nativ& nativ) {
   int argc = 6;
   char* argv[6];
-  //  string arg0 = "/home/jhon/Sublime_tests/SE/SE_test/build/test";
-  //  string arg0 = "/home/eparubets/Sublime_tests/SE/SE_test/build/test";
   string arg0 = "./test";
   string arg1 = "-sid1";
   string arg2 = "-ut" + nativ.btime;

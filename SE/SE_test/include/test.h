@@ -2,9 +2,9 @@
 #include <iostream>
 #include <string>
 using namespace std;
-class planets {
+class planet {
  public:
-  planets();
+  planet();
   //  struct data {
   double lon{0};
   int house{0};
@@ -14,16 +14,16 @@ class planets {
   int nakshatra{0};
   //  };
 };
-class Su : public planets {};
-class Ch : public planets {};
-class Ma : public planets {};
-class Bu : public planets {};
-class Gu : public planets {};
-class Sk : public planets {};
-class Sa : public planets {};
-class Ra : public planets {};
-class Ke : public planets {};
-class As : public planets {};
+class Su : public planet {};
+class Ch : public planet {};
+class Ma : public planet {};
+class Bu : public planet {};
+class Gu : public planet {};
+class Sk : public planet {};
+class Sa : public planet {};
+class Ra : public planet {};
+class Ke : public planet {};
+class As : public planet {};
 
 struct nativ {
   nativ(string nn) { name = nn; };
