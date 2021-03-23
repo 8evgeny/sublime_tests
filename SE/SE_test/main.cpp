@@ -2009,15 +2009,18 @@ end_main:
 
 int main() {
   nativ curr_Time;
-  nativ my("Evgeny");
-  nativ tanya("Tanya");
+  nativ Evgeny("Evgeny");
+  nativ Tanya("Tanya");
+  nativ Stasya("Stasya");
 
   calc(curr_Time);
-  calc(my);
-  calc(tanya);
+  calc(Evgeny);
+  calc(Tanya);
+  calc(Stasya);
 
   curr_Time.printAll();
-  my.printAll();
-  tanya.printAll();
+  Evgeny.printAll();
+  Tanya.printAll();
+  Stasya.printAll();
   return 0;
 }
