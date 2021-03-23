@@ -95,9 +95,6 @@ void format_lon_lat(char* slon, char* slat, double lon, double lat);
 int32 get_geocentric_relative_distance(double tjd_et, int32 ipl, int32 iflag,
                                        char* serr);
 
-// int calc(nativ&);
-// void printAll(nativ&);
-
 static char* fmt = "PLBRS";
 static char* gap = " ";
 static double t, te, tut, jut = 0;

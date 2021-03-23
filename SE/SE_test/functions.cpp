@@ -1,7 +1,6 @@
 ﻿#include <iostream>
 
 #include "main.h"
-namespace po = boost::program_options;
 
 char* our_strcpy(char* to, char* from) {
   char *sp, s[AS_MAXCH];

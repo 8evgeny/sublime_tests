@@ -43,13 +43,13 @@ struct nativ {
   As as;
 
   bool print_calc;
-  void readConfig(const char*, po::variables_map&);
+  void readConfig(const char*, po::variables_map&, string);
   void datetimenow(string&, string&);
   void printAll();
   string path;
   string name;
-  string bday = "";
-  string btime = "";
-  string lon = "";
-  string lat = "";
+  string bday;
+  string btime;
+  string lon;
+  string lat;
 };

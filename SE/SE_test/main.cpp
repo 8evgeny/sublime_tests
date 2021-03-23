@@ -2,7 +2,6 @@
 
 #include "test.h"
 using namespace std;
-// boost::program_options::variables_map vm;
 
 int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
   /*
@@ -2009,18 +2008,16 @@ end_main:
 }
 
 int main() {
-  nativ now;
+  nativ curr_Time;
+  nativ my("Evgeny");
+  nativ tanya("Tanya");
 
-  nativ my("Евгений:");
-  my.bday = "17-11-1966";
-  my.btime = "01:50:00";
-  my.lon = "35.14";
-  my.lat = "47.84";
-
-  calc(now);
+  calc(curr_Time);
   calc(my);
-  now.printAll();
+  calc(tanya);
+
+  curr_Time.printAll();
   my.printAll();
-  //  cout << "Path: " << vm["common.ephPatch"].as<std::string>() << endl;
+  tanya.printAll();
   return 0;
 }

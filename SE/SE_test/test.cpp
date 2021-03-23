@@ -3,37 +3,55 @@
 #include "main.h"
 
 planet::planet() {}
-nativ::nativ(string nn) {
+
+nativ::nativ(string nam) {
   po::variables_map vm;
-  name = nn;
-  readConfig("../config/config.ini", vm);
+  readConfig("../config/config.ini", vm, nam);
+  name = vm[nam + ".name"].as<string>();
+  bday = vm[nam + ".date"].as<string>();
+  btime = vm[nam + ".time"].as<string>();
+  lon = vm[nam + ".lon"].as<string>();
+  lat = vm[nam + ".lat"].as<string>();
   print_calc = vm["common.print_calc"].as<bool>();
   path = vm["common.ephPatch"].as<string>();
 };
+
 nativ::nativ() {
   po::variables_map vm;
   string datenow, timenow;
   datetimenow(datenow, timenow);
-  readConfig("../config/config.ini", vm);
-  this->bday = datenow;
-  this->btime = timenow;
-  this->lon = vm["common.lon_current"].as<std::string>();
-  this->lat = vm["common.lat_current"].as<std::string>();
+  readConfig("../config/config.ini", vm, "");
+  bday = datenow;
+  btime = timenow;
+  lon = vm["common.lon_current"].as<std::string>();
+  lat = vm["common.lat_current"].as<std::string>();
   name = vm["common.name_current"].as<std::string>();
   print_calc = vm["common.print_calc"].as<bool>();
   path = vm["common.ephPatch"].as<string>();
 };
+
 void nativ::readConfig(const char* conf_file,
-                       boost::program_options::variables_map& vm) {
+                       boost::program_options::variables_map& vm, string nam) {
+  auto name = nam + ".name";
+  auto date = nam + ".date";
+  auto time = nam + ".time";
+  auto lon = nam + ".lon";
+  auto lat = nam + ".lat";
   po::options_description comm("common");
   comm.add_options()("common.ephPatch", po::value<string>(), "ephPatch")(
       "common.print_calc", po::value<bool>(), "print_calc")(
       "common.lon_current", po::value<string>(), "lon")(
       "common.lat_current", po::value<string>(), "lat")(
       "common.name_current", po::value<string>(), "name");
+  po::options_description nativ(nam);
+  nativ.add_options()(name.c_str(), po::value<string>(), "name")(
+      date.c_str(), po::value<string>(), "date")(time.c_str(),
+                                                 po::value<string>(), "time")(
+      lon.c_str(), po::value<string>(), "lon")(lat.c_str(), po::value<string>(),
+                                               "lat");
   po::options_description desc("Allowed options");
   desc.add(comm);
-
+  desc.add(nativ);
   try {
     po::parsed_options parsed = po::parse_config_file<char>(
         conf_file, desc,
