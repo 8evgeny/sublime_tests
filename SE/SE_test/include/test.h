@@ -1,7 +1,10 @@
-#pragma once;
+#pragma once
 #include <iostream>
 #include <string>
+
+#include "main.h"
 using namespace std;
+namespace po = boost::program_options;
 class planet {
  public:
   planet();
@@ -26,7 +29,8 @@ class Ke : public planet {};
 class As : public planet {};
 
 struct nativ {
-  nativ(string nn) { name = nn; };
+  nativ(string);
+  nativ();  //для текущего времени
   Su su;
   Ch ch;
   Ma ma;
@@ -37,6 +41,12 @@ struct nativ {
   Ra ra;
   Ke ke;
   As as;
+
+  bool print_calc;
+  void readConfig(const char*, po::variables_map&);
+  void datetimenow(string&, string&);
+  void printAll();
+  string path;
   string name;
   string bday = "";
   string btime = "";
