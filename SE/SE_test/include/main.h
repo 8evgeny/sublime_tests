@@ -8,8 +8,7 @@
 #include <iomanip>  // put_time
 #include <sstream>  // stringstream
 #include <string>
-namespace po = boost::program_options;
-// po::variables_map conf;
+
 #include "main_info.h"
 #include "sweph.h"
 #include "swephexp.h" /* this includes  "sweodef.h" */
@@ -46,6 +45,7 @@ namespace po = boost::program_options;
 
 #define LEN_SOUT 1000  // length of output string variable
 using namespace std;
+
 static char se_pname[AS_MAXCH];
 static char* zod_nam[] = {"ar", "ta", "ge", "cn", "le", "vi",
                           "li", "sc", "sa", "cp", "aq", "pi"};
@@ -97,6 +97,8 @@ int32 get_geocentric_relative_distance(double tjd_et, int32 ipl, int32 iflag,
 int calc(nativ&);
 void printAll(nativ& n);
 void datetimenow(string&, string&);
+void readConfig(const char*, boost::program_options::variables_map&);
+
 static char* fmt = "PLBRS";
 static char* gap = " ";
 static double t, te, tut, jut = 0;

@@ -2,13 +2,12 @@
 
 #include "test.h"
 using namespace std;
-string ephPatch = "../eph";
+boost::program_options::variables_map vm;
 
 int main() {
-  //  cout << "Читаем файл: " << conf["coding.input_name"].as<std::string>()
-  //       << endl;
+  readConfig("../config/config.ini", vm);
 
-  nativ now("Текущее время:");
+  nativ now(vm["common.name_current"].as<std::string>());
   string datenow, timenow;
   datetimenow(datenow, timenow);
   now.bday = datenow;
@@ -19,14 +18,14 @@ int main() {
   nativ my("Евгений:");
   my.bday = "17-11-1966";
   my.btime = "01:50:00";
-  my.lon = "35.14";
-  my.lat = "47.84";
+  my.lon = vm["common.lon_current"].as<std::string>();
+  my.lat = vm["common.lat_current"].as<std::string>();
 
   calc(now);
   calc(my);
   printAll(now);
   printAll(my);
-
+  cout << "Path: " << vm["common.ephPatch"].as<std::string>() << endl;
   return 0;
 }
 
@@ -854,7 +853,7 @@ int calc(nativ& nativ) {
   string arg2 = "-ut" + nativ.btime;
   string arg3 = "-p0123456m";
   string arg4 = "-house" + nativ.lon + "," + nativ.lat + ",W";
-  string arg5 = "-edir" + ephPatch;
+  string arg5 = "-edir" + vm["common.ephPatch"].as<string>();
   argv[0] = (char*)arg0.c_str();
   argv[1] = (char*)arg1.c_str();
   argv[2] = (char*)arg2.c_str();

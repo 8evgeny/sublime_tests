@@ -1,39 +1,31 @@
 ﻿#include <iostream>
 
 #include "main.h"
+namespace po = boost::program_options;
 
-// void readConfig(const char* conf_file) {
-//  po::options_description coding("coding");
-//  coding.add_options()("coding.input_path,in", po::value<std::string>(),
-//                       "input_path")(
-//      "coding.output_path,out", po::value<std::string>(), "output path
-//      coding")( "coding.input_name,iname", po::value<std::string>(),
-//      "input_name coding")( "coding.output_name,oname",
-//      po::value<std::string>(), "output_name
-//      coding")("coding.print_Character_frequency_table,print1",
-//                            po::value<bool>(),
-//                            "print_Character_frequency_table")(
-//      "coding.print_tree", po::value<bool>(), "print_tree")(
-//      "coding.print_CODDING_TABL,print2", po::value<bool>(),
-//      "print_CODDING_TABL");
-//  po::options_description desc("Allowed options");
-//  desc.add(coding);
-//  try {
-//    po::parsed_options parsed = po::parse_config_file<char>(
-//        conf_file, desc,
-//        true);  //флаг true разрешает незарегистрированные опции !
-//    po::store(parsed, conf);
-//  } catch (const po::reading_file& e) {
-//    std::cout << "Error: " << e.what() << std::endl;
-//  }
-//  po::notify(conf);
-//  //  std::cout << config["coding.input_path"].as<std::string>() << std::endl;
-//  //  std::cout << config["coding.input_name"].as<std::string>() << std::endl;
-//  //  std::cout << config["coding.output_path"].as<std::string>() <<
-//  std::endl;
-//  //  std::cout << config["coding.output_name"].as<std::string>() <<
-//  std::endl;
-//}
+void readConfig(const char* conf_file,
+                boost::program_options::variables_map& vm) {
+  po::options_description comm("common");
+  comm.add_options()("common.ephPatch", po::value<string>(), "ephPatch")(
+      "common.print_calc", po::value<bool>(), "print_calc")(
+      "common.lon_current", po::value<string>(), "lon")(
+      "common.lat_current", po::value<string>(), "lat")(
+      "common.name_current", po::value<string>(), "name");
+  po::options_description desc("Allowed options");
+  desc.add(comm);
+
+  try {
+    po::parsed_options parsed = po::parse_config_file<char>(
+        conf_file, desc,
+        true);  //флаг true разрешает незарегистрированные опции !
+    po::store(parsed, vm);
+  } catch (const po::reading_file& e) {
+    std::cout << "Error: " << e.what() << std::endl;
+  }
+  po::notify(vm);
+  //  cout << "ephPath-" << vm["common.ephPatch"].as<string>() << endl;
+  //  cout << "print_calc-" << vm["common.print_calc"].as<bool>() << endl;
+}
 
 void datetimenow(string& datenow, string& timenow) {
   std::chrono::duration<int, std::ratio<60 * 60 * 24> > one_day(1);
