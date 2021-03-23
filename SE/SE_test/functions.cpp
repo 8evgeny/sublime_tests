@@ -23,8 +23,8 @@ void readConfig(const char* conf_file,
     std::cout << "Error: " << e.what() << std::endl;
   }
   po::notify(vm);
-  //  cout << "ephPath-" << vm["common.ephPatch"].as<string>() << endl;
-  //  cout << "print_calc-" << vm["common.print_calc"].as<bool>() << endl;
+  cout << "ephPath-" << vm["common.ephPatch"].as<string>() << endl;
+  cout << "print_calc-" << vm["common.print_calc"].as<bool>() << endl;
 }
 
 void datetimenow(string& datenow, string& timenow) {

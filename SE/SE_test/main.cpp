@@ -101,10 +101,10 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
           break;
         }
         if (is_label) {
-          printf("year");
+          if (vm["common.print_calc"].as<bool>()) printf("year");
           break;
         }
-        printf("%d", jyear);
+        if (vm["common.print_calc"].as<bool>()) printf("%d", jyear);
         break;
 
       case 'Y':
@@ -112,52 +112,58 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
           break;
         }
         if (is_label) {
-          printf("year");
+          if (vm["common.print_calc"].as<bool>()) printf("year");
           break;
         }
         t2 = swe_julday(jyear, 1, 1, ju2, gregflag);
         y_frac = (t - t2) / 365.0;
-        printf("%.2f", jyear + y_frac);
+        if (vm["common.print_calc"].as<bool>()) printf("%.2f", jyear + y_frac);
         break;
 
       case 'p':
         if (is_label) {
-          printf("obj.nr");
+          if (vm["common.print_calc"].as<bool>()) printf("obj.nr");
           break;
         }
         if (!is_house && diff_mode == DIFF_DIFF) {
-          printf("%d-%d", ipl, ipldiff);
+          if (vm["common.print_calc"].as<bool>()) printf("%d-%d", ipl, ipldiff);
         } else if (!is_house && diff_mode == DIFF_GEOHEL) {
-          printf("%d-%dhel", ipl, ipldiff);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%d-%dhel", ipl, ipldiff);
         } else if (!is_house && diff_mode == DIFF_MIDP) {
-          printf("%d/%d", ipl, ipldiff);
+          if (vm["common.print_calc"].as<bool>()) printf("%d/%d", ipl, ipldiff);
         } else {
-          printf("%d", ipl);
+          if (vm["common.print_calc"].as<bool>()) printf("%d", ipl);
         }
         break;
 
       case 'P':
 
         if (is_label) {
-          printf("%-15s", "name");
+          if (vm["common.print_calc"].as<bool>()) printf("%-15s", "name");
           break;
         }
 
         if (is_house) {
           if (ipl <= nhouses) {
-            printf("house %2d       ", ipl);
+            if (vm["common.print_calc"].as<bool>())
+              printf("house %2d       ", ipl);
           } else {
-            printf("%-15s", hs_nam[ipl - nhouses]);
+            if (vm["common.print_calc"].as<bool>())
+              printf("%-15s", hs_nam[ipl - nhouses]);
           }
         } else if (is_ayana) {
           // printf("Ayanamsha       ");
-          printf("Ayanamsha %s ", swe_get_ayanamsa_name(sid_mode));
+          if (vm["common.print_calc"].as<bool>())
+            printf("Ayanamsha %s ", swe_get_ayanamsa_name(sid_mode));
         } else if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
-          printf("%.3s-%.3s", spnam, spnam2);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%.3s-%.3s", spnam, spnam2);
         } else if (diff_mode == DIFF_MIDP) {
-          printf("%.3s/%.3s", spnam, spnam2);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%.3s/%.3s", spnam, spnam2);
         } else {
-          printf("%-15s", spnam);
+          if (vm["common.print_calc"].as<bool>()) printf("%-15s", spnam);
         }
         break;
 
@@ -166,14 +172,14 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
           break;
         }
         if (is_label) {
-          printf("julday");
+          if (vm["common.print_calc"].as<bool>()) printf("julday");
           break;
         }
         y_frac = (t - floor(t)) * 100;
         if (floor(y_frac) != y_frac) {
-          printf("%.5f", t);
+          if (vm["common.print_calc"].as<bool>()) printf("%.5f", t);
         } else {
-          printf("%.2f", t);
+          if (vm["common.print_calc"].as<bool>()) printf("%.2f", t);
         }
         break;
 
@@ -182,21 +188,24 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
           break;
         }
         if (is_label) {
-          printf("date    ");
+          if (vm["common.print_calc"].as<bool>()) printf("date    ");
           break;
         }
-        printf("%02d.%02d.%d", jday, jmon, jyear);
+        if (vm["common.print_calc"].as<bool>())
+          printf("%02d.%02d.%d", jday, jmon, jyear);
         if (jut != 0 || step_in_minutes || step_in_seconds) {
           int h, m, s;
           s = (int)(jut * 3600 + 0.5);
           h = (int)(s / 3600.0);
           m = (int)((s % 3600) / 60.0);
           s %= 60;
-          printf(" %d:%02d:%02d", h, m, s);
+          if (vm["common.print_calc"].as<bool>())
+            printf(" %d:%02d:%02d", h, m, s);
           if (universal_time)
-            printf(" UT");
-          else
-            printf(" TT");
+            if (vm["common.print_calc"].as<bool>())
+              printf(" UT");
+            else if (vm["common.print_calc"].as<bool>())
+              printf(" TT");
         }
         break;
 
@@ -205,21 +214,22 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
           break;
         }
         if (is_label) {
-          printf("date");
+          if (vm["common.print_calc"].as<bool>()) printf("date");
           break;
         }
-        printf("%02d%02d%02d", jyear % 100, jmon, jday);
+        if (vm["common.print_calc"].as<bool>())
+          printf("%02d%02d%02d", jyear % 100, jmon, jday);
         break;
 
       case 'L':
         if (is_label) {
-          printf(slon);
+          if (vm["common.print_calc"].as<bool>()) printf(slon);
           break;
         }
         if (psp != NULL &&
             (*psp == 'q' || *psp == 'y')) { /* delta t or time equation */
-          printf("%# 11.7f", x[0]);
-          printf("s");
+          if (vm["common.print_calc"].as<bool>()) printf("%# 11.7f", x[0]);
+          if (vm["common.print_calc"].as<bool>()) printf("s");
           break;
         }
 
@@ -265,18 +275,19 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
         break;
       case 'l':
         if (is_label) {
-          printf(slon);
+          if (vm["common.print_calc"].as<bool>()) printf(slon);
           break;
         }
         if (output_extra_prec)
-          printf("%# 11.11f", x[0]);
-        else
-          printf("%# 11.7f", x[0]);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%# 11.11f", x[0]);
+          else if (vm["common.print_calc"].as<bool>())
+            printf("%# 11.7f", x[0]);
         break;
 
       case 'G':
         if (is_label) {
-          printf("housPos");
+          if (vm["common.print_calc"].as<bool>()) printf("housPos");
           break;
         }
 
@@ -285,21 +296,21 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
         break;
       case 'g':
         if (is_label) {
-          printf("housPos");
+          if (vm["common.print_calc"].as<bool>()) printf("housPos");
           break;
         }
-        printf("%# 11.7f", hpos);
+        if (vm["common.print_calc"].as<bool>()) printf("%# 11.7f", hpos);
         break;
       case 'j':
         if (is_label) {
-          printf("houseNr");
+          if (vm["common.print_calc"].as<bool>()) printf("houseNr");
           break;
         }
-        printf("%# 11.7f", hposj);
+        if (vm["common.print_calc"].as<bool>()) printf("%# 11.7f", hposj);
         break;
       case 'Z':
         if (is_label) {
-          printf(slon);
+          if (vm["common.print_calc"].as<bool>()) printf(slon);
           break;
         }
         fputs(dms(x[0], round_flag | BIT_ZODIAC), stdout);
@@ -314,7 +325,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
               case 'L': /* speed! */
               case 'Z': /* speed! */
                 if (is_label) {
-                  printf("lon/day");
+                  if (vm["common.print_calc"].as<bool>()) printf("lon/day");
                   break;
                 }
 
@@ -323,75 +334,80 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
                 break;
               case 'l': /* speed! */
                 if (is_label) {
-                  printf("lon/day");
+                  if (vm["common.print_calc"].as<bool>()) printf("lon/day");
                   break;
                 }
                 if (output_extra_prec)
-                  printf("%# 11.9f", x[3]);
-                else
-                  printf("%# 11.7f", x[3]);
+                  if (vm["common.print_calc"].as<bool>())
+                    printf("%# 11.9f", x[3]);
+                  else if (vm["common.print_calc"].as<bool>())
+                    printf("%# 11.7f", x[3]);
                 break;
               case 'B': /* speed! */
                 if (is_label) {
-                  printf("lat/day");
+                  if (vm["common.print_calc"].as<bool>()) printf("lat/day");
                   break;
                 }
                 fputs(dms(x[4], round_flag), stdout);
                 break;
               case 'b': /* speed! */
                 if (is_label) {
-                  printf("lat/day");
+                  if (vm["common.print_calc"].as<bool>()) printf("lat/day");
                   break;
                 }
                 if (output_extra_prec)
-                  printf("%# 11.9f", x[4]);
-                else
-                  printf("%# 11.7f", x[4]);
+                  if (vm["common.print_calc"].as<bool>())
+                    printf("%# 11.9f", x[4]);
+                  else if (vm["common.print_calc"].as<bool>())
+                    printf("%# 11.7f", x[4]);
                 break;
               case 'A': /* speed! */
                 if (is_label) {
-                  printf("RA/day");
+                  if (vm["common.print_calc"].as<bool>()) printf("RA/day");
                   break;
                 }
                 fputs(dms(xequ[3] / 15, round_flag | SEFLG_EQUATORIAL), stdout);
                 break;
               case 'a': /* speed! */
                 if (is_label) {
-                  printf("RA/day");
+                  if (vm["common.print_calc"].as<bool>()) printf("RA/day");
                   break;
                 }
                 if (output_extra_prec)
-                  printf("%# 11.9f", xequ[3]);
-                else
-                  printf("%# 11.7f", xequ[3]);
+                  if (vm["common.print_calc"].as<bool>())
+                    printf("%# 11.9f", xequ[3]);
+                  else if (vm["common.print_calc"].as<bool>())
+                    printf("%# 11.7f", xequ[3]);
                 break;
               case 'D': /* speed! */
                 if (is_label) {
-                  printf("dcl/day");
+                  if (vm["common.print_calc"].as<bool>()) printf("dcl/day");
                   break;
                 }
                 fputs(dms(xequ[4], round_flag), stdout);
                 break;
               case 'd': /* speed! */
                 if (is_label) {
-                  printf("dcl/day");
+                  if (vm["common.print_calc"].as<bool>()) printf("dcl/day");
                   break;
                 }
                 if (output_extra_prec)
-                  printf("%# 11.9f", xequ[4]);
-                else
-                  printf("%# 11.7f", xequ[4]);
+                  if (vm["common.print_calc"].as<bool>())
+                    printf("%# 11.9f", xequ[4]);
+                  else if (vm["common.print_calc"].as<bool>())
+                    printf("%# 11.7f", xequ[4]);
                 break;
               case 'R': /* speed! */
               case 'r': /* speed! */
                 if (is_label) {
-                  printf("AU/day");
+                  if (vm["common.print_calc"].as<bool>()) printf("AU/day");
                   break;
                 }
                 if (output_extra_prec)
-                  printf("%# 16.11f", x[5]);
-                else
-                  printf("%# 14.9f", x[5]);
+                  if (vm["common.print_calc"].as<bool>())
+                    printf("%# 16.11f", x[5]);
+                  else if (vm["common.print_calc"].as<bool>())
+                    printf("%# 14.9f", x[5]);
                 break;
               case 'U': /* speed! */
               case 'X': /* speed! */
@@ -407,11 +423,14 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
                   ar = sqrt(square_sum(xcart));
                 else
                   ar = 1;
-                printf("%# 14.9f", xcart[3] / ar);
+                if (vm["common.print_calc"].as<bool>())
+                  printf("%# 14.9f", xcart[3] / ar);
                 fputs(gap, stdout);
-                printf("%# 14.9f", xcart[4] / ar);
+                if (vm["common.print_calc"].as<bool>())
+                  printf("%# 14.9f", xcart[4] / ar);
                 fputs(gap, stdout);
-                printf("%# 14.9f", xcart[5] / ar);
+                if (vm["common.print_calc"].as<bool>())
+                  printf("%# 14.9f", xcart[5] / ar);
                 break;
               case 'u': /* speed! */
               case 'x': /* speed! */
@@ -427,11 +446,14 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
                   ar = sqrt(square_sum(xcartq));
                 else
                   ar = 1;
-                printf("%# 14.9f", xcartq[3] / ar);
+                if (vm["common.print_calc"].as<bool>())
+                  printf("%# 14.9f", xcartq[3] / ar);
                 fputs(gap, stdout);
-                printf("%# 14.9f", xcartq[4] / ar);
+                if (vm["common.print_calc"].as<bool>())
+                  printf("%# 14.9f", xcartq[4] / ar);
                 fputs(gap, stdout);
-                printf("%# 14.9f", xcartq[5] / ar);
+                if (vm["common.print_calc"].as<bool>())
+                  printf("%# 14.9f", xcartq[5] / ar);
                 break;
               default:
                 break;
@@ -442,7 +464,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
           int flag = round_flag;
           if (is_house) flag |= BIT_ALLOW_361;  // speed of houses can be > 360
           if (is_label) {
-            printf("deg/day");
+            if (vm["common.print_calc"].as<bool>()) printf("deg/day");
             break;
           }
 
@@ -489,13 +511,14 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
 
         } else {
           if (is_label) {
-            printf("deg/day");
+            if (vm["common.print_calc"].as<bool>()) printf("deg/day");
             break;
           }
           if (output_extra_prec)
-            printf("%# 11.17f", x[3]);
-          else
-            printf("%# 11.7f", x[3]);
+            if (vm["common.print_calc"].as<bool>())
+              printf("%# 11.17f", x[3]);
+            else if (vm["common.print_calc"].as<bool>())
+              printf("%# 11.7f", x[3]);
         }
         break;
 
@@ -506,47 +529,49 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
         //************************************
 
         if (is_label) {
-          printf("lat.    ");
+          if (vm["common.print_calc"].as<bool>()) printf("lat.    ");
           break;
         }
         if (*psp == 'q') { /* delta t */
-          printf("%# 11.7f", x[1]);
-          printf("h");
+          if (vm["common.print_calc"].as<bool>()) printf("%# 11.7f", x[1]);
+          if (vm["common.print_calc"].as<bool>()) printf("h");
           break;
         }
         fputs(dms(x[1], round_flag), stdout);
         break;
       case 'b':
         if (is_label) {
-          printf("lat.    ");
+          if (vm["common.print_calc"].as<bool>()) printf("lat.    ");
           break;
         }
         if (output_extra_prec)
-          printf("%# 11.11f", x[1]);
-        else
-          printf("%# 11.7f", x[1]);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%# 11.11f", x[1]);
+          else if (vm["common.print_calc"].as<bool>())
+            printf("%# 11.7f", x[1]);
         break;
 
       case 'A': /* right ascension */
         if (is_label) {
-          printf("RA      ");
+          if (vm["common.print_calc"].as<bool>()) printf("RA      ");
           break;
         }
         fputs(dms(xequ[0] / 15, round_flag | SEFLG_EQUATORIAL), stdout);
         break;
       case 'a': /* right ascension */
         if (is_label) {
-          printf("RA      ");
+          if (vm["common.print_calc"].as<bool>()) printf("RA      ");
           break;
         }
         if (output_extra_prec)
-          printf("%# 11.11f", xequ[0]);
-        else
-          printf("%# 11.7f", xequ[0]);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%# 11.11f", xequ[0]);
+          else if (vm["common.print_calc"].as<bool>())
+            printf("%# 11.7f", xequ[0]);
         break;
       case 'D': /* declination */
         if (is_label) {
-          printf("decl      ");
+          if (vm["common.print_calc"].as<bool>()) printf("decl      ");
           break;
         }
         fputs(dms(xequ[1], round_flag), stdout);
@@ -554,18 +579,19 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
 
       case 'd': /* declination */
         if (is_label) {
-          printf("decl      ");
+          if (vm["common.print_calc"].as<bool>()) printf("decl      ");
           break;
         }
         if (output_extra_prec)
-          printf("%# 11.11f", xequ[1]);
-        else
-          printf("%# 11.7f", xequ[1]);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%# 11.11f", xequ[1]);
+          else if (vm["common.print_calc"].as<bool>())
+            printf("%# 11.7f", xequ[1]);
         break;
 
       case 'I': /* azimuth */
         if (is_label) {
-          printf("azimuth");
+          if (vm["common.print_calc"].as<bool>()) printf("azimuth");
           break;
         }
         fputs(dms(xaz[0], round_flag), stdout);
@@ -573,15 +599,15 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
 
       case 'i': /* azimuth */
         if (is_label) {
-          printf("azimuth");
+          if (vm["common.print_calc"].as<bool>()) printf("azimuth");
           break;
         }
-        printf("%# 11.7f", xaz[0]);
+        if (vm["common.print_calc"].as<bool>()) printf("%# 11.7f", xaz[0]);
         break;
 
       case 'H': /* height */
         if (is_label) {
-          printf("height");
+          if (vm["common.print_calc"].as<bool>()) printf("height");
           break;
         }
         fputs(dms(xaz[1], round_flag), stdout);
@@ -589,15 +615,15 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
 
       case 'h': /* height */
         if (is_label) {
-          printf("height");
+          if (vm["common.print_calc"].as<bool>()) printf("height");
           break;
         }
-        printf("%# 11.7f", xaz[1]);
+        if (vm["common.print_calc"].as<bool>()) printf("%# 11.7f", xaz[1]);
         break;
 
       case 'K': /* height (apparent) */
         if (is_label) {
-          printf("hgtApp");
+          if (vm["common.print_calc"].as<bool>()) printf("hgtApp");
           break;
         }
         fputs(dms(xaz[2], round_flag), stdout);
@@ -605,10 +631,10 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
 
       case 'k': /* height (apparent) */
         if (is_label) {
-          printf("hgtApp");
+          if (vm["common.print_calc"].as<bool>()) printf("hgtApp");
           break;
         }
-        printf("%# 11.7f", xaz[2]);
+        if (vm["common.print_calc"].as<bool>()) printf("%# 11.7f", xaz[2]);
         break;
 
       case 'R':
@@ -617,28 +643,30 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
         //************************************
 
         if (is_label) {
-          printf("distAU   ");
+          if (vm["common.print_calc"].as<bool>()) printf("distAU   ");
           break;
         }
-        printf("%# 14.9f", x[2]);
+        if (vm["common.print_calc"].as<bool>()) printf("%# 14.9f", x[2]);
         break;
       case 'W':
         if (is_label) {
-          printf("distLY   ");
+          if (vm["common.print_calc"].as<bool>()) printf("distLY   ");
           break;
         }
-        printf("%# 14.9f", x[2] * SE_AUNIT_TO_LIGHTYEAR);
+        if (vm["common.print_calc"].as<bool>())
+          printf("%# 14.9f", x[2] * SE_AUNIT_TO_LIGHTYEAR);
         break;
       case 'w':
         if (is_label) {
-          printf("distkm   ");
+          if (vm["common.print_calc"].as<bool>()) printf("distkm   ");
           break;
         }
-        printf("%# 14.9f", x[2] * SE_AUNIT_TO_KM);
+        if (vm["common.print_calc"].as<bool>())
+          printf("%# 14.9f", x[2] * SE_AUNIT_TO_KM);
         break;
       case 'r':
         if (is_label) {
-          printf("dist");
+          if (vm["common.print_calc"].as<bool>()) printf("dist");
           break;
         }
         if (ipl == SE_MOON) { /* for moon print parallax */
@@ -647,21 +675,24 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
             sinp = 8.794 / x[2]; /* in seconds of arc */
             ar = sinp * (1 + sinp * sinp * 3.917402e-12);
             /* the factor is 1 / (3600^2 * (180/pi)^2 * 6) */
-            printf("%# 13.5f\" %# 13.5f'", ar, ar / 60.0);
+            if (vm["common.print_calc"].as<bool>())
+              printf("%# 13.5f\" %# 13.5f'", ar, ar / 60.0);
           }
           swe_pheno(te, ipl, iflag, dret, serr);
-          printf("%# 13.5f\"", dret[5] * 3600);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%# 13.5f\"", dret[5] * 3600);
         } else {
-          printf("%# 14.9f", x[2] * SE_AUNIT_TO_LIGHTYEAR);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%# 14.9f", x[2] * SE_AUNIT_TO_LIGHTYEAR);
         }
         break;
       case 'q':
         if (is_label) {
-          printf("reldist");
+          if (vm["common.print_calc"].as<bool>()) printf("reldist");
           break;
         }
         dar = get_geocentric_relative_distance(te, ipl, iflag, serr);
-        printf("% 5d", dar);
+        if (vm["common.print_calc"].as<bool>()) printf("% 5d", dar);
         break;
       case 'U':
       case 'X':
@@ -669,11 +700,14 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
           ar = sqrt(square_sum(xcart));
         else
           ar = 1;
-        printf("%# 14.9f", xcart[0] / ar);
+        if (vm["common.print_calc"].as<bool>())
+          printf("%# 14.9f", xcart[0] / ar);
         fputs(gap, stdout);
-        printf("%# 14.9f", xcart[1] / ar);
+        if (vm["common.print_calc"].as<bool>())
+          printf("%# 14.9f", xcart[1] / ar);
         fputs(gap, stdout);
-        printf("%# 14.9f", xcart[2] / ar);
+        if (vm["common.print_calc"].as<bool>())
+          printf("%# 14.9f", xcart[2] / ar);
         break;
       case 'u':
       case 'x':
@@ -690,34 +724,42 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
         else
           ar = 1;
         if (output_extra_prec) {
-          printf("%# .17f", xcartq[0] / ar);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%# .17f", xcartq[0] / ar);
           fputs(gap, stdout);
-          printf("%# .17f", xcartq[1] / ar);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%# .17f", xcartq[1] / ar);
           fputs(gap, stdout);
-          printf("%# .17f", xcartq[2] / ar);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%# .17f", xcartq[2] / ar);
         } else {
-          printf("%# 14.9f", xcartq[0] / ar);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%# 14.9f", xcartq[0] / ar);
           fputs(gap, stdout);
-          printf("%# 14.9f", xcartq[1] / ar);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%# 14.9f", xcartq[1] / ar);
           fputs(gap, stdout);
-          printf("%# 14.9f", xcartq[2] / ar);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%# 14.9f", xcartq[2] / ar);
         }
         break;
       case 'Q':
         if (is_label) {
-          printf("Q");
+          if (vm["common.print_calc"].as<bool>()) printf("Q");
           break;
         }
-        printf("%-15s", spnam);
+        if (vm["common.print_calc"].as<bool>()) printf("%-15s", spnam);
         fputs(dms(x[0], round_flag), stdout);
         fputs(dms(x[1], round_flag), stdout);
-        printf("  %# 14.9f", x[2]);
+        if (vm["common.print_calc"].as<bool>()) printf("  %# 14.9f", x[2]);
         fputs(dms(x[3], round_flag), stdout);
         fputs(dms(x[4], round_flag), stdout);
-        printf("  %# 14.9f\n", x[5]);
-        printf("               %s", dms(xequ[0], round_flag));
+        if (vm["common.print_calc"].as<bool>()) printf("  %# 14.9f\n", x[5]);
+        if (vm["common.print_calc"].as<bool>())
+          printf("               %s", dms(xequ[0], round_flag));
         fputs(dms(xequ[1], round_flag), stdout);
-        printf("                %s", dms(xequ[3], round_flag));
+        if (vm["common.print_calc"].as<bool>())
+          printf("                %s", dms(xequ[3], round_flag));
         fputs(dms(xequ[4], round_flag), stdout);
         break;
       case 'N':
@@ -735,12 +777,12 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
           }
           if (use_dms)
             fputs(dms(xasc[0], round_flag | BIT_ZODIAC), stdout);
-          else
+          else if (vm["common.print_calc"].as<bool>())
             printf("%# 11.7f", xasc[0]);
           fputs(gap, stdout);
           if (use_dms)
             fputs(dms(xdsc[0], round_flag | BIT_ZODIAC), stdout);
-          else
+          else if (vm["common.print_calc"].as<bool>())
             printf("%# 11.7f", xdsc[0]);
         }
       }; break;
@@ -761,38 +803,38 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
               fputs("focus", stdout);
               break;
             }
-            printf("%# 11.7f", xper[0]);
+            if (vm["common.print_calc"].as<bool>()) printf("%# 11.7f", xper[0]);
             fputs(gap, stdout);
-            printf("%# 11.7f", xaph[0]);
+            if (vm["common.print_calc"].as<bool>()) printf("%# 11.7f", xaph[0]);
           }
           imeth |= SE_NODBIT_FOPOINT;
           iflgret =
               swe_nod_aps(te, ipl, iflag, imeth, NULL, NULL, xper, xfoc, serr);
           if (iflgret >= 0 && (ipl <= SE_NEPTUNE || *sp == 'F')) {
             fputs(gap, stdout);
-            printf("%# 11.7f", xfoc[0]);
+            if (vm["common.print_calc"].as<bool>()) printf("%# 11.7f", xfoc[0]);
           }
         };
         break;
       case '+':
         if (is_house) break;
         if (is_label) {
-          printf("phase");
+          if (vm["common.print_calc"].as<bool>()) printf("phase");
           break;
         }
         fputs(dms(attr[0], round_flag), stdout);
         break;
       case '-':
         if (is_label) {
-          printf("phase");
+          if (vm["common.print_calc"].as<bool>()) printf("phase");
           break;
         }
         if (is_house) break;
-        printf("  %# 14.9f", attr[1]);
+        if (vm["common.print_calc"].as<bool>()) printf("  %# 14.9f", attr[1]);
         break;
       case '*':
         if (is_label) {
-          printf("elong");
+          if (vm["common.print_calc"].as<bool>()) printf("elong");
           break;
         }
         if (is_house) break;
@@ -800,7 +842,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
         break;
       case '/':
         if (is_label) {
-          printf("diamet");
+          if (vm["common.print_calc"].as<bool>()) printf("diamet");
           break;
         }
         if (is_house) break;
@@ -808,11 +850,11 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
         break;
       case '=':
         if (is_label) {
-          printf("magn");
+          if (vm["common.print_calc"].as<bool>()) printf("magn");
           break;
         }
         if (is_house) break;
-        printf("  %# 6.3fm", attr[4]);
+        if (vm["common.print_calc"].as<bool>()) printf("  %# 6.3fm", attr[4]);
         break;
       case 'V': /* human design gates */
       case 'v': {
@@ -824,7 +866,7 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
             2,  23, 8,  20, 16, 35, 45, 12, 15, 52, 39, 53, 62, 56, 31, 33,
             7,  4,  29, 59, 40, 64, 47, 6,  46, 18, 48, 57, 32, 50, 28, 44};
         if (is_label) {
-          printf("hds");
+          if (vm["common.print_calc"].as<bool>()) printf("hds");
           break;
         }
         if (is_house) break;
@@ -832,13 +874,16 @@ int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {
         ihex = (int)floor(xhds / 5.625);
         iline = ((int)(floor(xhds / 0.9375))) % 6 + 1;
         igate = hexa[ihex];
-        printf("%2d.%d", igate, iline);
-        if (*sp == 'V') printf(" %2d%%", swe_d2l(100 * fmod(xhds / 0.9375, 1)));
+        if (vm["common.print_calc"].as<bool>()) printf("%2d.%d", igate, iline);
+        if (*sp == 'V')
+          if (vm["common.print_calc"].as<bool>())
+            printf(" %2d%%", swe_d2l(100 * fmod(xhds / 0.9375, 1)));
         break;
       }
     }  // end swith sp
   }    // end for sp = fmt
-  if (!list_hor) printf("\n");
+  if (!list_hor)
+    if (vm["common.print_calc"].as<bool>()) printf("\n");
   return OK;
 }
 
@@ -1326,7 +1371,7 @@ int calc(nativ& nativ) {
   if (with_header) {
     for (i = 0; i < argc; i++) {
       fputs(argv[i], stdout);
-      printf(" ");
+      if (vm["common.print_calc"].as<bool>()) printf(" ");
     }
   }
   iflag = (iflag & ~SEFLG_EPHMASK) | whicheph;
@@ -1448,7 +1493,8 @@ int calc(nativ& nativ) {
       }
       if (swe_utc_to_jd(jyear, jmon, jday, ih, im, ds, gregflag, tret, serr) ==
           ERR) {
-        printf(" error in swe_utc_to_jd(): %s\n", serr);
+        if (vm["common.print_calc"].as<bool>())
+          printf(" error in swe_utc_to_jd(): %s\n", serr);
         exit(-1);
       }
       tjd = tret[1];
@@ -1499,38 +1545,43 @@ int calc(nativ& nativ) {
 #ifndef NO_SWE_GLP  // -DNO_SWE_GLP to suppress this function
       if (with_glp) {
         swe_get_library_path(sout);
-        printf("\npath: %s", sout);
+        if (vm["common.print_calc"].as<bool>()) printf("\npath: %s", sout);
       }
 #endif
-      printf("\ndate (dmy) %d.%d.%d", jday, jmon, jyear);
+      if (vm["common.print_calc"].as<bool>())
+        printf("\ndate (dmy) %d.%d.%d", jday, jmon, jyear);
       if (gregflag)
-        printf(" greg.");
-      else
-        printf(" jul.");
+        if (vm["common.print_calc"].as<bool>())
+          printf(" greg.");
+        else if (vm["common.print_calc"].as<bool>())
+          printf(" jul.");
       jd_to_time_string(jut, stimeout);
-      printf(stimeout);
+      if (vm["common.print_calc"].as<bool>()) printf(stimeout);
       if (universal_time) {
         if (time_flag & BIT_TIME_LMT)
-          printf(" LMT");
-        else
-          printf(" UT");
+          if (vm["common.print_calc"].as<bool>())
+            printf(" LMT");
+          else if (vm["common.print_calc"].as<bool>())
+            printf(" UT");
       } else {
-        printf(" TT");
+        if (vm["common.print_calc"].as<bool>()) printf(" TT");
       }
-      printf("\t\tversion %s", swe_version(sout));
+      if (vm["common.print_calc"].as<bool>())
+        printf("\t\tversion %s", swe_version(sout));
     }
     if (universal_time) {
       // "LMT: 2457908.588194444"
       if (time_flag & BIT_TIME_LMT) {
         if (with_header) {
-          printf("\nLMT: %.9f", t);
+          if (vm["common.print_calc"].as<bool>()) printf("\nLMT: %.9f", t);
           t -= geopos[0] / 15.0 / 24.0;
         }
       }
       // "UT:  2457908.565972222     delta t: 68.761612 sec"
       if (with_header) {
-        printf("\nUT:  %.9f", t);
-        printf("     delta t: %f sec", delt * 86400.0);
+        if (vm["common.print_calc"].as<bool>()) printf("\nUT:  %.9f", t);
+        if (vm["common.print_calc"].as<bool>())
+          printf("     delta t: %f sec", delt * 86400.0);
       }
       te = t + delt;
       tut = t;
@@ -1539,37 +1590,43 @@ int calc(nativ& nativ) {
       tut = t - delt;
       // "UT:  2457908.565972222     delta t: 68.761612 sec"
       if (with_header) {
-        printf("\nUT:  %.9f", tut);
-        printf("     delta t: %f sec", delt * 86400.0);
+        if (vm["common.print_calc"].as<bool>()) printf("\nUT:  %.9f", tut);
+        if (vm["common.print_calc"].as<bool>())
+          printf("     delta t: %f sec", delt * 86400.0);
       }
     }
     iflgret = swe_calc(te, SE_ECL_NUT, iflag, xobl, serr);
     if (with_header) {
       // "TT:  2457908.566768074
-      printf("\nTT:  %.9f", te);
+      if (vm["common.print_calc"].as<bool>()) printf("\nTT:  %.9f", te);
       // "ayanamsa =   24° 5'51.6509 (Lahiri)"
       if (iflag & SEFLG_SIDEREAL) {
         if (swe_get_ayanamsa_ex(te, iflag, &daya, serr) == ERR) {
-          printf("   error in swe_get_ayanamsa_ex(): %s\n", serr);
+          if (vm["common.print_calc"].as<bool>())
+            printf("   error in swe_get_ayanamsa_ex(): %s\n", serr);
           exit(1);
         }
-        printf("   ayanamsa = %s (%s)", dms(daya, round_flag),
-               swe_get_ayanamsa_name(sid_mode));
+        if (vm["common.print_calc"].as<bool>())
+          printf("   ayanamsa = %s (%s)", dms(daya, round_flag),
+                 swe_get_ayanamsa_name(sid_mode));
       }
       // "geo. long 8.000000, lat 47.000000, alt 0.000000"
       if (have_geopos) {
-        printf("\ngeo. long %f, lat %f, alt %f", geopos[0], geopos[1],
-               geopos[2]);
+        if (vm["common.print_calc"].as<bool>())
+          printf("\ngeo. long %f, lat %f, alt %f", geopos[0], geopos[1],
+                 geopos[2]);
       }
       if (iflag_f >= 0) iflag = iflag_f;
       if (strchr(plsel, 'o') == NULL) {
         if (iflag & (SEFLG_NONUT | SEFLG_SIDEREAL)) {
-          //          printf("\n%-15s %s", "Epsilon (m)", dms(xobl[0],
-          //          round_flag));
+          //          if(vm["common.print_calc"].as<bool>()) printf ("\n%-15s
+          //          %s", "Epsilon (m)", dms(xobl[0], round_flag));
         } else {
-          printf("\n%-15s %s%s", "Epsilon (t/m)", dms(xobl[0], round_flag),
-                 gap);
-          printf("%s", dms(xobl[1], round_flag));
+          if (vm["common.print_calc"].as<bool>())
+            printf("\n%-15s %s%s", "Epsilon (t/m)", dms(xobl[0], round_flag),
+                   gap);
+          if (vm["common.print_calc"].as<bool>())
+            printf("%s", dms(xobl[1], round_flag));
         }
       }
       if (strchr(plsel, 'n') == NULL &&
@@ -1579,17 +1636,18 @@ int calc(nativ& nativ) {
         fputs(gap, stdout);
         fputs(dms(xobl[3], round_flag), stdout);
       }
-      printf("\n");
+      if (vm["common.print_calc"].as<bool>()) printf("\n");
       if (do_houses) {
         char* shsy = swe_house_name(ihsy);
         if (!universal_time) {
           do_houses = FALSE;
-          printf("option -house requires option -ut for Universal Time\n");
+          if (vm["common.print_calc"].as<bool>())
+            printf("option -house requires option -ut for Universal Time\n");
         } else {
           strcpy(s1, dms(top_long, round_flag));
           strcpy(s2, dms(top_lat, round_flag));
-          //          printf("Houses system %c (%s) for long=%s, lat=%s\n",
-          //          ihsy, shsy, s1,
+          //          if(vm["common.print_calc"].as<bool>()) printf ("Houses
+          //          system %c (%s) for long=%s, lat=%s\n", ihsy, shsy, s1,
           //                 s2);
         }
       }
@@ -1597,7 +1655,8 @@ int calc(nativ& nativ) {
     if (with_header && !with_header_always) with_header = FALSE;
     if (do_ayanamsa) {
       if (swe_get_ayanamsa_ex(te, iflag, &daya, serr) == ERR) {
-        printf("   error in swe_get_ayanamsa_ex(): %s\n", serr);
+        if (vm["common.print_calc"].as<bool>())
+          printf("   error in swe_get_ayanamsa_ex(): %s\n", serr);
         exit(1);
       }
       x[0] = daya;
@@ -1615,7 +1674,7 @@ int calc(nativ& nativ) {
           print_line(MODE_LABEL, is_first, 0, nativ);
           is_first = FALSE;
         }
-        printf("\n");
+        if (vm["common.print_calc"].as<bool>()) printf("\n");
       } else {
         print_line(MODE_LABEL, TRUE, 0, nativ);
       }
@@ -1625,7 +1684,8 @@ int calc(nativ& nativ) {
       if (*psp == 'e') continue;
       ipl = letter_to_ipl((int)*psp);
       if (ipl == -2) {
-        printf("illegal parameter -p%s\n", plsel);
+        if (vm["common.print_calc"].as<bool>())
+          printf("illegal parameter -p%s\n", plsel);
         exit(1);
       }
       if (*psp == 'f')  // fixed star
@@ -1678,8 +1738,9 @@ int calc(nativ& nativ) {
             sprintf(sbeg, "%d.%02d.%04d", jday, jmon, jyear);
             swe_revjul(tfend, gregflag, &jyear, &jmon, &jday, &jut);
             sprintf(send, "%d.%02d.%04d", jday, jmon, jyear);
-            printf("range %s: %.1lf = %s to %.1lf = %s de=%d\n", fnam, tfstart,
-                   sbeg, tfend, send, denum);
+            if (vm["common.print_calc"].as<bool>())
+              printf("range %s: %.1lf = %s to %.1lf = %s de=%d\n", fnam,
+                     tfstart, sbeg, tfend, send, denum);
             show_file_limit = FALSE;
           }
         }
@@ -1714,7 +1775,8 @@ int calc(nativ& nativ) {
       }
       if (*psp == 'b') { /* ayanamsha */
         if (swe_get_ayanamsa_ex(te, iflag, &(x[0]), serr) == ERR) {
-          printf("   error in swe_get_ayanamsa_ex(): %s\n", serr);
+          if (vm["common.print_calc"].as<bool>())
+            printf("   error in swe_get_ayanamsa_ex(): %s\n", serr);
           iflgret = -1;
         }
         x[1] = 0;
@@ -1916,12 +1978,13 @@ int calc(nativ& nativ) {
         continue;
       }
       if (line_count >= line_limit) {
-        printf("****** line count %d was exceeded\n", line_limit);
+        if (vm["common.print_calc"].as<bool>())
+          printf("****** line count %d was exceeded\n", line_limit);
         break;
       }
     } /* for psp */
     if (list_hor) {
-      printf("\n");
+      if (vm["common.print_calc"].as<bool>()) printf("\n");
       line_count++;
     }
     if (do_houses) {
@@ -1988,22 +2051,22 @@ int calc(nativ& nativ) {
         if (!list_hor) line_count++;
       }
       if (list_hor) {
-        printf("\n");
+        if (vm["common.print_calc"].as<bool>()) printf("\n");
         line_count++;
       }
     }
     if (line_count >= line_limit) break;
   } /* for tjd */
   if (*serr_warn != '\0') {
-    printf("\nwarning: ");
+    if (vm["common.print_calc"].as<bool>()) printf("\nwarning: ");
     fputs(serr_warn, stdout);
-    printf("\n");
+    if (vm["common.print_calc"].as<bool>()) printf("\n");
   }
 
 /* close open files and free allocated space */
 end_main:
   if (do_set_astro_models) {
-    printf(smod);
+    if (vm["common.print_calc"].as<bool>()) printf(smod);
   }
   swe_close();
   return OK;

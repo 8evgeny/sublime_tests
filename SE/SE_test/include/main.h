@@ -44,6 +44,7 @@
 #define SEARCH_RANGE_LUNAR_CYCLES 20000
 
 #define LEN_SOUT 1000  // length of output string variable
+
 using namespace std;
 
 static char se_pname[AS_MAXCH];
