@@ -7,7 +7,10 @@ int main() {
   nativ curr_Time;
   nativ my("Evgeny");
   nativ t("Tanya");
-  nativ st("Stasya");
+  nativ d1("Stasya");
+  nativ d2("Taya");
+  nativ d3("Maya");
+  nativ d4("Ulyana");
 
   return 0;
 }
