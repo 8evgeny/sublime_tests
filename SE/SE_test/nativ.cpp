@@ -18,8 +18,8 @@ nativ::nativ(string nam) {
 
   calc();
 
-  panchang();
   printAll();
+  panchang();
 };
 
 nativ::nativ() {
@@ -37,43 +37,59 @@ nativ::nativ() {
 
   calc();
 
-  panchang();
   printAll();
+  panchang();
 };
 
 void nativ::panchang() {
-  what_vara(bday, btime);
-  what_tithi();
-  what_naksh();
-  what_karana();
-  what_yoga();
+  vara = what_vara(bday, btime);
+  cout << vara << endl;
+  //  what_tithi();
+  //  what_naksh();
+  //  what_karana();
+  //  what_yoga();
 }
 
-string nativ::what_vara(string day, string time) {
-  //
-  //
+string nativ::what_vara(string date, string time) {
+  time_t result = 0;
+  int year = 0, month = 0, day = 0, hour = 0, min = 0, sec = 0;
+  if (sscanf((date + time).c_str(), "%2d-%2d-%4d%2d:%2d:%2d ", &day, &month,
+             &year, &hour, &min, &sec) == 6) {
+    struct tm breakdown = {0};
+    breakdown.tm_year = year - 1900; /* years since 1900 */
+    breakdown.tm_mon = month - 1;
+    breakdown.tm_mday = day;
+    breakdown.tm_hour = hour;
+    breakdown.tm_min = min;
+    breakdown.tm_sec = sec;
+    result = mktime(&breakdown);
+    //    puts(ctime(&result));
+  }
+  string res = ctime(&result);
+  res.erase(3);
+  return res;
 }
 
-float nativ::what_tithi() {
-  //
-  //
-}
+// float nativ::what_tithi() {
+//  //
+//  //
+//}
 
-float nativ::what_naksh() {
-  //
-  //
-}
+// float nativ::what_naksh() {
+//  //
+//  //
+//}
 
-string nativ::what_karana(){
+// string nativ::what_karana(){
 
-    //
-    //
-};
+//    //
+//    //
+//};
 
-float nativ::what_yoga() {
-  //
-  //
-}
+// float nativ::what_yoga() {
+//  //
+//  //
+//}
 
 void nativ::readConfig(const char* conf_file,
                        boost::program_options::variables_map& vm, string nam) {
