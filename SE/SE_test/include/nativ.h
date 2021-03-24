@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <tuple>
 
 #include "main.h"
 using namespace std;
@@ -45,7 +46,7 @@ class nativ {
 
   bool print_calc;
   void readConfig(const char*, po::variables_map&, string);
-  void datetimenow(string&, string&);
+  pair<string, string> datetimenow();
   void printAll();
   int calc();
   int print_line(int mode, AS_BOOL is_first, int sid_mode);
@@ -56,4 +57,10 @@ class nativ {
   string lon;
   string lat;
   string city;
+
+  float tithi{0};
+  string karana;
+  string vara;
+  float naksh{0};
+  float yoga{0};
 };

@@ -22,11 +22,10 @@ nativ::nativ(string nam) {
 
 nativ::nativ() {
   po::variables_map vm;
-  string datenow, timenow;
-  datetimenow(datenow, timenow);
   readConfig("../config/config.ini", vm, "");
-  bday = datenow;
-  btime = timenow;
+  auto datetime = datetimenow();
+  bday = datetime.first;
+  btime = datetime.second;
   lon = vm["common.lon_current"].as<std::string>();
   lat = vm["common.lat_current"].as<std::string>();
   name = vm["common.name"].as<std::string>();
@@ -76,7 +75,9 @@ void nativ::readConfig(const char* conf_file,
   //  cout << "print_calc-" << vm["common.print_calc"].as<bool>() << endl;
 }
 
-void nativ::datetimenow(string& datenow, string& timenow) {
+pair<string, string> nativ::datetimenow() {
+  string datenow, timenow;
+
   std::chrono::duration<int, std::ratio<60 * 60 * 24> > one_day(1);
   std::chrono::duration<int, std::ratio<60> > one_minut(1);
   std::chrono::system_clock::time_point today =
@@ -106,8 +107,8 @@ void nativ::datetimenow(string& datenow, string& timenow) {
   strftime(time1, sizeof(time1), "%X", &tstruct);
   //  cout << "date-" << date << endl;
   //  cout << "time-" << time1 << endl;
-  datenow = date;
-  timenow = time1;
+
+  return make_pair(date, time1);
 }
 
 void nativ::printAll() {
