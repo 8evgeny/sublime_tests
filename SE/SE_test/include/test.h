@@ -28,7 +28,8 @@ class Ra : public planet {};
 class Ke : public planet {};
 class As : public planet {};
 
-struct nativ {
+class nativ {
+ public:
   nativ(string);
   nativ();  //для текущего времени
   Su su;
@@ -46,10 +47,13 @@ struct nativ {
   void readConfig(const char*, po::variables_map&, string);
   void datetimenow(string&, string&);
   void printAll();
+  int calc(nativ& nat);
+  int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n);
   string path;
   string name;
   string bday;
   string btime;
   string lon;
   string lat;
+  string city;
 };

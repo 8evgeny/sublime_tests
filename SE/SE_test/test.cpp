@@ -14,6 +14,7 @@ nativ::nativ(string nam) {
   lat = vm[nam + ".lat"].as<string>();
   print_calc = vm["common.print_calc"].as<bool>();
   path = vm["common.ephPatch"].as<string>();
+  city = vm[nam + ".city"].as<string>();
 };
 
 nativ::nativ() {
@@ -25,9 +26,10 @@ nativ::nativ() {
   btime = timenow;
   lon = vm["common.lon_current"].as<std::string>();
   lat = vm["common.lat_current"].as<std::string>();
-  name = vm["common.name_current"].as<std::string>();
+  name = vm["common.name"].as<std::string>();
   print_calc = vm["common.print_calc"].as<bool>();
   path = vm["common.ephPatch"].as<string>();
+  city = vm["common.city"].as<std::string>();
 };
 
 void nativ::readConfig(const char* conf_file,
@@ -37,18 +39,21 @@ void nativ::readConfig(const char* conf_file,
   auto time = nam + ".time";
   auto lon = nam + ".lon";
   auto lat = nam + ".lat";
+  auto city = nam + ".city";
   po::options_description comm("common");
   comm.add_options()("common.ephPatch", po::value<string>(), "ephPatch")(
       "common.print_calc", po::value<bool>(), "print_calc")(
       "common.lon_current", po::value<string>(), "lon")(
       "common.lat_current", po::value<string>(), "lat")(
-      "common.name_current", po::value<string>(), "name");
+      "common.name", po::value<string>(), "name")("common.city",
+                                                  po::value<string>(), "city");
   po::options_description nativ(nam);
   nativ.add_options()(name.c_str(), po::value<string>(), "name")(
-      date.c_str(), po::value<string>(), "date")(time.c_str(),
-                                                 po::value<string>(), "time")(
-      lon.c_str(), po::value<string>(), "lon")(lat.c_str(), po::value<string>(),
-                                               "lat");
+      date.c_str(), po::value<string>(), "date")(
+      time.c_str(), po::value<string>(), "time")(lon.c_str(),
+                                                 po::value<string>(), "lon")(
+      lat.c_str(), po::value<string>(), "lat")(city.c_str(),
+                                               po::value<string>(), "lon");
   po::options_description desc("Allowed options");
   desc.add(comm);
   desc.add(nativ);
@@ -100,9 +105,10 @@ void nativ::datetimenow(string& datenow, string& timenow) {
 }
 
 void nativ::printAll() {
-  cout << endl << this->name << endl;
-  cout << this->bday << "\t " << this->btime << endl;
-  cout << "As-" << this->as.lon << "\t " << endl;
+  cout << endl
+       << this->name << ":  " << this->bday << ", " << this->btime << endl;
+  cout << this->city << ", " << this->lon << ", " << this->lat << endl;
+  cout << "As-" << this->as.lon << "\t " << this->as.lon << endl;
   cout << "Su-" << this->su.lon << "\t " << this->su.speed << endl;
   cout << "Ch-" << this->ch.lon << "\t " << this->ch.speed << endl;
   cout << "Ma-" << this->ma.lon << "\t " << this->ma.speed << endl;
