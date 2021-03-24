@@ -1,6 +1,6 @@
 ﻿#include "main.h"
 
-#include "test.h"
+#include "nativ.h"
 using namespace std;
 
 int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n) {

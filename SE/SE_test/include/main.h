@@ -13,7 +13,7 @@
 #include "sweph.h"
 #include "swephexp.h" /* this includes  "sweodef.h" */
 #include "swephlib.h"
-#include "test.h"
+#include "nativ.h"
 
 #define J2000 2451545.0 /* 2000 January 1.5 */
 #define square_sum(x) (x[0] * x[0] + x[1] * x[1] + x[2] * x[2])
