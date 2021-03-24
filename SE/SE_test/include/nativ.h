@@ -47,8 +47,8 @@ class nativ {
   void readConfig(const char*, po::variables_map&, string);
   void datetimenow(string&, string&);
   void printAll();
-  int calc(nativ& nat);
-  int print_line(int mode, AS_BOOL is_first, int sid_mode, nativ& n);
+  int calc();
+  int print_line(int mode, AS_BOOL is_first, int sid_mode);
   string path;
   string name;
   string bday;

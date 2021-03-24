@@ -14,16 +14,6 @@ find_package (Boost REQUIRED COMPONENTS
     program_options
     )
 
-#if (Boost_FOUND)
-#    message("cmake message-" ${PROJECT_NAME} " boost include DIR: " ${Boost_INCLUDE_DIR})
-#    include_directories (SYSTEM ${Boost_INCLUDE_DIR})
-#endif ()
-#target_compile_features(${PROJECT_NAME}_coding PRIVATE cxx_std_17)
-
-
-
-
-
 SET(MYCOMPILE_FLAGS "-g -Wall -fPIC")
 set(CMAKE_C_FLAGS ${MYCOMPILE_FLAGS})
 
