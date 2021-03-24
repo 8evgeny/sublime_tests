@@ -17,6 +17,19 @@ nativ::nativ(string nam) {
   city = vm[nam + ".city"].as<string>();
 
   calc();
+
+  //  string what_vara(string, string);
+  //  float what_tithi();
+  //  float what_naksh();
+  //  string what_karana();
+  //  float what_yoga();
+  what_vara(bday, btime);
+  what_tithi();
+  what_naksh();
+  what_karana();
+  what_yoga();
+
+  panchang();
   printAll();
 };
 
@@ -34,6 +47,19 @@ nativ::nativ() {
   city = vm["common.city"].as<std::string>();
 
   calc();
+
+  //  string what_vara(string, string);
+  //  float what_tithi();
+  //  float what_naksh();
+  //  string what_karana();
+  //  float what_yoga();
+  what_vara(bday, btime);
+  what_tithi();
+  what_naksh();
+  what_karana();
+  what_yoga();
+
+  panchang();
   printAll();
 };
 

@@ -50,6 +50,14 @@ class nativ {
   void printAll();
   int calc();
   int print_line(int mode, AS_BOOL is_first, int sid_mode);
+
+  string what_vara(string, string);
+  float what_tithi();
+  float what_naksh();
+  string what_karana();
+  float what_yoga();
+  void panchang();
+
   string path;
   string name;
   string bday;
