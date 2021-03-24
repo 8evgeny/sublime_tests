@@ -18,17 +18,6 @@ nativ::nativ(string nam) {
 
   calc();
 
-  //  string what_vara(string, string);
-  //  float what_tithi();
-  //  float what_naksh();
-  //  string what_karana();
-  //  float what_yoga();
-  what_vara(bday, btime);
-  what_tithi();
-  what_naksh();
-  what_karana();
-  what_yoga();
-
   panchang();
   printAll();
 };
@@ -48,20 +37,43 @@ nativ::nativ() {
 
   calc();
 
-  //  string what_vara(string, string);
-  //  float what_tithi();
-  //  float what_naksh();
-  //  string what_karana();
-  //  float what_yoga();
+  panchang();
+  printAll();
+};
+
+void nativ::panchang() {
   what_vara(bday, btime);
   what_tithi();
   what_naksh();
   what_karana();
   what_yoga();
+}
 
-  panchang();
-  printAll();
+string nativ::what_vara(string day, string time) {
+  //
+  //
+}
+
+float nativ::what_tithi() {
+  //
+  //
+}
+
+float nativ::what_naksh() {
+  //
+  //
+}
+
+string nativ::what_karana(){
+
+    //
+    //
 };
+
+float nativ::what_yoga() {
+  //
+  //
+}
 
 void nativ::readConfig(const char* conf_file,
                        boost::program_options::variables_map& vm, string nam) {
