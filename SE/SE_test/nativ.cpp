@@ -1,5 +1,7 @@
 #include "nativ.h"
 
+#include <cstring>
+
 #include "main.h"
 
 planet::planet() {}
@@ -20,6 +22,8 @@ nativ::nativ(string nam) {
 
   printAll();
   panchang();
+
+  cout << fromTimeToString().first << " " << fromTimeToString().second << endl;
 };
 
 nativ::nativ() {
@@ -39,50 +43,222 @@ nativ::nativ() {
 
   printAll();
   panchang();
+  cout << fromTimeToString().first << " " << fromTimeToString().second << endl;
 };
 
 void nativ::panchang() {
-  vara = what_vara(bday, btime);
-  cout << "vara-"<<vara << endl;
-  tithi =   what_tithi();
-  cout << "tithi-"<<tithi << endl;
-  naksh = what_naksh();
-  cout << "naksh-"<<naksh << endl;
+  varaName = find_vara(bday, btime);
+  if (varaName == "Sun") {
+    vara = 1;
+    varaLord = "Su";
+  }
+  if (varaName == "Mon") {
+    vara = 2;
+    varaLord = "Ch";
+  }
+  if (varaName == "Tue") {
+    vara = 3;
+    varaLord = "Ma";
+  }
+  if (varaName == "Wed") {
+    vara = 4;
+    varaLord = "Bu";
+  }
+  if (varaName == "Thu") {
+    vara = 5;
+    varaLord = "Gu";
+  }
+  if (varaName == "Fri") {
+    vara = 6;
+    varaLord = "Sk";
+  }
+  if (varaName == "Sat") {
+    vara = 7;
+    varaLord = "Sa";
+  }
+  cout << "Вара\t" << vara << "\t" << varaName << "\t" << varaLord << endl;
+  tithi = find_tithi();
+  printf("Титхи\t%0.2f\n", tithi);
+
+  naksh = find_naksh();
+
+  switch ((int)naksh + 1) {
+    case 1:
+      nakshName = "Ашвини";
+      break;
+    case 2:
+      nakshName = "Бхарани";
+      break;
+    case 3:
+      nakshName = "Криттика";
+      break;
+    case 4:
+      nakshName = "Рохини";
+      break;
+    case 5:
+      nakshName = "Мригаширша";
+      break;
+    case 6:
+      nakshName = "Ардра";
+      break;
+    case 7:
+      nakshName = "Пунарвасу";
+      break;
+    case 8:
+      nakshName = "Пушья";
+      break;
+    case 9:
+      nakshName = "Ашлеша";
+      break;
+    case 10:
+      nakshName = "Магха";
+      break;
+    case 11:
+      nakshName = "П.Пхалгуни";
+      break;
+    case 12:
+      nakshName = "У.Пхалгуни";
+      break;
+    case 13:
+      nakshName = "Хаста";
+      break;
+    case 14:
+      nakshName = "Читра";
+      break;
+    case 15:
+      nakshName = "Свати";
+      break;
+    case 16:
+      nakshName = "Вишакха";
+      break;
+    case 17:
+      nakshName = "Анурадха";
+      break;
+    case 18:
+      nakshName = "Джйешттха";
+      break;
+    case 19:
+      nakshName = "Мула";
+      break;
+    case 20:
+      nakshName = "П.Ашадха";
+      break;
+    case 21:
+      nakshName = "У.Ашадха";
+      break;
+    case 22:
+      nakshName = "Шравана";
+      break;
+    case 23:
+      nakshName = "Дхаништха";
+      break;
+    case 24:
+      nakshName = "Шатабхиша";
+      break;
+    case 25:
+      nakshName = "П.Бхадрапада";
+      break;
+    case 26:
+      nakshName = "У.Бхадрапада";
+      break;
+    case 27:
+      nakshName = "Ревати";
+      break;
+  }
+  printf("Накшат\t%0.2f\t%s\n\n", naksh, nakshName.c_str());
+  auto ss = findStartTithi();
+  cout << endl << "Start_Date: " << ss.first << endl;
+  cout << "Start_Time: " << ss.second << endl;
   //  what_karana();
   //  what_yoga();
 }
 
-string nativ::what_vara(string date, string time) {
+string nativ::find_vara(string date, string time) {
   time_t result = 0;
-  int year = 0, month = 0, day = 0, hour = 0, min = 0, sec = 0;
-  sscanf((date + time).c_str(), "%2d-%2d-%4d%2d:%2d:%2d ", &day, &month, &year,
-         &hour, &min, &sec);
-  struct tm breakdown = {0};
-  breakdown.tm_year = year - 1900; /* years since 1900 */
-  breakdown.tm_mon = month - 1;
-  breakdown.tm_mday = day;
-  breakdown.tm_hour = hour;
-  breakdown.tm_min = min;
-  breakdown.tm_sec = sec;
-  result = mktime(&breakdown);
+
+  fromStringToTime(date, time);
+
+  result = mktime(&b_time);
   //  cout << ctime(&result) << endl;
   string res = ctime(&result);
   res.erase(3);
   return res;
 }
 
- float nativ::what_tithi() {
-    double delta;
-   if (ch.lon <su.lon) {
-       delta = 360.0+ch.lon - su.lon;
-   } else{
-       delta = ch.lon - su.lon;
-   }
-   double tithi = delta / 12 ;
-   return tithi;
+void nativ::fromStringToTime(string dd, string tt) {
+  int year = 0, month = 0, day = 0, hour = 0, min = 0, sec = 0;
+  sscanf((dd + tt).c_str(), "%2d-%2d-%4d%2d:%2d:%2d ", &day, &month, &year,
+         &hour, &min, &sec);
+  b_time.tm_year = year - 1900; /* years since 1900 */
+  b_time.tm_mon = month - 1;
+  b_time.tm_mday = day;
+  b_time.tm_hour = hour;
+  b_time.tm_min = min;
+  b_time.tm_sec = sec;
 }
 
- float nativ::what_naksh() {
+pair<string, string> nativ::fromTimeToString() {
+  //  string date, time;
+  char date[11];
+  char time[9];
+  int year = b_time.tm_year + 1900, month = b_time.tm_mon + 1,
+      day = b_time.tm_mday, hour = b_time.tm_hour, min = b_time.tm_min,
+      sec = b_time.tm_sec;
+  sprintf(time, "%02d:%02d:%02d", hour, min, sec);
+  sprintf(date, "%02d-%02d-%04d", day, month, year);
+  //  cout << day << month << year << endl;
+  //  cout << hour << min << sec << endl;
+  //  cout << "date: " << date << endl;
+  //  cout << "time: " << time << endl;
+  return make_pair<string, string>(date, time);
+}
+
+float nativ::find_tithi() {
+  double delta;
+  if (ch.lon < su.lon) {
+    delta = 360.0 + ch.lon - su.lon;
+  } else {
+    delta = ch.lon - su.lon;
+  }
+  double tithi = delta / 12;
+  return tithi;
+}
+
+pair<string, string> nativ::findStartTithi() {
+  //сохраняем
+  tm res = b_time;
+  string bday_res = bday;
+  string btime_res = btime;
+
+  //  шагаем  назад;
+  double delta = 2.0;
+  int aa = 0;
+  while (delta > 1.0) {
+    ++aa;
+    b_time.tm_hour -= 1;
+    if (ch.lon < su.lon) {
+      delta = 360.0 + ch.lon - su.lon;
+    } else {
+      delta = ch.lon - su.lon;
+    }
+    auto datatime = fromTimeToString();
+    bday = datatime.first;
+    btime = datatime.second;
+    calc();
+  }
+  cout << "aa:" << aa << endl;
+  pair<string, string> result;
+  result.first = bday;
+  result.second = btime;
+  //восстанавливаем
+  b_time = res;
+  bday = bday_res;
+  btime = btime_res;
+  //  cout << endl
+  //       << "start_tithi-" << result.first << " " << result.second << endl;
+  return result;
+}
+float nativ::find_naksh() {
   double naksh = ch.lon / 13.33333;
   return naksh;
 }
@@ -247,8 +423,8 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
 
     //*****************************************************************************
 
-    // if (is_house && ipl <= nhouses && strchr("bBsSrRxXuUQnNfFj+-*/=", *sp) !=
-    // NULL) continue;
+    // if (is_house && ipl <= nhouses && strchr("bBsSrRxXuUQnNfFj+-*/=", *sp)
+    // != NULL) continue;
     if (is_house && strchr("bBrRxXuUQnNfFj+-*/=", *sp) != NULL) continue;
     if (is_ayana && strchr("bBsSrRxXuUQnNfFj+-*/=", *sp) != NULL) continue;
     if (sp != fmt) fputs(gap, stdout);

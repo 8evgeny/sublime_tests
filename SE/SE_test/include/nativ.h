@@ -51,31 +51,42 @@ class nativ {
   int calc();
   int print_line(int mode, AS_BOOL is_first, int sid_mode);
 
-  string what_vara(string, string);
-  float what_tithi();
-  float what_naksh();
-  string what_karana();
-  float what_yoga();
+  string find_vara(string, string);
+  float find_tithi();
+  pair<string, string> findStartTithi();
+  pair<string, string> findEndTithi();
+  float find_naksh();
+  string find_karana();
+  float find_yoga();
   void panchang();
+  void fromStringToTime(string, string);
+  pair<string, string> fromTimeToString();
 
   string path;
   string name;
   string bday;
   string btime;
+  struct tm b_time;
   string lon;
   string lat;
   string city;
 
   float tithi{0};
+  string tithiName;
+  string tithiLord;
   string karana;
-  string vara;
+  int vara{0};
+  string varaName;
+  string varaLord;
   float naksh{0};
+  string nakshName;
+  string nakshLord;
   float yoga{0};
+  string yogaName;
 };
 
-class muhurta{
-public:
-    muhurta();
-    muhurta(nativ&);
-
+class muhurta {
+ public:
+  muhurta();
+  muhurta(nativ&);
 };
