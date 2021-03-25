@@ -43,9 +43,11 @@ nativ::nativ() {
 
 void nativ::panchang() {
   vara = what_vara(bday, btime);
-  cout << vara << endl;
-  //  what_tithi();
-  //  what_naksh();
+  cout << "vara-"<<vara << endl;
+  tithi =   what_tithi();
+  cout << "tithi-"<<tithi << endl;
+  naksh = what_naksh();
+  cout << "naksh-"<<naksh << endl;
   //  what_karana();
   //  what_yoga();
 }
@@ -69,15 +71,21 @@ string nativ::what_vara(string date, string time) {
   return res;
 }
 
-// float nativ::what_tithi() {
-//  //
-//  //
-//}
+ float nativ::what_tithi() {
+    double delta;
+   if (ch.lon <su.lon) {
+       delta = 360.0+ch.lon - su.lon;
+   } else{
+       delta = ch.lon - su.lon;
+   }
+   double tithi = delta / 12 ;
+   return tithi;
+}
 
-// float nativ::what_naksh() {
-//  //
-//  //
-//}
+ float nativ::what_naksh() {
+  double naksh = ch.lon / 13.33333;
+  return naksh;
+}
 
 // string nativ::what_karana(){
 

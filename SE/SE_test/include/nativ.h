@@ -72,3 +72,10 @@ class nativ {
   float naksh{0};
   float yoga{0};
 };
+
+class muhurta{
+public:
+    muhurta();
+    muhurta(nativ&);
+
+};
