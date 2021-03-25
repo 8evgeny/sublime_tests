@@ -166,9 +166,11 @@ void nativ::panchang() {
       break;
   }
   printf("Накшат\t%0.2f\t%s\n\n", naksh, nakshName.c_str());
+
   auto ss = findStartTithi();
   cout << endl << "Start_Date: " << ss.first << endl;
   cout << "Start_Time: " << ss.second << endl;
+
   //  what_karana();
   //  what_yoga();
 }
@@ -233,9 +235,10 @@ pair<string, string> nativ::findStartTithi() {
   //  шагаем  назад;
   double delta = 2.0;
   int aa = 0;
-  while (delta > 1.0) {
+  //  while (delta > 1.0) {
+  for (int i = 0; i < 3; ++i) {
     ++aa;
-    b_time.tm_hour -= 1;
+    b_time.tm_mday -= 1;
     if (ch.lon < su.lon) {
       delta = 360.0 + ch.lon - su.lon;
     } else {
@@ -245,7 +248,9 @@ pair<string, string> nativ::findStartTithi() {
     bday = datatime.first;
     btime = datatime.second;
     calc();
+    printAll();
   }
+  //  }
   cout << "aa:" << aa << endl;
   pair<string, string> result;
   result.first = bday;
