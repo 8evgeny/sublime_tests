@@ -53,18 +53,17 @@ void nativ::panchang() {
 string nativ::what_vara(string date, string time) {
   time_t result = 0;
   int year = 0, month = 0, day = 0, hour = 0, min = 0, sec = 0;
-  if (sscanf((date + time).c_str(), "%2d-%2d-%4d%2d:%2d:%2d ", &day, &month,
-             &year, &hour, &min, &sec) == 6) {
-    struct tm breakdown = {0};
-    breakdown.tm_year = year - 1900; /* years since 1900 */
-    breakdown.tm_mon = month - 1;
-    breakdown.tm_mday = day;
-    breakdown.tm_hour = hour;
-    breakdown.tm_min = min;
-    breakdown.tm_sec = sec;
-    result = mktime(&breakdown);
-    //    puts(ctime(&result));
-  }
+  sscanf((date + time).c_str(), "%2d-%2d-%4d%2d:%2d:%2d ", &day, &month, &year,
+         &hour, &min, &sec);
+  struct tm breakdown = {0};
+  breakdown.tm_year = year - 1900; /* years since 1900 */
+  breakdown.tm_mon = month - 1;
+  breakdown.tm_mday = day;
+  breakdown.tm_hour = hour;
+  breakdown.tm_min = min;
+  breakdown.tm_sec = sec;
+  result = mktime(&breakdown);
+  //  cout << ctime(&result) << endl;
   string res = ctime(&result);
   res.erase(3);
   return res;
