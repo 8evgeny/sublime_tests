@@ -18,7 +18,14 @@ SET(MYCOMPILE_FLAGS "-g -Wall -fPIC")
 set(CMAKE_C_FLAGS ${MYCOMPILE_FLAGS})
 
 add_executable(mini ${src} se.cpp )
-add_executable(test ${src} main.cpp nativ.cpp functions.cpp muhurta.cpp)
+add_executable(test ${src}
+    main.cpp
+    nativ.cpp
+    functions.cpp
+    muhurta.cpp
+    panchang.cpp
+    datetime.cpp
+    )
 
 target_include_directories(mini PUBLIC include)
 target_include_directories(${PROJECT_NAME} PUBLIC include)
