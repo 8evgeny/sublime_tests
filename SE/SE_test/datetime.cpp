@@ -47,6 +47,7 @@ chrono::system_clock::time_point nativ::fromStringToCrono(string date,
   chrono::system_clock::time_point result;
 
   // chrono(to_time_t)->time_t(*gmtime,*localtime)->tm(strftime)->string
+  // string(sscanf)->tm->time_t->chrono
 
   //
   //
