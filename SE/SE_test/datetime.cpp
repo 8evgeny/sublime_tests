@@ -1,7 +1,7 @@
 #include "main.h"
 #include "nativ.h"
 
-pair<string, string> nativ::datetimenow() {
+pair<string, string> nativ::dateTimeNowInString() {
   string datenow, timenow;
 
   chrono::duration<int, ratio<60 * 60 * 24> > one_day(1);
@@ -11,6 +11,9 @@ pair<string, string> nativ::datetimenow() {
                                     ****!!!*/
 
   chrono::system_clock::time_point tomorrow = today + one_day;  // !!!
+
+  // chrono(to_time_t)->time_t(*gmtime,*localtime)->tm(strftime)->string
+  // string(sscanf)->tm->time_t->chrono
 
   std::time_t tt, tt_tom;
   tt = chrono::system_clock::to_time_t(today);
@@ -26,7 +29,9 @@ pair<string, string> nativ::datetimenow() {
   char date[80];
   char time1[80];
   //  tstruct = *localtime(&now1);
-  tstruct = *gmtime(&now1);
+
+  tstruct = *gmtime(&now1);  // !Заполнили сткуктуру tm в классе
+
   //  strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct); //
   //  2021-03-22.23:03:44
   strftime(date, sizeof(date), "%d-%m-%Y", &tstruct);
@@ -37,7 +42,19 @@ pair<string, string> nativ::datetimenow() {
   return make_pair(date, time1);
 }
 
-void nativ::fromStringToTime(string dd, string tt) {
+chrono::system_clock::time_point nativ::fromStringToCrono(string date,
+                                                          string time) {
+  chrono::system_clock::time_point result;
+
+  // chrono(to_time_t)->time_t(*gmtime,*localtime)->tm(strftime)->string
+
+  //
+  //
+  //
+  return result;
+}
+
+void nativ::fromStringToTm(string dd, string tt) {
   int year = 0, month = 0, day = 0, hour = 0, min = 0, sec = 0;
   sscanf((dd + tt).c_str(), "%2d-%2d-%4d%2d:%2d:%2d ", &day, &month, &year,
          &hour, &min, &sec);

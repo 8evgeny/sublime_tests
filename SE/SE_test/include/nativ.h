@@ -46,7 +46,7 @@ class nativ {
 
   bool print_calc;
   void readConfig(const char*, po::variables_map&, string);
-  pair<string, string> datetimenow();
+  pair<string, string> dateTimeNowInString();
   void printAll();
   int calc();
   int print_line(int mode, AS_BOOL is_first, int sid_mode);
@@ -59,13 +59,14 @@ class nativ {
   string find_karana();
   float find_yoga();
   void panchang();
-  void fromStringToTime(string, string);
+  void fromStringToTm(string, string);
   pair<string, string> fromTimeToString();
-
+  chrono::system_clock::time_point fromStringToCrono(string, string);
   string path;
   string name;
   string bday;
   string btime;
+  chrono::system_clock::time_point chronoBighDateTime;
   struct tm b_time;
   string lon;
   string lat;

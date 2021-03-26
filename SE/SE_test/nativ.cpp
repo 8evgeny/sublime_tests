@@ -16,6 +16,8 @@ nativ::nativ(string nam) {
   path = vm["common.ephPatch"].as<string>();
   city = vm[nam + ".city"].as<string>();
 
+  chronoBighDateTime = fromStringToCrono(bday, btime);
+
   calc();
 
   printAll();
@@ -31,7 +33,7 @@ nativ::nativ(string nam) {
 nativ::nativ() {
   po::variables_map vm;
   readConfig("../config/config.ini", vm, "");
-  auto datetime = datetimenow();
+  auto datetime = dateTimeNowInString();
   bday = datetime.first;
   btime = datetime.second;
   lon = vm["common.lon_current"].as<std::string>();
@@ -40,6 +42,8 @@ nativ::nativ() {
   print_calc = vm["common.print_calc"].as<bool>();
   path = vm["common.ephPatch"].as<string>();
   city = vm["common.city"].as<std::string>();
+
+  chronoBighDateTime = fromStringToCrono(bday, btime);
 
   calc();
 
