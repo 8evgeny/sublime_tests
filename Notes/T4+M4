@@ -287,6 +287,7 @@ sudo ip l set enx180f7601128a mtu 4080
 sudo ip l set enx180f7601128a up
 
 sudo ip a a 192.168.100.154/24 brd 192.168.100.255 dev enx180f7601128a
+sudo ip a a 192.168.100.153/24 brd 192.168.100.255 dev enxd46e0e08426f
 
 хадас
 sudo ip l set eth0 down
@@ -295,6 +296,8 @@ sudo ip l set eth0 up
 
 добавление роута на стенде
 sudo ip r a 192.168.100.0/24 dev enx180f7601128a proto kernel scope link src 192.168.100.153 metric 100
+sudo ip r a 192.168.100.0/24 dev enxd46e0e08426f proto kernel scope link src 192.168.100.153 metric 100
+sudo ip r a 192.168.100.0/24 dev eth0 proto kernel scope link src 192.168.100.153 metric 100
 
 статика на Т4
 nano /etc/network/interfaces
@@ -313,3 +316,10 @@ sudo ip l set enx180f7601128a mtu 3072
 sudo ip l set enx180f7601128a up
 
 
+sudo ip a a 192.168.100.153/24 brd 192.168.100.255 dev enxd46e0e08426f && sudo ip r a 192.168.100.0/24 dev enxd46e0e08426f proto kernel scope link src 192.168.100.153 metric 100
+
+sudo ip l set enxd46e0e08426f down
+sleep 1
+sudo ip l set enxd46e0e08426f mtu 1500
+sleep 1
+sudo ip l set enxd46e0e08426f up
