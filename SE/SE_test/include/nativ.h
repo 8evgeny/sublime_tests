@@ -59,7 +59,7 @@ class nativ {
   string find_karana();
   float find_yoga();
   void panchang();
-  void fromStringToTm(string, string);
+  struct tm fromStringToTm(string, string);
   pair<string, string> fromTimeToString();
   chrono::system_clock::time_point fromStringToCrono(string, string);
   string path;

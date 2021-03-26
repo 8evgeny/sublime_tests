@@ -54,16 +54,18 @@ chrono::system_clock::time_point nativ::fromStringToCrono(string date,
   return result;
 }
 
-void nativ::fromStringToTm(string dd, string tt) {
+struct tm nativ::fromStringToTm(string dd, string tt) {
+  struct tm dt;
   int year = 0, month = 0, day = 0, hour = 0, min = 0, sec = 0;
   sscanf((dd + tt).c_str(), "%2d-%2d-%4d%2d:%2d:%2d ", &day, &month, &year,
          &hour, &min, &sec);
-  b_time.tm_year = year - 1900; /* years since 1900 */
-  b_time.tm_mon = month - 1;
-  b_time.tm_mday = day;
-  b_time.tm_hour = hour;
-  b_time.tm_min = min;
-  b_time.tm_sec = sec;
+  dt.tm_year = year - 1900; /* years since 1900 */
+  dt.tm_mon = month - 1;
+  dt.tm_mday = day;
+  dt.tm_hour = hour;
+  dt.tm_min = min;
+  dt.tm_sec = sec;
+  return dt;
 }
 
 pair<string, string> nativ::fromTimeToString() {

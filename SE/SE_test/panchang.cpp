@@ -4,7 +4,7 @@
 string nativ::find_vara(string date, string time) {
   time_t result = 0;
 
-  fromStringToTm(date, time);
+  b_time = fromStringToTm(date, time);
 
   result = mktime(&b_time);
   //  cout << ctime(&result) << endl;
