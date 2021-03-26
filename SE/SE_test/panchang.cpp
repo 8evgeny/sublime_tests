@@ -151,10 +151,6 @@ void nativ::panchang() {
   }
   printf("Накшат\t%0.2f\t%s\n\n", naksh, nakshName.c_str());
 
-  auto ss = findStartTithi();
-  cout << endl << "Start_Date: " << ss.first << endl;
-  cout << "Start_Time: " << ss.second << endl;
-
   //  what_karana();
   //  what_yoga();
 }

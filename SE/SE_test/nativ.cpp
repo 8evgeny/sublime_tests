@@ -21,6 +21,10 @@ nativ::nativ(string nam) {
   printAll();
   panchang();
 
+  auto ss = findStartTithi();
+  cout << endl << "Start_Date: " << ss.first << endl;
+  cout << "Start_Time: " << ss.second << endl;
+
   cout << fromTimeToString().first << " " << fromTimeToString().second << endl;
 };
 
@@ -41,6 +45,10 @@ nativ::nativ() {
 
   printAll();
   panchang();
+
+  auto ss = findStartTithi();
+  cout << endl << "Start_Date: " << ss.first << endl;
+  cout << "Start_Time: " << ss.second << endl;
   cout << fromTimeToString().first << " " << fromTimeToString().second << endl;
 };
 
