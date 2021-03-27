@@ -24,7 +24,8 @@ add_executable(test ${src}
     functions.cpp
     muhurta.cpp
     panchang.cpp
-    datetime.cpp
+    time.cpp
+    findstartend.cpp
     )
 
 target_include_directories(mini PUBLIC include)

@@ -1,7 +1,6 @@
-#include <time.h>
-
 #include "main.h"
 #include "nativ.h"
+
 pair<string, string> nativ::dateTimeNowInString() {
   string datenow, timenow;
 
@@ -50,9 +49,6 @@ chrono::system_clock::time_point nativ::fromStringToCrono(string date,
 
   struct tm step1 = fromStringToTm(date, ttime);
   struct tm* pt = &step1;
-  //  time_t step2;
-  //  time(&step2);
-  //  struct tm* timeinfo;
 
   time_t step2;
   time(&step2);
@@ -65,7 +61,6 @@ chrono::system_clock::time_point nativ::fromStringToCrono(string date,
 
   printf("That day is a %s.\n", weekday[pt->tm_wday]);
 
-  //  cout << "step2-" << ctime(&rawtime) << endl;
   chrono::system_clock::time_point result =
       chrono::system_clock::from_time_t(step2);
   return result;
@@ -75,26 +70,13 @@ pair<string, string> nativ::fromCronoToString(
     chrono::system_clock::time_point tpoint) {
   // chrono(to_time_t)->time_t(*gmtime,*localtime)->tm(strftime)->string
   // string(sscanf)->tm(mktime)->time_t(from_time_t)->chrono
-  auto step2 = fromCronoToTm(tpoint);
 
-  //  time_t step1 = chrono::system_clock::to_time_t(tpoint);
-  //  //  cout << "step1-" << ctime(&step1) << endl;
-  //  struct tm step2;
-  //  step2 = *gmtime(&step1);
+  tm step2 = fromCronoToTm(tpoint);
 
   char date[80];
   char time[80];
   strftime(date, sizeof(date), "%d-%m-%Y", &step2);
   strftime(time, sizeof(time), "%X", &step2);
-
-  //  cout << "fromCronoToString" << endl;
-  //  cout << step2.tm_year + 1900 << endl;
-  //  cout << step2.tm_mon + 1 << endl;
-  //  cout << step2.tm_mday << endl;
-  //  cout << step2.tm_hour << endl;
-  //  cout << step2.tm_min << endl;
-  //  cout << step2.tm_sec << endl;
-  //  cout << step2.tm_wday << endl;
 
   return make_pair(date, time);
 }
@@ -102,15 +84,6 @@ pair<string, string> nativ::fromCronoToString(
 struct tm nativ::fromCronoToTm(chrono::system_clock::time_point tpoint) {
   time_t step1 = chrono::system_clock::to_time_t(tpoint);
   tm result = *gmtime(&step1);
-  //  cout << "fromCronoToTm" << endl;
-  //  cout << result.tm_year + 1900 << endl;
-  //  cout << result.tm_mon + 1 << endl;
-  //  cout << result.tm_mday << endl;
-  //  cout << result.tm_hour << endl;
-  //  cout << result.tm_min << endl;
-  //  cout << result.tm_sec << endl;
-  //  cout << result.tm_wday << endl;
-  //  vara = result.tm_wday;
 
   return result;
 }
@@ -144,66 +117,6 @@ pair<string, string> nativ::fromTmToString(tm& b_time) {
       sec = b_time.tm_sec;
   sprintf(time, "%02d:%02d:%02d", hour, min, sec);
   sprintf(date, "%02d-%02d-%04d", day, month, year);
-  //  cout << day << month << year << endl;
-  //  cout << hour << min << sec << endl;
-  //  cout << "date: " << date << endl;
-  //  cout << "time: " << time << endl;
+
   return make_pair<string, string>(date, time);
-}
-
-pair<string, string> nativ::findStartTithi() {
-  //сохраняем
-  auto res = chronoBighDateTime;
-  // chrono(to_time_t)->time_t(*gmtime,*localtime)->tm(strftime)->string
-  // string(sscanf)->tm(mktime)->time_t(from_time_t)->chrono
-
-  //  string datenow, timenow;
-  chrono::duration<int, ratio<60 * 60 * 24> > one_day(1);
-  chrono::duration<int, ratio<60> > one_minut(1);
-  chrono::system_clock::time_point tpoint = chronoBighDateTime;
-
-  //  шагаем  назад;
-  int aa = 0;
-
-  for (int i = 0; i < 10; ++i) {
-    ++aa;
-
-    if (ch.lon < su.lon) {
-      double delta = 360.0 + ch.lon - su.lon;
-    } else {
-      double delta = ch.lon - su.lon;
-    }
-
-    chronoBighDateTime -= one_day;  //шаг
-    auto datetime = fromCronoToString(chronoBighDateTime);
-    b_time = fromCronoToTm(chronoBighDateTime);
-    bday = datetime.first;
-    btime = datetime.second;
-    calc();
-
-    printAll();
-
-    panchang();
-  }
-
-  cout << "aa:" << aa << endl;
-
-  pair<string, string> result;
-  result.first = bday;
-  result.second = btime;
-
-  //восстанавливаем
-  cout << "restored" << endl;
-  chronoBighDateTime = res;
-  auto datetime = fromCronoToString(chronoBighDateTime);
-  b_time = fromCronoToTm(chronoBighDateTime);
-  bday = datetime.first;
-  btime = datetime.second;
-  calc();
-  printAll();
-  panchang();
-
-  //  cout << endl
-  //       << "start_tithi-" << result.first << " " << result.second << endl;
-  return result;
 }

@@ -1,28 +1,28 @@
 #include "main.h"
 #include "nativ.h"
 
-string nativ::findVaraString(string date, string time) {
-  //  time_t result = 0;
+// string nativ::findVaraString(string date, string time) {
+//  time_t result = 0;
 
-  //  b_time = fromStringToTm(date, time);
+//  b_time = fromStringToTm(date, time);
 
-  //  //  cout << b_time.tm_year + 1900 << endl;
-  //  //  cout << b_time.tm_mon + 1 << endl;
-  //  //  cout << b_time.tm_mday << endl;
-  //  //  cout << b_time.tm_hour << endl;
-  //  //  cout << b_time.tm_min << endl;
-  //  //  cout << b_time.tm_sec << endl;
-  //  //  cout << b_time.tm_wday << endl;
-  //  result = mktime(&b_time);
-  //  //  cout << ctime(&result) << endl;
-  //  string res = ctime(&result);
-  //  res.erase(3);
-  //  return res;
-}
+//  //  cout << b_time.tm_year + 1900 << endl;
+//  //  cout << b_time.tm_mon + 1 << endl;
+//  //  cout << b_time.tm_mday << endl;
+//  //  cout << b_time.tm_hour << endl;
+//  //  cout << b_time.tm_min << endl;
+//  //  cout << b_time.tm_sec << endl;
+//  //  cout << b_time.tm_wday << endl;
+//  result = mktime(&b_time);
+//  //  cout << ctime(&result) << endl;
+//  string res = ctime(&result);
+//  res.erase(3);
+//  return res;
+//}
 
 void nativ::printAll() {
-  cout << endl
-       << this->name << ":  " << this->bday << ", " << this->btime << endl;
+  cout << "\r" << this->name << ":  " << this->bday << ", " << this->btime
+       << endl;
   cout << this->city << ", " << this->lon << ", " << this->lat << endl;
   cout << "As-" << this->as.lon << "\t " << this->as.lon << endl;
   cout << "Su-" << this->su.lon << "\t " << this->su.speed << endl;

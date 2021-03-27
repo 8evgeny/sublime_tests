@@ -51,7 +51,7 @@ class nativ {
   int calc();
   int print_line(int mode, AS_BOOL is_first, int sid_mode);
 
-  string findVaraString(string, string);
+  //  string findVaraString(string, string);
   pair<string, int> findVarafromTm(struct tm&);
   float find_tithi();
   pair<string, string> findStartTithi();
