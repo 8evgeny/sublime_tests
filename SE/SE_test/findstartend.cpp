@@ -23,21 +23,19 @@ pair<string, string> nativ::findStartTithi(nativ& nativ) {
   cout << "delta-" << delta << endl;
 
   //  while (delta > 12.0) {
-  ++aa;
+  for (int i = 0; i < 10; ++i) {
+    ++aa;
 
-  nativ.chronoBighDateTime -= one_day;  //шаг
-  auto datetime = fromCronoToString(nativ.chronoBighDateTime);
-  nativ.b_time = fromCronoToTm(nativ.chronoBighDateTime);
-  nativ.bday = datetime.first;
-  nativ.btime = datetime.second;
-  calc();
-
-  printAll(nativ);
-
-  panchang(nativ);
-  //  }
-
-  cout << "aa:" << aa << endl;
+    nativ.chronoBighDateTime -= one_day;  //шаг
+    auto datetime = fromCronoToString(nativ.chronoBighDateTime);
+    nativ.b_time = fromCronoToTm(nativ.chronoBighDateTime);
+    nativ.bday = datetime.first;
+    nativ.btime = datetime.second;
+    calc();
+    printAll(nativ);
+    panchang(nativ);
+    cout << "aa:" << aa << endl;
+  }
 
   pair<string, string> result;
   result.first = nativ.bday;

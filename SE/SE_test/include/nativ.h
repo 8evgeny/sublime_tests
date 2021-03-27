@@ -65,7 +65,7 @@ class nativ {
   pair<string, string> fromTmToString(struct tm&);
   chrono::system_clock::time_point fromStringToCrono(string, string);
   pair<string, string> fromCronoToString(chrono::system_clock::time_point);
-  struct tm fromCronoToTm(chrono::system_clock::time_point);
+  tm fromCronoToTm(chrono::system_clock::time_point);
   string path;
   string name;
   string bday;

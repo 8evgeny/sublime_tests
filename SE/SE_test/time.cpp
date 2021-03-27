@@ -81,14 +81,14 @@ pair<string, string> nativ::fromCronoToString(
   return make_pair(date, time);
 }
 
-struct tm nativ::fromCronoToTm(chrono::system_clock::time_point tpoint) {
+tm nativ::fromCronoToTm(chrono::system_clock::time_point tpoint) {
   time_t step1 = chrono::system_clock::to_time_t(tpoint);
   tm result = *gmtime(&step1);
 
   return result;
 }
 
-struct tm nativ::fromStringToTm(string dd, string tt) {
+tm nativ::fromStringToTm(string dd, string tt) {
   struct tm dt;
   int year = 0, month = 0, day = 0, hour = 0, min = 0, sec = 0;
   sscanf((dd + tt).c_str(), "%2d-%2d-%4d%2d:%2d:%2d ", &day, &month, &year,
@@ -103,7 +103,7 @@ struct tm nativ::fromStringToTm(string dd, string tt) {
   time_t result = mktime(&dt);
   //  cout << ctime(&result) << endl;
   string res = ctime(&result);
-  varaName = res.erase(3);
+  //  varaName = res.erase(3);
 
   return dt;
 }

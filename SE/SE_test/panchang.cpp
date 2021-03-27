@@ -18,6 +18,7 @@ void nativ::printAll(nativ& nativ) {
 }
 
 tuple<string, int, string> nativ::findVarafromTm(struct tm& b_time) {
+  cout << "b_time.tm_wday: " << b_time.tm_wday << endl;
   tuple<string, int, string> tuple;
   switch (b_time.tm_wday) {
     case 1: {
@@ -46,7 +47,7 @@ tuple<string, int, string> nativ::findVarafromTm(struct tm& b_time) {
       break;
     }
     case 0: {
-      tuple = {"Воскресенье", 3, "Su"};
+      tuple = {"Воскресенье", 1, "Su"};
       break;
     }
   }
@@ -59,8 +60,8 @@ void nativ::panchang(nativ& nativ) {
   nativ.vara = get<1>(tupleVara);
   nativ.varaLord = get<2>(tupleVara);
 
-  cout << "Вара. Огонь. Энергия\t" << nativ.vara << "\t" << nativ.varaName
-       << "  \t" << nativ.varaLord << endl;
+  cout << "Вара\t" << nativ.vara << "\t" << nativ.varaName << "  \t"
+       << nativ.varaLord << endl;
 
   auto tupleTithi = findTithi(nativ);
   nativ.tithi = get<0>(tupleTithi);
@@ -69,18 +70,17 @@ void nativ::panchang(nativ& nativ) {
   nativ.tithiGod = get<3>(tupleTithi);
   nativ.tithiResult = get<4>(tupleTithi);
 
-  printf("Титхи. Вода – исполнение желаний\t%0.2f%s\t%s\t%s\t%s\n", nativ.tithi,
-         nativ.tithiName.c_str(), nativ.tithiLord.c_str(),
-         nativ.tithiGod.c_str(), nativ.tithiResult.c_str());
+  printf("Титхи\t%0.2f\t%s\t%s\t%s\t%s\n", nativ.tithi, nativ.tithiName.c_str(),
+         nativ.tithiLord.c_str(), nativ.tithiGod.c_str(),
+         nativ.tithiResult.c_str());
 
   auto tupleNaksh = find_naksh(nativ);
   nativ.naksh = get<0>(tupleNaksh);
   nativ.nakshName = get<1>(tupleNaksh);
   nativ.nakshLord = get<2>(tupleNaksh);
   nativ.nakshGod = get<3>(tupleNaksh);
-  printf("Накшатра. Воздух – вожжи колесницы\t%0.2f\t%s\t%s\t%s\n", nativ.naksh,
-         nativ.nakshName.c_str(), nativ.nakshLord.c_str(),
-         nativ.nakshGod.c_str());
+  printf("Накш\t%0.2f\t%s\t%s\t%s\n", nativ.naksh, nativ.nakshName.c_str(),
+         nativ.nakshLord.c_str(), nativ.nakshGod.c_str());
   cout << endl;
 
   //  what_karana();
@@ -115,6 +115,79 @@ tuple<double, string, string, string, string> nativ::findTithi(nativ& nativ) {
       break;
     case 18:
       tuple = {tithi, "Двития", "Ch", "Брахма", "Благоприятные"};
+      break;
+    case 4:
+      tuple = {tithi, "Чатурти", "Bu", "Ганеша", "Зло, Проклятие"};
+      break;
+    case 19:
+      tuple = {tithi, "Чатурти", "Bu", "Ганеша", "Зло, Проклятие"};
+      break;
+    case 5:
+      tuple = {tithi, "Панчами", "Gu", "Нага", "Богатство, Процветание"};
+      break;
+    case 20:
+      tuple = {tithi, "Панчами", "Gu", "Нага", "Богатство, Процветание"};
+      break;
+    case 6:
+      tuple = {tithi, "Шашти", "Sk", "Картикея", "Слава"};
+      break;
+    case 21:
+      tuple = {tithi, "Шашти", "Sk", "Картикея", "Слава"};
+      break;
+    case 7:
+      tuple = {tithi, "Саптами", "Sa", "Сурья", "Друг, покровитель"};
+      break;
+    case 22:
+      tuple = {tithi, "Саптами", "Sa", "Сурья", "Друг, покровитель"};
+      break;
+    case 8:
+      tuple = {tithi, "Аштами", "Ra", "Шива(Махеша)", "Враждебность, Конфликт"};
+      break;
+    case 23:
+      tuple = {tithi, "Аштами", "Ra", "Шива(Махеша)", "Враждебность, Конфликт"};
+      break;
+    case 9:
+      tuple = {tithi, "Навами", "Su", "Дурга", "Аргессивные"};
+      break;
+    case 24:
+      tuple = {tithi, "Навами", "Su", "Дурга", "Аргессивные"};
+      break;
+    case 10:
+      tuple = {tithi, "Дашами", "Ch", "Яма", "Мягкие"};
+      break;
+    case 25:
+      tuple = {tithi, "Дашами", "Ch", "Яма", "Мягкие"};
+      break;
+    case 11:
+      tuple = {tithi, "Экадаши", "Ma", "Вишвадевы", "Радость, Счастье"};
+      break;
+    case 26:
+      tuple = {tithi, "Экадаши", "Ma", "Вишвадевы", "Радость, Счастье"};
+      break;
+    case 12:
+      tuple = {tithi, "Двадаши", "Bu", "Вишну", "Слава"};
+      break;
+    case 27:
+      tuple = {tithi, "Двадаши", "Bu", "Вишну", "Слава"};
+      break;
+    case 13:
+      tuple = {tithi, "Трайодаши", "Gu", "Камадев", "Победные"};
+      break;
+    case 28:
+      tuple = {tithi, "Трайодаши", "Gu", "Камадев", "Победные"};
+      break;
+    case 14:
+      tuple = {tithi, "Чатурдаши", "Sk", "Шива", "Агрессивные"};
+      break;
+    case 29:
+      tuple = {tithi, "Чатурдаши", "Sk", "Шива", "Агрессивные"};
+      break;
+    case 15:
+      tuple = {tithi, "Пурнима", "Sa", "Сома (Чандра)", "Мягкие"};
+      break;
+    case 30:
+      tuple = {tithi, "Амавасья", "Ra", "Питри (Саптариши)",
+               "Неблагоприятные, Злые"};
       break;
   }
   return tuple;
