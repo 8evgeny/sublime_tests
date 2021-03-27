@@ -23,7 +23,8 @@ nativ::nativ(string nam) {
   printAll(*this);
   panchang(*this);
 
-  //  auto ss = findStartTithi(*this);
+  auto ss = findStartTithi(*this);
+
   //  cout << endl << "Start_Date: " << ss.first << endl;
   //  cout << "Start_Time: " << ss.second << endl;
 

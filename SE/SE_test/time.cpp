@@ -48,21 +48,11 @@ chrono::system_clock::time_point nativ::fromStringToCrono(string date,
   // string(sscanf)->tm(mktime)->time_t(from_time_t)->chrono
 
   struct tm step1 = fromStringToTm(date, ttime);
-  struct tm* pt = &step1;
-  cout << "fromStringToCrono_step1.tm_wday--" << step1.tm_wday << endl;
 
-  //  time_t step2;
-  //  time(&step2);
-
-  const char* weekday[] = {"Sunday",   "Monday", "Tuesday", "Wednesday",
-                           "Thursday", "Friday", "Saturday"};
-
-  auto tt = mktime(pt);
-
-  printf("That day is a %s.\n", weekday[pt->tm_wday]);
+  time_t t = mktime(&step1);
 
   chrono::system_clock::time_point result =
-      chrono::system_clock::from_time_t(tt);
+      chrono::system_clock::from_time_t(t);
   return result;
 }
 

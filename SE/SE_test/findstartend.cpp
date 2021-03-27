@@ -4,6 +4,7 @@
 pair<string, string> nativ::findStartTithi(nativ& nativ) {
   //сохраняем
   auto res = nativ.chronoBighDateTime;
+
   // chrono(to_time_t)->time_t(*gmtime,*localtime)->tm(strftime)->string
   // string(sscanf)->tm(mktime)->time_t(from_time_t)->chrono
 
@@ -23,12 +24,12 @@ pair<string, string> nativ::findStartTithi(nativ& nativ) {
   cout << "delta-" << delta << endl;
 
   //  while (delta > 12.0) {
-  for (int i = 0; i < 10; ++i) {
+  for (int i = 0; i < 1; ++i) {
     ++aa;
 
-    nativ.chronoBighDateTime -= one_day;  //шаг
-    auto datetime = fromCronoToString(nativ.chronoBighDateTime);
-    nativ.b_time = fromCronoToTm(nativ.chronoBighDateTime);
+    tpoint -= one_day;  //шаг
+    auto datetime = fromCronoToString(tpoint);
+    nativ.b_time = fromCronoToTm(tpoint);
     nativ.bday = datetime.first;
     nativ.btime = datetime.second;
     calc();
@@ -44,6 +45,7 @@ pair<string, string> nativ::findStartTithi(nativ& nativ) {
   //восстанавливаем
   cout << "restored" << endl;
   nativ.chronoBighDateTime = res;
+
   auto datetimeold = fromCronoToString(nativ.chronoBighDateTime);
   nativ.b_time = fromCronoToTm(nativ.chronoBighDateTime);
   nativ.bday = datetimeold.first;
