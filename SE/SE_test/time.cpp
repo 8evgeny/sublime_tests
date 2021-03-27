@@ -49,20 +49,20 @@ chrono::system_clock::time_point nativ::fromStringToCrono(string date,
 
   struct tm step1 = fromStringToTm(date, ttime);
   struct tm* pt = &step1;
+  cout << "fromStringToCrono_step1.tm_wday--" << step1.tm_wday << endl;
 
-  time_t step2;
-  time(&step2);
+  //  time_t step2;
+  //  time(&step2);
 
   const char* weekday[] = {"Sunday",   "Monday", "Tuesday", "Wednesday",
                            "Thursday", "Friday", "Saturday"};
 
-  pt = gmtime(&step2);
-  mktime(pt);
+  auto tt = mktime(pt);
 
-  //  printf("That day is a %s.\n", weekday[pt->tm_wday]);
+  printf("That day is a %s.\n", weekday[pt->tm_wday]);
 
   chrono::system_clock::time_point result =
-      chrono::system_clock::from_time_t(step2);
+      chrono::system_clock::from_time_t(tt);
   return result;
 }
 
@@ -103,8 +103,15 @@ tm nativ::fromStringToTm(string dd, string tt) {
   time_t result = mktime(&dt);
   //  cout << ctime(&result) << endl;
   string res = ctime(&result);
-  //  varaName = res.erase(3);
-
+  string nameVara = res.erase(3);
+  //  cout << "fromStringToTm_nameVara: " << nameVara << endl;
+  if (nameVara == "Mon") dt.tm_wday = 1;
+  if (nameVara == "Thu") dt.tm_wday = 2;
+  if (nameVara == "Wed") dt.tm_wday = 3;
+  if (nameVara == "Thu") dt.tm_wday = 4;
+  if (nameVara == "Fri") dt.tm_wday = 5;
+  if (nameVara == "Sut") dt.tm_wday = 6;
+  if (nameVara == "San") dt.tm_wday = 0;
   return dt;
 }
 

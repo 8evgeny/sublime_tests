@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-  //  nativ curr_Time;
+  nativ curr_Time;
   nativ my("Evgeny");
   nativ t("Tanya");
   //  nativ d1("Stasya");

@@ -18,7 +18,7 @@ void nativ::printAll(nativ& nativ) {
 }
 
 tuple<string, int, string> nativ::findVarafromTm(struct tm& b_time) {
-  cout << "b_time.tm_wday: " << b_time.tm_wday << endl;
+  cout << "findVarafromTm_b_time.tm_wday: " << b_time.tm_wday << endl;
   tuple<string, int, string> tuple;
   switch (b_time.tm_wday) {
     case 1: {

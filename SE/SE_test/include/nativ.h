@@ -52,7 +52,6 @@ class nativ {
   int print_line(int mode, AS_BOOL is_first, int sid_mode);
 
   //  string findVaraString(string, string);
-  //  pair<string, int> findVarafromTm(struct tm&);
   tuple<string, int, string> findVarafromTm(struct tm&);
   tuple<double, string, string, string, string> findTithi(nativ&);
   pair<string, string> findStartTithi(nativ&);
