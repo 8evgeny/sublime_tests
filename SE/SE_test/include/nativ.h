@@ -51,7 +51,8 @@ class nativ {
   int calc();
   int print_line(int mode, AS_BOOL is_first, int sid_mode);
 
-  string find_vara(string, string);
+  string findVaraString(string, string);
+  pair<string, int> findVarafromTm(struct tm&);
   float find_tithi();
   pair<string, string> findStartTithi();
   pair<string, string> findEndTithi();
@@ -60,8 +61,11 @@ class nativ {
   float find_yoga();
   void panchang();
   struct tm fromStringToTm(string, string);
-  pair<string, string> fromTimeToString();
+  string fromStringToVaraLord(string);
+  pair<string, string> fromTmToString(struct tm&);
   chrono::system_clock::time_point fromStringToCrono(string, string);
+  pair<string, string> fromCronoToString(chrono::system_clock::time_point);
+  struct tm fromCronoToTm(chrono::system_clock::time_point);
   string path;
   string name;
   string bday;

@@ -1,16 +1,23 @@
 #include "main.h"
 #include "nativ.h"
 
-string nativ::find_vara(string date, string time) {
-  time_t result = 0;
+string nativ::findVaraString(string date, string time) {
+  //  time_t result = 0;
 
-  b_time = fromStringToTm(date, time);
+  //  b_time = fromStringToTm(date, time);
 
-  result = mktime(&b_time);
-  //  cout << ctime(&result) << endl;
-  string res = ctime(&result);
-  res.erase(3);
-  return res;
+  //  //  cout << b_time.tm_year + 1900 << endl;
+  //  //  cout << b_time.tm_mon + 1 << endl;
+  //  //  cout << b_time.tm_mday << endl;
+  //  //  cout << b_time.tm_hour << endl;
+  //  //  cout << b_time.tm_min << endl;
+  //  //  cout << b_time.tm_sec << endl;
+  //  //  cout << b_time.tm_wday << endl;
+  //  result = mktime(&b_time);
+  //  //  cout << ctime(&result) << endl;
+  //  string res = ctime(&result);
+  //  res.erase(3);
+  //  return res;
 }
 
 void nativ::printAll() {
@@ -27,39 +34,83 @@ void nativ::printAll() {
   cout << "Sa-" << this->sa.lon << "\t " << this->sa.speed << endl;
   cout << "Ra-" << this->ra.lon << "\t " << this->ra.speed << endl;
   cout << "Ke-" << this->ke.lon << "\t " << this->ke.speed << endl;
-  cout << endl;
+}
+
+string nativ::fromStringToVaraLord(string varaName) {
+  string res;
+  if (varaName == "Sun") {
+    res = "Su";
+  }
+  if (varaName == "Mon") {
+    res = "Ch";
+  }
+  if (varaName == "Tue") {
+    res = "Ma";
+  }
+  if (varaName == "Wed") {
+    res = "Bu";
+  }
+  if (varaName == "Thu") {
+    res = "Gu";
+  }
+  if (varaName == "Fri") {
+    res = "Sk";
+  }
+  if (varaName == "Sat") {
+    res = "Sa";
+  }
+
+  return res;
+}
+
+pair<string, int> nativ::findVarafromTm(struct tm& b_time) {
+  pair<string, int> pair;
+  switch (b_time.tm_wday) {
+    case 1: {
+      pair.first = "Ch";
+      pair.second = 2;
+      break;
+    }
+    case 2: {
+      pair.first = "Ma";
+      pair.second = 3;
+      break;
+    }
+    case 3: {
+      pair.first = "Bu";
+      pair.second = 4;
+      break;
+    }
+    case 4: {
+      pair.first = "Gu";
+      pair.second = 5;
+      break;
+    }
+    case 5: {
+      pair.first = "Sk";
+      pair.second = 6;
+      break;
+    }
+    case 6: {
+      pair.first = "Sa";
+      pair.second = 7;
+      break;
+    }
+    case 0: {
+      pair.first = "Su";
+      pair.second = 1;
+      break;
+    }
+  }
+  return pair;
 }
 
 void nativ::panchang() {
-  varaName = find_vara(bday, btime);
-  if (varaName == "Sun") {
-    vara = 1;
-    varaLord = "Su";
-  }
-  if (varaName == "Mon") {
-    vara = 2;
-    varaLord = "Ch";
-  }
-  if (varaName == "Tue") {
-    vara = 3;
-    varaLord = "Ma";
-  }
-  if (varaName == "Wed") {
-    vara = 4;
-    varaLord = "Bu";
-  }
-  if (varaName == "Thu") {
-    vara = 5;
-    varaLord = "Gu";
-  }
-  if (varaName == "Fri") {
-    vara = 6;
-    varaLord = "Sk";
-  }
-  if (varaName == "Sat") {
-    vara = 7;
-    varaLord = "Sa";
-  }
+  auto pair = findVarafromTm(b_time);
+  varaName = pair.first;
+  vara = pair.second;
+  varaLord = fromStringToVaraLord(varaName);
+
   cout << "Вара\t" << vara << "\t" << varaName << "\t" << varaLord << endl;
   tithi = find_tithi();
   printf("Титхи\t%0.2f\n", tithi);
@@ -80,7 +131,7 @@ void nativ::panchang() {
       nakshName = "Рохини";
       break;
     case 5:
-      nakshName = "Мригаширша";
+      nakshName = "Мригашира";
       break;
     case 6:
       nakshName = "Ардра";

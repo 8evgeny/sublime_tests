@@ -17,7 +17,7 @@ nativ::nativ(string nam) {
   city = vm[nam + ".city"].as<string>();
 
   chronoBighDateTime = fromStringToCrono(bday, btime);
-
+  b_time = fromCronoToTm(chronoBighDateTime);
   calc();
 
   printAll();
@@ -27,7 +27,8 @@ nativ::nativ(string nam) {
   cout << endl << "Start_Date: " << ss.first << endl;
   cout << "Start_Time: " << ss.second << endl;
 
-  cout << fromTimeToString().first << " " << fromTimeToString().second << endl;
+  cout << fromTmToString(b_time).first << " " << fromTmToString(b_time).second
+       << endl;
 };
 
 nativ::nativ() {
@@ -44,7 +45,7 @@ nativ::nativ() {
   city = vm["common.city"].as<std::string>();
 
   chronoBighDateTime = fromStringToCrono(bday, btime);
-
+  b_time = fromCronoToTm(chronoBighDateTime);
   calc();
 
   printAll();
@@ -53,7 +54,8 @@ nativ::nativ() {
   auto ss = findStartTithi();
   cout << endl << "Start_Date: " << ss.first << endl;
   cout << "Start_Time: " << ss.second << endl;
-  cout << fromTimeToString().first << " " << fromTimeToString().second << endl;
+  cout << fromTmToString(b_time).first << " " << fromTmToString(b_time).second
+       << endl;
 };
 
 void nativ::readConfig(const char* conf_file,

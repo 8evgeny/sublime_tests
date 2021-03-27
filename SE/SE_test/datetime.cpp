@@ -1,19 +1,20 @@
+#include <time.h>
+
 #include "main.h"
 #include "nativ.h"
-
 pair<string, string> nativ::dateTimeNowInString() {
   string datenow, timenow;
 
   chrono::duration<int, ratio<60 * 60 * 24> > one_day(1);
   chrono::duration<int, ratio<60> > one_minut(1);
+  chrono::duration<int, ratio<1> > one_second(1);
   chrono::system_clock::time_point today =
-      chrono::system_clock::now(); /*-one_minut * 180;  // минус 3 часа
-                                    ****!!!*/
+      chrono::system_clock::now() + one_day * 0;
 
-  chrono::system_clock::time_point tomorrow = today + one_day;  // !!!
+  chrono::system_clock::time_point tomorrow = today + one_day * 1;  // !!!
 
   // chrono(to_time_t)->time_t(*gmtime,*localtime)->tm(strftime)->string
-  // string(sscanf)->tm->time_t->chrono
+  // string(sscanf)->tm(mktime)->time_t(from_time_t)->chrono
 
   std::time_t tt, tt_tom;
   tt = chrono::system_clock::to_time_t(today);
@@ -43,15 +44,74 @@ pair<string, string> nativ::dateTimeNowInString() {
 }
 
 chrono::system_clock::time_point nativ::fromStringToCrono(string date,
-                                                          string time) {
-  chrono::system_clock::time_point result;
-
+                                                          string ttime) {
   // chrono(to_time_t)->time_t(*gmtime,*localtime)->tm(strftime)->string
-  // string(sscanf)->tm->time_t->chrono
+  // string(sscanf)->tm(mktime)->time_t(from_time_t)->chrono
 
-  //
-  //
-  //
+  struct tm step1 = fromStringToTm(date, ttime);
+  struct tm* pt = &step1;
+  //  time_t step2;
+  //  time(&step2);
+  //  struct tm* timeinfo;
+
+  time_t step2;
+  time(&step2);
+
+  const char* weekday[] = {"Sunday",   "Monday", "Tuesday", "Wednesday",
+                           "Thursday", "Friday", "Saturday"};
+
+  pt = gmtime(&step2);
+  mktime(pt);
+
+  printf("That day is a %s.\n", weekday[pt->tm_wday]);
+
+  //  cout << "step2-" << ctime(&rawtime) << endl;
+  chrono::system_clock::time_point result =
+      chrono::system_clock::from_time_t(step2);
+  return result;
+}
+
+pair<string, string> nativ::fromCronoToString(
+    chrono::system_clock::time_point tpoint) {
+  // chrono(to_time_t)->time_t(*gmtime,*localtime)->tm(strftime)->string
+  // string(sscanf)->tm(mktime)->time_t(from_time_t)->chrono
+  auto step2 = fromCronoToTm(tpoint);
+
+  //  time_t step1 = chrono::system_clock::to_time_t(tpoint);
+  //  //  cout << "step1-" << ctime(&step1) << endl;
+  //  struct tm step2;
+  //  step2 = *gmtime(&step1);
+
+  char date[80];
+  char time[80];
+  strftime(date, sizeof(date), "%d-%m-%Y", &step2);
+  strftime(time, sizeof(time), "%X", &step2);
+
+  //  cout << "fromCronoToString" << endl;
+  //  cout << step2.tm_year + 1900 << endl;
+  //  cout << step2.tm_mon + 1 << endl;
+  //  cout << step2.tm_mday << endl;
+  //  cout << step2.tm_hour << endl;
+  //  cout << step2.tm_min << endl;
+  //  cout << step2.tm_sec << endl;
+  //  cout << step2.tm_wday << endl;
+
+  return make_pair(date, time);
+}
+
+struct tm nativ::fromCronoToTm(chrono::system_clock::time_point tpoint) {
+  time_t step1 = chrono::system_clock::to_time_t(tpoint);
+  tm result = *gmtime(&step1);
+  //  cout << "fromCronoToTm" << endl;
+  //  cout << result.tm_year + 1900 << endl;
+  //  cout << result.tm_mon + 1 << endl;
+  //  cout << result.tm_mday << endl;
+  //  cout << result.tm_hour << endl;
+  //  cout << result.tm_min << endl;
+  //  cout << result.tm_sec << endl;
+  //  cout << result.tm_wday << endl;
+  //  vara = result.tm_wday;
+
   return result;
 }
 
@@ -66,10 +126,16 @@ struct tm nativ::fromStringToTm(string dd, string tt) {
   dt.tm_hour = hour;
   dt.tm_min = min;
   dt.tm_sec = sec;
+
+  time_t result = mktime(&dt);
+  //  cout << ctime(&result) << endl;
+  string res = ctime(&result);
+  varaName = res.erase(3);
+
   return dt;
 }
 
-pair<string, string> nativ::fromTimeToString() {
+pair<string, string> nativ::fromTmToString(tm& b_time) {
   //  string date, time;
   char date[11];
   char time[9];
@@ -87,49 +153,52 @@ pair<string, string> nativ::fromTimeToString() {
 
 pair<string, string> nativ::findStartTithi() {
   //сохраняем
-  tm res = b_time;
-  string bday_res = bday;
-  string btime_res = btime;
+  auto res = chronoBighDateTime;
+  // chrono(to_time_t)->time_t(*gmtime,*localtime)->tm(strftime)->string
+  // string(sscanf)->tm(mktime)->time_t(from_time_t)->chrono
 
-  string datenow, timenow;
+  //  string datenow, timenow;
   chrono::duration<int, ratio<60 * 60 * 24> > one_day(1);
   chrono::duration<int, ratio<60> > one_minut(1);
-  chrono::system_clock::time_point today =
-      chrono::system_clock::now(); /*-one_minut * 180;  // минус 3 часа
-                                    ****!!!*/
-
-  chrono::system_clock::time_point tomorrow = today + one_day;  // !!!
+  chrono::system_clock::time_point tpoint = chronoBighDateTime;
 
   //  шагаем  назад;
-  double delta = 2.0;
   int aa = 0;
-  //  while (delta > 1.0) {
-  for (int i = 0; i < 3; ++i) {
+
+  for (int i = 0; i < 10; ++i) {
     ++aa;
-    b_time.tm_mday -= 1;
+
     if (ch.lon < su.lon) {
-      delta = 360.0 + ch.lon - su.lon;
+      double delta = 360.0 + ch.lon - su.lon;
     } else {
-      delta = ch.lon - su.lon;
+      double delta = ch.lon - su.lon;
     }
-    auto datatime = fromTimeToString();
-    bday = datatime.first;
-    btime = datatime.second;
+
+    chronoBighDateTime -= one_day;  //шаг
+    auto datetime = fromCronoToString(chronoBighDateTime);
+    b_time = fromCronoToTm(chronoBighDateTime);
+    bday = datetime.first;
+    btime = datetime.second;
     calc();
+
     printAll();
+
     panchang();
   }
-  //  }
+
   cout << "aa:" << aa << endl;
+
   pair<string, string> result;
   result.first = bday;
   result.second = btime;
 
   //восстанавливаем
   cout << "restored" << endl;
-  b_time = res;
-  bday = bday_res;
-  btime = btime_res;
+  chronoBighDateTime = res;
+  auto datetime = fromCronoToString(chronoBighDateTime);
+  b_time = fromCronoToTm(chronoBighDateTime);
+  bday = datetime.first;
+  btime = datetime.second;
   calc();
   printAll();
   panchang();
