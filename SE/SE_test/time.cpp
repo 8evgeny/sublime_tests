@@ -49,8 +49,11 @@ chrono::system_clock::time_point nativ::fromStringToCrono(string date,
 
   struct tm step1 = fromStringToTm(date, ttime);
 
-  time_t t = mktime(&step1);
+  //  Без этой строчки срабатывает через раз !!!
+  step1.tm_isdst = -1;
 
+  time_t t = mktime(&step1);
+  //  cout << "t: " << t << endl;
   chrono::system_clock::time_point result =
       chrono::system_clock::from_time_t(t);
   return result;
@@ -73,8 +76,8 @@ pair<string, string> nativ::fromCronoToString(
 
 tm nativ::fromCronoToTm(chrono::system_clock::time_point tpoint) {
   time_t step1 = chrono::system_clock::to_time_t(tpoint);
-  tm result = *gmtime(&step1);
-
+  tm result = *localtime(&step1);
+  //Для Стаси убирает 1 час - !!!!
   return result;
 }
 

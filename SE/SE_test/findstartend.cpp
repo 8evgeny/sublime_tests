@@ -24,10 +24,10 @@ pair<string, string> nativ::findStartTithi(nativ& nativ) {
   cout << "delta-" << delta << endl;
 
   //  while (delta > 12.0) {
-  for (int i = 0; i < 1; ++i) {
+  for (int i = 0; i < 8; ++i) {
     ++aa;
-
-    tpoint -= one_day;  //шаг
+    cout << "step" << aa << endl;
+    tpoint -= one_minut;  //шаг
     auto datetime = fromCronoToString(tpoint);
     nativ.b_time = fromCronoToTm(tpoint);
     nativ.bday = datetime.first;
