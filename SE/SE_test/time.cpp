@@ -59,7 +59,7 @@ chrono::system_clock::time_point nativ::fromStringToCrono(string date,
   pt = gmtime(&step2);
   mktime(pt);
 
-  printf("That day is a %s.\n", weekday[pt->tm_wday]);
+  //  printf("That day is a %s.\n", weekday[pt->tm_wday]);
 
   chrono::system_clock::time_point result =
       chrono::system_clock::from_time_t(step2);

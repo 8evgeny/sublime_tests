@@ -20,15 +20,16 @@ nativ::nativ(string nam) {
   b_time = fromCronoToTm(chronoBighDateTime);
   calc();
 
-  printAll();
-  panchang();
+  printAll(*this);
+  panchang(*this);
 
-  auto ss = findStartTithi();
-  cout << endl << "Start_Date: " << ss.first << endl;
-  cout << "Start_Time: " << ss.second << endl;
+  //  auto ss = findStartTithi(*this);
+  //  cout << endl << "Start_Date: " << ss.first << endl;
+  //  cout << "Start_Time: " << ss.second << endl;
 
-  cout << fromTmToString(b_time).first << " " << fromTmToString(b_time).second
-       << endl;
+  //  cout << fromTmToString(b_time).first << " " <<
+  //  fromTmToString(b_time).second
+  //       << endl;
 };
 
 nativ::nativ() {
@@ -48,14 +49,15 @@ nativ::nativ() {
   b_time = fromCronoToTm(chronoBighDateTime);
   calc();
 
-  printAll();
-  panchang();
+  printAll(*this);
+  panchang(*this);
 
-  auto ss = findStartTithi();
-  cout << endl << "Start_Date: " << ss.first << endl;
-  cout << "Start_Time: " << ss.second << endl;
-  cout << fromTmToString(b_time).first << " " << fromTmToString(b_time).second
-       << endl;
+  //  auto ss = findStartTithi(*this);
+  //  cout << endl << "Start_Date: " << ss.first << endl;
+  //  cout << "Start_Time: " << ss.second << endl;
+  //  cout << fromTmToString(b_time).first << " " <<
+  //  fromTmToString(b_time).second
+  //       << endl;
 };
 
 void nativ::readConfig(const char* conf_file,

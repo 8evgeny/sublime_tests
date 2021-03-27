@@ -20,206 +20,182 @@
 //  return res;
 //}
 
-void nativ::printAll() {
-  cout << "\r" << this->name << ":  " << this->bday << ", " << this->btime
+void nativ::printAll(nativ& nativ) {
+  cout << "\r" << nativ.name << ":  " << nativ.bday << ", " << nativ.btime
        << endl;
-  cout << this->city << ", " << this->lon << ", " << this->lat << endl;
-  cout << "As-" << this->as.lon << "\t " << this->as.lon << endl;
-  cout << "Su-" << this->su.lon << "\t " << this->su.speed << endl;
-  cout << "Ch-" << this->ch.lon << "\t " << this->ch.speed << endl;
-  cout << "Ma-" << this->ma.lon << "\t " << this->ma.speed << endl;
-  cout << "Bu-" << this->bu.lon << "\t " << this->bu.speed << endl;
-  cout << "Gu-" << this->gu.lon << "\t " << this->gu.speed << endl;
-  cout << "Sk-" << this->sk.lon << "\t " << this->sk.speed << endl;
-  cout << "Sa-" << this->sa.lon << "\t " << this->sa.speed << endl;
-  cout << "Ra-" << this->ra.lon << "\t " << this->ra.speed << endl;
-  cout << "Ke-" << this->ke.lon << "\t " << this->ke.speed << endl;
+  cout << nativ.city << ", " << nativ.lon << ", " << nativ.lat << endl;
+  cout << "As-" << nativ.as.lon << "\t " << nativ.as.lon << endl;
+  cout << "Su-" << nativ.su.lon << "\t " << nativ.su.speed << endl;
+  cout << "Ch-" << nativ.ch.lon << "\t " << nativ.ch.speed << endl;
+  cout << "Ma-" << nativ.ma.lon << "\t " << nativ.ma.speed << endl;
+  cout << "Bu-" << nativ.bu.lon << "\t " << nativ.bu.speed << endl;
+  cout << "Gu-" << nativ.gu.lon << "\t " << nativ.gu.speed << endl;
+  cout << "Sk-" << nativ.sk.lon << "\t " << nativ.sk.speed << endl;
+  cout << "Sa-" << nativ.sa.lon << "\t " << nativ.sa.speed << endl;
+  cout << "Ra-" << nativ.ra.lon << "\t " << nativ.ra.speed << endl;
+  cout << "Ke-" << nativ.ke.lon << "\t " << nativ.ke.speed << endl;
 }
 
-string nativ::fromStringToVaraLord(string varaName) {
-  string res;
-  if (varaName == "Sun") {
-    res = "Su";
-  }
-  if (varaName == "Mon") {
-    res = "Ch";
-  }
-  if (varaName == "Tue") {
-    res = "Ma";
-  }
-  if (varaName == "Wed") {
-    res = "Bu";
-  }
-  if (varaName == "Thu") {
-    res = "Gu";
-  }
-  if (varaName == "Fri") {
-    res = "Sk";
-  }
-  if (varaName == "Sat") {
-    res = "Sa";
-  }
-
-  return res;
-}
-
-pair<string, int> nativ::findVarafromTm(struct tm& b_time) {
-  pair<string, int> pair;
+tuple<string, int, string> nativ::findVarafromTm(struct tm& b_time) {
+  tuple<string, int, string> tuple;
   switch (b_time.tm_wday) {
     case 1: {
-      pair.first = "Ch";
-      pair.second = 2;
+      tuple = {"Понедельник", 2, "Ch"};
       break;
     }
     case 2: {
-      pair.first = "Ma";
-      pair.second = 3;
+      tuple = {"Вторник", 3, "Ma"};
       break;
     }
     case 3: {
-      pair.first = "Bu";
-      pair.second = 4;
+      tuple = {"Среда", 4, "Bu"};
       break;
     }
     case 4: {
-      pair.first = "Gu";
-      pair.second = 5;
+      tuple = {"Четверг", 5, "Gu"};
       break;
     }
     case 5: {
-      pair.first = "Sk";
-      pair.second = 6;
+      tuple = {"Пятница", 6, "Sk"};
       break;
     }
     case 6: {
-      pair.first = "Sa";
-      pair.second = 7;
+      tuple = {"Суббота", 7, "Sa"};
+
       break;
     }
     case 0: {
-      pair.first = "Su";
-      pair.second = 1;
+      tuple = {"Воскресенье", 3, "Su"};
       break;
     }
   }
-  return pair;
+  return tuple;
 }
 
-void nativ::panchang() {
-  auto pair = findVarafromTm(b_time);
-  varaName = pair.first;
-  vara = pair.second;
-  varaLord = fromStringToVaraLord(varaName);
+void nativ::panchang(nativ& nativ) {
+  auto tupleVara = findVarafromTm(nativ.b_time);
+  nativ.varaName = get<0>(tupleVara);
+  nativ.vara = get<1>(tupleVara);
+  nativ.varaLord = get<2>(tupleVara);
 
-  cout << "Вара\t" << vara << "\t" << varaName << "\t" << varaLord << endl;
-  tithi = find_tithi();
-  printf("Титхи\t%0.2f\n", tithi);
+  cout << "Вара\t" << nativ.vara << "\t" << nativ.varaName << "  \t"
+       << nativ.varaLord << endl;
 
-  naksh = find_naksh();
+  nativ.tithi = find_tithi(nativ);
+  printf("Титхи\t%0.2f\n", nativ.tithi);
 
-  switch ((int)naksh + 1) {
-    case 1:
-      nakshName = "Ашвини";
-      break;
-    case 2:
-      nakshName = "Бхарани";
-      break;
-    case 3:
-      nakshName = "Криттика";
-      break;
-    case 4:
-      nakshName = "Рохини";
-      break;
-    case 5:
-      nakshName = "Мригашира";
-      break;
-    case 6:
-      nakshName = "Ардра";
-      break;
-    case 7:
-      nakshName = "Пунарвасу";
-      break;
-    case 8:
-      nakshName = "Пушья";
-      break;
-    case 9:
-      nakshName = "Ашлеша";
-      break;
-    case 10:
-      nakshName = "Магха";
-      break;
-    case 11:
-      nakshName = "П.Пхалгуни";
-      break;
-    case 12:
-      nakshName = "У.Пхалгуни";
-      break;
-    case 13:
-      nakshName = "Хаста";
-      break;
-    case 14:
-      nakshName = "Читра";
-      break;
-    case 15:
-      nakshName = "Свати";
-      break;
-    case 16:
-      nakshName = "Вишакха";
-      break;
-    case 17:
-      nakshName = "Анурадха";
-      break;
-    case 18:
-      nakshName = "Джйешттха";
-      break;
-    case 19:
-      nakshName = "Мула";
-      break;
-    case 20:
-      nakshName = "П.Ашадха";
-      break;
-    case 21:
-      nakshName = "У.Ашадха";
-      break;
-    case 22:
-      nakshName = "Шравана";
-      break;
-    case 23:
-      nakshName = "Дхаништха";
-      break;
-    case 24:
-      nakshName = "Шатабхиша";
-      break;
-    case 25:
-      nakshName = "П.Бхадрапада";
-      break;
-    case 26:
-      nakshName = "У.Бхадрапада";
-      break;
-    case 27:
-      nakshName = "Ревати";
-      break;
-  }
-  printf("Накшат\t%0.2f\t%s\n\n", naksh, nakshName.c_str());
+  auto tupleNaksh = find_naksh(nativ);
+  nativ.naksh = get<0>(tupleNaksh);
+  nativ.nakshName = get<1>(tupleNaksh);
+  nativ.nakshLord = get<2>(tupleNaksh);
+  nativ.nakshGod = get<3>(tupleNaksh);
+  printf("Накшат\t%0.2f\t%s\t%s\t%s\n", nativ.naksh, nativ.nakshName.c_str(),
+         nativ.nakshLord.c_str(), nativ.nakshGod.c_str());
+  cout << endl;
 
   //  what_karana();
   //  what_yoga();
 }
 
-float nativ::find_tithi() {
+float nativ::find_tithi(nativ& nativ) {
   double delta;
-  if (ch.lon < su.lon) {
-    delta = 360.0 + ch.lon - su.lon;
+  if (nativ.ch.lon < nativ.su.lon) {
+    delta = 360.0 + nativ.ch.lon - nativ.su.lon;
   } else {
-    delta = ch.lon - su.lon;
+    delta = nativ.ch.lon - nativ.su.lon;
   }
   double tithi = delta / 12;
   return tithi;
 }
 
-float nativ::find_naksh() {
-  double naksh = ch.lon / 13.33333;
-  return naksh;
+tuple<double, string, string, string> nativ::find_naksh(nativ& nativ) {
+  tuple<double, string, string, string> tuple;
+  double naksh = nativ.ch.lon / 13.33333;
+  switch ((int)naksh + 1) {
+    case 1:
+      tuple = {naksh, "Ашвини", "Ke", "Ашвини Кумары"};
+      break;
+    case 2:
+      tuple = {naksh, "Бхарани", "Sk", "Яма"};
+      break;
+    case 3:
+      tuple = {naksh, "Криттика", "Su", "Агни"};
+      break;
+    case 4:
+      tuple = {naksh, "Рохини   ", "Ch", "Брахма"};
+      break;
+    case 5:
+      tuple = {naksh, "Мригашира", "Ma", "Сома, Бог Луны"};
+      break;
+    case 6:
+      tuple = {naksh, "Ардра     ", "Ra", "Рудра-воплощение Шивы"};
+      break;
+    case 7:
+      tuple = {naksh, "Пунарвасу", "Gu", "Адити, богиня Вечности"};
+      break;
+    case 8:
+      tuple = {naksh, "Пушья     ", "Sa", " Брихаспати"};
+      break;
+    case 9:
+      tuple = {naksh, "Ашлеша    ", "Bu", "Наги"};
+      break;
+    case 10:
+      tuple = {naksh, "Магха     ", "Ke", " Питри-предки"};
+      break;
+    case 11:
+      tuple = {naksh, "П.Пхалгуни", "Sk", "Бхага-Ведический Бог Удачи"};
+      break;
+    case 12:
+      tuple = {naksh, "У.Пхалгуни", "Su", "Арьяман"};
+      break;
+    case 13:
+      tuple = {naksh, "Хаста      ", "Ch", "Савитур, Бог Солнца"};
+      break;
+    case 14:
+      tuple = {naksh, "Читра       ", "Ma", " Тваштар-Небесный Архитектор"};
+      break;
+    case 15:
+      tuple = {naksh, "Свати        ", "Ra",
+               " Вайю, Бог Ветра и Дыхание Жизни"};
+      break;
+    case 16:
+      tuple = {naksh, "Вишакха    ", "Gu", "Агни-Бог Огня и Индра-Бог Богов"};
+      break;
+    case 17:
+      tuple = {naksh, "Анурадха   ", "Sa", "Митра, Бог Света"};
+      break;
+    case 18:
+      tuple = {naksh, "Джйештха  ", "Bu", "Индра, Бог Богов"};
+      break;
+    case 19:
+      tuple = {naksh, "Мула", "Ke", "Ниритти"};
+      break;
+    case 20:
+      tuple = {naksh, "П.Ашадха", "Sk", " Апас, Бог Воды"};
+      break;
+    case 21:
+      tuple = {naksh, "У.Ашадха", "Su", "Вишвадэваты-Боги Вселенной"};
+      break;
+    case 22:
+      tuple = {naksh, "Шравана", "Ch", "Вишну-Хранитель Вселенной"};
+      break;
+    case 23:
+      tuple = {naksh, "Дхаништха", "Ma", "Восемь Васу"};
+      break;
+    case 24:
+      tuple = {naksh, "Шатабхиша", "Ra", "Варуна, Бог морей"};
+      break;
+    case 25:
+      tuple = {naksh, "П.Бхадрапада", "Gu", "Айя Экапада-Одноногий козел"};
+      break;
+    case 26:
+      tuple = {naksh, "У.Бхадрапада", "Sa", " Ахир Будхния"};
+      break;
+    case 27:
+      tuple = {naksh, "Ревати", "Bu", "Пушан"};
+      break;
+  }
+  return tuple;
 }
 
 // string nativ::what_karana(){
