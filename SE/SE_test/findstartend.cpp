@@ -15,7 +15,8 @@ pair<string, string> nativ::findStartTithi(nativ& nativ) {
 
   //  шагаем  назад;
   int aa = 0;
-  double delta;
+  double delta = 13;
+  //  while (delta > 12.0) {
   if (nativ.ch.lon < nativ.su.lon) {
     delta = 360.0 + nativ.ch.lon - nativ.su.lon;
   } else {
@@ -23,20 +24,21 @@ pair<string, string> nativ::findStartTithi(nativ& nativ) {
   }
   cout << "delta-" << delta << endl;
 
-  //  while (delta > 12.0) {
-  for (int i = 0; i < 8; ++i) {
-    ++aa;
-    cout << "step" << aa << endl;
-    tpoint -= one_minut;  //шаг
-    auto datetime = fromCronoToString(tpoint);
-    nativ.b_time = fromCronoToTm(tpoint);
-    nativ.bday = datetime.first;
-    nativ.btime = datetime.second;
-    calc();
-    printAll(nativ);
-    panchang(nativ);
-    cout << "aa:" << aa << endl;
-  }
+  ++aa;
+  cout << "step back " << aa << endl;
+
+  tpoint -= (one_minut * 60 * 24 * ((int)nativ.tithi + 1) +
+             one_minut * 45 * (int)nativ.tithi);  //шаг
+  auto datetime = fromCronoToString(tpoint);
+  nativ.b_time = fromCronoToTm(tpoint);
+  nativ.bday = datetime.first;
+  nativ.btime = datetime.second;
+  calc();
+  printAll(nativ);
+  panchang(nativ);
+  delta = nativ.ch.lon - nativ.su.lon;
+  cout << "deltaNew-" << delta << endl;
+  //  }
 
   pair<string, string> result;
   result.first = nativ.bday;

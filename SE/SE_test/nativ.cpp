@@ -54,11 +54,7 @@ nativ::nativ() {
   panchang(*this);
 
   auto ss = findStartTithi(*this);
-  //  cout << endl << "Start_Date: " << ss.first << endl;
-  //  cout << "Start_Time: " << ss.second << endl;
-  //  cout << fromTmToString(b_time).first << " " <<
-  //  fromTmToString(b_time).second
-  //       << endl;
+  cout << "startTithi: " << ss.first << "\t" << ss.second << endl;
 };
 
 void nativ::readConfig(const char* conf_file,
