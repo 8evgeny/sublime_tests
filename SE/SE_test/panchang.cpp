@@ -59,12 +59,22 @@ void nativ::panchangPrint(nativ& nativ) {
   cout << "Вара\t" << nativ.vara << "\t" << nativ.varaName << "  \t"
        << nativ.varaLord << endl;
 
-  printf("Титхи\t%0.2f\t%s\t%s\t%s\t%s\n", nativ.tithi, nativ.tithiName.c_str(),
-         nativ.tithiLord.c_str(), nativ.tithiGod.c_str(),
-         nativ.tithiResult.c_str());
+  //  printf("Титхи\t%0.2f\t%s\t%s\t%s\t%s\n", nativ.tithi,
+  //  nativ.tithiName.c_str(),
+  //         nativ.tithiLord.c_str(), nativ.tithiGod.c_str(),
+  //         nativ.tithiResult.c_str());
+  cout << endl
+       << setprecision(4) << "Титхи " << setw(12) << nativ.tithi << setw(22)
+       << nativ.tithiName << setw(8) << nativ.tithiLord << setw(12)
+       << nativ.tithiGod << setw(40) << nativ.tithiResult << endl;
 
-  printf("Накш\t%0.2f\t%s\t%s\t%s\n", nativ.naksh, nativ.nakshName.c_str(),
-         nativ.nakshLord.c_str(), nativ.nakshGod.c_str());
+  //  printf("Накш\t%0.2f\t%s\t%s\t%s\n", nativ.naksh, nativ.nakshName.c_str(),
+  //         nativ.nakshLord.c_str(), nativ.nakshGod.c_str());
+
+  cout << setprecision(4) << "Накшатра " << setfill('*') << setw(8)
+       << nativ.naksh << setw(23) << nativ.nakshName << setw(5)
+       << nativ.nakshLord << setw(15) << nativ.nakshGod << setw(30) << endl
+       << endl;
 }
 
 void nativ::panchang(nativ& nativ) {

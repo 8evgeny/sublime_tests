@@ -47,7 +47,7 @@ pair<string, string> nativ::findStartTithi(nativ& nativ, int number) {
     }
 
     //    cout << "\r5 min back " << i << endl;
-    tpoint -= one_minut * 10;
+    tpoint -= one_minut * 5;
 
     auto datetime = fromCronoToString(tpoint);
     nativ.b_time = fromCronoToTm(tpoint);

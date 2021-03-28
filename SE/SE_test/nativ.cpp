@@ -20,19 +20,20 @@ nativ::nativ(string nam) {
   b_time = fromCronoToTm(chronoBighDateTime);
   calc();
 
-  printAll(*this);
   panchang(*this);
-  panchangPrint(*this);
 
   //  int moonDay = 1; //Иногда улетает назад
   int moonDaystart = (int)tithi + 1;
   auto start = findStartTithi(*this, moonDaystart);
-  cout << "\r" << moonDaystart << " лунный день начался " << start.first
-       << " в " << start.second << endl;
 
   //  int moonDayend = 17;
   int moonDayend = (int)tithi + 1;
   auto end = findEndTithi(*this, moonDayend);
+
+  printAll(*this);
+  panchangPrint(*this);
+  cout << "\r" << moonDaystart << " лунный день начался " << start.first
+       << " в " << start.second << endl;
   cout << "\r" << moonDayend << " лунный день закончится " << end.first << " в "
        << end.second << endl;
 };
@@ -53,20 +54,20 @@ nativ::nativ() {
   chronoBighDateTime = fromStringToCrono(bday, btime);
   b_time = fromCronoToTm(chronoBighDateTime);
   calc();
-
-  printAll(*this);
   panchang(*this);
-  panchangPrint(*this);
 
   //  int moonDay = 1; //Иногда улетает назад
   int moonDaystart = (int)tithi + 1;
   auto start = findStartTithi(*this, moonDaystart);
-  cout << "\r" << moonDaystart << " лунный день начался " << start.first
-       << " в " << start.second << endl;
 
   //  int moonDayend = 17;
   int moonDayend = (int)tithi + 1;
   auto end = findEndTithi(*this, moonDayend);
+
+  printAll(*this);
+  panchangPrint(*this);
+  cout << "\r" << moonDaystart << " лунный день начался " << start.first
+       << " в " << start.second << endl;
   cout << "\r" << moonDayend << " лунный день закончится " << end.first << " в "
        << end.second << endl;
 };
