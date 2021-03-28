@@ -2,6 +2,7 @@
 #include "nativ.h"
 
 void nativ::printAll(nativ& nativ) {
+  cout << endl;
   cout << "\r" << nativ.name << ":  " << nativ.bday << ", " << nativ.btime
        << endl;
   cout << nativ.city << ", " << nativ.lon << ", " << nativ.lat << endl;
@@ -54,14 +55,23 @@ tuple<string, int, string> nativ::findVarafromTm(struct tm& b_time) {
   return tuple;
 }
 
+void nativ::panchangPrint(nativ& nativ) {
+  cout << "Вара\t" << nativ.vara << "\t" << nativ.varaName << "  \t"
+       << nativ.varaLord << endl;
+
+  printf("Титхи\t%0.2f\t%s\t%s\t%s\t%s\n", nativ.tithi, nativ.tithiName.c_str(),
+         nativ.tithiLord.c_str(), nativ.tithiGod.c_str(),
+         nativ.tithiResult.c_str());
+
+  printf("Накш\t%0.2f\t%s\t%s\t%s\n", nativ.naksh, nativ.nakshName.c_str(),
+         nativ.nakshLord.c_str(), nativ.nakshGod.c_str());
+}
+
 void nativ::panchang(nativ& nativ) {
   auto tupleVara = findVarafromTm(nativ.b_time);
   nativ.varaName = get<0>(tupleVara);
   nativ.vara = get<1>(tupleVara);
   nativ.varaLord = get<2>(tupleVara);
-
-  cout << "Вара\t" << nativ.vara << "\t" << nativ.varaName << "  \t"
-       << nativ.varaLord << endl;
 
   auto tupleTithi = findTithi(nativ);
   nativ.tithi = get<0>(tupleTithi);
@@ -70,18 +80,11 @@ void nativ::panchang(nativ& nativ) {
   nativ.tithiGod = get<3>(tupleTithi);
   nativ.tithiResult = get<4>(tupleTithi);
 
-  printf("Титхи\t%0.2f\t%s\t%s\t%s\t%s\n", nativ.tithi, nativ.tithiName.c_str(),
-         nativ.tithiLord.c_str(), nativ.tithiGod.c_str(),
-         nativ.tithiResult.c_str());
-
   auto tupleNaksh = find_naksh(nativ);
   nativ.naksh = get<0>(tupleNaksh);
   nativ.nakshName = get<1>(tupleNaksh);
   nativ.nakshLord = get<2>(tupleNaksh);
   nativ.nakshGod = get<3>(tupleNaksh);
-  printf("Накш\t%0.2f\t%s\t%s\t%s\n", nativ.naksh, nativ.nakshName.c_str(),
-         nativ.nakshLord.c_str(), nativ.nakshGod.c_str());
-  cout << endl;
 
   //  what_karana();
   //  what_yoga();

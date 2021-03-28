@@ -1,7 +1,7 @@
 #include "main.h"
 #include "nativ.h"
 
-pair<string, string> nativ::findStartTithi(nativ& nativ) {
+pair<string, string> nativ::findStartTithi(nativ& nativ, int number) {
   //сохраняем
   auto res = nativ.chronoBighDateTime;
 
@@ -14,38 +14,51 @@ pair<string, string> nativ::findStartTithi(nativ& nativ) {
   chrono::system_clock::time_point tpoint = nativ.chronoBighDateTime;
 
   //  шагаем  назад;
-  int aa = 0;
-  double delta = 13;
-  //  while (delta > 12.0) {
+  double delta = 0;
   if (nativ.ch.lon < nativ.su.lon) {
     delta = 360.0 + nativ.ch.lon - nativ.su.lon;
   } else {
     delta = nativ.ch.lon - nativ.su.lon;
   }
-  cout << "delta-" << delta << endl;
+  //  cout << "delta: " << delta << endl;
+  //  cout << "big step back " << endl;
 
-  ++aa;
-  cout << "step back " << aa << endl;
-
-  tpoint -= (one_minut * 60 * 24 * ((int)nativ.tithi + 1) +
-             one_minut * 45 * (int)nativ.tithi);  //шаг
+  tpoint -= (one_minut * 60 * 24 * ((int)nativ.tithi - 1) + one_minut * 1150);
   auto datetime = fromCronoToString(tpoint);
   nativ.b_time = fromCronoToTm(tpoint);
   nativ.bday = datetime.first;
   nativ.btime = datetime.second;
   calc();
-  printAll(nativ);
+  //  printAll(nativ);
   panchang(nativ);
   delta = nativ.ch.lon - nativ.su.lon;
-  cout << "deltaNew-" << delta << endl;
-  //  }
+  if (delta < 0) delta += 360;
+  //  cout << "deltaNew: " << delta << endl;
+  int i = 0;
+
+  while (nativ.tithi > 0.005) {
+    ++i;
+    cout << "\r5 min back " << i << endl;
+    tpoint -= one_minut * 5;
+
+    auto datetime = fromCronoToString(tpoint);
+    nativ.b_time = fromCronoToTm(tpoint);
+    nativ.bday = datetime.first;
+    nativ.btime = datetime.second;
+    calc();
+    panchang(nativ);
+  }
+  cout << "\r\nfind first tithi" << endl;
+  printAll(nativ);
+  panchangPrint(nativ);
 
   pair<string, string> result;
   result.first = nativ.bday;
+
   result.second = nativ.btime;
 
   //восстанавливаем
-  cout << "restored" << endl;
+  cout << "\nrestored" << endl;
   nativ.chronoBighDateTime = res;
 
   auto datetimeold = fromCronoToString(nativ.chronoBighDateTime);
@@ -55,7 +68,7 @@ pair<string, string> nativ::findStartTithi(nativ& nativ) {
   calc();
   printAll(nativ);
   panchang(*this);
-
+  panchangPrint(*this);
   //  cout << endl
   //       << "start_tithi-" << result.first << " " << result.second << endl;
   return result;

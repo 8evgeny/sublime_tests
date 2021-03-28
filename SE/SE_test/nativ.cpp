@@ -22,15 +22,7 @@ nativ::nativ(string nam) {
 
   printAll(*this);
   panchang(*this);
-
-  auto ss = findStartTithi(*this);
-
-  //  cout << endl << "Start_Date: " << ss.first << endl;
-  //  cout << "Start_Time: " << ss.second << endl;
-
-  //  cout << fromTmToString(b_time).first << " " <<
-  //  fromTmToString(b_time).second
-  //       << endl;
+  panchangPrint(*this);
 };
 
 nativ::nativ() {
@@ -52,9 +44,11 @@ nativ::nativ() {
 
   printAll(*this);
   panchang(*this);
+  panchangPrint(*this);
 
-  auto ss = findStartTithi(*this);
-  cout << "startTithi: " << ss.first << "\t" << ss.second << endl;
+  auto ss = findStartTithi(*this, tithi);
+  cout << "Tithi " << tithi << "begin: " << ss.first << "\t" << ss.second
+       << endl;
 };
 
 void nativ::readConfig(const char* conf_file,

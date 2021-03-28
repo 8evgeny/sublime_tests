@@ -54,12 +54,13 @@ class nativ {
   //  string findVaraString(string, string);
   tuple<string, int, string> findVarafromTm(struct tm&);
   tuple<double, string, string, string, string> findTithi(nativ&);
-  pair<string, string> findStartTithi(nativ&);
+  pair<string, string> findStartTithi(nativ&, int);
   pair<string, string> findEndTithi(nativ&);
   tuple<double, string, string, string> find_naksh(nativ&);
   string find_karana(nativ&);
   float find_yoga(nativ&);
   void panchang(nativ&);
+  void panchangPrint(nativ&);
   struct tm fromStringToTm(string, string);
   pair<string, string> fromTmToString(struct tm&);
   chrono::system_clock::time_point fromStringToCrono(string, string);
