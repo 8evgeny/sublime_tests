@@ -55,7 +55,7 @@ class nativ {
   tuple<string, int, string> findVarafromTm(struct tm&);
   tuple<double, string, string, string, string> findTithi(nativ&);
   pair<string, string> findStartTithi(nativ&, int);
-  pair<string, string> findEndTithi(nativ&);
+  pair<string, string> findEndTithi(nativ&, int);
   tuple<double, string, string, string> find_naksh(nativ&);
   string find_karana(nativ&);
   float find_yoga(nativ&);
