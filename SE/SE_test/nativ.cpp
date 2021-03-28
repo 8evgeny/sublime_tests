@@ -27,13 +27,13 @@ nativ::nativ(string nam) {
   //  int moonDay = 1; //Иногда улетает назад
   int moonDaystart = (int)tithi + 1;
   auto start = findStartTithi(*this, moonDaystart);
-  cout << moonDaystart << " лунный день начался " << start.first << " в "
-       << start.second << endl;
+  cout << "\r" << moonDaystart << " лунный день начался " << start.first
+       << " в " << start.second << endl;
 
   //  int moonDayend = 17;
   int moonDayend = (int)tithi + 1;
   auto end = findEndTithi(*this, moonDayend);
-  cout << moonDayend << " лунный день закончится " << end.first << " в "
+  cout << "\r" << moonDayend << " лунный день закончится " << end.first << " в "
        << end.second << endl;
 };
 
@@ -61,13 +61,13 @@ nativ::nativ() {
   //  int moonDay = 1; //Иногда улетает назад
   int moonDaystart = (int)tithi + 1;
   auto start = findStartTithi(*this, moonDaystart);
-  cout << moonDaystart << " лунный день начался " << start.first << " в "
-       << start.second << endl;
+  cout << "\r" << moonDaystart << " лунный день начался " << start.first
+       << " в " << start.second << endl;
 
   //  int moonDayend = 17;
   int moonDayend = (int)tithi + 1;
   auto end = findEndTithi(*this, moonDayend);
-  cout << moonDayend << " лунный день закончится " << end.first << " в "
+  cout << "\r" << moonDayend << " лунный день закончится " << end.first << " в "
        << end.second << endl;
 };
 

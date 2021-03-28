@@ -20,7 +20,7 @@ pair<string, string> nativ::findStartTithi(nativ& nativ, int number) {
   } else {
     delta = nativ.ch.lon - nativ.su.lon;
   }
-  cout << "big step back " << endl;
+  //  cout << "big step back " << endl;
   auto numDayBack = (number - 1 - (int)tithi) >= 0 ? (number - 1 - (int)tithi)
                                                    : (1 + (int)tithi - number);
   auto part = (tithi - (int)nativ.tithi) * 60 * 24 * 0.84;  //коэфф подобран
@@ -42,11 +42,11 @@ pair<string, string> nativ::findStartTithi(nativ& nativ, int number) {
   while (nativ.tithi > number - 1 + 0.005) {
     ++i;
     if (i == 1) {  //после большого шага
-      printAll(nativ);
-      panchangPrint(*this);
+                   //      printAll(nativ);
+                   //      panchangPrint(*this);
     }
 
-    cout << "\r5 min back " << i << endl;
+    //    cout << "\r5 min back " << i << endl;
     tpoint -= one_minut * 10;
 
     auto datetime = fromCronoToString(tpoint);
@@ -56,9 +56,9 @@ pair<string, string> nativ::findStartTithi(nativ& nativ, int number) {
     calc();
     panchang(nativ);
   }
-  cout << "\r\nfind first tithi" << endl;
-  printAll(nativ);
-  panchangPrint(nativ);
+  //  cout << "\r\nfind first tithi" << endl;
+  //  printAll(nativ);
+  //  panchangPrint(nativ);
 
   pair<string, string> result;
   result.first = nativ.bday;
@@ -66,7 +66,7 @@ pair<string, string> nativ::findStartTithi(nativ& nativ, int number) {
   result.second = nativ.btime;
 
   //восстанавливаем
-  cout << "\nrestored" << endl;
+  //  cout << "\nrestored" << endl;
   nativ.chronoBighDateTime = res;
 
   auto datetimeold = fromCronoToString(nativ.chronoBighDateTime);
@@ -74,9 +74,9 @@ pair<string, string> nativ::findStartTithi(nativ& nativ, int number) {
   nativ.bday = datetimeold.first;
   nativ.btime = datetimeold.second;
   calc();
-  printAll(nativ);
+  //  printAll(nativ);
   panchang(*this);
-  panchangPrint(*this);
+  //  panchangPrint(*this);
 
   return result;
 }
@@ -100,7 +100,7 @@ pair<string, string> nativ::findEndTithi(nativ& nativ, int number) {
   } else {
     delta = nativ.ch.lon - nativ.su.lon;
   }
-  cout << "big step forward " << endl;
+  //  cout << "big step forward " << endl;
 
   auto numDayForward = (number - 1 - (int)tithi) >= 0
                            ? (number - 1 - (int)tithi)
@@ -127,11 +127,11 @@ pair<string, string> nativ::findEndTithi(nativ& nativ, int number) {
   while (nativ.tithi < (int)nativ.tithi + 1 - 0.01) {
     ++i;
     if (i == 1) {  //после большого шага
-      printAll(nativ);
-      panchangPrint(*this);
+                   //      printAll(nativ);
+                   //      panchangPrint(*this);
     }
 
-    cout << "\r5 min forward " << i << endl;
+    //    cout << "\r5 min forward " << i << endl;
     tpoint += one_minut * 5;
 
     auto datetime = fromCronoToString(tpoint);
@@ -141,9 +141,9 @@ pair<string, string> nativ::findEndTithi(nativ& nativ, int number) {
     calc();
     panchang(nativ);
   }
-  cout << "\r\nfind first tithi" << endl;
-  printAll(nativ);
-  panchangPrint(nativ);
+  //  cout << "\r\nfind first tithi" << endl;
+  //  printAll(nativ);
+  //  panchangPrint(nativ);
 
   pair<string, string> result;
   result.first = nativ.bday;
@@ -151,7 +151,7 @@ pair<string, string> nativ::findEndTithi(nativ& nativ, int number) {
   result.second = nativ.btime;
 
   //восстанавливаем
-  cout << "\nrestored" << endl;
+  //  cout << "\nrestored" << endl;
   nativ.chronoBighDateTime = res;
 
   auto datetimeold = fromCronoToString(nativ.chronoBighDateTime);
@@ -159,9 +159,9 @@ pair<string, string> nativ::findEndTithi(nativ& nativ, int number) {
   nativ.bday = datetimeold.first;
   nativ.btime = datetimeold.second;
   calc();
-  printAll(nativ);
+  //  printAll(nativ);
   panchang(*this);
-  panchangPrint(*this);
+  //  panchangPrint(*this);
 
   return result;
 }
