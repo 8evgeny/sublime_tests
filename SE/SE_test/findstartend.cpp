@@ -38,10 +38,10 @@ pair<string, string> nativ::findStartTithi(nativ& nativ, int number) {
   //  cout << "deltaNew: " << delta << endl;
   int i = 0;
 
-  while (nativ.tithi > 0.005) {
+  while (nativ.tithi > number - 1 + 0.01) {
     ++i;
     cout << "\r5 min back " << i << endl;
-    tpoint -= one_minut * 5;
+    tpoint -= one_minut * 10;
 
     auto datetime = fromCronoToString(tpoint);
     nativ.b_time = fromCronoToTm(tpoint);

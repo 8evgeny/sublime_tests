@@ -114,10 +114,10 @@ tuple<double, string, string, string, string> nativ::findTithi(nativ& nativ) {
       tuple = {tithi, "Двития", "Ch", "Брахма", "Благоприятные"};
       break;
     case 3:
-      tuple = {tithi, "Двития", "Ch", "Брахма", "Благоприятные"};
+      tuple = {tithi, "Трития", "Ma", "Гаури (Парвати)", "Сила"};
       break;
     case 18:
-      tuple = {tithi, "Двития", "Ch", "Брахма", "Благоприятные"};
+      tuple = {tithi, "Трития", "Ma", "Гаури (Парвати)", "Сила"};
       break;
     case 4:
       tuple = {tithi, "Чатурти", "Bu", "Ганеша", "Зло, Проклятие"};
