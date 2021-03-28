@@ -23,7 +23,8 @@ pair<string, string> nativ::findStartTithi(nativ& nativ, int number) {
   //  cout << "delta: " << delta << endl;
   //  cout << "big step back " << endl;
 
-  tpoint -= (one_minut * 60 * 24 * ((int)nativ.tithi - 1) + one_minut * 1150);
+  tpoint -=
+      (one_minut * 60 * 24 * ((int)nativ.tithi - number) + one_minut * 1150);
   auto datetime = fromCronoToString(tpoint);
   nativ.b_time = fromCronoToTm(tpoint);
   nativ.bday = datetime.first;
@@ -31,6 +32,7 @@ pair<string, string> nativ::findStartTithi(nativ& nativ, int number) {
   calc();
   //  printAll(nativ);
   panchang(nativ);
+
   delta = nativ.ch.lon - nativ.su.lon;
   if (delta < 0) delta += 360;
   //  cout << "deltaNew: " << delta << endl;

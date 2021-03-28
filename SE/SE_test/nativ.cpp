@@ -46,7 +46,7 @@ nativ::nativ() {
   panchang(*this);
   panchangPrint(*this);
 
-  auto ss = findStartTithi(*this, tithi);
+  auto ss = findStartTithi(*this, 1);
   cout << "Tithi " << tithi << "begin: " << ss.first << "\t" << ss.second
        << endl;
 };
