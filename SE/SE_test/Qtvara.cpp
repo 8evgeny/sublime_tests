@@ -14,14 +14,11 @@ int nativ::Qtvara(int argc, char** argv) {
   tbl.setHorizontalHeaderLabels(stolbVara);
   tbl.setVerticalHeaderLabels(columVara);
 
-  ptwi = new QTableWidgetItem(
-      QString::fromStdString(to_string(vara)).arg(0).arg(0));
+  ptwi = new QTableWidgetItem(QString::fromStdString(to_string(vara)));
   tbl.setItem(0, 0, ptwi);
-  ptwi = new QTableWidgetItem(
-      QString(QString::fromStdString(varaName)).arg(0).arg(1));
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString(varaName)));
   tbl.setItem(0, 1, ptwi);
-  ptwi = new QTableWidgetItem(
-      QString(QString::fromStdString(varaLord)).arg(0).arg(2));
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString(varaLord)));
   tbl.setItem(0, 2, ptwi);
   tbl.setColumnWidth(0, 100);
   tbl.setColumnWidth(1, 300);
