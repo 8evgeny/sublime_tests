@@ -56,7 +56,7 @@ class nativ {
   tuple<double, string, string, string, string> findTithi(nativ&);
   pair<string, string> findStartTithi(nativ&, int);
   pair<string, string> findEndTithi(nativ&, int);
-  tuple<double, string, string, string> find_naksh(nativ&);
+  tuple<double, string, string, string> findNaksh(nativ&);
   string find_karana(nativ&);
   float find_yoga(nativ&);
   void panchang(nativ&);
