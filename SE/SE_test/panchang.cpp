@@ -76,11 +76,11 @@ void nativ::panchangPrint(nativ& nativ) {
   //         nativ.tithiLord.c_str(), nativ.tithiGod.c_str(),
   //         nativ.tithiResult.c_str());
 
-  cout << setprecision(4) << "Титхи " << setw(11) << nativ.tithi << setw(10)
+  cout << setprecision(4) << "Титхи " << setw(10) << nativ.tithi << setw(10)
        << startTithi.first.erase(5) << " " << startTithi.second.erase(5)
        << " - " << endTithi.first.erase(5) << " " << endTithi.second.erase(5)
-       << "    " << nativ.tithiName << setw(10) << nativ.tithiLord << setw(12)
-       << nativ.tithiGod << setw(45) << nativ.tithiResult << endl;
+       << "     " << nativ.tithiName << setw(12) << nativ.tithiLord << setw(16)
+       << nativ.tithiGod << setw(55) << nativ.tithiResult << endl;
 
   //  printf("Накш\t%0.2f\t%s\t%s\t%s\n", nativ.naksh, nativ.nakshName.c_str(),
   //         nativ.nakshLord.c_str(), nativ.nakshGod.c_str());

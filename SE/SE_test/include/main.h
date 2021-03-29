@@ -1,5 +1,4 @@
 #pragma once
-
 #include <sys/stat.h>
 
 #include <boost/program_options.hpp>
@@ -10,10 +9,10 @@
 #include <string>
 
 #include "main_info.h"
+#include "nativ.h"
 #include "sweph.h"
 #include "swephexp.h" /* this includes  "sweodef.h" */
 #include "swephlib.h"
-#include "nativ.h"
 
 #define J2000 2451545.0 /* 2000 January 1.5 */
 #define square_sum(x) (x[0] * x[0] + x[1] * x[1] + x[2] * x[2])
@@ -95,6 +94,7 @@ void format_lon_lat(char* slon, char* slat, double lon, double lat);
 int32 get_geocentric_relative_distance(double tjd_et, int32 ipl, int32 iflag,
                                        char* serr);
 
+// int Qtvara(nativ& t, int argc, char** argv);
 static char* fmt = "PLBRS";
 static char* gap = " ";
 static double t, te, tut, jut = 0;
