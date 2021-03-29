@@ -4,6 +4,7 @@
 #include <tuple>
 
 #include "main.h"
+#include "sweodef.h"
 using namespace std;
 namespace po = boost::program_options;
 class planet {
