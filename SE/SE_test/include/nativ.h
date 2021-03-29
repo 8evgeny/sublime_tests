@@ -45,7 +45,7 @@ class nativ {
   Ra ra;
   Ke ke;
   As as;
-
+  mutex mtx;
   bool print_calc;
   void readConfig(const char*, po::variables_map&, string);
   pair<string, string> dateTimeNowInString();
@@ -68,7 +68,7 @@ class nativ {
   chrono::system_clock::time_point fromStringToCrono(string, string);
   pair<string, string> fromCronoToString(chrono::system_clock::time_point);
   tm fromCronoToTm(chrono::system_clock::time_point);
-  int Qtvara(int, char**);
+  void Qtvara();
   string path;
   string name;
   string bday;

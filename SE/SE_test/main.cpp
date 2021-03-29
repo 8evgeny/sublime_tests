@@ -4,6 +4,7 @@
 using namespace std;
 
 int main(int argc, char** argv) {
+  QApplication app(argc, argv);
   nativ curr_Time;
   //  nativ my("Evgeny");
   nativ t("Танюша");
@@ -14,8 +15,17 @@ int main(int argc, char** argv) {
 
   //  muhurta mux;
   //  muhurta my_mux(my);
-  t.Qtvara(argc, argv);
-  curr_Time.Qtvara(argc, argv);
+
+  //  thread t2([&]() {  // Передаем все переменные
+  //    result = curr_Time.Qtvara(argc, argv);
+  //  });
+
+  thread t1(&nativ::Qtvara, ref(curr_Time));
+  thread t2(&nativ::Qtvara, ref(t));
+  //  t.Qtvara(argc, argv);
+  t1.join();
+  t2.join();
+  app.exec();
   return 0;
 }
 
