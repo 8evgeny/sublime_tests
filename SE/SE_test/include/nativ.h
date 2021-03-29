@@ -1,4 +1,5 @@
 #pragma once
+#include <QtWidgets>
 #include <iostream>
 #include <string>
 #include <tuple>
@@ -67,6 +68,7 @@ class nativ {
   chrono::system_clock::time_point fromStringToCrono(string, string);
   pair<string, string> fromCronoToString(chrono::system_clock::time_point);
   tm fromCronoToTm(chrono::system_clock::time_point);
+  int Qtvara(int, char**);
   string path;
   string name;
   string bday;

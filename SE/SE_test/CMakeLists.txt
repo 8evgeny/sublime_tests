@@ -7,8 +7,8 @@ file(GLOB
     src_cpp/*
     include/*
     )
-#find_package (Qt5Core)
-#find_package (Qt5Widgets)
+find_package (Qt5Core)
+find_package (Qt5Widgets)
 find_package (Boost REQUIRED COMPONENTS
     system
     filesystem
@@ -27,7 +27,7 @@ add_executable(test ${src}
     panchang.cpp
     time.cpp
     findstartend.cpp
-#    Qtvara.cpp
+    Qtvara.cpp
     )
 
 target_include_directories(mini PUBLIC include)
@@ -41,8 +41,8 @@ target_link_libraries(${PROJECT_NAME}
 -lm
 -ldl
 ${Boost_LIBRARIES}
-#Qt5::Core
-#Qt5::Widgets
+Qt5::Core
+Qt5::Widgets
 pthread
   )
 set_target_properties(mini PROPERTIES LINKER_LANGUAGE CXX)

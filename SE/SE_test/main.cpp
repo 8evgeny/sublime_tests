@@ -3,10 +3,10 @@
 #include "nativ.h"
 using namespace std;
 
-int main() {
+int main(int argc, char** argv) {
   nativ curr_Time;
   //  nativ my("Evgeny");
-  //  nativ t("Tanya");
+  nativ t("Tanya");
   //  nativ d1("Stasya");
   //  nativ d2("Taya");
   //  nativ d3("Maya");
@@ -14,6 +14,7 @@ int main() {
 
   //  muhurta mux;
   //  muhurta my_mux(my);
+  int a = curr_Time.Qtvara(argc, argv);
   return 0;
 }
 
