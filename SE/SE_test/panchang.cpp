@@ -56,6 +56,9 @@ tuple<string, int, string> nativ::findVarafromTm(struct tm& b_time) {
 }
 
 void nativ::panchangPrint(nativ& nativ) {
+  system("export COLUMNS=140");
+  system("export LINES=40");
+
   //  int moonDay = 1; //Иногда улетает назад
   int moonDaystart = (int)tithi + 1;
   auto startTithi = findStartTithi(*this, moonDaystart);
