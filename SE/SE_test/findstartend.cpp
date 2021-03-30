@@ -59,11 +59,7 @@ pair<string, string> nativ::findStartTithi(nativ& nativ, int number) {
   //  cout << "\r\nfind first tithi" << endl;
   //  printAll(nativ);
   //  panchangPrint(nativ);
-
-  pair<string, string> result;
-  result.first = nativ.bday;
-
-  result.second = nativ.btime;
+  auto result = fromCronoToStringlocal(tpoint);
 
   //восстанавливаем
   //  cout << "\nrestored" << endl;
@@ -144,11 +140,7 @@ pair<string, string> nativ::findEndTithi(nativ& nativ, int number) {
   //  cout << "\r\nfind first tithi" << endl;
   //  printAll(nativ);
   //  panchangPrint(nativ);
-
-  pair<string, string> result;
-  result.first = nativ.bday;
-
-  result.second = nativ.btime;
+  auto result = fromCronoToStringlocal(tpoint);
 
   //восстанавливаем
   //  cout << "\nrestored" << endl;

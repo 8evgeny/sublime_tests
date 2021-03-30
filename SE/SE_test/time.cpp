@@ -74,8 +74,33 @@ pair<string, string> nativ::fromCronoToString(
   return make_pair(date, time);
 }
 
+pair<string, string> nativ::fromCronoToStringlocal(
+    chrono::system_clock::time_point tpoint) {
+  // chrono(to_time_t)->time_t(*gmtime,*localtime)->tm(strftime)->string
+  // string(sscanf)->tm(mktime)->time_t(from_time_t)->chrono
+
+  tm step2 = fromCronoToTmLocal(tpoint);
+
+  char date[80];
+  char time[80];
+  strftime(date, sizeof(date), "%d-%m-%Y", &step2);
+  strftime(time, sizeof(time), "%X", &step2);
+
+  return make_pair(date, time);
+}
+
 tm nativ::fromCronoToTm(chrono::system_clock::time_point tpoint) {
   time_t step1 = chrono::system_clock::to_time_t(tpoint);
+  tm result = *localtime(&step1);
+  //Для Стаси убирает 1 час - !!!!
+  return result;
+}
+
+tm nativ::fromCronoToTmLocal(chrono::system_clock::time_point tpoint) {
+  chrono::duration<int, ratio<60> > one_minut(1);
+  //Для Москвы хардкожу
+  auto deltalocal = one_minut * 60 * 3;
+  time_t step1 = chrono::system_clock::to_time_t(tpoint + deltalocal);
   tm result = *localtime(&step1);
   //Для Стаси убирает 1 час - !!!!
   return result;

@@ -67,7 +67,9 @@ class nativ {
   pair<string, string> fromTmToString(struct tm&);
   chrono::system_clock::time_point fromStringToCrono(string, string);
   pair<string, string> fromCronoToString(chrono::system_clock::time_point);
+  pair<string, string> fromCronoToStringlocal(chrono::system_clock::time_point);
   tm fromCronoToTm(chrono::system_clock::time_point);
+  tm fromCronoToTmLocal(chrono::system_clock::time_point);
   void qtPanchang(int, char**);
   string path;
   string name;

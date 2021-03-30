@@ -9,7 +9,7 @@ void nativ::qtPanchang(int argc, char** argv) {
   tbl.setColumnWidth(1, 300);
   tbl.setColumnWidth(2, 200);
   tbl.setColumnWidth(3, 200);
-  tbl.setColumnWidth(4, 300);
+  tbl.setColumnWidth(4, 400);
   tbl.setColumnWidth(5, 150);
   tbl.setColumnWidth(6, 200);
   QTableWidgetItem* ptwi = 0;
