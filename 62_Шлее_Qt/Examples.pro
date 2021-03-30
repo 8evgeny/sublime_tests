@@ -226,9 +226,9 @@ SUBDIRS       = chapter01/Hello \
                 chapter60/PaintElement \
                 chapter60/QMLCPPConnect \
                 chapter60/QMLCPPUsage \
-                chapter61/Animation \
-                chapter61/Material \
-                chapter61/Snowman \
+#                chapter61/Animation \
+#                chapter61/Material \
+#                chapter61/Snowman \
                 chapter64/Accelerometer \
                 chapter64/AmbientLight \
                 chapter64/Gestures \
