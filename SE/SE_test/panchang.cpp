@@ -110,7 +110,7 @@ void nativ::panchang(nativ& nativ) {
   nativ.nakshName = get<1>(tupleNaksh);
   nativ.nakshLord = get<2>(tupleNaksh);
   nativ.nakshGod = get<3>(tupleNaksh);
-
+  nativ.nakshResult = get<4>(tupleNaksh);
   //  what_karana();
   //  what_yoga();
 }
@@ -221,90 +221,104 @@ tuple<double, string, string, string, string> nativ::findTithi(nativ& nativ) {
   return tuple;
 }
 
-tuple<double, string, string, string> nativ::findNaksh(nativ& nativ) {
-  tuple<double, string, string, string> tuple;
+tuple<double, string, string, string, string> nativ::findNaksh(nativ& nativ) {
+  tuple<double, string, string, string, string> tuple;
   double naksh = nativ.ch.lon / 13.33333;
   switch ((int)naksh + 1) {
     case 1:
-      tuple = {naksh, "Ашвини", "Ke", "Ашвини Кумары"};
+      tuple = {naksh, "Ашвини", "Ke", "Ашвини Кумары", " "};
       break;
     case 2:
-      tuple = {naksh, "Бхарани", "Sk", "Яма"};
+      tuple = {naksh, "Бхарани", "Sk", "Яма", " "};
       break;
     case 3:
-      tuple = {naksh, "Криттика", "Su", "Агни"};
+      tuple = {naksh, "Криттика", "Su", "Агни", " "};
       break;
     case 4:
-      tuple = {naksh, "Рохини", "Ch", "Брахма"};
+      tuple = {naksh, "Рохини", "Ch", "Брахма", " "};
       break;
     case 5:
-      tuple = {naksh, "Мригашира", "Ma", "Сома, бог Луны"};
+      tuple = {naksh, "Мригашира", "Ma", "Сома, бог Луны", " "};
       break;
     case 6:
-      tuple = {naksh, "Ардра", "Ra", "Рудра-воплощение Шивы"};
+      tuple = {naksh, "Ардра", "Ra", "Рудра-воплощение Шивы", " "};
       break;
     case 7:
-      tuple = {naksh, "Пунарвасу", "Gu", "Адити, богиня Вечности"};
+      tuple = {naksh, "Пунарвасу", "Gu", "Адити, богиня Вечности", " "};
       break;
     case 8:
-      tuple = {naksh, "Пушья", "Sa", "Брихаспати"};
+      tuple = {naksh, "Пушья", "Sa", "Брихаспати", " "};
       break;
     case 9:
-      tuple = {naksh, "Ашлеша", "Bu", "Наги"};
+      tuple = {naksh, "Ашлеша", "Bu", "Наги", " "};
       break;
     case 10:
-      tuple = {naksh, "Магха", "Ke", "Питри-предки"};
+      tuple = {naksh, "Магха", "Ke", "Питри-предки", " "};
       break;
     case 11:
-      tuple = {naksh, "П.Пхалгуни", "Sk", "Бхага-ведический бог Удачи"};
+      tuple = {naksh, "П.Пхалгуни", "Sk", "Бхага-ведический бог Удачи", " "};
       break;
     case 12:
-      tuple = {naksh, "У.Пхалгуни", "Su", "Арьяман"};
+      tuple = {naksh, "У.Пхалгуни", "Su", "Арьяман", " "};
       break;
     case 13:
-      tuple = {naksh, "Хаста", "Ch", "Савитур, бог Солнца"};
+      tuple = {naksh, "Хаста", "Ch", "Савитур, бог Солнца", " "};
       break;
     case 14:
-      tuple = {naksh, "Читра", "Ma", "Тваштар-небесный архитектор"};
+      tuple = {naksh, "Читра", "Ma", "Тваштар-небесный архитектор", " "};
       break;
     case 15:
-      tuple = {naksh, "Свати", "Ra", "Вайю,бог ветра и дыхание жизни"};
+      tuple = {naksh, "Свати", "Ra", "Вайю,бог ветра и дыхание жизни",
+               "Индивидуальность  - ключевое слово Свати. "
+               "Недолговечные, скоротечные дела и вещи, покупка"
+               "транспортных средств, садоводство, путешествия."
+               " Максимально благоприятна для секса. Можно стричься. Удачно "
+               "начало образования. "};
       break;
     case 16:
-      tuple = {naksh, "Вишакха    ", "Gu", "Агни-бог огня и Индра-бог богов"};
+      tuple = {
+          naksh, "Вишакха", "Gu", "Агни-бог огня и Индра-бог богов",
+          "Не начинать новую важную работу. Благоприятны повседневные дела, "
+          "рутинная работа. Единственная накшатра с двумя "
+          "божествами. Агни - священный огонь, "
+          "представляет огонь ума, огонь стремления и пламя интеллекта. "
+          "Агни - это также Кундалини, наш скрытый огонь. Индра наслаждается "
+          "чувственными удовольствиями и роскошью,"
+          "но он также уничтожает демонов, а разрушение внутренних демонов "
+          "позволяет духовным энергиям течь  беспрепятственно"};
       break;
     case 17:
-      tuple = {naksh, "Анурадха   ", "Sa", "Митра, бог света"};
+      tuple = {naksh, "Анурадха", "Sa", "Митра, бог света", " "};
       break;
     case 18:
-      tuple = {naksh, "Джйештха  ", "Bu", "Индра, бог богов"};
+      tuple = {naksh, "Джйештха", "Bu", "Индра, бог богов", " "};
       break;
     case 19:
-      tuple = {naksh, "Мула", "Ke", "Ниритти"};
+      tuple = {naksh, "Мула", "Ke", "Ниритти", " "};
       break;
     case 20:
-      tuple = {naksh, "П.Ашадха", "Sk", "Апас, бог воды"};
+      tuple = {naksh, "П.Ашадха", "Sk", "Апас, бог воды", " "};
       break;
     case 21:
-      tuple = {naksh, "У.Ашадха", "Su", "Вишвадэваты-боги вселенной"};
+      tuple = {naksh, "У.Ашадха", "Su", "Вишвадэваты-боги вселенной", " "};
       break;
     case 22:
-      tuple = {naksh, "Шравана", "Ch", "Вишну-хранитель вселенной"};
+      tuple = {naksh, "Шравана", "Ch", "Вишну-хранитель вселенной", " "};
       break;
     case 23:
-      tuple = {naksh, "Дхаништха", "Ma", "Восемь васу"};
+      tuple = {naksh, "Дхаништха", "Ma", "Восемь васу", " "};
       break;
     case 24:
-      tuple = {naksh, "Шатабхиша", "Ra", "Варуна, бог морей"};
+      tuple = {naksh, "Шатабхиша", "Ra", "Варуна, бог морей", " "};
       break;
     case 25:
-      tuple = {naksh, "П.Бхадрапада", "Gu", "Айя Экапада-одноногий козел"};
+      tuple = {naksh, "П.Бхадрапада", "Gu", "Айя Экапада-одноногий козел", " "};
       break;
     case 26:
-      tuple = {naksh, "У.Бхадрапада", "Sa", "Ахир Будхния"};
+      tuple = {naksh, "У.Бхадрапада", "Sa", "Ахир Будхния", " "};
       break;
     case 27:
-      tuple = {naksh, "Ревати", "Bu", "Пушан"};
+      tuple = {naksh, "Ревати", "Bu", "Пушан", " "};
       break;
   }
   return tuple;

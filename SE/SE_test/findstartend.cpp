@@ -39,7 +39,7 @@ pair<string, string> nativ::findStartTithi(nativ& nativ, int number) {
   //  cout << "deltaNew: " << delta << endl;
   int i = 0;
 
-  while (nativ.tithi > number - 1 + 0.005) {
+  while (nativ.tithi > number - 1 + 0.001) {
     ++i;
     if (i == 1) {  //после большого шага
                    //      printAll(nativ);
@@ -47,7 +47,7 @@ pair<string, string> nativ::findStartTithi(nativ& nativ, int number) {
     }
 
     //    cout << "\r5 min back " << i << endl;
-    tpoint -= one_minut * 5;
+    tpoint -= one_minut * 1;
 
     auto datetime = fromCronoToString(tpoint);
     nativ.b_time = fromCronoToTm(tpoint);
@@ -120,7 +120,7 @@ pair<string, string> nativ::findEndTithi(nativ& nativ, int number) {
   //  cout << "deltaNew: " << delta << endl;
   int i = 0;
 
-  while (nativ.tithi < (int)nativ.tithi + 1 - 0.01) {
+  while (nativ.tithi < (int)nativ.tithi + 1 - 0.001) {
     ++i;
     if (i == 1) {  //после большого шага
                    //      printAll(nativ);
@@ -128,7 +128,7 @@ pair<string, string> nativ::findEndTithi(nativ& nativ, int number) {
     }
 
     //    cout << "\r5 min forward " << i << endl;
-    tpoint += one_minut * 5;
+    tpoint += one_minut * 1;
 
     auto datetime = fromCronoToString(tpoint);
     nativ.b_time = fromCronoToTm(tpoint);

@@ -10,8 +10,10 @@ void nativ::qtPanchang(int argc, char** argv) {
   tbl.setColumnWidth(2, 200);
   tbl.setColumnWidth(3, 200);
   tbl.setColumnWidth(4, 400);
-  tbl.setColumnWidth(5, 150);
-  tbl.setColumnWidth(6, 200);
+  tbl.setColumnWidth(5, 500);
+  tbl.setRowHeight(2, 260);
+  //  tbl.setColumnWidth(7, 10);
+
   QTableWidgetItem* ptwi = 0;
   QStringList stolbVara, columVara;
 
@@ -25,14 +27,13 @@ void nativ::qtPanchang(int argc, char** argv) {
             << "Титхи   "
             << "Накшатра:  ";
   tbl.setHorizontalHeaderLabels(stolbVara);
+
   tbl.setVerticalHeaderLabels(columVara);
 
   //  int moonDay = 1; //Иногда улетает назад
-  int moonDaystart = (int)tithi + 1;
-  auto startTithi = findStartTithi(*this, moonDaystart);
-  //  int moonDayend = 17;
-  int moonDayend = (int)tithi + 1;
-  auto endTithi = findEndTithi(*this, moonDayend);
+  int moonDay = (int)tithi + 1;
+  auto startTithi = findStartTithi(*this, moonDay);
+  auto endTithi = findEndTithi(*this, moonDay);
   string time = startTithi.first.erase(5) + " " + startTithi.second.erase(5) +
                 " - " + endTithi.first.erase(5) + " " +
                 endTithi.second.erase(5);
@@ -75,27 +76,30 @@ void nativ::qtPanchang(int argc, char** argv) {
   tbl.setItem(2, 3, ptwi);
   ptwi = new QTableWidgetItem(QString(QString::fromStdString(nakshGod)));
   tbl.setItem(2, 4, ptwi);
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString(nakshResult)));
+  tbl.setItem(2, 5, ptwi);
 
   tbl.item(0, 0)->setTextAlignment(Qt::AlignCenter);
   tbl.item(0, 1)->setTextAlignment(Qt::AlignCenter);
-  tbl.item(0, 2)->setTextAlignment(Qt::AlignLeft);
+  tbl.item(0, 2)->setTextAlignment(Qt::AlignCenter);
   tbl.item(0, 3)->setTextAlignment(Qt::AlignCenter);
   tbl.item(0, 4)->setTextAlignment(Qt::AlignCenter);
   tbl.item(0, 5)->setTextAlignment(Qt::AlignLeft);
   tbl.item(1, 0)->setTextAlignment(Qt::AlignCenter);
   tbl.item(1, 1)->setTextAlignment(Qt::AlignCenter);
-  tbl.item(1, 2)->setTextAlignment(Qt::AlignLeft);
+  tbl.item(1, 2)->setTextAlignment(Qt::AlignCenter);
   tbl.item(1, 3)->setTextAlignment(Qt::AlignCenter);
-  tbl.item(1, 4)->setTextAlignment(Qt::AlignLeft);
+  tbl.item(1, 4)->setTextAlignment(Qt::AlignCenter);
   tbl.item(1, 5)->setTextAlignment(Qt::AlignLeft);
   tbl.item(2, 0)->setTextAlignment(Qt::AlignCenter);
   tbl.item(2, 1)->setTextAlignment(Qt::AlignCenter);
-  tbl.item(2, 2)->setTextAlignment(Qt::AlignLeft);
+  tbl.item(2, 2)->setTextAlignment(Qt::AlignCenter);
   tbl.item(2, 3)->setTextAlignment(Qt::AlignCenter);
-  tbl.item(2, 4)->setTextAlignment(Qt::AlignLeft);
-  //  tbl.item(2, 5)->setTextAlignment(Qt::AlignLeft);
+  tbl.item(2, 4)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(2, 5)->setTextAlignment(Qt::AlignLeft);
 
-  tbl.resize(1500, 120);
+  tbl.resize(1850, 400);
+
   tbl.show();
   app.exec();
   //  mtx.unlock();
