@@ -1,6 +1,6 @@
 #include "main.h"
 #include "nativ.h"
-void nativ::Qtvara(int argc, char** argv) {
+void nativ::qtPanchang(int argc, char** argv) {
   QApplication app(argc, argv);
   //  mtx.lock();
 
@@ -33,8 +33,8 @@ void nativ::Qtvara(int argc, char** argv) {
   //  int moonDayend = 17;
   int moonDayend = (int)tithi + 1;
   auto endTithi = findEndTithi(*this, moonDayend);
-  string time = startTithi.second.erase(5) + " " + endTithi.first.erase(5) +
-                " - " + endTithi.second.erase(5) + " " +
+  string time = startTithi.first.erase(5) + " " + startTithi.second.erase(5) +
+                " - " + endTithi.first.erase(5) + " " +
                 endTithi.second.erase(5);
 
   ptwi = new QTableWidgetItem(QString::fromStdString(to_string(vara)));

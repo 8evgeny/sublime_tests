@@ -27,7 +27,7 @@ add_executable(test ${src}
     panchang.cpp
     time.cpp
     findstartend.cpp
-    Qtvara.cpp
+    qtPanchang.cpp
     )
 
 target_include_directories(mini PUBLIC include)

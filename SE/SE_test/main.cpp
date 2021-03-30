@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
 
   //  thread t1(&nativ::Qtvara, ref(curr_Time));
   //  thread t2(&nativ::Qtvara, ref(t));
-  t.Qtvara(argc, argv);
+  curr_Time.qtPanchang(argc, argv);
   //  t1.join();
   //  t2.join();
 
