@@ -62,7 +62,6 @@ void nativ::panchangPrint(nativ& nativ) {
   //  int moonDay = 1; //Иногда улетает назад
   int moonDaystart = (int)tithi + 1;
   auto startTithi = findStartTithi(*this, moonDaystart);
-
   //  int moonDayend = 17;
   int moonDayend = (int)tithi + 1;
   auto endTithi = findEndTithi(*this, moonDayend);
