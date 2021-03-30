@@ -4,17 +4,26 @@ void nativ::Qtvara(int argc, char** argv) {
   QApplication app(argc, argv);
   //  mtx.lock();
 
-  QTableWidget tbl(2, 4);
-
+  QTableWidget tbl(3, 6);
+  tbl.setColumnWidth(0, 100);
+  tbl.setColumnWidth(1, 300);
+  tbl.setColumnWidth(2, 200);
+  tbl.setColumnWidth(3, 200);
+  tbl.setColumnWidth(4, 300);
+  tbl.setColumnWidth(5, 150);
+  tbl.setColumnWidth(6, 200);
   QTableWidgetItem* ptwi = 0;
   QStringList stolbVara, columVara;
 
   stolbVara << "Значение"
             << "Время"
             << "Название"
-            << "Управитель";
-  columVara << "Вара"
-            << "Титхи";
+            << "Управитель"
+            << "Божество"
+            << "Результат";
+  columVara << "Вара    "
+            << "Титхи   "
+            << "Накшатра:  ";
   tbl.setHorizontalHeaderLabels(stolbVara);
   tbl.setVerticalHeaderLabels(columVara);
 
@@ -36,26 +45,57 @@ void nativ::Qtvara(int argc, char** argv) {
   tbl.setItem(0, 2, ptwi);
   ptwi = new QTableWidgetItem(QString(QString::fromStdString(varaLord)));
   tbl.setItem(0, 3, ptwi);
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString("")));
+  tbl.setItem(0, 4, ptwi);
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString("")));
+  tbl.setItem(0, 5, ptwi);
 
-  ptwi = new QTableWidgetItem(QString::fromStdString(to_string(vara)));
+  ptwi =
+      new QTableWidgetItem(QString::fromStdString(to_string(tithi).erase(5)));
   tbl.setItem(1, 0, ptwi);
   ptwi = new QTableWidgetItem(QString::fromStdString(time));
   tbl.setItem(1, 1, ptwi);
-  ptwi = new QTableWidgetItem(QString(QString::fromStdString(varaName)));
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString(tithiName)));
   tbl.setItem(1, 2, ptwi);
-  ptwi = new QTableWidgetItem(QString(QString::fromStdString(varaLord)));
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString(tithiLord)));
   tbl.setItem(1, 3, ptwi);
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString(tithiGod)));
+  tbl.setItem(1, 4, ptwi);
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString(tithiResult)));
+  tbl.setItem(1, 5, ptwi);
 
-  tbl.setColumnWidth(0, 100);
-  tbl.setColumnWidth(1, 400);
-  tbl.setColumnWidth(2, 200);
-  tbl.setColumnWidth(3, 200);
-  tbl.item(0, 0)->setTextAlignment(Qt::AlignHCenter);
-  tbl.item(0, 1)->setTextAlignment(Qt::AlignHCenter);
-  tbl.item(0, 2)->setTextAlignment(Qt::AlignHCenter);
-  tbl.item(0, 3)->setTextAlignment(Qt::AlignHCenter);
-  tbl.resize(1400, 120);
-  tbl.setObjectName("  ");
+  ptwi =
+      new QTableWidgetItem(QString::fromStdString(to_string(naksh).erase(5)));
+  tbl.setItem(2, 0, ptwi);
+  ptwi = new QTableWidgetItem(QString::fromStdString(""));
+  tbl.setItem(2, 1, ptwi);
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString(nakshName)));
+  tbl.setItem(2, 2, ptwi);
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString(nakshLord)));
+  tbl.setItem(2, 3, ptwi);
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString(nakshGod)));
+  tbl.setItem(2, 4, ptwi);
+
+  tbl.item(0, 0)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(0, 1)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(0, 2)->setTextAlignment(Qt::AlignLeft);
+  tbl.item(0, 3)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(0, 4)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(0, 5)->setTextAlignment(Qt::AlignLeft);
+  tbl.item(1, 0)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(1, 1)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(1, 2)->setTextAlignment(Qt::AlignLeft);
+  tbl.item(1, 3)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(1, 4)->setTextAlignment(Qt::AlignLeft);
+  tbl.item(1, 5)->setTextAlignment(Qt::AlignLeft);
+  tbl.item(2, 0)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(2, 1)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(2, 2)->setTextAlignment(Qt::AlignLeft);
+  tbl.item(2, 3)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(2, 4)->setTextAlignment(Qt::AlignLeft);
+  //  tbl.item(2, 5)->setTextAlignment(Qt::AlignLeft);
+
+  tbl.resize(1500, 120);
   tbl.show();
   app.exec();
   //  mtx.unlock();

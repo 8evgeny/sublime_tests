@@ -56,37 +56,40 @@ tuple<string, int, string> nativ::findVarafromTm(struct tm& b_time) {
 }
 
 void nativ::panchangPrint(nativ& nativ) {
-  system("export COLUMNS=140");
-  system("export LINES=40");
+  //  system("export COLUMNS=140");
+  //  system("export LINES=40");
 
-  //  int moonDay = 1; //Иногда улетает назад
-  int moonDaystart = (int)tithi + 1;
-  auto startTithi = findStartTithi(*this, moonDaystart);
-  //  int moonDayend = 17;
-  int moonDayend = (int)tithi + 1;
-  auto endTithi = findEndTithi(*this, moonDayend);
+  //  //  int moonDay = 1; //Иногда улетает назад
+  //  int moonDaystart = (int)tithi + 1;
+  //  auto startTithi = findStartTithi(*this, moonDaystart);
+  //  //  int moonDayend = 17;
+  //  int moonDayend = (int)tithi + 1;
+  //  auto endTithi = findEndTithi(*this, moonDayend);
 
-  cout << "\n"
-       << setprecision(4) << "Вара " << setw(8) << nativ.vara << setw(38) << ""
-       << nativ.varaName << setw(7) << nativ.varaLord << endl;
+  //  cout << "\n"
+  //       << setprecision(4) << "Вара " << setw(8) << nativ.vara << setw(38) <<
+  //       ""
+  //       << nativ.varaName << setw(7) << nativ.varaLord << endl;
 
   //  printf("Титхи\t%0.2f\t%s\t%s\t%s\t%s\n", nativ.tithi,
   //  nativ.tithiName.c_str(),
   //         nativ.tithiLord.c_str(), nativ.tithiGod.c_str(),
   //         nativ.tithiResult.c_str());
 
-  cout << setprecision(4) << "Титхи " << setw(10) << nativ.tithi << setw(10)
-       << startTithi.first.erase(5) << " " << startTithi.second.erase(5)
-       << " - " << endTithi.first.erase(5) << " " << endTithi.second.erase(5)
-       << "     " << nativ.tithiName << setw(12) << nativ.tithiLord << setw(16)
-       << nativ.tithiGod << setw(55) << nativ.tithiResult << endl;
+  //  cout << setprecision(4) << "Титхи " << setw(10) << nativ.tithi << setw(10)
+  //       << startTithi.first.erase(5) << " " << startTithi.second.erase(5)
+  //       << " - " << endTithi.first.erase(5) << " " <<
+  //       endTithi.second.erase(5)
+  //       << "     " << nativ.tithiName << setw(12) << nativ.tithiLord <<
+  //       setw(16)
+  //       << nativ.tithiGod << setw(55) << nativ.tithiResult << endl;
 
   //  printf("Накш\t%0.2f\t%s\t%s\t%s\n", nativ.naksh, nativ.nakshName.c_str(),
   //         nativ.nakshLord.c_str(), nativ.nakshGod.c_str());
 
-  cout << setprecision(4) << "Накшатра "  //<< setfill('*')
-       << setw(8) << nativ.naksh << setw(44) << nativ.nakshName << setw(13)
-       << nativ.nakshLord << setw(4) << "" << nativ.nakshGod << endl;
+  //  cout << setprecision(4) << "Накшатра "  //<< setfill('*')
+  //       << setw(8) << nativ.naksh << setw(44) << nativ.nakshName << setw(13)
+  //       << nativ.nakshLord << setw(4) << "" << nativ.nakshGod << endl;
 }
 
 void nativ::panchang(nativ& nativ) {
@@ -280,7 +283,7 @@ tuple<double, string, string, string> nativ::findNaksh(nativ& nativ) {
       tuple = {naksh, "Мула", "Ke", "Ниритти"};
       break;
     case 20:
-      tuple = {naksh, "П.Ашадха", "Sk", " Апас, бог воды"};
+      tuple = {naksh, "П.Ашадха", "Sk", "Апас, бог воды"};
       break;
     case 21:
       tuple = {naksh, "У.Ашадха", "Su", "Вишвадэваты-боги вселенной"};
@@ -298,7 +301,7 @@ tuple<double, string, string, string> nativ::findNaksh(nativ& nativ) {
       tuple = {naksh, "П.Бхадрапада", "Gu", "Айя Экапада-одноногий козел"};
       break;
     case 26:
-      tuple = {naksh, "У.Бхадрапада", "Sa", " Ахир Будхния"};
+      tuple = {naksh, "У.Бхадрапада", "Sa", "Ахир Будхния"};
       break;
     case 27:
       tuple = {naksh, "Ревати", "Bu", "Пушан"};
