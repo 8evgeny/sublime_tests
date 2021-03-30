@@ -68,7 +68,7 @@ class nativ {
   chrono::system_clock::time_point fromStringToCrono(string, string);
   pair<string, string> fromCronoToString(chrono::system_clock::time_point);
   tm fromCronoToTm(chrono::system_clock::time_point);
-  void Qtvara();
+  void Qtvara(int, char**);
   string path;
   string name;
   string bday;

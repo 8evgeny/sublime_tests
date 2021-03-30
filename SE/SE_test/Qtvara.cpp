@@ -1,7 +1,8 @@
 #include "main.h"
 #include "nativ.h"
-void nativ::Qtvara() {
-  mtx.lock();
+void nativ::Qtvara(int argc, char** argv) {
+  QApplication app(argc, argv);
+  //  mtx.lock();
 
   QTableWidget tbl(1, 3);
 
@@ -30,6 +31,6 @@ void nativ::Qtvara() {
   tbl.resize(630, 60);
   tbl.setObjectName("  ");
   tbl.show();
-
-  mtx.unlock();
+  app.exec();
+  //  mtx.unlock();
 }
