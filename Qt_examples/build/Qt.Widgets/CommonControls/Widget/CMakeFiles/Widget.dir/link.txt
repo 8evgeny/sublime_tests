@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/Widget.dir/Widget_autogen/mocs_compilation.cpp.o CMakeFiles/Widget.dir/src/Widget.cpp.o -o Widget  /usr/lib/libQt5Widgets.so.5.15.2 /usr/lib/libQt5Gui.so.5.15.2 /usr/lib/libQt5Core.so.5.15.2 

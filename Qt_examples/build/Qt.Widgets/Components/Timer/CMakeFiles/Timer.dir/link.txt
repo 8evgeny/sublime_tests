@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/Timer.dir/Timer_autogen/mocs_compilation.cpp.o CMakeFiles/Timer.dir/src/Timer.cpp.o -o Timer  /usr/lib/libQt5Widgets.so.5.15.2 /usr/lib/libQt5Gui.so.5.15.2 /usr/lib/libQt5Core.so.5.15.2 

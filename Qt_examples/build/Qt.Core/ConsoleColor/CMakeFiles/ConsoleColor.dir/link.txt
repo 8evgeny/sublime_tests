@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/ConsoleColor.dir/src/ConsoleColor.cpp.o -o ConsoleColor  /usr/lib/libQt5Core.so.5.15.2 

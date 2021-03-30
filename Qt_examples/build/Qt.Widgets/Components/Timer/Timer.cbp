@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Timer"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\Qt.Widgets\;CMake Files\Qt.Widgets\Application\;CMake Files\Qt.Widgets\Application\Application\;CMake Files\Qt.Widgets\Application\DarkMode\;CMake Files\Qt.Widgets\CommonControls\;CMake Files\Qt.Widgets\CommonControls\CheckBox\;CMake Files\Qt.Widgets\CommonControls\CheckedListWidget\;CMake Files\Qt.Widgets\CommonControls\ComboBox\;CMake Files\Qt.Widgets\CommonControls\DoubleSpinBox\;CMake Files\Qt.Widgets\CommonControls\Label\;CMake Files\Qt.Widgets\CommonControls\LCDNumber\;CMake Files\Qt.Widgets\CommonControls\LineEdit\;CMake Files\Qt.Widgets\CommonControls\ListView\;CMake Files\Qt.Widgets\CommonControls\ListView2\;CMake Files\Qt.Widgets\CommonControls\ListWidget\;CMake Files\Qt.Widgets\CommonControls\PictureBox\;CMake Files\Qt.Widgets\CommonControls\PictureBox2\;CMake Files\Qt.Widgets\CommonControls\ProgressBar\;CMake Files\Qt.Widgets\CommonControls\PushButton\;CMake Files\Qt.Widgets\CommonControls\RadioButton\;CMake Files\Qt.Widgets\CommonControls\Slider\;CMake Files\Qt.Widgets\CommonControls\SpinBox\;CMake Files\Qt.Widgets\CommonControls\SpinButton\;CMake Files\Qt.Widgets\CommonControls\ToggleButton\;CMake Files\Qt.Widgets\CommonControls\TreeView\;CMake Files\Qt.Widgets\CommonControls\TreeWidget\;CMake Files\Qt.Widgets\CommonControls\Widget\;CMake Files\Qt.Widgets\Dialogs\;CMake Files\Qt.Widgets\Dialogs\ColorDialog\;CMake Files\Qt.Widgets\Dialogs\FolderBrowserDialog\;CMake Files\Qt.Widgets\Dialogs\FontDialog\;CMake Files\Qt.Widgets\Dialogs\MessageBox\;CMake Files\Qt.Widgets\Dialogs\OpenFileDialog\;CMake Files\Qt.Widgets\Dialogs\SaveFileDialog\;CMake Files\Qt.Widgets\Components\;CMake Files\Qt.Widgets\Components\Cursors\;CMake Files\Qt.Widgets\Components\Timer\;CMake Files\Qt.Widgets\Containers\;CMake Files\Qt.Widgets\Containers\Frame\;CMake Files\Qt.Widgets\Containers\GroupBox\;CMake Files\Qt.Widgets\Containers\TabWidget\;CMake Files\Qt.Widgets\Containers\Window\;CMake Files\Qt.Widgets\HelloWorld\;CMake Files\Qt.Widgets\HelloWorld\HelloWorldEmoticons\;CMake Files\Qt.Widgets\HelloWorld\HelloWorldLabel\;CMake Files\Qt.Widgets\HelloWorld\HelloWorldMessageBox\;CMake Files\Qt.Widgets\HelloWorld\HelloWorldPaint\;CMake Files\Qt.Widgets\Others\;CMake Files\Qt.Widgets\Others\LCDNumber2\;CMake Files\Qt.Widgets\Others\Wiggly\;CMake Files\Qt.Widgets\MenusAndToolbars\;CMake Files\Qt.Widgets\MenusAndToolbars\MenuBar\;CMake Files\Qt.Widgets\MenusAndToolbars\StatusBar\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\lib64\;CMake Files\..\..\..\..\..\usr\lib64\cmake\;CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5\;CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Widgets\;CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\;CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Core\;CMake Files\Qt.Core\;CMake Files\Qt.Core\ConsoleColor\;CMake Files\Qt.Core\HelloWorld\;CMake Files\Qt.Tests\;CMake Files\Qt.Tests\TestConsole\;CMake Files\Qt.Tests\TestGui\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Timer">
+				<Option output="/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Timer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add directory="/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Timer_autogen/include"/>
+					<Add directory="/usr/include/qt"/>
+					<Add directory="/usr/include/qt/QtWidgets"/>
+					<Add directory="/usr/include/qt/QtGui"/>
+					<Add directory="/usr/include/qt/QtCore"/>
+					<Add directory="/usr/lib/qt/mkspecs/linux-g++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 Timer"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Timer/fast">
+				<Option output="/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Timer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add directory="/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Timer_autogen/include"/>
+					<Add directory="/usr/include/qt"/>
+					<Add directory="/usr/include/qt/QtWidgets"/>
+					<Add directory="/usr/include/qt/QtGui"/>
+					<Add directory="/usr/include/qt/QtCore"/>
+					<Add directory="/usr/lib/qt/mkspecs/linux-g++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 Timer/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Timer_autogen">
+				<Option working_dir="/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 Timer_autogen"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Components/Timer/src/Timer.cpp">
+			<Option target="Timer"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Components/Timer/src/Timer.h">
+			<Option target="Timer"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/build/Qt.Widgets/Components/Timer/Timer_autogen/mocs_compilation.cpp">
+			<Option target="Timer"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Application/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Application\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Application/Application/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Application\Application\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Application/DarkMode/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Application\DarkMode\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/CheckBox/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\CheckBox\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/CheckedListWidget/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\CheckedListWidget\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/ComboBox/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\ComboBox\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/DoubleSpinBox/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\DoubleSpinBox\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/Label/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\Label\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/LCDNumber/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\LCDNumber\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/LineEdit/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\LineEdit\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/ListView/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\ListView\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/ListView2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\ListView2\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/ListWidget/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\ListWidget\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/PictureBox/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\PictureBox\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/PictureBox/PictureBox.qrc">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\PictureBox\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/PictureBox2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\PictureBox2\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/PictureBox2/PictureBox2.qrc">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\PictureBox2\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/ProgressBar/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\ProgressBar\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/PushButton/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\PushButton\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/RadioButton/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\RadioButton\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/Slider/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\Slider\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/SpinBox/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\SpinBox\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/SpinButton/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\SpinButton\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/ToggleButton/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\ToggleButton\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/TreeView/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\TreeView\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/TreeWidget/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\TreeWidget\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/CommonControls/Widget/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\CommonControls\Widget\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Dialogs/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Dialogs\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Dialogs/ColorDialog/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Dialogs\ColorDialog\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Dialogs/FolderBrowserDialog/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Dialogs\FolderBrowserDialog\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Dialogs/FontDialog/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Dialogs\FontDialog\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Dialogs/MessageBox/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Dialogs\MessageBox\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Dialogs/OpenFileDialog/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Dialogs\OpenFileDialog\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Dialogs/SaveFileDialog/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Dialogs\SaveFileDialog\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Components/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Components\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Components/Cursors/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Components\Cursors\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Components/Timer/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Components\Timer\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Containers/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Containers\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Containers/Frame/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Containers\Frame\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Containers/GroupBox/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Containers\GroupBox\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Containers/TabWidget/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Containers\TabWidget\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Containers/Window/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Containers\Window\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/HelloWorld/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\HelloWorld\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/HelloWorld/HelloWorldEmoticons/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\HelloWorld\HelloWorldEmoticons\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/HelloWorld/HelloWorldLabel/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\HelloWorld\HelloWorldLabel\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/HelloWorld/HelloWorldMessageBox/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\HelloWorld\HelloWorldMessageBox\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/HelloWorld/HelloWorldPaint/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\HelloWorld\HelloWorldPaint\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Others/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Others\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Others/LCDNumber2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Others\LCDNumber2\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/Others/Wiggly/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\Others\Wiggly\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/MenusAndToolbars/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\MenusAndToolbars\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/MenusAndToolbars/MenuBar/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\MenusAndToolbars\MenuBar\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Widgets/MenusAndToolbars/StatusBar/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Widgets\MenusAndToolbars\StatusBar\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5/Qt5Config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5/Qt5ConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5/Qt5ModuleLocation.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5GuiConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QComposePlatformInputContextPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QEglFSEmulatorIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QEglFSIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QEglFSKmsEglDeviceIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QEglFSKmsGbmIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QEglFSX11IntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QEvdevKeyboardPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QEvdevMousePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QEvdevTabletPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QEvdevTouchScreenPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QGtk3ThemePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QIbusPlatformInputContextPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QLibInputPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QLinuxFbIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QMinimalEglIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QPdfPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QSvgIconPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QSvgPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QTsLibPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QVncIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QWaylandEglPlatformIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QWaylandIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QWaylandXCompositeEglPlatformIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QWaylandXCompositeGlxPlatformIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QXcbEglIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QXcbGlxIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QXcbIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Gui/Qt5Gui_QXdgDesktopPortalThemePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Core/Qt5CoreConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/../../../../../usr/lib64/cmake/Qt5Core/Qt5CoreMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib64\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Core\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Core/ConsoleColor/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Core\ConsoleColor\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Core/HelloWorld/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Core\HelloWorld\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Tests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Tests\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Tests/TestConsole/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Tests\TestConsole\"/>
+		</Unit>
+		<Unit filename="/home/eparubets/Qt/examples/Examples_Qt-2.0.0/Qt.Tests/TestGui/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Qt.Tests\TestGui\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

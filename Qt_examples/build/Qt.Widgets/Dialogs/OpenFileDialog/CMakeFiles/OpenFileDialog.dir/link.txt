@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/OpenFileDialog.dir/OpenFileDialog_autogen/mocs_compilation.cpp.o CMakeFiles/OpenFileDialog.dir/src/OpenFileDialog.cpp.o -o OpenFileDialog  /usr/lib/libQt5Widgets.so.5.15.2 /usr/lib/libQt5Gui.so.5.15.2 /usr/lib/libQt5Core.so.5.15.2 

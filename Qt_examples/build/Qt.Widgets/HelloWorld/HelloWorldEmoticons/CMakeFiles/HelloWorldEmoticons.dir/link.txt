@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/HelloWorldEmoticons.dir/HelloWorldEmoticons_autogen/mocs_compilation.cpp.o CMakeFiles/HelloWorldEmoticons.dir/src/HelloWorldEmoticons.cpp.o -o HelloWorldEmoticons  /usr/lib/libQt5Widgets.so.5.15.2 /usr/lib/libQt5Gui.so.5.15.2 /usr/lib/libQt5Core.so.5.15.2 

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/TabWidget.dir/TabWidget_autogen/mocs_compilation.cpp.o CMakeFiles/TabWidget.dir/src/TabWidget.cpp.o -o TabWidget  /usr/lib/libQt5Widgets.so.5.15.2 /usr/lib/libQt5Gui.so.5.15.2 /usr/lib/libQt5Core.so.5.15.2 
