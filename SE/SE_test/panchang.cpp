@@ -56,9 +56,6 @@ tuple<string, int, string> nativ::findVarafromTm(struct tm& b_time) {
 }
 
 void nativ::panchangPrint(nativ& nativ) {
-  //  system("export COLUMNS=140");
-  //  system("export LINES=40");
-
   //  //  int moonDay = 1; //Иногда улетает назад
   //  int moonDaystart = (int)tithi + 1;
   //  auto startTithi = findStartTithi(*this, moonDaystart);
@@ -111,7 +108,14 @@ void nativ::panchang(nativ& nativ) {
   nativ.nakshLord = get<2>(tupleNaksh);
   nativ.nakshGod = get<3>(tupleNaksh);
   nativ.nakshResult = get<4>(tupleNaksh);
-  //  what_karana();
+
+  auto tupleKarana = findKarana(nativ);
+  nativ.karana = get<0>(tupleNaksh);
+  nativ.karanaName = get<1>(tupleNaksh);
+  nativ.karanaLord = get<2>(tupleNaksh);
+  nativ.karanaGod = get<3>(tupleNaksh);
+  nativ.karanaResult = get<4>(tupleNaksh);
+
   //  what_yoga();
 }
 
@@ -324,11 +328,497 @@ tuple<double, string, string, string, string> nativ::findNaksh(nativ& nativ) {
   return tuple;
 }
 
-// string nativ::what_karana(){
+tuple<int, string, string, string, string> nativ::findKarana(nativ& nativ) {
+  bool numKaranaInTithi = false;
+  if ((nativ.tithi - (int)nativ.tithi) > 0.5) numKaranaInTithi = true;
+  switch ((int)nativ.tithi) {
+    case 0: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 10;
+        nativ.karanaName = "Нага";
+        nativ.karanaLord = "Ra";
+        nativ.karanaGod = "Нага";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 11;
+        nativ.karanaName = "Кинстугхвнв";
+        nativ.karanaLord = "Ke";
+        nativ.karanaGod = "Вайю";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 1: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 1;
+        nativ.karanaName = "Бава";
+        nativ.karanaLord = "Su";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 2;
+        nativ.karanaName = "Балава";
+        nativ.karanaLord = "Ch";
+        nativ.karanaGod = "Брахма";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 2: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 3;
+        nativ.karanaName = "Каулава";
+        nativ.karanaLord = "Ma";
+        nativ.karanaGod = "Митра";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 4;
+        nativ.karanaName = "Тайтилая";
+        nativ.karanaLord = "Bu";
+        nativ.karanaGod = "Арьяман";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 3: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 5;
+        nativ.karanaName = "Гара";
+        nativ.karanaLord = "Gu";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 6;
+        nativ.karanaName = "Ваниджа";
+        nativ.karanaLord = "Sk";
+        nativ.karanaGod = "Лакшми";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 4: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 7;
+        nativ.karanaName = "Вишти";
+        nativ.karanaLord = "Sa";
+        nativ.karanaGod = "Яма";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 1;
+        nativ.karanaName = "Бава";
+        nativ.karanaLord = "Su";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 5: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 2;
+        nativ.karanaName = "Балава";
+        nativ.karanaLord = "Ch";
+        nativ.karanaGod = "Брахма";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 3;
+        nativ.karanaName = "Каулава";
+        nativ.karanaLord = "Ma";
+        nativ.karanaGod = "Митра";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 6: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 4;
+        nativ.karanaName = "Тайтилая";
+        nativ.karanaLord = "Bu";
+        nativ.karanaGod = "Арьяман";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 5;
+        nativ.karanaName = "Гара";
+        nativ.karanaLord = "Gu";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 7: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 6;
+        nativ.karanaName = "Ваниджа";
+        nativ.karanaLord = "Sk";
+        nativ.karanaGod = "Лакшми";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 7;
+        nativ.karanaName = "Вишти";
+        nativ.karanaLord = "Sa";
+        nativ.karanaGod = "Яма";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 8: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 1;
+        nativ.karanaName = "Бава";
+        nativ.karanaLord = "Su";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 2;
+        nativ.karanaName = "Балава";
+        nativ.karanaLord = "Ch";
+        nativ.karanaGod = "Брахма";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 9: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 3;
+        nativ.karanaName = "Каулава";
+        nativ.karanaLord = "Ma";
+        nativ.karanaGod = "Митра";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 4;
+        nativ.karanaName = "Тайтилая";
+        nativ.karanaLord = "Bu";
+        nativ.karanaGod = "Арьяман";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 10: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 5;
+        nativ.karanaName = "Гара";
+        nativ.karanaLord = "Gu";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 6;
+        nativ.karanaName = "Ваниджа";
+        nativ.karanaLord = "Sk";
+        nativ.karanaGod = "Лакшми";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 11: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 7;
+        nativ.karanaName = "Вишти";
+        nativ.karanaLord = "Sa";
+        nativ.karanaGod = "Яма";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 1;
+        nativ.karanaName = "Бава";
+        nativ.karanaLord = "Su";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 12: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 2;
+        nativ.karanaName = "Балава";
+        nativ.karanaLord = "Ch";
+        nativ.karanaGod = "Брахма";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 3;
+        nativ.karanaName = "Каулава";
+        nativ.karanaLord = "Ma";
+        nativ.karanaGod = "Митра";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 13: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 4;
+        nativ.karanaName = "Тайтилая";
+        nativ.karanaLord = "Bu";
+        nativ.karanaGod = "Арьяман";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 5;
+        nativ.karanaName = "Гара";
+        nativ.karanaLord = "Gu";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 14: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 6;
+        nativ.karanaName = "Ваниджа";
+        nativ.karanaLord = "Sk";
+        nativ.karanaGod = "Лакшми";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 7;
+        nativ.karanaName = "Вишти";
+        nativ.karanaLord = "Sa";
+        nativ.karanaGod = "Яма";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 15: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 1;
+        nativ.karanaName = "Бава";
+        nativ.karanaLord = "Su";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 2;
+        nativ.karanaName = "Балава";
+        nativ.karanaLord = "Ch";
+        nativ.karanaGod = "Брахма";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 16: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 3;
+        nativ.karanaName = "Каулава";
+        nativ.karanaLord = "Ma";
+        nativ.karanaGod = "Митра";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 4;
+        nativ.karanaName = "Тайтилая";
+        nativ.karanaLord = "Bu";
+        nativ.karanaGod = "Арьяман";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 17: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 5;
+        nativ.karanaName = "Гара";
+        nativ.karanaLord = "Gu";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 6;
+        nativ.karanaName = "Ваниджа";
+        nativ.karanaLord = "Sk";
+        nativ.karanaGod = "Лакшми";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 18: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 7;
+        nativ.karanaName = "Вишти";
+        nativ.karanaLord = "Sa";
+        nativ.karanaGod = "Яма";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 1;
+        nativ.karanaName = "Бава";
+        nativ.karanaLord = "Su";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 19: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 2;
+        nativ.karanaName = "Балава";
+        nativ.karanaLord = "Ch";
+        nativ.karanaGod = "Брахма";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 3;
+        nativ.karanaName = "Каулава";
+        nativ.karanaLord = "Ma";
+        nativ.karanaGod = "Митра";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 20: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 4;
+        nativ.karanaName = "Тайтилая";
+        nativ.karanaLord = "Bu";
+        nativ.karanaGod = "Арьяман";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 5;
+        nativ.karanaName = "Гара";
+        nativ.karanaLord = "Gu";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 21: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 6;
+        nativ.karanaName = "Ваниджа";
+        nativ.karanaLord = "Sk";
+        nativ.karanaGod = "Лакшми";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 7;
+        nativ.karanaName = "Вишти";
+        nativ.karanaLord = "Sa";
+        nativ.karanaGod = "Яма";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 22: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 1;
+        nativ.karanaName = "Бава";
+        nativ.karanaLord = "Su";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 2;
+        nativ.karanaName = "Балава";
+        nativ.karanaLord = "Ch";
+        nativ.karanaGod = "Брахма";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 23: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 3;
+        nativ.karanaName = "Каулава";
+        nativ.karanaLord = "Ma";
+        nativ.karanaGod = "Митра";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 4;
+        nativ.karanaName = "Тайтилая";
+        nativ.karanaLord = "Bu";
+        nativ.karanaGod = "Арьяман";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 24: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 5;
+        nativ.karanaName = "Гара";
+        nativ.karanaLord = "Gu";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 6;
+        nativ.karanaName = "Ваниджа";
+        nativ.karanaLord = "Sk";
+        nativ.karanaGod = "Лакшми";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 25: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 7;
+        nativ.karanaName = "Вишти";
+        nativ.karanaLord = "Sa";
+        nativ.karanaGod = "Яма";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 1;
+        nativ.karanaName = "Бава";
+        nativ.karanaLord = "Su";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 26: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 2;
+        nativ.karanaName = "Балава";
+        nativ.karanaLord = "Ch";
+        nativ.karanaGod = "Брахма";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 3;
+        nativ.karanaName = "Каулава";
+        nativ.karanaLord = "Ma";
+        nativ.karanaGod = "Митра";
+        nativ.karanaResult = "";
+      }
 
-//    //
-//    //
-//};
+      break;
+    }
+    case 27: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 4;
+        nativ.karanaName = "Тайтилая";
+        nativ.karanaLord = "Bu";
+        nativ.karanaGod = "Арьяман";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 5;
+        nativ.karanaName = "Гара";
+        nativ.karanaLord = "Gu";
+        nativ.karanaGod = "Индра";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 28: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 6;
+        nativ.karanaName = "Ваниджа";
+        nativ.karanaLord = "Sk";
+        nativ.karanaGod = "Лакшми";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 7;
+        nativ.karanaName = "Вишти";
+        nativ.karanaLord = "Sa";
+        nativ.karanaGod = "Яма";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+    case 29: {
+      if (!numKaranaInTithi) {
+        nativ.karana = 8;
+        nativ.karanaName = "Шакуни";
+        nativ.karanaLord = "Ra";
+        nativ.karanaGod = "Нага";
+        nativ.karanaResult = "";
+      } else {
+        nativ.karana = 9;
+        nativ.karanaName = "Чатушпада";
+        nativ.karanaLord = "Ke";
+        nativ.karanaGod = "Брахма";
+        nativ.karanaResult = "";
+      }
+      break;
+    }
+  }
+  tuple<int, string, string, string, string> result = {
+      nativ.karana, nativ.karanaName, nativ.karanaLord, nativ.karanaGod,
+      nativ.karanaResult};
+  return result;
+}
 
 // float nativ::what_yoga() {
 //  //

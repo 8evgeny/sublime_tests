@@ -87,6 +87,20 @@ void nativ::qtPanchang(int argc, char** argv) {
   ptwi = new QTableWidgetItem(QString(QString::fromStdString(nakshResult)));
   tbl.setItem(2, 5, ptwi);
 
+  ptwi =
+      new QTableWidgetItem(QString::fromStdString(to_string(karana).erase(5)));
+  tbl.setItem(3, 0, ptwi);
+  ptwi = new QTableWidgetItem(QString::fromStdString(""));
+  tbl.setItem(3, 1, ptwi);
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString(karanaName)));
+  tbl.setItem(3, 2, ptwi);
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString(karanaLord)));
+  tbl.setItem(3, 3, ptwi);
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString(karanaGod)));
+  tbl.setItem(3, 4, ptwi);
+  ptwi = new QTableWidgetItem(QString(QString::fromStdString(karanaResult)));
+  tbl.setItem(3, 5, ptwi);
+
   tbl.item(0, 0)->setTextAlignment(Qt::AlignCenter);
   tbl.item(0, 1)->setTextAlignment(Qt::AlignCenter);
   tbl.item(0, 2)->setTextAlignment(Qt::AlignCenter);
@@ -105,7 +119,12 @@ void nativ::qtPanchang(int argc, char** argv) {
   tbl.item(2, 3)->setTextAlignment(Qt::AlignCenter);
   tbl.item(2, 4)->setTextAlignment(Qt::AlignCenter);
   tbl.item(2, 5)->setTextAlignment(Qt::AlignLeft);
-
+  tbl.item(3, 0)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(3, 1)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(3, 2)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(3, 3)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(3, 4)->setTextAlignment(Qt::AlignCenter);
+  tbl.item(3, 5)->setTextAlignment(Qt::AlignLeft);
   tbl.resize(1850, 400);
 
   tbl.show();
