@@ -34,9 +34,15 @@ void nativ::qtPanchang(int argc, char** argv) {
   int moonDay = (int)tithi + 1;
   auto startTithi = findStartTithi(*this, moonDay);
   auto endTithi = findEndTithi(*this, moonDay);
-  string time = startTithi.first.erase(5) + " " + startTithi.second.erase(5) +
-                " - " + endTithi.first.erase(5) + " " +
-                endTithi.second.erase(5);
+  string timeTithi = startTithi.first.erase(5) + " " +
+                     startTithi.second.erase(5) + " - " +
+                     endTithi.first.erase(5) + " " + endTithi.second.erase(5);
+  int numNaksh = (int)naksh + 1;
+  auto startNaksh = findStartNaksh(*this, numNaksh);
+  auto endNaksh = findEndNaksh(*this, numNaksh);
+  string timeNaksh = startNaksh.first.erase(5) + " " +
+                     startNaksh.second.erase(5) + " - " +
+                     endNaksh.first.erase(5) + " " + endNaksh.second.erase(5);
 
   ptwi = new QTableWidgetItem(QString::fromStdString(to_string(vara)));
   tbl.setItem(0, 0, ptwi);
@@ -54,7 +60,7 @@ void nativ::qtPanchang(int argc, char** argv) {
   ptwi =
       new QTableWidgetItem(QString::fromStdString(to_string(tithi).erase(5)));
   tbl.setItem(1, 0, ptwi);
-  ptwi = new QTableWidgetItem(QString::fromStdString(time));
+  ptwi = new QTableWidgetItem(QString::fromStdString(timeTithi));
   tbl.setItem(1, 1, ptwi);
   ptwi = new QTableWidgetItem(QString(QString::fromStdString(tithiName)));
   tbl.setItem(1, 2, ptwi);
@@ -68,7 +74,7 @@ void nativ::qtPanchang(int argc, char** argv) {
   ptwi =
       new QTableWidgetItem(QString::fromStdString(to_string(naksh).erase(5)));
   tbl.setItem(2, 0, ptwi);
-  ptwi = new QTableWidgetItem(QString::fromStdString(""));
+  ptwi = new QTableWidgetItem(QString::fromStdString(timeNaksh));
   tbl.setItem(2, 1, ptwi);
   ptwi = new QTableWidgetItem(QString(QString::fromStdString(nakshName)));
   tbl.setItem(2, 2, ptwi);
