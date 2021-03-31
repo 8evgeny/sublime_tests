@@ -4,7 +4,7 @@ void nativ::qtPanchang(int argc, char** argv) {
   QApplication app(argc, argv);
   //  mtx.lock();
 
-  QTableWidget tbl(3, 6);
+  QTableWidget tbl(5, 6);
   tbl.setColumnWidth(0, 100);
   tbl.setColumnWidth(1, 300);
   tbl.setColumnWidth(2, 200);
@@ -12,7 +12,7 @@ void nativ::qtPanchang(int argc, char** argv) {
   tbl.setColumnWidth(4, 400);
   tbl.setColumnWidth(5, 500);
   tbl.setRowHeight(2, 260);
-  //  tbl.setColumnWidth(7, 10);
+  tbl.resizeRowsToContents();
 
   QTableWidgetItem* ptwi = 0;
   QStringList stolbVara, columVara;
@@ -25,7 +25,9 @@ void nativ::qtPanchang(int argc, char** argv) {
             << "Результат";
   columVara << "Вара    "
             << "Титхи   "
-            << "Накшатра:  ";
+            << "Накшатра:  "
+            << "Карана"
+            << "Йога";
   tbl.setHorizontalHeaderLabels(stolbVara);
 
   tbl.setVerticalHeaderLabels(columVara);
