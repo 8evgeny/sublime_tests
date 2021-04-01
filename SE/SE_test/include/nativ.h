@@ -60,6 +60,8 @@ class nativ {
   pair<string, string> findEndTithi(nativ&, int);
   pair<string, string> findStartNaksh(nativ&, int);
   pair<string, string> findEndNaksh(nativ&, int);
+  pair<string, string> findStartKarana(nativ&);
+  pair<string, string> findEndKarana(nativ&);
   tuple<double, string, string, string, string> findNaksh(nativ&);
   tuple<int, string, string, string, string> findKarana(nativ&);
   float find_yoga(nativ&);
@@ -84,11 +86,15 @@ class nativ {
   string city;
 
   float tithi{0};
+  chrono::system_clock::time_point tithiStart;
+  chrono::system_clock::time_point tithiEnd;
   string tithiName;
   string tithiLord;
   string tithiGod;
   string tithiResult;
   int karana{0};
+  chrono::system_clock::time_point karanaStart;
+  chrono::system_clock::time_point karanaEnd;
   string karanaName;
   string karanaLord;
   string karanaGod;

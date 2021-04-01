@@ -46,6 +46,12 @@ void nativ::qtPanchang(int argc, char** argv) {
                      startNaksh.second.erase(5) + " - " +
                      endNaksh.first.erase(5) + " " + endNaksh.second.erase(5);
 
+  auto startKarana = findStartKarana(*this);
+  auto endKarana = findEndKarana(*this);
+  string timeKarana =
+      startKarana.first.erase(5) + " " + startKarana.second.erase(5) + " - " +
+      endKarana.first.erase(5) + " " + endKarana.second.erase(5);
+
   ptwi = new QTableWidgetItem(QString::fromStdString(to_string(vara)));
   tbl.setItem(0, 0, ptwi);
   ptwi = new QTableWidgetItem(QString::fromStdString(""));
@@ -89,7 +95,7 @@ void nativ::qtPanchang(int argc, char** argv) {
 
   ptwi = new QTableWidgetItem(QString::fromStdString(to_string(karana)));
   tbl.setItem(3, 0, ptwi);
-  ptwi = new QTableWidgetItem(QString::fromStdString(""));
+  ptwi = new QTableWidgetItem(QString::fromStdString(timeKarana));
   tbl.setItem(3, 1, ptwi);
   ptwi = new QTableWidgetItem(QString(QString::fromStdString(karanaName)));
   tbl.setItem(3, 2, ptwi);

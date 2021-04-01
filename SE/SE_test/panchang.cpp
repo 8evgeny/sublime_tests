@@ -292,7 +292,8 @@ tuple<double, string, string, string, string> nativ::findNaksh(nativ& nativ) {
           "позволяет духовным энергиям течь  беспрепятственно"};
       break;
     case 17:
-      tuple = {naksh, "Анурадха", "Sa", "Митра, бог света", " "};
+      tuple = {naksh, "Анурадха", "Sa", "Митра, бог света",
+               "Максимально благоприятна для секса"};
       break;
     case 18:
       tuple = {naksh, "Джйештха", "Bu", "Индра, бог богов", " "};

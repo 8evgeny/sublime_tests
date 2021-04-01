@@ -75,7 +75,7 @@ pair<string, string> nativ::findStartTithi(nativ& nativ, int number) {
   //  printAll(nativ);
   panchang(*this);
   //  panchangPrint(*this);
-
+  nativ.tithiStart = tpoint;
   return result;
 }
 
@@ -157,7 +157,7 @@ pair<string, string> nativ::findEndTithi(nativ& nativ, int number) {
   //  printAll(nativ);
   panchang(*this);
   //  panchangPrint(*this);
-
+  nativ.tithiEnd = tpoint;
   return result;
 }
 
@@ -298,4 +298,34 @@ pair<string, string> nativ::findEndNaksh(nativ& nativ, int number) {
   //  panchangPrint(*this);
 
   return result;
+}
+
+pair<string, string> nativ::findStartKarana(nativ& nativ) {
+  bool numKaranaInTithi = false;
+  if ((nativ.tithi - (int)nativ.tithi) > 0.5) numKaranaInTithi = true;
+  if (!numKaranaInTithi) {
+    nativ.karanaStart = nativ.tithiStart;
+  }
+  if (numKaranaInTithi) {
+    nativ.karanaEnd = nativ.tithiEnd;
+    auto durationTithi = nativ.tithiEnd - nativ.tithiStart;
+    auto halfdurationTithi = durationTithi / 2;
+    nativ.karanaStart = nativ.tithiStart + halfdurationTithi;
+  }
+  return fromCronoToStringlocal(nativ.karanaStart);
+}
+
+pair<string, string> nativ::findEndKarana(nativ& nativ) {
+  bool numKaranaInTithi = false;
+  if ((nativ.tithi - (int)nativ.tithi) > 0.5) numKaranaInTithi = true;
+  if (numKaranaInTithi) {
+    nativ.karanaEnd = nativ.tithiEnd;
+  }
+  if (!numKaranaInTithi) {
+    nativ.karanaStart = nativ.tithiStart;
+    auto durationTithi = nativ.tithiEnd - nativ.tithiStart;
+    auto halfdurationTithi = durationTithi / 2;
+    nativ.karanaEnd = nativ.tithiStart + halfdurationTithi;
+  }
+  return fromCronoToStringlocal(nativ.karanaEnd);
 }
