@@ -87,8 +87,7 @@ void nativ::qtPanchang(int argc, char** argv) {
   ptwi = new QTableWidgetItem(QString(QString::fromStdString(nakshResult)));
   tbl.setItem(2, 5, ptwi);
 
-  ptwi =
-      new QTableWidgetItem(QString::fromStdString(to_string(karana).erase(5)));
+  ptwi = new QTableWidgetItem(QString::fromStdString(to_string(karana)));
   tbl.setItem(3, 0, ptwi);
   ptwi = new QTableWidgetItem(QString::fromStdString(""));
   tbl.setItem(3, 1, ptwi);

@@ -110,11 +110,11 @@ void nativ::panchang(nativ& nativ) {
   nativ.nakshResult = get<4>(tupleNaksh);
 
   auto tupleKarana = findKarana(nativ);
-  nativ.karana = get<0>(tupleNaksh);
-  nativ.karanaName = get<1>(tupleNaksh);
-  nativ.karanaLord = get<2>(tupleNaksh);
-  nativ.karanaGod = get<3>(tupleNaksh);
-  nativ.karanaResult = get<4>(tupleNaksh);
+  nativ.karana = get<0>(tupleKarana);
+  nativ.karanaName = get<1>(tupleKarana);
+  nativ.karanaLord = get<2>(tupleKarana);
+  nativ.karanaGod = get<3>(tupleKarana);
+  nativ.karanaResult = get<4>(tupleKarana);
 
   //  what_yoga();
 }
