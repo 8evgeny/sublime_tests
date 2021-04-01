@@ -5,8 +5,8 @@ using namespace std;
 
 int main(int argc, char** argv) {
   nativ curr_Time;
-  //  nativ my("Evgeny");
-  nativ t("Танюша");
+  nativ my("Evgeny");
+  //  nativ t("Танюша");
   //  nativ d1("Stasya");
   //  nativ d2("Taya");
   //  nativ d3("Maya");
@@ -21,6 +21,7 @@ int main(int argc, char** argv) {
 
   //  thread t1(&nativ::Qtvara, ref(curr_Time));
   //  thread t2(&nativ::Qtvara, ref(t));
+  cout << "navatara: " << my.navatara(curr_Time) << endl;
   curr_Time.qtPanchang(argc, argv);
   //  t1.join();
   //  t2.join();

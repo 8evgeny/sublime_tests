@@ -821,6 +821,32 @@ tuple<int, string, string, string, string> nativ::findKarana(nativ& nativ) {
   return result;
 }
 
+string nativ::navatara(nativ& nativ) {
+  int navatara = 0;
+  if ((nativ.naksh - this->naksh) >= 0) {
+    navatara = 1 + (int)nativ.naksh - (int)this->naksh;
+  } else {
+    navatara = 28 + (int)nativ.naksh - (int)this->naksh;
+  }
+
+  if ((navatara == 1) || (navatara == 10) || (navatara == 19))
+    return "Опасность";
+  if ((navatara == 2) || (navatara == 11) || (navatara == 20))
+    return "Богатство";
+  if ((navatara == 3) || (navatara == 12) || (navatara == 21))
+    return "Опасность";
+  if ((navatara == 4) || (navatara == 13) || (navatara == 22))
+    return "Процветание";
+  if ((navatara == 5) || (navatara == 14) || (navatara == 23))
+    return "Препятствия";
+  if ((navatara == 6) || (navatara == 15) || (navatara == 24))
+    return "Достижение";
+  if ((navatara == 7) || (navatara == 16) || (navatara == 25)) return "Смерть";
+  if ((navatara == 8) || (navatara == 17) || (navatara == 26)) return "Друг";
+  if ((navatara == 9) || (navatara == 18) || (navatara == 27))
+    return "Хороший друг";
+}
+
 // float nativ::what_yoga() {
 //  //
 //  //

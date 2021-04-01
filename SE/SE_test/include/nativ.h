@@ -66,6 +66,7 @@ class nativ {
   tuple<int, string, string, string, string> findKarana(nativ&);
   float find_yoga(nativ&);
   void panchang(nativ&);
+  string navatara(nativ&);
   void panchangPrint(nativ&);
   struct tm fromStringToTm(string, string);
   pair<string, string> fromTmToString(struct tm&);
