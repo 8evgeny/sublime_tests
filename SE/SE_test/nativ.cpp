@@ -25,10 +25,10 @@ nativ::nativ(string nam) {
   panchangPrint(*this);
 };
 
-nativ::nativ() {
+nativ::nativ(int n) {
   po::variables_map vm;
   readConfig("../config/config.ini", vm, "");
-  auto datetime = dateTimeNowInString();
+  auto datetime = dateTimeNowInString(n);
   bday = datetime.first;
   btime = datetime.second;
   lon = vm["common.lon_current"].as<std::string>();

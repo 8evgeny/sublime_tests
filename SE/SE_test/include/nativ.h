@@ -34,7 +34,7 @@ class As : public planet {};
 class nativ {
  public:
   nativ(string);
-  nativ();  //для текущего времени
+  nativ(int);  //для текущего времени
   Su su;
   Ch ch;
   Ma ma;
@@ -48,7 +48,7 @@ class nativ {
   mutex mtx;
   bool print_calc;
   void readConfig(const char*, po::variables_map&, string);
-  pair<string, string> dateTimeNowInString();
+  pair<string, string> dateTimeNowInString(int);
   void printAll(nativ&);
   int calc();
   int print_line(int mode, AS_BOOL is_first, int sid_mode);
@@ -75,7 +75,7 @@ class nativ {
   pair<string, string> fromCronoToStringlocal(chrono::system_clock::time_point);
   tm fromCronoToTm(chrono::system_clock::time_point);
   tm fromCronoToTmLocal(chrono::system_clock::time_point);
-  void qtPanchang(int, char**);
+
   string path;
   string name;
   string bday;

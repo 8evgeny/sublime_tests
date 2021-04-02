@@ -1,10 +1,14 @@
 #include "main.h"
 #include "nativ.h"
-void nativ::qtPanchang(int argc, char** argv) {
+void nativ::qtPanchang(nativ& nativ) {
+  int argc = 1;
+  char* argv[1];
+  string arg0 = "./test";
+  argv[0] = (char*)arg0.c_str();
   QApplication app(argc, argv);
   //  mtx.lock();
 
-  QTableWidget tbl(5, 6);
+  QTableWidget tbl(6, 6);
   tbl.setColumnWidth(0, 100);
   tbl.setColumnWidth(1, 300);
   tbl.setColumnWidth(2, 200);
@@ -15,22 +19,23 @@ void nativ::qtPanchang(int argc, char** argv) {
   tbl.resizeRowsToContents();
 
   QTableWidgetItem* ptwi = 0;
-  QStringList stolbVara, columVara;
+  QStringList row, colum;
 
-  stolbVara << "Значение"
-            << "Время"
-            << "Название"
-            << "Управитель"
-            << "Божество"
-            << "Результат";
-  columVara << "Вара    "
-            << "Титхи   "
-            << "Накшатра:  "
-            << "Карана"
-            << "Йога";
-  tbl.setHorizontalHeaderLabels(stolbVara);
+  row << "Значение"
+      << "Время"
+      << "Название"
+      << "Управитель"
+      << "Божество"
+      << "Результат";
+  colum << "Вара    "
+        << "Титхи   "
+        << "Накшатра:  "
+        << "Карана"
+        << "Йога"
+        << "Наватара";
+  tbl.setHorizontalHeaderLabels(row);
 
-  tbl.setVerticalHeaderLabels(columVara);
+  tbl.setVerticalHeaderLabels(colum);
 
   //  int moonDay = 1; //Иногда улетает назад
   int moonDay = (int)tithi + 1;
@@ -105,6 +110,9 @@ void nativ::qtPanchang(int argc, char** argv) {
   tbl.setItem(3, 4, ptwi);
   ptwi = new QTableWidgetItem(QString(QString::fromStdString(karanaResult)));
   tbl.setItem(3, 5, ptwi);
+
+  ptwi = new QTableWidgetItem(QString::fromStdString(nativ.name));
+  tbl.setItem(4, 3, ptwi);
 
   tbl.item(0, 0)->setTextAlignment(Qt::AlignCenter);
   tbl.item(0, 1)->setTextAlignment(Qt::AlignCenter);

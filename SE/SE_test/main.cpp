@@ -4,7 +4,13 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-  nativ curr_Time;
+  int n;
+  if (argc == 1) {
+    n = 0;
+  } else {
+    n = stoi(argv[1]);
+  }
+  nativ curr_Time(n);
   nativ my("Evgeny");
   nativ t("Танюша");
   nativ d1("Stasya");
@@ -27,7 +33,7 @@ int main(int argc, char** argv) {
   cout << "navatara: " << d2.name << " " << d2.navatara(curr_Time) << endl;
   cout << "navatara: " << d3.name << " " << d3.navatara(curr_Time) << endl;
   cout << "navatara: " << d4.name << " " << d4.navatara(curr_Time) << endl;
-  curr_Time.qtPanchang(argc, argv);
+  curr_Time.qtPanchang(my);
   //  t1.join();
   //  t2.join();
 
