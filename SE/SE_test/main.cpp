@@ -27,9 +27,9 @@ int main(int argc, char** argv) {
 
   //  thread t1(&nativ::Qtvara, ref(curr_Time));
   //  thread t2(&nativ::Qtvara, ref(t));
-  cout << "navatara: " << my.name << " " << my.navatara(curr_Time) << endl;
 
-  curr_Time.qtPanchang(my);
+  //  curr_Time.qtPanchang(t);
+  curr_Time.scanHairCut(my, 20);
   //  t1.join();
   //  t2.join();
 

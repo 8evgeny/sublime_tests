@@ -823,11 +823,11 @@ tuple<int, string, string, string, string> nativ::findKarana(nativ& nativ) {
 
 string nativ::navatara(nativ& nativ) {
   int navatara = 0;
-  if ((nativ.naksh - this->naksh) >= 0) {
-    navatara = 1 + (int)nativ.naksh - (int)this->naksh;
-  } else {
-    navatara = 28 + (int)nativ.naksh - (int)this->naksh;
-  }
+  //  if ((nativ.naksh - this->naksh) >= 0) {
+  //    navatara = 1 + (int)nativ.naksh - (int)this->naksh;
+  //  } else {
+  //    navatara = 28 + (int)nativ.naksh - (int)this->naksh;
+  //  }
 
   if ((navatara == 1) || (navatara == 10) || (navatara == 19))
     return "Опасность";

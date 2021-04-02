@@ -28,6 +28,7 @@ add_executable(test ${src}
     time.cpp
     findstartend.cpp
     qtPanchang.cpp
+    scanHairCut.cpp
     )
 
 target_include_directories(mini PUBLIC include)
