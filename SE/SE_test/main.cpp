@@ -28,8 +28,8 @@ int main(int argc, char** argv) {
   //  thread t1(&nativ::Qtvara, ref(curr_Time));
   //  thread t2(&nativ::Qtvara, ref(t));
   cout << "navatara: " << my.name << " " << my.navatara(curr_Time) << endl;
-  string navatara = my.navatara(curr_Time);
-  curr_Time.qtPanchang(my, navatara);
+
+  curr_Time.qtPanchang(my);
   //  t1.join();
   //  t2.join();
 

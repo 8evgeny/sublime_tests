@@ -1,6 +1,8 @@
 #include "main.h"
 #include "nativ.h"
-void nativ::qtPanchang(nativ& nativ, string navatara) {
+void nativ::qtPanchang(nativ& nativ) {
+  string nav = nativ.navatara(*this);
+
   int argc = 1;
   char* argv[1];
   string arg0 = "./test";
@@ -112,8 +114,8 @@ void nativ::qtPanchang(nativ& nativ, string navatara) {
   tbl.setItem(3, 5, ptwi);
 
   ptwi = new QTableWidgetItem(QString::fromStdString(nativ.name));
-  tbl.setItem(5, 3, ptwi);
-  ptwi = new QTableWidgetItem(QString::fromStdString(navatara));
+  tbl.setItem(5, 2, ptwi);
+  ptwi = new QTableWidgetItem(QString::fromStdString(nav));
   tbl.setItem(5, 5, ptwi);
 
   tbl.item(0, 0)->setTextAlignment(Qt::AlignCenter);
@@ -140,6 +142,8 @@ void nativ::qtPanchang(nativ& nativ, string navatara) {
   tbl.item(3, 3)->setTextAlignment(Qt::AlignCenter);
   tbl.item(3, 4)->setTextAlignment(Qt::AlignCenter);
   tbl.item(3, 5)->setTextAlignment(Qt::AlignLeft);
+  tbl.item(5, 2)->setTextAlignment(Qt::AlignCenter);
+
   tbl.resize(1850, 400);
 
   tbl.show();
