@@ -20,9 +20,11 @@ nativ::nativ(string nam) {
   b_time = fromCronoToTm(chronoBighDateTime);
 
   calc();
-  planetInSigns();
+  planetInSignsInHouses();
+
   panchang(*this);
   printAll(*this);
+  cout << "\rch in:" << ch.sign << " " << ch.house << endl;
   panchangPrint(*this);
 };
 
@@ -43,9 +45,10 @@ nativ::nativ(int n) {
   b_time = fromCronoToTm(chronoBighDateTime);
 
   calc();
-  planetInSigns();
+  planetInSignsInHouses();
   panchang(*this);
   printAll(*this);
+  cout << "\rch in:" << ch.sign << " " << ch.house << endl;
   panchangPrint(*this);
 };
 

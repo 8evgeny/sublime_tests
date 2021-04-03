@@ -78,7 +78,7 @@ class nativ {
   tm fromCronoToTmLocal(chrono::system_clock::time_point);
   void qtPanchang(nativ&);
   void scanHairCut(nativ&, int);
-  void planetInSigns();
+  void planetInSignsInHouses();
   string path;
   string name;
   string bday;

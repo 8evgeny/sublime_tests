@@ -3,28 +3,82 @@
 
 void nativ::scanHairCut(nativ& nativ, int numDay) {
   int num = numDay * 24;
-
   auto tpoint = this->chronoBighDateTime;
+  int navatara = 0;
+
+  vector<pair<chrono::system_clock::time_point, string>> goodTime;
   while (num > 0) {
-    int navatara = 0;
-    //    if ((this->naksh - nativ.naksh) >= 0) {
-    //      navatara = 1 + (int)this->naksh - (int)nativ.naksh;
-    //    } else {
-    //      navatara = 27 + (int)this->naksh - (int)nativ.naksh;
-    //    }
+    auto TinTuple = findTithi(*this);
+    //    cout << "tithi: " << 1 + (int)get<0>(TinTuple) << endl;
 
-    chrono::duration<int, ratio<60> > one_minut(1);
-
-    cout << "\r" << num << " час"
-         << " navatara: " << navatara << " ";
+    chrono::duration<int, ratio<60>> one_minut(1);
     tpoint += one_minut * 60;
     auto datetime = fromCronoToString(tpoint);
-    cout << datetime.second << endl;
+
     this->b_time = fromCronoToTm(tpoint);
     this->bday = datetime.first;
     this->btime = datetime.second;
     calc();
     panchang(*this);
+    if (((int)this->naksh - (int)nativ.naksh) >= 0) {
+      navatara = 1 + (int)this->naksh - (int)nativ.naksh;
+    } else {
+      navatara = 28 + (int)this->naksh - (int)nativ.naksh;
+    }
+    //    Можно в накшатре Пушйа, Пунарвасу, Ревати, Хаста, Шравана, Дханишта,
+    //    Мригашира, Ашвини, Читра, Джйешта, Сатабиша и Свати.
+    //         1,5,7,8,13,14,15,18,22,23,24,27
+    //   1,2,3,5,6,7,10,11,12,13,15
+
+    //    Стрижка всегда должна выполняться утром
+    //Понедельник, среда, четверг и пятница удачны
+
+    //        cout << "\r+" << 1 + numDay * 24 - num << " час" << " navatara: "
+    //        << navatara << " " << datetime.second << endl;
+
+    int t = 1 + (int)this->tithi;
+    int n = 1 + (int)this->naksh;
+    if ((n == 1) || (n == 5) || (n == 7) || (n == 8) || (n == 13) ||
+        (n == 14) || (n == 15) || (n == 18) || (n == 22) || (n == 23) ||
+        (n == 24) || (n == 27)) {
+      if (this->b_time.tm_hour < 12) {
+        if ((t == 1) || (t == 2) || (t == 3) || (t == 5) || (t == 6) ||
+            (t == 7) || (t == 10) || (t == 11) || (t == 12) || (t == 13) ||
+            (t == 15)) {
+          if ((navatara == 2) || (navatara == 11) || (navatara == 20)) {
+            goodTime.push_back(make_pair(tpoint, "Богатство"));
+            cout << "\r+" << 1 + numDay * 24 - num << " час"
+                 << " navatara: " << navatara << " " << datetime.first << " "
+                 << datetime.second << endl;
+          }
+          if ((navatara == 4) || (navatara == 13) || (navatara == 22)) {
+            goodTime.push_back(make_pair(tpoint, "Процветание"));
+            cout << "\r+" << 1 + numDay * 24 - num << " час"
+                 << " navatara: " << navatara << " " << datetime.first << " "
+                 << datetime.second << endl;
+          }
+          if ((navatara == 6) || (navatara == 15) || (navatara == 24)) {
+            goodTime.push_back(make_pair(tpoint, "Достижение"));
+            cout << "\r+" << 1 + numDay * 24 - num << " час"
+                 << " navatara: " << navatara << " " << datetime.first << " "
+                 << datetime.second << endl;
+          }
+          if ((navatara == 8) || (navatara == 17) || (navatara == 26)) {
+            goodTime.push_back(make_pair(tpoint, "Друг"));
+            cout << "\r+" << 1 + numDay * 24 - num << " час"
+                 << " navatara: " << navatara << " " << datetime.first << " "
+                 << datetime.second << endl;
+          }
+          if ((navatara == 9) || (navatara == 18) || (navatara == 27)) {
+            goodTime.push_back(make_pair(tpoint, "Хороший друг"));
+            cout << "\r+" << 1 + numDay * 24 - num << " час"
+                 << " navatara: " << navatara << " " << datetime.first << " "
+                 << datetime.second << endl;
+          }
+        }  //условие титхи
+      }    //условие утром
+    }      //условие накшатра
+
     --num;
   }
 }

@@ -1,20 +1,36 @@
 #include "main.h"
 #include "nativ.h"
 
-void nativ::planetInSigns() {
+void nativ::planetInSignsInHouses() {
   as.sign = as.lon / 30 + 1;
   as.house = 1;
   su.sign = su.lon / 30 + 1;
-  su.sign - as.sign > 0 ? su.house = su.sign - as.sign
-                        : su.house = as.sign - su.sign;
+  su.sign - as.sign >= 0 ? su.house = su.sign - as.sign + 1
+                         : su.house = 13 + su.sign - as.sign;
   ch.sign = ch.lon / 30 + 1;
+  ch.sign - as.sign >= 0 ? ch.house = ch.sign - as.sign + 1
+                         : ch.house = 13 + ch.sign - as.sign;
   ma.sign = ma.lon / 30 + 1;
+  ma.sign - as.sign >= 0 ? ma.house = ma.sign - as.sign + 1
+                         : ma.house = 13 + ma.sign - as.sign;
   bu.sign = bu.lon / 30 + 1;
+  bu.sign - as.sign >= 0 ? bu.house = bu.sign - as.sign + 1
+                         : bu.house = 13 + bu.sign - as.sign;
   gu.sign = gu.lon / 30 + 1;
+  gu.sign - as.sign >= 0 ? gu.house = gu.sign - as.sign + 1
+                         : gu.house = 13 + gu.sign - as.sign;
   sk.sign = sk.lon / 30 + 1;
+  sk.sign - as.sign >= 0 ? sk.house = sk.sign - as.sign + 1
+                         : sk.house = 13 + sk.sign - as.sign;
   sa.sign = sa.lon / 30 + 1;
+  sa.sign - as.sign >= 0 ? sa.house = sa.sign - as.sign + 1
+                         : sa.house = 13 + sa.sign - as.sign;
   ra.sign = ra.lon / 30 + 1;
+  ra.sign - as.sign >= 0 ? ra.house = ra.sign - as.sign + 1
+                         : ra.house = 13 + ra.sign - as.sign;
   ke.sign = ke.lon / 30 + 1;
+  ke.sign - as.sign >= 0 ? ke.house = ke.sign - as.sign + 1
+                         : ke.house = 13 + ke.sign - as.sign;
 }
 
 void nativ::printAll(nativ& nativ) {
@@ -839,11 +855,11 @@ tuple<int, string, string, string, string> nativ::findKarana(nativ& nativ) {
 
 string nativ::navatara(nativ& nativ) {
   int navatara = 0;
-  //  if ((nativ.naksh - this->naksh) >= 0) {
-  //    navatara = 1 + (int)nativ.naksh - (int)this->naksh;
-  //  } else {
-  //    navatara = 28 + (int)nativ.naksh - (int)this->naksh;
-  //  }
+  if (((int)this->naksh - (int)nativ.naksh) >= 0) {
+    navatara = 1 + (int)this->naksh - (int)nativ.naksh;
+  } else {
+    navatara = 28 + (int)this->naksh - (int)nativ.naksh;
+  }
 
   if ((navatara == 1) || (navatara == 10) || (navatara == 19))
     return "Опасность";
