@@ -1,6 +1,22 @@
 #include "main.h"
 #include "nativ.h"
 
+void nativ::planetInSigns() {
+  as.sign = as.lon / 30 + 1;
+  as.house = 1;
+  su.sign = su.lon / 30 + 1;
+  su.sign - as.sign > 0 ? su.house = su.sign - as.sign
+                        : su.house = as.sign - su.sign;
+  ch.sign = ch.lon / 30 + 1;
+  ma.sign = ma.lon / 30 + 1;
+  bu.sign = bu.lon / 30 + 1;
+  gu.sign = gu.lon / 30 + 1;
+  sk.sign = sk.lon / 30 + 1;
+  sa.sign = sa.lon / 30 + 1;
+  ra.sign = ra.lon / 30 + 1;
+  ke.sign = ke.lon / 30 + 1;
+}
+
 void nativ::printAll(nativ& nativ) {
   cout << endl;
   cout << "\r" << nativ.name << ":  " << nativ.bday << ", " << nativ.btime

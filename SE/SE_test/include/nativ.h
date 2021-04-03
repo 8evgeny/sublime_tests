@@ -14,6 +14,7 @@ class planet {
   //  struct data {
   double lon{0};
   int house{0};
+  int sign{0};
   double speed{0};
   double distance{0};
   bool retro;
@@ -77,6 +78,7 @@ class nativ {
   tm fromCronoToTmLocal(chrono::system_clock::time_point);
   void qtPanchang(nativ&);
   void scanHairCut(nativ&, int);
+  void planetInSigns();
   string path;
   string name;
   string bday;

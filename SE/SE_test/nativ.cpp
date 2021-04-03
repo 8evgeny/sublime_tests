@@ -20,6 +20,7 @@ nativ::nativ(string nam) {
   b_time = fromCronoToTm(chronoBighDateTime);
 
   calc();
+  planetInSigns();
   panchang(*this);
   printAll(*this);
   panchangPrint(*this);
@@ -42,6 +43,7 @@ nativ::nativ(int n) {
   b_time = fromCronoToTm(chronoBighDateTime);
 
   calc();
+  planetInSigns();
   panchang(*this);
   printAll(*this);
   panchangPrint(*this);
