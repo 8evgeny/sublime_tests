@@ -2,7 +2,8 @@
 #include "nativ.h"
 
 void nativ::scanHairCut(nativ& nativ, int numDay) {
-  int num = numDay * 24 * 12;
+  int num = numDay * 24 * 4;
+  auto res = this->chronoBighDateTime;
   auto tpoint = this->chronoBighDateTime;
   int navatara = 0;
   cout << "Расчитываются результаты на " << numDay << " дней вперед." << endl;
@@ -15,7 +16,7 @@ void nativ::scanHairCut(nativ& nativ, int numDay) {
     //    cout << "tithi: " << 1 + (int)get<0>(TinTuple) << endl;
 
     chrono::duration<int, ratio<60>> one_minut(1);
-    tpoint += one_minut * 5;
+    tpoint += one_minut * 15;
     auto datetime = fromCronoToString(tpoint);
     auto toPrint = fromCronoToStringlocal(tpoint);
     this->b_time = fromCronoToTm(tpoint);
@@ -50,38 +51,18 @@ void nativ::scanHairCut(nativ& nativ, int numDay) {
             (t == 15)) {
           if ((navatara == 2) || (navatara == 11) || (navatara == 20)) {
             goodTime.push_back(make_pair(tpoint, "Богатство"));
-            cout << "\r" << toPrint.first << " " << toPrint.second
-                 << " результат стрижки: "
-                 << "Богатство"
-                 << " " << endl;
           }
           if ((navatara == 4) || (navatara == 13) || (navatara == 22)) {
             goodTime.push_back(make_pair(tpoint, "Процветание"));
-            cout << "\r" << toPrint.first << " " << toPrint.second
-                 << " результат стрижки: "
-                 << "Процветание"
-                 << " " << endl;
           }
           if ((navatara == 6) || (navatara == 15) || (navatara == 24)) {
             goodTime.push_back(make_pair(tpoint, "Достижение"));
-            cout << "\r" << toPrint.first << " " << toPrint.second
-                 << " результат стрижки: "
-                 << "Достижение"
-                 << " " << endl;
           }
           if ((navatara == 8) || (navatara == 17) || (navatara == 26)) {
             goodTime.push_back(make_pair(tpoint, "Друг"));
-            cout << "\r" << toPrint.first << " " << toPrint.second
-                 << " результат стрижки: "
-                 << "Друг"
-                 << " " << endl;
           }
           if ((navatara == 9) || (navatara == 18) || (navatara == 27)) {
             goodTime.push_back(make_pair(tpoint, "Хороший друг"));
-            cout << "\r " << toPrint.first << " " << toPrint.second
-                 << " результат стрижки: "
-                 << "Хороший друг"
-                 << " " << endl;
           }
         }  //условие титхи
       }    //условие утром
@@ -89,4 +70,17 @@ void nativ::scanHairCut(nativ& nativ, int numDay) {
 
     --num;
   }
+  for (auto i : goodTime) {
+    cout << fromCronoToStringlocal(i.first).first << " "
+         << fromCronoToStringlocal(i.first).second << " " << i.second << endl;
+  }
+  //восстанавливаем
+  this->chronoBighDateTime = res;
+  auto datetimeold = fromCronoToString(this->chronoBighDateTime);
+  this->b_time = fromCronoToTm(nativ.chronoBighDateTime);
+  this->bday = datetimeold.first;
+  this->btime = datetimeold.second;
+  calc();
+  panchang(*this);
+  this->tithiStart = tpoint;
 }

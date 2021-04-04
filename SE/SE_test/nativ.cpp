@@ -23,7 +23,7 @@ nativ::nativ(string nam) {
   planetInSignsInHouses();
 
   panchang(*this);
-  //  printAll(*this);
+  printAll(*this);
   //  cout << "\rch in:" << ch.sign << " " << ch.house << endl;
   panchangPrint(*this);
 };
@@ -47,7 +47,7 @@ nativ::nativ(int n) {
   calc();
   planetInSignsInHouses();
   panchang(*this);
-  //  printAll(*this);
+  printAll(*this);
   //  cout << "\rch in:" << ch.sign << " " << ch.house << endl;
   panchangPrint(*this);
 };
@@ -152,9 +152,10 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
     // != NULL) continue;
     if (is_house && strchr("bBrRxXuUQnNfFj+-*/=", *sp) != NULL) continue;
     if (is_ayana && strchr("bBsSrRxXuUQnNfFj+-*/=", *sp) != NULL) continue;
-    if (sp != fmt) fputs(gap, stdout);
+    if (sp != fmt)
+      if (print_calc) fputs(gap, stdout);
     if (sp == fmt && list_hor && !is_first && strchr("yYJtT", *sp) == NULL)
-      fputs(gap, stdout);
+      if (print_calc) fputs(gap, stdout);
 
     switch (*sp) {
       case 'y':
@@ -322,7 +323,7 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
           as.lon = x[0];
         }
         //Значениe  при *sp == 'L'
-        //        fputs(dms(x[0], round_flag), stdout);
+        //        if (print_calc)  fputs (dms(x[0], round_flag), stdout);
         //**********************************************************************
 
         break;
@@ -344,7 +345,7 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
           break;
         }
 
-        fputs(dms(hpos, round_flag), stdout);
+        if (print_calc) fputs(dms(hpos, round_flag), stdout);
 
         break;
       case 'g':
@@ -366,14 +367,15 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
           if (print_calc) printf(slon);
           break;
         }
-        fputs(dms(x[0], round_flag | BIT_ZODIAC), stdout);
+        if (print_calc) fputs(dms(x[0], round_flag | BIT_ZODIAC), stdout);
         break;
       case 'S':
       case 's':
         if (*(sp + 1) == 'S' || *(sp + 1) == 's' ||
             strpbrk(fmt, "XUxu") != NULL) {
           for (sp2 = fmt; *sp2 != '\0'; sp2++) {
-            if (sp2 != fmt) fputs(gap, stdout);
+            if (sp2 != fmt)
+              if (print_calc) fputs(gap, stdout);
             switch (*sp2) {
               case 'L': /* speed! */
               case 'Z': /* speed! */
@@ -382,7 +384,7 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
                   break;
                 }
 
-                fputs(dms(x[3], round_flag), stdout);
+                if (print_calc) fputs(dms(x[3], round_flag), stdout);
 
                 break;
               case 'l': /* speed! */
@@ -401,7 +403,7 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
                   if (print_calc) printf("lat/day");
                   break;
                 }
-                fputs(dms(x[4], round_flag), stdout);
+                if (print_calc) fputs(dms(x[4], round_flag), stdout);
                 break;
               case 'b': /* speed! */
                 if (is_label) {
@@ -419,7 +421,9 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
                   if (print_calc) printf("RA/day");
                   break;
                 }
-                fputs(dms(xequ[3] / 15, round_flag | SEFLG_EQUATORIAL), stdout);
+                if (print_calc)
+                  fputs(dms(xequ[3] / 15, round_flag | SEFLG_EQUATORIAL),
+                        stdout);
                 break;
               case 'a': /* speed! */
                 if (is_label) {
@@ -437,7 +441,7 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
                   if (print_calc) printf("dcl/day");
                   break;
                 }
-                fputs(dms(xequ[4], round_flag), stdout);
+                if (print_calc) fputs(dms(xequ[4], round_flag), stdout);
                 break;
               case 'd': /* speed! */
                 if (is_label) {
@@ -465,11 +469,11 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
               case 'U': /* speed! */
               case 'X': /* speed! */
                 if (is_label) {
-                  fputs("speed_0", stdout);
-                  fputs(gap, stdout);
-                  fputs("speed_1", stdout);
-                  fputs(gap, stdout);
-                  fputs("speed_2", stdout);
+                  if (print_calc) fputs("speed_0", stdout);
+                  if (print_calc) fputs(gap, stdout);
+                  if (print_calc) fputs("speed_1", stdout);
+                  if (print_calc) fputs(gap, stdout);
+                  if (print_calc) fputs("speed_2", stdout);
                   break;
                 }
                 if (*sp == 'U')
@@ -477,19 +481,19 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
                 else
                   ar = 1;
                 if (print_calc) printf("%# 14.9f", xcart[3] / ar);
-                fputs(gap, stdout);
+                if (print_calc) fputs(gap, stdout);
                 if (print_calc) printf("%# 14.9f", xcart[4] / ar);
-                fputs(gap, stdout);
+                if (print_calc) fputs(gap, stdout);
                 if (print_calc) printf("%# 14.9f", xcart[5] / ar);
                 break;
               case 'u': /* speed! */
               case 'x': /* speed! */
                 if (is_label) {
-                  fputs("speed_0", stdout);
-                  fputs(gap, stdout);
-                  fputs("speed_1", stdout);
-                  fputs(gap, stdout);
-                  fputs("speed_2", stdout);
+                  if (print_calc) fputs("speed_0", stdout);
+                  if (print_calc) fputs(gap, stdout);
+                  if (print_calc) fputs("speed_1", stdout);
+                  if (print_calc) fputs(gap, stdout);
+                  if (print_calc) fputs("speed_2", stdout);
                   break;
                 }
                 if (*sp == 'u')
@@ -497,9 +501,9 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
                 else
                   ar = 1;
                 if (print_calc) printf("%# 14.9f", xcartq[3] / ar);
-                fputs(gap, stdout);
+                if (print_calc) fputs(gap, stdout);
                 if (print_calc) printf("%# 14.9f", xcartq[4] / ar);
-                fputs(gap, stdout);
+                if (print_calc) fputs(gap, stdout);
                 if (print_calc) printf("%# 14.9f", xcartq[5] / ar);
                 break;
               default:
@@ -552,7 +556,7 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
             as.speed = x[3];
           }
 
-          //          fputs(dms(x[3], flag), stdout);
+          //          if (print_calc)  fputs (dms(x[3], flag), stdout);
 
           //*****************************************************************************
 
@@ -584,7 +588,7 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
           if (print_calc) printf("h");
           break;
         }
-        fputs(dms(x[1], round_flag), stdout);
+        if (print_calc) fputs(dms(x[1], round_flag), stdout);
         break;
       case 'b':
         if (is_label) {
@@ -603,7 +607,8 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
           if (print_calc) printf("RA      ");
           break;
         }
-        fputs(dms(xequ[0] / 15, round_flag | SEFLG_EQUATORIAL), stdout);
+        if (print_calc)
+          fputs(dms(xequ[0] / 15, round_flag | SEFLG_EQUATORIAL), stdout);
         break;
       case 'a': /* right ascension */
         if (is_label) {
@@ -621,7 +626,7 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
           if (print_calc) printf("decl      ");
           break;
         }
-        fputs(dms(xequ[1], round_flag), stdout);
+        if (print_calc) fputs(dms(xequ[1], round_flag), stdout);
         break;
 
       case 'd': /* declination */
@@ -641,7 +646,7 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
           if (print_calc) printf("azimuth");
           break;
         }
-        fputs(dms(xaz[0], round_flag), stdout);
+        if (print_calc) fputs(dms(xaz[0], round_flag), stdout);
         break;
 
       case 'i': /* azimuth */
@@ -657,7 +662,7 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
           if (print_calc) printf("height");
           break;
         }
-        fputs(dms(xaz[1], round_flag), stdout);
+        if (print_calc) fputs(dms(xaz[1], round_flag), stdout);
         break;
 
       case 'h': /* height */
@@ -673,7 +678,7 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
           if (print_calc) printf("hgtApp");
           break;
         }
-        fputs(dms(xaz[2], round_flag), stdout);
+        if (print_calc) fputs(dms(xaz[2], round_flag), stdout);
         break;
 
       case 'k': /* height (apparent) */
@@ -743,19 +748,19 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
         else
           ar = 1;
         if (print_calc) printf("%# 14.9f", xcart[0] / ar);
-        fputs(gap, stdout);
+        if (print_calc) fputs(gap, stdout);
         if (print_calc) printf("%# 14.9f", xcart[1] / ar);
-        fputs(gap, stdout);
+        if (print_calc) fputs(gap, stdout);
         if (print_calc) printf("%# 14.9f", xcart[2] / ar);
         break;
       case 'u':
       case 'x':
         if (is_label) {
-          fputs("x0", stdout);
-          fputs(gap, stdout);
-          fputs("x1", stdout);
-          fputs(gap, stdout);
-          fputs("x2", stdout);
+          if (print_calc) fputs("x0", stdout);
+          if (print_calc) fputs(gap, stdout);
+          if (print_calc) fputs("x1", stdout);
+          if (print_calc) fputs(gap, stdout);
+          if (print_calc) fputs("x2", stdout);
           break;
         }
         if (*sp == 'u')
@@ -764,15 +769,15 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
           ar = 1;
         if (output_extra_prec) {
           if (print_calc) printf("%# .17f", xcartq[0] / ar);
-          fputs(gap, stdout);
+          if (print_calc) fputs(gap, stdout);
           if (print_calc) printf("%# .17f", xcartq[1] / ar);
-          fputs(gap, stdout);
+          if (print_calc) fputs(gap, stdout);
           if (print_calc) printf("%# .17f", xcartq[2] / ar);
         } else {
           if (print_calc) printf("%# 14.9f", xcartq[0] / ar);
-          fputs(gap, stdout);
+          if (print_calc) fputs(gap, stdout);
           if (print_calc) printf("%# 14.9f", xcartq[1] / ar);
-          fputs(gap, stdout);
+          if (print_calc) fputs(gap, stdout);
           if (print_calc) printf("%# 14.9f", xcartq[2] / ar);
         }
         break;
@@ -782,16 +787,16 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
           break;
         }
         if (print_calc) printf("%-15s", spnam);
-        fputs(dms(x[0], round_flag), stdout);
-        fputs(dms(x[1], round_flag), stdout);
+        if (print_calc) fputs(dms(x[0], round_flag), stdout);
+        if (print_calc) fputs(dms(x[1], round_flag), stdout);
         if (print_calc) printf("  %# 14.9f", x[2]);
-        fputs(dms(x[3], round_flag), stdout);
-        fputs(dms(x[4], round_flag), stdout);
+        if (print_calc) fputs(dms(x[3], round_flag), stdout);
+        if (print_calc) fputs(dms(x[4], round_flag), stdout);
         if (print_calc) printf("  %# 14.9f\n", x[5]);
         if (print_calc) printf("               %s", dms(xequ[0], round_flag));
-        fputs(dms(xequ[1], round_flag), stdout);
+        if (print_calc) fputs(dms(xequ[1], round_flag), stdout);
         if (print_calc) printf("                %s", dms(xequ[3], round_flag));
-        fputs(dms(xequ[4], round_flag), stdout);
+        if (print_calc) fputs(dms(xequ[4], round_flag), stdout);
         break;
       case 'N':
       case 'n': {
@@ -801,20 +806,22 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
             swe_nod_aps(te, ipl, iflag, imeth, xasc, xdsc, NULL, NULL, serr);
         if (iflgret >= 0 && (ipl <= SE_NEPTUNE || *sp == 'N')) {
           if (is_label) {
-            fputs("nodAsc", stdout);
-            fputs(gap, stdout);
-            fputs("nodDesc", stdout);
+            if (print_calc) fputs("nodAsc", stdout);
+            if (print_calc) fputs(gap, stdout);
+            if (print_calc) fputs("nodDesc", stdout);
             break;
           }
           if (use_dms)
-            fputs(dms(xasc[0], round_flag | BIT_ZODIAC), stdout);
-          else if (print_calc)
-            printf("%# 11.7f", xasc[0]);
-          fputs(gap, stdout);
+            if (print_calc)
+              fputs(dms(xasc[0], round_flag | BIT_ZODIAC), stdout);
+            else if (print_calc)
+              printf("%# 11.7f", xasc[0]);
+          if (print_calc) fputs(gap, stdout);
           if (use_dms)
-            fputs(dms(xdsc[0], round_flag | BIT_ZODIAC), stdout);
-          else if (print_calc)
-            printf("%# 11.7f", xdsc[0]);
+            if (print_calc)
+              fputs(dms(xdsc[0], round_flag | BIT_ZODIAC), stdout);
+            else if (print_calc)
+              printf("%# 11.7f", xdsc[0]);
         }
       }; break;
       case 'F':
@@ -827,22 +834,22 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
               swe_nod_aps(te, ipl, iflag, imeth, NULL, NULL, xper, xaph, serr);
           if (iflgret >= 0 && (ipl <= SE_NEPTUNE || *sp == 'F')) {
             if (is_label) {
-              fputs("peri", stdout);
-              fputs(gap, stdout);
-              fputs("apo", stdout);
-              fputs(gap, stdout);
-              fputs("focus", stdout);
+              if (print_calc) fputs("peri", stdout);
+              if (print_calc) fputs(gap, stdout);
+              if (print_calc) fputs("apo", stdout);
+              if (print_calc) fputs(gap, stdout);
+              if (print_calc) fputs("focus", stdout);
               break;
             }
             if (print_calc) printf("%# 11.7f", xper[0]);
-            fputs(gap, stdout);
+            if (print_calc) fputs(gap, stdout);
             if (print_calc) printf("%# 11.7f", xaph[0]);
           }
           imeth |= SE_NODBIT_FOPOINT;
           iflgret =
               swe_nod_aps(te, ipl, iflag, imeth, NULL, NULL, xper, xfoc, serr);
           if (iflgret >= 0 && (ipl <= SE_NEPTUNE || *sp == 'F')) {
-            fputs(gap, stdout);
+            if (print_calc) fputs(gap, stdout);
             if (print_calc) printf("%# 11.7f", xfoc[0]);
           }
         };
@@ -853,7 +860,7 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
           if (print_calc) printf("phase");
           break;
         }
-        fputs(dms(attr[0], round_flag), stdout);
+        if (print_calc) fputs(dms(attr[0], round_flag), stdout);
         break;
       case '-':
         if (is_label) {
@@ -869,7 +876,7 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
           break;
         }
         if (is_house) break;
-        fputs(dms(attr[2], round_flag), stdout);
+        if (print_calc) fputs(dms(attr[2], round_flag), stdout);
         break;
       case '/':
         if (is_label) {
@@ -877,7 +884,7 @@ int nativ::print_line(int mode, AS_BOOL is_first, int sid_mode) {
           break;
         }
         if (is_house) break;
-        fputs(dms(attr[3], round_flag), stdout);
+        if (print_calc) fputs(dms(attr[3], round_flag), stdout);
         break;
       case '=':
         if (is_label) {
@@ -1339,28 +1346,31 @@ swe_set_timeout(atoi(argv[i]) + 8);*/
         sp2 = strstr(si0, "Version:");
         if (sp2 != NULL && strlen(sp2) > 10 + strlen(sout))
           strcpy(sp2 + 9, sout);
-        fputs(si0, stdout);
-        fputs(infocmd1, stdout);
-        fputs(infocmd2, stdout);
-        fputs(infocmd3, stdout);
-        fputs(infocmd4, stdout);
-        fputs(infocmd5, stdout);
-        fputs(infocmd6, stdout);
+        if (print_calc) fputs(si0, stdout);
+        if (print_calc) fputs(infocmd1, stdout);
+        if (print_calc) fputs(infocmd2, stdout);
+        if (print_calc) fputs(infocmd3, stdout);
+        if (print_calc) fputs(infocmd4, stdout);
+        if (print_calc) fputs(infocmd5, stdout);
+        if (print_calc) fputs(infocmd6, stdout);
       }
-      if (*sp == 'p' || *sp == '\0') fputs(infoplan, stdout);
+      if (*sp == 'p' || *sp == '\0')
+        if (print_calc) fputs(infoplan, stdout);
       if (*sp == 'f' || *sp == '\0') {
-        fputs(infoform, stdout);
-        fputs(infoform2, stdout);
+        if (print_calc) fputs(infoform, stdout);
+        if (print_calc) fputs(infoform2, stdout);
       }
-      if (*sp == 'd' || *sp == '\0') fputs(infodate, stdout);
-      if (*sp == 'e' || *sp == '\0') fputs(infoexamp, stdout);
+      if (*sp == 'd' || *sp == '\0')
+        if (print_calc) fputs(infodate, stdout);
+      if (*sp == 'e' || *sp == '\0')
+        if (print_calc) fputs(infoexamp, stdout);
       goto end_main;
     } else {
       strcpy(sout, "illegal option ");
       strncat(sout, argv[i], 100);
       sout[100] = '\0';
       strcat(sout, "\n");
-      fputs(sout, stdout);
+      if (print_calc) fputs(sout, stdout);
       exit(1);
     }
   }
@@ -1398,7 +1408,7 @@ swe_set_timeout(atoi(argv[i]) + 8);*/
 
   if (with_header) {
     for (i = 0; i < argc; i++) {
-      fputs(argv[i], stdout);
+      if (print_calc) fputs(argv[i], stdout);
       if (print_calc) printf(" ");
     }
   }
@@ -1653,10 +1663,10 @@ swe_set_timeout(atoi(argv[i]) + 8);*/
       }
       if (strchr(plsel, 'n') == NULL &&
           !(iflag & (SEFLG_NONUT | SEFLG_SIDEREAL))) {
-        fputs("\nNutation        ", stdout);
-        fputs(dms(xobl[2], round_flag), stdout);
-        fputs(gap, stdout);
-        fputs(dms(xobl[3], round_flag), stdout);
+        if (print_calc) fputs("\nNutation        ", stdout);
+        if (print_calc) fputs(dms(xobl[2], round_flag), stdout);
+        if (print_calc) fputs(gap, stdout);
+        if (print_calc) fputs(dms(xobl[3], round_flag), stdout);
       }
       if (print_calc) printf("\n");
       if (do_houses) {
@@ -1810,9 +1820,9 @@ swe_set_timeout(atoi(argv[i]) + 8);*/
              ipl == SE_CHIRON || ipl == SE_PHOLUS || ipl == SE_CUPIDO ||
              ipl >= SE_PLMOON_OFFSET || ipl >= SE_AST_OFFSET ||
              ipl == SE_FIXSTAR || *psp == 'y')) {
-          fputs("error: ", stdout);
-          fputs(serr, stdout);
-          fputs("\n", stdout);
+          if (print_calc) fputs("error: ", stdout);
+          if (print_calc) fputs(serr, stdout);
+          if (print_calc) fputs("\n", stdout);
         }
         strcpy(serr_save, serr);
       } else if (*serr != '\0' && *serr_warn == '\0') {
@@ -1824,9 +1834,9 @@ swe_set_timeout(atoi(argv[i]) + 8);*/
         if (diff_mode == DIFF_GEOHEL)
           iflgret = swe_calc(te, ipldiff, iflag | SEFLG_HELCTR, x2, serr);
         if (iflgret < 0) {
-          fputs("error: ", stdout);
-          fputs(serr, stdout);
-          fputs("\n", stdout);
+          if (print_calc) fputs("error: ", stdout);
+          if (print_calc) fputs(serr, stdout);
+          if (print_calc) fputs("\n", stdout);
         }
         if (diff_mode == DIFF_DIFF || diff_mode == DIFF_GEOHEL) {
           for (i = 1; i < 6; i++) x[i] -= x2[i];
@@ -2025,9 +2035,9 @@ swe_set_timeout(atoi(argv[i]) + 8);*/
         sprintf(serr, "House method %s failed, Porphyry calculated instead",
                 shsy);
         if (strcmp(serr, serr_save) != 0) {
-          fputs("error: ", stdout);
-          fputs(serr, stdout);
-          fputs("\n", stdout);
+          if (print_calc) fputs("error: ", stdout);
+          if (print_calc) fputs(serr, stdout);
+          if (print_calc) fputs("\n", stdout);
         }
         strcpy(serr_save, serr);
         ihsy = 'O';
@@ -2079,7 +2089,7 @@ swe_set_timeout(atoi(argv[i]) + 8);*/
   } /* for tjd */
   if (*serr_warn != '\0') {
     if (print_calc) printf("\nwarning: ");
-    fputs(serr_warn, stdout);
+    if (print_calc) fputs(serr_warn, stdout);
     if (print_calc) printf("\n");
   }
 

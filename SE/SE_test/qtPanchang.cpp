@@ -1,7 +1,7 @@
 #include "main.h"
 #include "nativ.h"
 void nativ::qtPanchang(nativ& nativ) {
-  string nav = nativ.navatara(*this);
+  string nav = this->navatara(nativ);
 
   int argc = 1;
   char* argv[1];
