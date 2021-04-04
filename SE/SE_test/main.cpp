@@ -12,8 +12,8 @@ int main(int argc, char** argv) {
   }
   nativ curr_Time(n);
   nativ my("Evgeny");
-  nativ t("Танюша");
-  nativ d1("Stasya");
+  //  nativ t("Танюша");
+  //  nativ d1("Stasya");
   //  nativ d2("Taya");
   //  nativ d3("Maya");
   //  nativ d4("Ulyana");
@@ -28,10 +28,10 @@ int main(int argc, char** argv) {
   //  thread t1(&nativ::Qtvara, ref(curr_Time));
   //  thread t2(&nativ::Qtvara, ref(t));
 
-  curr_Time.scanHairCut(my, 30);
+  curr_Time.scanHairCut(my, 60);
   //  t1.join();
   //  t2.join();
-  curr_Time.qtPanchang(my);
+  //  curr_Time.qtPanchang(my);
   return 0;
 }
 

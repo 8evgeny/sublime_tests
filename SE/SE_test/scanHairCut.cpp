@@ -70,10 +70,47 @@ void nativ::scanHairCut(nativ& nativ, int numDay) {
 
     --num;
   }
+  vector<pair<chrono::system_clock::time_point, string>> startGoodTime;
+  vector<pair<chrono::system_clock::time_point, string>> endGoodTime;
+  bool isFirst = true;
+
+  pair<chrono::system_clock::time_point, string> prev;
+  int n = goodTime.size();
   for (auto i : goodTime) {
-    cout << fromCronoToStringlocal(i.first).first << " "
-         << fromCronoToStringlocal(i.first).second << " " << i.second << endl;
+    --n;
+    if (isFirst) {  //один раз заходим в начале
+      isFirst = false;
+      startGoodTime.push_back(i);
+      prev = i;
+    }
+
+    if (!isFirst) {
+      if (fromCronoToStringlocal(prev.first).first ==
+          fromCronoToStringlocal(i.first).first) {
+        prev = i;
+      } else {
+        endGoodTime.push_back(prev);
+        if (n != 0) startGoodTime.push_back(i);
+        prev = i;
+      }
+
+      cout << fromCronoToStringlocal(i.first).first << " "
+           << fromCronoToStringlocal(i.first).second << " " << i.second << endl;
+    }
+
+    if (n == 0) endGoodTime.push_back(i);  //записали последний элемент
   }
+  cout << endl;
+
+  for (auto i : startGoodTime)
+    cout << fromCronoToStringlocal(i.first).first << " "
+         << fromCronoToStringlocal(i.first).second << endl;
+  cout << endl;
+
+  for (auto i : endGoodTime)
+    cout << fromCronoToStringlocal(i.first).first << " "
+         << fromCronoToStringlocal(i.first).second << endl;
+
   //восстанавливаем
   this->chronoBighDateTime = res;
   auto datetimeold = fromCronoToString(this->chronoBighDateTime);
