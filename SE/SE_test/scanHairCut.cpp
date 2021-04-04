@@ -2,7 +2,7 @@
 #include "nativ.h"
 
 void nativ::scanHairCut(nativ& nativ, int numDay) {
-  int num = numDay * 24 * 4;
+  int num = numDay * 24 * 12;
   auto res = this->chronoBighDateTime;
   auto tpoint = this->chronoBighDateTime;
   int navatara = 0;
@@ -16,7 +16,7 @@ void nativ::scanHairCut(nativ& nativ, int numDay) {
     //    cout << "tithi: " << 1 + (int)get<0>(TinTuple) << endl;
 
     chrono::duration<int, ratio<60>> one_minut(1);
-    tpoint += one_minut * 15;
+    tpoint += one_minut * 5;
     auto datetime = fromCronoToString(tpoint);
     auto toPrint = fromCronoToStringlocal(tpoint);
     this->b_time = fromCronoToTm(tpoint);
@@ -45,7 +45,7 @@ void nativ::scanHairCut(nativ& nativ, int numDay) {
     if ((n == 1) || (n == 5) || (n == 7) || (n == 8) || (n == 13) ||
         (n == 14) || (n == 15) || (n == 18) || (n == 22) || (n == 23) ||
         (n == 24) || (n == 27)) {
-      if ((this->b_time.tm_hour < 11) && (this->b_time.tm_hour > 6)) {
+      if ((this->b_time.tm_hour < 12) && (this->b_time.tm_hour > 4)) {
         if ((t == 1) || (t == 2) || (t == 3) || (t == 5) || (t == 6) ||
             (t == 7) || (t == 10) || (t == 11) || (t == 12) || (t == 13) ||
             (t == 15)) {
@@ -94,22 +94,33 @@ void nativ::scanHairCut(nativ& nativ, int numDay) {
         prev = i;
       }
 
-      cout << fromCronoToStringlocal(i.first).first << " "
-           << fromCronoToStringlocal(i.first).second << " " << i.second << endl;
+      //      cout << fromCronoToStringlocal(i.first).first << " "
+      //           << fromCronoToStringlocal(i.first).second << " " << i.second
+      //           << endl;
     }
 
     if (n == 0) endGoodTime.push_back(i);  //записали последний элемент
   }
-  cout << endl;
+  //  cout << endl;
 
-  for (auto i : startGoodTime)
-    cout << fromCronoToStringlocal(i.first).first << " "
-         << fromCronoToStringlocal(i.first).second << endl;
-  cout << endl;
+  //  for (auto i : startGoodTime)
+  //    cout << fromCronoToStringlocal(i.first).first << " "
+  //         << fromCronoToStringlocal(i.first).second << endl;
+  //  cout << endl;
 
-  for (auto i : endGoodTime)
-    cout << fromCronoToStringlocal(i.first).first << " "
-         << fromCronoToStringlocal(i.first).second << endl;
+  //  for (auto i : endGoodTime)
+  //    cout << fromCronoToStringlocal(i.first).first << " "
+  //         << fromCronoToStringlocal(i.first).second << endl;
+  auto its = startGoodTime.begin();
+  auto ite = endGoodTime.begin();
+  for (int i = 0; i < startGoodTime.size(); ++i) {
+    cout << fromCronoToStringlocal((*its).first).first << " "
+         << fromCronoToStringlocal((*its).first).second << " - "
+         << fromCronoToStringlocal((*ite).first).second
+         << " результат: " << (*its).second << endl;
+    ++its;
+    ++ite;
+  }
 
   //восстанавливаем
   this->chronoBighDateTime = res;
