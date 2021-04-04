@@ -11,8 +11,8 @@ int main(int argc, char** argv) {
     n = stoi(argv[1]);
   }
   nativ curr_Time(n);
-  //  nativ my("Evgeny");
-  //  nativ t("Танюша");
+  nativ my("Evgeny");
+  nativ t("Танюша");
   nativ d1("Stasya");
   //  nativ d2("Taya");
   //  nativ d3("Maya");

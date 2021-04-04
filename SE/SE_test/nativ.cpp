@@ -23,8 +23,8 @@ nativ::nativ(string nam) {
   planetInSignsInHouses();
 
   panchang(*this);
-  printAll(*this);
-  cout << "\rch in:" << ch.sign << " " << ch.house << endl;
+  //  printAll(*this);
+  //  cout << "\rch in:" << ch.sign << " " << ch.house << endl;
   panchangPrint(*this);
 };
 
@@ -47,8 +47,8 @@ nativ::nativ(int n) {
   calc();
   planetInSignsInHouses();
   panchang(*this);
-  printAll(*this);
-  cout << "\rch in:" << ch.sign << " " << ch.house << endl;
+  //  printAll(*this);
+  //  cout << "\rch in:" << ch.sign << " " << ch.house << endl;
   panchangPrint(*this);
 };
 
