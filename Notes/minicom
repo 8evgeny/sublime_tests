@@ -21,6 +21,7 @@ s - Запускаем утилиту настройки minicom
 
 Хадас 
 picocom -b 115200 /dev/ttyUSB0
+
 minicom -D  /dev/ttyUSB0
 
 T4

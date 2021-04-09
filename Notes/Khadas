@@ -1,0 +1,40 @@
+
+Хадас 
+picocom -b 115200 /dev/ttyUSB0
+minicom -D  /dev/ttyUSB0
+
+sudo dd if=~/Khadas/VIM3_Ubuntu-server-focal_Linux-4.9.241_arm64_SD-USB_READY.img of=/dev/sdc bs=16M status=progress ; sync
+
+
+I2C 4
+Sensor SCL <-> I2C1_SCK (PIN 25)
+Sensor SDA <-> I2C1_SDA (PIN 26)
+Sensor GND <-> GND
+Sensor VCC <-> 5V or 3.3V //depends on your sensor
+
+sudo i2cdetect -y -r 4
+
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- UU -- 
+10: -- -- -- -- -- -- -- -- UU -- -- -- -- -- -- -- 
+20: UU -- 22 -- -- -- -- 27 -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- UU -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --                         
+
+Read register 0x0d of device 0x27 on I2C 4
+sudo i2cget -f -y 4 0x27 0x0d
+
+
+sudo dd if=/dev/sdc  of=~/Khadas/VIM3_Ubuntu-server-focal_Linux-4.9.241_arm64_SD-USB_work_UART.img bs=16M status=progress ; sync
+sudo dd if=~/Khadas/VIM3_Ubuntu-server-focal_Linux-4.9.241_arm64_SD-USB_work_UART.img of=/dev/sdc bs=16M status=progress ; sync
+
+Подключаю папку к локальной машине
+sshfs sadko@10.8.1.199:/ ~/share/Khadas_stend/
+
+boot/env.txt  правлю
+в конец дописываю 
+
+overlays=uart3 pps-gpio audio_bus_disable i2c3

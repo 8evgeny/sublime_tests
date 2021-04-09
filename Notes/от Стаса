@@ -110,3 +110,56 @@ std::string exec(const char* cmd) {
 /home/sfedorov/source/sadko/src/complex/commons/device_controller/test/camera_test.cpp
 
 sudo systemctl list-units | grep shooter
+
+
+
+
+Официально sadko начал поддерживать помимо arch linux также ubuntu 18 и ubuntu 20:)
+
+
+Чтобы не затягивать, для возможности возврата к предыдущему варианту, создал бэкап ветки develop и перевел все на новый пайплайн, создав также дополнительную ветку release_1.6.1.rc3
+
+Web streaming
+
+В последнем develop появился онлайн веб стриминг из коробки. Модуль называется libweb_streaming_module.so. При отсутствующих соединениях совершенно не нагружает пайплайн, по причине чего включен по дефолту в пайплайн.
+Если все таки что-либо выяснится - отключается простым комментированием этого модуля в конфиге модулей и перезапуском шутера.
+
+Как пользоваться:
+[http://<complex_ip>:8888]http://<complex_ip>:8888
+
+Нажать старт
+Затем не забыть нажать стоп либо закрыть страницу(чтобы не нагружать комплекс сжатием картинок)
+
+
+Continuous Integration And Continuous Deployment
+
+
+в любой ветке, включающей в себя ветку develop начиная с 2021.03.31, билд система поддерживает особые коммит слова:
+
+- FORCE_RELEASE - сборка серверного дистрибутива
+
+- FORCE_CLIENT_RELEASE - сборка клиентского дистрибутива
+
+
+По завершению пайплайна https://gitlab.com/alager/sadko/-/pipelines генерится билд
+
+
+//192.168.77.178/builds/sadko/<uname -m>/sadko_<client|server>_<sadko_version>_<release|debug>_<arch|ubuntu_18.04|ubuntu_20.04>_<uname -m>_<commit_hash>.tar
+
+
+подключить на чтение можно так:
+
+//192.168.77.178/builds/sadko /home/<user>/share/builds cifs username=ro,password=ro,workgroup=WORKGROUP,iocharset=utf8,uid=gitlab-runner,gid=0,x-systemd.automount,_netdev 0 0
+
+
+
+Архив после чего можно закинуть на комплекс и произвести развертку после распаковки:
+
+
+mkdir -p /soft/<sadko_release_has_commit>
+
+tar -xf <sadko_server_release..<has_commit>.tar> --directory <sadko_release_has_commit>
+
+cd <sadko_release_has_commit>
+
+./deploy.sh
