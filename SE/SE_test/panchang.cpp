@@ -122,31 +122,39 @@ void nativ::panchangPrint(nativ& nativ) {
 }
 
 void nativ::panchang(nativ& nativ) {
-  auto tupleVara = findVarafromTm(nativ.b_time);
-  nativ.varaName = get<0>(tupleVara);
-  nativ.vara = get<1>(tupleVara);
-  nativ.varaLord = get<2>(tupleVara);
+  //  auto tupleVara = findVarafromTm(nativ.b_time);
+  //  nativ.varaName = get<0>(tupleVara);
+  //  nativ.vara = get<1>(tupleVara);
+  //  nativ.varaLord = get<2>(tupleVara);
+  tie(nativ.varaName, nativ.vara, nativ.varaLord) =
+      findVarafromTm(nativ.b_time);
 
-  auto tupleTithi = findTithi(nativ);
-  nativ.tithi = get<0>(tupleTithi);
-  nativ.tithiName = get<1>(tupleTithi);
-  nativ.tithiLord = get<2>(tupleTithi);
-  nativ.tithiGod = get<3>(tupleTithi);
-  nativ.tithiResult = get<4>(tupleTithi);
+  //  auto tupleTithi = findTithi(nativ);
+  //  nativ.tithi = get<0>(tupleTithi);
+  //  nativ.tithiName = get<1>(tupleTithi);
+  //  nativ.tithiLord = get<2>(tupleTithi);
+  //  nativ.tithiGod = get<3>(tupleTithi);
+  //  nativ.tithiResult = get<4>(tupleTithi);
+  tie(nativ.tithi, nativ.tithiName, nativ.tithiLord, nativ.tithiGod,
+      nativ.tithiResult) = findTithi(nativ);
 
-  auto tupleNaksh = findNaksh(nativ);
-  nativ.naksh = get<0>(tupleNaksh);
-  nativ.nakshName = get<1>(tupleNaksh);
-  nativ.nakshLord = get<2>(tupleNaksh);
-  nativ.nakshGod = get<3>(tupleNaksh);
-  nativ.nakshResult = get<4>(tupleNaksh);
+  //  auto tupleNaksh = findNaksh(nativ);
+  //  nativ.naksh = get<0>(tupleNaksh);
+  //  nativ.nakshName = get<1>(tupleNaksh);
+  //  nativ.nakshLord = get<2>(tupleNaksh);
+  //  nativ.nakshGod = get<3>(tupleNaksh);
+  //  nativ.nakshResult = get<4>(tupleNaksh);
+  tie(nativ.naksh, nativ.nakshName, nativ.nakshLord, nativ.nakshGod,
+      nativ.nakshResult) = findNaksh(nativ);
 
-  auto tupleKarana = findKarana(nativ);
-  nativ.karana = get<0>(tupleKarana);
-  nativ.karanaName = get<1>(tupleKarana);
-  nativ.karanaLord = get<2>(tupleKarana);
-  nativ.karanaGod = get<3>(tupleKarana);
-  nativ.karanaResult = get<4>(tupleKarana);
+  //  auto tupleKarana = findKarana(nativ);
+  //  nativ.karana = get<0>(tupleKarana);
+  //  nativ.karanaName = get<1>(tupleKarana);
+  //  nativ.karanaLord = get<2>(tupleKarana);
+  //  nativ.karanaGod = get<3>(tupleKarana);
+  //  nativ.karanaResult = get<4>(tupleKarana);
+  tie(nativ.karana, nativ.karanaName, nativ.karanaLord, nativ.karanaGod,
+      nativ.karanaResult) = findKarana(nativ);
 
   //  what_yoga();
 }
@@ -340,7 +348,20 @@ tuple<double, string, string, string, string> nativ::findNaksh(nativ& nativ) {
       tuple = {naksh, "У.Ашадха", "Su", "Вишвадэваты-боги вселенной", " "};
       break;
     case 22:
-      tuple = {naksh, "Шравана", "Ch", "Вишну-хранитель вселенной", " "};
+      tuple = {
+          naksh, "Шравана", "Ch", "Вишну-хранитель вселенной",
+          "Плоды почитания накшатры:\nТот, кто делает соответствующее "
+          "предложение Вишну, Шраване, слышит о себе хорошие слова и не "
+          "вступает в плохие связи.\n\nБлагоприятная деятельность:\nРеклама. "
+          "Искусство. Концерты и "
+          "публичные мероприятия. Все, что связано со здоровьем, "
+          "профилактика. Давать советы и слушать советы. Социальная и "
+          "организационная деятельность. Писать, сочинять. Секс. Вести "
+          "важные разговоры, особенно по телефону. Путешествия. Работа "
+          "головой. Знакомство.\n\nНеблагоприятная деятельность:\nКонфликты, "
+          "агрессивные действия, война, "
+          "судебные процессы. Работа руками. Брать деньги в долг и одалживать. "
+          "Давать обещания. Завершение чего - то. Адаптировать детей "};
       break;
     case 23:
       tuple = {naksh, "Дхаништха", "Ma", "Восемь васу", " "};

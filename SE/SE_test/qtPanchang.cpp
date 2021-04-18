@@ -143,7 +143,7 @@ void nativ::qtPanchang(nativ& nativ) {
   tbl.item(3, 4)->setTextAlignment(Qt::AlignCenter);
   tbl.item(3, 5)->setTextAlignment(Qt::AlignLeft);
   tbl.item(5, 2)->setTextAlignment(Qt::AlignCenter);
-  tbl.resize(1850, 400);
+  tbl.resize(1850, 1000);
 
   tbl.show();
   app.exec();

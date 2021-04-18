@@ -8,7 +8,7 @@ pair<string, string> nativ::dateTimeNowInString(int n) {
   chrono::duration<int, ratio<60> > one_minut(1);
   chrono::duration<int, ratio<1> > one_second(1);
   chrono::system_clock::time_point today =
-      chrono::system_clock::now() + one_day * n;
+      chrono::system_clock::now() + one_minut * 60 * n;
 
   chrono::system_clock::time_point tomorrow = today + one_day * 1;  // !!!
 

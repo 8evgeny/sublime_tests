@@ -28,10 +28,10 @@ int main(int argc, char** argv) {
   //  thread t1(&nativ::Qtvara, ref(curr_Time));
   //  thread t2(&nativ::Qtvara, ref(t));
 
-  curr_Time.scanHairCut(my, 120);
+  //  curr_Time.scanHairCut(my, 30);
   //  t1.join();
   //  t2.join();
-  //  curr_Time.qtPanchang(my);
+  curr_Time.qtPanchang(my);
   return 0;
 }
 
