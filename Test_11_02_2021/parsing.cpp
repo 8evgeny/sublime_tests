@@ -112,7 +112,6 @@ void ParsingFiles::Impl::ParsingSingleFile(pair<string, vector<string>>& pair,
 
   // запись в файл
   lock_guard<mutex> lg(m);
-
   fstream out(outfile, ios::out | ios::app);
   cout << "[Имя файла " << name << " ]:" << endl;
   out << "[Имя файла " << name << " ]:" << endl;

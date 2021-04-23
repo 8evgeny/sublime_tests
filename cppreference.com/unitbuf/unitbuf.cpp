@@ -11,6 +11,7 @@ void log_progress(Diff d) {
 
 int main() {
   volatile int sink = 0;
+
   std::cout << std::unitbuf;  // enable automatic flushing
 
   auto t1 = std::chrono::high_resolution_clock::now();
