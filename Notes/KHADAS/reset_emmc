@@ -1,0 +1,43 @@
+на этапе загрузки нужно попасть в консоль uboot
+нажимаем несколько раз пробел 
+
+имеем 
+kvim3#
+вводим store init 3
+
+XXXXXXX======enter EMMC boot======XXXXXX
+co-phase 0x1, tx-dly 0, clock 40000000
+co-phase 0x1, tx-dly 0, clock 40000000
+co-phase 0x3, tx-dly 0, clock 400000
+emmc/sd response timeout, cmd8, status=0x3ff2800
+emmc/sd response timeout, cmd55, status=0x3ff2800
+co-phase 0x3, tx-dly 0, clock 400000
+co-phase 0x1, tx-dly 0, clock 40000000
+aml_sd_retry_refix[983]:delay = 0x0,gadjust =0x2000
+[mmc_startup] mmc refix success
+init_part() 297: PART_TYPE_AML
+[mmc_init] mmc init success
+switch to partitions #0, OK
+mmc1(part 0) is current device
+Device: SDIO Port C
+Manufacturer ID: 15
+OEM: 100
+Name: AJTD4 
+Tran Speed: 52000000
+Rd Block Len: 512
+MMC version 5.1
+High Capacity: Yes
+Capacity: 14.6 GiB
+mmc clock: 40000000
+Bus Width: 8-bit
+[store]amlmmc erase 1emmckey_is_protected(): protect
+start = 0,end = 57343
+start = 221184,end = 30535679
+Erasing blocks 0 to 8192 @ boot0
+start = 0,end = 8191
+Erasing blocks 0 to 8192 @ boot1
+start = 0,end = 8191
+
+emmc стерта
+перезагрузка
+Теперь можно вставлять в Хадас флешку с образом и грузиться с нее
