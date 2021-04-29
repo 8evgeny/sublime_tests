@@ -31,7 +31,7 @@ sudo mount /dev/nvme0n1p1 /home/pi/alager/
  sudo blkid
 
 Добавил в /etc/fstab  для автомонтирования
-UUID=aea73c9c-2674-43ac-bd78-9e86b9becd1a /home/pi/alager auto nosuid,nodev,nofail,x-gvfs-show 0 0
+UUID=aea73c9c-2674-43ac-bd78-9e86b9becd1a /home/pi/alager   
 
 если SSD новый 
 sudo parted /dev/nvme0n1
