@@ -3,6 +3,11 @@ project(test_radar)
 
 add_executable(${PROJECT_NAME}
     ${PROJECT_NAME}.cpp
+    SystemClock.cpp
+    CThread.cpp
+    RadarMessage.cpp
+    Radar.cpp
+    CoastalRadarMessage.cpp
     )
 
 set (Boost_USE_MULTITHREADED ON)
