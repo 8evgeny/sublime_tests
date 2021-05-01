@@ -1,4 +1,5 @@
 // 4. Создать базовый класс для сообщения радара.
+#pragma once
 #include "main.h"
 
 class RadarMessage {

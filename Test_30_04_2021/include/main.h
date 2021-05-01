@@ -1,11 +1,9 @@
 #pragma once
-#include "CThread.h"
-#include "CoastalRadar.h"
-#include "CoastalRadarMessage.h"
-#include "Radar.h"
-#include "RadarDataConnector.h"
-#include "RadarDisplay.h"
-#include "RadarMessage.h"
+#include <functional>
+#include <atomic>
+#include <memory>
+#include <thread>
+#include <iostream>
 
 #include <glm/ext.hpp>
 #include <glm/glm.hpp>
@@ -24,6 +22,4 @@
 #include "opencv2/opencv.hpp"
 #include "opencv2/ximgproc.hpp"
 
-#include <atomic>
-#include <memory>
-#include <thread>
+

@@ -1,7 +1,7 @@
 // 5. Создать базовый класс радара.
-
+#pragma once
+#include "RadarDataConnector.h"
 #include "main.h"
-
 class Radar {
  public:
   Radar(const Radar&) = delete;

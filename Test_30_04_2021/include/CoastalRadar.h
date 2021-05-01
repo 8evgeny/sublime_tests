@@ -8,8 +8,8 @@ internal_thread_iteration(). В классе реализовать следую
 */
 #pragma once
 #include "main.h"
-
+#include "Radar.h"
 class CoastalRadar : public Radar {
-
+public:
 
 };

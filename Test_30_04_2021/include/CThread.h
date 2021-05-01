@@ -1,8 +1,9 @@
 // 3. Создать класс CThread, инкапсулирующий стандартный поток C++.
 // Интерфейс класса:
 
+//#include <functional>
+#pragma once
 #include "main.h"
-
 class CThread {
  public:
   CThread(const CThread&) = delete;

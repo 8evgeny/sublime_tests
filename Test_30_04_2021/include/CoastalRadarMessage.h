@@ -1,15 +1,15 @@
 // 6.Создать класс сообщения берегового радара, унаследованный от сообщения
 // радара.
-
+#pragma once
+#include "RadarMessage.h"
 #include "main.h"
-
 class CoastalRadarMessage : public RadarMessage {
  public:
   explicit CoastalRadarMessage();
   virtual ~CoastalRadarMessage() override;
 
  public:
-  virtual bool is_data_valid() const override;
+  bool is_data_valid() const override;
   struct {
     double x = 0;
     double y = 0;
