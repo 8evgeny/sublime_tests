@@ -6,20 +6,15 @@
 
 
 2. Создать класс, инкапсулирующий источник времени для приложения.
-
 Интерфейс класса:
-
 class SystemClock
 {
 public:
         static int64_t get_time_milliseconds();
 };
 
-
 3. Создать класс CThread, инкапсулирующий стандартный поток C++.
-
 Интерфейс класса:
-
 class CThread
 {
 public:

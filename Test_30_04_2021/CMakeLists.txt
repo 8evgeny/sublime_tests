@@ -12,19 +12,19 @@ if (Boost_FOUND)
 endif ()
 
 find_package( OpenCV REQUIRED )
-
 message(STATUS "OpenCV library status:")
 message(STATUS "    version: ${OpenCV_VERSION}")
 message(STATUS "    libraries: ${OpenCV_LIBS}")
 message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
 message(STATUS "     path: ${OpenCV_INSTALL_PATH}")
 
-include_directories(${OpenCV_INCLUDE_DIRS})
+find_package(glm REQUIRED)
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
     include/
     ${OpenCV_INCLUDE_DIRS}
+    glm::glm
     )
 target_link_libraries( ${PROJECT_NAME}
         ${Boost_LIBRARIES}
