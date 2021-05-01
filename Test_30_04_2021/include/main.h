@@ -4,6 +4,7 @@
 #include <memory>
 #include <thread>
 #include <iostream>
+#include <chrono>
 
 #include <glm/ext.hpp>
 #include <glm/glm.hpp>
