@@ -11,39 +11,6 @@ if (Boost_FOUND)
     include_directories (SYSTEM ${Boost_INCLUDE_DIR})
 endif ()
 
-
-#set(OpenCV_DIR ${THIRD_PARTY_INSTALL_DIR}/lib/cmake/opencv4 CACHE PATH "")
-#set(OpenCV_DIR /home/jhon/sadko/third-party/build/install/x86_64/lib/cmake/opencv4 CACHE PATH "")
-#message(STATUS "    OpenCV_DIR: ${OpenCV_DIR}")
-
-
-#SET(OpenCV_INSTALL_PATH /usr)
-#SET(OpenCV_INCLUDE_DIRS "${OpenCV_INSTALL_PATH}/include/opencv4;${OpenCV_INSTALL_PATH}/include")
-#SET(OpenCV_LIB_DIR "${OpenCV_INSTALL_PATH}/lib")
-#LINK_DIRECTORIES(${OpenCV_LIB_DIR})
-#set(OpenCV_LIBS
-#    opencv_core
-#    opencv_imgproc
-#    opencv_calib3d
-#    opencv_video
-#    opencv_features2d
-#    opencv_ml
-#    opencv_highgui
-#    opencv_objdetect
-##    opencv_contrib
-##    opencv_legacy
-##    opencv_gpu
-#    )
-
-#find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
-
-#find_package(OpenCV REQUIRED
-#    core
-#    imgproc
-#    imgcodecs
-##    highgui
-#    )
-
 find_package( OpenCV REQUIRED )
 
 message(STATUS "OpenCV library status:")
