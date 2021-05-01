@@ -1,5 +1,6 @@
 // 5. Создать базовый класс радара.
 #pragma once
+#include "CThread.h"
 #include "RadarDataConnector.h"
 #include "main.h"
 class Radar {

@@ -1,7 +1,6 @@
 // 3. Создать класс CThread, инкапсулирующий стандартный поток C++.
 // Интерфейс класса:
 
-//#include <functional>
 #pragma once
 #include "main.h"
 class CThread {
@@ -77,14 +76,14 @@ on_iteration_callback) задает callback — функциию, котору�
 обеспечить точность не нужно.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Жизненный цикл объекта:
 Жизненный цикл объекта:
-СThread thread;
-thread.set_iteration_period_milliseconds(50);
-thread.set_iteration_callback(callback);
-thread.run();
+ СThread thread;
+ thread.set_iteration_period_milliseconds(50);
+ thread.set_iteration_callback(callback);
+ thread.run();
 
 Из этого же, или из другого потока может быть вызван stop()
 
 Этот же поток:
-thread.stop();
-thread.join();
+ thread.stop();
+ thread.join();
 */

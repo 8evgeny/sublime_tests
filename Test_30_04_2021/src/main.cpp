@@ -1,3 +1,5 @@
+// CTread::shutdown()
+
 #include "main.h"
 
 #include "SystemClock.h"
@@ -13,9 +15,7 @@ using namespace cv::ximgproc;
 //}
 
 int main(int argc, char** argv) {
-  SystemClock SystemClock;
-
-  cout << SystemClock.get_time_milliseconds() << endl;
+  cout << SystemClock::get_time_milliseconds() << endl;
   cout << "OpenCV version : " << CV_VERSION << endl;
   cout << "Major version : " << CV_MAJOR_VERSION << endl;
   cout << "Minor version : " << CV_MINOR_VERSION << endl;
@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
   // Запускаем детектор ребер
   imshow("edges", edges);
   // Отрисовываем изображение
-  cout << SystemClock.get_time_milliseconds() << endl;
+  cout << SystemClock::get_time_milliseconds() << endl;
   waitKey();
   //Ожидаем нажатия клавиши
 
