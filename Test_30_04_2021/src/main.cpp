@@ -1,30 +1,36 @@
 #include "main.h"
-
 #include "SystemClock.h"
 
-#include <chrono>
-#include <iostream>
-#include <opencv2/core.hpp>
-#include <opencv2/highgui.hpp>
-#include <opencv2/imgproc.hpp>
-#include <thread>
 using namespace cv;
-const int NUMBER = 1000;
-const int DELAY = 10;
+const int allTime = 1000;
+const int DELAY = 1000;
 
 int objectsMove(Mat image, char* window_name)
 {
-    Point center, center2;
-    for (int i = 0; i < NUMBER; i++) {
-        circle(image, center, 3, Scalar(0, 0, 0), 8, 7);
-        center.x = 100 + i;
-        center.y = 200 + i;
-        circle(image, center, 3, Scalar(0, 255, 0), 8, 7);
+    std::mt19937 gen(time(0));
+    std::uniform_int_distribution<int> uid(1, 1000);
+    std::uniform_int_distribution<int> kuid(-20, 20);
+    srand(time(0));
+
+    Point p;
+    p.x = uid(gen);
+    p.y = uid(gen);
+    int a = kuid(gen);
+    int b = kuid(gen);
+    for (int t = 0; t < allTime; t++) {
+        circle(image, p, 3, Scalar(0, 0, 0), 8, 7);
+        p.x += a * t / 100;
+        p.y += b * t / 100;
+        if ((p.x > 1000) || (p.x < 0))
+            a = (-1) * a;
+
+        if ((p.y > 1000) || (p.y < 0))
+            b *= (-1) * b;
+
+        circle(image, p, 3, Scalar(0, 255, 0), 8, 7);
         imshow(window_name, image);
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
-        if (waitKey(DELAY) >= 0) {
-            return -1;
-        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        waitKey(1);
     }
     return 0;
 }
