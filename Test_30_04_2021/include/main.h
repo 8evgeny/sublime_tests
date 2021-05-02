@@ -1,18 +1,18 @@
 #pragma once
-#include <functional>
 #include <atomic>
+#include <chrono>
+#include <functional>
+#include <iostream>
 #include <memory>
 #include <thread>
-#include <iostream>
-#include <chrono>
 
 #include <glm/ext.hpp>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <glm/mat4x4.hpp>         // mat4
-#include <glm/trigonometric.hpp>  //radians
-#include <glm/vec2.hpp>           // vec2
-#include <glm/vec3.hpp>           // vec3
+#include <glm/mat4x4.hpp> // mat4
+#include <glm/trigonometric.hpp> //radians
+#include <glm/vec2.hpp> // vec2
+#include <glm/vec3.hpp> // vec3
 #include <iostream>
 
 #include "opencv2/core/core.hpp"
@@ -22,5 +22,3 @@
 #include "opencv2/imgproc.hpp"
 #include "opencv2/opencv.hpp"
 #include "opencv2/ximgproc.hpp"
-
-
