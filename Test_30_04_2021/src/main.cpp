@@ -42,11 +42,11 @@ int main()
     object o1;
     std::thread move1(&object::calculatePosition, o1);
 
-    object o2;
-    std::thread move2(&object::calculatePosition, o2);
+    //    object o2;
+    //    std::thread move2(&object::calculatePosition, o2);
 
-    move1.detach();
-    move2.detach();
+    move1.join();
+    //    move2.join();
 
     while (1) {
         //        cout << o1.toRadar.x << endl;

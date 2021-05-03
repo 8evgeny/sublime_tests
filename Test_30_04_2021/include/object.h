@@ -19,7 +19,7 @@ public:
     ToRadar toRadar;
     //    void startMove();
     void calculatePosition();
-    int periodCalculate = 200;
+    int periodCalculate = 1;
 
 private:
     struct Data {
