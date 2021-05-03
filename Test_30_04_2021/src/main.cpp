@@ -1,16 +1,18 @@
 #include "main.h"
 #include "SystemClock.h"
+#include "object.cpp"
 
 using namespace cv;
+using namespace std;
 const int allTime = 1000;
 const int DELAY = 1000;
 
 int objectsMove(Mat image, char* window_name)
 {
+
     std::mt19937 gen(time(0));
     std::uniform_int_distribution<int> uid(1, 1000);
     std::uniform_int_distribution<int> kuid(-20, 20);
-    srand(time(0));
 
     Point p;
     p.x = uid(gen);
@@ -35,13 +37,28 @@ int objectsMove(Mat image, char* window_name)
     return 0;
 }
 
-int main(void)
+int main()
 {
-    char window_name[] = "MovingObjects";
-    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
-    imshow(window_name, image);
-    moveWindow(window_name, 100, 0);
-    objectsMove(image, window_name);
+    object o1;
+    std::thread move1(&object::calculatePosition, o1);
+
+    object o2;
+    std::thread move2(&object::calculatePosition, o2);
+
+    move1.detach();
+    move2.detach();
+
+    while (1) {
+        //        cout << o1.toRadar.x << endl;
+        //        cout << o2.toRadar.x << endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+    //    char window_name[]
+    //        = "MovingObjects";
+    //    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
+    //    imshow(window_name, image);
+    //    moveWindow(window_name, 100, 0);
+    //    objectsMove(image, window_name);
     return 0;
 }
 
