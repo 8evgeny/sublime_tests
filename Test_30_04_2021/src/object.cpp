@@ -36,9 +36,9 @@ void object::calculatePosition(ToRadar& result)
 {
     while (1) {
         printf("x: %lf\t y: %lf\t z :%lf \n", _d.x, _d.y, _d.z);
-        _d.x += _d.kx * _d.v;
-        _d.y += _d.ky * _d.v;
-        _d.z += _d.kz * _d.v;
+        _d.x += _d.kx * _d.v / 10;
+        _d.y += _d.ky * _d.v / 10;
+        _d.z += _d.kz * _d.v / 10;
 
         if ((_d.x > 1000) || (_d.x < 0))
             _d.kx *= -1.0;
@@ -56,6 +56,6 @@ void object::calculatePosition(ToRadar& result)
         toRadar.size = _d.size;
         toRadar.timestamp = SystemClock::get_time_milliseconds();
         result = toRadar;
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }

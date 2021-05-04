@@ -16,8 +16,7 @@ public:
     virtual void stop();
     virtual void join();
     virtual void set_iteration_period_milliseconds(const int64_t period);
-    virtual void set_iteration_callback(
-        const std::function<void()>& on_iteration_callback);
+    virtual void set_iteration_callback(const std::function<void()>& on_iteration_callback);
 
 private:
     void shutdown();

@@ -1,10 +1,11 @@
 #include "main.h"
+//#include "RadarDataConnector.h"
 #include "SystemClock.h"
 #include "object.cpp"
 #include "object.h"
 using namespace cv;
 using namespace std;
-const int numObj = 30;
+const int numObj = 10;
 object::ToRadar obj[numObj]; //Результаты из потоков объектов
 Point p[numObj];
 Point p_old[numObj];
