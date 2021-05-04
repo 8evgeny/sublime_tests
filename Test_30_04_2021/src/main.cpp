@@ -3,7 +3,6 @@
 #include "CoastalRadarMessage.h"
 #include "Radar.h"
 #include "SystemClock.h"
-#include "object.cpp"
 #include "object.h"
 
 std::mutex m;
