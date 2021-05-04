@@ -43,8 +43,6 @@ RadarDataConnector Radar::get_data_connector() const
 {
 }
 
-// virtual void internal_thread_iteration() = 0;
-
 int64_t Radar::get_radar_id() const
 {
     return radar_id;
