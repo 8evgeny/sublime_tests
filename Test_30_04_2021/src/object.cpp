@@ -1,6 +1,6 @@
 #include "object.h"
 #include "SystemClock.h"
-
+int num = 0;
 object::object()
 {
     std::random_device rd;
@@ -22,7 +22,8 @@ object::object()
     //Размер
     _d.size = suid(gen);
     _d.timestamp = SystemClock::get_time_milliseconds();
-
+    printf("creating object %d \n", num + 1);
+    ++num;
     printf("x: %lf\t y: %lf\t z :%lf \n", _d.x, _d.y, _d.z);
     printf("kx: %lf\t ky: %lf\t kz :%lf \n", _d.kx, _d.ky, _d.kz);
     printf("v: %lf \n", _d.v);
@@ -35,7 +36,7 @@ object::~object()
 void object::calculatePosition(ToRadar& result)
 {
     while (1) {
-        printf("x: %lf\t y: %lf\t z :%lf \n", _d.x, _d.y, _d.z);
+        //        printf("x: %lf\t y: %lf\t z :%lf \n", _d.x, _d.y, _d.z);
         _d.x += _d.kx * _d.v / 10;
         _d.y += _d.ky * _d.v / 10;
         _d.z += _d.kz * _d.v / 10;

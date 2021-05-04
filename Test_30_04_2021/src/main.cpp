@@ -7,7 +7,8 @@
 #include "object.h"
 using namespace cv;
 using namespace std;
-const int numObj = 10;
+const int numObj = 7;
+
 object::ToRadar obj[numObj]; //Результаты из потоков объектов
 Point p[numObj];
 Point p_old[numObj];
