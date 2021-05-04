@@ -9,9 +9,11 @@ Radar::~Radar()
 {
 }
 
-void Radar::run()
+void Radar::run(int64_t period)
 {
-    thread.set_iteration_period_milliseconds(100);
+    printf("Radar starting \n");
+    thread.set_iteration_period_milliseconds(period);
+    printf("iteration_period_milliseconds = %ld \n", period);
     thread.run();
 }
 
@@ -27,6 +29,7 @@ void Radar::wait_shutdown()
 
 void Radar::set_radar_id(const int64_t id)
 {
+    printf("\nSetting radar id: %ld \n", id);
     radar_id = id;
 }
 

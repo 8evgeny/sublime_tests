@@ -14,7 +14,7 @@ public:
     virtual ~Radar();
 
 public:
-    virtual void run();
+    virtual void run(int64_t);
     virtual void stop();
     virtual void wait_shutdown();
     virtual void set_radar_id(const int64_t id);

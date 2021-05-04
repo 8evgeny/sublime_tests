@@ -8,22 +8,24 @@
 using namespace cv;
 using namespace std;
 const int numObj = 7;
-
 object::ToRadar obj[numObj]; //Результаты из потоков объектов
 Point p[numObj];
 Point p_old[numObj];
+const int iteration_period = 100;
 void CreateObjects();
 void MoveObjects(Mat image, char* window_name);
 void DisplayObjects();
+
 int main()
 {
-    CreateObjects();
+    CreateObjects(); //Создаем объекты
 
     CoastalRadar r1;
     r1.set_radar_id(1);
-    //    r1.run();
 
-    DisplayObjects();
+    r1.run(iteration_period);
+
+    DisplayObjects(); //Тестовое отображение
 }
 
 /*
