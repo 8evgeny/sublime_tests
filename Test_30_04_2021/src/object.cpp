@@ -9,17 +9,17 @@ object::object()
     std::uniform_int_distribution<int> vuid(200, 400);
     std::uniform_int_distribution<int> kuid(-1000000, 1000000);
     std::uniform_int_distribution<int> suid(1, 10);
-    //начальное положение от 0.0001 до 1000.0000
+    //начальное положение
     _d.x = static_cast<double>(uid(gen)) / 1000;
     _d.y = static_cast<double>(uid(gen)) / 1000;
     _d.z = static_cast<double>(uid(gen)) / 1000;
     //скорость
     _d.v = static_cast<double>(vuid(gen)) / 200;
-    //коэффициенты от -1.000000 до 1.000000
+    //коэффициенты
     _d.kx = static_cast<double>(kuid(gen)) / 1000000;
     _d.ky = static_cast<double>(kuid(gen)) / 1000000;
     _d.kz = static_cast<double>(kuid(gen)) / 1000000;
-    //Размер 1 - 5
+    //Размер
     _d.size = suid(gen);
     _d.timestamp = SystemClock::get_time_milliseconds();
 

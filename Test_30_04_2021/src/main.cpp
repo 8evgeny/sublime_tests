@@ -11,7 +11,49 @@ const int numObj = 10;
 object::ToRadar obj[numObj]; //Результаты из потоков объектов
 Point p[numObj];
 Point p_old[numObj];
-int objectsMove(Mat image, char* window_name)
+void CreateObjects();
+void MoveObjects(Mat image, char* window_name);
+
+int main()
+{
+    CreateObjects();
+
+    CoastalRadar r1;
+    r1.set_radar_id(1);
+    //    r1.run();
+
+    char window_name[]
+        = "MovingObjects";
+    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
+    imshow(window_name, image);
+    moveWindow(window_name, 100, 0);
+
+    MoveObjects(image, window_name);
+}
+
+/*
+9. Собрать из классов демонстрационное приложение, в котором использовать 2-3 радара и
+один дисплей, отображающий перемещение объектов, данные о которых передаются радарами.
+
+    Оцениваются:
+– Способность к интерпретации задачи;
+– Способность разбираться в новой тематике;
+– Способность ориентироваться в сложной архитектуре;
+– Чистота и читаемость кода, стиль именования переменных и методов;
+– Внимание к исключительным ситуациям, в которых могут возникать ошибки;
+контроль за использованием ресурсов.
+*/
+
+void CreateObjects()
+{
+    for (int i = 0; i < numObj; ++i) {
+        object o;
+        std::thread t(&object::calculatePosition, o, std::ref(obj[i]));
+        t.detach();
+    }
+}
+
+void MoveObjects(Mat image, char* window_name)
 {
     while (1) {
         for (int i = 0; i < numObj; ++i) {
@@ -29,41 +71,4 @@ int objectsMove(Mat image, char* window_name)
         imshow(window_name, image);
         waitKey(1);
     }
-    return 0;
 }
-
-int main()
-{
-    for (int i = 0; i < numObj; ++i) {
-        object o;
-        std::thread t(&object::calculatePosition, o, std::ref(obj[i]));
-        t.detach();
-    }
-
-    CoastalRadar r1;
-    r1.set_radar_id(1);
-    //    r1.run();
-
-    char window_name[]
-        = "MovingObjects";
-    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
-    imshow(window_name, image);
-    moveWindow(window_name, 100, 0);
-
-    objectsMove(image, window_name);
-
-    return 0;
-}
-
-/*
-9. Собрать из классов демонстрационное приложение, в котором использовать 2-3 радара и
-один дисплей, отображающий перемещение объектов, данные о которых передаются радарами.
-
-    Оцениваются:
-– Способность к интерпретации задачи;
-– Способность разбираться в новой тематике;
-– Способность ориентироваться в сложной архитектуре;
-– Чистота и читаемость кода, стиль именования переменных и методов;
-– Внимание к исключительным ситуациям, в которых могут возникать ошибки;
-контроль за использованием ресурсов.
-*/
