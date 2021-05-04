@@ -2,6 +2,7 @@
 #include "object.h"
 //#include "RadarDataConnector.h"
 #include "CoastalRadar.h"
+#include "CoastalRadarMessage.h"
 #include "Radar.h"
 #include "SystemClock.h"
 #include "object.cpp"
@@ -12,6 +13,9 @@ using namespace std;
 
 const int numObj = 7;
 object::ToRadar obj[numObj]; //Результаты из потоков объектов
+
+CoastalRadarMessage::data msg[numObj]; //Результаты из потоков радаров
+
 Point p[numObj];
 Point p_old[numObj];
 const int iteration_period = 100;
@@ -21,8 +25,17 @@ void DisplayObjects();
 void RadarReceiveData() //Радар забирает данные
 {
     lock_guard<mutex> lg(m);
-
-    printf("x: %lf\t y: %lf\t z :%lf \n", obj[0].x, obj[0].y, obj[0].z);
+    for (int i = 0; i < numObj; ++i) {
+        msg[i].size = obj[i].size;
+        msg[i].x = obj[i].x;
+        msg[i].y = obj[i].y;
+        msg[i].z = obj[i].z;
+        msg[i].sx = obj[i].sx;
+        msg[i].sy = obj[i].sy;
+        msg[i].sz = obj[i].sz;
+        msg[i].timestamp = obj[i].timestamp;
+    }
+    printf("x: %lf\t y: %lf\t z :%lf \n", msg[0].x, msg[0].y, msg[0].z);
 }
 int main()
 {
