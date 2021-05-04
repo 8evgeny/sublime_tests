@@ -1,8 +1,7 @@
 #include "Radar.h"
-
+#include "RadarDataConnector.h"
 void Radar::run()
 {
-    //    thread.set_iteration_callback(callback);
     thread.set_iteration_period_milliseconds(100);
     thread.run();
 }

@@ -1,5 +1,6 @@
 #include "CoastalRadar.h"
 #include "CoastalRadarMessage.h"
+#include "Radar.h"
 
 void CoastalRadar::internal_thread_iteration()
 {
