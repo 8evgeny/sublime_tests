@@ -23,9 +23,9 @@ object::object()
     _d.size = suid(gen);
     _d.timestamp = SystemClock::get_time_milliseconds();
 
-    //    printf("x: %lf\t y: %lf\t z :%lf \n", _d.x, _d.y, _d.z);
-    //    printf("kx: %lf\t ky: %lf\t kz :%lf \n", _d.kx, _d.ky, _d.kz);
-    //    printf("v: %lf \n", _d.v);
+    printf("x: %lf\t y: %lf\t z :%lf \n", _d.x, _d.y, _d.z);
+    printf("kx: %lf\t ky: %lf\t kz :%lf \n", _d.kx, _d.ky, _d.kz);
+    printf("v: %lf \n", _d.v);
 }
 
 object::~object()
@@ -35,9 +35,7 @@ object::~object()
 void object::calculatePosition(ToRadar& result)
 {
     while (1) {
-        //        printf("_d.y: %lf \n", _d.y);
-        //        printf("_d.кx: %lf \n", _d.kx);
-        //        printf("x: %lf\t y: %lf\t z :%lf \n", _d.x, _d.y, _d.z);
+        printf("x: %lf\t y: %lf\t z :%lf \n", _d.x, _d.y, _d.z);
         _d.x += _d.kx * _d.v;
         _d.y += _d.ky * _d.v;
         _d.z += _d.kz * _d.v;

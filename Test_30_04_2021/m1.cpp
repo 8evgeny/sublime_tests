@@ -1,24 +1,29 @@
-#include "SystemClock.h"
 #include "main.h"
+#include "SystemClock.h"
 #include "object.cpp"
 #include "object.h"
 using namespace cv;
 using namespace std;
-const int NUMBER_OBJECTS = 5;
-vector<object::ToRadar*> vToRadar;
+const int NUMBER_OBJECTS = 3;
+mutex m;
+vector<object::ToRadar> vToRadar;
 
 int objectsMove(Mat image, char* window_name)
 {
     while (1) {
         for (int i = 0; i < NUMBER_OBJECTS; i++) {
             Point p, p_old;
-            circle(image, p, vToRadar[i]->size, Scalar(0, 255, 0), 8, 7);
+            m.lock();
+            circle(image, p, vToRadar[i].size, Scalar(0, 255, 0), 8, 7);
             p_old = p;
-            p.x = vToRadar[i]->x;
-            p.y = vToRadar[i]->y;
+            p.x = vToRadar[i].x;
+            p.y = vToRadar[i].y;
+            m.unlock();
             std::this_thread::sleep_for(std::chrono::milliseconds(5));
-            circle(image, p_old, vToRadar[i]->size, Scalar(0, 0, 0), 8, 7);
-            circle(image, p, vToRadar[i]->size, Scalar(0, 255, 0), 8, 7);
+            m.lock();
+            circle(image, p_old, vToRadar[i].size, Scalar(0, 0, 0), 8, 7);
+            circle(image, p, vToRadar[i].size, Scalar(0, 255, 0), 8, 7);
+            m.unlock();
         }
         imshow(window_name, image);
         waitKey(1);
@@ -28,18 +33,16 @@ int objectsMove(Mat image, char* window_name)
 
 int main()
 {
-    vector<object*> vObj;
+    vector<object> vObj;
     vector<std::thread*> vTh;
     for (int i = 0; i < NUMBER_OBJECTS; i++) {
-        object* Obj = new object();
+        object Obj;
         vObj.push_back(Obj);
-
-        object::ToRadar* Result = new object::ToRadar;
+        object::ToRadar Result;
         vToRadar.push_back(Result);
-        auto fo = std::move(&object::calculatePosition);
-        std::thread* t = new std::thread(&fo, std::move(Obj), std::ref(Result));
-        vTh.push_back(t);
-        t->detach();
+        thread t(&object::calculatePosition, Obj, std::ref(vToRadar[i]));
+        //        vTh.push_back(t);
+        t.detach();
     }
 
     char window_name[]
