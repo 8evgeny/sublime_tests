@@ -8,7 +8,7 @@ object::object()
     std::uniform_int_distribution<int> uid(1, 1000000);
     std::uniform_int_distribution<int> vuid(200, 400);
     std::uniform_int_distribution<int> kuid(-1000000, 1000000);
-    std::uniform_int_distribution<int> suid(1, 10);
+    std::uniform_int_distribution<int> suid(1, 6);
     //начальное положение
     _d.x = static_cast<double>(uid(gen)) / 1000;
     _d.y = static_cast<double>(uid(gen)) / 1000;

@@ -69,9 +69,25 @@ void CreateObjects()
 
 void MoveObjects(Mat image, char* window_name)
 {
+#define green Scalar(0, 255, 0)
+#define axisX Scalar(255, 255, 100)
+#define axisY Scalar(255, 255, 100)
+#define erase Scalar(0, 0, 0)
+    Point q[numObj];
+    Point r[numObj];
     while (1) {
         for (int i = 0; i < numObj; ++i) {
-            circle(image, p[i], msg[i].size, Scalar(0, 255, 0), 8, 7);
+
+            circle(image, p[i], msg[i].size, green, 3, 0);
+            q[i].x = p[i].x + 20;
+            q[i].y = p[i].y;
+            r[i].x = p[i].x;
+            r[i].y = p[i].y + 25;
+
+            line(image, p[i], q[i], axisX, 1, 0);
+            line(image, p[i], r[i], axisY, 1, 0);
+            putText(image, "x", q[i], FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
+            putText(image, "y", r[i], FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
             p_old[i] = p[i];
             p[i].x = msg[i].x;
             p[i].y = msg[i].y;
@@ -79,8 +95,20 @@ void MoveObjects(Mat image, char* window_name)
         std::this_thread::sleep_for(std::chrono::milliseconds(5));
 
         for (int i = 0; i < numObj; ++i) {
-            circle(image, p_old[i], msg[i].size, Scalar(0, 0, 0), 8, 7);
-            circle(image, p[i], msg[i].size, Scalar(0, 255, 0), 8, 7);
+            circle(image, p_old[i], msg[i].size, erase, 3, 0);
+            line(image, p_old[i], q[i], erase, 1, 0);
+            line(image, p_old[i], r[i], erase, 1, 0);
+            putText(image, "x", q[i], FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
+            putText(image, "y", r[i], FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
+            circle(image, p[i], msg[i].size, green, 3, 0);
+            q[i].x = p[i].x + 20;
+            q[i].y = p[i].y;
+            r[i].x = p[i].x;
+            r[i].y = p[i].y + 25;
+            line(image, p[i], q[i], axisX, 1, 0);
+            line(image, p[i], r[i], axisY, 1, 0);
+            putText(image, "x", q[i], FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
+            putText(image, "y", r[i], FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
         }
         imshow(window_name, image);
         waitKey(1);
