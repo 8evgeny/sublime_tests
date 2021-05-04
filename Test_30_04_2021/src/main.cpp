@@ -14,7 +14,7 @@ Point p[numObj];
 Point p_old[numObj];
 void CreateObjects();
 void MoveObjects(Mat image, char* window_name);
-
+void DisplayObjects();
 int main()
 {
     CreateObjects();
@@ -23,13 +23,7 @@ int main()
     r1.set_radar_id(1);
     //    r1.run();
 
-    char window_name[]
-        = "MovingObjects";
-    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
-    imshow(window_name, image);
-    moveWindow(window_name, 100, 0);
-
-    MoveObjects(image, window_name);
+    DisplayObjects();
 }
 
 /*
@@ -72,4 +66,14 @@ void MoveObjects(Mat image, char* window_name)
         imshow(window_name, image);
         waitKey(1);
     }
+}
+
+void DisplayObjects()
+{
+    char window_name[] = "MovingObjects";
+    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
+    imshow(window_name, image);
+    moveWindow(window_name, 100, 0);
+
+    MoveObjects(image, window_name);
 }
