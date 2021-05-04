@@ -3,7 +3,7 @@
 
 CThread::CThread()
 {
-    on_iteration_callback = []() { std::cout << "callback()" << std::endl; };
+    on_iteration_callback = []() { std::cout << "dafault_callback()" << std::endl; };
 }
 
 CThread::~CThread()
@@ -53,4 +53,6 @@ void CThread::join()
 
 void CThread::shutdown()
 {
+    stop();
+    join();
 }

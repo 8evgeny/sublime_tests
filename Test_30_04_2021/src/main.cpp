@@ -18,9 +18,12 @@ const int iteration_period = 100;
 void CreateObjects();
 void MoveObjects(Mat image, char* window_name);
 void DisplayObjects();
-object::ToRadar* ReceiveData() //Радар забирает данные
+object::ToRadar* RadarReceiveData() //Радар забирает данные
 {
     lock_guard<mutex> lg(m);
+
+    printf("x: %lf\t y: %lf\t z :%lf \n", obj[0].x, obj[0].y, obj[0].z);
+
     return obj;
 }
 int main()
@@ -30,14 +33,14 @@ int main()
 
     CoastalRadar r1;
     r1.set_radar_id(1);
-
     r1.run(iteration_period);
 
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     r1.stop();
     r1.wait_shutdown();
-    r1.set_callback(ReceiveData);
+    r1.set_callback(RadarReceiveData);
     r1.run(iteration_period);
+
     DisplayObjects(); //Тестовое отображение
         //Размерность 1м = 10 условных единиц на экране
 }

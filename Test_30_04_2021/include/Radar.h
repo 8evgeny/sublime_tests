@@ -33,6 +33,7 @@ private:
     std::shared_ptr<RadarDataConnector> data_connector = nullptr;
     int64_t radar_id = 0;
     std::function<void()> iteration_callback = nullptr;
+    object::ToRadar dataFromObject;
 };
 
 /*
