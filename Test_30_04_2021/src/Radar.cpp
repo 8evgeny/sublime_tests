@@ -1,5 +1,14 @@
 #include "Radar.h"
 #include "RadarDataConnector.h"
+
+Radar::Radar()
+{
+}
+
+Radar::~Radar()
+{
+}
+
 void Radar::run()
 {
     thread.set_iteration_period_milliseconds(100);

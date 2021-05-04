@@ -1,5 +1,7 @@
 #include "main.h"
 //#include "RadarDataConnector.h"
+#include "CoastalRadar.h"
+#include "Radar.h"
 #include "SystemClock.h"
 #include "object.cpp"
 #include "object.h"
@@ -37,6 +39,11 @@ int main()
         std::thread t(&object::calculatePosition, o, std::ref(obj[i]));
         t.detach();
     }
+
+    CoastalRadar r1;
+    r1.set_radar_id(1);
+    //    r1.run();
+
     char window_name[]
         = "MovingObjects";
     Mat image = Mat::zeros(1000, 1000, CV_8UC3);

@@ -1,6 +1,14 @@
 #include "CThread.h"
 #include "SystemClock.h"
 
+CThread::CThread()
+{
+}
+
+CThread::~CThread()
+{
+}
+
 void CThread::set_iteration_period_milliseconds(const int64_t period)
 {
     period_ms = period;
