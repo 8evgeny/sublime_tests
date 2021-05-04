@@ -4,10 +4,11 @@
 class CoastalRadar : public Radar {
 public:
     ~CoastalRadar();
+    void internal_thread_iteration() override;
 
 protected:
     //    virtual RadarDataConnector get_data_connector() const;
-    virtual void internal_thread_iteration() override;
+
     //    virtual int64_t get_radar_id() const;
 };
 

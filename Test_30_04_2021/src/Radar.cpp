@@ -19,11 +19,13 @@ void Radar::run(int64_t period)
 
 void Radar::stop()
 {
+    printf("Thread stop \n");
     thread.stop();
 }
 
 void Radar::wait_shutdown()
 {
+    printf("Thread joined \n");
     thread.join();
 }
 
