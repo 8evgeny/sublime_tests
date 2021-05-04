@@ -50,7 +50,7 @@ int64_t Radar::get_radar_id() const
     return radar_id;
 }
 
-void Radar::set_callback(const std::function<object::ToRadar*()>& set_callback)
+void Radar::set_callback(const std::function<void()>& set_callback)
 {
     printf("Setting new callback %s \n");
     iteration_callback = set_callback;

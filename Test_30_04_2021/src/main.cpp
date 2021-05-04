@@ -18,13 +18,11 @@ const int iteration_period = 100;
 void CreateObjects();
 void MoveObjects(Mat image, char* window_name);
 void DisplayObjects();
-object::ToRadar* RadarReceiveData() //Радар забирает данные
+void RadarReceiveData() //Радар забирает данные
 {
     lock_guard<mutex> lg(m);
 
     printf("x: %lf\t y: %lf\t z :%lf \n", obj[0].x, obj[0].y, obj[0].z);
-
-    return obj;
 }
 int main()
 {

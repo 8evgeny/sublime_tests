@@ -19,7 +19,7 @@ public:
     virtual void wait_shutdown();
     virtual void set_radar_id(const int64_t id);
     virtual void set_data_connector(const RadarDataConnector& data_connector);
-    virtual void set_callback(const std::function<object::ToRadar*()>& iteration_callback);
+    virtual void set_callback(const std::function<void()>& iteration_callback);
 
 protected:
     virtual RadarDataConnector get_data_connector() const;
