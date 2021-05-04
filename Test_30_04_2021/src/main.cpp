@@ -1,12 +1,15 @@
 #include "main.h"
+#include "object.h"
 //#include "RadarDataConnector.h"
 #include "CoastalRadar.h"
 #include "Radar.h"
 #include "SystemClock.h"
 #include "object.cpp"
-#include "object.h"
+
+std::mutex m;
 using namespace cv;
 using namespace std;
+
 const int numObj = 7;
 object::ToRadar obj[numObj]; //Результаты из потоков объектов
 Point p[numObj];
@@ -15,7 +18,11 @@ const int iteration_period = 100;
 void CreateObjects();
 void MoveObjects(Mat image, char* window_name);
 void DisplayObjects();
-
+object::ToRadar* ReceiveData() //Радар забирает данные
+{
+    lock_guard<mutex> lg(m);
+    return obj;
+}
 int main()
 {
 
@@ -25,9 +32,11 @@ int main()
     r1.set_radar_id(1);
 
     r1.run(iteration_period);
+
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     r1.stop();
     r1.wait_shutdown();
+    r1.set_callback(ReceiveData);
     r1.run(iteration_period);
     DisplayObjects(); //Тестовое отображение
         //Размерность 1м = 10 условных единиц на экране

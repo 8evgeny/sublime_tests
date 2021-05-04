@@ -56,7 +56,10 @@ void object::calculatePosition(ToRadar& result)
         toRadar.sz = _d.kz * _d.v;
         toRadar.size = _d.size;
         toRadar.timestamp = SystemClock::get_time_milliseconds();
-        result = toRadar;
+        {
+            //            std::lock_guard<std::mutex> lg(m);
+            result = toRadar;
+        }
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }

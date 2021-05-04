@@ -50,6 +50,13 @@ int64_t Radar::get_radar_id() const
     return radar_id;
 }
 
+void Radar::set_callback(const std::function<object::ToRadar*()>& set_callback)
+{
+    printf("Setting new callback \n");
+    iteration_callback = set_callback;
+    thread.set_iteration_callback(iteration_callback);
+}
+
 /*
 Жизненный цикл объекта:
 СThread thread;
