@@ -4,11 +4,12 @@
 #include "main.h"
 
 class RadarDisplay {
+public:
     RadarDisplay();
     ~RadarDisplay();
 
-public:
     virtual void run();
+    void run_without_iteration();
     virtual void stop();
     virtual void wait_shutdown();
     virtual void accept_radar_message(const std::shared_ptr<RadarMessage>&);

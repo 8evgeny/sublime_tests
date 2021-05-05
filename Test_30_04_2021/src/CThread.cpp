@@ -43,7 +43,7 @@ void CThread::run()
 
 void CThread::run_without_iteration()
 {
-    if (stop_flag) {
+    if (!stop_flag) {
         stop_flag = false;
 
         auto fo = [&]() {

@@ -2,6 +2,7 @@
 #include "CoastalRadar.h"
 #include "CoastalRadarMessage.h"
 #include "Radar.h"
+#include "RadarDisplay.h"
 #include "SystemClock.h"
 #include "object.h"
 
@@ -17,8 +18,10 @@ Point p_old[numObj];
 const int iteration_period = 100;
 
 void CreateObjects();
-void MoveObjects(Mat image, char* window_name);
-void DisplayObjects();
+void Window1();
+void Window2();
+void commonView(Mat image, char* window_name);
+void perspectiveView(Mat image, char* window_name);
 void RadarMsg(); //Радар забирает данные объектов и отдает для показа
 
 int main()
@@ -41,9 +44,17 @@ int main()
     //    r2.run(50);
 
     r3.run(1000); //Демонстрация валидности-невалидности отображения
+    RadarDisplay commonView;
+    commonView.set_callback(Window2);
+    commonView.run_without_iteration();
 
-    DisplayObjects(); //Тестовое отображение
-        //Размерность 1м = 10 условных единиц на экране
+    //    RadarDisplay perspectiveView;
+    //    perspectiveView.set_callback(Window1);
+    //    perspectiveView.run_without_iteration();
+    //    Window1();
+    //    DisplayObjects(); //Тестовое отображение
+    //Размерность 1м = 10 условных единиц на экране
+    while (1) { }
 }
 
 /*
@@ -76,8 +87,9 @@ bool checkValid(CoastalRadarMessage::Data msg, object::ToRadar obj)
     return true;
 }
 
-void MoveObjects(Mat image, char* window_name)
+void commonView(Mat image, char* window_name)
 {
+
 #define green Scalar(0, 255, 0)
 #define axisX Scalar(255, 255, 100)
 #define axisY Scalar(255, 255, 100)
@@ -136,14 +148,24 @@ void MoveObjects(Mat image, char* window_name)
     }
 }
 
-void DisplayObjects()
+void Window1()
 {
-    char window_name[] = "MovingObjects";
-    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
-    imshow(window_name, image);
-    moveWindow(window_name, 900, 0);
+    char window_name1[] = "Perspective";
+    Mat image1 = Mat::zeros(800, 800, CV_8UC3);
+    imshow(window_name1, image1);
+    moveWindow(window_name1, 0, 0);
 
-    MoveObjects(image, window_name);
+    //    commonView(image1, window_name1);
+}
+
+void Window2()
+{
+    char window_name2[] = "Common view";
+    Mat image2 = Mat::zeros(1000, 1000, CV_8UC3);
+    imshow(window_name2, image2);
+    moveWindow(window_name2, 900, 0);
+
+    commonView(image2, window_name2);
 }
 
 void RadarMsg()
