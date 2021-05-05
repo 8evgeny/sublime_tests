@@ -6,7 +6,4 @@ class RadarDataConnector {
 public:
     RadarDataConnector();
     ~RadarDataConnector();
-
-    object::ToRadar getDataFromAllObject();
-    void sendMessage();
 };

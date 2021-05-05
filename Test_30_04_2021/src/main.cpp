@@ -37,9 +37,10 @@ int main()
     r1.set_callback(RadarMsg);
     r2.set_callback(RadarMsg);
     r3.set_callback(RadarMsg);
-    r1.run(iteration_period);
-    r2.run(50);
-    r3.run(2000);
+    //    r1.run(iteration_period);
+    //    r2.run(50);
+
+    r3.run(1000); //Демонстрация валидности-невалидности отображения
 
     DisplayObjects(); //Тестовое отображение
         //Размерность 1м = 10 условных единиц на экране
@@ -67,18 +68,32 @@ void CreateObjects()
     }
 }
 
+bool checkValid(CoastalRadarMessage::Data msg, object::ToRadar obj)
+{
+    double delta = 2;
+    if ((msg.x > obj.x + delta) || (msg.y > obj.y + delta) || (msg.z > obj.z + delta))
+        return false;
+    return true;
+}
+
 void MoveObjects(Mat image, char* window_name)
 {
 #define green Scalar(0, 255, 0)
 #define axisX Scalar(255, 255, 100)
 #define axisY Scalar(255, 255, 100)
 #define erase Scalar(0, 0, 0)
+    auto gr = Scalar(0, 255, 0);
+    auto re = Scalar(0, 0, 255);
+    auto color = Scalar(0, 0, 255);
     Point q[numObj];
     Point r[numObj];
     while (1) {
         for (int i = 0; i < numObj; ++i) {
-
-            circle(image, p[i], msg[i].size, green, 3, 0);
+            if (checkValid(msg[i], obj[i]))
+                color = gr;
+            else
+                color = re;
+            circle(image, p[i], msg[i].size, color, 3, 0);
             q[i].x = p[i].x + 20;
             q[i].y = p[i].y;
             r[i].x = p[i].x;
@@ -100,7 +115,13 @@ void MoveObjects(Mat image, char* window_name)
             line(image, p_old[i], r[i], erase, 1, 0);
             putText(image, "x", q[i], FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
             putText(image, "y", r[i], FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
-            circle(image, p[i], msg[i].size, green, 3, 0);
+
+            if (checkValid(msg[i], obj[i]))
+                color = gr;
+            else
+                color = re;
+
+            circle(image, p[i], msg[i].size, color, 3, 0);
             q[i].x = p[i].x + 20;
             q[i].y = p[i].y;
             r[i].x = p[i].x;
@@ -120,7 +141,7 @@ void DisplayObjects()
     char window_name[] = "MovingObjects";
     Mat image = Mat::zeros(1000, 1000, CV_8UC3);
     imshow(window_name, image);
-    moveWindow(window_name, 100, 0);
+    moveWindow(window_name, 900, 0);
 
     MoveObjects(image, window_name);
 }
