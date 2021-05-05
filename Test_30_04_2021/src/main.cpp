@@ -18,10 +18,8 @@ Point p_old[numObj];
 const int iteration_period = 100;
 
 void CreateObjects();
-void perspectiveView();
-void commonView();
+void Display();
 void movingObjects(Mat image, char* window_name);
-void perspectiveView(Mat image, char* window_name);
 void RadarMsg(); //Радар забирает данные объектов и отдает для показа
 
 int main(int argc, char** argv)
@@ -50,16 +48,11 @@ int main(int argc, char** argv)
     r3.run(1000); //Демонстрация валидности-невалидности отображения
 
     RadarDisplay commView;
-    commView.set_callback(commonView);
-    commView.run_without_iteration();
+    commView.set_callback(Display);
+    commView.run();
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    commView.stop();
 
-    //    RadarDisplay perspectiveView;
-    //    perspectiveView.set_callback(Window1);
-    //    perspectiveView.run_without_iteration();
-
-    //    perspectiveView();
-
-    //    commonView(); //Тестовое отображение
     //Размерность 1м = 10 условных единиц на экране
     while (1) { }
 }
@@ -106,7 +99,7 @@ void movingObjects(Mat image, char* window_name)
     auto color = Scalar(0, 0, 255);
     Point q[numObj];
     Point r[numObj];
-    while (1) {
+    for (int i = 0; i < 20; ++i) {
         for (int i = 0; i < numObj; ++i) {
             if (checkValid(msg[i], obj[i]))
                 color = gr;
@@ -155,25 +148,14 @@ void movingObjects(Mat image, char* window_name)
     }
 }
 
-void perspectiveView()
+void Display()
 {
-    char window_name1[] = "Perspective";
-    Mat image1 = Mat::zeros(800, 800, CV_8UC3);
-    imshow(window_name1, image1);
-    moveWindow(window_name1, 0, 0);
+    char window_name[] = "DisplayRadar";
+    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
+    imshow(window_name, image);
+    moveWindow(window_name, 900, 0);
 
-    movingObjects(image1, window_name1);
-    waitKey(1);
-}
-
-void commonView()
-{
-    char window_name2[] = "Common view";
-    Mat image2 = Mat::zeros(1000, 1000, CV_8UC3);
-    imshow(window_name2, image2);
-    moveWindow(window_name2, 900, 0);
-
-    movingObjects(image2, window_name2);
+    movingObjects(image, window_name);
 }
 
 void RadarMsg()
