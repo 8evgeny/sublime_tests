@@ -31,6 +31,8 @@ void RadarMsg(); //Радар забирает данные объектов и 
 char window_name[] = "DisplayRadar";
 Mat image = Mat::zeros(1000, 1000, CV_8UC3);
 
+void Dis() { }
+
 int main(int argc, char** argv)
 {
     //    Mat img;
@@ -61,8 +63,11 @@ int main(int argc, char** argv)
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     d.stop();
     d.wait_shutdown();
-    Mat ReleaseImage(image);
-    //   Mat DestroyWindow("DisplayRadar");
+
+    d.set_callback(Dis);
+    Mat release(image);
+    destroyWindow("DisplayRadar");
+
     //Размерность 1м = 10 условных единиц на экране
     while (1) { }
 }
