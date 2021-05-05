@@ -42,16 +42,13 @@ int main(int argc, char** argv)
     r1.set_callback(RadarMsg);
     r2.set_callback(RadarMsg);
     r3.set_callback(RadarMsg);
-    //    r1.run(iteration_period);
+    r1.run(iteration_period);
     //    r2.run(50);
+    //    r3.run(1000); //Демонстрация валидности-невалидности отображения
 
-    r3.run(1000); //Демонстрация валидности-невалидности отображения
-
-    RadarDisplay commView;
-    commView.set_callback(Display);
-    commView.run();
-    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-    commView.stop();
+    RadarDisplay d;
+    d.set_callback(Display);
+    d.run();
 
     //Размерность 1м = 10 условных единиц на экране
     while (1) { }
@@ -99,7 +96,7 @@ void movingObjects(Mat image, char* window_name)
     auto color = Scalar(0, 0, 255);
     Point q[numObj];
     Point r[numObj];
-    for (int i = 0; i < 20; ++i) {
+    for (int i = 0; i < 1000; ++i) {
         for (int i = 0; i < numObj; ++i) {
             if (checkValid(msg[i], obj[i]))
                 color = gr;
