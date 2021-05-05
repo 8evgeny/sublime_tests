@@ -49,17 +49,17 @@ int main(int argc, char** argv)
 
     r3.run(1000); //Демонстрация валидности-невалидности отображения
 
-    //    RadarDisplay commView;
-    //    commView.set_callback(commonView);
-    //    commView.run_without_iteration();
+    RadarDisplay commView;
+    commView.set_callback(commonView);
+    commView.run_without_iteration();
 
     //    RadarDisplay perspectiveView;
     //    perspectiveView.set_callback(Window1);
     //    perspectiveView.run_without_iteration();
 
-    perspectiveView();
+    //    perspectiveView();
 
-    commonView(); //Тестовое отображение
+    //    commonView(); //Тестовое отображение
     //Размерность 1м = 10 условных единиц на экране
     while (1) { }
 }
@@ -162,7 +162,7 @@ void perspectiveView()
     imshow(window_name1, image1);
     moveWindow(window_name1, 0, 0);
 
-    //    movingObjects(image1, window_name1);
+    movingObjects(image1, window_name1);
     waitKey(1);
 }
 
