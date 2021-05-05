@@ -13,14 +13,13 @@ std::mutex m;
 using namespace cv;
 using namespace std;
 
-#define POZITION_CAMERA 1000, 1000, 1000
-bool transformToPerspective = 1;
+#define POZITION_CAMERA 200, 200, 50
+bool transformToPerspective = 0;
 
 const int numObj = 50; //Колл. объектов
 object::ToRadar obj[numObj]; //Результаты из потоков объектов
 CoastalRadarMessage::Data msg[numObj]; //Результаты из потоков радаров
-//Point3d p3[numObj];
-//Point3d p3_old[numObj];
+
 const int iteration_period = 100;
 
 Point3d transform(double x, double y, double z);
@@ -28,6 +27,9 @@ void CreateObjects();
 void Display();
 void movingObjects(Mat image, char* window_name);
 void RadarMsg(); //Радар забирает данные объектов и отдает для показа
+
+char window_name[] = "DisplayRadar";
+Mat image = Mat::zeros(1000, 1000, CV_8UC3);
 
 int main(int argc, char** argv)
 {
@@ -56,7 +58,11 @@ int main(int argc, char** argv)
     RadarDisplay d;
     d.set_callback(Display);
     d.run();
-
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    d.stop();
+    d.wait_shutdown();
+    Mat ReleaseImage(image);
+    //   Mat DestroyWindow("DisplayRadar");
     //Размерность 1м = 10 условных единиц на экране
     while (1) { }
 }
@@ -132,7 +138,7 @@ void movingObjects(Mat image, char* window_name)
     Point p[numObj];
     Point p_old[numObj];
 
-    for (int i = 0; i < 1000; ++i) {
+    for (int i = 0; i < 50; ++i) {
         for (int i = 0; i < numObj; ++i) {
 
             if (checkValid(msg[i], obj[i]))
@@ -195,8 +201,8 @@ void movingObjects(Mat image, char* window_name)
 
 void Display()
 {
-    char window_name[] = "DisplayRadar";
-    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
+    //    char window_name[] = "DisplayRadar";
+    //    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
     imshow(window_name, image);
     moveWindow(window_name, 900, 0);
 
