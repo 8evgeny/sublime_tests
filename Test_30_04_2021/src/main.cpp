@@ -13,14 +13,17 @@ std::mutex m;
 using namespace cv;
 using namespace std;
 
-const int numObj = 10; //Колл. объектов
+#define POZITION_CAMERA 1000, 1000, 1000
+bool transformToPerspective = 1;
+
+const int numObj = 50; //Колл. объектов
 object::ToRadar obj[numObj]; //Результаты из потоков объектов
 CoastalRadarMessage::Data msg[numObj]; //Результаты из потоков радаров
 //Point3d p3[numObj];
 //Point3d p3_old[numObj];
 const int iteration_period = 100;
 
-Point3d trnsform(Point3d);
+Point3d transform(double x, double y, double z);
 void CreateObjects();
 void Display();
 void movingObjects(Mat image, char* window_name);
@@ -88,7 +91,7 @@ bool checkValid(CoastalRadarMessage::Data msg, object::ToRadar obj)
     return true;
 }
 
-Point3d trnsform(Point3d p)
+Point3d transform(double x, double y, double z)
 {
     // Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
     glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
@@ -97,7 +100,7 @@ Point3d trnsform(Point3d p)
 
     // Camera matrix
     glm::mat4 View = glm::lookAt(
-        glm::vec3(4, 3, 3), // Camera is at (4,3,3), in World Space
+        glm::vec3(POZITION_CAMERA), // Camera is at (x,y,z), in World Space
         glm::vec3(0, 0, 0), // and looks at the origin
         glm::vec3(0, 1, 0) // Head is up (set to 0,-1,0 to look upside-down)
     );
@@ -108,7 +111,7 @@ Point3d trnsform(Point3d p)
     // Our ModelViewProjection : multiplication of our 3 matrices
     glm::mat4 MVP = Projection * View * Model; // Remember, matrix multiplication is the other way around
 
-    glm::vec4 tmp = MVP * glm::vec4(p.x, p.y, p.z, 1);
+    glm::vec4 tmp = MVP * glm::vec4(x, y, z, 1);
     return Point3d { tmp.x, tmp.y, tmp.z };
 }
 
@@ -150,8 +153,16 @@ void movingObjects(Mat image, char* window_name)
             p_old[i] = p[i];
 
             //Тут забираем координаты объектов
-            p[i].x = msg[i].x;
-            p[i].y = msg[i].y;
+
+            Point3d p3;
+            if (!transformToPerspective) {
+                p[i].x = msg[i].x;
+                p[i].y = msg[i].y;
+            } else {
+                p3 = transform(msg[i].x, msg[i].y, msg[i].z);
+                p[i].x = p3.x;
+                p[i].y = p3.y;
+            }
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(5));
 
