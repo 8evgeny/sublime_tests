@@ -16,10 +16,11 @@ using namespace std;
 const int numObj = 10; //Колл. объектов
 object::ToRadar obj[numObj]; //Результаты из потоков объектов
 CoastalRadarMessage::Data msg[numObj]; //Результаты из потоков радаров
-Point p[numObj];
-Point p_old[numObj];
+//Point3d p3[numObj];
+//Point3d p3_old[numObj];
 const int iteration_period = 100;
 
+Point3d trnsform(Point3d);
 void CreateObjects();
 void Display();
 void movingObjects(Mat image, char* window_name);
@@ -87,7 +88,7 @@ bool checkValid(CoastalRadarMessage::Data msg, object::ToRadar obj)
     return true;
 }
 
-void movingObjects(Mat image, char* window_name)
+Point3d trnsform(Point3d p)
 {
     // Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
     glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
@@ -107,21 +108,35 @@ void movingObjects(Mat image, char* window_name)
     // Our ModelViewProjection : multiplication of our 3 matrices
     glm::mat4 MVP = Projection * View * Model; // Remember, matrix multiplication is the other way around
 
+    glm::vec4 tmp = MVP * glm::vec4(p.x, p.y, p.z, 1);
+    return Point3d { tmp.x, tmp.y, tmp.z };
+}
+
+void movingObjects(Mat image, char* window_name)
+{
+
 #define green Scalar(0, 255, 0)
 #define axisX Scalar(255, 255, 100)
 #define axisY Scalar(255, 255, 100)
 #define erase Scalar(0, 0, 0)
-    auto gr = Scalar(0, 255, 0);
+    auto gr
+        = Scalar(0, 255, 0);
     auto re = Scalar(0, 0, 255);
     auto color = Scalar(0, 0, 255);
+
     Point q[numObj];
     Point r[numObj];
+    Point p[numObj];
+    Point p_old[numObj];
+
     for (int i = 0; i < 1000; ++i) {
         for (int i = 0; i < numObj; ++i) {
+
             if (checkValid(msg[i], obj[i]))
                 color = gr;
             else
                 color = re;
+
             circle(image, p[i], msg[i].size, color, 3, 0);
             q[i].x = p[i].x + 20;
             q[i].y = p[i].y;
@@ -133,6 +148,8 @@ void movingObjects(Mat image, char* window_name)
             putText(image, "x", q[i], FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
             putText(image, "y", r[i], FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
             p_old[i] = p[i];
+
+            //Тут забираем координаты объектов
             p[i].x = msg[i].x;
             p[i].y = msg[i].y;
         }
