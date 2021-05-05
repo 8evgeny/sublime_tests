@@ -4,15 +4,20 @@
 #include "main.h"
 
 class RadarDisplay {
+    RadarDisplay();
+    ~RadarDisplay();
+
 public:
     virtual void run();
     virtual void stop();
     virtual void wait_shutdown();
-    virtual void accept_radar_message(const std::shared_ptr<RadarMessage>& message);
+    virtual void accept_radar_message(const std::shared_ptr<RadarMessage>&);
+    void set_callback(const std::function<void()>&);
 
 private:
     CThread thread;
     bool is_display_flag = false;
+    std::function<void()> display = nullptr;
 };
 
 /*
