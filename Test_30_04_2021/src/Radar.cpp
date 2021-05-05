@@ -11,16 +11,22 @@ Radar::~Radar()
 
 void Radar::run(int64_t period)
 {
-    printf("Radar starting \n");
-    thread.set_iteration_period_milliseconds(period);
-    printf("iteration_period_milliseconds = %ld \n", period);
-    thread.run();
+    if (!is_runned_flag) {
+        printf("Radar starting \n");
+        thread.set_iteration_period_milliseconds(period);
+        printf("iteration_period_milliseconds = %ld \n", period);
+        thread.run();
+        is_runned_flag = true;
+    }
 }
 
 void Radar::stop()
 {
-    printf("Thread stop \n");
-    thread.stop();
+    if (is_runned_flag) {
+        printf("Thread stop \n");
+        thread.stop();
+        is_runned_flag = false;
+    }
 }
 
 void Radar::wait_shutdown()
