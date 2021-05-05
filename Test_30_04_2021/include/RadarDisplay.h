@@ -1,4 +1,5 @@
 #pragma once
+#include "CThread.h"
 #include "RadarMessage.h"
 #include "main.h"
 
@@ -8,6 +9,10 @@ public:
     virtual void stop();
     virtual void wait_shutdown();
     virtual void accept_radar_message(const std::shared_ptr<RadarMessage>& message);
+
+private:
+    CThread thread;
+    bool is_display_flag = false;
 };
 
 /*
