@@ -16,9 +16,8 @@ using namespace std;
 #define POZITION_CAMERA 200, 200, 50
 bool transformToPerspective = 0;
 
-const int numObj = 50; //Колл. объектов
-object::ToRadar obj[numObj]; //Результаты из потоков объектов
-CoastalRadarMessage::Data msg[numObj]; //Результаты из потоков радаров
+object::ToRadar obj[object::numObj]; //Результаты из потоков объектов
+CoastalRadarMessage::Data msg[object::numObj]; //Результаты из потоков радаров
 
 const int iteration_period = 100;
 
@@ -137,13 +136,13 @@ void RadarDisplay::display_objects()
     auto re = Scalar(0, 0, 255);
     auto color = Scalar(0, 0, 255);
 
-    Point q[numObj];
-    Point r[numObj];
-    Point p[numObj];
-    Point p_old[numObj];
+    Point q[object::numObj];
+    Point r[object::numObj];
+    Point p[object::numObj];
+    Point p_old[object::numObj];
 
     for (int i = 0; i < 50; ++i) {
-        for (int i = 0; i < numObj; ++i) {
+        for (int i = 0; i < object::numObj; ++i) {
 
             if (checkValid(msg[i], obj[i]))
                 color = gr;
@@ -176,7 +175,7 @@ void RadarDisplay::display_objects()
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(5));
 
-        for (int i = 0; i < numObj; ++i) {
+        for (int i = 0; i < object::numObj; ++i) {
             circle(image, p_old[i], msg[i].size, erase, 3, 0);
             line(image, p_old[i], q[i], erase, 1, 0);
             line(image, p_old[i], r[i], erase, 1, 0);
@@ -206,7 +205,7 @@ void RadarDisplay::display_objects()
 void Radar::receive_data()
 {
     lock_guard<mutex> lg(m);
-    for (int i = 0; i < numObj; ++i) {
+    for (int i = 0; i < object::numObj; ++i) {
         msg[i].size = obj[i].size;
         msg[i].x = obj[i].x;
         msg[i].y = obj[i].y;
