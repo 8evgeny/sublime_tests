@@ -28,7 +28,7 @@ void Display();
 void movingObjects(Mat image, char* window_name);
 void RadarMsg(); //Радар забирает данные объектов и отдает для показа
 
-char window_name[] = "DisplayRadar";
+auto window_name = const_cast<char*>("DisplayRadar");
 Mat image = Mat::zeros(1000, 1000, CV_8UC3);
 
 void Dis() { }
@@ -60,7 +60,7 @@ int main(int argc, char** argv)
     RadarDisplay d;
     d.set_callback(Display);
     d.run();
-    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(8000));
     d.stop();
     d.wait_shutdown();
 
