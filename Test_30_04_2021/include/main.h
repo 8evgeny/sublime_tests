@@ -21,6 +21,7 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 
+#include "RadarDataConnector.h"
 #include "RadarMessage.h"
 #include "SystemClock.h"
 #include "object.h"

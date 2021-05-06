@@ -1,6 +1,5 @@
 #pragma once
 #include "CThread.h"
-#include "RadarDataConnector.h"
 #include "main.h"
 class Radar {
 public:
