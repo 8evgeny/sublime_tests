@@ -63,6 +63,9 @@ int main(int argc, char** argv)
             POZITION_CAMERA = glm::vec3(i, i, i);
             std::this_thread::sleep_for(std::chrono::microseconds(1));
         }
+        d.transformToPerspective = false;
+        std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+        d.transformToPerspective = true;
     }
     //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     //    r1.stop();
@@ -167,7 +170,8 @@ void RadarDisplay::display_objects(bool transf)
 
             putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
             putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
-
+            if (transf)
+                putText(image, "z", Point(z3[i].x, z3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisZ, 0);
             p3_old[i] = p3[i];
         }
 
@@ -182,7 +186,8 @@ void RadarDisplay::display_objects(bool transf)
 
             putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
             putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
-
+            if (transf)
+                putText(image, "z", Point(z3[i].x, z3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
             //Тут забираем координаты объектов
             if (!transf) {
                 p3[i].x = msg[i].x;
@@ -221,6 +226,8 @@ void RadarDisplay::display_objects(bool transf)
 
             putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
             putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
+            if (transf)
+                putText(image, "z", Point(z3[i].x, z3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisZ, 0);
         }
         imshow(window, image);
         waitKey(1);
