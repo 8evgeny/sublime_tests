@@ -16,9 +16,8 @@ using namespace std;
 #define POZITION_CAMERA 200, 200, 50
 
 object::ToRadar obj[object::numObj]; //Результаты из потоков объектов
-CoastalRadarMessage::Data msg[object::numObj]; //Результаты из потоков радаров
 
-const int iteration_period = 100;
+CoastalRadarMessage::Data msg[object::numObj]; //Результаты из потоков радаров
 
 int main(int argc, char** argv)
 {
@@ -30,6 +29,8 @@ int main(int argc, char** argv)
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
     CoastalRadar r1, r2, r3; //Создаем 3 радара
+    r3.iteration_period = 2000;
+
     r1.set_radar_id(1);
     r2.set_radar_id(2);
     r3.set_radar_id(3);
@@ -38,7 +39,7 @@ int main(int argc, char** argv)
     r2.set_callback([]() { Radar::receive_data(); });
     r3.set_callback([]() { Radar::receive_data(); });
 
-    r3.run(300); //Демонстрация валидности-невалидности отображения
+    r3.run(); //Демонстрация валидности-невалидности отображения
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     r3.stop();
     r3.wait_shutdown();
@@ -46,7 +47,7 @@ int main(int argc, char** argv)
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     d.transformToPerspective = true;
 #define POZITION_CAMERA 300, 200, 300
-    r1.run(iteration_period);
+    r1.run();
     //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     //    r1.stop();
     //    r1.wait_shutdown();

@@ -9,18 +9,18 @@ public:
     Radar& operator=(const Radar&) = delete;
     Radar& operator=(Radar&&) = delete;
 
-public:
     explicit Radar();
     virtual ~Radar();
 
-public:
-    virtual void run(int64_t);
+    virtual void run(int);
+    virtual void run();
     virtual void stop();
     virtual void wait_shutdown();
     virtual void set_radar_id(const int64_t id);
     virtual void set_data_connector(const RadarDataConnector&);
     static void receive_data();
     virtual void set_callback(const std::function<void()>&);
+    int iteration_period = 100;
 
 protected:
     virtual RadarDataConnector get_data_connector() const;
@@ -34,7 +34,7 @@ private:
     std::shared_ptr<RadarDataConnector> data_connector = nullptr;
     int64_t radar_id = 0;
     std::function<void()> iteration_callback = nullptr;
-    object::ToRadar dataFromObject;
+    //    object::ToRadar dataFromObjects;
 };
 
 /*
