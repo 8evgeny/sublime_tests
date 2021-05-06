@@ -40,8 +40,9 @@ int main(int argc, char** argv)
 
     r1.run();
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-    d.transformToPerspective = true;
+
     while (1) {
+        d.transformToPerspective = true;
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
         for (int i = 0; i < 1000; ++i) {
@@ -59,13 +60,12 @@ int main(int argc, char** argv)
             std::this_thread::sleep_for(std::chrono::milliseconds(2));
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-        for (int i = 0; i < 100000; ++i) {
+        for (int i = 0; i < 1000; ++i) {
             POZITION_CAMERA = glm::vec3(i, i, i);
-            std::this_thread::sleep_for(std::chrono::microseconds(1));
+            std::this_thread::sleep_for(std::chrono::microseconds(5000));
         }
         d.transformToPerspective = false;
-        std::this_thread::sleep_for(std::chrono::milliseconds(10000));
-        d.transformToPerspective = true;
+        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
     }
     //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     //    r1.stop();
@@ -113,7 +113,7 @@ Point3d RadarDisplay::transform(double x, double y, double z)
 {
 
     // Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-    glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 4.0f, 0.1f, 1000.0f);
+    glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 4.0f, 0.1f, 100.0f);
     // Or, for an ortho camera :
     //    glm::mat4 Projection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, 0.0f, 100.0f); // In world coordinates
 
