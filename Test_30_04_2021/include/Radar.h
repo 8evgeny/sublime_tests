@@ -1,6 +1,6 @@
 #pragma once
-#include "CThread.h"
 #include "main.h"
+
 class Radar {
 public:
     Radar(const Radar&) = delete;

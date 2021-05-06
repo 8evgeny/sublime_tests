@@ -1,6 +1,5 @@
 #pragma once
 #include "main.h"
-#include "object.h"
 
 class RadarDataConnector {
 public:

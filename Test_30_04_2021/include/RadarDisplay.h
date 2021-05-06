@@ -1,5 +1,4 @@
 #pragma once
-#include "CThread.h"
 #include "main.h"
 
 class RadarDisplay {

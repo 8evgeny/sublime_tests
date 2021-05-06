@@ -1,5 +1,6 @@
 #pragma once
 #include "main.h"
+
 class CoastalRadarMessage : public RadarMessage {
 public:
     explicit CoastalRadarMessage();

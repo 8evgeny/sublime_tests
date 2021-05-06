@@ -1,6 +1,7 @@
 #pragma once
 #include "Radar.h"
 #include "main.h"
+
 class CoastalRadar : public Radar {
 public:
     ~CoastalRadar();
