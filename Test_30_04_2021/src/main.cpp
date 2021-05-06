@@ -39,23 +39,22 @@ int main(int argc, char** argv)
     r2.set_callback([]() { Radar::receive_data(); });
     r3.set_callback([]() { Radar::receive_data(); });
 
-    r3.run(1000); //Демонстрация валидности-невалидности отображения
+    r3.run(300); //Демонстрация валидности-невалидности отображения
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     r3.stop();
     r3.wait_shutdown();
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     transformToPerspective = 1;
-    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-    r1.run(iteration_period);
-    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-    r1.stop();
-    r1.wait_shutdown();
-    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-
 #define POZITION_CAMERA 300, 200, 300
-    r2.run(2000);
+    r1.run(iteration_period);
+    //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    //    r1.stop();
+    //    r1.wait_shutdown();
+    //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
-    //    Mat release(image);
-    destroyWindow("DisplayRadar");
+    //    r2.run(2000);
+    //    destroyWindow("DisplayRadar");
 
     //Размерность 1м = 10 условных единиц на экране
     while (1) { }
