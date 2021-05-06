@@ -1,13 +1,8 @@
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/transform.hpp>
-
+#include "main.h"
 #include "CoastalRadar.h"
 #include "CoastalRadarMessage.h"
 #include "Radar.h"
 #include "RadarDisplay.h"
-#include "SystemClock.h"
-#include "main.h"
-#include "object.h"
 
 std::mutex m;
 using namespace cv;
@@ -26,10 +21,10 @@ int main(int argc, char** argv)
     RadarDisplay d;
     d.set_callback([&]() { RadarDisplay::display_objects(d.transformToPerspective); });
     d.run();
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
     CoastalRadar r1, r2, r3; //Создаем 3 радара
-    r3.iteration_period = 2000;
+    r3.iteration_period = 1000;
 
     r1.set_radar_id(1);
     r2.set_radar_id(2);
@@ -44,10 +39,11 @@ int main(int argc, char** argv)
     r3.stop();
     r3.wait_shutdown();
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
     d.transformToPerspective = true;
 #define POZITION_CAMERA 300, 200, 300
     r1.run();
+
     //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     //    r1.stop();
     //    r1.wait_shutdown();

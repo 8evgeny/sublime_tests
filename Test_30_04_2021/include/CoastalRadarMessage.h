@@ -1,5 +1,4 @@
 #pragma once
-#include "RadarMessage.h"
 #include "main.h"
 class CoastalRadarMessage : public RadarMessage {
 public:
