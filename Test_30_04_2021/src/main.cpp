@@ -32,15 +32,15 @@ int main(int argc, char** argv)
     r2.set_callback([]() { Radar::receive_data(); });
     r3.set_callback([]() { Radar::receive_data(); });
 
-    //    r3.run(); //Демонстрация валидности-невалидности отображения
-    //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-    //    r3.stop();
-    //    r3.wait_shutdown();
+    r3.run(); //Демонстрация валидности-невалидности отображения
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    r3.stop();
+    r3.wait_shutdown();
     //    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
-    d.transformToPerspective = true;
-
     r1.run();
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    d.transformToPerspective = true;
 
     //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     //    r1.stop();
@@ -89,9 +89,9 @@ Point3d RadarDisplay::transform(double x, double y, double z)
     glm::vec3 POZITION_CAMERA = glm::vec3(0, 0, 0);
 
     // Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-    //    glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 1000.0f);
+    glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 1000.0f);
     // Or, for an ortho camera :
-    glm::mat4 Projection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, 0.0f, 1000.0f); // In world coordinates
+    //    glm::mat4 Projection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, 0.0f, 1000.0f); // In world coordinates
 
     // Camera matrix
     glm::mat4 View = glm::lookAt(
@@ -135,34 +135,11 @@ void RadarDisplay::display_objects(bool transf)
     Point3d y3[object::numObj];
     Point3d z3[object::numObj];
 
-    for (int i = 0; i < 50; ++i) {
+    for (int i = 0; i < 50; ++i) { //частота вызова функции
+
         for (int i = 0; i < object::numObj; ++i) {
 
-            if (checkValid(msg[i], obj[i]))
-                color = green;
-            else
-                color = red;
-
             circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, 3, 0);
-
-            if (!transf) {
-                x3[i].x = p3[i].x + axis;
-                x3[i].y = p3[i].y;
-                x3[i].z = p3[i].z;
-
-                y3[i].x = p3[i].x;
-                y3[i].y = p3[i].y + axis;
-                y3[i].z = p3[i].z;
-
-                z3[i].x = p3[i].x;
-                z3[i].y = p3[i].y;
-                z3[i].z = p3[i].z + axis;
-            } else {
-                x3[i] = transform(p3[i].x + axis, p3[i].y, p3[i].z);
-                y3[i] = transform(p3[i].x, p3[i].y + axis, p3[i].z);
-                z3[i] = transform(p3[i].x, p3[i].y, p3[i].z + axis);
-            }
-
             line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(z3[i].x, z3[i].y), axisZ, 1, 0);
@@ -171,22 +148,12 @@ void RadarDisplay::display_objects(bool transf)
             putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
 
             p3_old[i] = p3[i];
-
-            //Тут забираем координаты объектов
-
-            if (!transf) {
-                p3[i].x = msg[i].x;
-                p3[i].y = msg[i].y;
-                p3[i].z = msg[i].z;
-
-            } else {
-                p3[i] = transform(msg[i].x, msg[i].y, msg[i].z);
-            }
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        //        std::this_thread::sleep_for(std::chrono::milliseconds(5));
 
         for (int i = 0; i < object::numObj; ++i) {
+
             circle(image, Point(p3_old[i].x, p3_old[i].y), msg[i].size, erase, 3, 0);
             line(image, Point(p3_old[i].x, p3_old[i].y), Point(x3[i].x, x3[i].y), erase, 1, 0);
             line(image, Point(p3_old[i].x, p3_old[i].y), Point(y3[i].x, y3[i].y), erase, 1, 0);
@@ -195,14 +162,12 @@ void RadarDisplay::display_objects(bool transf)
             putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
             putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
 
-            if (checkValid(msg[i], obj[i]))
-                color = green;
-            else
-                color = red;
-
-            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, 3, 0);
-
+            //Тут забираем координаты объектов
             if (!transf) {
+                p3[i].x = msg[i].x;
+                p3[i].y = msg[i].y;
+                p3[i].z = msg[i].z;
+
                 x3[i].x = p3[i].x + axis;
                 x3[i].y = p3[i].y;
                 x3[i].z = p3[i].z;
@@ -214,11 +179,20 @@ void RadarDisplay::display_objects(bool transf)
                 z3[i].x = p3[i].x;
                 z3[i].y = p3[i].y;
                 z3[i].z = p3[i].z + axis;
+
             } else {
-                x3[i] = transform(p3[i].x + axis, p3[i].y, p3[i].z);
-                y3[i] = transform(p3[i].x, p3[i].y + axis, p3[i].z);
-                z3[i] = transform(p3[i].x, p3[i].y, p3[i].z + axis);
+                p3[i] = transform(msg[i].x, msg[i].y, msg[i].z);
+                x3[i] = transform(msg[i].x + axis, msg[i].y, msg[i].z);
+                y3[i] = transform(msg[i].x, msg[i].y + axis, msg[i].z);
+                z3[i] = transform(msg[i].x, msg[i].y, msg[i].z + axis);
             }
+
+            if (checkValid(msg[i], obj[i]))
+                color = green;
+            else
+                color = red;
+
+            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, 3, 0);
 
             line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
