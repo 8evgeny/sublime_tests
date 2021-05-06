@@ -14,7 +14,6 @@ using namespace cv;
 using namespace std;
 
 #define POZITION_CAMERA 200, 200, 50
-bool transformToPerspective = 0;
 
 object::ToRadar obj[object::numObj]; //Результаты из потоков объектов
 CoastalRadarMessage::Data msg[object::numObj]; //Результаты из потоков радаров
@@ -26,7 +25,7 @@ int main(int argc, char** argv)
     object::CreateObjects(); //Создаем объекты
 
     RadarDisplay d;
-    d.set_callback([]() { RadarDisplay::display_objects(); });
+    d.set_callback([&]() { RadarDisplay::display_objects(d.transformToPerspective); });
     d.run();
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
@@ -45,7 +44,7 @@ int main(int argc, char** argv)
     r3.wait_shutdown();
 
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-    transformToPerspective = 1;
+    d.transformToPerspective = true;
 #define POZITION_CAMERA 300, 200, 300
     r1.run(iteration_period);
     //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
@@ -114,7 +113,7 @@ Point3d RadarDisplay::transform(double x, double y, double z)
     return Point3d { tmp.x, tmp.y, tmp.z };
 }
 
-void RadarDisplay::display_objects()
+void RadarDisplay::display_objects(bool trans)
 {
     //    char window_name[] = "DisplayRadar";
     //    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
@@ -161,7 +160,7 @@ void RadarDisplay::display_objects()
             //Тут забираем координаты объектов
 
             Point3d p3;
-            if (!transformToPerspective) {
+            if (!trans) {
                 p[i].x = msg[i].x;
                 p[i].y = msg[i].y;
             } else {

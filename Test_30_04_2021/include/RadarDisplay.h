@@ -14,8 +14,9 @@ public:
     virtual void wait_shutdown();
     virtual void accept_radar_message(const std::shared_ptr<RadarMessage>&);
     void set_callback(const std::function<void()>&);
-    static void display_objects();
+    static void display_objects(bool);
     static cv::Point3d transform(double x, double y, double z);
+    bool transformToPerspective = false;
 
 private:
     CThread thread;
