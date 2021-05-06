@@ -24,21 +24,12 @@ const int iteration_period = 100;
 
 Point3d transform(double x, double y, double z);
 void CreateObjects();
-void Display();
-void movingObjects(Mat image, char* window_name);
 void RadarMsg(); //Радар забирает данные объектов и отдает для показа
-
-auto window_name = const_cast<char*>("DisplayRadar");
-Mat image = Mat::zeros(1000, 1000, CV_8UC3);
 
 void Dis() { }
 
 int main(int argc, char** argv)
 {
-    //    Mat img;
-    //    img = imread(argv[1], 1); // Читаем изображение
-    //    imshow("original", img); // Отрисовываем изображение
-    //    waitKey(1);
 
     CreateObjects(); //Создаем объекты
 
@@ -58,14 +49,15 @@ int main(int argc, char** argv)
     //    r3.run(1000); //Демонстрация валидности-невалидности отображения
 
     RadarDisplay d;
-    d.set_callback(Display);
+
+    d.set_callback([]() { RadarDisplay::display_objects(); });
     d.run();
     std::this_thread::sleep_for(std::chrono::milliseconds(8000));
     d.stop();
     d.wait_shutdown();
 
     d.set_callback(Dis);
-    Mat release(image);
+    //    Mat release(image);
     destroyWindow("DisplayRadar");
 
     //Размерность 1м = 10 условных единиц на экране
@@ -126,8 +118,15 @@ Point3d transform(double x, double y, double z)
     return Point3d { tmp.x, tmp.y, tmp.z };
 }
 
-void movingObjects(Mat image, char* window_name)
+void RadarDisplay::display_objects()
 {
+    //    char window_name[] = "DisplayRadar";
+    //    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
+    auto window_name = const_cast<char*>("DisplayRadar");
+    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
+
+    imshow(window_name, image);
+    moveWindow(window_name, 900, 0);
 
 #define green Scalar(0, 255, 0)
 #define axisX Scalar(255, 255, 100)
@@ -202,16 +201,6 @@ void movingObjects(Mat image, char* window_name)
         imshow(window_name, image);
         waitKey(1);
     }
-}
-
-void Display()
-{
-    //    char window_name[] = "DisplayRadar";
-    //    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
-    imshow(window_name, image);
-    moveWindow(window_name, 900, 0);
-
-    movingObjects(image, window_name);
 }
 
 void RadarMsg()

@@ -14,6 +14,7 @@ public:
     virtual void wait_shutdown();
     virtual void accept_radar_message(const std::shared_ptr<RadarMessage>&);
     void set_callback(const std::function<void()>&);
+    static void display_objects();
 
 private:
     CThread thread;
