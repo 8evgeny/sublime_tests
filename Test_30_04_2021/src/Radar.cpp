@@ -23,9 +23,9 @@ void Radar::run(int64_t period)
 void Radar::stop()
 {
     if (is_runned_flag) {
+        is_runned_flag = false;
         printf("Thread stop \n");
         thread.stop();
-        is_runned_flag = false;
     }
 }
 

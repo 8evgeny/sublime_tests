@@ -55,7 +55,7 @@ int main(int argc, char** argv)
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
 #define POZITION_CAMERA 300, 200, 300
-    r2.run(iteration_period);
+    r2.run(2000);
 
     //    Mat release(image);
     destroyWindow("DisplayRadar");
