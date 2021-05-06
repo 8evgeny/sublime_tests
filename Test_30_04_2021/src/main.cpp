@@ -40,7 +40,9 @@ int main(int argc, char** argv)
     r3.wait_shutdown();
 
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-    d.transformToPerspective = true;
+
+    //    d.transformToPerspective = true;
+
 #define POZITION_CAMERA 300, 200, 300
     r1.run();
 
@@ -112,28 +114,19 @@ Point3d RadarDisplay::transform(double x, double y, double z)
 
 void RadarDisplay::display_objects(bool transf)
 {
-    //    char window_name[] = "DisplayRadar";
-    //    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
+    auto green = Scalar(0, 255, 0);
+    auto red = Scalar(0, 0, 255);
+    auto erase = Scalar(0, 0, 0);
+    auto axisX = Scalar(255, 255, 100);
+    auto axisY = Scalar(255, 255, 100);
+    auto axisZ = Scalar(255, 255, 100);
+    auto color = Scalar(255, 255, 100);
 
     char* window = const_cast<char*>("DisplayRadar");
     Mat image = Mat::zeros(1000, 1000, CV_8UC3);
 
     imshow(window, image);
     moveWindow(window, 900, 0);
-
-#define green Scalar(0, 255, 0)
-#define axisX Scalar(255, 255, 100)
-#define axisY Scalar(255, 255, 100)
-#define erase Scalar(0, 0, 0)
-    auto gr
-        = Scalar(0, 255, 0);
-    auto re = Scalar(0, 0, 255);
-    auto color = Scalar(0, 0, 255);
-
-    Point q[object::numObj];
-    Point r[object::numObj];
-    Point p[object::numObj];
-    Point p_old[object::numObj];
 
     Point3d p3[object::numObj];
     Point3d p3_old[object::numObj];
@@ -146,9 +139,9 @@ void RadarDisplay::display_objects(bool transf)
         for (int i = 0; i < object::numObj; ++i) {
 
             if (checkValid(msg[i], obj[i]))
-                color = gr;
+                color = green;
             else
-                color = re;
+                color = red;
 
             circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, 3, 0);
 
@@ -178,6 +171,19 @@ void RadarDisplay::display_objects(bool transf)
                 p3[i].x = msg[i].x;
                 p3[i].y = msg[i].y;
                 p3[i].z = msg[i].z;
+
+                //                x3[i].x = p3[i].x + 40;
+                //                x3[i].y = p3[i].y;
+                //                x3[i].z = p3[i].z;
+
+                //                y3[i].x = p3[i].x;
+                //                y3[i].y = p3[i].y + 40;
+                //                y3[i].z = p3[i].z;
+
+                //                z3[i].x = p3[i].x;
+                //                z3[i].y = p3[i].y;
+                //                z3[i].z = p3[i].z + 40;
+
             } else {
                 p3[i] = transform(msg[i].x, msg[i].y, msg[i].z);
             }
@@ -192,9 +198,9 @@ void RadarDisplay::display_objects(bool transf)
             putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
 
             if (checkValid(msg[i], obj[i]))
-                color = gr;
+                color = green;
             else
-                color = re;
+                color = red;
 
             circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, 3, 0);
 
