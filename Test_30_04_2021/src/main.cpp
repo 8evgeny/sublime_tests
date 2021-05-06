@@ -34,13 +34,11 @@ int main(int argc, char** argv)
     r1.set_radar_id(1);
     r2.set_radar_id(2);
     r3.set_radar_id(3);
-    //    r1.run(iteration_period);
-    //    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    //    r1.stop();
-    //    r1.wait_shutdown();
+
     r1.set_callback([]() { Radar::receive_data(); });
     r2.set_callback([]() { Radar::receive_data(); });
     r3.set_callback([]() { Radar::receive_data(); });
+
     r3.run(1000); //Демонстрация валидности-невалидности отображения
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     r3.stop();
