@@ -8,7 +8,7 @@ std::mutex m;
 using namespace cv;
 using namespace std;
 
-#define POZITION_CAMERA 200, 200, 50
+#define POZITION_CAMERA 200, -200, 0
 
 object::ToRadar obj[object::numObj]; //Результаты из потоков объектов
 
@@ -41,9 +41,9 @@ int main(int argc, char** argv)
 
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
-    //    d.transformToPerspective = true;
+    d.transformToPerspective = true;
 
-#define POZITION_CAMERA 300, 200, 300
+#define POZITION_CAMERA 500, 500, 500
     r1.run();
 
     //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
@@ -91,7 +91,7 @@ bool checkValid(CoastalRadarMessage::Data msg, object::ToRadar obj)
 Point3d RadarDisplay::transform(double x, double y, double z)
 {
     // Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-    glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
+    glm::mat4 Projection = glm::perspective(glm::radians(70.0f), 4.0f / 3.0f, 0.1f, 100.0f);
     // Or, for an ortho camera :
     //glm::mat4 Projection = glm::ortho(-10.0f,10.0f,-10.0f,10.0f,0.0f,100.0f); // In world coordinates
 
@@ -114,6 +114,7 @@ Point3d RadarDisplay::transform(double x, double y, double z)
 
 void RadarDisplay::display_objects(bool transf)
 {
+    int axis = 10;
     auto green = Scalar(0, 255, 0);
     auto red = Scalar(0, 0, 255);
     auto erase = Scalar(0, 0, 0);
@@ -145,20 +146,27 @@ void RadarDisplay::display_objects(bool transf)
 
             circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, 3, 0);
 
-            x3[i].x = p3[i].x + 40;
-            x3[i].y = p3[i].y;
-            x3[i].z = p3[i].z;
+            if (!transf) {
+                x3[i].x = p3[i].x + axis;
+                x3[i].y = p3[i].y;
+                x3[i].z = p3[i].z;
 
-            y3[i].x = p3[i].x;
-            y3[i].y = p3[i].y + 40;
-            y3[i].z = p3[i].z;
+                y3[i].x = p3[i].x;
+                y3[i].y = p3[i].y + axis;
+                y3[i].z = p3[i].z;
 
-            z3[i].x = p3[i].x;
-            z3[i].y = p3[i].y;
-            z3[i].z = p3[i].z + 40;
+                z3[i].x = p3[i].x;
+                z3[i].y = p3[i].y;
+                z3[i].z = p3[i].z + axis;
+            } else {
+                x3[i] = transform(p3[i].x + axis, p3[i].y, p3[i].z);
+                y3[i] = transform(p3[i].x, p3[i].y + axis, p3[i].z);
+                z3[i] = transform(p3[i].x, p3[i].y, p3[i].z + axis);
+            }
 
             line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
+            line(image, Point(p3[i].x, p3[i].y), Point(z3[i].x, z3[i].y), axisZ, 1, 0);
 
             putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
             putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
@@ -172,18 +180,6 @@ void RadarDisplay::display_objects(bool transf)
                 p3[i].y = msg[i].y;
                 p3[i].z = msg[i].z;
 
-                //                x3[i].x = p3[i].x + 40;
-                //                x3[i].y = p3[i].y;
-                //                x3[i].z = p3[i].z;
-
-                //                y3[i].x = p3[i].x;
-                //                y3[i].y = p3[i].y + 40;
-                //                y3[i].z = p3[i].z;
-
-                //                z3[i].x = p3[i].x;
-                //                z3[i].y = p3[i].y;
-                //                z3[i].z = p3[i].z + 40;
-
             } else {
                 p3[i] = transform(msg[i].x, msg[i].y, msg[i].z);
             }
@@ -194,6 +190,8 @@ void RadarDisplay::display_objects(bool transf)
             circle(image, Point(p3_old[i].x, p3_old[i].y), msg[i].size, erase, 3, 0);
             line(image, Point(p3_old[i].x, p3_old[i].y), Point(x3[i].x, x3[i].y), erase, 1, 0);
             line(image, Point(p3_old[i].x, p3_old[i].y), Point(y3[i].x, y3[i].y), erase, 1, 0);
+            line(image, Point(p3_old[i].x, p3_old[i].y), Point(z3[i].x, z3[i].y), erase, 1, 0);
+
             putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
             putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
 
@@ -204,20 +202,28 @@ void RadarDisplay::display_objects(bool transf)
 
             circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, 3, 0);
 
-            x3[i].x = p3[i].x + 40;
-            x3[i].y = p3[i].y;
-            x3[i].z = p3[i].z;
+            if (!transf) {
+                x3[i].x = p3[i].x + axis;
+                x3[i].y = p3[i].y;
+                x3[i].z = p3[i].z;
 
-            y3[i].x = p3[i].x;
-            y3[i].y = p3[i].y + 40;
-            y3[i].z = p3[i].z;
+                y3[i].x = p3[i].x;
+                y3[i].y = p3[i].y + axis;
+                y3[i].z = p3[i].z;
 
-            z3[i].x = p3[i].x;
-            z3[i].y = p3[i].y;
-            z3[i].z = p3[i].z + 40;
+                z3[i].x = p3[i].x;
+                z3[i].y = p3[i].y;
+                z3[i].z = p3[i].z + axis;
+            } else {
+                x3[i] = transform(p3[i].x + axis, p3[i].y, p3[i].z);
+                y3[i] = transform(p3[i].x, p3[i].y + axis, p3[i].z);
+                z3[i] = transform(p3[i].x, p3[i].y, p3[i].z + axis);
+            }
 
             line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
+            line(image, Point(p3[i].x, p3[i].y), Point(z3[i].x, z3[i].y), axisZ, 1, 0);
+
             putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
             putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
         }
