@@ -7,7 +7,7 @@
 std::mutex m;
 using namespace cv;
 using namespace std;
-
+glm::vec3 POZITION_CAMERA = glm::vec3(100, 200, 1000);
 object::ToRadar obj[object::numObj]; //Результаты из потоков объектов
 
 CoastalRadarMessage::Data msg[object::numObj]; //Результаты из потоков радаров
@@ -32,16 +32,19 @@ int main(int argc, char** argv)
     r2.set_callback([]() { Radar::receive_data(); });
     r3.set_callback([]() { Radar::receive_data(); });
 
-    r3.run(); //Демонстрация валидности-невалидности отображения
-    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-    r3.stop();
-    r3.wait_shutdown();
+    //    r3.run(); //Демонстрация валидности-невалидности отображения
+    //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    //    r3.stop();
+    //    r3.wait_shutdown();
     //    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
     r1.run();
-    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-    d.transformToPerspective = true;
-
+    while (1) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+        d.transformToPerspective = true;
+        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+        d.transformToPerspective = false;
+    }
     //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     //    r1.stop();
     //    r1.wait_shutdown();
@@ -86,17 +89,16 @@ bool checkValid(CoastalRadarMessage::Data msg, object::ToRadar obj)
 
 Point3d RadarDisplay::transform(double x, double y, double z)
 {
-    glm::vec3 POZITION_CAMERA = glm::vec3(0, 0, 0);
 
     // Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-    glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 1000.0f);
+    glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 4.0f, 0.1f, 1000.0f);
     // Or, for an ortho camera :
-    //    glm::mat4 Projection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, 0.0f, 1000.0f); // In world coordinates
+    //    glm::mat4 Projection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, 0.0f, 100.0f); // In world coordinates
 
     // Camera matrix
     glm::mat4 View = glm::lookAt(
         POZITION_CAMERA, // Camera is at (x,y,z), in World Space
-        glm::vec3(500, 0, 500), // and looks at the origin
+        glm::vec3(0, 0, 0), // and looks at the origin
         glm::vec3(0, 1, 0) // Head is up (set to 0,-1,0 to look upside-down)
     );
 
@@ -113,7 +115,7 @@ Point3d RadarDisplay::transform(double x, double y, double z)
 
 void RadarDisplay::display_objects(bool transf)
 {
-    int axis = 50;
+    int axis = 30;
     auto green = Scalar(0, 255, 0);
     auto red = Scalar(0, 0, 255);
     auto erase = Scalar(0, 0, 0);
