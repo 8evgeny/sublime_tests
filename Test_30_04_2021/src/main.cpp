@@ -39,11 +39,30 @@ int main(int argc, char** argv)
     //    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
     r1.run();
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    d.transformToPerspective = true;
     while (1) {
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-        d.transformToPerspective = true;
+
+        for (int i = 0; i < 1000; ++i) {
+            POZITION_CAMERA = glm::vec3(i, 200, 800);
+            std::this_thread::sleep_for(std::chrono::milliseconds(2));
+        }
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-        d.transformToPerspective = false;
+        for (int i = 0; i < 1000; ++i) {
+            POZITION_CAMERA = glm::vec3(200, i, 800);
+            std::this_thread::sleep_for(std::chrono::milliseconds(2));
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+        for (int i = 0; i < 1000; ++i) {
+            POZITION_CAMERA = glm::vec3(200, 200, i);
+            std::this_thread::sleep_for(std::chrono::milliseconds(2));
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+        for (int i = 0; i < 100000; ++i) {
+            POZITION_CAMERA = glm::vec3(i, i, i);
+            std::this_thread::sleep_for(std::chrono::microseconds(1));
+        }
     }
     //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     //    r1.stop();
