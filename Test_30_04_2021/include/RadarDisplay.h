@@ -15,6 +15,7 @@ public:
     virtual void accept_radar_message(const std::shared_ptr<RadarMessage>&);
     void set_callback(const std::function<void()>&);
     static void display_objects();
+    static cv::Point3d transform(double x, double y, double z);
 
 private:
     CThread thread;

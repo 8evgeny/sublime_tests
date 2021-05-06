@@ -22,14 +22,16 @@ CoastalRadarMessage::Data msg[numObj]; //Результаты из потоко�
 
 const int iteration_period = 100;
 
-Point3d transform(double x, double y, double z);
-
 int main(int argc, char** argv)
 {
-
     object::CreateObjects(); //Создаем объекты
 
-    CoastalRadar r1, r2, r3;
+    RadarDisplay d;
+    d.set_callback([]() { RadarDisplay::display_objects(); });
+    d.run();
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+
+    CoastalRadar r1, r2, r3; //Создаем 3 радара
     r1.set_radar_id(1);
     r2.set_radar_id(2);
     r3.set_radar_id(3);
@@ -40,17 +42,14 @@ int main(int argc, char** argv)
     r1.set_callback([]() { Radar::receive_data(); });
     r2.set_callback([]() { Radar::receive_data(); });
     r3.set_callback([]() { Radar::receive_data(); });
-    r1.run(iteration_period);
-    r2.run(50);
+    //    r1.run(iteration_period);
+    //    r2.run(50);
     r3.run(1000); //Демонстрация валидности-невалидности отображения
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    r1.run(iteration_period);
 
-    RadarDisplay d;
-
-    d.set_callback([]() { RadarDisplay::display_objects(); });
-    d.run();
-    std::this_thread::sleep_for(std::chrono::milliseconds(8000));
-    d.stop();
-    d.wait_shutdown();
+    //    d.stop();
+    //    d.wait_shutdown();
 
     //    Mat release(image);
     destroyWindow("DisplayRadar");
@@ -89,7 +88,7 @@ bool checkValid(CoastalRadarMessage::Data msg, object::ToRadar obj)
     return true;
 }
 
-Point3d transform(double x, double y, double z)
+Point3d RadarDisplay::transform(double x, double y, double z)
 {
     // Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
     glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
