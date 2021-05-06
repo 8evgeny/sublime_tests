@@ -23,12 +23,11 @@ CoastalRadarMessage::Data msg[numObj]; //Результаты из потоко�
 const int iteration_period = 100;
 
 Point3d transform(double x, double y, double z);
-void CreateObjects();
 
 int main(int argc, char** argv)
 {
 
-    CreateObjects(); //Создаем объекты
+    object::CreateObjects(); //Создаем объекты
 
     CoastalRadar r1, r2, r3;
     r1.set_radar_id(1);
@@ -73,7 +72,7 @@ int main(int argc, char** argv)
 контроль за использованием ресурсов.
 */
 
-void CreateObjects()
+void object::CreateObjects()
 {
     for (int i = 0; i < numObj; ++i) {
         object o;
