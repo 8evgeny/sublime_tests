@@ -110,15 +110,16 @@ Point3d RadarDisplay::transform(double x, double y, double z)
     return Point3d { tmp.x, tmp.y, tmp.z };
 }
 
-void RadarDisplay::display_objects(bool trans)
+void RadarDisplay::display_objects(bool transf)
 {
     //    char window_name[] = "DisplayRadar";
     //    Mat image = Mat::zeros(1000, 1000, CV_8UC3);
-    auto window_name = const_cast<char*>("DisplayRadar");
+
+    char* window = const_cast<char*>("DisplayRadar");
     Mat image = Mat::zeros(1000, 1000, CV_8UC3);
 
-    imshow(window_name, image);
-    moveWindow(window_name, 900, 0);
+    imshow(window, image);
+    moveWindow(window, 900, 0);
 
 #define green Scalar(0, 255, 0)
 #define axisX Scalar(255, 255, 100)
@@ -134,6 +135,13 @@ void RadarDisplay::display_objects(bool trans)
     Point p[object::numObj];
     Point p_old[object::numObj];
 
+    Point3d p3[object::numObj];
+    Point3d p3_old[object::numObj];
+
+    Point3d x3[object::numObj];
+    Point3d y3[object::numObj];
+    Point3d z3[object::numObj];
+
     for (int i = 0; i < 50; ++i) {
         for (int i = 0; i < object::numObj; ++i) {
 
@@ -142,55 +150,72 @@ void RadarDisplay::display_objects(bool trans)
             else
                 color = re;
 
-            circle(image, p[i], msg[i].size, color, 3, 0);
-            q[i].x = p[i].x + 20;
-            q[i].y = p[i].y;
-            r[i].x = p[i].x;
-            r[i].y = p[i].y + 25;
+            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, 3, 0);
 
-            line(image, p[i], q[i], axisX, 1, 0);
-            line(image, p[i], r[i], axisY, 1, 0);
-            putText(image, "x", q[i], FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
-            putText(image, "y", r[i], FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
-            p_old[i] = p[i];
+            x3[i].x = p3[i].x + 40;
+            x3[i].y = p3[i].y;
+            x3[i].z = p3[i].z;
+
+            y3[i].x = p3[i].x;
+            y3[i].y = p3[i].y + 40;
+            y3[i].z = p3[i].z;
+
+            z3[i].x = p3[i].x;
+            z3[i].y = p3[i].y;
+            z3[i].z = p3[i].z + 40;
+
+            line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
+            line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
+
+            putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
+            putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
+
+            p3_old[i] = p3[i];
 
             //Тут забираем координаты объектов
 
-            Point3d p3;
-            if (!trans) {
-                p[i].x = msg[i].x;
-                p[i].y = msg[i].y;
+            if (!transf) {
+                p3[i].x = msg[i].x;
+                p3[i].y = msg[i].y;
+                p3[i].z = msg[i].z;
             } else {
-                p3 = transform(msg[i].x, msg[i].y, msg[i].z);
-                p[i].x = p3.x;
-                p[i].y = p3.y;
+                p3[i] = transform(msg[i].x, msg[i].y, msg[i].z);
             }
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(5));
 
         for (int i = 0; i < object::numObj; ++i) {
-            circle(image, p_old[i], msg[i].size, erase, 3, 0);
-            line(image, p_old[i], q[i], erase, 1, 0);
-            line(image, p_old[i], r[i], erase, 1, 0);
-            putText(image, "x", q[i], FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
-            putText(image, "y", r[i], FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
+            circle(image, Point(p3_old[i].x, p3_old[i].y), msg[i].size, erase, 3, 0);
+            line(image, Point(p3_old[i].x, p3_old[i].y), Point(x3[i].x, x3[i].y), erase, 1, 0);
+            line(image, Point(p3_old[i].x, p3_old[i].y), Point(y3[i].x, y3[i].y), erase, 1, 0);
+            putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
+            putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
 
             if (checkValid(msg[i], obj[i]))
                 color = gr;
             else
                 color = re;
 
-            circle(image, p[i], msg[i].size, color, 3, 0);
-            q[i].x = p[i].x + 20;
-            q[i].y = p[i].y;
-            r[i].x = p[i].x;
-            r[i].y = p[i].y + 25;
-            line(image, p[i], q[i], axisX, 1, 0);
-            line(image, p[i], r[i], axisY, 1, 0);
-            putText(image, "x", q[i], FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
-            putText(image, "y", r[i], FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
+            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, 3, 0);
+
+            x3[i].x = p3[i].x + 40;
+            x3[i].y = p3[i].y;
+            x3[i].z = p3[i].z;
+
+            y3[i].x = p3[i].x;
+            y3[i].y = p3[i].y + 40;
+            y3[i].z = p3[i].z;
+
+            z3[i].x = p3[i].x;
+            z3[i].y = p3[i].y;
+            z3[i].z = p3[i].z + 40;
+
+            line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
+            line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
+            putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
+            putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
         }
-        imshow(window_name, image);
+        imshow(window, image);
         waitKey(1);
     }
 }
