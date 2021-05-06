@@ -12,11 +12,11 @@ Radar::~Radar()
 void Radar::run(int64_t period)
 {
     if (!is_runned_flag) {
+        is_runned_flag = true;
         printf("Radar starting \n");
         thread.set_iteration_period_milliseconds(period);
         printf("iteration_period_milliseconds = %ld \n", period);
         thread.run();
-        is_runned_flag = true;
     }
 }
 

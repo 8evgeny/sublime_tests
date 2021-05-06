@@ -29,7 +29,7 @@ int main(int argc, char** argv)
     RadarDisplay d;
     d.set_callback([]() { RadarDisplay::display_objects(); });
     d.run();
-    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
     CoastalRadar r1, r2, r3; //Создаем 3 радара
     r1.set_radar_id(1);
@@ -42,14 +42,20 @@ int main(int argc, char** argv)
     r1.set_callback([]() { Radar::receive_data(); });
     r2.set_callback([]() { Radar::receive_data(); });
     r3.set_callback([]() { Radar::receive_data(); });
-    //    r1.run(iteration_period);
-    //    r2.run(50);
     r3.run(1000); //Демонстрация валидности-невалидности отображения
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    r3.stop();
+    r3.wait_shutdown();
+    transformToPerspective = 1;
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     r1.run(iteration_period);
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    r1.stop();
+    r1.wait_shutdown();
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
-    //    d.stop();
-    //    d.wait_shutdown();
+#define POZITION_CAMERA 300, 200, 300
+    r2.run(iteration_period);
 
     //    Mat release(image);
     destroyWindow("DisplayRadar");
