@@ -24,9 +24,6 @@ const int iteration_period = 100;
 
 Point3d transform(double x, double y, double z);
 void CreateObjects();
-void RadarMsg(); //Радар забирает данные объектов и отдает для показа
-
-void Dis() { }
 
 int main(int argc, char** argv)
 {
@@ -41,12 +38,12 @@ int main(int argc, char** argv)
     //    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     //    r1.stop();
     //    r1.wait_shutdown();
-    r1.set_callback(RadarMsg);
-    r2.set_callback(RadarMsg);
-    r3.set_callback(RadarMsg);
+    r1.set_callback([]() { Radar::receive_data(); });
+    r2.set_callback([]() { Radar::receive_data(); });
+    r3.set_callback([]() { Radar::receive_data(); });
     r1.run(iteration_period);
-    //    r2.run(50);
-    //    r3.run(1000); //Демонстрация валидности-невалидности отображения
+    r2.run(50);
+    r3.run(1000); //Демонстрация валидности-невалидности отображения
 
     RadarDisplay d;
 
@@ -56,7 +53,6 @@ int main(int argc, char** argv)
     d.stop();
     d.wait_shutdown();
 
-    d.set_callback(Dis);
     //    Mat release(image);
     destroyWindow("DisplayRadar");
 
@@ -203,7 +199,7 @@ void RadarDisplay::display_objects()
     }
 }
 
-void RadarMsg()
+void Radar::receive_data()
 {
     lock_guard<mutex> lg(m);
     for (int i = 0; i < numObj; ++i) {

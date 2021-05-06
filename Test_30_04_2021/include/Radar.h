@@ -19,6 +19,7 @@ public:
     virtual void wait_shutdown();
     virtual void set_radar_id(const int64_t id);
     virtual void set_data_connector(const RadarDataConnector&);
+    static void receive_data();
     virtual void set_callback(const std::function<void()>&);
 
 protected:
