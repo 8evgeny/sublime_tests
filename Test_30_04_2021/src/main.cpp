@@ -275,11 +275,11 @@ void Polygon(Mat img, Point3d p3, bool trans, Scalar color, int size) //p3 не 
     } else {
         p[0] = RadarDisplay::transform(p3.x, p3.y, p3.z);
         p[1] = RadarDisplay::transform(p3.x, p3.y, p3.z);
-        auto tmp = RadarDisplay::transform(p3.x + 300, p3.y, p3.z);
+        auto tmp = RadarDisplay::transform(p3.x + size * 5, p3.y, p3.z);
         p[1].x = tmp.x;
         p[2] = RadarDisplay::transform(p3.x, p3.y, p3.z);
         p[2].x = tmp.x;
-        tmp = RadarDisplay::transform(p3.x, p3.y + 200, p3.z);
+        tmp = RadarDisplay::transform(p3.x, p3.y + size * 3, p3.z);
         p[2].y = tmp.y;
         p[3] = RadarDisplay::transform(p3.x, p3.y, p3.z);
         p[3].y = tmp.y;
