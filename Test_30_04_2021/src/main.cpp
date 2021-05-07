@@ -108,7 +108,7 @@ Point3d RadarDisplay::transform(double x, double y, double z)
 
 void RadarDisplay::display_objects(bool transf)
 {
-    int axis = 30;
+    int axis = 50;
     auto green = Scalar(0, 255, 0);
     auto red = Scalar(0, 0, 255);
     auto erase = Scalar(0, 0, 0);
@@ -143,7 +143,7 @@ void RadarDisplay::display_objects(bool transf)
             //            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
 
             if (transf) {
-                Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], poli4[i], color);
+                Polygon(image, poli0[i], k3(poli0[i], poli1[i]), k3(poli0[i], poli2[i]), k3(poli0[i], poli3[i]), k3(poli0[i], poli4[i]), color);
                 line(image, Point(p3[i].x, p3[i].y), k(p3[i], x3[i]), axisX, 1, 0);
                 line(image, Point(p3[i].x, p3[i].y), k(p3[i], y3[i]), axisY, 1, 0);
                 line(image, Point(p3[i].x, p3[i].y), k(p3[i], z3[i]), axisZ, 1, 0);
@@ -153,10 +153,11 @@ void RadarDisplay::display_objects(bool transf)
                 line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
                 line(image, Point(p3[i].x, p3[i].y), Point(z3[i].x, z3[i].y), axisZ, 1, 0);
             }
-            putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
-            putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
+
+            //            putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
+            //            putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
             if (transf)
-                putText(image, "z", Point(z3[i].x, z3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisZ, 0);
+                putText(image, "z", k(p3[i], z3[i]), FONT_HERSHEY_SIMPLEX, 0.6, axisZ, 0);
             p3_old[i] = p3[i];
         }
 
@@ -167,7 +168,7 @@ void RadarDisplay::display_objects(bool transf)
             //            circle(image, Point(p3_old[i].x, p3_old[i].y), msg[i].size, erase, FILLED, 0);
 
             if (transf) {
-                Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], poli4[i], erase);
+                Polygon(image, poli0[i], k3(poli0[i], poli1[i]), k3(poli0[i], poli2[i]), k3(poli0[i], poli3[i]), k3(poli0[i], poli4[i]), erase);
                 line(image, Point(p3_old[i].x, p3_old[i].y), k(p3_old[i], x3[i]), erase, 1, 0);
                 line(image, Point(p3_old[i].x, p3_old[i].y), k(p3_old[i], y3[i]), erase, 1, 0);
                 line(image, Point(p3_old[i].x, p3_old[i].y), k(p3_old[i], z3[i]), erase, 1, 0);
@@ -177,10 +178,10 @@ void RadarDisplay::display_objects(bool transf)
                 line(image, Point(p3_old[i].x, p3_old[i].y), Point(y3[i].x, y3[i].y), erase, 1, 0);
                 line(image, Point(p3_old[i].x, p3_old[i].y), Point(z3[i].x, z3[i].y), erase, 1, 0);
             }
-            putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
-            putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
+            //            putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
+            //            putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
             if (transf)
-                putText(image, "z", Point(z3[i].x, z3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
+                putText(image, "z", k(p3_old[i], z3[i]), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
             //Тут забираем координаты объектов
             if (!transf) {
                 p3[i].x = msg[i].x;
@@ -239,7 +240,7 @@ void RadarDisplay::display_objects(bool transf)
             //            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
 
             if (transf) {
-                Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], poli4[i], color);
+                Polygon(image, poli0[i], k3(poli0[i], poli1[i]), k3(poli0[i], poli2[i]), k3(poli0[i], poli3[i]), k3(poli0[i], poli4[i]), color);
                 line(image, Point(p3[i].x, p3[i].y), k(p3[i], x3[i]), axisX, 1, 0);
                 line(image, Point(p3[i].x, p3[i].y), k(p3[i], y3[i]), axisY, 1, 0);
                 line(image, Point(p3[i].x, p3[i].y), k(p3[i], z3[i]), axisZ, 1, 0);
@@ -249,22 +250,28 @@ void RadarDisplay::display_objects(bool transf)
                 line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
                 line(image, Point(p3[i].x, p3[i].y), Point(z3[i].x, z3[i].y), axisZ, 1, 0);
             }
-            putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
-            putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
+            //            putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
+            //            putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
             if (transf)
-                putText(image, "z", Point(z3[i].x, z3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisZ, 0);
+                putText(image, "z", k(p3[i], z3[i]), FONT_HERSHEY_SIMPLEX, 0.6, axisZ, 0);
         }
         imshow(window, image);
         waitKey(1);
     }
 }
 
+Point3d RadarDisplay::k3(Point3d one, Point3d two)
+{
+    Point p;
+    double k = 1 / (two.z / 300 + 1);
+
+    return Point3d(one.x + (two.x - one.x) * k, one.y + (two.y - one.y) * k, two.z);
+}
+
 Point RadarDisplay::k(Point3d one, Point3d two)
 {
     Point p;
     double k = 1 / (two.z / 300 + 1);
-    //        p.x = one.x + (two.x - one.x) * k;
-    //        p.x = one.y + (two.y - one.y) * k;
 
     return Point(one.x + (two.x - one.x) * k, one.y + (two.y - one.y) * k);
 }
