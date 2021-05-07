@@ -23,22 +23,21 @@ void CThread::set_iteration_callback(
 
 void CThread::run()
 {
-    if (!stop_flag) {
-        stop_flag = false;
+    stop_flag = false;
 
-        auto fo = [&]() {
-            while (!stop_flag) {
-                auto start = SystemClock::get_time_milliseconds();
-                on_iteration_callback();
-                //Ожидаем
-                while (SystemClock::get_time_milliseconds() < start + period_ms) {
-                    std::this_thread::sleep_for(std::chrono::milliseconds(10));
-                }
+    auto fo = [&]() {
+        while (!stop_flag) {
+            auto start = SystemClock::get_time_milliseconds();
+            on_iteration_callback();
+            //Ожидаем
+            while (SystemClock::get_time_milliseconds() < start + period_ms) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
             }
-        };
-        std::thread t(fo);
-        CThread::thread = std::make_shared<std::thread>(std::move(t));
-    }
+        }
+    };
+    std::thread t(fo);
+    printf("Run Thread\n");
+    CThread::thread = std::make_shared<std::thread>(std::move(t));
 }
 
 void CThread::run_without_iteration()

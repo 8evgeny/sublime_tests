@@ -16,30 +16,29 @@ int main(int argc, char** argv)
 {
     object::CreateObjects(); //Создаем объекты
 
-    RadarDisplay d;
+    RadarDisplay d; //Размерность 1м = 10 условных единиц на экране
     d.set_callback([&]() { RadarDisplay::display_objects(d.transformToPerspective); });
     d.run();
     //    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-    CoastalRadar r1, r2, r3; //Создаем 3 радара
-    r3.iteration_period = 1000;
+    CoastalRadar r1, r2; //Создаем 2 радара
+    r2.iteration_period = 1000;
 
     r1.set_radar_id(1);
     r2.set_radar_id(2);
-    r3.set_radar_id(3);
 
     r1.set_callback([]() { Radar::receive_data(); });
     r2.set_callback([]() { Radar::receive_data(); });
-    r3.set_callback([]() { Radar::receive_data(); });
 
-    r3.run(); //Демонстрация валидности-невалидности отображения
+    r2.run(); //Демонстрация валидности-невалидности отображения
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     d.transformToPerspective = true;
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     d.transformToPerspective = false;
-    r3.stop();
-    r3.wait_shutdown();
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    r2.stop();
+    r2.wait_shutdown();
+
+    r2.run(100);
 
     r1.run();
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
@@ -74,15 +73,7 @@ int main(int argc, char** argv)
         d.transformToPerspective = false;
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
     }
-    //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-    //    r1.stop();
-    //    r1.wait_shutdown();
-    //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
-    //    r2.run(2000);
-    //    destroyWindow("DisplayRadar");
-
-    //Размерность 1м = 10 условных единиц на экране
     while (1) { }
 }
 
