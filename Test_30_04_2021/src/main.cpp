@@ -39,10 +39,10 @@ int main(int argc, char** argv)
     //    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
     r1.run();
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
     while (1) {
-        //        d.transformToPerspective = true;
+        d.transformToPerspective = true;
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
         for (int i = 0; i < 1000; ++i) {
@@ -154,6 +154,7 @@ void RadarDisplay::display_objects(bool transf)
 
     Point3d p3[object::numObj];
     Point3d p3_old[object::numObj];
+    Point3d poli_old[object::numObj];
 
     Point3d x3[object::numObj];
     Point3d y3[object::numObj];
@@ -165,7 +166,7 @@ void RadarDisplay::display_objects(bool transf)
 
             //            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
 
-            Polygon(image, p3[i], transf, color, msg[i].size);
+            Polygon(image, Point3d(msg[i].x, msg[i].y, msg[i].z), transf, color, msg[i].size);
 
             line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
@@ -176,6 +177,9 @@ void RadarDisplay::display_objects(bool transf)
             if (transf)
                 putText(image, "z", Point(z3[i].x, z3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisZ, 0);
             p3_old[i] = p3[i];
+            poli_old[i].x = msg[i].x;
+            poli_old[i].y = msg[i].y;
+            poli_old[i].z = msg[i].z;
         }
 
         //        std::this_thread::sleep_for(std::chrono::milliseconds(5));
@@ -184,7 +188,7 @@ void RadarDisplay::display_objects(bool transf)
 
             //            circle(image, Point(p3_old[i].x, p3_old[i].y), msg[i].size, erase, FILLED, 0);
 
-            Polygon(image, p3_old[i], transf, erase, msg[i].size);
+            Polygon(image, poli_old[i], transf, erase, msg[i].size);
 
             line(image, Point(p3_old[i].x, p3_old[i].y), Point(x3[i].x, x3[i].y), erase, 1, 0);
             line(image, Point(p3_old[i].x, p3_old[i].y), Point(y3[i].x, y3[i].y), erase, 1, 0);
@@ -226,7 +230,7 @@ void RadarDisplay::display_objects(bool transf)
 
             //            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
 
-            Polygon(image, p3[i], transf, color, msg[i].size);
+            Polygon(image, Point3d(msg[i].x, msg[i].y, msg[i].z), transf, color, msg[i].size);
 
             line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
@@ -274,15 +278,9 @@ void Polygon(Mat img, Point3d p3, bool trans, Scalar color, int size) //p3 не 
         p[3].y = p3.y + size * 3;
     } else {
         p[0] = RadarDisplay::transform(p3.x, p3.y, p3.z);
-        p[1] = RadarDisplay::transform(p3.x, p3.y, p3.z);
-        auto tmp = RadarDisplay::transform(p3.x + size * 5, p3.y, p3.z);
-        p[1].x = tmp.x;
-        p[2] = RadarDisplay::transform(p3.x, p3.y, p3.z);
-        p[2].x = tmp.x;
-        tmp = RadarDisplay::transform(p3.x, p3.y + size * 3, p3.z);
-        p[2].y = tmp.y;
-        p[3] = RadarDisplay::transform(p3.x, p3.y, p3.z);
-        p[3].y = tmp.y;
+        p[1] = RadarDisplay::transform(p3.x + size * 5, p3.y, p3.z);
+        p[2] = RadarDisplay::transform(p3.x + size * 5, p3.y + size * 3, p3.z);
+        p[3] = RadarDisplay::transform(p3.x, p3.y + size * 3, p3.z);
     }
 
     object[0][0] = Point(p[0].x, p[0].y);
