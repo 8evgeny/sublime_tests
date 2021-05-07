@@ -47,22 +47,26 @@ int main(int argc, char** argv)
     while (1) {
         d.transformToPerspective = true;
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+        printf("Rotate camera\n");
+        for (int i = 0; i < 1000; ++i) {
+            POZITION_CAMERA = glm::vec3(i, 0, 0);
 
-        for (int i = 0; i < 1000; ++i) {
-            POZITION_CAMERA = glm::vec3(i, 300, 300);
             std::this_thread::sleep_for(std::chrono::milliseconds(2));
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+        printf("Rotate camera\n");
         for (int i = 0; i < 1000; ++i) {
-            POZITION_CAMERA = glm::vec3(0, i, 300);
+            POZITION_CAMERA = glm::vec3(0, i, 0);
             std::this_thread::sleep_for(std::chrono::milliseconds(2));
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+        printf("Rotate camera\n");
         for (int i = 0; i < 1000; ++i) {
-            POZITION_CAMERA = glm::vec3(0, 200, i);
+            POZITION_CAMERA = glm::vec3(0, 0, i);
             std::this_thread::sleep_for(std::chrono::milliseconds(2));
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+        printf("Rotate camera\n");
         for (int i = 0; i < 1000; ++i) {
             POZITION_CAMERA = glm::vec3(i, i, i);
             std::this_thread::sleep_for(std::chrono::microseconds(5000));
@@ -123,7 +127,7 @@ Point3d RadarDisplay::transform(double x, double y, double z)
     // Camera matrix
     glm::mat4 View = glm::lookAt(
         POZITION_CAMERA, // Camera is at (x,y,z), in World Space
-        glm::vec3(500, 500, 0), // and looks at the origin
+        glm::vec3(500, 500, 500), // and looks at the origin
         glm::vec3(0, 0, -1) // Head is up (set to 0,-1,0 to look upside-down)
     );
 
@@ -166,6 +170,7 @@ void RadarDisplay::display_objects(bool transf)
     Point3d poli1[object::numObj];
     Point3d poli2[object::numObj];
     Point3d poli3[object::numObj];
+    Point3d poli4[object::numObj];
 
     for (int i = 0; i < 50; ++i) { //частота вызова функции
 
