@@ -28,3 +28,4 @@
 #include "object.h"
 
 void Polygon(cv::Mat img, cv::Point3d p0, cv::Point3d p1, cv::Point3d p2, cv::Point3d p3, cv::Point3d p4, cv::Scalar color);
+void test_rotate_camera();

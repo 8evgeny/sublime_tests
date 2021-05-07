@@ -43,36 +43,8 @@ int main(int argc, char** argv)
     r1.run();
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
-    while (1) {
-        d.transformToPerspective = true;
-        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-        printf("Rotate camera\n");
-        for (int i = 0; i < 1000; ++i) {
-            POZITION_CAMERA = glm::vec3(i, 0, 0);
-
-            std::this_thread::sleep_for(std::chrono::milliseconds(2));
-        }
-        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-        printf("Rotate camera\n");
-        for (int i = 0; i < 1000; ++i) {
-            POZITION_CAMERA = glm::vec3(0, i, 0);
-            std::this_thread::sleep_for(std::chrono::milliseconds(2));
-        }
-        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-        printf("Rotate camera\n");
-        for (int i = 0; i < 1000; ++i) {
-            POZITION_CAMERA = glm::vec3(0, 0, i);
-            std::this_thread::sleep_for(std::chrono::milliseconds(2));
-        }
-        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-        printf("Rotate camera\n");
-        for (int i = 0; i < 1000; ++i) {
-            POZITION_CAMERA = glm::vec3(i, i, i);
-            std::this_thread::sleep_for(std::chrono::microseconds(5000));
-        }
-        d.transformToPerspective = false;
-        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-    }
+    d.transformToPerspective = true;
+    test_rotate_camera();
 
     while (1) { }
 }
@@ -305,4 +277,34 @@ void Polygon(Mat img, Point3d p0, Point3d p1, Point3d p2, Point3d p3, Point3d p4
         1,
         color,
         lineType);
+}
+
+void test_rotate_camera()
+{
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    printf("Rotate camera\n");
+    for (int i = 0; i < 1000; ++i) {
+        POZITION_CAMERA = glm::vec3(i, 0, 0);
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(2));
+    }
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    printf("Rotate camera\n");
+    for (int i = 0; i < 1000; ++i) {
+        POZITION_CAMERA = glm::vec3(0, i, 0);
+        std::this_thread::sleep_for(std::chrono::milliseconds(2));
+    }
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    printf("Rotate camera\n");
+    for (int i = 0; i < 1000; ++i) {
+        POZITION_CAMERA = glm::vec3(0, 0, i);
+        std::this_thread::sleep_for(std::chrono::milliseconds(2));
+    }
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    printf("Rotate camera\n");
+    for (int i = 0; i < 1000; ++i) {
+        POZITION_CAMERA = glm::vec3(i, i, i);
+        std::this_thread::sleep_for(std::chrono::microseconds(5000));
+    }
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 }

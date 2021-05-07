@@ -21,8 +21,8 @@ object::object()
     _d.ky = static_cast<double>(kuid(gen)) / 1000000;
     _d.kz = static_cast<double>(kuid(gen)) / 1000000;
     //Размер
-    _d.size = suid(gen);
-    //    _d.size = 5;
+    //    _d.size = suid(gen);
+    _d.size = 5;
     _d.timestamp = SystemClock::get_time_milliseconds();
     printf("creating object %d \n", num + 1);
     ++num;
