@@ -164,6 +164,9 @@ void RadarDisplay::display_objects(bool transf)
         for (int i = 0; i < object::numObj; ++i) {
 
             circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
+
+            //            Polygon(image, p3[i], transf);
+
             line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(z3[i].x, z3[i].y), axisZ, 1, 0);
@@ -250,14 +253,37 @@ void Radar::receive_data()
     //    printf("x: %lf\t y: %lf\t z :%lf \n", msg[0].x, msg[0].y, msg[0].z);
 }
 
-void Polygon(Mat img, int x, int y)
+void Polygon(Mat img, Point3d p3, bool trans) //p3 не трансформированная
 {
+    Point3d p[4];
     int lineType = LINE_8;
     Point object[1][4];
-    object[0][0] = Point(x + 0, y + 0);
-    object[0][1] = Point(x + 300, y + 0);
-    object[0][2] = Point(x + 300, y + 200);
-    object[0][3] = Point(x + 0, y + 200);
+    if (!trans) {
+        p[0] = p3;
+        p[1] = p3;
+        p[1].x = p3.x + 300;
+        p[2] = p3;
+        p[2].x = p3.x + 300;
+        p[2].y = p3.y + 200;
+        p[3] = p3;
+        p[3].y = p3.x + 200;
+    } else {
+        p[0] = RadarDisplay::transform(p3.x, p3.y, p3.z);
+        p[1] = RadarDisplay::transform(p3.x, p3.y, p3.z);
+        auto tmp = RadarDisplay::transform(p3.x + 300, p3.y, p3.z);
+        p[1].x = tmp.x;
+        p[2] = RadarDisplay::transform(p3.x, p3.y, p3.z);
+        p[2].x = tmp.x;
+        tmp = RadarDisplay::transform(p3.x, p3.y + 200, p3.z);
+        p[2].y = tmp.y;
+        p[3] = RadarDisplay::transform(p3.x, p3.y, p3.z);
+        p[3].y = tmp.y;
+    }
+
+    object[0][0] = Point(p[0].x, p[0].y);
+    object[0][1] = Point(p[1].x, p[1].y);
+    object[0][2] = Point(p[2].x, p[2].y);
+    object[0][3] = Point(p[3].x, p[3].y);
 
     const Point* ppt[1] = { object[0] };
     int npt[] = { 4 };
