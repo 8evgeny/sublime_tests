@@ -42,7 +42,7 @@ int main(int argc, char** argv)
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
     while (1) {
-        d.transformToPerspective = true;
+        //        d.transformToPerspective = true;
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
         for (int i = 0; i < 1000; ++i) {
@@ -163,9 +163,9 @@ void RadarDisplay::display_objects(bool transf)
 
         for (int i = 0; i < object::numObj; ++i) {
 
-            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
+            //            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
 
-            //            Polygon(image, p3[i], transf);
+            Polygon(image, p3[i], transf, color, msg[i].size);
 
             line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
@@ -182,7 +182,10 @@ void RadarDisplay::display_objects(bool transf)
 
         for (int i = 0; i < object::numObj; ++i) {
 
-            circle(image, Point(p3_old[i].x, p3_old[i].y), msg[i].size, erase, FILLED, 0);
+            //            circle(image, Point(p3_old[i].x, p3_old[i].y), msg[i].size, erase, FILLED, 0);
+
+            Polygon(image, p3_old[i], transf, erase, msg[i].size);
+
             line(image, Point(p3_old[i].x, p3_old[i].y), Point(x3[i].x, x3[i].y), erase, 1, 0);
             line(image, Point(p3_old[i].x, p3_old[i].y), Point(y3[i].x, y3[i].y), erase, 1, 0);
             line(image, Point(p3_old[i].x, p3_old[i].y), Point(z3[i].x, z3[i].y), erase, 1, 0);
@@ -221,7 +224,9 @@ void RadarDisplay::display_objects(bool transf)
             else
                 color = red;
 
-            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
+            //            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
+
+            Polygon(image, p3[i], transf, color, msg[i].size);
 
             line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
@@ -253,7 +258,7 @@ void Radar::receive_data()
     //    printf("x: %lf\t y: %lf\t z :%lf \n", msg[0].x, msg[0].y, msg[0].z);
 }
 
-void Polygon(Mat img, Point3d p3, bool trans) //p3 не трансформированная
+void Polygon(Mat img, Point3d p3, bool trans, Scalar color, int size) //p3 не трансформированная
 {
     Point3d p[4];
     int lineType = LINE_8;
@@ -261,12 +266,12 @@ void Polygon(Mat img, Point3d p3, bool trans) //p3 не трансформиро
     if (!trans) {
         p[0] = p3;
         p[1] = p3;
-        p[1].x = p3.x + 300;
+        p[1].x = p3.x + size * 5;
         p[2] = p3;
-        p[2].x = p3.x + 300;
-        p[2].y = p3.y + 200;
+        p[2].x = p3.x + size * 5;
+        p[2].y = p3.y + size * 3;
         p[3] = p3;
-        p[3].y = p3.x + 200;
+        p[3].y = p3.y + size * 3;
     } else {
         p[0] = RadarDisplay::transform(p3.x, p3.y, p3.z);
         p[1] = RadarDisplay::transform(p3.x, p3.y, p3.z);
@@ -291,6 +296,6 @@ void Polygon(Mat img, Point3d p3, bool trans) //p3 не трансформиро
         ppt,
         npt,
         1,
-        Scalar(255, 255, 255),
+        color,
         lineType);
 }

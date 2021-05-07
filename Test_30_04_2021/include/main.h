@@ -27,4 +27,4 @@
 #include "SystemClock.h"
 #include "object.h"
 
-void Polygon(cv::Mat img, cv::Point3d, bool);
+void Polygon(cv::Mat img, cv::Point3d, bool, cv::Scalar, int);
