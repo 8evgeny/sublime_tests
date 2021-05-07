@@ -46,12 +46,12 @@ int main(int argc, char** argv)
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
         for (int i = 0; i < 1000; ++i) {
-            POZITION_CAMERA = glm::vec3(i, 200, 100);
+            POZITION_CAMERA = glm::vec3(i, 300, 300);
             std::this_thread::sleep_for(std::chrono::milliseconds(2));
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
         for (int i = 0; i < 1000; ++i) {
-            POZITION_CAMERA = glm::vec3(0, i, 100);
+            POZITION_CAMERA = glm::vec3(0, i, 300);
             std::this_thread::sleep_for(std::chrono::milliseconds(2));
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
@@ -120,7 +120,7 @@ Point3d RadarDisplay::transform(double x, double y, double z)
     // Camera matrix
     glm::mat4 View = glm::lookAt(
         POZITION_CAMERA, // Camera is at (x,y,z), in World Space
-        glm::vec3(0, 0, 0), // and looks at the origin
+        glm::vec3(500, 500, 0), // and looks at the origin
         glm::vec3(0, 0, -1) // Head is up (set to 0,-1,0 to look upside-down)
     );
 
