@@ -113,7 +113,7 @@ Point3d RadarDisplay::transform(double x, double y, double z)
 {
 
     // Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-    glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 4.0f, 0.1f, 100.0f);
+    glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 4.0f, 0.1f, 1500.0f);
     // Or, for an ortho camera :
     //    glm::mat4 Projection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, 0.0f, 100.0f); // In world coordinates
 
@@ -163,7 +163,7 @@ void RadarDisplay::display_objects(bool transf)
 
         for (int i = 0; i < object::numObj; ++i) {
 
-            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, 3, 0);
+            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(z3[i].x, z3[i].y), axisZ, 1, 0);
@@ -179,7 +179,7 @@ void RadarDisplay::display_objects(bool transf)
 
         for (int i = 0; i < object::numObj; ++i) {
 
-            circle(image, Point(p3_old[i].x, p3_old[i].y), msg[i].size, erase, 3, 0);
+            circle(image, Point(p3_old[i].x, p3_old[i].y), msg[i].size, erase, FILLED, 0);
             line(image, Point(p3_old[i].x, p3_old[i].y), Point(x3[i].x, x3[i].y), erase, 1, 0);
             line(image, Point(p3_old[i].x, p3_old[i].y), Point(y3[i].x, y3[i].y), erase, 1, 0);
             line(image, Point(p3_old[i].x, p3_old[i].y), Point(z3[i].x, z3[i].y), erase, 1, 0);
@@ -218,7 +218,7 @@ void RadarDisplay::display_objects(bool transf)
             else
                 color = red;
 
-            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, 3, 0);
+            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
 
             line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
