@@ -84,7 +84,7 @@ Point3d RadarDisplay::transform(double x, double y, double z)
 {
 
     // Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-    glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 4.0f, 0.1f, 1500.0f);
+    glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 4.0f, 10.1f, 1500.0f);
     // Or, for an ortho camera :
     //    glm::mat4 Projection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, 0.0f, 100.0f); // In world coordinates
 
@@ -140,9 +140,9 @@ void RadarDisplay::display_objects(bool transf)
 
         for (int i = 0; i < object::numObj; ++i) {
 
-            //            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
+            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
 
-            Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], poli4[i], color);
+            //            Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], poli4[i], color);
             if (transf) {
 
                 line(image, Point(p3[i].x, p3[i].y), k(p3[i], x3[i]), axisX, 1, 0);
@@ -164,9 +164,9 @@ void RadarDisplay::display_objects(bool transf)
 
         for (int i = 0; i < object::numObj; ++i) {
 
-            //            circle(image, Point(p3_old[i].x, p3_old[i].y), msg[i].size, erase, FILLED, 0);
+            circle(image, Point(p3_old[i].x, p3_old[i].y), msg[i].size, erase, FILLED, 0);
 
-            Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], poli4[i], erase);
+            //            Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], poli4[i], erase);
             if (transf) {
 
                 line(image, Point(p3_old[i].x, p3_old[i].y), k(p3_old[i], x3[i]), erase, 1, 0);
@@ -236,9 +236,9 @@ void RadarDisplay::display_objects(bool transf)
             else
                 color = red;
 
-            //            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
+            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
 
-            Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], poli4[i], color);
+            //            Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], poli4[i], color);
             if (transf) {
 
                 line(image, Point(p3[i].x, p3[i].y), k(p3[i], x3[i]), axisX, 1, 0);
@@ -262,7 +262,7 @@ void RadarDisplay::display_objects(bool transf)
 Point RadarDisplay::k(Point3d one, Point3d two)
 {
     Point p;
-    double k = 1 / two.z + 0.2;
+    double k = 1 / (two.z / 300 + 1);
     //        p.x = one.x + (two.x - one.x) * k;
     //        p.x = one.y + (two.y - one.y) * k;
 
@@ -318,6 +318,13 @@ void test_rotate_camera()
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
     printf("Rotate camera\n");
     for (int i = 0; i < 1000; ++i) {
+        POZITION_CAMERA = glm::vec3(i, i, i);
+        std::this_thread::sleep_for(std::chrono::microseconds(5000));
+    }
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    printf("Rotate camera\n");
+    for (int i = 0; i < 1000; ++i) {
         POZITION_CAMERA = glm::vec3(0, i, 0);
         std::this_thread::sleep_for(std::chrono::milliseconds(2));
     }
@@ -327,11 +334,6 @@ void test_rotate_camera()
         POZITION_CAMERA = glm::vec3(0, 0, i);
         std::this_thread::sleep_for(std::chrono::milliseconds(2));
     }
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-    printf("Rotate camera\n");
-    for (int i = 0; i < 1000; ++i) {
-        POZITION_CAMERA = glm::vec3(i, i, i);
-        std::this_thread::sleep_for(std::chrono::microseconds(5000));
-    }
+
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 }
