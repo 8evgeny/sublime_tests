@@ -178,7 +178,7 @@ void RadarDisplay::display_objects(bool transf)
 
             //            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
 
-            Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], color);
+            Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], poli4[i], color);
 
             line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
@@ -197,7 +197,7 @@ void RadarDisplay::display_objects(bool transf)
 
             //            circle(image, Point(p3_old[i].x, p3_old[i].y), msg[i].size, erase, FILLED, 0);
 
-            Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], erase);
+            Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], poli4[i], erase);
 
             line(image, Point(p3_old[i].x, p3_old[i].y), Point(x3[i].x, x3[i].y), erase, 1, 0);
             line(image, Point(p3_old[i].x, p3_old[i].y), Point(y3[i].x, y3[i].y), erase, 1, 0);
@@ -239,6 +239,10 @@ void RadarDisplay::display_objects(bool transf)
                 poli3[i].y = p3[i].y + msg[i].size * 3;
                 poli3[i].z = p3[i].z;
 
+                poli4[i].x = p3[i].x - msg[i].size * 1.5;
+                poli4[i].y = p3[i].y + msg[i].size * 1.5;
+                poli4[i].z = p3[i].z;
+
             } else {
                 p3[i] = transform(msg[i].x, msg[i].y, msg[i].z);
                 x3[i] = transform(msg[i].x + axis, msg[i].y, msg[i].z);
@@ -249,6 +253,7 @@ void RadarDisplay::display_objects(bool transf)
                 poli1[i] = transform(msg[i].x + msg[i].size * 5, msg[i].y, msg[i].z);
                 poli2[i] = transform(msg[i].x + msg[i].size * 5, msg[i].y + msg[i].size * 3, msg[i].z);
                 poli3[i] = transform(msg[i].x, msg[i].y + msg[i].size * 3, msg[i].z);
+                poli4[i] = transform(msg[i].x - msg[i].size * 1.5, msg[i].y + msg[i].size * 1.5, msg[i].z);
             }
 
             if (checkValid(msg[i], obj[i]))
@@ -258,7 +263,7 @@ void RadarDisplay::display_objects(bool transf)
 
             //            circle(image, Point(p3[i].x, p3[i].y), msg[i].size, color, FILLED, 0);
 
-            Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], color);
+            Polygon(image, poli0[i], poli1[i], poli2[i], poli3[i], poli4[i], color);
 
             line(image, Point(p3[i].x, p3[i].y), Point(x3[i].x, x3[i].y), axisX, 1, 0);
             line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
@@ -290,18 +295,19 @@ void Radar::receive_data()
     //    printf("x: %lf\t y: %lf\t z :%lf \n", msg[0].x, msg[0].y, msg[0].z);
 }
 
-void Polygon(Mat img, Point3d p0, Point3d p1, Point3d p2, Point3d p3, Scalar color)
+void Polygon(Mat img, Point3d p0, Point3d p1, Point3d p2, Point3d p3, Point3d p4, Scalar color)
 {
     int lineType = LINE_8;
-    Point object[1][4];
+    Point object[1][5];
 
     object[0][0] = Point(p0.x, p0.y);
     object[0][1] = Point(p1.x, p1.y);
     object[0][2] = Point(p2.x, p2.y);
     object[0][3] = Point(p3.x, p3.y);
+    object[0][4] = Point(p4.x, p4.y);
 
     const Point* ppt[1] = { object[0] };
-    int npt[] = { 4 };
+    int npt[] = { 5 };
     fillPoly(img,
         ppt,
         npt,
