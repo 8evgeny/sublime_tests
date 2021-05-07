@@ -5,14 +5,15 @@ object::object()
 {
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> uid(1, 1000000);
+    std::uniform_int_distribution<int> uid_x_y(1, 1000000);
+    std::uniform_int_distribution<int> uid_z(1, 10000);
     std::uniform_int_distribution<int> vuid(200, 400);
     std::uniform_int_distribution<int> kuid(-1000000, 1000000);
     std::uniform_int_distribution<int> suid(1, 10);
     //начальное положение
-    _d.x = static_cast<double>(uid(gen)) / 1000;
-    _d.y = static_cast<double>(uid(gen)) / 1000;
-    _d.z = static_cast<double>(uid(gen)) / 1000;
+    _d.x = static_cast<double>(uid_x_y(gen)) / 1000;
+    _d.y = static_cast<double>(uid_x_y(gen)) / 1000;
+    _d.z = static_cast<double>(uid_z(gen)) / 1000;
     //скорость
     _d.v = static_cast<double>(vuid(gen)) / 200;
     //коэффициенты

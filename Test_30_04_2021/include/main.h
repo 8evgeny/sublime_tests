@@ -26,3 +26,5 @@
 #include "RadarMessage.h"
 #include "SystemClock.h"
 #include "object.h"
+
+void Polygon(cv::Mat img, int x, int y);

@@ -46,17 +46,17 @@ int main(int argc, char** argv)
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
         for (int i = 0; i < 1000; ++i) {
-            POZITION_CAMERA = glm::vec3(i, 200, 800);
+            POZITION_CAMERA = glm::vec3(i, 200, 100);
             std::this_thread::sleep_for(std::chrono::milliseconds(2));
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
         for (int i = 0; i < 1000; ++i) {
-            POZITION_CAMERA = glm::vec3(200, i, 800);
+            POZITION_CAMERA = glm::vec3(0, i, 100);
             std::this_thread::sleep_for(std::chrono::milliseconds(2));
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
         for (int i = 0; i < 1000; ++i) {
-            POZITION_CAMERA = glm::vec3(200, 200, i);
+            POZITION_CAMERA = glm::vec3(0, 200, i);
             std::this_thread::sleep_for(std::chrono::milliseconds(2));
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
@@ -121,7 +121,7 @@ Point3d RadarDisplay::transform(double x, double y, double z)
     glm::mat4 View = glm::lookAt(
         POZITION_CAMERA, // Camera is at (x,y,z), in World Space
         glm::vec3(0, 0, 0), // and looks at the origin
-        glm::vec3(0, 1, 0) // Head is up (set to 0,-1,0 to look upside-down)
+        glm::vec3(0, 0, -1) // Head is up (set to 0,-1,0 to look upside-down)
     );
 
     // Model matrix : an identity matrix (model will be at the origin)
@@ -248,4 +248,23 @@ void Radar::receive_data()
         msg[i].timestamp = obj[i].timestamp;
     }
     //    printf("x: %lf\t y: %lf\t z :%lf \n", msg[0].x, msg[0].y, msg[0].z);
+}
+
+void Polygon(Mat img, int x, int y)
+{
+    int lineType = LINE_8;
+    Point object[1][4];
+    object[0][0] = Point(x + 0, y + 0);
+    object[0][1] = Point(x + 300, y + 0);
+    object[0][2] = Point(x + 300, y + 200);
+    object[0][3] = Point(x + 0, y + 200);
+
+    const Point* ppt[1] = { object[0] };
+    int npt[] = { 4 };
+    fillPoly(img,
+        ppt,
+        npt,
+        1,
+        Scalar(255, 255, 255),
+        lineType);
 }

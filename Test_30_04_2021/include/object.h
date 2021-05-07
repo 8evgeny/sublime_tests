@@ -19,7 +19,7 @@ public:
     ToRadar toRadar;
     void calculatePosition(ToRadar&);
     int periodCalculate { 1 };
-    static const int numObj = 50; //Колл. объектов
+    static const int numObj = 150; //Колл. объектов
 private:
     struct Data {
         double x = 0;
