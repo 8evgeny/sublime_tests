@@ -15,6 +15,7 @@ public:
     static void display_objects(bool);
     static cv::Point3d transform(double x, double y, double z);
     bool transformToPerspective = false;
+    static cv::Point k(cv::Point3d one, cv::Point3d two); //коэфф глубины для перспективы
 
 private:
     CThread thread;
