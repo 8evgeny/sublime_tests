@@ -8,7 +8,7 @@ std::mutex m;
 using namespace cv;
 using namespace std;
 namespace po = boost::program_options;
-boost::program_options::variables_map vmd;
+boost::program_options::variables_map vm;
 int view_x; //точка куда смотрит камера
 int view_y;
 int view_z;
@@ -21,13 +21,14 @@ CoastalRadarMessage::Data msg[object::numObj]; //Результаты из по�
 int main(int argc, char** argv)
 {
     readConfig("../config.ini");
-    int cameraX = vmd["position_camera_X"].as<int>();
-    int cameraY = vmd["position_camera_Y"].as<int>();
-    int cameraZ = vmd["position_camera_Z"].as<int>();
-    view_x = vmd["view_X"].as<int>();
-    view_y = vmd["view_Y"].as<int>();
-    view_z = vmd["view_Z"].as<int>();
+    int cameraX = vm["position_camera_X"].as<int>();
+    int cameraY = vm["position_camera_Y"].as<int>();
+    int cameraZ = vm["position_camera_Z"].as<int>();
+    view_x = vm["view_X"].as<int>();
+    view_y = vm["view_Y"].as<int>();
+    view_z = vm["view_Z"].as<int>();
     POZITION_CAMERA = glm::vec3(cameraX, cameraY, cameraZ);
+    const int numObj = vm["num_objects"].as<int>();
 
     printf("Position camera: %d, %d, %d \n", cameraX, cameraY, cameraZ);
 
@@ -374,16 +375,16 @@ void test_rotate_camera()
 void readConfig(const char* conf_file)
 {
     po::options_description disp("display");
-    disp.add_options()("position_camera_X", po::value<int>())("position_camera_Y", po::value<int>())("position_camera_Z", po::value<int>())("view_X", po::value<int>())("view_Y", po::value<int>())("view_Z", po::value<int>());
+    disp.add_options()("num_objects", po::value<int>())("position_camera_X", po::value<int>())("position_camera_Y", po::value<int>())("position_camera_Z", po::value<int>())("view_X", po::value<int>())("view_Y", po::value<int>())("view_Z", po::value<int>());
 
     po::options_description desc("Allowed options");
     desc.add(disp);
 
     try {
         po::parsed_options parsed = po::parse_config_file<char>(conf_file, desc, true); //флаг true разрешает незарегистрированные опции !
-        po::store(parsed, vmd);
+        po::store(parsed, vm);
     } catch (const po::reading_file& e) {
         std::cout << "Error: " << e.what() << std::endl;
     }
-    po::notify(vmd);
+    po::notify(vm);
 }
