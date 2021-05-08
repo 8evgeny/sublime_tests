@@ -5,7 +5,6 @@ namespace po = boost::program_options;
 object::object()
 {
     readConfig("../config.ini");
-    //        numObj = vm["num_object"].as<int>();
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> uid_x_y(1, 1000000);
@@ -38,10 +37,8 @@ void object::readConfig(const char* conf_file)
 {
     po::options_description ob("object");
     ob.add_options()("min_size", po::value<int>())("max_size", po::value<int>())("min_velocity", po::value<double>())("max_velocity", po::value<double>());
-
     po::options_description desc("Allowed options");
     desc.add(ob);
-    //    desc.add(disp);
     try {
         po::parsed_options parsed = po::parse_config_file<char>(conf_file, desc, true); //флаг true разрешает незарегистрированные опции !
         po::store(parsed, vm);
@@ -79,7 +76,6 @@ void object::calculatePosition(ToRadar& result)
         toRadar.size = _d.size;
         toRadar.timestamp = SystemClock::get_time_milliseconds();
         {
-            //            std::lock_guard<std::mutex> lg(m);
             result = toRadar;
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
