@@ -25,6 +25,7 @@ private:
 
 private:
     std::atomic_bool stop_flag { false };
+    std::atomic_bool exit_flag { false };
     int64_t period_ms = 20;
     std::shared_ptr<std::thread> thread = nullptr;
     std::function<void()> on_iteration_callback = nullptr;

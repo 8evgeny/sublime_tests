@@ -8,6 +8,8 @@ CThread::CThread()
 
 CThread::~CThread()
 {
+    shutdown();
+    exit_flag = true;
 }
 
 void CThread::set_iteration_period_milliseconds(const int64_t period)
@@ -26,26 +28,31 @@ void CThread::run()
     try {
         stop_flag = false;
         auto fo = [&]() {
-            while (!stop_flag) {
-                auto start = SystemClock::get_time_milliseconds();
-                on_iteration_callback();
-                //Ожидаем
-                while (SystemClock::get_time_milliseconds() < start + period_ms) {
-                    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            if (!exit_flag) {
+                while (!stop_flag) {
+                    auto start = SystemClock::get_time_milliseconds();
+                    on_iteration_callback();
+                    //Ожидаем
+                    while (SystemClock::get_time_milliseconds() < start + period_ms) {
+                        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                    }
                 }
+            } else {
+                return;
             }
         };
         std::thread t(fo);
         printf("Run Thread\n");
         CThread::thread = std::make_shared<std::thread>(std::move(t));
     } catch (std::exception& e) {
-        printf("Exception: %s", e.what());
+        printf("Exception: %s \n", e.what());
+        printf("Type: %s \n", typeid(e).name());
     }
 }
 
 void CThread::run_without_iteration()
 {
-    if (!stop_flag) {
+    try {
         stop_flag = false;
 
         auto fo = [&]() {
@@ -53,6 +60,9 @@ void CThread::run_without_iteration()
         };
         std::thread t(fo);
         CThread::thread = std::make_shared<std::thread>(std::move(t));
+    } catch (std::exception& e) {
+        printf("Exception: %s \n", e.what());
+        printf("Type: %s \n", typeid(e).name());
     }
 }
 

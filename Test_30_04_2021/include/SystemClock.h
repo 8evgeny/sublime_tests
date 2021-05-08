@@ -15,5 +15,3 @@ private:
     std::chrono::high_resolution_clock::time_point start, end;
     std::chrono::duration<float> duration;
 };
-
-//2. Создать класс, инкапсулирующий источник времени для приложения.

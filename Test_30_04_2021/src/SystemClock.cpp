@@ -3,7 +3,6 @@
 int64_t SystemClock::get_time_milliseconds()
 {
     auto currTime = std::chrono::high_resolution_clock::now();
-
     return std::chrono::duration_cast<std::chrono::milliseconds>(
         currTime.time_since_epoch())
         .count();

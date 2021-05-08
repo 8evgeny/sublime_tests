@@ -58,7 +58,11 @@ int main(int argc, char** argv)
     r2.stop();
     r2.wait_shutdown();
 
-    r2.run(100);
+    r1.run();
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    r1.stop();
+    r1.wait_shutdown();
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
     r1.run();
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
     d.transformToPerspective = true;
