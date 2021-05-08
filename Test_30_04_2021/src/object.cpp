@@ -5,14 +5,14 @@ namespace po = boost::program_options;
 
 object::object()
 {
-    //        readConfig("../config.ini");
+    readConfig("../config.ini");
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> uid_x_y(1, 1000000);
     std::uniform_int_distribution<int> uid_z(1, 1000000);
-    std::uniform_int_distribution<int> vuid(200, 400);
+    std::uniform_int_distribution<int> vuid(vm["min_velocity"].as<double>(), vm["max_velocity"].as<double>());
     std::uniform_int_distribution<int> kuid(-1000000, 1000000);
-    std::uniform_int_distribution<int> suid(5, 5);
+    std::uniform_int_distribution<int> suid(vm["min_size"].as<int>(), vm["max_size"].as<int>());
     //начальное положение
     _d.x = static_cast<double>(uid_x_y(gen)) / 1000;
     _d.y = static_cast<double>(uid_x_y(gen)) / 1000;
@@ -36,24 +36,21 @@ object::object()
 void object::readConfig(const char* conf_file)
 {
     po::options_description ob("object");
-    ob.add_options()("num_object", po::value<int>(), "num_object");
-    //        ("min_size", po::value<int>(), "")("max_size", po::value<int>(), "")("min_velocity", po::value<double>(), "")("max_velocity", po::value<double>(), "");
+    ob.add_options()("num_object", po::value<int>(), "num_object")("min_size", po::value<int>(), "")("max_size", po::value<int>(), "")("min_velocity", po::value<double>(), "")("max_velocity", po::value<double>(), "");
 
     //    po::options_description disp("display");
     //    disp.add_options()("pozition_camera_X", po::value<int>(), "")("pozition_camera_Y", po::value<int>(), "")("pozition_camera_Z", po::value<int>(), "");
 
-    //    po::options_description desc("Allowed options");
-    //    desc.add(ob);
+    po::options_description desc("Allowed options");
+    desc.add(ob);
     //    desc.add(disp);
     try {
-        po::parsed_options parsed = po::parse_config_file<char>(
-            conf_file, ob, true); //флаг true разрешает незарегистрированные опции !
+        po::parsed_options parsed = po::parse_config_file<char>(conf_file, desc, true); //флаг true разрешает незарегистрированные опции !
         po::store(parsed, vm);
     } catch (const po::reading_file& e) {
         std::cout << "Error: " << e.what() << std::endl;
     }
     po::notify(vm);
-    std::cout << "num_object-" << vm["num_object"].as<int>() << std::endl;
 }
 
 object::~object()
