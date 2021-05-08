@@ -91,7 +91,7 @@ void object::CreateObjects()
 
 bool checkValid(CoastalRadarMessage::Data msg, object::ToRadar obj)
 {
-    double delta = 2;
+    double delta = 3;
     if ((msg.x > obj.x + delta) || (msg.y > obj.y + delta) || (msg.z > obj.z + delta))
         return false;
     return true;
@@ -174,9 +174,10 @@ void RadarDisplay::display_objects(bool transf)
                 line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
                 line(image, Point(p3[i].x, p3[i].y), Point(z3[i].x, z3[i].y), axisZ, 1, 0);
             }
-
-            //            putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
-            //            putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
+            if (!transf) {
+                putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
+                putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
+            }
             if (transf)
                 putText(image, "z", k(p3[i], z3[i]), FONT_HERSHEY_SIMPLEX, 0.6, axisZ, 0);
             p3_old[i] = p3[i];
@@ -199,8 +200,10 @@ void RadarDisplay::display_objects(bool transf)
                 line(image, Point(p3_old[i].x, p3_old[i].y), Point(y3[i].x, y3[i].y), erase, 1, 0);
                 line(image, Point(p3_old[i].x, p3_old[i].y), Point(z3[i].x, z3[i].y), erase, 1, 0);
             }
-            //            putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
-            //            putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
+            if (!transf) {
+                putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
+                putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
+            }
             if (transf)
                 putText(image, "z", k(p3_old[i], z3[i]), FONT_HERSHEY_SIMPLEX, 0.6, erase, 0);
             //Тут забираем координаты объектов
@@ -271,8 +274,10 @@ void RadarDisplay::display_objects(bool transf)
                 line(image, Point(p3[i].x, p3[i].y), Point(y3[i].x, y3[i].y), axisY, 1, 0);
                 line(image, Point(p3[i].x, p3[i].y), Point(z3[i].x, z3[i].y), axisZ, 1, 0);
             }
-            //            putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
-            //            putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
+            if (!transf) {
+                putText(image, "x", Point(x3[i].x, x3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisX, 0);
+                putText(image, "y", Point(y3[i].x, y3[i].y), FONT_HERSHEY_SIMPLEX, 0.6, axisY, 0);
+            }
             if (transf)
                 putText(image, "z", k(p3[i], z3[i]), FONT_HERSHEY_SIMPLEX, 0.6, axisZ, 0);
         }
