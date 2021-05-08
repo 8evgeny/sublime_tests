@@ -7,27 +7,38 @@ Radar::Radar()
 
 Radar::~Radar()
 {
+    wait_shutdown();
 }
 
 void Radar::run(int period)
 {
-    if (!is_runned_flag) {
-        is_runned_flag = true;
-        printf("Radar starting \n");
-        thread.set_iteration_period_milliseconds(period);
-        printf("iteration_period_milliseconds = %d \n", period);
-        thread.run();
+    try {
+        if (!is_runned_flag) {
+            is_runned_flag = true;
+            printf("Radar starting \n");
+            thread.set_iteration_period_milliseconds(period);
+            printf("iteration_period_milliseconds = %d \n", period);
+            thread.run();
+        }
+    } catch (std::exception& e) {
+        printf("Exception: %s \n", e.what());
+        printf("Type: %s \n", typeid(e).name());
     }
 }
 
 void Radar::run()
 {
-    if (!is_runned_flag) {
-        is_runned_flag = true;
-        printf("Radar starting \n");
-        thread.set_iteration_period_milliseconds(iteration_period);
-        printf("iteration_period_milliseconds = %d \n", iteration_period);
-        thread.run();
+    try {
+        if (!is_runned_flag) {
+            is_runned_flag = true;
+            printf("Radar starting \n");
+            thread.set_iteration_period_milliseconds(iteration_period);
+            printf("iteration_period_milliseconds = %d \n", iteration_period);
+            thread.run();
+        }
+    } catch (std::exception& e) {
+        printf("Exception: %s \n", e.what());
+        printf("Type: %s \n", typeid(e).name());
     }
 }
 
@@ -73,11 +84,3 @@ void Radar::set_callback(const std::function<void()>& set_callback)
     iteration_callback = set_callback;
     thread.set_iteration_callback(iteration_callback);
 }
-
-/*
-Жизненный цикл объекта:
-СThread thread;
-thread.set_iteration_period_milliseconds(50);
-thread.set_iteration_callback(callback);
-thread.run();
-*/
