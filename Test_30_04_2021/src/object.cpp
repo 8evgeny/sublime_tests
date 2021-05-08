@@ -1,6 +1,5 @@
 #include "object.h"
 #include "SystemClock.h"
-int num = 0;
 namespace po = boost::program_options;
 
 object::object()
@@ -27,6 +26,7 @@ object::object()
     //Размер
     _d.size = suid(gen);
     _d.timestamp = SystemClock::get_time_milliseconds();
+    static int num = 0;
     printf("creating object %d \n", num + 1);
     ++num;
     printf("x: %lf\t y: %lf\t z :%lf \n", _d.x, _d.y, _d.z);

@@ -27,7 +27,7 @@ private:
         double x = 0;
         double y = 0;
         double z = 0;
-        int v = 0;
+        double v = 0;
         double kx = 0; // -1 - 1
         double ky = 0;
         double kz = 0;
