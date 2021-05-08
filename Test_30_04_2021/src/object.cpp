@@ -5,7 +5,7 @@ namespace po = boost::program_options;
 object::object()
 {
     readConfig("../config.ini");
-    //    numObj = vm["num_object"].as<int>();
+    //        numObj = vm["num_object"].as<int>();
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> uid_x_y(1, 1000000);
