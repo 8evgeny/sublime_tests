@@ -5,6 +5,7 @@ class object {
 public:
     object();
     ~object();
+    void readConfig(const char* conf_file);
     static void CreateObjects();
     struct ToRadar {
         double x = 0;
@@ -21,6 +22,7 @@ public:
     int periodCalculate { 1 };
     static const int numObj = 120; //Колл. объектов
 private:
+    boost::program_options::variables_map vm;
     struct Data {
         double x = 0;
         double y = 0;

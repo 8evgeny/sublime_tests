@@ -1,8 +1,11 @@
 #include "object.h"
 #include "SystemClock.h"
 int num = 0;
+namespace po = boost::program_options;
+
 object::object()
 {
+    //        readConfig("../config.ini");
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> uid_x_y(1, 1000000);
@@ -28,6 +31,29 @@ object::object()
     printf("x: %lf\t y: %lf\t z :%lf \n", _d.x, _d.y, _d.z);
     printf("kx: %lf\t ky: %lf\t kz :%lf \n", _d.kx, _d.ky, _d.kz);
     printf("v: %lf \n", _d.v);
+}
+
+void object::readConfig(const char* conf_file)
+{
+    po::options_description ob("object");
+    ob.add_options()("num_object", po::value<int>(), "num_object");
+    //        ("min_size", po::value<int>(), "")("max_size", po::value<int>(), "")("min_velocity", po::value<double>(), "")("max_velocity", po::value<double>(), "");
+
+    //    po::options_description disp("display");
+    //    disp.add_options()("pozition_camera_X", po::value<int>(), "")("pozition_camera_Y", po::value<int>(), "")("pozition_camera_Z", po::value<int>(), "");
+
+    //    po::options_description desc("Allowed options");
+    //    desc.add(ob);
+    //    desc.add(disp);
+    try {
+        po::parsed_options parsed = po::parse_config_file<char>(
+            conf_file, ob, true); //флаг true разрешает незарегистрированные опции !
+        po::store(parsed, vm);
+    } catch (const po::reading_file& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+    po::notify(vm);
+    std::cout << "num_object-" << vm["num_object"].as<int>() << std::endl;
 }
 
 object::~object()

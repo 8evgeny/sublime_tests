@@ -21,6 +21,8 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 
+#include <boost/program_options.hpp>
+
 #include "CThread.h"
 #include "RadarDataConnector.h"
 #include "RadarMessage.h"
@@ -29,3 +31,5 @@
 
 void Polygon(cv::Mat img, cv::Point3d p0, cv::Point3d p1, cv::Point3d p2, cv::Point3d p3, cv::Point3d p4, cv::Scalar color);
 void test_rotate_camera();
+//void readConfig(const char*, boost::program_options::variables_map&);
+void readConfig(const char*);

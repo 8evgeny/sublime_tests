@@ -5,7 +5,7 @@ file(GLOB sources src/*)
 add_executable(${PROJECT_NAME} ${sources})
 
 set (Boost_USE_MULTITHREADED ON)
-find_package (Boost REQUIRED COMPONENTS system filesystem )
+find_package (Boost REQUIRED COMPONENTS  system program_options filesystem )
 if (Boost_FOUND)
     message("cmake message-" ${PROJECT_NAME} " boost include DIR: " ${Boost_INCLUDE_DIR})
     include_directories (SYSTEM ${Boost_INCLUDE_DIR})
@@ -25,7 +25,9 @@ target_include_directories(${PROJECT_NAME}
     include/
     ${OpenCV_INCLUDE_DIRS}
     glm::glm
+    ${Boost_INCLUDE_DIR}
     )
+
 target_link_libraries( ${PROJECT_NAME}
         ${Boost_LIBRARIES}
         ${OpenCV_LIBS}

@@ -7,6 +7,7 @@
 std::mutex m;
 using namespace cv;
 using namespace std;
+
 glm::vec3 POZITION_CAMERA = glm::vec3(100, 200, 1000);
 object::ToRadar obj[object::numObj]; //Результаты из потоков объектов
 
@@ -14,6 +15,7 @@ CoastalRadarMessage::Data msg[object::numObj]; //Результаты из по�
 
 int main(int argc, char** argv)
 {
+
     object::CreateObjects(); //Создаем объекты
 
     RadarDisplay d; //Размерность 1м = 10 условных единиц на экране
@@ -344,3 +346,5 @@ void test_rotate_camera()
 
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 }
+
+//void readConfig(const char* conf_file, boost::program_options::variables_map& vm)
