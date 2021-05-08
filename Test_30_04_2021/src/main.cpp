@@ -28,7 +28,7 @@ int main(int argc, char** argv)
     view_y = vm["view_Y"].as<int>();
     view_z = vm["view_Z"].as<int>();
     POZITION_CAMERA = glm::vec3(cameraX, cameraY, cameraZ);
-    const int numObj = vm["num_objects"].as<int>();
+    //    const int numObj = vm["num_objects"].as<int>();
 
     printf("Position camera: %d, %d, %d \n", cameraX, cameraY, cameraZ);
 
@@ -71,19 +71,6 @@ int main(int argc, char** argv)
 
     while (1) { }
 }
-
-/*
-9. Собрать из классов демонстрационное приложение, в котором использовать 2-3 радара и
-один дисплей, отображающий перемещение объектов, данные о которых передаются радарами.
-
-    Оцениваются:
-– Способность к интерпретации задачи;
-– Способность разбираться в новой тематике;
-– Способность ориентироваться в сложной архитектуре;
-– Чистота и читаемость кода, стиль именования переменных и методов;
-– Внимание к исключительным ситуациям, в которых могут возникать ошибки;
-контроль за использованием ресурсов.
-*/
 
 void object::CreateObjects()
 {
