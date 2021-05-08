@@ -49,19 +49,18 @@ int main(int argc, char** argv)
     r1.set_callback([]() { Radar::receive_data(); });
     r2.set_callback([]() { Radar::receive_data(); });
 
-    //    r2.run(); //Демонстрация валидности-невалидности отображения
-    //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-    //    d.transformToPerspective = true;
-    //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-    //    d.transformToPerspective = false;
-    //    r2.stop();
-    //    r2.wait_shutdown();
-    d.transformToPerspective = true;
-    r2.run(100);
-
-    r1.run();
+    r2.run(); //Демонстрация валидности-невалидности отображения
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    d.transformToPerspective = true;
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    d.transformToPerspective = false;
+    r2.stop();
+    r2.wait_shutdown();
 
+    r2.run(100);
+    r1.run();
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    d.transformToPerspective = true;
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     test_rotate_camera();
 
@@ -126,7 +125,11 @@ Point3d RadarDisplay::transform(double x, double y, double z)
 
 void RadarDisplay::display_objects(bool transf)
 {
-    int axis = 50;
+    int axis;
+    if (!transf)
+        axis = 30;
+    if (transf)
+        axis = 50;
     auto green = Scalar(0, 255, 0);
     auto red = Scalar(0, 0, 255);
     auto erase = Scalar(0, 0, 0);

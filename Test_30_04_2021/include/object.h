@@ -20,7 +20,7 @@ public:
     ToRadar toRadar;
     void calculatePosition(ToRadar&);
     int periodCalculate { 1 };
-    static const int numObj = 120; //Колл. объектов
+    static const int numObj = 100; //Колл. объектов
 private:
     boost::program_options::variables_map vm;
     struct Data {
