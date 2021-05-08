@@ -7,14 +7,29 @@
 std::mutex m;
 using namespace cv;
 using namespace std;
+namespace po = boost::program_options;
+boost::program_options::variables_map vmd;
+int view_x; //точка куда смотрит камера
+int view_y;
+int view_z;
+glm::vec3 POZITION_CAMERA; //точка где камера расположена
 
-glm::vec3 POZITION_CAMERA = glm::vec3(100, 200, 1000);
 object::ToRadar obj[object::numObj]; //Результаты из потоков объектов
 
 CoastalRadarMessage::Data msg[object::numObj]; //Результаты из потоков радаров
 
 int main(int argc, char** argv)
 {
+    readConfig("../config.ini");
+    int cameraX = vmd["position_camera_X"].as<int>();
+    int cameraY = vmd["position_camera_Y"].as<int>();
+    int cameraZ = vmd["position_camera_Z"].as<int>();
+    view_x = vmd["view_X"].as<int>();
+    view_y = vmd["view_Y"].as<int>();
+    view_z = vmd["view_Z"].as<int>();
+    POZITION_CAMERA = glm::vec3(cameraX, cameraY, cameraZ);
+
+    printf("Position camera: %d, %d, %d \n", cameraX, cameraY, cameraZ);
 
     object::CreateObjects(); //Создаем объекты
 
@@ -22,6 +37,7 @@ int main(int argc, char** argv)
 
     d.set_callback([&]() { RadarDisplay::display_objects(d.transformToPerspective); });
     d.run();
+
     //    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
     CoastalRadar r1, r2; //Создаем 2 радара
@@ -33,20 +49,20 @@ int main(int argc, char** argv)
     r1.set_callback([]() { Radar::receive_data(); });
     r2.set_callback([]() { Radar::receive_data(); });
 
-    r2.run(); //Демонстрация валидности-невалидности отображения
-    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    //    r2.run(); //Демонстрация валидности-невалидности отображения
+    //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    //    d.transformToPerspective = true;
+    //    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    //    d.transformToPerspective = false;
+    //    r2.stop();
+    //    r2.wait_shutdown();
     d.transformToPerspective = true;
-    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-    d.transformToPerspective = false;
-    r2.stop();
-    r2.wait_shutdown();
-
     r2.run(100);
 
     r1.run();
     std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
-    d.transformToPerspective = true;
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     test_rotate_camera();
 
     while (1) { }
@@ -93,7 +109,7 @@ Point3d RadarDisplay::transform(double x, double y, double z)
     // Camera matrix
     glm::mat4 View = glm::lookAt(
         POZITION_CAMERA, // Camera is at (x,y,z), in World Space
-        glm::vec3(500, 500, 500), // and looks at the origin
+        glm::vec3(view_x, view_y, view_z), // and looks at the origin
         glm::vec3(0, 0, -1) // Head is up (set to 0,-1,0 to look upside-down)
     );
 
@@ -347,4 +363,19 @@ void test_rotate_camera()
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 }
 
-//void readConfig(const char* conf_file, boost::program_options::variables_map& vm)
+void readConfig(const char* conf_file)
+{
+    po::options_description disp("display");
+    disp.add_options()("position_camera_X", po::value<int>())("position_camera_Y", po::value<int>())("position_camera_Z", po::value<int>())("view_X", po::value<int>())("view_Y", po::value<int>())("view_Z", po::value<int>());
+
+    po::options_description desc("Allowed options");
+    desc.add(disp);
+
+    try {
+        po::parsed_options parsed = po::parse_config_file<char>(conf_file, desc, true); //флаг true разрешает незарегистрированные опции !
+        po::store(parsed, vmd);
+    } catch (const po::reading_file& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+    po::notify(vmd);
+}

@@ -36,10 +36,7 @@ object::object()
 void object::readConfig(const char* conf_file)
 {
     po::options_description ob("object");
-    ob.add_options()("num_object", po::value<int>(), "num_object")("min_size", po::value<int>(), "")("max_size", po::value<int>(), "")("min_velocity", po::value<double>(), "")("max_velocity", po::value<double>(), "");
-
-    //    po::options_description disp("display");
-    //    disp.add_options()("pozition_camera_X", po::value<int>(), "")("pozition_camera_Y", po::value<int>(), "")("pozition_camera_Z", po::value<int>(), "");
+    ob.add_options()("num_object", po::value<int>())("min_size", po::value<int>())("max_size", po::value<int>())("min_velocity", po::value<double>())("max_velocity", po::value<double>());
 
     po::options_description desc("Allowed options");
     desc.add(ob);
