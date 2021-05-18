@@ -28,7 +28,6 @@ int main(int argc, char** argv)
     view_y = vm["view_Y"].as<int>();
     view_z = vm["view_Z"].as<int>();
     POZITION_CAMERA = glm::vec3(cameraX, cameraY, cameraZ);
-    //    const int numObj = vm["num_objects"].as<int>();
 
     printf("Position camera: %d, %d, %d \n", cameraX, cameraY, cameraZ);
 
@@ -366,7 +365,7 @@ void test_rotate_camera()
 void readConfig(const char* conf_file)
 {
     po::options_description disp("display");
-    disp.add_options()("num_objects", po::value<int>())("position_camera_X", po::value<int>())("position_camera_Y", po::value<int>())("position_camera_Z", po::value<int>())("view_X", po::value<int>())("view_Y", po::value<int>())("view_Z", po::value<int>());
+    disp.add_options()("position_camera_X", po::value<int>())("position_camera_Y", po::value<int>())("position_camera_Z", po::value<int>())("view_X", po::value<int>())("view_Y", po::value<int>())("view_Z", po::value<int>());
 
     po::options_description desc("Allowed options");
     desc.add(disp);

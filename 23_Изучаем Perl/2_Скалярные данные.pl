@@ -1,3 +1,5 @@
+# use strict;
+# use warnings;
 my $str ="Camel";
 print $str = $str . " "; # Присоединить пробел к $str
 print $str .= " ";  # То же с оператором присваивания
