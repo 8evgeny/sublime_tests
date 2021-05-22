@@ -1,3 +1,5 @@
+
+
 char *request = new char[message.length() + 1];
 strcpy(request, message.c_str());
 
@@ -102,7 +104,21 @@ public:
 protected:
     std::stringstream m_stream;
 };
-Работает это очень просто. С одной стороны, в классе MakeString перегружен оператор вывода (<<),
-который принимает в качестве аргумента константную ссылку на объект любого типа, тут же выводит этот
-объект в свой внутренний stringstream и возвращает ссылку на себя. С другой стороны, перегружен оператор
-преобразования к строке, который возвращает строку, сформированную stringstream'ом.
+// Работает это очень просто. С одной стороны, в классе MakeString перегружен оператор вывода (<<),
+// который принимает в качестве аргумента константную ссылку на объект любого типа, тут же выводит этот
+// объект в свой внутренний stringstream и возвращает ссылку на себя. С другой стороны, перегружен оператор
+// преобразования к строке, который возвращает строку, сформированную stringstream'ом.
+
+https://www.boost.org/doc/libs/1_68_0/libs/smart_ptr/doc/html/smart_ptr.html#introduction
+class FILE;
+FILE * fopen(char const * name, char const * mode);
+void fread(FILE * f, void * data, size_t size);
+void fclose(FILE * f);
+// It is possible to express the above interface using shared_ptr, eliminating the need to manually call fclose:
+
+class FILE;
+shared_ptr<FILE> fopen(char const * name, char const * mode);
+void fread(shared_ptr<FILE> f, void * data, size_t size);
+// This technique relies on shared_ptr’s ability to execute a custom deleter, eliminating 
+// the explicit call to fclose, and on the fact that shared_ptr<X> can be copied and destroyed when X is incomplete.
+
