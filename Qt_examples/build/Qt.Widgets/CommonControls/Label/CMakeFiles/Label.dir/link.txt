@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/Label.dir/Label_autogen/mocs_compilation.cpp.o CMakeFiles/Label.dir/src/Label.cpp.o -o Label  /usr/lib/libQt5Widgets.so.5.15.2 /usr/lib/libQt5Gui.so.5.15.2 /usr/lib/libQt5Core.so.5.15.2 

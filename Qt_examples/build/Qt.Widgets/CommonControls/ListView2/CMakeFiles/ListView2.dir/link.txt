@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/ListView2.dir/ListView2_autogen/mocs_compilation.cpp.o CMakeFiles/ListView2.dir/src/ListView2.cpp.o -o ListView2  /usr/lib/libQt5Widgets.so.5.15.2 /usr/lib/libQt5Gui.so.5.15.2 /usr/lib/libQt5Core.so.5.15.2 

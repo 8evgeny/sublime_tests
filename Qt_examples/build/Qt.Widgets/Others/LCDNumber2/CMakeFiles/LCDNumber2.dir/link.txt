@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/LCDNumber2.dir/LCDNumber2_autogen/mocs_compilation.cpp.o CMakeFiles/LCDNumber2.dir/src/LCDNumber2.cpp.o -o LCDNumber2  /usr/lib/libQt5Widgets.so.5.15.2 /usr/lib/libQt5Gui.so.5.15.2 /usr/lib/libQt5Core.so.5.15.2 

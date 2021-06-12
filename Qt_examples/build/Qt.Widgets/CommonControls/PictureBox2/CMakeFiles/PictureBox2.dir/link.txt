@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/PictureBox2.dir/PictureBox2_autogen/mocs_compilation.cpp.o CMakeFiles/PictureBox2.dir/src/PictureBox2.cpp.o CMakeFiles/PictureBox2.dir/PictureBox2_autogen/EWIEGA46WW/qrc_PictureBox2.cpp.o -o PictureBox2  /usr/lib/libQt5Widgets.so.5.15.2 /usr/lib/libQt5Gui.so.5.15.2 /usr/lib/libQt5Core.so.5.15.2 

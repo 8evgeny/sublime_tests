@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/Wiggly.dir/Wiggly_autogen/mocs_compilation.cpp.o CMakeFiles/Wiggly.dir/src/Wiggly.cpp.o -o Wiggly  /usr/lib/libQt5Widgets.so.5.15.2 /usr/lib/libQt5Gui.so.5.15.2 /usr/lib/libQt5Core.so.5.15.2 

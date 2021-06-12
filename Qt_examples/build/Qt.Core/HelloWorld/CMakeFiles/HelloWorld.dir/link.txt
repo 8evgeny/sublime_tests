@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/HelloWorld.dir/src/HelloWorld.cpp.o -o HelloWorld  /usr/lib/libQt5Core.so.5.15.2 
