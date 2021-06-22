@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.05)
 set(CMAKE_CXX_STANDARD 17)
 project(1_Musser_C++_STL)
 
