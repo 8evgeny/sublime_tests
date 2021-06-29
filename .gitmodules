@@ -1,9 +1,6 @@
 [submodule "Python_tests"]
 	path = Python_tests
 	url = ../PycharmProjects.git
-[submodule "Videokurs_6_C++/C++Starter/013_Preprocessor/013_Samples"]
-	path = Videokurs_6_C++/C++Starter/013_Preprocessor/013_Samples
-	url = /home/jhon/Sublime_tests/Videokurs_6_C++/C++Starter/013_Preprocessor/013_Samples
 [submodule "Videokurs_6_C++/C++Starter/011_String/011_Samples/String"]
 	path = Videokurs_6_C++/C++Starter/011_String/011_Samples/String
 	url = /home/jhon/Sublime_tests/Videokurs_6_C++/C++Starter/011_String/011_Samples/String
