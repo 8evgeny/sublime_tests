@@ -15,7 +15,7 @@ int main()
 {
     vector<int> coll;
 
-    INSERT_ELEMENTS(coll,1,9);
+    INSERT_ELEMENTS(coll,1,12);
     PRINT_ELEMENTS(coll);
 
     // process sum of elements
