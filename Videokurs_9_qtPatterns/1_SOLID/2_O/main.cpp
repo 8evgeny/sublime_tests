@@ -23,6 +23,6 @@ int main(int argc, char* argv[])
 
     //    shop.sellDrink(list, &machine);
     shop.sellDrink(list, &c3000);
-
-    return a.exec();
+    a.exit(0);
+//    return a.exec();
 }
