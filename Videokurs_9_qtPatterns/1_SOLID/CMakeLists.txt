@@ -1,2 +1,4 @@
+cmake_minimum_required(VERSION 3.14)
 add_subdirectory(1_S)
 add_subdirectory(2_O)
+add_subdirectory(3_L)

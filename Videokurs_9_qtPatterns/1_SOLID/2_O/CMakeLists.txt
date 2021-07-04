@@ -1,4 +1,3 @@
-cmake_minimum_required(VERSION 3.14)
 project(1_SOLID LANGUAGES CXX)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)
@@ -14,7 +13,7 @@ add_executable(${PROJECT_NAME}_open_closed_principle
     ${src}
     )
 set_target_properties(${PROJECT_NAME}_open_closed_principle  PROPERTIES
-    CXX_STANDARD 14
+    CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
     )
