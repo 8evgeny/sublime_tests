@@ -1,3 +1,4 @@
 build/
 build_end/
-build_mitn/
+build_mint/
+CMakeLists.txt.*
