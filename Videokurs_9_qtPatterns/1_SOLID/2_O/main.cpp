@@ -18,11 +18,12 @@ int main(int argc, char* argv[])
     list << "Sugar"
          << "Flavoring";
 
-    //    CoffeeMachine machine;
+    CoffeeMachine machine;
     caffinator3000 c3000;
 
-    //    shop.sellDrink(list, &machine);
+    shop.sellDrink(list, &machine);
     shop.sellDrink(list, &c3000);
+
     a.exit(0);
 //    return a.exec();
 }
