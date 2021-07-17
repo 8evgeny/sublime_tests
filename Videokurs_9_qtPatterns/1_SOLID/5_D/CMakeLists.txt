@@ -8,16 +8,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 file (GLOB src *)
 
-find_package(Qt5 COMPONENTS Core  Network REQUIRED)
-add_executable(${PROJECT_NAME}_liskov_principle
+find_package(Qt5 COMPONENTS Core  REQUIRED)
+add_executable(${PROJECT_NAME}_Dependency_inversion_principle
     ${src}
     )
-set_target_properties(${PROJECT_NAME}_liskov_principle  PROPERTIES
+set_target_properties(${PROJECT_NAME}_Dependency_inversion_principle  PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
     )
-target_link_libraries(${PROJECT_NAME}_liskov_principle PRIVATE Qt5::Core Qt5::Network)
+target_link_libraries(${PROJECT_NAME}_Dependency_inversion_principle PRIVATE Qt5::Core )
 #Qt${QT_VERSION_MAJOR}::Core)
 
 

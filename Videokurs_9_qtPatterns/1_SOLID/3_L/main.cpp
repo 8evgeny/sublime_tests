@@ -2,6 +2,8 @@
 is a subtype of T, then objects of type T in a program may be replaced with objects of type S without altering
 any of the desirable properties of that program*/
 
+//The Liskov substitution principle:
+//"Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.
 
 #include <QCoreApplication>
 #include <QTcpSocket>
