@@ -9,15 +9,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 file (GLOB src *)
 
 find_package(Qt5 COMPONENTS Core  Network REQUIRED)
-add_executable(${PROJECT_NAME}_liskov_principle
+add_executable(${PROJECT_NAME}_Interface_segregation_principle
     ${src}
     )
-set_target_properties(${PROJECT_NAME}_liskov_principle  PROPERTIES
+set_target_properties(${PROJECT_NAME}_Interface_segregation_principle  PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
     )
-target_link_libraries(${PROJECT_NAME}_liskov_principle PRIVATE Qt5::Core Qt5::Network)
+target_link_libraries(${PROJECT_NAME}_Interface_segregation_principle PRIVATE Qt5::Core Qt5::Network)
 #Qt${QT_VERSION_MAJOR}::Core)
 
 
