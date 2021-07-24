@@ -32,6 +32,7 @@ int main(int argc, char** argv)
     //    curr_Time.scanHairCut(t, 30);
     //    curr_Time.scanHairCut(d2, 60);
     //    curr_Time.scanHairCut(d3, 60);
+    curr_Time.scanHairCut(my, 60);
     //  t1.join();
     //  t2.join();
     curr_Time.qtPanchang(my);

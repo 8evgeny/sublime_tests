@@ -1,5 +1,6 @@
 #include <boost/container/flat_set.hpp>
 #include <cassert>
+#include <algorithm>
 
 void test_flat() {
     boost::container::flat_set<int> set;
