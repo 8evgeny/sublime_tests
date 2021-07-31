@@ -25,7 +25,6 @@ find_package (Boost REQUIRED COMPONENTS
     system
     filesystem
     date_time
-
     )
 
 if (Boost_FOUND)
