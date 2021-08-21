@@ -1,0 +1,4 @@
+/home/evg/Learning/Github/Sublime_tests/SE/SE_v2/build/CMakeFiles/rebuild_cache.dir
+/home/evg/Learning/Github/Sublime_tests/SE/SE_v2/build/CMakeFiles/edit_cache.dir
+/home/evg/Learning/Github/Sublime_tests/SE/SE_v2/build/CMakeFiles/SE_v2.dir
+/home/evg/Learning/Github/Sublime_tests/SE/SE_v2/build/CMakeFiles/SE_v2_autogen.dir
