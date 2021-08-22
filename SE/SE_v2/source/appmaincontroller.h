@@ -5,8 +5,8 @@
 #include <QWidget>
 #include "mainwiget.h"
 #include "calculatepositionplanets.h"
-#include "mainwindow.h"
 #include "mytime.h"
+#include "mainwindow.h"
 
 class AppMainController : public QObject
 {
@@ -20,8 +20,8 @@ private:
     //Здесь указатели на все контроллеры
      std::unique_ptr<MainWiget> _mainWiget = nullptr;
      std::unique_ptr<CalculatePositionPlanets> _calcPos = nullptr;
-     std::unique_ptr<MainWindow> _mainWindow = nullptr;
      std::unique_ptr<MyTime> _myTime = nullptr;
+     std::unique_ptr<MainWindow> _mainWindow = nullptr;
 
 };
 

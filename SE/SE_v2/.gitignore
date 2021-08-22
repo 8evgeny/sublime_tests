@@ -1,2 +1,3 @@
 build_end/
 CMakeLists.txt.user*
+build/

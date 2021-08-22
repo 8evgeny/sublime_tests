@@ -9,13 +9,13 @@ AppMainController::AppMainController(QObject *parent) : QObject(parent)
 
     _mainWiget.reset(new MainWiget);
     _mainWiget->print();
-
     _calcPos.reset(new CalculatePositionPlanets);
-
-    _mainWindow.reset(new MainWindow);
-
     _myTime.reset(new MyTime);
     _myTime->printSystemTimeMsSinceEpoch();
+    _mainWindow.reset(new MainWindow);
+_mainWindow->showFullScreen();
+
+
 
 
 }

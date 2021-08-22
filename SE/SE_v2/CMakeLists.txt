@@ -13,6 +13,7 @@ file(GLOB
     src_cpp/*
     include/*
     source/*
+    forms/*
     )
 find_package (Qt5Core)
 find_package (Qt5Widgets)
@@ -37,7 +38,7 @@ add_executable(${PROJECT_NAME} ${src}
     scanHairCut.cpp
     )
 
-target_include_directories(${PROJECT_NAME} PUBLIC include source)
+target_include_directories(${PROJECT_NAME} PUBLIC include source forms)
 
 target_link_libraries(${PROJECT_NAME}
 -lm
