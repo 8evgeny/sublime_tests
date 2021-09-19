@@ -1,2 +1,3 @@
 add_subdirectory(2_Creating_thread)
-
+add_subdirectory(3_Inheriting_QThread)
+add_subdirectory(4_Thread_lifecycle)
