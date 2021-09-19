@@ -2,7 +2,7 @@
 
 manager::manager(QObject *parent) : QObject(parent)
 {
-    for(int i = 0;i < 5;i++)
+    for (int i = 0; i < 5; i++)
     {
         QThread* thread = new QThread(this);
         thread->setObjectName("Thread " + QString::number(i));
