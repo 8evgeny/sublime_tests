@@ -1,0 +1,7 @@
+set (base_name 03_Exception_patterns)
+
+add_subdirectory(2_No_exception_safety)
+add_subdirectory(3_Basic_exception_safety)
+add_subdirectory(4_Strong_exception_safety)
+add_subdirectory(5_No_throw_guarantee)
+

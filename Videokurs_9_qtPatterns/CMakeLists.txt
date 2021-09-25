@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 project(Videokurs_9_qtPatterns)
 
 add_subdirectory(02_Class_patterns)
-#add_subdirectory(03_Exception_patterns)
+add_subdirectory(03_Exception_patterns)
 #add_subdirectory(04_Memory_patterns)
 #add_subdirectory(05_Signals_and_slots)
 add_subdirectory(06_Thread_patterns)
