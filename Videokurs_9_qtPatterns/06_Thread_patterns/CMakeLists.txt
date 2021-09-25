@@ -1,0 +1,9 @@
+set (base_name 06_Thread_patterns)
+
+add_subdirectory(2_Inheriting_QThread)
+add_subdirectory(3_QThread_moveTo)
+add_subdirectory(4_QThreadPool)
+add_subdirectory(5_Qt_Concurrent)
+add_subdirectory(6_Update_GUI_Widgets_from_thread)
+add_subdirectory(7_Update_GUI_QML_from_thread)
+

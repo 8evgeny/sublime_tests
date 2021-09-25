@@ -1,4 +1,6 @@
-project(1_KIS LANGUAGES CXX)
+project(${base_name} LANGUAGES CXX)
+set(exe_name 2_Inheriting_QThread)
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -8,16 +10,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 file (GLOB src *)
 
-find_package(Qt5 COMPONENTS Core  Network REQUIRED)
-add_executable(${PROJECT_NAME}
-    ${src}
-    )
-set_target_properties(${PROJECT_NAME}  PROPERTIES
+find_package(Qt5Core)
+add_executable(${PROJECT_NAME}_${exe_name}
+    ${src})
+
+set_target_properties(${PROJECT_NAME}_${exe_name}  PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
     )
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core )
+target_link_libraries(${PROJECT_NAME}_${exe_name}
+    Qt5::Core)
 
 
 
