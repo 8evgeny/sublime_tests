@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/ex09-02_Illustrating_queue_adaptor.dir/ex09-02.cpp.o  -o ex09-02_Illustrating_queue_adaptor 

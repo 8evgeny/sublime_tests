@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/ex05-27_generic_heap_operations.dir/ex05-27.cpp.o  -o ex05-27_generic_heap_operations 

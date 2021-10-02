@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/ex05-17_generic_rotate_algorithm.dir/ex05-17.cpp.o  -o ex05-17_generic_rotate_algorithm 

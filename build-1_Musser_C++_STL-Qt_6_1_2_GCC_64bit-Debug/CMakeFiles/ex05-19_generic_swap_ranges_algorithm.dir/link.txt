@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/ex05-19_generic_swap_ranges_algorithm.dir/ex05-19.cpp.o  -o ex05-19_generic_swap_ranges_algorithm 

@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/ex05-22_generic_sort_stable_sort_partial_sort_algorithms.dir/ex05-22.cpp.o  -o ex05-22_generic_sort_stable_sort_partial_sort_algorithms 

@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/ex09-01_Illustrating_stack_adaptor.dir/ex09-01.cpp.o  -o ex09-01_Illustrating_stack_adaptor 

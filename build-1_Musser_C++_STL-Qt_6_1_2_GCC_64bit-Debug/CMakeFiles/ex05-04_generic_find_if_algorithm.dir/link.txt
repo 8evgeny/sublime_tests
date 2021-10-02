@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/ex05-04_generic_find_if_algorithm.dir/ex05-04.cpp.o  -o ex05-04_generic_find_if_algorithm 

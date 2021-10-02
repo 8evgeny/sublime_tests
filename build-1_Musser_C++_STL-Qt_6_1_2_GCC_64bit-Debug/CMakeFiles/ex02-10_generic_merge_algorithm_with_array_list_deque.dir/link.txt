@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/ex02-10_generic_merge_algorithm_with_array_list_deque.dir/ex02-10.cpp.o  -o ex02-10_generic_merge_algorithm_with_array_list_deque 

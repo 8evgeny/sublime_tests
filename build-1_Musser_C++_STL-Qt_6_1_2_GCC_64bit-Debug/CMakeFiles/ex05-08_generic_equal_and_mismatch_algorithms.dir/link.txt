@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/ex05-08_generic_equal_and_mismatch_algorithms.dir/ex05-08.cpp.o  -o ex05-08_generic_equal_and_mismatch_algorithms 

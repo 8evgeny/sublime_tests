@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/ex11-02_Illustrating_use_adaptor_for_pointers_to_functions.dir/ex11-02.cpp.o  -o ex11-02_Illustrating_use_adaptor_for_pointers_to_functions 

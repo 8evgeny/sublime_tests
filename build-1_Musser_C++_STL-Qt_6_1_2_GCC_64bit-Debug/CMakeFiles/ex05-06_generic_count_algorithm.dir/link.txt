@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/ex05-06_generic_count_algorithm.dir/ex05-06.cpp.o  -o ex05-06_generic_count_algorithm 

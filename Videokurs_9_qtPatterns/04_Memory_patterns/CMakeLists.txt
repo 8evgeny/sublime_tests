@@ -1,0 +1,10 @@
+set (base_name 04_Memory_patterns)
+
+add_subdirectory(2_The_stack)
+add_subdirectory(3_The_heap)
+add_subdirectory(4_Leaks_and_bad_pointers)
+add_subdirectory(5_Parent_child)
+add_subdirectory(6_RAII-Resource_acquisition_is_initialization)
+add_subdirectory(7_Scoped_pointers)
+add_subdirectory(8_Shared_pointers)
+add_subdirectory(9_Smart_pointers_in_the_standard_library)

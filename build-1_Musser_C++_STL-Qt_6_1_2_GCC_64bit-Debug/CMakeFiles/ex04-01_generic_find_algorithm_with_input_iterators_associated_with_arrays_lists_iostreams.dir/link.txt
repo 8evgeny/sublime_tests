@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/ex04-01_generic_find_algorithm_with_input_iterators_associated_with_arrays_lists_iostreams.dir/ex04-01.cpp.o  -o ex04-01_generic_find_algorithm_with_input_iterators_associated_with_arrays_lists_iostreams 
