@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <title>Листинг 7.2</title>
+   <!-- Начало блока с кодом JavaScript -->
+   <script type="text/javascript">
+      // Функция для вычисления суммы натуральных чисел:
+      function findSum(n){
+         var s=0
+         for(var k=1;k<=n;k++){
+            s+=k
+         }
+         return s
+      }
+      // Функция для считывания верхней границы суммы:
+      function get(){
+         var n
+         n=parseInt(prompt("Укажите число:"))
+         return n
+      }
+   </script>
+      <!-- Завершение блока с кодом JavaScript -->
+</head>
+<body><h3>Листинг 7.2</h3><hr>
+<!-- Гиперссылка с командой JavaScript -->
+<a href="javascript: var n=get(); alert('1+2+...+'+n+'='+findSum(n))">
+   Вычислить сумму натуральных чисел
+</a>
+<!-- Завершение гиперссылки -->
+</body>
+</html>

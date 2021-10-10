@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <title>Листинг 8.4</title>
+<!-- Начало сценария -->
+<script type="text/javascript">
+   // Названия файлов с изображениями:
+   var fileNames=["fox.jpg","raccoon.jpg","wolf.jpg"]
+   // Названия зверей для раскрывающегося списка:
+   var animals=["Лиса","Енот","Волк"]
+   // Описание для лисы:
+   var fox="Рыжая лисья шубка<br>Очень многим нравится.<br>И хоть лиса - плутовка,<br>Но она еще и красавица!"
+   // Описание для енота:
+   var raccoon="Домашний енот - милашка,<br>А еще он большой чистюля:<br>Легко постирает рубашку<br>Или помоет кастрюлю."
+   // Описание для волка:
+   var wolf="Он сильный и выносливый,<br>Но скучно одному,<br>И волк от одиночества<br>Воет на луну."
+   // Массив с текстовыми описаниями зверей:
+   var text=[fox,raccoon,wolf]
+   // Путь к файлам изображений:
+   var path="../images/"
+   // Переменные для записи ссылок на объекты элементов:
+   var lst,mytext,pict
+   // Обработка события, связанного с загрузкой документа:
+   window.onload=function(){
+      // Ссылка на объект раскрывающегося списка:
+      lst=document.getElementById("mylist")
+      // Ссылка на объект изображения:
+      pict=document.getElementById("mypict")
+      // Ссылка на объект текстового блока:
+      mytext=document.getElementsByTagName("p")[0]
+      // Формирование раскрывающегося списка:
+      for(var k=0;k<animals.length;k++){
+         // Добавление нового пункта в список:
+         lst.options[k]=new Option(animals[k],"Знакомьтесь - это "+animals[k].toLowerCase())
+      }
+      // Обработчик для события, связанного с выбором
+      // пункта в раскрывающемся списке:
+      lst.onchange=function(){
+         // Ссылка на файл с изображением:
+         pict.src=path+fileNames[lst.selectedIndex]
+         // Всплывающая подсказка для изображения:
+         pict.title=lst.value
+         // Текст в текстовом блоке:
+         mytext.innerHTML=text[lst.selectedIndex]
+      }
+      // Индекс выбранного пункта в списке:
+      var i=1
+      // Выбирается пункт в списке:
+      lst.options[i].selected=true
+      // Задается изображение, соответствующее выбранному
+      // пункту в списке:
+      pict.src=path+fileNames[i]
+      // Всплывающая подсказка для изображения:
+      pict.title=lst.value
+      // Текст в текстовом блоке:
+      mytext.innerHTML=text[i]
+   }
+</script>
+<!-- Описание стиля для списка -->
+<style type="text/css">
+   select{
+      font-family: Times New Roman;
+      font-size: 14pt;
+      font-style: italic;
+      font-weight: bold;
+      height: 100%;
+      width: 100%;
+      padding: 1px 20px;
+   }
+</style>
+<!-- Завершение описания стиля -->
+</head>
+<body>
+   <h3>Листинг 8.4</h3><hr>
+   <!-- Внешняя таблица -->
+   <table>
+      <!-- Первая и единственная строка таблицы -->
+      <tr>
+         <!-- Первый столбец внешней таблицы -->
+         <td style="width:280px;vertical-align:top;border-style:none;">
+            <!-- Внутренняя таблица -->
+            <table style="width:100%;">
+               <!-- Первая строка внутренней таблицы -->
+               <tr>
+                  <!-- Первый и единственный столбец -->
+                  <td style="width:100%;border-style:outset;height:35px;padding:5px;">
+                     <!-- Раскрывающийся список -->
+                     <select size="1" id="mylist"></select>
+                  </td>
+               </tr>
+               <!-- Вторая строка внутренней таблицы -->
+               <tr>
+               <!-- Первый и единственный столбец -->
+                  <td style="border-style:outset;height:110px;background-color:#f0f0f0;padding:10px;">
+                     <!-- Текстовый блок -->
+                     <p style="font-size:12pt;font-family:Arial;font-weight:bold;"></p>
+                  </td>
+               </tr>
+            </table>
+         </td>
+         <!-- Второй столбец внешней таблицы -->
+         <td style="width:200px;border-style:none;">
+            <img id="mypict" style="width:185px;height:185px;border-style:outset;">
+         </td>
+      </tr>
+   </table>
+</body>
+</html>

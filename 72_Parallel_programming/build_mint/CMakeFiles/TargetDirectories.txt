@@ -1,0 +1,6 @@
+/home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/rebuild_cache.dir
+/home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/edit_cache.dir
+/home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/2_3_идиома_RAII_завершения_потока.dir
+/home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/2_1.dir
+/home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/2_2_ожидание_завершения_потока.dir
+/home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/1_1_helloworld.dir

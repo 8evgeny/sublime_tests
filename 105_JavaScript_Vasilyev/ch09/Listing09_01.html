@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <title>Листинг 9.1</title>
+<!-- Начало сценария -->
+<script type="text/javascript">
+   // Переменные для записи ссылок на графическую область,
+   // объект графического контекста и объект
+   // раскрывающегося списка:
+   var cnv,ctx,sel
+   // Функция для вычисления последовательности
+   // точек для кривой Коха:
+   function getPoints(a,b){
+      // Вспомогательные переменные:
+      var p,k,i,j,phi
+      // Массив с двумя начальными точками:
+      var pts=new Array(2)
+      // Массивы - элементы:
+      for(i=0;i<pts.length;i++){
+         // Двумерный массив:
+         pts[i]=new Array(2)
+      }
+      // Значения координат для начальных точек:
+      for(i=0;i<2;i++){
+         pts[0][i]=a[i]
+         pts[1][i]=b[i]
+      }
+      // Считывание индекса выбранного элемента
+      // в раскрывающемся списке:
+      var n=document.getElementById("mysel").selectedIndex
+      // Последовательное вычисление точек для формирования
+      // триадной кривой:
+      for(k=1;k<=n;k++){
+         // Создание нового массива для записи в него
+         // координат точек кривой:
+         p=new Array(4*pts.length-3)
+         // Вычисление точек:
+         for(i=0;i<pts.length-1;i++){
+            // Создание двумерных массивов:
+            for(j=0;j<4;j++){
+               p[4*i+j]=new Array(2)
+            }
+            // Вычисление координат точек:
+            for(j=0;j<2;j++){
+               p[4*i][j]=pts[i][j]
+               p[4*i+1][j]=Math.round(2*pts[i][j]/3+pts[i+1][j]/3)
+               p[4*i+3][j]=Math.round(pts[i][j]/3+2*pts[i+1][j]/3)
+            }
+            // Угол между прямой и осью координат:
+            phi=Math.atan2(p[4*i+1][1]-p[4*i+3][1],p[4*i+3][0]-p[4*i+1][0])
+            // Длина отрезка:
+            L=Math.sqrt(Math.pow(p[4*i+3][0]-p[4*i+1][0],2)+Math.pow(p[4*i+3][1]-p[4*i+1][1],2))
+            // Координаты еще одной точки:
+            p[4*i+2][0]=Math.round(p[4*i+1][0]+L*Math.cos(phi+Math.PI/3))
+            p[4*i+2][1]=Math.round(p[4*i+1][1]-L*Math.sin(phi+Math.PI/3))
+         }
+         // Последний элемент в массиве точек:
+         p[4*pts.length-4]=new Array(2)
+         // Координаты точки:
+         for(j=0;j<2;j++){
+            p[4*pts.length-4][j]=pts[pts.length-1][j]
+         }
+         // Новая ссылка на массив точек:
+         pts=p
+      }
+      // Результат функции:
+       return pts
+   }
+   // Функция для отображения кривой в графической области:
+   function drawPoints(p,ct){
+      // Начало нового контура:
+      ct.beginPath()
+      // Синий цвет линий:
+      ct.strokeStyle="blue"
+      // Толщина линий:
+      ct.lineWidth=1
+      // Начальная точка:
+      ct.moveTo(p[0][0],p[0][1])
+      // Соединение точек линиями:
+      for(var k=1;k<p.length;k++){
+         ct.lineTo(p[k][0],p[k][1])
+      }
+      // Отображение контура:
+      ct.stroke()
+   }
+   // Обработчик события, связанного с загрузкой документа:
+   window.onload=function(){
+      // Ссылка на графическую область:
+      cnv=document.getElementById("mycanvas")
+      // Ссылка на объект графического контекста:
+      ctx=cnv.getContext("2d")
+      // Ссылка на объект раскрывающегося списка:
+      sel=document.getElementById("mysel")
+      // Переменные:
+      var k,Nmax=9
+      // Формирование пунктов для раскрывающегося списка:
+      for(k=0;k<=Nmax;k++){
+         // Добавление нового пункта в список:
+         sel.options[k]=new Option(k,k)
+         // Индекс выбранного пункта в списке:
+         sel.selectedIndex=0
+      }
+      // Отображение кривой:
+      drawPoints(getPoints([10,cnv.height-10],[cnv.width-10,cnv.height-10]),ctx)
+      // Обработчик для события, связанного с изменением
+      // состояния раскрывающегося списка:
+      sel.onchange=function(){
+         // Очистка графической области:
+         ctx.clearRect(0,0,cnv.width,cnv.height)
+         // Отображение кривой:
+         drawPoints(getPoints([10,cnv.height-10],[cnv.width-10,cnv.height-10]),ctx)
+      }
+   }
+</script>
+<!-- Завершение сценария -->
+</head>
+<body>
+   <h3>Листинг 9.1</h3><hr>
+   <!-- Текст -->
+   <span style="font-size:16pt;">Триадная кривая Коха. Укажите количество итераций для построения кривой:</span>
+   <!-- Раскрывающийся список -->
+   <select id="mysel" size="1" style="width:50px;text-align:right;font-size:11pt;font-weight:bold;"></select><br><br>
+   <!-- Графическая область -->
+   <canvas id="mycanvas" width="920" height="280" style="border-style:ridge;"></canvas>
+</body>
+</html>

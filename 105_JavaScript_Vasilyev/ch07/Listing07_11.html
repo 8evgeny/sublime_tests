@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html><head><title>Листинг 7.11</title>
+<!-- Начало сценария -->
+<script type="text/javascript">
+   // Случайное целое число от 1 до 10:
+   var myrand=Math.floor(10*Math.random())+1
+   // Переменная для записи в нее результата вызова
+   // метода setInterval():
+   var si
+   // Переменные для записи ссылок на текстовый фрагмент,
+   // поле ввода, кнопку и текстовый блок:
+   var mytime,myfield,mybtn,output
+   // Функция для отображения оставшегося времени:
+   function setNewTime(){
+      // Новое значение для оставшегося времени:
+      var num=parseInt(mytime.innerHTML)-1
+      // Отображение нового значения в документе:
+      mytime.innerHTML=num
+      // Если значение нулевое:
+      if(num==0){
+         // Кнопка становится неактивной:
+         mybtn.disabled=true
+         // Процесс отсчета времени прекращается:
+         clearInterval(si)
+      }
+   }
+   // Функция для обработки щелчка на кнопке:
+   function pressMe(){
+      // Числовое значение в поле ввода:
+      var num=parseInt(myfield.value)
+      // Отображение текста в документе:
+      output.innerHTML+="Вы ввели число "+num
+      // Если пользователь не угадал число:
+      if(num!=myrand){
+         // Сообщение о том, что число не угадано:
+         output.innerHTML+=" - это <b>неправильно</b><br>"
+      }
+      // Если пользователь угадал число:
+      else{
+         // Сообщение о том, что число угадано:
+         output.innerHTML+=" - это <b>правильно</b><br>"
+         // Кнопка становится неактивной:
+         mybtn.disabled=true
+         // Прекращение процесса отсчета время:
+         clearInterval(si)
+      }
+   }
+   // Обработчик для события загрузки документа:
+   window.onload=function(){
+      // Получение ссылки на текстовый фрагмент:
+      mytime=document.getElementById("mytime")
+      // Получение ссылки на поле ввода:
+      myfield=document.getElementById("myfield")
+      // Получение ссылки на кнопку:
+      mybtn=document.getElementById("mybtn")
+      // Получение ссылки на текстовый блок:
+      output=document.getElementById("output")
+      // Кнопка активна:
+      mybtn.disabled=false
+      // Запуск процесса отсчета времени:
+      si=setInterval(setNewTime,1000)
+   }
+</script>
+<!-- Завершение сценария -->
+</head>
+<body>
+   <h3>Листинг 7.11</h3>
+   <b>Угадайте число (от 1 до 10).</b><br>
+   <!-- Отображение оставшегося времени -->
+   У Вас осталось <b id="mytime">20</b> секунд.<br>
+   Чтобы начать заново - перезагрузите документ.
+   <hr>
+   <!-- Текстовое поле (для ввода числа) -->
+   <input id="myfield" type="text" size="10px">
+   <!-- Кнопка -->
+   <input id="mybtn" type="button" value="Угадать" onclick="pressMe()">
+   <hr>
+   <!-- Текстовый блок для отображения введенных чисел -->
+   <p id="output"></p>
+   </body>
+</html>

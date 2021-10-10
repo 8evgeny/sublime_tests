@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <title>Листинг 8.1</title>
+<!-- Начало сценария -->
+<script type="text/javascript">
+   // Переменные с текстом подсказки:
+   var msgA="В поле вводится текст. Кнопка <b>Применить</b> позволяет вставить текст в документ. Кнопка <b>Разблокировать</b> делает доступными поле ввода и кнопку <b>Применить</b>."
+   var msgB="Введите текст в поле ввода и щелкните кнопку <b>Применить</b>."
+   var msgC="Для отмены блокировки поля и кнопки <b>Применить</b> щелкните кнопку <b>Разблокировать</b>."
+   // Переменные для записи ссылки на поле ввода,
+   // кнопки и блоки с текстом:
+   var tf,ab,ub,mt,mp
+   // Обработка события, связанного с загрузкой документа:
+   window.onload=function(){
+      // Ссылка на текстовое поле:
+      tf=document.getElementById("textField")
+      // Ссылка на кнопку "Применить":
+      ab=document.getElementById("applyButton")
+      // Ссылка на кнопку "Разблокировать":
+      ub=document.getElementById("unlockButton")
+      // Ссылка на блок с текстом:
+      mt=document.getElementById("mytext")
+      // Ссылка на блок с подсказкой:
+      mp=document.getElementById("myprompt")
+      // Вызов функции для определения вида поля ввода:
+      setColor(false)
+      // Пустая строка в поле ввода:
+      tf.value=""
+      // Поле активно (не заблокировано):
+      tf.disabled=false
+      // Кнопка "Применить" активна (не заблокирована):
+      ab.disabled=false
+      // Кнопка "Разблокировать" неактивна:
+      ub.disabled=true
+      // Текст подсказки:
+      mp.innerHTML=msgA
+      // Обработчик события, связанного с наведением
+      // курсора мыши на поле ввода:
+      tf.onmouseover=function(){
+         // Если поле не заблокировано:
+         if(!this.disabled){
+            setColor(true)
+         }
+      }
+      // Обработчик события, связанного с перемещением
+      // курсора мыши за пределы поля ввода:
+      tf.onmouseout=function(){
+         // Если поле не заблокировано:
+         if(!this.disabled){
+            setColor(false)
+         }
+      }
+      // Обработка щелчка на кнопке "Применить":
+      ab.onclick=function(){
+         // Текст из поля копируется в документ:
+         mt.innerHTML=tf.value
+         // Блокируется поле ввода:
+         tf.disabled=true
+         // Отменяется блокировка кнопки "Разблокировать":
+         ub.disabled=false
+         // Блокирование кнопки "Применить":
+         ab.disabled=true
+      }
+      // Обработка события, связанного с наведением курсора
+      // мыши на кнопку "Применить":
+      ab.onmouseover=function(){
+         // Если кнопка не заблокирована:
+         if(!this.disabled){
+            applyPrompt(msgB)
+         }
+      }
+      // Обработка события, связанного с перемещением
+      // курсора мыши за пределы кнопки "Применить":
+      ab.onmouseout=function(){
+         // Если кнопка не заблокирована:
+         if(!this.disabled){
+            applyPrompt(msgA)
+         }
+      }
+      // Обработка щелчка на кнопке "Разблокировать":
+      ub.onclick=function(){
+         // Очистка поля ввода:
+         tf.value=""
+         // Очистка текста из блока документа:
+         mt.innerHTML=""
+         // Отмена блокировки поля ввода:
+         tf.disabled=false
+         // Отмена блокировки кнопки "Применить":
+         ab.disabled=false
+         // Блокирование кнопки "Разблокировать":
+         ub.disabled=true
+      }
+      // Обработка события, связанного с наведением курсора
+      // мыши на кнопку "Разблокировать":
+      ub.onmouseover=function(){
+         // Если кнопка не заблокирована:
+         if(!this.disabled){
+            applyPrompt(msgC)
+         }
+      }
+      // Обработка события, связанного с перемещением
+      // курсора мыши за пределы кнопки "Разблокировать":
+      ub.onmouseout=function(){
+         // Если кнопка не заблокирована:
+         if(!this.disabled){
+            applyPrompt(msgA)
+         }
+      }
+   }
+   // Функция для изменения цвета фона и рамки поля:
+   function setColor(arg){
+      if(arg){
+         // Желтое поле и красная рамка:
+         tf.style.backgroundColor="yellow"
+         tf.style.borderColor="red"
+      }
+      else{
+         // Белое поле и серая рамка:
+         tf.style.backgroundColor="white"
+         tf.style.borderColor="gray"
+      }
+   }
+   // Функция для применения текста подсказки:
+   function applyPrompt(msg){
+      mp.innerHTML=msg
+   }
+</script>
+<!-- Завершение сценария -->
+</head>
+<body>
+   <h3>Листинг 8.1</h3><hr>
+   <b>Поле ввода содержит такой текст:</b><br>
+   <!-- Блок с курсивным текстом для отображения содержимого поля ввода. Вначале блок пустой (как и поле ввода) -->
+   <i id="mytext" style="font-size:25pt;color:red;"></i><br>
+   <!-- Поле ввода -->
+   <input type="text" id="textField" size="62"><br>
+   <!-- Кнопка "Применить" -->
+   <input type="button" id="applyButton" value="Применить" style="width:200px;height:30px;">
+   <!-- Кнопка "Разблокировать" -->
+   <button id="unlockButton" style="width:200px;height:30px;">Разблокировать</button>
+   <!-- Текст с подсказкой -->
+   <p id="myprompt"></p>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Листинг 8.9</title>
+<!-- Начало сценария -->
+<script type="text/javascript">
+   // Обработчик события, связанного с загрузкой документа:
+   window.onload=function(){
+      // Обработчик для третьего блока:
+      document.getElementById("divRed").onclick=function(){
+         showColor("Красный")
+      }
+      // Обработчик для второго блока:
+      document.getElementById("divYellow").onclick=function(){
+         showColor("Желтый")
+      }
+      // Обработчик для первого бока:
+      document.getElementById("divGreen").onclick=function(){
+         showColor("Зеленый")
+      }
+   }
+   // Функция для отображения в текстом
+   // блоке названия цвета:
+   function showColor(clr){
+      // Текст для добавления в текстовый блок:
+      var txt="<b>"+clr+"</b><br>"
+      // К текущему содержимому текстового блока
+      // дописывается новый текст:
+      document.getElementById("result").innerHTML+=txt
+   }
+</script>
+<!-- Завершение сценария -->
+</head>
+<body>
+   <h3>Листинг 8.9</h3><hr>
+   <!-- Первый блок -->
+   <div id="divGreen" style="width:200px;height:200px;background-color:green;">
+      <!-- Второй блок -->
+      <div id="divYellow" style="width:140px;height:140px;background-color:yellow;">
+         <!-- Третий блок -->
+         <div id="divRed" style="width:80px;height:80px;background-color:red;">
+         </div>
+      </div>
+   </div>
+   <!-- Текстовый блок -->
+   <p id="result" style="width:170px;height:70px;border-style:ridge;padding:10px;"></p>
+</body>
+</html>

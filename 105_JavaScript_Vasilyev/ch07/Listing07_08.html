@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html><head><title>Листинг 7.8</title>
+<!-- Начало сценария -->
+<script type="text/javascript">
+   // Функция для вычисления параметров окна:
+   function showParameters(){
+      // Текст для отображения в окне:
+      var txt="Внутренние ширина и высота: "+window.innerWidth
+      txt+=" и "+window.innerHeight+"<br>"
+      txt+="Внешние ширина и высота: "+window.outerWidth
+      txt+=" и "+window.outerHeight+"<br>"
+      // Отображение текста в окне:
+      mytext.innerHTML=txt
+   }
+</script>
+<!-- Завершение сценария -->
+</head>
+<body onload="showParameters()" onresize="showParameters()">
+   <h3>Листинг 7.8</h3><hr>
+   <b>Размеры окна</b><br>
+   <!-- Текст -->
+   <p id="mytext">
+   </p>
+   <!-- Кнопка -->
+   <button onclick="alert('Координаты: '+window.screenX+' и '+window.screenY)">
+      Показать координаты окна
+   </button>
+</body>
+</html>

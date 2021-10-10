@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <title>Листинг 8.2</title>
+<!-- Начало сценария -->
+<script type="text/javascript">
+   // Обработчик события, связанного с загрузкой документа:
+   window.onload=function(){
+      // Переменные для записи ссылок на поля и объекты
+      // стилей полей:
+      var inFld,outFld,inStl,outStl
+      // Верхнее поле. Определение основных параметров.
+      // Ссылка на объект верхнего поля:
+      outFld=document.getElementById("outField")
+      // Ссылка на объект стиля верхнего поля:
+      outStl=outFld.style
+      // Высота верхнего поля:
+      outStl.height="50px"
+      // Ширина верхнего поля:
+      outStl.width="400px"
+      // Белый фон для верхнего поля:
+      outStl.backgroundColor="white"
+      // Цвет рамки для верхнего поля:
+      outStl.borderColor="magenta"
+      // Радиус закругления для нижнего правого угла
+      // верхнего поля:
+      outStl.borderBottomRightRadius="30px"
+      // Радиус закругления для верхнего левого угла
+      // верхнего поля:
+      outStl.borderTopLeftRadius="30px"
+      // Толщина рамки для верхнего поля:
+      outStl.borderWidth="5px"
+      // Внешние отступы для верхнего поля:
+      outStl.margin="5px"
+      // Внутренние отступы для верхнего поля:
+      outStl.padding="2px 10px 2px 10px"
+      // Расстояние между символами для верхнего поля:
+      outStl.letterSpacing="7px"
+      // Тип шрифта для верхнего поля:
+      outStl.fontFamily="Times New Roman"
+      // Стиль шрифта для верхнего поля:
+      outStl.fontStyle="italic"
+      // Толщина шрифта для верхнего поля:
+      outStl.fontWeight="900"
+      // Шрифт красного цвета для верхнего поля:
+      outStl.color="red"
+      // Размер шрифта для верхнего поля:
+      outStl.fontSize="18pt"
+      // Режим "только чтение" для верхнего поля:
+      outFld.readOnly=true
+      // Содержимое верхнего поля:
+      outFld.value=""
+      // Нижнее поле. Определение основных параметров.
+      // Ссылка на объект нижнего поля:
+      inFld=document.getElementById("inField")
+      // Ссылка на объект стиля нижнего поля:
+      inStl=inFld.style
+      // Высота нижнего поля:
+      inStl.height="30px"
+      // Ширина нижнего поля:
+      inStl.width="400px"
+      // Толщина рамки для нижнего поля:
+      inStl.borderWidth="5px"
+      // Стиль рамки (пунктирная) для нижнего поля:
+      inStl.borderStyle="dotted"
+      // Цвет рамки слева для нижнего поля:
+      inStl.borderLeftColor="#ff0000"
+      // Цвет рамки сверху для нижнего поля:
+      inStl.borderTopColor="#00ff00"
+      // Цвет рамки справа для нижнего поля:
+      inStl.borderRightColor="#0000ff"
+      // Цвет рамки снизу для нижнего поля:
+      inStl.borderBottomColor="#000000"
+      // Внутренние отступы для нижнего поля:
+      inStl.padding="2px 10px 2px 10px"
+      // Внешние отступы для нижнего поля:
+      inStl.margin="5px"
+      // Размер шрифта для нижнего поля:
+      inStl.fontSize="15pt"
+      // Синий цвет шрифта для нижнего поля:
+      inStl.color="blue"
+      // Содержимое нижнего поля:
+      inFld.value=""
+      // Передача фокуса нижнему полю:
+      inFld.focus()
+      // Обработчик события, связанного с отпусканием
+      // клавиши, для нижнего поля:
+      inFld.onkeyup=function(){
+         outFld.value=this.value
+      }
+   }
+</script>
+<!-- Завершение сценария -->
+</head>
+<body>
+   <h3>Листинг 8.2</h3><hr>
+   <p>Введенный в нижнее поле текст дублируется в верхнем поле.</p>
+   <!-- Верхнее поле -->
+   <input type="text" id="outField"><br>
+   <!-- Нижнее поле -->
+   <input type="text" id="inField">
+   <p>Введите текст в нижнее текстовое поле.</p>
+</body>
+</html>

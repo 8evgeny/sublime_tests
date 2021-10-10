@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html><head><title>Листинг 7.9</title></head>
+<body>
+   <h3>Листинг 7.9</h3><hr>
+   <!-- Текстовый блок с явным указанием стиля -->
+   <p id="mydata" style="font-family:arial;font-size:25pt;color:black;">
+      <b>Клавиша не нажата: черный текст на белом фоне</b>
+   </p>
+   <!-- Завершение текстового блока -->
+   <hr>
+   <b>Обратите внимание на цвет фона и текст, представленный выше.</b> 
+   <!-- Начало сценария -->
+   <script type="text/javascript">
+      // Обработчик для события, состоящего в нажатии
+      // клавиши при активном окне:
+      window.onkeydown=function(){
+         // Установка желтого цвета для фона:
+         document.body.style.backgroundColor="yellow"
+         // Ссылка на объект текстового блока:
+         var mydata=document.getElementById("mydata")
+         // Установка синего цвета для текста:
+         mydata.style.color="blue"
+         // Установка текста для отображения в документе:
+         mydata.innerHTML="<b>Нажата клавиша: синий текст на желтом фоне</b>"
+      }
+      // Обработчик для события, состоящего в отпускании
+      // нажатой клавиши при активном окне:
+      window.onkeyup=function(){
+         // Установка белого цвета для фона:
+         document.body.style.backgroundColor="white"
+         // Ссылка на объект текстового блока:
+         var mydata=document.getElementById("mydata")
+         // Установка черного цвета для текста:
+         mydata.style.color="black"
+         // Установка текста для отображения в документе:
+         mydata.innerHTML="<b>Клавиша не нажата: черный текст на белом фоне</b>"
+      }
+   </script>
+   <!-- Завершение сценария -->
+</body>
+</html>

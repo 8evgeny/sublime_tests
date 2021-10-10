@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html><head><title>Листинг 7.5</title>
+<!-- Начало сценария -->
+<script type="text/javascript">
+   // Функция для открытия документа
+   // в новом окне (вкладке):
+   function openWindow(){
+      // Проверяем, открыто ли окно с документом:
+      if(window.mywindow&&!mywindow.closed){
+         // Отображается диалоговое окно с сообщением:
+         window.alert("Документ уже открыт")
+      }
+      else{
+         // Открывается новое окно с документом:
+         window.mywindow=window.open("myhello.html")
+      }
+   }
+   // Функция для закрытия окна с документом:
+   function closeWindow(){
+      // Проверяем, открыто ли окно с документом:
+      if(window.mywindow&&!mywindow.closed){
+         // Закрывается окно с документом:
+         mywindow.close()
+         // "Обнуляется" ссылка на окно:
+         window.mywindow=null
+      }
+      else{
+         // Отображается диалоговое окно с сообщением:
+         window.alert("Окно уже закрыто")
+      }
+   }
+</script>
+<!-- Завершение сценария -->
+</head>
+<body><h3>Листинг 7.5</h3><hr>
+   <b>Открытие и закрытие окна</b><br>
+   <a href="javascript:openWindow()">Открыть файл myhello.html</a><br>
+   <a href="javascript:closeWindow()">Закрыть окно с файлом myhello.html</a>
+</body>
+</html>

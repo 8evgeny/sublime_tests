@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Листинг 8.7</title>
+<!-- Начало сценария -->
+<script type="text/javascript">
+   // Обработка события, связанного с движением
+   // курсора мыши:
+   document.onmousemove=function(evt){
+      // Ссылка на объект блока вывода:
+      var d=document.getElementsByTagName("div")[0]
+      // Переменная для формирования
+      // содержимого блока вывода:
+      var txt="<b>Координаты курсора мыши</b><br>"
+      // Горизонтальная координата курсора мыши:
+      txt+="Горизонтальная координата: <b>"+evt.clientX+"</b><br>"
+      // Вертикальная координата курсора мыши:
+      txt+="Вертикальная координата: &nbsp&nbsp&nbsp<b>"+evt.clientY+"</b>"
+      // Содержимое блока вывода:
+      d.innerHTML=txt
+   }
+</script>
+<!-- Завершение сценария -->
+</head>
+<body>
+   <h3>Листинг 8.7</h3><hr>
+   <!-- Блок вывода -->
+   <div style="width:280px;height:80px;border-style:outset;font-size:15pt;padding:10px;background-color:#f5f5f5;"><b>Координаты курсора мыши</b></div>
+</body>
+</html>
