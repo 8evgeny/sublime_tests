@@ -1,3 +1,4 @@
+//идиома_RAII_завершения_потока
 #include <thread>
 
 class thread_guard

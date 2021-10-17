@@ -1,6 +1,13 @@
 /home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/rebuild_cache.dir
 /home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/edit_cache.dir
+/home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/3_1_Защита_списка_с_помощью_мьютекса.dir
+/home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/2_8_A_naïve_parallel_version_of_std::accumulate.dir
+/home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/2_7_Spawn_some_threads_and_wait_for_them_to_finish.dir
+/home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/2_6_Класс_scoped_thread_и_пример_его_применения.dir
+/home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/2_7_1_Класс_joining_thread.dir
+/home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/2_5_Возвращение_std::thread_из_функции.dir
 /home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/2_3_идиома_RAII_завершения_потока.dir
+/home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/2_4_Отсоединение_потока_для_обработки_другого_документа.dir
 /home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/2_1.dir
 /home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/2_2_ожидание_завершения_потока.dir
 /home/evg/Learning/Github/Sublime_tests/72_Parallel_programming/build_mint/CMakeFiles/1_1_helloworld.dir

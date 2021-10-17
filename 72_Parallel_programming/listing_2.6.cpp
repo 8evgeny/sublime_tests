@@ -1,5 +1,7 @@
+//Класс_scoped_thread_и_пример_его_применения
 #include <thread>
 #include <utility>
+#include <iostream>
 
 class scoped_thread
 {
@@ -22,6 +24,7 @@ public:
 void do_something(int& i)
 {
     ++i;
+    std::cout<<i<<std::endl;
 }
 
 struct func
@@ -44,7 +47,7 @@ void do_something_in_current_thread()
 
 void f()
 {
-    int some_local_state;
+    int some_local_state =0;
     scoped_thread t(std::thread(func(some_local_state)));
         
     do_something_in_current_thread();

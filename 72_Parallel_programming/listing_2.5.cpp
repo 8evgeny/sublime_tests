@@ -1,10 +1,16 @@
+//Возвращение_std::thread_из_функции
 #include <thread>
+#include <iostream>
 
 void some_function()
-{}
+{
+    std::cout <<"some_function()"<<std::endl;
+}
 
-void some_other_function(int)
-{}
+void some_other_function(int i)
+{
+    std::cout <<i<<std::endl;
+}
 
 std::thread f()
 {
@@ -14,7 +20,7 @@ std::thread f()
 std::thread g()
 {
     void some_other_function(int);
-    std::thread t(some_other_function,42);
+    std::thread t(some_other_function, 42);
     return t;
 }
 

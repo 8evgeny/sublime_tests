@@ -2,12 +2,44 @@ set(CMAKE_CXX_STANDARD 17)
 project(72_Parallel_programming_C++)
 
 add_executable(1_1_helloworld listing_1.1.cpp)
-add_executable(2_1 listing_2.1.cpp)
-add_executable(2_2_ожидание_завершения_потока listing_2.2.cpp)
-add_executable(2_3_идиома_RAII_завершения_потока listing_2.3.cpp)
-
-
 target_link_libraries(1_1_helloworld pthread)
+
+add_executable(2_1 listing_2.1.cpp)
 target_link_libraries(2_1 pthread)
+
+add_executable(2_2_ожидание_завершения_потока listing_2.2.cpp)
 target_link_libraries(2_2_ожидание_завершения_потока pthread)
+
+add_executable(2_3_идиома_RAII_завершения_потока listing_2.3.cpp)
 target_link_libraries(2_3_идиома_RAII_завершения_потока pthread)
+
+add_executable(2_4_Отсоединение_потока_для_обработки_другого_документа listing_2.4.cpp)
+target_link_libraries(2_4_Отсоединение_потока_для_обработки_другого_документа pthread)
+
+add_executable(2_5_Возвращение_std::thread_из_функции listing_2.5.cpp)
+target_link_libraries(2_5_Возвращение_std::thread_из_функции pthread)
+
+add_executable(2_6_Класс_scoped_thread_и_пример_его_применения listing_2.6.cpp)
+target_link_libraries(2_6_Класс_scoped_thread_и_пример_его_применения pthread)
+
+add_executable(2_7_Spawn_some_threads_and_wait_for_them_to_finish listing_2.7.cpp)
+target_link_libraries(2_7_Spawn_some_threads_and_wait_for_them_to_finish pthread)
+
+add_executable(2_7_1_Класс_joining_thread listing_2.7_1.cpp)
+target_link_libraries(2_7_1_Класс_joining_thread pthread)
+
+add_executable(2_8_A_naïve_parallel_version_of_std::accumulate listing_2.8.cpp)
+target_link_libraries(2_8_A_naïve_parallel_version_of_std::accumulate pthread)
+
+add_executable(3_1_Защита_списка_с_помощью_мьютекса listing_3.1.cpp)
+target_link_libraries(3_1_Защита_списка_с_помощью_мьютекса pthread)
+
+
+
+
+
+
+
+
+
+

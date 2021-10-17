@@ -1,3 +1,4 @@
+//A_naïve_parallel_version_of_std::accumulate
 #include <thread>
 #include <numeric>
 #include <algorithm>

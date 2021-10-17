@@ -1,3 +1,4 @@
+//Spawn some threads and wait for them to finish
 #include <vector>
 #include <thread>
 #include <algorithm>
@@ -9,7 +10,7 @@ void do_work(unsigned id)
 void f()
 {
     std::vector<std::thread> threads;
-    for(unsigned i=0;i<20;++i)
+    for(unsigned i=0; i<20; ++i)
     {
         threads.push_back(std::thread(do_work,i));
     }
