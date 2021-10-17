@@ -1,4 +1,6 @@
+//Случайная передача за пределы защиты ссылки на защищаемые данные
 #include <mutex>
+#include <iostream>
 
 class some_data
 {
@@ -6,7 +8,9 @@ class some_data
     std::string b;
 public:
     void do_something()
-    {}
+    {
+        std::cout <<"unprotected data\n";
+    }
 };
 
 class data_wrapper

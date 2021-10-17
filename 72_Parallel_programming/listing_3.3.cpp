@@ -1,3 +1,4 @@
+//Интерфейс адаптера контейнера std::stack
 #include <deque>
 template<typename T,typename Container=std::deque<T> >
 class stack

@@ -34,8 +34,11 @@ target_link_libraries(2_8_A_naïve_parallel_version_of_std::accumulate pthread)
 add_executable(3_1_Защита_списка_с_помощью_мьютекса listing_3.1.cpp)
 target_link_libraries(3_1_Защита_списка_с_помощью_мьютекса pthread)
 
+add_executable(3_2_Случайная_передача_за_пределы_защиты_ссылки_на_защищаемые_данные listing_3.2.cpp)
+target_link_libraries(3_2_Случайная_передача_за_пределы_защиты_ссылки_на_защищаемые_данные pthread)
 
-
+add_executable(3_5_Дополненное_определение_класса_потокобезопасного_стека listing_3.5.cpp)
+target_link_libraries(3_5_Дополненное_определение_класса_потокобезопасного_стека pthread)
 
 
 

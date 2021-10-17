@@ -1,3 +1,4 @@
+//Дополненное определение класса потокобезопасного стека
 #include <exception>
 #include <stack>
 #include <mutex>
