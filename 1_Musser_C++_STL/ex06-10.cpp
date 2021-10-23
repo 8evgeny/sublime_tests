@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cassert>
 #include <list>
-#include <string>
+#include <cstring>
 #include <algorithm>  // for reverse
 using namespace std;
 template <typename Container>

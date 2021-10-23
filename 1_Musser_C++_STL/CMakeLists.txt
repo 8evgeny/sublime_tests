@@ -57,6 +57,17 @@ add_executable(ex05-34_generic_inner_product_algorithm ex05-34.cpp)
 
 add_executable(ex06-01_simplest_vector_constructors ex06-01.cpp)
 add_executable(ex06-02_vector_constructors_with_user-defined_type ex06-02.cpp)
+add_executable(ex06-03_vector_constructors_with_user-defined_type_and_showing_copying_explicitly ex06-03.cpp)
+add_executable(ex06-04_vector_copying_constructors ex06-04.cpp)
+add_executable(ex06-05_vector_push_back_and_insert_functions ex06-05.cpp)
+add_executable(ex06-06_vector_capacity_and_reserve_functions ex06-06.cpp)
+add_executable(ex06-07_vector_back_and_pop_back_operations ex06-07.cpp)
+add_executable(ex06-07a_vector_front_and_erase_operations ex06-07a.cpp)
+add_executable(ex06-08_vector_erase_function ex06-08.cpp)
+
+
+
+
 
 
 add_executable(ex09-01_Illustrating_stack_adaptor ex09-01.cpp)

@@ -1,5 +1,4 @@
-// Demonstrating the STL deque push_back and
-// push_front functions
+// Demonstrating the STL deque push_back and push_front functions
 #include <iostream>
 #include <cassert>
 #include <string>

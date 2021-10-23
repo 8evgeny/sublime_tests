@@ -1,5 +1,4 @@
-// Demonstrating STL vector constructors with a user-defined
-// type and showing copying explicitly
+// Demonstrating STL vector constructors with a user-defined type and showing copying explicitly
 #include <iostream>
 #include <cassert>
 #include <vector>

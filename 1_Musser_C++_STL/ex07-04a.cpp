@@ -1,23 +1,16 @@
-
-#line 1145 "ch07.w"
 // Demonstrating multiset search member functions.
-
-#line 1149 "ch07.w"
 #include <iostream>
 #include <cassert>
 #include <list>
-#include <string>
+#include <cstring>
 #include <set>
 using namespace std; 
 
-#line 1080 "ch07.w"
 template <typename Container>
 Container make(const char s[])
 {
   return Container(&s[0], &s[strlen(s)]);
 }
-#line 1155 "ch07.w"
-
 
 #include <functional>
 template <typename Container>

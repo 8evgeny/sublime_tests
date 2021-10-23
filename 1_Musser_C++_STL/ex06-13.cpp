@@ -1,7 +1,7 @@
 // Demonstrating the STL list sort and unique functions
 #include <iostream>
 #include <cassert>
-#include <string>
+#include <cstring>
 #include <list>
 using namespace std;
 template <typename Container>

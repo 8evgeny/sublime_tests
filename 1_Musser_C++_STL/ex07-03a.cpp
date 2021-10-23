@@ -1,23 +1,17 @@
-
-#line 1088 "ch07.w"
 // Demonstrating multiset erase functions.
 
-#line 1092 "ch07.w"
 #include <iostream>
 #include <cassert>
 #include <list>
-#include <string>
+#include <cstring>
 #include <set>
 using namespace std; 
 
-#line 1080 "ch07.w"
 template <typename Container>
 Container make(const char s[])
 {
   return Container(&s[0], &s[strlen(s)]);
 }
-#line 1098 "ch07.w"
-
 
 #include <functional>
 template <typename Container>
