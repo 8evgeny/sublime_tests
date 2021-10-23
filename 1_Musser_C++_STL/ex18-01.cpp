@@ -1,5 +1,4 @@
-// Read the TCS Genealogical Database file and display its tree structure
-// using indentation, with names ordered by Ph.D. date.
+// Read the TCS Genealogical Database file and display its tree structure using indentation, with names ordered by Ph.D. date.
 #include <algorithm>
 #include <iostream>
 #include <fstream>

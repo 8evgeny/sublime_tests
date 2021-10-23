@@ -1,5 +1,4 @@
-// Find all anagram groups in a dictionary, and print them to
-// standard output stream
+// Find all anagram groups in a dictionary, and print them to standard output stream
 #include <algorithm>
 #include <iostream>
 #include <fstream>

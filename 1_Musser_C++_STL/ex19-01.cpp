@@ -1,4 +1,4 @@
-// First attempt at timing the sort algorithm
+// 1
 #include <cmath>
 #include <cstdlib>
 #include <ctime>

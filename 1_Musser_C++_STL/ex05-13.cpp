@@ -1,5 +1,4 @@
-// Illustrating the generic partition and stable_partition
-// algorithms
+// Illustrating the generic partition and stable_partition algorithms
 #include <algorithm>
 #include <vector>
 #include <string>

@@ -62,5 +62,25 @@ add_executable(ex06-02_vector_constructors_with_user-defined_type ex06-02.cpp)
 add_executable(ex09-01_Illustrating_stack_adaptor ex09-01.cpp)
 add_executable(ex09-02_Illustrating_queue_adaptor ex09-02.cpp)
 add_executable(ex09-03_Illustrating_priority_queue_adaptor ex09-03.cpp)
+
 add_executable(ex10-01_Illustrating_normal_reverse_iteration ex10-01.cpp)
 add_executable(ex10-02_Using_find_with_normal_reverse_iteration ex10-02.cpp)
+
+add_executable(ex11-01_Sort_a_vector_into_ascending_order_of_id_members ex11-01.cpp)
+add_executable(ex11-02_Use_adaptor_for_pointers_to_functions ex11-02.cpp)
+
+add_executable(ex12-01_Program_to_find_all_anagrams_of_a_given_word_using_a_dictionary ex12-01.cpp)
+
+
+add_executable(ex16-01_Demonstrating_a_counting_iterator_class ex16-01.cpp)
+
+add_executable(ex17-01_Combining_STL_components_with_inheritance_and_virtual_functions
+    ex17-01.cpp
+    shape.cpp
+    screen.cpp)
+
+add_executable(ex18-01_Read_TCS_Genealogical_Database_file_and_display_its_tree_structure_using_indentation_with_names ex18-01.cpp)
+
+add_executable(ex19-01_First_attempt_at_timing_the_sort_algorithm ex19-01.cpp)
+add_executable(ex19-01a_First_attempt_at_timing_the_sort_algorithm_measuring_the_baseline_time ex19-01a.cpp)
+add_executable(ex19-02_Timing_sort_on_random_vectors ex19-02.cpp)
