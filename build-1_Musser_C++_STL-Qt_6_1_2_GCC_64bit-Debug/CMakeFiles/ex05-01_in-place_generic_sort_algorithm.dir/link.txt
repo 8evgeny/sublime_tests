@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/ex05-01_in-place_generic_sort_algorithm.dir/ex05-01.cpp.o  -o ex05-01_in-place_generic_sort_algorithm 

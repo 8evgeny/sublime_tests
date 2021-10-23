@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/ex02-14_generic_accumulate_function_multiplies.dir/ex02-14.cpp.o  -o ex02-14_generic_accumulate_function_multiplies 

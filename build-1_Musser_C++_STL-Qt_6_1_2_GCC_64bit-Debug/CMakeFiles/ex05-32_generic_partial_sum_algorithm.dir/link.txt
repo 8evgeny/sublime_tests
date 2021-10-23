@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/ex05-32_generic_partial_sum_algorithm.dir/ex05-32.cpp.o  -o ex05-32_generic_partial_sum_algorithm 

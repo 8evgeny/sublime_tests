@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/ex02-12_generic_accumulate_function.dir/ex02-12.cpp.o  -o ex02-12_generic_accumulate_function 

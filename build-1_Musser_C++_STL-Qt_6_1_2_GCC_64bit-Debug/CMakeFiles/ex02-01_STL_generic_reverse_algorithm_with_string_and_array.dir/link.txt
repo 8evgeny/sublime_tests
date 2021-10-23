@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/ex02-01_STL_generic_reverse_algorithm_with_string_and_array.dir/ex02-01.cpp.o  -o ex02-01_STL_generic_reverse_algorithm_with_string_and_array 

@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/ex02-15_generic_accumulate_algorithm_reverse_iterator.dir/ex02-15.cpp.o  -o ex02-15_generic_accumulate_algorithm_reverse_iterator 

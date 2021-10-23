@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/ex05-10_generic_copy_copy_backward_algorithms.dir/ex05-10.cpp.o  -o ex05-10_generic_copy_copy_backward_algorithms 

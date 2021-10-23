@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/ex05-07_generic_for_each_algorithm.dir/ex05-07.cpp.o  -o ex05-07_generic_for_each_algorithm 

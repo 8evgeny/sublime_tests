@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/ex05-34_generic_inner_product_algorithm.dir/ex05-34.cpp.o  -o ex05-34_generic_inner_product_algorithm 

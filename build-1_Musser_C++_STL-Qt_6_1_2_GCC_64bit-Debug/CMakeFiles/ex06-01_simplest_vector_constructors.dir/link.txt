@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/ex06-01_simplest_vector_constructors.dir/ex06-01.cpp.o  -o ex06-01_simplest_vector_constructors 
