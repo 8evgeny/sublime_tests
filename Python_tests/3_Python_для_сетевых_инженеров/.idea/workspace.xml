@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="f871d752-8664-42e6-899d-cc6519c7408c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../0_PYTHON_SCRIPTS/violation_order.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_Python-разработчик/.idea/2_Python-разработчик.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../2_Python-разработчик/.idea/2_Python-разработчик.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_Python-разработчик/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../2_Python-разработчик/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_Python-разработчик/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../2_Python-разработчик/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../5_Python_Advanced_ITVDN/.idea/5_Python_Advanced_ITVDN.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../5_Python_Advanced_ITVDN/.idea/5_Python_Advanced_ITVDN.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../5_Python_Advanced_ITVDN/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../5_Python_Advanced_ITVDN/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../78_Functional_programming/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../78_Functional_programming/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../78_Functional_programming/chapter-01/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../78_Functional_programming/chapter-01/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../78_Functional_programming/chapter-01/count-lines-transform/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../78_Functional_programming/chapter-01/count-lines-transform/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cppreference.com/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../cppreference.com/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -26,9 +35,14 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../4_Sandbox" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../cppreference.com/CMakeLists.txt" />
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="f871d752-8664-42e6-899d-cc6519c7408c" name="Default Changelist" comment="" />
@@ -36,8 +50,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1614198018913</updated>
+      <workItem from="1635619711988" duration="37000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -49,5 +67,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="690" y="220" width="530" height="592" key="FileChooserDialogImpl" timestamp="1635619744547">
+      <screen x="0" y="40" width="1920" height="1000" />
+    </state>
+    <state x="690" y="220" width="530" height="592" key="FileChooserDialogImpl/0.40.1920.1000/1920.0.1920.1080@0.40.1920.1000" timestamp="1635619744547" />
   </component>
 </project>
