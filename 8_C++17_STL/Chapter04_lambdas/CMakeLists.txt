@@ -1,6 +1,6 @@
 set(CMAKE_CXX_STANDARD 17)
 
-project(lambdas)
+project(4_lambdas)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 

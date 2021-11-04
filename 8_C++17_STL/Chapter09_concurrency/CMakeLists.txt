@@ -1,6 +1,6 @@
 set(CMAKE_CXX_STANDARD 17)
 
-project(concurrency)
+project(9_concurrency)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
