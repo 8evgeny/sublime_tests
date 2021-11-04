@@ -1,0 +1,21 @@
+set(CMAKE_CXX_STANDARD 17)
+
+project(2_containers)
+
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+file (GLOB src *)
+
+add_executable(${PROJECT_NAME}_1_erase_remove_idiom 1_erase_remove_idiom.cpp)
+add_executable(${PROJECT_NAME}_2_quick_delete_from_unordered_vector 2_quick_delete_from_unordered_vector.cpp)
+add_executable(${PROJECT_NAME}_3_vector_access_fast_or_safe 3_vector_access_fast_or_safe.cpp)
+add_executable(${PROJECT_NAME}_4_keep_vector_sorted 4_keep_vector_sorted.cpp)
+add_executable(${PROJECT_NAME}_5_efficient_insert_or_reassign_to_map 5_efficient_insert_or_reassign_to_map.cpp)
+add_executable(${PROJECT_NAME}_6_map_insertion_hint 6_map_insertion_hint.cpp)
+add_executable(${PROJECT_NAME}_7_mapnode_key_modification 7_mapnode_key_modification.cpp)
+add_executable(${PROJECT_NAME}_8_custom_type_unordered_map 8_custom_type_unordered_map.cpp)
+add_executable(${PROJECT_NAME}_9_filter_unique_user_input 9_filter_unique_user_input.cpp)
+add_executable(${PROJECT_NAME}_10_rpn_calculator 10_rpn_calculator.cpp)
+add_executable(${PROJECT_NAME}_11_word_frequency_counter 11_word_frequency_counter.cpp)
+add_executable(${PROJECT_NAME}_12_sentence_length 12_sentence_length.cpp)
+add_executable(${PROJECT_NAME}_13_personal_organiser_priority_queue 13_personal_organiser_priority_queue.cpp)
