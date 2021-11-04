@@ -1,6 +1,6 @@
 project(8_C++17)
 
-#add_subdirectory(Chapter01)
+add_subdirectory(Chapter01_new_features)
 #add_subdirectory(Chapter02)
 #add_subdirectory(Chapter03)
 add_subdirectory(Chapter04_lambdas)
