@@ -2,7 +2,7 @@
 #include <iostream>
 
 int main() {
-  boost::filesystem::directory_iterator begin("/home/eparubets/.cinnamon");
+  boost::filesystem::directory_iterator begin("/home/evg");
   boost::filesystem::directory_iterator end;
 
   for (; begin != end; ++begin) {

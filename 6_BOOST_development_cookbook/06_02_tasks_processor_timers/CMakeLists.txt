@@ -1,41 +1,17 @@
-set(CMAKE_CXX_STANDARD 17)
-
 project(06_02_tasks_processor_timers)
 
-file(GLOB src
-    *
-    ../06_01_tasks_processor_base/tasks_processor_base.hpp
-    )
+include(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/conanbuildinfo.cmake)
+conan_basic_setup()
 
-#ADD_EXECUTABLE(${PROJECT_NAME} main.cpp tasks_processor_timers.hpp)
-ADD_EXECUTABLE(${PROJECT_NAME} ${src})
-set (Boost_NO_SYSTEM_PATHS ON)
-set (Boost_USE_MULTITHREADED ON)
-set (Boost_USE_STATIC_LIBS ON)
-set (Boost_USE_STATIC_RUNTIME OFF)
-set (BOOST_ALL_DYN_LINK OFF)
+add_executable(${PROJECT_NAME} main.cpp tasks_processor_base.hpp tasks_processor_timers.hpp)
 
-
-find_package (Boost REQUIRED COMPONENTS
-    chrono
-    regex
-    timer
-    context
-    thread
-    system
-    filesystem
-    date_time
-    )
-
-if (Boost_FOUND)
-    message("cmake message-" ${PROJECT_NAME} " boost include DIR: " ${Boost_INCLUDE_DIR})
-    include_directories (SYSTEM ${Boost_INCLUDE_DIR})
-endif ()
-
-target_link_libraries(
+set_target_properties(
     ${PROJECT_NAME}
-    ${Boost_LIBRARIES}
+    PROPERTIES
+    CXX_STANDARD 20
+    CXX_STANDARD_REQUIRED ON
+    COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
     )
-
-
-
+target_link_libraries(${PROJECT_NAME}
+    ${CONAN_LIBS}
+    )

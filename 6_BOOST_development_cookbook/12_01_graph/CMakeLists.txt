@@ -1,16 +1,17 @@
-set(CMAKE_CXX_STANDARD 17)
-   
+project(12_01_graph)
 
-ADD_EXECUTABLE(12_01_graph main.cpp)
+include(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/conanbuildinfo.cmake)
+conan_basic_setup()
 
- target_link_libraries(12_01_graph
-    PUBLIC libpqxx
-    PUBLIC boost_thread
-    PUBLIC boost_system
-    Qt5::Core
-    Qt5::Widgets
-        # CONFIG
-        )
+add_executable(${PROJECT_NAME} main.cpp)
 
-
-
+set_target_properties(
+    ${PROJECT_NAME}
+    PROPERTIES
+    CXX_STANDARD 20
+    CXX_STANDARD_REQUIRED ON
+    COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
+    )
+target_link_libraries(${PROJECT_NAME}
+    ${CONAN_LIBS}
+    )

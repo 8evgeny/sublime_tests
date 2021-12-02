@@ -1,27 +1,17 @@
-set(CMAKE_CXX_STANDARD 17)
-
 project(11_05_interprocess_pointers)
-ADD_EXECUTABLE(${PROJECT_NAME} main.cpp )
 
-set (Boost_NO_SYSTEM_PATHS ON)
-set (Boost_USE_MULTITHREADED ON)
-set (Boost_USE_STATIC_LIBS ON)
-set (Boost_USE_STATIC_RUNTIME OFF)
-set (BOOST_ALL_DYN_LINK OFF)
+include(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/conanbuildinfo.cmake)
+conan_basic_setup()
 
-find_package (Boost REQUIRED COMPONENTS  regex thread system filesystem)
+add_executable(${PROJECT_NAME} main.cpp)
 
-if (Boost_FOUND)
-    message("cmake message-" ${PROJECT_NAME} " boost include DIR: " ${Boost_INCLUDE_DIR})
-    include_directories (SYSTEM ${Boost_INCLUDE_DIR})
-endif ()
-
-target_link_libraries(
+set_target_properties(
     ${PROJECT_NAME}
-    ${Boost_LIBRARIES}
-#    my_library
-rt
+    PROPERTIES
+    CXX_STANDARD 20
+    CXX_STANDARD_REQUIRED ON
+    COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
     )
-
-
-
+target_link_libraries(${PROJECT_NAME}
+    ${CONAN_LIBS}
+    )
