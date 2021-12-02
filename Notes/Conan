@@ -1,3 +1,7 @@
+conan search poco --remote=conancenter
+conan search boost --remote=conancenter
+conan inspect poco/1.9.4
+
 conan install .
 conan install . --profile profile
 
