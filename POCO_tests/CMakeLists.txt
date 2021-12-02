@@ -6,5 +6,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE debug)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a")
 
-add_subdirectory(conan_poko_timer)
-#add_subdirectory(conan_poko_net)
+add_subdirectory(poko_timer)
+add_subdirectory(poko_server)
+add_subdirectory(poko_md5)

@@ -1,15 +1,13 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(conan_poko_timer)
+project(poko_server)
 #add_definitions("-std=c++11")
 
-#include(${CMAKE_SOURCE_DIR}/conanbuildinfo.cmake)
-message ("CMAKE_SOURCE_DIR ${CMAKE_SOURCE_DIR}/${PROJECT_NAME}")
-
+#include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 include(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-add_executable(${PROJECT_NAME} timer.cpp)
+add_executable(${PROJECT_NAME} main.cpp)
 
 set_target_properties(
     ${PROJECT_NAME}

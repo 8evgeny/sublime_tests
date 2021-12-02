@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(conan_poko_net)
+project(poko_md5)
 #add_definitions("-std=c++11")
 
 #include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-include(conanbuildinfo.cmake)
+include(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} md5.cpp)
 
 set_target_properties(
     ${PROJECT_NAME}
