@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.05)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 11)
 project(1_Musser_C++_STL)
 
 add_executable(ex02-01_STL_generic_reverse_algorithm_with_string_and_array ex02-01.cpp)

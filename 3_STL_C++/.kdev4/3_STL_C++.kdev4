@@ -1,0 +1,37 @@
+[Buildset]
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\x12\x003\x00_\x00S\x00T\x00L\x00_\x00C\x00+\x00+)
+
+[CMake]
+Build Directory Count=1
+Current Build Directory Index-Host System=0
+
+[CMake][CMake Build Directory 0]
+Build Directory Path=/home/evg/ExternSSD/Github/Sublime_tests/3_STL_C++/build_KDE
+Build Type=Debug
+CMake Binary=/usr/bin/cmake
+CMake Executable=/usr/bin/cmake
+Environment Profile=
+Extra Arguments=
+Install Directory=/usr/local
+Runtime=Host System
+
+[Launch]
+Launch Configurations=Launch Configuration 0
+
+[Launch][Launch Configuration 0]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=algo_rotate1
+Type=Native Application
+
+[Launch][Launch Configuration 0][Data]
+Arguments=
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x04\x00\x00\x00\x12\x003\x00_\x00S\x00T\x00L\x00_\x00C\x00+\x00+\x00\x00\x00\x08\x00a\x00l\x00g\x00o\x00\x00\x00\x0e\x00r\x00o\x00t\x00a\x00t\x00e\x001\x00\x00\x00\x18\x00a\x00l\x00g\x00o\x00_\x00r\x00o\x00t\x00a\x00t\x00e\x001)
+Dependency Action=Build
+EnvironmentGroup=
+Executable=file:///home/evg/ExternSSD/Github/Sublime_tests/3_STL_C++
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Project Target=3_STL_C++,algo,rotate1,algo_rotate1
+Use External Terminal=false
+Working Directory=
+isExecutable=false

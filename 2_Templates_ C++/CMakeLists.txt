@@ -1,5 +1,10 @@
-set(CMAKE_CXX_STANDARD 17)
 project("2_Templates_C++")
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_BUILD_TYPE debug)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a")
+
 
 add_subdirectory(basics)
 add_subdirectory(bridge)
