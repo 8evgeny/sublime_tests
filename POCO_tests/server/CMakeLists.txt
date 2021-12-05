@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(poko_server)
+project(server)
 #add_definitions("-std=c++11")
 
 #include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
