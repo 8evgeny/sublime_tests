@@ -1,3 +1,11 @@
+/*#include "Poco/Any.h"
+An instance of Poco::Any can hold a value of any built-in or userdefined type.
+Poco::Any supports value semantics.
+The value can be extracted in a type-safe manner.
+The type of the value must be known in order to extract it.
+The Poco::AnyCast() and Poco::RefAnyCast() function templates
+are used to extract values.
+*/
 #include "Poco/Any.h"
 #include "Poco/Exception.h"
 #include <iostream>

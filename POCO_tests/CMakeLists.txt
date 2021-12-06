@@ -10,7 +10,7 @@ add_subdirectory(timer)
 add_subdirectory(server)
 add_subdirectory(md5)
 add_subdirectory(Any_Type)
-
+add_subdirectory(DynamicAny_Type)
 
 #add_subdirectory(Foundation)
 #add_subdirectory(XML)
