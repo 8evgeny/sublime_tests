@@ -1,4 +1,5 @@
 #include <QDateTime>
+#include <map>
 
 #include "client.h"
 int sending = -1;
