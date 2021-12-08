@@ -1,12 +1,12 @@
 set(CMAKE_CXX_STANDARD 17)
 
-PROJECT (qt_example_network_threadedfortuneserver)
+PROJECT (network_2_threadedfortuneserver)
 
 include_directories(headers  sources )
 FILE(GLOB SRC_FILES sources/* headers/* )
 add_executable(${PROJECT_NAME}  ${SRC_FILES})
 find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Sql REQUIRED)
+find_package(Qt5Network REQUIRED)
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
   ${Qt5Widgets_LIBRARIES}

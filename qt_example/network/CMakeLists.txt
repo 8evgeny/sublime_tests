@@ -1,3 +1,7 @@
+add_subdirectory(1_http)  # комплект Desktop Qt %{Qt:Version} GCC 64bit
+add_subdirectory(2_fortuneclient)
+add_subdirectory(2_fortuneserver)
+add_subdirectory(2_threadedfortuneserver)
 #add_subdirectory(multicastsender)
 #add_subdirectory(multicastreceiver)
 #add_subdirectory(bearermonitor)
@@ -7,15 +11,11 @@
 #add_subdirectory(dnslookup)
 #add_subdirectory(download)
 #add_subdirectory(downloadmanager)
-add_subdirectory(2_fortuneclient)
-add_subdirectory(2_fortuneserver)
 #add_subdirectory(googlesuggest)
-add_subdirectory(1_http)                         # комплект Desktop Qt %{Qt:Version} GCC 64bit
 #add_subdirectory(loopback)
 #add_subdirectory(multistreamclient)
 #add_subdirectory(multistreamserver)
 #add_subdirectory(network-chat)
-#add_subdirectory(threadedfortuneserver)
 #add_subdirectory(torrent)
 #add_subdirectory(secureudpclient)
 #add_subdirectory(secureudpserver)
