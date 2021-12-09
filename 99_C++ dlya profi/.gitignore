@@ -286,3 +286,4 @@ build-mac/*
 build-nix/*
 cmake-build-debug/
 build/
+.git/
