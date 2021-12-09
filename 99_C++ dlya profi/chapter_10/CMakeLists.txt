@@ -25,8 +25,8 @@ boosttest_add_test(boost_min boost/minimal.cpp)
 # Tests using Google Test Library #
 ###################################
 
-#googletest_add_test(gtest_all gtest/main.cpp)
-#googletest_add_test(gtest_min gtest/minimal.cpp)
+googletest_add_test(gtest_all gtest/main.cpp)
+googletest_add_test(gtest_min gtest/minimal.cpp)
 
 #############################
 # Tests using Catch Library #
