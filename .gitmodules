@@ -1,3 +1,12 @@
 [submodule "Python_tests"]
 	path = Python_tests
 	url = ../PycharmProjects.git
+[submodule "99_C++ dlya profi/third_party/asutton/origin"]
+	path = 99_C++ dlya profi/third_party/asutton/origin
+	url = ../../asutton/origin
+[submodule "99_C++ dlya profi/third_party/catchorg/Catch2"]
+	path = 99_C++ dlya profi/third_party/catchorg/Catch2
+	url = ../../catchorg/Catch2
+[submodule "99_C++ dlya profi/third_party/google/googletest"]
+	path = 99_C++ dlya profi/third_party/google/googletest
+	url = ../../google/googletest
