@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 
 set (name threads)
-project(${name} LANGUAGES CXX)
+set (chapter 80)
+project(${chapter}_${name} LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)
@@ -21,5 +22,5 @@ add_executable(${PROJECT_NAME}_4 ${name}4.cpp)
 target_link_libraries(${PROJECT_NAME}_4 pthread )
 add_executable(${PROJECT_NAME}_5 ${name}5.cpp)
 target_link_libraries(${PROJECT_NAME}_5 pthread )
-
-
+add_executable(${PROJECT_NAME}_async ${name}_async.cpp)
+target_link_libraries(${PROJECT_NAME}_async pthread )
