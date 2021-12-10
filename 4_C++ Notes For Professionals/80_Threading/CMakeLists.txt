@@ -19,8 +19,7 @@ add_executable(${PROJECT_NAME}_3 ${name}3.cpp)
 target_link_libraries(${PROJECT_NAME}_3 pthread )
 add_executable(${PROJECT_NAME}_4 ${name}4.cpp)
 target_link_libraries(${PROJECT_NAME}_4 pthread )
-
-#add_executable(${PROJECT_NAME}_5 ${name}5.cpp)     //не собирается
-#target_link_libraries(${PROJECT_NAME}_5 pthread )
+add_executable(${PROJECT_NAME}_5 ${name}5.cpp)
+target_link_libraries(${PROJECT_NAME}_5 pthread )
 
 

@@ -5,9 +5,9 @@ using namespace std;
 
 class ComplexObject {
  public:
-  ComplexObject();
-  void getResult() { cout << aa << endl; }
-  void doCalculations() { cout << "doCalculations" << endl; }
+  ComplexObject(){};
+  void getResult() const { cout << aa << endl; }
+  void doCalculations() const { cout << "doCalculations" << endl; }
   int aa = 3;
 };
 
@@ -22,9 +22,9 @@ int main() {
   std::cout << a << '\n';  // Outputs 10
 
   ComplexObject object;
-  std::thread thread{bar, std::cref(object)};  //'object' is passed as const&
-  thread.join();
-  std::cout << object.getResult() << '\n';  // Outputs the result
+  std::thread thread2{bar, std::cref(object)};  //'object' is passed as const&
+  thread2.join();
+  object.getResult() ;  // Outputs the result
 
   return 0;
 }
