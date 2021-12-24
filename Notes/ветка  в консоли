@@ -1,111 +1,18 @@
-Чтобы изменить цвета вашего каталога, откройте свой ~/.bashrc файл с помощью вашего редактора
+Чтобы в Linux добавить отображение, откройте фаил .bashrc, который лежит в корне домашней папки
+
+ 
+
 nano ~/.bashrc
-и сделайте следующую запись в конце файла:
+ 
 
-LS_COLORS=$LS_COLORS:'di=0;35:' ; export LS_COLORS
+и в самый конец добавьте строки:
 
-Некоторые приятные варианты цвета (в этом случае 0;35 фиолетовый):
+ 
 
-Blue = 34
-Green = 32
-Light Green = 1;32
-Cyan = 36
-Red = 31
-Purple = 35
-Brown = 33
-Yellow = 1;33
-Bold White = 1;37
-Light Grey = 0;37
-Black = 30
-Dark Grey= 1;30
+PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] @ \[\033[0;36m\]\h \w\[\033[0;32m\]$(__git_ps1)\n\[\033[0;32m\]└─\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] ▶\[\033[0m\] '
+ 
 
-Первое число - это стиль (1 = жирный шрифт), затем точка с запятой, а затем фактическое количество цветов, возможных стилей (эффектов):
+сохраните и перезапустите консоль, теперь у вас отображается ветка + консоль стилизована
 
-0   = default colour
-1   = bold
-4   = underlined
-5   = flashing text (disabled on some terminals)
-7   = reverse field (exchange foreground and background color)
-8   = concealed (invisible)
-
-Возможные фоны:
-
-40  = black background
-41  = red background
-42  = green background
-43  = orange background
-44  = blue background
-45  = purple background
-46  = cyan background
-47  = grey background
-100 = dark grey background
-101 = light red background
-102 = light green background
-103 = yellow background
-104 = light blue background
-105 = light purple background
-106 = turquoise background
-107 = white background
-
-Все возможные цвета:
-
-31  = red
-32  = green
-33  = orange
-34  = blue
-35  = purple
-36  = cyan
-37  = grey
-90  = dark grey
-91  = light red
-92  = light green
-93  = yellow
-94  = light blue
-95  = light purple
-96  = turquoise
-97  = white
-
-Их можно даже комбинировать, так что параметр, например:
-
-di=1;4;31;42
-в вашей переменной LS_COLORS сделают, чтобы каталоги отображались жирным подчеркнутым красным текстом с зеленым фоном!
-
-Чтобы проверить все эти цвета и стили в вашем терминале, вы можете использовать один из следующих вариантов:
-
-for i in 00{2..8} {0{3,4,9},10}{0..7}
-do echo -e "$i \e[0;${i}mSubdermatoglyphic text\e[00m  \e[1;${i}mSubdermatoglyphic text\e[00m"
-done
-
-for i in 00{2..8} {0{3,4,9},10}{0..7}
-do for j in 0 1
-   do echo -e "$j;$i \e[$j;${i}mSubdermatoglyphic text\e[00m"
-   done
-done
-
-
-Вы также можете изменять другие типы файлов при использовании команды ls, определяя каждый вид:
-
-bd = (BLOCK, BLK)   Block device (buffered) special file
-cd = (CHAR, CHR)    Character device (unbuffered) special file
-di = (DIR)  Directory
-do = (DOOR) [Door][1]
-ex = (EXEC) Executable file (ie. has 'x' set in permissions)
-fi = (FILE) Normal file
-ln = (SYMLINK, LINK, LNK)   Symbolic link. If you set this to ‘target’ instead of a numerical value, the color is as for the file pointed to.
-mi = (MISSING)  Non-existent file pointed to by a symbolic link (visible when you type ls -l)
-no = (NORMAL, NORM) Normal (non-filename) text. Global default, although everything should be something
-or = (ORPHAN)   Symbolic link pointing to an orphaned non-existent file
-ow = (OTHER_WRITABLE)   Directory that is other-writable (o+w) and not sticky
-pi = (FIFO, PIPE)   Named pipe (fifo file)
-sg = (SETGID)   File that is setgid (g+s)
-so = (SOCK) Socket file
-st = (STICKY)   Directory with the sticky bit set (+t) and not other-writable
-su = (SETUID)   File that is setuid (u+s)
-tw = (STICKY_OTHER_WRITABLE)    Directory that is sticky and other-writable (+t,o+w)
-*.extension =   Every file using this extension e.g. *.rpm = files with the ending .rpm
-
-http://www.bigsoft.co.uk/blog/2008/04/11/configuring-ls_colors
-
-Вы можете использовать, например, LS_COLORS="$LS_COLORS:di=1;33" в конце вашего.bashrc, чтобы получить приятный читаемый полужирный оранжевый текст на черном фоне.
-
-После изменения файла .bashrc, чтобы внести изменения в силу, вам придется перезапустить оболочку или запустить source ~/.bashrc.
+Полезный алиас!
+alias gitlog='git log --graph --pretty=oneline --abbrev-commit --all --decorate'
