@@ -1,0 +1,37 @@
+записать все нужные команды в ~/.bashrc
+
+
+PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] @ \[\033[0;36m\]\h \w\[\033[0;32m\]$(__git_ps1)\n\[\033[0;32m\]└─\
+[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] ▶\[\033[0m\] '
+
+alias gitlog='git log --graph --pretty=oneline --abbrev-commit --all --decorate'
+alias c='clear'
+alias l.='ls -d .* --color=auto'
+
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+alias h='history'
+alias j='jobs -l'
+
+
+alias path='echo -e ${PATH//:/\\n}'
+alias now='date +"%T"'
+alias nowtime=now
+alias nowdate='date +"%d-%m-%Y"'
+
+alias apt="sudo apt"
+alias updatey="sudo apt --yes"
+
+alias update='sudo apt update && sudo apt upgrade'
+
+alias root='sudo -i'
+alias su='sudo -i'

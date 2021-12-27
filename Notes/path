@@ -1,0 +1,5 @@
+echo $PATH
+
+export PATH=$PATH:/opt/local/bin
+
+/etc/environment
