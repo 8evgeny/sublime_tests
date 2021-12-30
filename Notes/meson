@@ -1,0 +1,75 @@
+Meson build system and C++
+
+Meson depends on:
+Python3
+Ninja build system
+
+git clone https://github.com/mesonbuild/meson
+git fetch --all --tags
+git checkout 0.46.1 
+
+Create a directory for your project, a file and generate the project meson.build file, which will be at the top level. The meson build files, which, by default, generate ninja build files, are called meson.build and, as in CMake, they can be recursively invoked when needed.
+
+mkdir startingmeson
+cd startingmeson
+echo "int main() {}" >> main.cpp
+/path/to/meson.py init
+
+This will generate for you a meson.build file like this:
+
+project(‘startingmeson’, ‘cpp’,
+ version : ‘0.1’,
+ default_options : [‘warning_level=3’, ‘cpp_std=c++14’])
+executable(‘startingmeson’,
+ ‘main.cpp’,
+ install : true)
+ 
+Now you can inspect your meson.build file. Every project has a single project declaration. In the projects you can declare the list of languages used (in our case ‘cpp’), the default options, required meson version, project version, license and others.
+
+By default this project generated an executable but you can do the usual things such as adding libraries, custom targets, run targets, run commands, generators (for generating source files to be consumed by some target), etc.
+
+Let’s generate and compile the project. From the root of your project:
+
+mkdir build
+/path/to/meson.py build
+ninja -C build
+
+This should give you a runnable executable in build/ that you can run in build/startingmeson.
+
+You can check the configuration of a project by issuing 
+
+meson configure builddir
+
+To change the configuration you can do 
+
+meson configure -Dvar=value builddir
+
+Dependencies in meson are searched and added with dependency
+Some dependencies have the additional keyword argument modules
+The modules are received in the form of a list if there is one or more or, optionally, as a plain string if there is only one:
+
+boost_dep = dependency(‘boost’, modules : [‘filesystem’])
+project(‘startingmeson’, ‘cpp’,
+ version : ‘0.1’,
+ default_options : [‘warning_level=3’, ‘cpp_std=c++14’])
+executable(‘startingmeson’,
+ ‘main.cpp’,
+ dependencies : boost_dep,
+ install : true)
+ 
+Adding dependencies in meson is always done through the dependency command: no matter the backend is pkg-config, wx-config, qmake or something else, on the frontend it always looks the same. There are also ways to declare your own dependencies and combine them
+
+Go add some code to your main.cpp:
+
+#include <iostream>
+#include <boost/filesystem.hpp>
+int main() {
+    std::cout << boost::filesystem::current_path() << std::endl;
+}
+
+
+Now just issue a 
+
+ninja -C build
+
+Done. You have your project with a boost dependency. This was all for the first tutorial.
