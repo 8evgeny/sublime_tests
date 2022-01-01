@@ -1,0 +1,5 @@
+https://doc.qt.io/qt-5/qmake-variable-reference.html
+
+CONFIG
+Specifies project configuration and compiler options. The values are recognized internally by qmake and have special meaning.
+

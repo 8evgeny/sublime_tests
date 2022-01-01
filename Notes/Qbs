@@ -33,3 +33,30 @@ qbs config --list profiles
 
 Настройка профилей
 qbs config-ui
+
+Краткая инструкция по настройке системы сборки qbs для использования ее отдельно от IDE (из консоли):
+
+ - Устанавливаем devel-пакеты для всех библиотек Qt (Core, Gui, Xml, WebEngine, XmlPattterns, Network, Sql, Multimedia и т.д.).
+ - Устанавливаем g++, если он еще не установлен.
+ - Устанавливаем qmake, определяем путь до бинарного файла qmake (командой "which qmake"), предположим это будет /usr/bin/qmake.
+ - Устанавливаем пакет qbs.
+ - Запускаем "qbs config-ui", смотрим профили (profiles). Если уже присутствуют профиль gcc и профиль, содержащий в названии Qt, значит при установке пакета профили были настроены автоматически, у следующие шаги по настройке профилей можно пропустить (шаги 6-8). Закрываем config-ui.
+ - Выполняем "$ qbs setup-toolchains --detect". Должен появиться профиль для установленного в системе компилятора gcc (обычно с тем же названием "gcc").
+ - Выполняем "$ qbs setup-qt /usr/bin/qmake qbs_Qt_system".
+ - Запускаем qbs-config-ui. В ветку profiles->gcc->cpp добавляем ключ с названием cxxFlags и значением "-std=c++11". В качестве defaultProfile устанавливаем qbs_Qt_system.
+ 
+ Система сборки qbs готова к работе. Если в процессе сборки обнаруживается нехватка каких-либо библиотек Qt, после установки дополнительных пакетов нужно пересоздать профиль Qt. Для этого в config-ui удаляем всю ветку profiles->qbs_Qt_system и заново выполняем "qbs setup-qt /usr/bin/qmake qbs_Qt_system".
+
+ Список библиотек, необходимых для сборки сервера под ОС Ubuntu (16.10, скорее всего будет достаточно для 18.10 и последующих):
+g++
+gcc
+libqt5serialport5-dev
+libqt5xmlpatterns5-dev
+qbs
+qt5-default
+qt5-qmake
+qtbase5-dev
+qtdeclarative5-dev
+qtscript5-dev
+qttools5-dev
+qttools5-dev-tools

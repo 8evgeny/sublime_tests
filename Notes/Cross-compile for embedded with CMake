@@ -1,0 +1,35 @@
+https://kubasejdak.com/how-to-cross-compile-for-embedded-with-cmake-like-a-champ
+CMake stores info about the current toolchain in the following variables:
+
+CMAKE_C_COMPILER,
+CMAKE_CXX_COMPILER.
+
+They contain paths to the C and C++ compilers respectively. This is usually enough on desktop platforms. In the case of the embedded systems, we often need also custom linker and assembler. In the more complex projects you may need to additionally specify binaries to other parts of the toolchain (size, ranlib, objcopy…). All these tools should be set in the corresponding variables:
+
+CMAKE_AR,
+CMAKE_ASM_COMPILER,
+CMAKE_LINKER,
+CMAKE_OBJCOPY,
+CMAKE_RANLIB.
+
+CMAKE_HOST_SYSTEM_NAME 
+– name of the platform, on which CMake is running (host platform). On major operating systems this is set to the Linux, Windows or Darwin (MacOS) value.
+
+CMAKE_SYSTEM_NAME 
+– name of the platform, for which we are building (target platform). By default, this value is the same as CMAKE_HOST_SYSTEM_NAME, which means that we are building for local platform (no cross-compilation).
+
+This can be done in two ways:
+
+pass values for the toolchain variables from the command line,
+specify toolchain file.
+cmake .. -DCMAKE_C_COMPILER=<path_to_c_compiler> -DCMAKE_CXX_COMPILER=<path_to_cxx_compiler> -DCMAKE_AR=<path_to_ar> -DCMAKE_LINKER=<path_to_linker> etc...
+
+---Вставляю----
+-GUnix Makefiles
+-DCMAKE_BUILD_TYPE:STRING=Debug
+-DCMAKE_PROJECT_INCLUDE_BEFORE:PATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
+-DCMAKE_C_COMPILER=/home/evg/toolchain/gcc-arm-none-eabi-new/bin/arm-none-eabi-gcc
+-DCMAKE_CXX_COMPILER=/home/evg/toolchain/gcc-arm-none-eabi-new/bin/arm-none-eabi-g++
+-DCMAKE_AR=/home/evg/toolchain/gcc-arm-none-eabi-new/bin/arm-none-eabi-ar
+-DCMAKE_LINKER=/home/evg/toolchain/gcc-arm-none-eabi-new/bin/arm-none-eabi-ld
+
