@@ -1,0 +1,15 @@
+    --specs=nosys.specs 
+    --specs=nano.specs 
+    -mcpu=cortex-m3 
+    -mthumb -std=c++17 
+    -O3 
+    -o prog 
+    -D_GNU_SOURCE 
+    -L./libmine 
+    -fno-rtti 
+    -fno-exceptions 
+    -fno-threadsafe-statics
+    -DUSE_MDR1986VE9x 
+    -D__STARTUP_CLEAR_BSS 
+    
+    
