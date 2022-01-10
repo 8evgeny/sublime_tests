@@ -1,0 +1,48 @@
+Для того, чтобы установить последнюю версию wine, как стабильную, так и тестовую из официальных репозиториев wine, сначала необходимо для 64 битных систем добавить поддержку архитектуры i386:
+
+sudo dpkg --add-architecture i386
+
+Далее добавьте официальный ключ для репозитория wine:
+
+wget -nc https://dl.winehq.org/wine-builds/winehq.key
+
+sudo apt-key add winehq.key
+
+sudo apt-key add winehq.key
+
+Подключите официальный репозиторий разработчиков:
+
+sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'
+
+После этого обновляем списки пакетов:
+
+sudo apt update
+
+Далее необходимо выбрать, какой релиз (стабильный или тестовый) необходимо установить. Для установки стабильного релиза необходимо выполнить команду:
+
+sudo apt install --install-recommends winehq-stable
+
+Для установки тестовой сборки необходимо выполнить команду:
+
+sudo apt install --install-recommends winehq-devel
+
+Далее описание установки из исходников!
+https://losst.ru/ustanovka-wine-v-ubuntu-18-04
+
+
+Также вы можете удалить следующие файлы, чтобы очистить систему от мусора:
+
+$HOME/.wine
+$HOME/.config/menus/applications-merged/wine*
+$HOME/.local/share/applications/wine
+/.local/share/desktop-directories/wine*
+/.local/share/icons/????_*.xpm
+
+Запуск OPENGL
+export MESA_GL_VERSION_OVERRIDE=4.5
+
+Запуск Wine
+/usr/bin/env  WINE='/usr/bin/wine'  WINEPREFIX='/home/evgeny/.wine'  WINESERVER='/usr/bin/wineserver'  WINELOADER='/usr/bin/wine'  WINEDEBUG='-all'  /bin/sh -c "cd '/home/evgeny/Desktop/' &&   '/usr/bin/wine'   explorer.exe /desktop=CMSIS-DAP_Setup.exe,1280x1024  'CMSIS-DAP.exe'  2>&1 "
+
+Wine cannot find Wine Gecko despite installing wine-gecko
+wget http://dl.winehq.org/wine/wine-gecko/2.47.1/wine-gecko-2.47.1-x86_64.msi
