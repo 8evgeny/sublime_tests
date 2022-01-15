@@ -1,0 +1,2 @@
+echo "11112345678901234567890qwertyuiopqwertyuiopasdfghjkl;asdfghjkl;zxcvbnm,./zxcvbnm,./" > /dev/ttyACM0
+echo "00012345678901234567890qwertyuiopqwertyuiopasdfghjkl;asdfghjkl;zxcvbnm,./zxcvbnm,./" > /dev/ttyACM0
