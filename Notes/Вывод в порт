@@ -1,0 +1,4 @@
+sudo usermod -a -G dialout $USER
+sudo usermod -a -G plugdev $USER
+
+где $USER – это имя вашего пользователя
