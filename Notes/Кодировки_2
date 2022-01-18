@@ -1,3 +1,5 @@
+hexdump  !!
+
 $ iconv option
 $ iconv options -f from-encoding -t to-encoding inputfile(s) -o outputfile
 
