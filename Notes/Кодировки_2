@@ -1,0 +1,37 @@
+$ iconv option
+$ iconv options -f from-encoding -t to-encoding inputfile(s) -o outputfile
+
+Для получения дополнительной информации просмотрите страницу iconv man.
+$ man iconv
+
+Чтобы перечислить все известные кодировки символов, выполните следующую команду:
+$ iconv -l 
+
+Вы можете проверить кодировку файла с помощью команды file, используя опцию -i или -mime, которая позволяет выводить строку типа mime
+
+$ file -i /etc/sysctl.conf
+
+После запуска команды iconv мы проверяем содержимое выходного файла и новую кодировку символов, как показано ниже.
+$ file -i input.file
+$ cat input.file
+$ iconv -f ISO-8859-1 -t UTF-8//TRANSLIT input.file -o out.file
+$ cat out.file
+$ file -i out.file
+ 
+Примечание. Если в кодировку добавлена ​​строка //IGNORE, после преобразования отображаются символы, которые не могут быть преобразованы, и ошибка.
+
+Опять же, предположим, что строка //TRANSLIT добавляется в кодировку, как в приведенном выше примере (ASCII//TRANSLIT), преобразуемые символы транслитерируются по мере необходимости. Это подразумевает, что символ не может быть представлен в целевом наборе символов, его можно аппроксимировать одним или несколькими похожими символами.
+
+Преобразование нескольких файлов в кодировку UTF-8
+#!/bin/bash
+#enter input encoding here
+FROM_ENCODING="value_here"
+#output encoding(UTF-8)
+TO_ENCODING="UTF-8"
+#convert
+CONVERT=" iconv -f $FROM_ENCODING -t $TO_ENCODING"
+#loop to convert multiple files
+for file in *.txt; do
+$CONVERT "$file" -o "${file%.txt}.utf8.converted"
+done
+exit 0
