@@ -2,4 +2,16 @@ watch -n 1 -d "ls /dev/tty* |sed -n '64,70p' "
 
 echo "11112345678901234567890qwertyuiopqwertyuiopasdfghjkl;asdfghjkl;zxcvbnm,./zxcvbnm,./" > /dev/ttyACM0
 echo "00012345678901234567890qwertyuiopqwertyuiopasdfghjkl;asdfghjkl;zxcvbnm,./zxcvbnm,./" > /dev/ttyACM0
-echo "00012345678901234567890qwertyuiopqwertyuiopasdfghjkl;asdfghjkl;zxcvbnm,./zxcvbnm,./" > /dev/ttyACM0
+echo "110abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`~444$%^&*()_+=-,." > /dev/ttyACM0
+
+абвгдеёжзийклмнопрстуфхцчшщъыьэюя
+
+echo "110абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ---+++'''???,," > /dev/ttyACM0
+
+echo "110АААААБББББВВВВВГГГГГДДДДДЕЕЕЕЕЖЖЖЖЖЗЗЗЗЗИИИИИЙЙЙЙЙКККККЛЛЛЛЛМММММНННННОООООППППП" > /dev/ttyACM0
+
+cat test > /dev/ttyACM0
+cat test1 > /dev/ttyACM0
+cat test_rus > /dev/ttyACM0
+iconv -l
+iconv -f UTF-8 -t WINDOWS-1251 test_rus > /dev/ttyACM0
