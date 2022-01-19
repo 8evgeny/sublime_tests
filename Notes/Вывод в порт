@@ -1,4 +1,10 @@
 sudo usermod -a -G dialout $USER
 sudo usermod -a -G plugdev $USER
 
+sudo addgroup $USERNAME dialout
+
 где $USER – это имя вашего пользователя
+
+sudo usermod -a -G dialout evg
+sudo usermod -a -G plugdev evg
+sudo addgroup evg dialout
