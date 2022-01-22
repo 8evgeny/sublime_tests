@@ -1,0 +1,12 @@
+	
+wget -q https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py
+
+sudo PLATFORMIO_CORE_DIR=/opt/platformio python3 get-platformio.py
+
+Теперь вам нужно создать символическую ссылку на команду pio в каталоге / usr / local / bin
+sudo ln -s /opt/platformio/penv/bin/pio /usr/local/bin/pio 
+
+sudo usermod -a -G dialout $USER
+
+	
+pio --version
