@@ -1,0 +1,2 @@
+Создать map
+-Xlinker -Map=output.map
