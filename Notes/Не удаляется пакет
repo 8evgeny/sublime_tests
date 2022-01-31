@@ -1,0 +1,2 @@
+sudo fuser --interactive --kill --verbose /var/cache/apt/archives/lock
+sudo rm --force /var/cache/apt/archives/lock
