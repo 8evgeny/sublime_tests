@@ -27,5 +27,8 @@ minicom -D  /dev/ttyUSB0
 T4
 picocom -b 1500000 /dev/ttyUSB0
 
+Пульт PDO
+picocom -b 115200 /dev/ttyUSB0
+C-a C-c   режим эхо
 
 
