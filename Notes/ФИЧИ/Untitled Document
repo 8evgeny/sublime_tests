@@ -1,0 +1,1 @@
+#include <stdint.h>  - если не определены uint8_t  uint32_t
