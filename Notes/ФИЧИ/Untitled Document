@@ -1,1 +1,15 @@
 #include <stdint.h>  - если не определены uint8_t  uint32_t
+
+Вызов С++ из С
+// C++ code
+extern "C" void* createObjectOfMyClass(int param) {
+    return (void*) new MyClass(param);
+}
+
+extern "C" void methodName(void* obj) {
+    ((MyClass*) obj)->methodName();
+}
+
+/* C code */
+void* obj = createObjectOfMyClass(123);
+methodName(obj);
