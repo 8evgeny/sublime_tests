@@ -10,5 +10,5 @@ int main() {
   for(int i = 0; i < 26; i++) {
     alphabet[i] = i + 65;
   }
-  printf("%s", alphabet);
+  printf("%s\n", alphabet);
 }
