@@ -13,11 +13,21 @@ void sleep_3_s()
     std::this_thread::sleep_for(std::chrono::seconds(3));
 }
 
-void sleep_until_2_s()
+void sleep_until()
 {
-    std::cout << "Waited until 2 seconds!\n";
     std::this_thread::sleep_until(std::chrono::system_clock::now() + std::chrono::seconds(2));
+    std::cout << "We are now located 2 seconds after the thread has been called\n";
 }
+
+void foo(int a)
+{
+    for (int i = 0; i < a; ++i)
+        std::this_thread::yield(); //Now other threads take priority, because this thread
+    //isn't doing anything important
+    std::cout << "Hello World!\n";
+}
+
+
 
 int main()
 {
@@ -29,7 +39,10 @@ int main()
     thread2.join();
     thread3.join();
 
+    sleep_until();
     sleep_3_s();
-    sleep_until_2_s();
+
+    std::thread thread{ foo, 10 };
+    thread.join();
 
 }
