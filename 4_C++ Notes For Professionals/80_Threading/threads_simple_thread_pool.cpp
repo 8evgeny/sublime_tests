@@ -99,6 +99,7 @@ private:
 
 int main()
 {
+    //Пока не работает
     tasks tasks;
     tasks.queue( []{ return "hello world"s; } );
     tasks.start(10);
