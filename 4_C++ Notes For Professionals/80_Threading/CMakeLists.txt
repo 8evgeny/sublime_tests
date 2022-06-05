@@ -28,3 +28,5 @@ add_executable(${PROJECT_NAME}_simple_thread_pool ${name}_simple_thread_pool.cpp
 target_link_libraries(${PROJECT_NAME}_simple_thread_pool pthread )
 add_executable(${PROJECT_NAME}_always_joined ${name}_always_joined.cpp)
 target_link_libraries(${PROJECT_NAME}_always_joined pthread )
+add_executable(${PROJECT_NAME}_current_thread_operations ${name}_current_thread_operations.cpp)
+target_link_libraries(${PROJECT_NAME}_current_thread_operations pthread )
