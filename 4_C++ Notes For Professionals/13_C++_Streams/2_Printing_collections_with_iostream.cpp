@@ -28,7 +28,7 @@ return val * val;
 });
 std::cout <<'\n';
 
-const int N = 10;
+const int N = 20;
 std::generate_n(std::ostream_iterator<int>(std::cout, " "), N, std::rand);
 std::cout <<'\n';
 
