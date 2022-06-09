@@ -9,7 +9,7 @@ int main(){
 std::cout << std::setprecision(3);
 std::fixed(std::cout);
 
-std::vector<int> v = {1,2,3,4};
+std::vector<int> v = {1, 2, 3, 4, 8, 42};
 std::copy(v.begin(), v.end(), std::ostream_iterator<float>(std::cout, " ! "));
 std::cout <<'\n';
 

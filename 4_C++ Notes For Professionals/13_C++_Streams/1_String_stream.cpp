@@ -22,9 +22,7 @@ ss << "the answer to everything is " << 42;
 const string result = ss.str();
 std::cout << result << "\n";
 
-
-
-
+//Сериализация класса в строку
 foo f;
 ostringstream ss1;
 ss1 << f;
