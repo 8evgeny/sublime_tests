@@ -20,14 +20,15 @@ int main()
 
     mt19937 gen;
     uniform_int_distribution<int> dis(0, 100000);
-
     auto rand_num ([=] () mutable { return dis(gen); });
-
     generate(execution::par, begin(d), end(d), rand_num);
-
+    std::copy(d.begin(), d.end(),std::ostream_iterator<int>(std::cout,", "));
     sort(execution::par, begin(d), end(d));
-
+    std::cout<<"\n\n";
+    std::copy(begin(d), end(d),std::ostream_iterator<int>(std::cout,", "));
     reverse(execution::par, begin(d), end(d));
+    std::cout<<"\n\n";
+    std::copy(begin(d), end(d),std::ostream_iterator<int>(std::cout,", "));
 
     auto odds (count_if(execution::par, begin(d), end(d), odd));
 
