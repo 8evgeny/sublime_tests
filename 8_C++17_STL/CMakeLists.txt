@@ -2,7 +2,7 @@ project(8_C++17)
 
 add_subdirectory(Chapter01_new_features)
 add_subdirectory(Chapter02_containers)
-#add_subdirectory(Chapter03_iterators)
+add_subdirectory(Chapter03_iterators)
 add_subdirectory(Chapter04_lambdas)
 #add_subdirectory(Chapter05_basic_work_STL)
 #add_subdirectory(Chapter06_expert_work_STL)

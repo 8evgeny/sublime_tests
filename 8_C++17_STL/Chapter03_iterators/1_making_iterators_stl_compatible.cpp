@@ -70,4 +70,11 @@ int main()
 
     auto [min_it, max_it] (std::minmax_element(std::begin(r), std::end(r)));
     std::cout << *min_it << " - " << *max_it << '\n';
+
+    for (int i : num_range{100, 110})
+    {
+        std::cout << i << ", ";
+    }
+    std::cout << '\n';
+
 }
