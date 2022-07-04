@@ -47,7 +47,7 @@ count_lines_in_files(const std::vector<std::string> &files)
 
 int main(int argc, char *argv[])
 {
-    auto results = count_lines_in_files({"main.cpp", "cmake_install.cmake", "Makefile"});
+    auto results = count_lines_in_files({"../../build.ninja", "cmake_install.cmake", "../cmake_install.cmake", "../../../CMakeLists.txt.user"});
 
     for (const auto &result: results) {
         std::cout << result << " line(s)\n";
