@@ -2,6 +2,8 @@
 # slowcat - з а м е д л е н н ы й вывод
 # использование: slowcat [-DELAY] [files...],
 # где DELAY - задержка
+
+
 $DELAY = ($ARGV[0] =~ /^-([.\d]+)/) ? (shift, $1) : 1;
 $| = 1;
 while (<>) {

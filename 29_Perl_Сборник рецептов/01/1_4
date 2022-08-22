@@ -6,7 +6,7 @@ my $verbose = (@ARGV && $ARGV[0] eq '-v' && shift);
 if (@ARGV) {
     $^I = ".orig";         # сохранить старые файлы
 } else {
-    warn "$0: Reading from stdin\n" if Цt STDIN;
+    warn "$0: Reading from stdin\n" if -t STDIN;
 }
 my $code = "while (<>) {\n";
 # „итать данные и строить код дл€ eval

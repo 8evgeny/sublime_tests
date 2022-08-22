@@ -11,14 +11,13 @@ $columns = 20;
 print "0123456789" x 2, "\n";
 print wrap("    ", "  ", @input), "\n";
 
-#результат выгл€дит так:
+#результат выглядит так:
 
-01234567890123456789
-    Folding and
-
-  splicing is the
-  work of an
-  editor, not a
-  mere collection
-  of silicon and
-  mobile electrons!
+#01234567890123456789
+#    Folding and
+#  splicing is the
+#  work of an
+#  editor, not a
+#  mere collection
+#  of silicon and
+#  mobile electrons!

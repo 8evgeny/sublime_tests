@@ -1,6 +1,6 @@
-Пример 8.3. print_line-v3
+#РџСЂРёРјРµСЂ 8.3. print_line-v3
 #!/usr/bin/perl -w
-# print_line-v3 – решение с применением DB_File
+# print_line-v3 вЂ“ СЂРµС€РµРЅРёРµ СЃ РїСЂРёРјРµРЅРµРЅРёРµРј DB_File
 use DB_File;
 use Fcntl;
 
@@ -15,5 +15,5 @@ unless ($line_number < $tie->length) {
     die "Didn't find line $line_number in $filename\n"
 }
 
-print $lines[$line_number-1];                   # Легко, правда?
+print $lines[$line_number-1];                   # Р›РµРіРєРѕ, РїСЂР°РІРґР°?
 

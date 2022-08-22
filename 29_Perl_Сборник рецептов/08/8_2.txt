@@ -1,9 +1,9 @@
-Ïðèìåð 8.2. print_line-v2
+# ÐŸÑ€Ð¸Ð¼ÐµÑ€ 8.2. print_line-v2
   #!/usr/bin/perl -w
-  # print_line-v2 - ðåøåíèå ñ èñïîëüçîâàíèåì Tie::File
+  # print_line-v2 - Ñ€ÐµÑˆÐµÐ½Ð¸Ðµ Ñ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸ÐµÐ¼ Tie::File
   use Tie::File;
   use Fcntl;
-  @ARGV =  = 2 or die "usage: print_line FILENAME LINE_NUMBER\n";
+  @ARGV == 2 or die "usage: print_line FILENAME LINE_NUMBER\n";
   ($filename, $line_number) = @ARGV;
   tie @lines, Tie::File, $filename, mode => O_RDWR
       or die "Can't open $filename for reading: $!\n";

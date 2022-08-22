@@ -1,6 +1,6 @@
-Пример 8.1. print_line-v1
+# РџСЂРёРјРµСЂ 8.1. print_line-v1
 #!/usr/bin/perl -w
-# print_line-v1 – линейное чтение
+# print_line-v1 вЂ“ Р»РёРЅРµР№РЅРѕРµ С‡С‚РµРЅРёРµ
 
 @ARGV == 2 or die "usage: print_line FILENAME LINE_NUMBER\n";
 

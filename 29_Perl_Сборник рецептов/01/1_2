@@ -8,12 +8,13 @@ sub randcase { rand(100) < 20 ? "\u$_[0]" : "\l$_[0]" }
 s/(\w)/randcase($1)/ge;
 
 % randcap < genesis | head –9
-boOk 01 genesis
 
-001:001 in the BEginning goD created the heaven and tHe earTH.
+#boOk 01 genesis
 
-001:002 and the earth wAS without ForM, aND void; AnD darkneSS was
-        upon The Face of the dEEp. an the spIrit of GOd movEd upOn
-        tHe face of the Waters.
+#001:001 in the BEginning goD created the heaven and tHe earTH.
 
-001:003 and god Said, let there be ligHt: and therE wAs LigHt.
+#001:002 and the earth wAS without ForM, aND void; AnD darkneSS was
+#        upon The Face of the dEEp. an the spIrit of GOd movEd upOn
+#        tHe face of the Waters.
+#
+#001:003 and god Said, let there be ligHt: and therE wAs LigHt.
