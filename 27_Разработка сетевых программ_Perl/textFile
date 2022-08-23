@@ -1,0 +1,5 @@
+# Numbers are true if they're not equal to 0. say 0 ? 'true' : 
+'false'; # false say 1 ? 'true' : 'false'; # true say 2 ? 'true' : 
+'false'; # true say -1 ? 'true' : 'false'; # true say 1-1 ? 'true' : 
+'false'; # false say 0e7          
+? 'true' : 'false'; # false say -0.00 ? 'true' : 'false'; # false
