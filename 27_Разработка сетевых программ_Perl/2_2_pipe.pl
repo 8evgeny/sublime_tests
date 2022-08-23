@@ -3,7 +3,7 @@
  use strict;
  my %who;        #Информация о регистрации пользователей
 
- open (WHOFH, "who |") or die "Can't open who: $!";
+ open (WHOFH, "who |") or die "Can't open who: $!"; #Открытие канала в команду who
  while (<WHOFH>)
  {
     next unless  /^(\S+)/;
