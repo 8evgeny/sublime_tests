@@ -1,6 +1,6 @@
 #!/usr/bin/perl
  use strict;
- my $arg = shift || 200;
+ my $arg = shift || 35;
  pipe(READER,WRITER) or die "Can't open pipe: $!\n";
  if (fork ==0)
  {
