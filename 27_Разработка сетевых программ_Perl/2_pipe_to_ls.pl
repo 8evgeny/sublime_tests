@@ -12,6 +12,7 @@ open (CAT, "| cat textFile") or die "Can't open cat: $!";
  {
     print CAT "\n";
  }
- 
-my $wc_output = `wc textFile`;
-print "\n$wc_output\n" ;
+
+my $arguments = "-l -S";
+my $ls_output = `ls $arguments`;
+print "\n$ls_output\n" ;
