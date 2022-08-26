@@ -1,7 +1,7 @@
 #!/usr/bin/perl
- 
+
  use strict;
-open (PIPE, "| 2_5_read_three.pl") or die "Can't open pipe: $!";
+open (PIPE, "| 2_5_read_three.pl") or die "Can't open : $!";
 select  PIPE; 
 $|=1; 
 select STDOUT;
