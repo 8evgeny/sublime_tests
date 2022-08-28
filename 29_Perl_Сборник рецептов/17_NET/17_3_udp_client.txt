@@ -1,5 +1,5 @@
-#Пример 17.3. udpmsg
 #!/usr/bin/perl -w
+#Пример 17.3. udpmsg
 # udpmsg - отправка сообщения серверу udpquotd
 use IO::Socket;
 use strict;
