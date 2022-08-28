@@ -1,6 +1,6 @@
-Пример 17.8. chatclient
+#РџСЂРёРјРµСЂ 17.8. chatclient
 #!/usr/bin/perl -w
-# chatclient - клиент для чат-сервера
+# chatclient - РєР»РёРµРЅС‚ РґР»СЏ С‡Р°С‚-СЃРµСЂРІРµСЂР°
 use IO::Multiplex;
 use IO::Socket;
 use strict;

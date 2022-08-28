@@ -1,6 +1,6 @@
-Пример 17.2. udpqotd
+#РџСЂРёРјРµСЂ 17.2. udpqotd
 #!/usr/bin/perl -w
-# udpqotd - сервер сообщений UDP 
+# udpqotd - СЃРµСЂРІРµСЂ СЃРѕРѕР±С‰РµРЅРёР№ UDP 
 use strict;
 use IO::Socket;
 my($sock, $oldmsg, $newmsg, $hisaddr, $hishost, $MAXLEN, $PORTNO);

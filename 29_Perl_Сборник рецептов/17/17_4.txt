@@ -1,6 +1,6 @@
-Пример 17.4. biclient
+#РџСЂРёРјРµСЂ 17.4. biclient
 #!/usr/bin/perl -w
-# biclient - двусторонний клиент с разветвлением
+# biclient - РґРІСѓСЃС‚РѕСЂРѕРЅРЅРёР№ РєР»РёРµРЅС‚ СЃ СЂР°Р·РІРµС‚РІР»РµРЅРёРµРј
 use strict;
 use IO::Socket;
 my ($host, $port, $kidpid, $handle, $line);
@@ -8,27 +8,27 @@ my ($host, $port, $kidpid, $handle, $line);
 unless (@ARGV == 2) { die "usage: $0 host port" }
 ($host, $port) = @ARGV;
 
-# Создать tcp-подключение для заданного хоста и порта
+# РЎРѕР·РґР°С‚СЊ tcp-РїРѕРґРєР»СЋС‡РµРЅРёРµ РґР»СЏ Р·Р°РґР°РЅРЅРѕРіРѕ С…РѕСЃС‚Р° Рё РїРѕСЂС‚Р°
 $handle = IO::Socket::INET->new(Proto     => "tcp",
                                 PeerAddr  => $host,
                                 PeerPort  => $port)
        or die "can't connect to port $port on $host: $!";
 
-$handle->autoflush(1);        # Запретить буферизацию
+$handle->autoflush(1);        # Р—Р°РїСЂРµС‚РёС‚СЊ Р±СѓС„РµСЂРёР·Р°С†РёСЋ
 print STDERR "[Connected to $host:$port]\n";
 
-# Разделить программу на два идентичных процесса
+# Р Р°Р·РґРµР»РёС‚СЊ РїСЂРѕРіСЂР°РјРјСѓ РЅР° РґРІР° РёРґРµРЅС‚РёС‡РЅС‹С… РїСЂРѕС†РµСЃСЃР°
 die "can't fork: $!" unless defined($kidpid = fork());
 
 if ($kidpid) {                      
-    # Родитель копирует сокет в стандартный вывод
+    # Р РѕРґРёС‚РµР»СЊ РєРѕРїРёСЂСѓРµС‚ СЃРѕРєРµС‚ РІ СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РІС‹РІРѕРґ
     while (defined ($line = <$handle>)) {
         print STDOUT $line;
     }
-    kill("TERM" => $kidpid);        # Послать потомку SIGTERM
+    kill("TERM" => $kidpid);        # РџРѕСЃР»Р°С‚СЊ РїРѕС‚РѕРјРєСѓ SIGTERM
 }
 else {                              
-    # Потомок копирует стандартный ввод в сокет
+    # РџРѕС‚РѕРјРѕРє РєРѕРїРёСЂСѓРµС‚ СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РІРІРѕРґ РІ СЃРѕРєРµС‚
     while (defined ($line = <STDIN>)) {
         print $handle $line;
     }

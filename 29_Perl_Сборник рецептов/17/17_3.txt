@@ -1,6 +1,6 @@
-Ïðèìåð 17.3. udpmsg
+#ÐŸÑ€Ð¸Ð¼ÐµÑ€ 17.3. udpmsg
 #!/usr/bin/perl -w
-# udpmsg - îòïðàâêà ñîîáùåíèÿ ñåðâåðó udpquotd
+# udpmsg - Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÐºÐ° ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ ÑÐµÑ€Ð²ÐµÑ€Ñƒ udpquotd
 use IO::Socket;
 use strict;
 my($sock, $server_host, $msg, $port, $ipaddr, $hishost, 
@@ -20,7 +20,7 @@ eval {
     alarm $TIMEOUT;
     $sock->recv($msg, $MAXLEN)      or die "recv: $!";
     alarm 0;
-    1;  # Íîðìàëüíîå âîçâðàùàåìîå çíà÷åíèå eval
+    1;  # ÐÐ¾Ñ€Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÐ¼Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ eval
 } or die "recv from $server_host timed out after $TIMEOUT seconds.\n";
 ($port, $ipaddr) = sockaddr_in($sock->peername);
 $hishost = gethostbyaddr($ipaddr, AF_INET);

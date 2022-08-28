@@ -1,6 +1,6 @@
-Пример 17.7. chatserver
+#РџСЂРёРјРµСЂ 17.7. chatserver
 #!/usr/bin/perl -w
-# chatserver - очень простой чат-сервер
+# chatserver - РѕС‡РµРЅСЊ РїСЂРѕСЃС‚РѕР№ С‡Р°С‚-СЃРµСЂРІРµСЂ
 use IO::Multiplex;
 use IO::Socket;
 use strict;

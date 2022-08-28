@@ -1,21 +1,21 @@
-Пример 17.9. backsniff
+#РџСЂРёРјРµСЂ 17.9. backsniff
 #!/usr/bin/perl -w
-# backsniff - регистрация попыток подключения к определенным портам
+# backsniff - СЂРµРіРёСЃС‚СЂР°С†РёСЏ РїРѕРїС‹С‚РѕРє РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє РѕРїСЂРµРґРµР»РµРЅРЅС‹Рј РїРѕСЂС‚Р°Рј
 use Sys::Syslog;
 use Socket;
-# Идентифицировать порт и адрес
+# РРґРµРЅС‚РёС„РёС†РёСЂРѕРІР°С‚СЊ РїРѕСЂС‚ Рё Р°РґСЂРµСЃ
 $sockname          = getsockname(STDIN)
                      or die "Couldn't identify myself: $!\n";
 ($port, $iaddr)    = sockaddr_in($sockname);
 $my_address        = inet_ntoa($iaddr);
-# Получить имя службы
+# РџРѕР»СѓС‡РёС‚СЊ РёРјСЏ СЃР»СѓР¶Р±С‹
 $service = (getservbyport ($port, "tcp"))[0] || $port;
 # now identify remote address
 $sockname          = getpeername(STDIN)
                          or die "Couldn't identify other end: $!\n";
 ($port, $iaddr)    = sockaddr_in($sockname);
 $ex_address        = inet_ntoa($iaddr);
-# Занести информацию в журнал
+# Р—Р°РЅРµСЃС‚Рё РёРЅС„РѕСЂРјР°С†РёСЋ РІ Р¶СѓСЂРЅР°Р»
 openlog("sniffer", "ndelay", "daemon");
 syslog("notice", "Connection from %s to %s:%s\n", $ex_address, 
 
