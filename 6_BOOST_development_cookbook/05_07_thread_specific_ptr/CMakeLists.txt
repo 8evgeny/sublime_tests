@@ -3,7 +3,7 @@ set(CMAKE_CXX_STANDARD 17)
 project(05_07_thread_specific_ptr)
 ADD_EXECUTABLE(${PROJECT_NAME} main.cpp  )
 
-#set(BOOST_ROOT "/home/jhon/boost/boost_1_75_0")
+set(BOOST_ROOT "/home/evg/boost/boost_1_80_0")
 set (Boost_NO_SYSTEM_PATHS ON)
 set (Boost_USE_MULTITHREADED ON)
 set (Boost_USE_STATIC_LIBS ON)

@@ -3,6 +3,7 @@
     project(07_02_regex_match)
     ADD_EXECUTABLE(${PROJECT_NAME} main.cpp )
 
+    set(BOOST_ROOT "/home/evg/boost/boost_1_80_0")
     set (Boost_NO_SYSTEM_PATHS ON)
     set (Boost_USE_MULTITHREADED ON)
     set (Boost_USE_STATIC_LIBS ON)

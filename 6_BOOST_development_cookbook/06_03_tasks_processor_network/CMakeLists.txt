@@ -8,7 +8,8 @@
         )
 
     ADD_EXECUTABLE(${PROJECT_NAME} ${src})
-    set (Boost_NO_SYSTEM_PATHS ON)
+#    set(BOOST_ROOT "/home/evg/boost/boost_1_80_0")
+#    set (Boost_NO_SYSTEM_PATHS ON)
     set (Boost_USE_MULTITHREADED ON)
     set (Boost_USE_STATIC_LIBS ON)
     set (Boost_USE_STATIC_RUNTIME OFF)

@@ -3,7 +3,7 @@
 namespace opt = boost::program_options;
 
 //аргументы запуска --apples 10(или --a 20)  --oranges 20(или --o 20)  либо --help
-//либо  --o 20
+//либо  -a 20 -o 40 --name Evg
 int main(int argc, char *argv[])
 {
 // Constructing an options describing variable and giving it a textual description "All options".
@@ -17,10 +17,8 @@ int oranges_var = 0;
 desc.add_options() //в следующих строках идут опции которые добавляются
 
 //("apples", opt::value<int>(), "how many apples do you have") //простая форма
-
 // 'a' is a short option name for apples. Use as '-a 10'.
 // If no value provided, then the default value is used.
-
 ("apples,a", opt::value<int>()->default_value(10), "apples that you have") //опция 1
 
 //("oranges", opt::value<int>(), "how many oranges do you have"); //простая форма

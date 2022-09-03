@@ -3,7 +3,7 @@ set(CMAKE_CXX_STANDARD 17)
 project(05_04_shared_lock)
 ADD_EXECUTABLE(${PROJECT_NAME} main.cpp  )
 
-#set(BOOST_ROOT "/home/jhon/boost/boost_1_75_0")
+set(BOOST_ROOT "/home/evg/boost/boost_1_80_0")
 set (Boost_NO_SYSTEM_PATHS ON)
 set (Boost_USE_MULTITHREADED ON)
 set (Boost_USE_STATIC_LIBS ON)
@@ -20,9 +20,9 @@ endif ()
 
 target_link_libraries(
     ${PROJECT_NAME}
-#    /usr/lib/libboost_thread.so
-#    /usr/lib/libboost_system.so
-#    /usr/lib/libpthread.so
+     -L/home/evg/boost/boost_1_80_0/stage/lib/libboost_thread.so
+     -L/home/evg/boost/boost_1_80_0/stage/lib/libboost_system.so
+     -L/home/evg/boost/boost_1_80_0/stage/lib/libpthread.so
     ${Boost_LIBRARIES}
     )
 
