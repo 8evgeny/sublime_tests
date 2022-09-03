@@ -12,7 +12,7 @@ add_executable(${PROJECT_NAME}8 signals8.cpp )
 add_executable(${PROJECT_NAME}9 signals9.cpp )
 add_executable(${PROJECT_NAME}10 signals10.cpp )
 
-set(BOOST_ROOT "/home/jhon/boost/boost_1_75_0")
+set(BOOST_ROOT "/home/evg/boost/boost_1_80_0")
 find_package (Boost REQUIRED COMPONENTS  thread system filesystem)
 if (Boost_FOUND)
     message("cmake message-" ${PROJECT_NAME} " boost include DIR: " ${Boost_INCLUDE_DIR})
