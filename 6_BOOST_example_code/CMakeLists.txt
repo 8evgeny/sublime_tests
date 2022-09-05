@@ -3,4 +3,4 @@ project(6_BOOST_example_code)
 
 add_subdirectory(signals) #не завершено
 add_subdirectory(datetime)
-
+add_subdirectory(stl_interfaces)
