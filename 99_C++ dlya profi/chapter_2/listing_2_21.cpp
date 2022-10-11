@@ -25,5 +25,5 @@ int main() {
     clock.set_year(2019);
   }
   clock.add_year();
-  printf("year: %d", clock.get_year());
+  printf("year: %d\r\n", clock.get_year());
 }
