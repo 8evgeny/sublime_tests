@@ -13,6 +13,10 @@ public:
         cout << "some operation" << endl;
         return a > b;
     }
+    void operator()()
+    {
+        cout << "some operation" << endl;
+    }
 
     static void method( int a ) { cout << "method" << a << endl; }
 };
@@ -34,6 +38,7 @@ int main()
     using namespace std::placeholders;
 
     Functor f;
+    f();
 
     vector< int > a = { 2, 1, 3, 4 };
 
@@ -58,10 +63,9 @@ int main()
 
     cout << func_sum( 3, 4 ) << endl;
 
-    //    int ( *func )( int a, int b );
+    int ( *func )( int a, int b );
+    func = &sum;
+    cout << func( 4, 5 ) << endl;
 
-    //    func = &sum;
-
-    //    cout << func( 4, 5 ) << endl;
     return 0;
 }
