@@ -23,7 +23,7 @@ public:
 
 int sum( int a, int b )
 {
-    return a - b;
+    return a + b;
 }
 
 bool cmp( int a, int b )
@@ -40,12 +40,18 @@ int main()
     Functor f;
     f();
 
-    vector< int > a = { 2, 1, 3, 4 };
+    vector< int > a = { 42, 1, 3, 4, 8, 2 };
+
+    sort( a.begin(), a.end());
+    for ( auto it : a )
+        cout << it << " ";
+    cout <<  endl;
 
     sort( a.begin(), a.end(), []( int a, int b ) -> bool { return a > b; } );
 
     for ( auto it : a )
-        cout << it << endl;
+        cout << it << " ";
+    cout <<  endl;
 
     std::function< MyFunc > func_sum;
 
@@ -53,7 +59,7 @@ int main()
 
     int value = 4;
 
-    [value = std::move( value )]( string s ) { cout << value; }( "hello" );
+    [value = std::move( value )]( string s ) { cout << value << endl; }( "hello" );
 
     auto w = std::bind( Functor::method, 100 );
 
