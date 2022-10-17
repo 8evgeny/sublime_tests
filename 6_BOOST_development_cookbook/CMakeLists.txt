@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 project(6_BOOST_development_cookbook)
-
+#ссылка с примерами http://apolukhin.github.io/Boost-Cookbook/ru/
 add_subdirectory(01_01_program_options)
 add_subdirectory(01_01_program_options_config)
 add_subdirectory(01_02_any)

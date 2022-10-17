@@ -1,4 +1,4 @@
 *.txt.user.*
 *.txt.user
-build_mint/
-build_end/
+build
+
