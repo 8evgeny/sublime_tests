@@ -10,7 +10,7 @@ set (Boost_USE_STATIC_LIBS ON)
 set (Boost_USE_STATIC_RUNTIME OFF)
 set (BOOST_ALL_DYN_LINK OFF)
 
-find_package (Boost REQUIRED COMPONENTS  program_options thread system filesystem)
+find_package (Boost REQUIRED COMPONENTS  program_options )
 
 if (Boost_FOUND)
     message("cmake message-" ${PROJECT_NAME} " boost include DIR: " ${Boost_INCLUDE_DIR})

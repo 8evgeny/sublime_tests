@@ -34,11 +34,12 @@ desc.add_options() //в следующих строках идут опции к
 // Let's parse the command line:
  opt::variables_map vm; // Variable to store our command line arguments.
  opt::store(opt::parse_command_line(argc, argv, desc), vm); // Parsing and storing arguments.
+
  std::cout << oranges_var << "\n"; //0
  opt::notify(vm);  // Must be called after all the parsing and storing.
 
  std::cout << vm["name"].as<std::string>() << "\n";
-
+ std::cout << vm["oranges"].as<int>() << "\n";
  std::cout << oranges_var << "\n"; //20
  if (vm.count("help")) {
  std::cout << desc << "\n";
