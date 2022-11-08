@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/11_singleton.dir/singleton.cpp.o -o 11_singleton 

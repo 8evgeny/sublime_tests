@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/4_enum.dir/enum.cpp.o -o 4_enum 

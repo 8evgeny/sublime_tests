@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/3_decltype.dir/decltype.cpp.o -o 3_decltype 

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/6_sv.dir/sv.cpp.o -o 6_sv 

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/6_inline.dir/inline.cpp.o -o 6_inline 

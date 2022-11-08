@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/5_static_assert.dir/static_assert.cpp.o -o 5_static_assert 

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/19_thread_static.dir/static.cpp.o -o 19_thread_static 

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/5_auto_template.dir/auto_template.cpp.o -o 5_auto_template 

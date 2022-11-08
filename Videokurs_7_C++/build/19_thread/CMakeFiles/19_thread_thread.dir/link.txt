@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -fsanitize=thread CMakeFiles/19_thread_thread.dir/thread.cpp.o -o 19_thread_thread  -lpthread 

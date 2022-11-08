@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/13_command.dir/command.cpp.o -o 13_command 

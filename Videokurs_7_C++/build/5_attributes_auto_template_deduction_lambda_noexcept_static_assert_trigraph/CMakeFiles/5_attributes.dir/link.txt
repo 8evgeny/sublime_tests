@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/5_attributes.dir/attributes.cpp.o -o 5_attributes 

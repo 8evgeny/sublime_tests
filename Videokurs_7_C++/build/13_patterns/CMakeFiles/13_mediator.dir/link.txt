@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/13_mediator.dir/mediator.cpp.o -o 13_mediator 

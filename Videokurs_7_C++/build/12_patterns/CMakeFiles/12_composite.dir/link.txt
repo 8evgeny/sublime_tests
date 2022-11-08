@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/12_composite.dir/composite.cpp.o -o 12_composite 

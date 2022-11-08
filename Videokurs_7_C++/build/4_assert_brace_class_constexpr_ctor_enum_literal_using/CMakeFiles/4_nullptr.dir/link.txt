@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/4_nullptr.dir/nullptr.cpp.o -o 4_nullptr 

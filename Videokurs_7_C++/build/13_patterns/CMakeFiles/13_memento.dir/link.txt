@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/13_memento.dir/memento.cpp.o -o 13_memento 

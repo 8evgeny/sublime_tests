@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/4_literal.dir/literal.cpp.o -o 4_literal 

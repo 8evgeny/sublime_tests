@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/15_forward_list.dir/forward_list.cpp.o -o 15_forward_list 

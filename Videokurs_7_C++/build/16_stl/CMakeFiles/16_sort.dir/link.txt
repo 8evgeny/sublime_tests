@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/16_sort.dir/sort.cpp.o -o 16_sort 

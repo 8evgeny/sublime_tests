@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/6_evaluation_order.dir/evaluation_order.cpp.o -o 6_evaluation_order 

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/15_queue.dir/queue.cpp.o -o 15_queue 

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/16_copy.dir/copy.cpp.o -o 16_copy 

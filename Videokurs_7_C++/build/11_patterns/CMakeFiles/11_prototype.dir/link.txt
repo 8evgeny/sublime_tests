@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/11_prototype.dir/prototype.cpp.o -o 11_prototype 

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/6_fold.dir/fold.cpp.o -o 6_fold 

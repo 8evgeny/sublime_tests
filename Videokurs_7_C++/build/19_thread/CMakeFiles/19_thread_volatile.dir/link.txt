@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/19_thread_volatile.dir/volatile.cpp.o -o 19_thread_volatile 

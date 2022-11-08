@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/6_filesystem.dir/filesystem.cpp.o -o 6_filesystem 

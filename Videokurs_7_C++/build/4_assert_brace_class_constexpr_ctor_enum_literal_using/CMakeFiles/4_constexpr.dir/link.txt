@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/4_constexpr.dir/constexpr.cpp.o -o 4_constexpr 

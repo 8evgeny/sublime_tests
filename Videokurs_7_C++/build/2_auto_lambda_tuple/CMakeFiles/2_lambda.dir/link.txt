@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/2_lambda.dir/lambda.cpp.o -o 2_lambda 

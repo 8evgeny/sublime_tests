@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/11_factory_method.dir/factory_method.cpp.o -o 11_factory_method 

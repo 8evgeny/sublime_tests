@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/14_observer.dir/observer.cpp.o -o 14_observer 

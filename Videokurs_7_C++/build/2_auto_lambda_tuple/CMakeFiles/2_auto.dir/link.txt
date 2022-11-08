@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/2_auto.dir/auto.cpp.o -o 2_auto 

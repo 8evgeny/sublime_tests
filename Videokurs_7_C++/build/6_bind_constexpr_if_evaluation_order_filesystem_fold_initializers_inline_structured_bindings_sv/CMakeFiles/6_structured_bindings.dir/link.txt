@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/6_structured_bindings.dir/structured_bindings.cpp.o -o 6_structured_bindings 

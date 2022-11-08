@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/4_constexpr_ninja.dir/constexpr_ninja.cpp.o -o 4_constexpr_ninja 

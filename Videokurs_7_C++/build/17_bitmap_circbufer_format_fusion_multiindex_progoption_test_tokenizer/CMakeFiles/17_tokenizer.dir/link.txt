@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/17_tokenizer.dir/tokenizer.cpp.o -o 17_tokenizer 

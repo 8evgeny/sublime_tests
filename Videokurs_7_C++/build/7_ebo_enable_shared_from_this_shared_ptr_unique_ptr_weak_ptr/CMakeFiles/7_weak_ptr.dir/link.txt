@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/7_weak_ptr.dir/weak_ptr.cpp.o -o 7_weak_ptr 

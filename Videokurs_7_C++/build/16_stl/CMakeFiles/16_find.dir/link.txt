@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/16_find.dir/find.cpp.o -o 16_find 

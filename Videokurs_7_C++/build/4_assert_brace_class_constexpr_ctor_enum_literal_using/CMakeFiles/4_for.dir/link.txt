@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/4_for.dir/for.cpp.o -o 4_for 

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -fsanitize=thread CMakeFiles/move.dir/move.cpp.o -o move 

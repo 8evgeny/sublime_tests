@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/15_list.dir/list.cpp.o -o 15_list 

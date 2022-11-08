@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/6_initializers.dir/initializers.cpp.o -o 6_initializers 

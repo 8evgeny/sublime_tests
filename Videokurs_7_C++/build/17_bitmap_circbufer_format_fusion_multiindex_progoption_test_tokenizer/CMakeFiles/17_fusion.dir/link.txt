@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/17_fusion.dir/fusion.cpp.o -o 17_fusion 
