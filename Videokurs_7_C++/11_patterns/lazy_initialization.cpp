@@ -46,7 +46,7 @@ int main(int, char* [])
 {
     File/*OnDemand*/ file("test.txt");
 
-    size_t n = 0/*2*/;
+    size_t n = 3/*2*/;
     for (size_t i = 0; i<n; ++i) {
         file.write(std::to_string(i));
     }

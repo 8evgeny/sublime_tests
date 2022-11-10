@@ -84,7 +84,7 @@ class LocalFactory : public EnvironmentFactory {
 
 int main(int argc, char* [])
 {
-    auto environment = argc ? Env::cloud : Env::local;
+    auto environment = argc > 1 ? Env::cloud : Env::local;
 
     EnvironmentFactory* factory;
     switch (environment) {
