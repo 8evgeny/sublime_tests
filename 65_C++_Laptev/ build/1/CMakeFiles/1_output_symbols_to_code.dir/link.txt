@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/1_output_symbols_to_code.dir/main.cpp.o -o 1_output_symbols_to_code 

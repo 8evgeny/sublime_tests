@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/4_static_variables_in_function.dir/main.cpp.o -o 4_static_variables_in_function 

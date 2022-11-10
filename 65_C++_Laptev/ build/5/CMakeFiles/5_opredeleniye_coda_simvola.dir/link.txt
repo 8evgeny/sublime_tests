@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/5_opredeleniye_coda_simvola.dir/main.cpp.o -o 5_opredeleniye_coda_simvola 

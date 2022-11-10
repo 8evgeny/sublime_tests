@@ -1,0 +1,17 @@
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/CMakeFiles/rebuild_cache.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/CMakeFiles/edit_cache.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/1/CMakeFiles/rebuild_cache.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/1/CMakeFiles/edit_cache.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/1/CMakeFiles/1_output_symbols_to_code.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/2/CMakeFiles/rebuild_cache.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/2/CMakeFiles/edit_cache.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/2/CMakeFiles/2_comma.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/3/CMakeFiles/rebuild_cache.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/3/CMakeFiles/edit_cache.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/3/CMakeFiles/3_for_comma.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/4/CMakeFiles/edit_cache.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/4/CMakeFiles/rebuild_cache.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/4/CMakeFiles/4_static_variables_in_function.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/5/CMakeFiles/rebuild_cache.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/5/CMakeFiles/edit_cache.dir
+/home/evg/SOFT/Github/Sublime_tests/65_C++_Laptev/ build/5/CMakeFiles/5_opredeleniye_coda_simvola.dir
