@@ -15,7 +15,6 @@ int main() {
     std::cout << "char8String2.size(): " << char8String2.size() << '\n';
     
     char8String2.replace(0, 5, u8"Hello ");
-    
     std::cout << "char8String2.size(): " << char8String2.size() << '\n';
  
 }
