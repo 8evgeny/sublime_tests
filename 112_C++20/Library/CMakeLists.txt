@@ -5,3 +5,4 @@ set(COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra")
 
 add_executable(Library_1_bindFront  bindFront.cpp)
 add_executable(Library_2_bit  bit.cpp)
+add_executable(Library_3_bitFloorCeil  bitFloorCeil.cpp)
