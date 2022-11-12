@@ -21,3 +21,5 @@ add_executable(Library_15_filterRanges  filterRanges.cpp)
 #add_executable(Library_16_format  format.cpp)
 #9 файлов далее  c format тоже не собираются
 add_executable(Library_26_getEndianness  getEndianness.cpp)
+#add_executable(Library_27_leapYear  leapYear.cpp)
+add_executable(Library_28_listComprehensionRanges  listComprehensionRanges.cpp)
