@@ -4,8 +4,8 @@
 #include <iostream>
 #include <span>
 #include <vector>
-template<class T>
-void print(T cont){
+template<typename T>
+void print(T& cont){
     for (auto &i:cont)
         std::cout<<i<<" ";
     std::cout<<"\n";
