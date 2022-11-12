@@ -18,3 +18,6 @@ add_executable(Library_11_createSpan  createSpan.cpp)
 add_executable(Library_13_eraseCpp20  eraseCpp20.cpp)
 add_executable(Library_14_eraseRemoveElements  eraseRemoveElements.cpp)
 add_executable(Library_15_filterRanges  filterRanges.cpp)
+#add_executable(Library_16_format  format.cpp)
+#9 файлов далее  c format тоже не собираются
+add_executable(Library_26_getEndianness  getEndianness.cpp)
