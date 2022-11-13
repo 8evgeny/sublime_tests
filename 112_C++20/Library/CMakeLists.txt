@@ -30,7 +30,7 @@ add_executable(Library_19_formatFillAlign  formatFillAlign.cpp)
 target_link_libraries(Library_19_formatFillAlign fmt::fmt)
 add_executable(Library_20_formatHash formatHash.cpp)#2 примера не работают
 target_link_libraries(Library_20_formatHash fmt::fmt)
-add_executable(Library_21_formatSign formatSign.cpp)#2 изменил namespace
+add_executable(Library_21_formatSign formatSign.cpp)#изменил namespace
 target_link_libraries(Library_21_formatSign fmt::fmt)
 
 add_executable(Library_22_formatType  formatType.cpp)
@@ -42,8 +42,9 @@ target_link_libraries(Library_22_formatType fmt::fmt)
 add_executable(Library_25_formatWidthPrecision  formatWidthPrecision.cpp)
 target_link_libraries(Library_25_formatWidthPrecision fmt::fmt)
 
-
 add_executable(Library_26_getEndianness  getEndianness.cpp)
 #add_executable(Library_27_leapYear  leapYear.cpp)
 add_executable(Library_28_listComprehensionRanges  listComprehensionRanges.cpp)
-
+#add_executable(Library_29_localTime  localTime.cpp)
+add_executable(Library_30_mapRanges  mapRanges.cpp)
+add_executable(Library_31_mathematicConstants  mathematicConstants.cpp)
