@@ -1,7 +1,7 @@
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -pthread -fcoroutines -fmodules-ts")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -pthread -fcoroutines -fmodules-ts")
 
 add_executable(Library_1_bindFront  bindFront.cpp)
 add_executable(Library_2_bit  bit.cpp)
@@ -18,8 +18,18 @@ add_executable(Library_11_createSpan  createSpan.cpp)
 add_executable(Library_13_eraseCpp20  eraseCpp20.cpp)
 add_executable(Library_14_eraseRemoveElements  eraseRemoveElements.cpp)
 add_executable(Library_15_filterRanges  filterRanges.cpp)
-#add_executable(Library_16_format  format.cpp)
+
+add_executable(Library_16_format  format.cpp )
+find_package(fmt)
+target_link_libraries(Library_16_format fmt::fmt)
+add_executable(Library_17_formatAlternate  formatAlternate.cpp)
+target_link_libraries(Library_17_formatAlternate fmt::fmt)
+add_executable(Library_18_formatArgumentID  formatArgumentID.cpp)
+target_link_libraries(Library_18_formatArgumentID fmt::fmt)
+
+
 #9 файлов далее  c format тоже не собираются
 add_executable(Library_26_getEndianness  getEndianness.cpp)
 #add_executable(Library_27_leapYear  leapYear.cpp)
 add_executable(Library_28_listComprehensionRanges  listComprehensionRanges.cpp)
+target_include_directories(Library_16_format PUBLIC ${fmt}/include/)
