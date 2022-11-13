@@ -10,3 +10,6 @@
 [submodule "99_C++ dlya profi/third_party/google/googletest"]
 	path = 99_C++ dlya profi/third_party/google/googletest
 	url = ../../google/googletest
+[submodule "75_С++20/Workarounds/fmt"]
+	path = 75_С++20/Workarounds/fmt
+	url = ../../fmtlib/fmt.git
