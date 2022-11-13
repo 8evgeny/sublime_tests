@@ -1,6 +1,6 @@
 // Debugging format specifiers for std::format() using try/catch
 #include <iostream>
-#include <format>
+#include <format.h>
 #include <numbers>   // For the pi constant
 #include <cmath>     // For the square root function
 
@@ -28,10 +28,10 @@ int main()
 
   try
   {
-    std::cout << std::format("Pond diameter required for {:.2} fish is {:.2} feet.\n",
-                             fish_count, pond_diameter);
+    std::cout << fmt::format("Pond diameter required for {:.2} fish is {:.2} feet.\n",
+                               std::to_string(fish_count), std::to_string(pond_diameter)); //Изменил
   }
-  catch (const std::format_error& error)
+  catch (const fmt::format_error& error)
   {
     std::cout << error.what();  // Outputs "precision not allowed for this argument type"
   }

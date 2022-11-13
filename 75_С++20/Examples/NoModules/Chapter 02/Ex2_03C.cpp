@@ -1,6 +1,6 @@
 // Format specifiers for std::format()
 #include <iostream>
-#include <format>
+#include <format.h>
 #include <numbers>   // For the pi constant
 #include <cmath>     // For the square root function
 
@@ -26,6 +26,6 @@ int main()
   // Calculate the pond diameter from the area
   const double pond_diameter{ 2.0 * std::sqrt(pond_area / std::numbers::pi) };
 
-  std::cout << std::format("Pond diameter required for {} fish is {:.2} feet.\n",
+  std::cout << fmt::format("Pond diameter required for {} fish is {:.2} feet.\n",
                            fish_count, pond_diameter);
 }

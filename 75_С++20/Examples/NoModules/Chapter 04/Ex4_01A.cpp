@@ -1,6 +1,6 @@
 // Comparing data values (output using std::format())
 #include <iostream>
-#include <format>
+#include <format.h>
 
 int main()
 {
@@ -13,8 +13,8 @@ int main()
   std::cout << "Enter a second character: ";
   std::cin >> second;
 
-  std::cout << std::format("The value of the expression {} < {} is {}\n",
+  std::cout << fmt::format("The value of the expression {} < {} is {}\n",
                            first, second, first < second);
-  std::cout << std::format("The value of the expression {} == {} is {}\n",
+  std::cout << fmt::format("The value of the expression {} == {} is {}\n",
                            first, second, first == second);
 }

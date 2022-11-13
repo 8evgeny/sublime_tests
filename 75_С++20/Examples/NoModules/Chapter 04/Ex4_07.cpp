@@ -1,6 +1,6 @@
 // Using the conditional operator to select output.
 #include <iostream>
-#include <format>
+#include <format.h>
 
 int main()
 {
@@ -16,5 +16,5 @@ int main()
   mice = brown + white;
 
   std::cout << 
-    std::format("You have {} {} in total.\n", mice, mice == 1 ? "mouse" : "mice");
+    fmt::format("You have {} {} in total.\n", mice, mice == 1 ? "mouse" : "mice");
 }
