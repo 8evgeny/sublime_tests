@@ -39,7 +39,13 @@ int parallel_sum(RandomIt beg, RandomIt end)
 
 int main()
 {
+    int k = 0;
     std::vector<int> v(10000, 1);
+    for (auto &i:v)
+    {
+        ++k;
+        i = k;
+    }
     std::cout << "The sum is " << parallel_sum(v.begin(), v.end()) << '\n';
 
     X x;

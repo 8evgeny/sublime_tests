@@ -5,8 +5,8 @@
 
 int main()
 {
-    std::vector<int> v{0,1,2,3,4,5};
-    for(int n : std::views::all(v) | std::views::take(2) ) {
+    std::vector<int> v{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    for(int n : std::views::all(v) | std::views::take(6) ) {
         std::cout << n << ' ';
     }
 
