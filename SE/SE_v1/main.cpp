@@ -14,11 +14,11 @@ int main(int argc, char** argv)
     nativ curr_Time(n);
     nativ my("Evgeny");
 //        nativ t("Танюша");
-    //    nativ d1("Stasya");
+//        nativ d1("Stasya");
     //    nativ d2("Taya");
     //    nativ d3("Maya");
     //    nativ d4("Ulyana");
-    //    nativ nat("Наташа");
+//        nativ nat("Наташа");
     //  muhurta mux;
     //  muhurta my_mux(my);
 
