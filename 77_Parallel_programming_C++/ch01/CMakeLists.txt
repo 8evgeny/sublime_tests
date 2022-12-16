@@ -1,6 +1,8 @@
 
 include(CMakeForceCompiler)
-
+include_directories(
+    /home/evg/intel/tbb/include
+)
 
 FIND_PACKAGE( TBB REQUIRED COMPONENTS tbb tbbmalloc tbbmalloc_proxy
     tbb_preview
