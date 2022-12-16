@@ -1,8 +1,8 @@
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} stdlib=libc++/-stdlib=libstdc++ -std=c++20 -pthread -fcoroutines -fmodules-ts")
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20 -pthread -fcoroutines -fmodules-ts")
+#stdlib=libc++/stdlib=libstdc++
 add_executable(Library_1_bindFront  bindFront.cpp)
 add_executable(Library_2_bit  bit.cpp)
 add_executable(Library_3_bitFloorCeil  bitFloorCeil.cpp)
@@ -20,8 +20,8 @@ add_executable(Library_14_eraseRemoveElements  eraseRemoveElements.cpp)
 add_executable(Library_15_filterRanges  filterRanges.cpp)
 
 find_package(fmt)
-add_executable(Library_16_format  format.cpp )
-target_link_libraries(Library_16_format fmt::fmt)
+#add_executable(Library_16_format  format.cpp )
+#target_link_libraries(Library_16_format fmt::fmt)
 add_executable(Library_17_formatAlternate  formatAlternate.cpp)
 target_link_libraries(Library_17_formatAlternate fmt::fmt)
 add_executable(Library_18_formatArgumentID  formatArgumentID.cpp)
