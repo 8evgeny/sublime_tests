@@ -20,7 +20,8 @@
 //#include <unistd.h>
 //using namespace std;
 
-#define PORT 8081
+//#define PORT 8081
+#define PORT 80
 
 char* parse(char line[], const char symbol[]);
 char* parse_method(char line[], const char symbol[]);
@@ -197,7 +198,7 @@ int main(int argc, char const *argv[])
                 printf("\n------------------Server sent----------------------------------------------------\n");
             }
             else if (parse_string_method[0] == 'P' && parse_string_method[1] == 'O' && parse_string_method[2] == 'S' && parse_string_method[3] == 'T'){
-                char *find_string = (char*)malloc(200);
+                char *find_string =(char*)malloc(200);
                 find_string = find_token(buffer, "\r\n", "action");
                 strcat(copy_head, "Content-Type: text/plain \r\n\r\n"); //\r\n\r\n
                 //strcat(copy_head, "Content-Length: 12 \n");
