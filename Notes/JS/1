@@ -1,0 +1,5 @@
+// Открыть окно и в нем запустить файл HTML
+function openWindow() {
+msgWindow= open("index.html")
+}
+
