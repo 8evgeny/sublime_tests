@@ -1,0 +1,26 @@
+# ninja log v5
+0	185	0	CMakeFiles/web_server_test_autogen	752380057f31652f
+0	185	0	web_server_test_autogen/mocs_compilation.cpp	752380057f31652f
+185	1074	1683636428252861000	CMakeFiles/web_server_test.dir/Server/main.cpp.o	39a56febcc14c83d
+185	1101	1683636428280861456	CMakeFiles/web_server_test.dir/web_server_test_autogen/mocs_compilation.cpp.o	99378ab223bb1174
+185	1122	1683636428300861781	CMakeFiles/web_server_test.dir/Server/SslServer.cpp.o	90ec239b298ea928
+185	1262	1683636428440864058	CMakeFiles/web_server_test.dir/Server/ServerExample.cpp.o	ce8b9f3eae26bc99
+1262	1398	1683636428576866270	web_server_test	2be29e916b5d7da4
+0	121	0	CMakeFiles/web_server_SSL_test_autogen	6b5be74aae9e25ac
+0	121	0	web_server_SSL_test_autogen/mocs_compilation.cpp	6b5be74aae9e25ac
+121	964	1683636596409232513	CMakeFiles/web_server_SSL_test.dir/Server/main.cpp.o	756ec8a6609870e2
+121	1009	1683636596453231790	CMakeFiles/web_server_SSL_test.dir/web_server_SSL_test_autogen/mocs_compilation.cpp.o	6f27fce1ad02751e
+121	1044	1683636596489231198	CMakeFiles/web_server_SSL_test.dir/Server/SslServer.cpp.o	a1e55d651204b17d
+121	1173	1683636596617229094	CMakeFiles/web_server_SSL_test.dir/Server/ServerExample.cpp.o	7366ab22c17c108f
+1173	1307	1683636596749226924	web_server_SSL_test	9939df5cd136fbe8
+1	9	0	CMakeFiles/web_server_SSL_test_autogen	6b5be74aae9e25ac
+1	9	0	web_server_SSL_test_autogen/mocs_compilation.cpp	6b5be74aae9e25ac
+0	8	0	CMakeFiles/web_server_SSL_test_autogen	6b5be74aae9e25ac
+0	8	0	web_server_SSL_test_autogen/mocs_compilation.cpp	6b5be74aae9e25ac
+1	8	0	CMakeFiles/web_server_SSL_test_autogen	6b5be74aae9e25ac
+1	8	0	web_server_SSL_test_autogen/mocs_compilation.cpp	6b5be74aae9e25ac
+8	1007	1683636784311047459	CMakeFiles/web_server_SSL_test.dir/Server/ServerExample.cpp.o	7366ab22c17c108f
+1007	1140	1683636784443046488	web_server_SSL_test	9939df5cd136fbe8
+0	8	0	CMakeFiles/web_server_SSL_test_autogen	6b5be74aae9e25ac
+0	8	0	web_server_SSL_test_autogen/mocs_compilation.cpp	6b5be74aae9e25ac
+8	152	1683637062178297686	web_server_SSL_test	9939df5cd136fbe8
