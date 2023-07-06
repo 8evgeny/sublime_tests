@@ -1,0 +1,115 @@
+список всех открытых портов, включая TCP и UDP
+
+netstat -lntu
+netstat -tulpn
+ss -lntu
+
+С помощью команды netstat убедитесь, что порт 4000 не используется:
+netstat -na | grep :4000
+ss -na | grep :4000
+
+ufw — клиент командной строки для брандмауэра UncomplicatedFirewall.
+Команда будет выглядеть следующим образом:
+sudo ufw allow 4000
+
+Для других дистрибутивов Linux
+Изменить системные правила фильтрации пакетов IPv4 можно с помощью iptables.
+iptables -A INPUT -p tcp --dport 4000 -j ACCEPT
+
+При отправке вывода ls любому подключенному клиенту, сначала запустите netcat (nc) и прослушивайте (-l) порт (-p) 4000:
+ls -l | nc -l -p 4000
+
+В новом терминале 
+telnet localhost 4000
+Эта команда пытается открыть TCP-соединение на локальном хосте через порт 4000.
+
+С помощью nmap проверьте, открыт ли порт (-p):
+nmap localhost -p 4000
+
+To list open IPv4 connections use the lsof command:
+# lsof -Pnl +M -i4
+
+The ss command is used to dump socket statistics. It allows showing information similar to netstat command. It can display more TCP and state information than other tools
+# ss -s
+# ss -l
+# ss -pl
+# ss -o state established '( dport = :smtp or sport = :smtp )'
+
+
+
+1. Как проверить TCP порт
+Существует я думаю много всяких способов. но вот самые эффективные:
+
+с помощью telnet
+с помощью nc (netcat)
+с помощью nmap
+ 
+Ну а теперь разберем по конкретней
+
+С помощью telnet
+Если соединение удачно, то увидим такой ответ:
+$telnet 11.1.1.11 25
+Trying 11.11.11.11...
+Connected to mail.domain.com.ua.
+Escape character is '^]'.
+220 mail.domain.com.ua ESMTP Postfix
+Если же неудачное, то такое:
+$telnet 11.11.11.11 23
+Trying 11.11.11.11...
+telnet: connect to address 11.11.11.11: Operation timed out
+telnet: Unable to connect to remote host
+Иногда в дополнении появляется такое:
+telnet: connect to address 11.11.11.11: Operation not permitted
+
+С помощью nc (netcat)
+Если соединение удачно, то увидим такой ответ:
+$nc -v 11.11.11.11 25
+Connection to 11.11.11.11 25 port [tcp/smtp] succeeded!
+220 mail.domain.com.ua ESMTP Postfix
+
+Если же неудачное, то такое:
+$nc -v 11.11.11.11 23
+nc: connect to 11.11.11.11 port 23 (tcp) failed: Operation timed out
+
+С помощью nmap
+Если соединение удачно, то увидим такой ответ:
+#nmap  -p25 11.11.11.11
+PORT   STATE SERVICE
+25/tcp open  smtp
+
+Если же неудачное, то такое:
+#nmap  -p23 11.11.11.11
+PORT   STATE  SERVICE
+23/tcp closed telnet
+Иногда при сканнировании выводится такое сообщение:
+PORT   STATE    SERVICE
+23/tcp filtered telnet
+тогда сказать однозначно открыт или закрыт – нельзя.
+
+2. Как проверить UDP порт
+Тут есть два способа, с помощью nc (netcat) и с помощью nmap
+
+С помощью nc (netcat)
+Если соединение удачно, то увидим такой ответ:
+$nc -uv 11.11.11.12 53
+Connection to 11.11.11.12 53 port [udp/domain] succeeded!
+Если же неудачное, то ничего не выводиться:
+$nc -uv 11.1.1.12 50
+$
+
+С помощью nmap
+Если соединение удачно, то увидим такой ответ:
+#nmap -sU -p U:53 11.1.11.12
+PORT   STATE         SERVICE
+53/udp open|filtered domain
+
+Если же неудачное, то такое:
+#nmap -sU -p U:53 11.1.11.13
+PORT   STATE  SERVICE
+53/udp closed domain
+
+
+
+
+
+
