@@ -1,4 +1,5 @@
 *.txt.user.*
 *.txt.user
 build
-
+cmake-build-debug
+.idea
