@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "smallest_common_divisor"
+name = "biggest_common_divisor"
 version = "0.1.0"
