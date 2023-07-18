@@ -4,7 +4,7 @@ include(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/conanbuildinfo.cmake)
 conan_basic_setup()
 
 add_executable(${PROJECT_NAME} main.cpp)
-
+find_package (Boost REQUIRED COMPONENTS  random )
 set_target_properties(
     ${PROJECT_NAME}
     PROPERTIES
@@ -14,4 +14,5 @@ set_target_properties(
     )
 target_link_libraries(${PROJECT_NAME}
     ${CONAN_LIBS}
+    ${Boost_LIBRARIES}
     )

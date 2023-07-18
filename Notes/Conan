@@ -5,6 +5,9 @@ conan inspect poco/1.9.4
 conan install .
 conan install . --profile profile
 
+!!Вы можете обновить свой профиль по умолчанию, перейти в свой пользовательский дом ~/.conan/profiles/default
+
+
 файл profile
 [settings]
 arch=x86_64
