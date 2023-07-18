@@ -1,9 +1,9 @@
 [settings]
     arch=x86_64
-    build_type=Release
+    build_type=Debug
     compiler=gcc
-    compiler.libcxx=libstdc++11
-    compiler.version=9
+    compiler.libcxx=libstdc++
+    compiler.version=11
     os=Linux
 
 [requires]
@@ -15,18 +15,18 @@
 [full_settings]
     arch=x86_64
     arch_build=x86_64
-    build_type=Release
+    build_type=Debug
     compiler=gcc
-    compiler.libcxx=libstdc++11
-    compiler.version=9
+    compiler.libcxx=libstdc++
+    compiler.version=11
     os=Linux
     os_build=Linux
 
 [full_requires]
-    boost/1.77.0:ca891ed5c8e67ebb3e46639c100abdbca6d8b11e
-    bzip2/1.0.8:da606cf731e334010b0bf6e85a2a6f891b9f36b0
-    libbacktrace/cci.20210118:6af9cc7cb931c5ad942174fd7838eb655717c709
-    zlib/1.2.11:6af9cc7cb931c5ad942174fd7838eb655717c709
+    boost/1.77.0:fb79f387bfd721655dc9bd01764e2c1fb2c4756d
+    bzip2/1.0.8:76bd63d0cd275bc555bda09b7f93740254ba3515
+    libbacktrace/cci.20210118:be27726f9885116da1158027505be62e913cd585
+    zlib/1.2.11:be27726f9885116da1158027505be62e913cd585
 
 [full_options]
     boost:addr2line_location=/usr/bin/addr2line
@@ -97,7 +97,6 @@
     libbacktrace:fPIC=True
     libbacktrace:shared=False
     zlib:fPIC=True
-    zlib:minizip=deprecated
     zlib:shared=False
 
 [recipe_hash]

@@ -16,12 +16,12 @@ conan_basic_setup()
 #                    SETTINGS ${settings})
 
 
-find_package (Boost REQUIRED COMPONENTS  ALL)
-if(Boost_FOUND)
+#find_package (Boost REQUIRED COMPONENTS  gil)
+#if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
-    link_directories(${Boost_LIBRARY_DIRS})
-    add_definitions(${Boost_DEFINITIONS})
-endif()
+#    link_directories(${Boost_LIBRARY_DIRS})
+#    add_definitions(${Boost_DEFINITIONS})
+#endif()
 add_executable(${PROJECT_NAME} main.cpp)
 
 set_target_properties(
@@ -34,6 +34,5 @@ set_target_properties(
 target_link_libraries(${PROJECT_NAME}
     ${CONAN_LIBS}
     -lpng
-    ${Boost_LIBRARIES}
-    Boost::gil
+#    ${Boost_LIBRARIES}
     )
