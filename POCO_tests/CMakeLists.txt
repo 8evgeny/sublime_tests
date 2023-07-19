@@ -14,6 +14,8 @@ add_subdirectory(DynamicAny_Type)
 
 add_subdirectory(Timestamp)
 add_subdirectory(DateTimeClass)
+add_subdirectory(LocalDateTime)
+add_subdirectory(TimespanClass)
 
 #add_subdirectory(Foundation)
 #add_subdirectory(XML)
