@@ -12,6 +12,9 @@ add_subdirectory(md5)
 add_subdirectory(Any_Type)
 add_subdirectory(DynamicAny_Type)
 
+add_subdirectory(Timestamp)
+
+
 #add_subdirectory(Foundation)
 #add_subdirectory(XML)
 #add_subdirectory(Util)
