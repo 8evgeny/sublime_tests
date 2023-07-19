@@ -6,7 +6,10 @@ conan install .
 conan install . --profile profile
 
 !!Вы можете обновить свой профиль по умолчанию, перейти в свой пользовательский дом ~/.conan/profiles/default
-
+!! pip install -U conan  
+!! conan install . --build=missing
+  
+!!  pip install conan==1.59   старая версия
 
 файл profile
 [settings]

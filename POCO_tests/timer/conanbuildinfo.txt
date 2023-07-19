@@ -1,121 +1,68 @@
 [includedirs]
-/home/evgeny/.conan/data/poco/1.11.0/_/_/package/c4b73263ed9434eb3f9b72f13209edcd5db71e9e/include
-/home/evgeny/.conan/data/pcre/8.45/_/_/package/87087120c448298530c012e627c1a0b8f062586d/include
-/home/evgeny/.conan/data/sqlite3/3.36.0/_/_/package/c0cc1a2703aaeb2777d683089def26db57cf15e6/include
-/home/evgeny/.conan/data/libpq/13.4/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/include
-/home/evgeny/.conan/data/apr-util/1.6.1/_/_/package/15462a466576cd30e6c375ccf92dc4b262749330/include
-/home/evgeny/.conan/data/libmysqlclient/8.0.25/_/_/package/a96aca3b0b3e76a168b210d0c40f1422dce00497/include
-/home/evgeny/.conan/data/bzip2/1.0.8/_/_/package/da606cf731e334010b0bf6e85a2a6f891b9f36b0/include
-/home/evgeny/.conan/data/zlib/1.2.11/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/include
-/home/evgeny/.conan/data/expat/2.4.1/_/_/package/c215f67ac7fc6a34d9d0fb90b0450016be569d86/include
-/home/evgeny/.conan/data/openssl/1.1.1l/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/include
-/home/evgeny/.conan/data/apr/1.7.0/_/_/package/435690f0682a7e600daf767c97acf6f625b77db0/include
-/home/evgeny/.conan/data/libiconv/1.16/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/include
-/home/evgeny/.conan/data/zstd/1.5.0/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/include
-/home/evgeny/.conan/data/lz4/1.9.3/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/include
+/home/evg/.conan/data/poco/1.9.4/_/_/package/8e2dc3b36b4a78962f7d8f23a7d63d248220839c/include
+/home/evg/.conan/data/pcre/8.45/_/_/package/a300c42b2a276794dd9cd04bbc8b37e5b2d20157/include
+/home/evg/.conan/data/expat/2.5.0/_/_/package/3242ee86fec793e7767fb97cb42848d950351d05/include
+/home/evg/.conan/data/sqlite3/3.40.1/_/_/package/0a79a8c00509ac94d8a0a57b7da1df9f2a301aef/include
+/home/evg/.conan/data/openssl/1.1.1t/_/_/package/be27726f9885116da1158027505be62e913cd585/include
+/home/evg/.conan/data/bzip2/1.0.8/_/_/package/76bd63d0cd275bc555bda09b7f93740254ba3515/include
+/home/evg/.conan/data/zlib/1.2.13/_/_/package/be27726f9885116da1158027505be62e913cd585/include
 
 [libdirs]
-/home/evgeny/.conan/data/poco/1.11.0/_/_/package/c4b73263ed9434eb3f9b72f13209edcd5db71e9e/lib
-/home/evgeny/.conan/data/pcre/8.45/_/_/package/87087120c448298530c012e627c1a0b8f062586d/lib
-/home/evgeny/.conan/data/sqlite3/3.36.0/_/_/package/c0cc1a2703aaeb2777d683089def26db57cf15e6/lib
-/home/evgeny/.conan/data/libpq/13.4/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib
-/home/evgeny/.conan/data/apr-util/1.6.1/_/_/package/15462a466576cd30e6c375ccf92dc4b262749330/lib
-/home/evgeny/.conan/data/libmysqlclient/8.0.25/_/_/package/a96aca3b0b3e76a168b210d0c40f1422dce00497/lib
-/home/evgeny/.conan/data/bzip2/1.0.8/_/_/package/da606cf731e334010b0bf6e85a2a6f891b9f36b0/lib
-/home/evgeny/.conan/data/zlib/1.2.11/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib
-/home/evgeny/.conan/data/expat/2.4.1/_/_/package/c215f67ac7fc6a34d9d0fb90b0450016be569d86/lib
-/home/evgeny/.conan/data/openssl/1.1.1l/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib
-/home/evgeny/.conan/data/apr/1.7.0/_/_/package/435690f0682a7e600daf767c97acf6f625b77db0/lib
-/home/evgeny/.conan/data/libiconv/1.16/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib
-/home/evgeny/.conan/data/zstd/1.5.0/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib
-/home/evgeny/.conan/data/lz4/1.9.3/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib
+/home/evg/.conan/data/poco/1.9.4/_/_/package/8e2dc3b36b4a78962f7d8f23a7d63d248220839c/lib
+/home/evg/.conan/data/pcre/8.45/_/_/package/a300c42b2a276794dd9cd04bbc8b37e5b2d20157/lib
+/home/evg/.conan/data/expat/2.5.0/_/_/package/3242ee86fec793e7767fb97cb42848d950351d05/lib
+/home/evg/.conan/data/sqlite3/3.40.1/_/_/package/0a79a8c00509ac94d8a0a57b7da1df9f2a301aef/lib
+/home/evg/.conan/data/openssl/1.1.1t/_/_/package/be27726f9885116da1158027505be62e913cd585/lib
+/home/evg/.conan/data/bzip2/1.0.8/_/_/package/76bd63d0cd275bc555bda09b7f93740254ba3515/lib
+/home/evg/.conan/data/zlib/1.2.13/_/_/package/be27726f9885116da1158027505be62e913cd585/lib
 
 [bindirs]
-/home/evgeny/.conan/data/poco/1.11.0/_/_/package/c4b73263ed9434eb3f9b72f13209edcd5db71e9e/bin
-/home/evgeny/.conan/data/pcre/8.45/_/_/package/87087120c448298530c012e627c1a0b8f062586d/bin
-/home/evgeny/.conan/data/sqlite3/3.36.0/_/_/package/c0cc1a2703aaeb2777d683089def26db57cf15e6/bin
-/home/evgeny/.conan/data/libpq/13.4/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/bin
-/home/evgeny/.conan/data/apr-util/1.6.1/_/_/package/15462a466576cd30e6c375ccf92dc4b262749330/bin
-/home/evgeny/.conan/data/libmysqlclient/8.0.25/_/_/package/a96aca3b0b3e76a168b210d0c40f1422dce00497/bin
-/home/evgeny/.conan/data/bzip2/1.0.8/_/_/package/da606cf731e334010b0bf6e85a2a6f891b9f36b0/bin
-/home/evgeny/.conan/data/openssl/1.1.1l/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/bin
-/home/evgeny/.conan/data/apr/1.7.0/_/_/package/435690f0682a7e600daf767c97acf6f625b77db0/bin
-/home/evgeny/.conan/data/libiconv/1.16/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/bin
+/home/evg/.conan/data/pcre/8.45/_/_/package/a300c42b2a276794dd9cd04bbc8b37e5b2d20157/bin
+/home/evg/.conan/data/sqlite3/3.40.1/_/_/package/0a79a8c00509ac94d8a0a57b7da1df9f2a301aef/bin
+/home/evg/.conan/data/openssl/1.1.1t/_/_/package/be27726f9885116da1158027505be62e913cd585/bin
+/home/evg/.conan/data/bzip2/1.0.8/_/_/package/76bd63d0cd275bc555bda09b7f93740254ba3515/bin
 
 [resdirs]
 
 
 [builddirs]
-/home/evgeny/.conan/data/poco/1.11.0/_/_/package/c4b73263ed9434eb3f9b72f13209edcd5db71e9e/
-/home/evgeny/.conan/data/pcre/8.45/_/_/package/87087120c448298530c012e627c1a0b8f062586d/
-/home/evgeny/.conan/data/sqlite3/3.36.0/_/_/package/c0cc1a2703aaeb2777d683089def26db57cf15e6/
-/home/evgeny/.conan/data/sqlite3/3.36.0/_/_/package/c0cc1a2703aaeb2777d683089def26db57cf15e6/lib/cmake
-/home/evgeny/.conan/data/libpq/13.4/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/
-/home/evgeny/.conan/data/apr-util/1.6.1/_/_/package/15462a466576cd30e6c375ccf92dc4b262749330/
-/home/evgeny/.conan/data/libmysqlclient/8.0.25/_/_/package/a96aca3b0b3e76a168b210d0c40f1422dce00497/
-/home/evgeny/.conan/data/bzip2/1.0.8/_/_/package/da606cf731e334010b0bf6e85a2a6f891b9f36b0/
-/home/evgeny/.conan/data/bzip2/1.0.8/_/_/package/da606cf731e334010b0bf6e85a2a6f891b9f36b0/lib/cmake
-/home/evgeny/.conan/data/zlib/1.2.11/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/
-/home/evgeny/.conan/data/expat/2.4.1/_/_/package/c215f67ac7fc6a34d9d0fb90b0450016be569d86/
-/home/evgeny/.conan/data/openssl/1.1.1l/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/
-/home/evgeny/.conan/data/openssl/1.1.1l/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib/cmake
-/home/evgeny/.conan/data/apr/1.7.0/_/_/package/435690f0682a7e600daf767c97acf6f625b77db0/
-/home/evgeny/.conan/data/libiconv/1.16/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/
-/home/evgeny/.conan/data/zstd/1.5.0/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/
-/home/evgeny/.conan/data/lz4/1.9.3/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/
+/home/evg/.conan/data/expat/2.5.0/_/_/package/3242ee86fec793e7767fb97cb42848d950351d05/
+/home/evg/.conan/data/bzip2/1.0.8/_/_/package/76bd63d0cd275bc555bda09b7f93740254ba3515/
+/home/evg/.conan/data/zlib/1.2.13/_/_/package/be27726f9885116da1158027505be62e913cd585/
 
 [libs]
-PocoDataMySQL
-PocoDataPostgreSQL
-PocoDataSQLite
-PocoEncodings
-PocoJWT
-PocoMongoDB
-PocoNetSSL
-PocoCrypto
-PocoRedis
-PocoNet
-PocoZip
-PocoUtil
-PocoJSON
-PocoXML
-PocoActiveRecord
-PocoData
-PocoFoundation
+PocoDataSQLited
+PocoDatad
+PocoEncodingsd
+PocoMongoDBd
+PocoNetSSLd
+PocoCryptod
+PocoRedisd
+PocoNetd
+PocoZipd
+PocoUtild
+PocoJSONd
+PocoXMLd
+PocoFoundationd
 pcreposix
 pcre
 pcre16
 pcre32
-sqlite3
-pq
-pgcommon
-pgcommon_shlib
-pgport
-pgport_shlib
-aprutil-1
-mysqlclient
-bz2
-z
 expat
+sqlite3
 ssl
 crypto
-apr-1
-iconv
-charset
-zstd
-lz4
+bz2
+z
 
 [system_libs]
-stdc++
 m
-rt
 dl
 pthread
+rt
 
 [defines]
-APR_DECLARE_STATIC
 XML_STATIC
-APU_DECLARE_STATIC
 PCRE_STATIC=1
 POCO_STATIC=ON
 POCO_UNBUNDLED
@@ -146,38 +93,34 @@ POCO_UNBUNDLED
 
 
 [includedirs_poco]
-/home/evgeny/.conan/data/poco/1.11.0/_/_/package/c4b73263ed9434eb3f9b72f13209edcd5db71e9e/include
+/home/evg/.conan/data/poco/1.9.4/_/_/package/8e2dc3b36b4a78962f7d8f23a7d63d248220839c/include
 
 [libdirs_poco]
-/home/evgeny/.conan/data/poco/1.11.0/_/_/package/c4b73263ed9434eb3f9b72f13209edcd5db71e9e/lib
+/home/evg/.conan/data/poco/1.9.4/_/_/package/8e2dc3b36b4a78962f7d8f23a7d63d248220839c/lib
 
 [bindirs_poco]
-/home/evgeny/.conan/data/poco/1.11.0/_/_/package/c4b73263ed9434eb3f9b72f13209edcd5db71e9e/bin
+
 
 [resdirs_poco]
 
 
 [builddirs_poco]
-/home/evgeny/.conan/data/poco/1.11.0/_/_/package/c4b73263ed9434eb3f9b72f13209edcd5db71e9e/
+
 
 [libs_poco]
-PocoDataMySQL
-PocoDataPostgreSQL
-PocoDataSQLite
-PocoEncodings
-PocoJWT
-PocoMongoDB
-PocoNetSSL
-PocoCrypto
-PocoRedis
-PocoNet
-PocoZip
-PocoUtil
-PocoJSON
-PocoXML
-PocoActiveRecord
-PocoData
-PocoFoundation
+PocoDataSQLited
+PocoDatad
+PocoEncodingsd
+PocoMongoDBd
+PocoNetSSLd
+PocoCryptod
+PocoRedisd
+PocoNetd
+PocoZipd
+PocoUtild
+PocoJSONd
+PocoXMLd
+PocoFoundationd
 
 [system_libs_poco]
 pthread
@@ -213,13 +156,13 @@ POCO_UNBUNDLED
 
 
 [rootpath_poco]
-/home/evgeny/.conan/data/poco/1.11.0/_/_/package/c4b73263ed9434eb3f9b72f13209edcd5db71e9e
+/home/evg/.conan/data/poco/1.9.4/_/_/package/8e2dc3b36b4a78962f7d8f23a7d63d248220839c
 
 [name_poco]
 poco
 
 [version_poco]
-1.11.0
+1.9.4
 
 [generatornames_poco]
 cmake_find_package=Poco
@@ -231,19 +174,19 @@ cmake_find_package_multi=Poco
 
 
 [includedirs_pcre]
-/home/evgeny/.conan/data/pcre/8.45/_/_/package/87087120c448298530c012e627c1a0b8f062586d/include
+/home/evg/.conan/data/pcre/8.45/_/_/package/a300c42b2a276794dd9cd04bbc8b37e5b2d20157/include
 
 [libdirs_pcre]
-/home/evgeny/.conan/data/pcre/8.45/_/_/package/87087120c448298530c012e627c1a0b8f062586d/lib
+/home/evg/.conan/data/pcre/8.45/_/_/package/a300c42b2a276794dd9cd04bbc8b37e5b2d20157/lib
 
 [bindirs_pcre]
-/home/evgeny/.conan/data/pcre/8.45/_/_/package/87087120c448298530c012e627c1a0b8f062586d/bin
+/home/evg/.conan/data/pcre/8.45/_/_/package/a300c42b2a276794dd9cd04bbc8b37e5b2d20157/bin
 
 [resdirs_pcre]
 
 
 [builddirs_pcre]
-/home/evgeny/.conan/data/pcre/8.45/_/_/package/87087120c448298530c012e627c1a0b8f062586d/
+
 
 [libs_pcre]
 pcreposix
@@ -282,7 +225,7 @@ PCRE_STATIC=1
 
 
 [rootpath_pcre]
-/home/evgeny/.conan/data/pcre/8.45/_/_/package/87087120c448298530c012e627c1a0b8f062586d
+/home/evg/.conan/data/pcre/8.45/_/_/package/a300c42b2a276794dd9cd04bbc8b37e5b2d20157
 
 [name_pcre]
 pcre
@@ -298,21 +241,85 @@ cmake_find_package_multi=PCRE
 
 
 
+[includedirs_expat]
+/home/evg/.conan/data/expat/2.5.0/_/_/package/3242ee86fec793e7767fb97cb42848d950351d05/include
+
+[libdirs_expat]
+/home/evg/.conan/data/expat/2.5.0/_/_/package/3242ee86fec793e7767fb97cb42848d950351d05/lib
+
+[bindirs_expat]
+
+
+[resdirs_expat]
+
+
+[builddirs_expat]
+/home/evg/.conan/data/expat/2.5.0/_/_/package/3242ee86fec793e7767fb97cb42848d950351d05/
+
+[libs_expat]
+expat
+
+[system_libs_expat]
+m
+
+[defines_expat]
+XML_STATIC
+
+[cppflags_expat]
+
+
+[cxxflags_expat]
+
+
+[cflags_expat]
+
+
+[sharedlinkflags_expat]
+
+
+[exelinkflags_expat]
+
+
+[sysroot_expat]
+
+
+[frameworks_expat]
+
+
+[frameworkdirs_expat]
+
+
+[rootpath_expat]
+/home/evg/.conan/data/expat/2.5.0/_/_/package/3242ee86fec793e7767fb97cb42848d950351d05
+
+[name_expat]
+expat
+
+[version_expat]
+2.5.0
+
+[generatornames_expat]
+cmake_find_package=EXPAT
+cmake_find_package_multi=expat
+
+[generatorfilenames_expat]
+
+
+
 [includedirs_sqlite3]
-/home/evgeny/.conan/data/sqlite3/3.36.0/_/_/package/c0cc1a2703aaeb2777d683089def26db57cf15e6/include
+/home/evg/.conan/data/sqlite3/3.40.1/_/_/package/0a79a8c00509ac94d8a0a57b7da1df9f2a301aef/include
 
 [libdirs_sqlite3]
-/home/evgeny/.conan/data/sqlite3/3.36.0/_/_/package/c0cc1a2703aaeb2777d683089def26db57cf15e6/lib
+/home/evg/.conan/data/sqlite3/3.40.1/_/_/package/0a79a8c00509ac94d8a0a57b7da1df9f2a301aef/lib
 
 [bindirs_sqlite3]
-/home/evgeny/.conan/data/sqlite3/3.36.0/_/_/package/c0cc1a2703aaeb2777d683089def26db57cf15e6/bin
+/home/evg/.conan/data/sqlite3/3.40.1/_/_/package/0a79a8c00509ac94d8a0a57b7da1df9f2a301aef/bin
 
 [resdirs_sqlite3]
 
 
 [builddirs_sqlite3]
-/home/evgeny/.conan/data/sqlite3/3.36.0/_/_/package/c0cc1a2703aaeb2777d683089def26db57cf15e6/
-/home/evgeny/.conan/data/sqlite3/3.36.0/_/_/package/c0cc1a2703aaeb2777d683089def26db57cf15e6/lib/cmake
+
 
 [libs_sqlite3]
 sqlite3
@@ -350,13 +357,13 @@ m
 
 
 [rootpath_sqlite3]
-/home/evgeny/.conan/data/sqlite3/3.36.0/_/_/package/c0cc1a2703aaeb2777d683089def26db57cf15e6
+/home/evg/.conan/data/sqlite3/3.40.1/_/_/package/0a79a8c00509ac94d8a0a57b7da1df9f2a301aef
 
 [name_sqlite3]
 sqlite3
 
 [version_sqlite3]
-3.36.0
+3.40.1
 
 [generatornames_sqlite3]
 cmake_find_package=SQLite
@@ -367,419 +374,20 @@ cmake_find_package=SQLite3
 cmake_find_package_multi=SQLite3
 
 
-[includedirs_libpq]
-/home/evgeny/.conan/data/libpq/13.4/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/include
-
-[libdirs_libpq]
-/home/evgeny/.conan/data/libpq/13.4/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib
-
-[bindirs_libpq]
-/home/evgeny/.conan/data/libpq/13.4/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/bin
-
-[resdirs_libpq]
-
-
-[builddirs_libpq]
-/home/evgeny/.conan/data/libpq/13.4/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/
-
-[libs_libpq]
-pq
-pgcommon
-pgcommon_shlib
-pgport
-pgport_shlib
-
-[system_libs_libpq]
-pthread
-
-[defines_libpq]
-
-
-[cppflags_libpq]
-
-
-[cxxflags_libpq]
-
-
-[cflags_libpq]
-
-
-[sharedlinkflags_libpq]
-
-
-[exelinkflags_libpq]
-
-
-[sysroot_libpq]
-
-
-[frameworks_libpq]
-
-
-[frameworkdirs_libpq]
-
-
-[rootpath_libpq]
-/home/evgeny/.conan/data/libpq/13.4/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709
-
-[name_libpq]
-libpq
-
-[version_libpq]
-13.4
-
-[generatornames_libpq]
-cmake_find_package=PostgreSQL
-cmake_find_package_multi=PostgreSQL
-
-[generatorfilenames_libpq]
-
-
-
-[includedirs_apr-util]
-/home/evgeny/.conan/data/apr-util/1.6.1/_/_/package/15462a466576cd30e6c375ccf92dc4b262749330/include
-
-[libdirs_apr-util]
-/home/evgeny/.conan/data/apr-util/1.6.1/_/_/package/15462a466576cd30e6c375ccf92dc4b262749330/lib
-
-[bindirs_apr-util]
-/home/evgeny/.conan/data/apr-util/1.6.1/_/_/package/15462a466576cd30e6c375ccf92dc4b262749330/bin
-
-[resdirs_apr-util]
-
-
-[builddirs_apr-util]
-/home/evgeny/.conan/data/apr-util/1.6.1/_/_/package/15462a466576cd30e6c375ccf92dc4b262749330/
-
-[libs_apr-util]
-aprutil-1
-
-[system_libs_apr-util]
-dl
-pthread
-rt
-
-[defines_apr-util]
-APU_DECLARE_STATIC
-
-[cppflags_apr-util]
-
-
-[cxxflags_apr-util]
-
-
-[cflags_apr-util]
-
-
-[sharedlinkflags_apr-util]
-
-
-[exelinkflags_apr-util]
-
-
-[sysroot_apr-util]
-
-
-[frameworks_apr-util]
-
-
-[frameworkdirs_apr-util]
-
-
-[rootpath_apr-util]
-/home/evgeny/.conan/data/apr-util/1.6.1/_/_/package/15462a466576cd30e6c375ccf92dc4b262749330
-
-[name_apr-util]
-apr-util
-
-[version_apr-util]
-1.6.1
-
-[generatornames_apr-util]
-pkg_config=apr-util-1
-
-[generatorfilenames_apr-util]
-
-
-
-[includedirs_libmysqlclient]
-/home/evgeny/.conan/data/libmysqlclient/8.0.25/_/_/package/a96aca3b0b3e76a168b210d0c40f1422dce00497/include
-
-[libdirs_libmysqlclient]
-/home/evgeny/.conan/data/libmysqlclient/8.0.25/_/_/package/a96aca3b0b3e76a168b210d0c40f1422dce00497/lib
-
-[bindirs_libmysqlclient]
-/home/evgeny/.conan/data/libmysqlclient/8.0.25/_/_/package/a96aca3b0b3e76a168b210d0c40f1422dce00497/bin
-
-[resdirs_libmysqlclient]
-
-
-[builddirs_libmysqlclient]
-/home/evgeny/.conan/data/libmysqlclient/8.0.25/_/_/package/a96aca3b0b3e76a168b210d0c40f1422dce00497/
-
-[libs_libmysqlclient]
-mysqlclient
-
-[system_libs_libmysqlclient]
-stdc++
-m
-
-[defines_libmysqlclient]
-
-
-[cppflags_libmysqlclient]
-
-
-[cxxflags_libmysqlclient]
-
-
-[cflags_libmysqlclient]
-
-
-[sharedlinkflags_libmysqlclient]
-
-
-[exelinkflags_libmysqlclient]
-
-
-[sysroot_libmysqlclient]
-
-
-[frameworks_libmysqlclient]
-
-
-[frameworkdirs_libmysqlclient]
-
-
-[rootpath_libmysqlclient]
-/home/evgeny/.conan/data/libmysqlclient/8.0.25/_/_/package/a96aca3b0b3e76a168b210d0c40f1422dce00497
-
-[name_libmysqlclient]
-libmysqlclient
-
-[version_libmysqlclient]
-8.0.25
-
-[generatornames_libmysqlclient]
-cmake_find_package=MySQL
-cmake_find_package_multi=MySQL
-pkg_config=mysqlclient
-
-[generatorfilenames_libmysqlclient]
-
-
-
-[includedirs_bzip2]
-/home/evgeny/.conan/data/bzip2/1.0.8/_/_/package/da606cf731e334010b0bf6e85a2a6f891b9f36b0/include
-
-[libdirs_bzip2]
-/home/evgeny/.conan/data/bzip2/1.0.8/_/_/package/da606cf731e334010b0bf6e85a2a6f891b9f36b0/lib
-
-[bindirs_bzip2]
-/home/evgeny/.conan/data/bzip2/1.0.8/_/_/package/da606cf731e334010b0bf6e85a2a6f891b9f36b0/bin
-
-[resdirs_bzip2]
-
-
-[builddirs_bzip2]
-/home/evgeny/.conan/data/bzip2/1.0.8/_/_/package/da606cf731e334010b0bf6e85a2a6f891b9f36b0/
-/home/evgeny/.conan/data/bzip2/1.0.8/_/_/package/da606cf731e334010b0bf6e85a2a6f891b9f36b0/lib/cmake
-
-[libs_bzip2]
-bz2
-
-[system_libs_bzip2]
-
-
-[defines_bzip2]
-
-
-[cppflags_bzip2]
-
-
-[cxxflags_bzip2]
-
-
-[cflags_bzip2]
-
-
-[sharedlinkflags_bzip2]
-
-
-[exelinkflags_bzip2]
-
-
-[sysroot_bzip2]
-
-
-[frameworks_bzip2]
-
-
-[frameworkdirs_bzip2]
-
-
-[rootpath_bzip2]
-/home/evgeny/.conan/data/bzip2/1.0.8/_/_/package/da606cf731e334010b0bf6e85a2a6f891b9f36b0
-
-[name_bzip2]
-bzip2
-
-[version_bzip2]
-1.0.8
-
-[generatornames_bzip2]
-cmake_find_package=BZip2
-cmake_find_package_multi=BZip2
-
-[generatorfilenames_bzip2]
-
-
-
-[includedirs_zlib]
-/home/evgeny/.conan/data/zlib/1.2.11/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/include
-
-[libdirs_zlib]
-/home/evgeny/.conan/data/zlib/1.2.11/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib
-
-[bindirs_zlib]
-
-
-[resdirs_zlib]
-
-
-[builddirs_zlib]
-/home/evgeny/.conan/data/zlib/1.2.11/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/
-
-[libs_zlib]
-z
-
-[system_libs_zlib]
-
-
-[defines_zlib]
-
-
-[cppflags_zlib]
-
-
-[cxxflags_zlib]
-
-
-[cflags_zlib]
-
-
-[sharedlinkflags_zlib]
-
-
-[exelinkflags_zlib]
-
-
-[sysroot_zlib]
-
-
-[frameworks_zlib]
-
-
-[frameworkdirs_zlib]
-
-
-[rootpath_zlib]
-/home/evgeny/.conan/data/zlib/1.2.11/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709
-
-[name_zlib]
-zlib
-
-[version_zlib]
-1.2.11
-
-[generatornames_zlib]
-cmake_find_package=ZLIB
-cmake_find_package_multi=ZLIB
-
-[generatorfilenames_zlib]
-
-
-
-[includedirs_expat]
-/home/evgeny/.conan/data/expat/2.4.1/_/_/package/c215f67ac7fc6a34d9d0fb90b0450016be569d86/include
-
-[libdirs_expat]
-/home/evgeny/.conan/data/expat/2.4.1/_/_/package/c215f67ac7fc6a34d9d0fb90b0450016be569d86/lib
-
-[bindirs_expat]
-
-
-[resdirs_expat]
-
-
-[builddirs_expat]
-/home/evgeny/.conan/data/expat/2.4.1/_/_/package/c215f67ac7fc6a34d9d0fb90b0450016be569d86/
-
-[libs_expat]
-expat
-
-[system_libs_expat]
-
-
-[defines_expat]
-XML_STATIC
-
-[cppflags_expat]
-
-
-[cxxflags_expat]
-
-
-[cflags_expat]
-
-
-[sharedlinkflags_expat]
-
-
-[exelinkflags_expat]
-
-
-[sysroot_expat]
-
-
-[frameworks_expat]
-
-
-[frameworkdirs_expat]
-
-
-[rootpath_expat]
-/home/evgeny/.conan/data/expat/2.4.1/_/_/package/c215f67ac7fc6a34d9d0fb90b0450016be569d86
-
-[name_expat]
-expat
-
-[version_expat]
-2.4.1
-
-[generatornames_expat]
-cmake_find_package=EXPAT
-cmake_find_package_multi=expat
-
-[generatorfilenames_expat]
-
-
-
 [includedirs_openssl]
-/home/evgeny/.conan/data/openssl/1.1.1l/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/include
+/home/evg/.conan/data/openssl/1.1.1t/_/_/package/be27726f9885116da1158027505be62e913cd585/include
 
 [libdirs_openssl]
-/home/evgeny/.conan/data/openssl/1.1.1l/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib
+/home/evg/.conan/data/openssl/1.1.1t/_/_/package/be27726f9885116da1158027505be62e913cd585/lib
 
 [bindirs_openssl]
-/home/evgeny/.conan/data/openssl/1.1.1l/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/bin
+/home/evg/.conan/data/openssl/1.1.1t/_/_/package/be27726f9885116da1158027505be62e913cd585/bin
 
 [resdirs_openssl]
 
 
 [builddirs_openssl]
-/home/evgeny/.conan/data/openssl/1.1.1l/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/
-/home/evgeny/.conan/data/openssl/1.1.1l/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib/cmake
+
 
 [libs_openssl]
 ssl
@@ -818,13 +426,13 @@ rt
 
 
 [rootpath_openssl]
-/home/evgeny/.conan/data/openssl/1.1.1l/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709
+/home/evg/.conan/data/openssl/1.1.1t/_/_/package/be27726f9885116da1158027505be62e913cd585
 
 [name_openssl]
 openssl
 
 [version_openssl]
-1.1.1l
+1.1.1t
 
 [generatornames_openssl]
 cmake_find_package=OpenSSL
@@ -834,300 +442,150 @@ cmake_find_package_multi=OpenSSL
 
 
 
-[includedirs_apr]
-/home/evgeny/.conan/data/apr/1.7.0/_/_/package/435690f0682a7e600daf767c97acf6f625b77db0/include
+[includedirs_bzip2]
+/home/evg/.conan/data/bzip2/1.0.8/_/_/package/76bd63d0cd275bc555bda09b7f93740254ba3515/include
 
-[libdirs_apr]
-/home/evgeny/.conan/data/apr/1.7.0/_/_/package/435690f0682a7e600daf767c97acf6f625b77db0/lib
+[libdirs_bzip2]
+/home/evg/.conan/data/bzip2/1.0.8/_/_/package/76bd63d0cd275bc555bda09b7f93740254ba3515/lib
 
-[bindirs_apr]
-/home/evgeny/.conan/data/apr/1.7.0/_/_/package/435690f0682a7e600daf767c97acf6f625b77db0/bin
+[bindirs_bzip2]
+/home/evg/.conan/data/bzip2/1.0.8/_/_/package/76bd63d0cd275bc555bda09b7f93740254ba3515/bin
 
-[resdirs_apr]
+[resdirs_bzip2]
 
 
-[builddirs_apr]
-/home/evgeny/.conan/data/apr/1.7.0/_/_/package/435690f0682a7e600daf767c97acf6f625b77db0/
+[builddirs_bzip2]
+/home/evg/.conan/data/bzip2/1.0.8/_/_/package/76bd63d0cd275bc555bda09b7f93740254ba3515/
 
-[libs_apr]
-apr-1
+[libs_bzip2]
+bz2
 
-[system_libs_apr]
-dl
-pthread
+[system_libs_bzip2]
 
-[defines_apr]
-APR_DECLARE_STATIC
 
-[cppflags_apr]
+[defines_bzip2]
 
 
-[cxxflags_apr]
+[cppflags_bzip2]
 
 
-[cflags_apr]
+[cxxflags_bzip2]
 
 
-[sharedlinkflags_apr]
+[cflags_bzip2]
 
 
-[exelinkflags_apr]
+[sharedlinkflags_bzip2]
 
 
-[sysroot_apr]
+[exelinkflags_bzip2]
 
 
-[frameworks_apr]
+[sysroot_bzip2]
 
 
-[frameworkdirs_apr]
+[frameworks_bzip2]
 
 
-[rootpath_apr]
-/home/evgeny/.conan/data/apr/1.7.0/_/_/package/435690f0682a7e600daf767c97acf6f625b77db0
+[frameworkdirs_bzip2]
 
-[name_apr]
-apr
 
-[version_apr]
-1.7.0
+[rootpath_bzip2]
+/home/evg/.conan/data/bzip2/1.0.8/_/_/package/76bd63d0cd275bc555bda09b7f93740254ba3515
 
-[generatornames_apr]
+[name_bzip2]
+bzip2
 
+[version_bzip2]
+1.0.8
 
-[generatorfilenames_apr]
+[generatornames_bzip2]
+cmake_find_package=BZip2
+cmake_find_package_multi=BZip2
 
+[generatorfilenames_bzip2]
 
 
-[includedirs_libiconv]
-/home/evgeny/.conan/data/libiconv/1.16/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/include
 
-[libdirs_libiconv]
-/home/evgeny/.conan/data/libiconv/1.16/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib
+[includedirs_zlib]
+/home/evg/.conan/data/zlib/1.2.13/_/_/package/be27726f9885116da1158027505be62e913cd585/include
 
-[bindirs_libiconv]
-/home/evgeny/.conan/data/libiconv/1.16/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/bin
+[libdirs_zlib]
+/home/evg/.conan/data/zlib/1.2.13/_/_/package/be27726f9885116da1158027505be62e913cd585/lib
 
-[resdirs_libiconv]
+[bindirs_zlib]
 
 
-[builddirs_libiconv]
-/home/evgeny/.conan/data/libiconv/1.16/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/
+[resdirs_zlib]
 
-[libs_libiconv]
-iconv
-charset
 
-[system_libs_libiconv]
+[builddirs_zlib]
+/home/evg/.conan/data/zlib/1.2.13/_/_/package/be27726f9885116da1158027505be62e913cd585/
 
+[libs_zlib]
+z
 
-[defines_libiconv]
+[system_libs_zlib]
 
 
-[cppflags_libiconv]
+[defines_zlib]
 
 
-[cxxflags_libiconv]
+[cppflags_zlib]
 
 
-[cflags_libiconv]
+[cxxflags_zlib]
 
 
-[sharedlinkflags_libiconv]
+[cflags_zlib]
 
 
-[exelinkflags_libiconv]
+[sharedlinkflags_zlib]
 
 
-[sysroot_libiconv]
+[exelinkflags_zlib]
 
 
-[frameworks_libiconv]
+[sysroot_zlib]
 
 
-[frameworkdirs_libiconv]
+[frameworks_zlib]
 
 
-[rootpath_libiconv]
-/home/evgeny/.conan/data/libiconv/1.16/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709
+[frameworkdirs_zlib]
 
-[name_libiconv]
-libiconv
 
-[version_libiconv]
-1.16
+[rootpath_zlib]
+/home/evg/.conan/data/zlib/1.2.13/_/_/package/be27726f9885116da1158027505be62e913cd585
 
-[generatornames_libiconv]
-cmake_find_package=Iconv
-cmake_find_package_multi=Iconv
+[name_zlib]
+zlib
 
-[generatorfilenames_libiconv]
+[version_zlib]
+1.2.13
 
+[generatornames_zlib]
+cmake_find_package=ZLIB
+cmake_find_package_multi=ZLIB
 
+[generatorfilenames_zlib]
 
-[includedirs_zstd]
-/home/evgeny/.conan/data/zstd/1.5.0/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/include
 
-[libdirs_zstd]
-/home/evgeny/.conan/data/zstd/1.5.0/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib
 
-[bindirs_zstd]
-
-
-[resdirs_zstd]
-
-
-[builddirs_zstd]
-/home/evgeny/.conan/data/zstd/1.5.0/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/
-
-[libs_zstd]
-zstd
-
-[system_libs_zstd]
-pthread
-
-[defines_zstd]
-
-
-[cppflags_zstd]
-
-
-[cxxflags_zstd]
-
-
-[cflags_zstd]
-
-
-[sharedlinkflags_zstd]
-
-
-[exelinkflags_zstd]
-
-
-[sysroot_zstd]
-
-
-[frameworks_zstd]
-
-
-[frameworkdirs_zstd]
-
-
-[rootpath_zstd]
-/home/evgeny/.conan/data/zstd/1.5.0/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709
-
-[name_zstd]
-zstd
-
-[version_zstd]
-1.5.0
-
-[generatornames_zstd]
-
-
-[generatorfilenames_zstd]
-
-
-
-[includedirs_lz4]
-/home/evgeny/.conan/data/lz4/1.9.3/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/include
-
-[libdirs_lz4]
-/home/evgeny/.conan/data/lz4/1.9.3/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib
-
-[bindirs_lz4]
-
-
-[resdirs_lz4]
-
-
-[builddirs_lz4]
-/home/evgeny/.conan/data/lz4/1.9.3/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/
-
-[libs_lz4]
-lz4
-
-[system_libs_lz4]
-
-
-[defines_lz4]
-
-
-[cppflags_lz4]
-
-
-[cxxflags_lz4]
-
-
-[cflags_lz4]
-
-
-[sharedlinkflags_lz4]
-
-
-[exelinkflags_lz4]
-
-
-[sysroot_lz4]
-
-
-[frameworks_lz4]
-
-
-[frameworkdirs_lz4]
-
-
-[rootpath_lz4]
-/home/evgeny/.conan/data/lz4/1.9.3/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709
-
-[name_lz4]
-lz4
-
-[version_lz4]
-1.9.3
-
-[generatornames_lz4]
-pkg_config=liblz4
-
-[generatorfilenames_lz4]
-
-
-
-[USER_apr]
-[USER_apr-util]
 [USER_bzip2]
 [USER_expat]
-[USER_libiconv]
-[USER_libmysqlclient]
-[USER_libpq]
-[USER_lz4]
 [USER_openssl]
 [USER_pcre]
 [USER_poco]
 [USER_sqlite3]
 [USER_zlib]
-[USER_zstd]
 [ENV_poco]
 [ENV_pcre]
-PATH=["/home/evgeny/.conan/data/pcre/8.45/_/_/package/87087120c448298530c012e627c1a0b8f062586d/bin"]
-[ENV_sqlite3]
-PATH=["/home/evgeny/.conan/data/sqlite3/3.36.0/_/_/package/c0cc1a2703aaeb2777d683089def26db57cf15e6/bin"]
-[ENV_libpq]
-PostgreSQL_ROOT=/home/evgeny/.conan/data/libpq/13.4/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709
-[ENV_apr-util]
-APRUTIL_LDFLAGS=-L/home/evgeny/.conan/data/apr/1.7.0/_/_/package/435690f0682a7e600daf767c97acf6f625b77db0/lib -L/home/evgeny/.conan/data/libiconv/1.16/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/lib -L/home/evgeny/.conan/data/expat/2.4.1/_/_/package/c215f67ac7fc6a34d9d0fb90b0450016be569d86/lib
-APR_UTIL_ROOT=/home/evgeny/.conan/data/apr-util/1.6.1/_/_/package/15462a466576cd30e6c375ccf92dc4b262749330
-PATH=["/home/evgeny/.conan/data/apr-util/1.6.1/_/_/package/15462a466576cd30e6c375ccf92dc4b262749330/bin"]
-[ENV_libmysqlclient]
-[ENV_bzip2]
-PATH=["/home/evgeny/.conan/data/bzip2/1.0.8/_/_/package/da606cf731e334010b0bf6e85a2a6f891b9f36b0/bin"]
-[ENV_zlib]
+PATH=["/home/evg/.conan/data/pcre/8.45/_/_/package/a300c42b2a276794dd9cd04bbc8b37e5b2d20157/bin"]
 [ENV_expat]
+[ENV_sqlite3]
+PATH=["/home/evg/.conan/data/sqlite3/3.40.1/_/_/package/0a79a8c00509ac94d8a0a57b7da1df9f2a301aef/bin"]
 [ENV_openssl]
-[ENV_apr]
-APR_ROOT=/home/evgeny/.conan/data/apr/1.7.0/_/_/package/435690f0682a7e600daf767c97acf6f625b77db0
-_APR_BUILDDIR=/home/evgeny/.conan/data/apr/1.7.0/_/_/package/435690f0682a7e600daf767c97acf6f625b77db0/bin/build-1
-[ENV_libiconv]
-PATH=["/home/evgeny/.conan/data/libiconv/1.16/_/_/package/6af9cc7cb931c5ad942174fd7838eb655717c709/bin"]
-[ENV_zstd]
-[ENV_lz4]
+[ENV_bzip2]
+PATH=["/home/evg/.conan/data/bzip2/1.0.8/_/_/package/76bd63d0cd275bc555bda09b7f93740254ba3515/bin"]
+[ENV_zlib]
