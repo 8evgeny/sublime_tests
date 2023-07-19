@@ -12,15 +12,16 @@ conan install . --profile profile
 !!  pip install conan==1.59   старая версия
 
 файл profile
+
 [settings]
-arch=x86_64
-arch_build=x86_64
-build_type=Release
-compiler=gcc
-compiler.libcxx=libstdc++11
-compiler.version=9
 os=Linux
 os_build=Linux
+arch=x86_64
+arch_build=x86_64
+compiler=gcc
+compiler.version=11
+compiler.libcxx=libstdc++11
+build_type=Debug
 [options]
 [build_requires]
 [env]
@@ -28,6 +29,6 @@ os_build=Linux
 
 файл conanfile.txt
 [requires]
-poco/1.11.0
+poco/1.9.4
 [generators]
 cmake

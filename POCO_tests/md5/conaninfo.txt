@@ -1,9 +1,9 @@
 [settings]
     arch=x86_64
-    build_type=Release
+    build_type=Debug
     compiler=gcc
     compiler.libcxx=libstdc++11
-    compiler.version=10
+    compiler.version=11
     os=Linux
 
 [requires]
@@ -15,63 +15,30 @@
 [full_settings]
     arch=x86_64
     arch_build=x86_64
-    build_type=Release
+    build_type=Debug
     compiler=gcc
     compiler.libcxx=libstdc++11
-    compiler.version=10
+    compiler.version=11
     os=Linux
     os_build=Linux
 
 [full_requires]
-    apr/1.7.0:c81f31b4d67e7169ee02e834bae9bc7fa2bf144d
-    apr-util/1.6.1:e343ee0c29eb56661e7b492bcbf990199f7f7e9b
-    bzip2/1.0.8:91a8b22c2c5a149bc617cfc06cdd21bf23b12567
-    expat/2.4.1:859363389e24f9402c19222fd527806e3c413615
-    libiconv/1.16:19729b9559f3ae196cad45cb2b97468ccb75dcd1
-    libmysqlclient/8.0.25:817724c8dbbf5a165e0ddae15fa9dd3f51616f2e
-    libpq/13.4:19729b9559f3ae196cad45cb2b97468ccb75dcd1
-    lz4/1.9.3:19729b9559f3ae196cad45cb2b97468ccb75dcd1
-    openssl/1.1.1l:19729b9559f3ae196cad45cb2b97468ccb75dcd1
-    pcre/8.45:808617580d3a6679a0b80f813490f7baf663198c
-    poco/1.11.0:0ff8225f205c899df3d9899338426048c2b26082
-    sqlite3/3.36.0:e522f5fd927b6b1cc44a5a30f50a981232b01f74
-    zlib/1.2.11:19729b9559f3ae196cad45cb2b97468ccb75dcd1
-    zstd/1.5.0:19729b9559f3ae196cad45cb2b97468ccb75dcd1
+    bzip2/1.0.8:76bd63d0cd275bc555bda09b7f93740254ba3515
+    expat/2.5.0:3242ee86fec793e7767fb97cb42848d950351d05
+    openssl/1.1.1t:be27726f9885116da1158027505be62e913cd585
+    pcre/8.45:a300c42b2a276794dd9cd04bbc8b37e5b2d20157
+    poco/1.9.4:7d66cc8adc0758cd9e715e5a651e55d219e7fe1c
+    sqlite3/3.40.1:0a79a8c00509ac94d8a0a57b7da1df9f2a301aef
+    zlib/1.2.13:be27726f9885116da1158027505be62e913cd585
 
 [full_options]
-    apr:fPIC=True
-    apr:force_apr_uuid=True
-    apr:shared=False
-    apr-util:dbm=False
-    apr-util:fPIC=True
-    apr-util:shared=False
-    apr-util:with_commoncrypto=False
-    apr-util:with_expat=True
-    apr-util:with_lber=False
-    apr-util:with_ldap=False
-    apr-util:with_mysql=False
-    apr-util:with_nss=False
-    apr-util:with_openssl=False
-    apr-util:with_postgresql=False
-    apr-util:with_sqlite3=False
     bzip2:build_executable=True
     bzip2:fPIC=True
     bzip2:shared=False
     expat:char_type=char
     expat:fPIC=True
+    expat:large_size=False
     expat:shared=False
-    libiconv:fPIC=True
-    libiconv:shared=False
-    libmysqlclient:fPIC=True
-    libmysqlclient:shared=False
-    libmysqlclient:with_ssl=True
-    libmysqlclient:with_zlib=True
-    libpq:disable_rpath=False
-    libpq:fPIC=True
-    libpq:shared=False
-    libpq:with_openssl=False
-    lz4:fPIC=True
-    lz4:shared=False
     openssl:386=False
     openssl:enable_weak_ssl_ciphers=False
     openssl:fPIC=True
@@ -141,19 +108,16 @@
     pcre:with_unicode_properties=True
     pcre:with_utf=True
     pcre:with_zlib=True
-    poco:enable_active_record=True
+    poco:enable_active_record=deprecated
     poco:enable_apacheconnector=False
     poco:enable_cppparser=False
     poco:enable_crypto=True
     poco:enable_data=True
-    poco:enable_data_mysql=True
     poco:enable_data_odbc=False
-    poco:enable_data_postgresql=True
     poco:enable_data_sqlite=True
     poco:enable_encodings=True
     poco:enable_fork=True
     poco:enable_json=True
-    poco:enable_jwt=True
     poco:enable_mongodb=True
     poco:enable_net=True
     poco:enable_netssl=True
@@ -171,6 +135,7 @@
     sqlite3:build_executable=True
     sqlite3:disable_gethostuuid=False
     sqlite3:enable_column_metadata=True
+    sqlite3:enable_dbpage_vtab=False
     sqlite3:enable_dbstat_vtab=False
     sqlite3:enable_default_secure_delete=False
     sqlite3:enable_default_vfs=True
@@ -186,16 +151,16 @@
     sqlite3:enable_soundex=False
     sqlite3:enable_unlock_notify=True
     sqlite3:fPIC=True
-    sqlite3:max_blob_size=1000000000
+    sqlite3:max_blob_size=None
+    sqlite3:max_column=None
+    sqlite3:max_variable_number=None
+    sqlite3:omit_deprecated=False
     sqlite3:omit_load_extension=False
     sqlite3:shared=False
     sqlite3:threadsafe=1
     sqlite3:use_alloca=False
     zlib:fPIC=True
-    zlib:minizip=deprecated
     zlib:shared=False
-    zstd:fPIC=True
-    zstd:shared=False
 
 [recipe_hash]
 
