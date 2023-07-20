@@ -12,14 +12,7 @@ add_subdirectory(md5)
 add_subdirectory(Any_Type)
 add_subdirectory(DynamicAny_Type)
 
-add_subdirectory(Timestamp)
-add_subdirectory(DateTimeClass)
-add_subdirectory(LocalDateTime)
-add_subdirectory(TimespanClass)
-add_subdirectory(TimeZone)
-add_subdirectory(DateTimeFormatter)
-add_subdirectory(DateTimeParser)
-
+add_subdirectory(Date_and_Time)
 
 
 #add_subdirectory(Foundation)
