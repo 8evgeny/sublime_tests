@@ -51,13 +51,13 @@ void Buttons::slotButtonClicked()
     QPalette pal    = palette();    
     int      nLight = m_pchk->isChecked() ? 150 : 80;
     if(m_pradRed->isChecked()) {
-        pal.setColor(backgroundRole(), QColor(Qt::red).light(nLight));
+        pal.setColor(backgroundRole(), QColor(Qt::red).lighter(nLight));
     }
     else if(m_pradGreen->isChecked()) {
-        pal.setColor(backgroundRole(), QColor(Qt::green).light(nLight));
+        pal.setColor(backgroundRole(), QColor(Qt::green).lighter(nLight));
     }
     else {
-        pal.setColor(backgroundRole(), QColor(Qt::blue).light(nLight));
+        pal.setColor(backgroundRole(), QColor(Qt::blue).lighter(nLight));
     }
     setPalette(pal);
 }
