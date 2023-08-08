@@ -1,0 +1,15 @@
+создаем файл (root) 
+nano /etc/udev/rules.d/51-usbblaster.rules
+
+SUBSYSTEMS=="usb",\
+ATTRS{idVendor}=="09fb", \
+ATTRS{idProduct}=="6001", \
+MODE="0666", \
+NAME="bus/usb/$env{BUSNUM}/$env{DEVNUM}", \
+RUN+="/bin/chmod 0666 %c"
+
+udevadm control --reload
+
+Теперь програматор работает в Linux
+
+
