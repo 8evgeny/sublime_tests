@@ -1,11 +1,11 @@
-Fitter Status : Successful - Tue Aug  8 11:27:08 2023
+Fitter Status : Successful - Tue Aug  8 12:44:02 2023
 Quartus Prime Version : 22.1std.0 Build 915 10/25/2022 SC Standard Edition
 Revision Name : uart_test
 Top-level Entity Name : uart_test
 Family : Cyclone IV E
 Device : EP4CE15F23C8
 Timing Models : Final
-Total logic elements : 225 / 15,408 ( 1 % )
+Total logic elements : 228 / 15,408 ( 1 % )
     Total combinational functions : 217 / 15,408 ( 1 % )
     Dedicated logic registers : 128 / 15,408 ( < 1 % )
 Total registers : 128

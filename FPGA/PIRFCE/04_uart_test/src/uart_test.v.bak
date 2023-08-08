@@ -118,11 +118,11 @@ begin
 		8'd3 :  tx_str <= "L";
 		8'd4 :  tx_str <= "O";
 		8'd5 :  tx_str <= " ";
-		8'd6 :  tx_str <= "W";
-		8'd7 :  tx_str <= "O";
-		8'd8 :  tx_str <= "R";
-		8'd9 :  tx_str <= "L";
-		8'd10:  tx_str <= "D";
+		8'd6 :  tx_str <= "A";
+		8'd7 :  tx_str <= "L";
+		8'd8 :  tx_str <= "I";
+		8'd9 :  tx_str <= "N";
+		8'd10:  tx_str <= "X";
 		8'd11:  tx_str <= "\r";
 		8'd12:  tx_str <= "\n";
 		default:tx_str <= 8'd0;

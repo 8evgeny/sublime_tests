@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE15F23) Path("/home/evg/Downloads/PIRFCE/04_uart_test/output_files/") File("uart_test.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4CE15F23) Path("/home/evg/SOFT/Github/sublime_tests/FPGA/PIRFCE/04_uart_test/output_files/") File("uart_test.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

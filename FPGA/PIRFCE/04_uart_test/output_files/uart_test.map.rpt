@@ -1,5 +1,5 @@
 Analysis & Synthesis report for uart_test
-Tue Aug  8 11:27:05 2023
+Tue Aug  8 12:43:58 2023
 Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Standard Edition
 
 
@@ -53,7 +53,7 @@ https://fpgasoftware.intel.com/eula.
 +-----------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                            ;
 +------------------------------------+----------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Aug  8 11:27:05 2023              ;
+; Analysis & Synthesis Status        ; Successful - Tue Aug  8 12:43:58 2023              ;
 ; Quartus Prime Version              ; 22.1std.0 Build 915 10/25/2022 SC Standard Edition ;
 ; Revision Name                      ; uart_test                                          ;
 ; Top-level Entity Name              ; uart_test                                          ;
@@ -174,15 +174,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                          ;
-+----------------------------------+-----------------+------------------------+---------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                            ; Library ;
-+----------------------------------+-----------------+------------------------+---------------------------------------------------------+---------+
-; src/uart_tx.v                    ; yes             ; User Verilog HDL File  ; /home/evg/Downloads/PIRFCE/04_uart_test/src/uart_tx.v   ;         ;
-; src/uart_test.v                  ; yes             ; User Verilog HDL File  ; /home/evg/Downloads/PIRFCE/04_uart_test/src/uart_test.v ;         ;
-; src/uart_rx.v                    ; yes             ; User Verilog HDL File  ; /home/evg/Downloads/PIRFCE/04_uart_test/src/uart_rx.v   ;         ;
-+----------------------------------+-----------------+------------------------+---------------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                               ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                 ; Library ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------------------------------+---------+
+; src/uart_tx.v                    ; yes             ; User Verilog HDL File  ; /home/evg/SOFT/Github/sublime_tests/FPGA/PIRFCE/04_uart_test/src/uart_tx.v   ;         ;
+; src/uart_test.v                  ; yes             ; User Verilog HDL File  ; /home/evg/SOFT/Github/sublime_tests/FPGA/PIRFCE/04_uart_test/src/uart_test.v ;         ;
+; src/uart_rx.v                    ; yes             ; User Verilog HDL File  ; /home/evg/SOFT/Github/sublime_tests/FPGA/PIRFCE/04_uart_test/src/uart_rx.v   ;         ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------+
@@ -402,20 +402,20 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 22.1std.0 Build 915 10/25/2022 SC Standard Edition
-    Info: Processing started: Tue Aug  8 11:26:59 2023
+    Info: Processing started: Tue Aug  8 12:43:52 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off uart_test -c uart_test
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file src/uart_tx.v
-    Info (12023): Found entity 1: uart_tx File: /home/evg/Downloads/PIRFCE/04_uart_test/src/uart_tx.v Line: 29
+    Info (12023): Found entity 1: uart_tx File: /home/evg/SOFT/Github/sublime_tests/FPGA/PIRFCE/04_uart_test/src/uart_tx.v Line: 29
 Info (12021): Found 1 design units, including 1 entities, in source file src/uart_test.v
-    Info (12023): Found entity 1: uart_test File: /home/evg/Downloads/PIRFCE/04_uart_test/src/uart_test.v Line: 30
+    Info (12023): Found entity 1: uart_test File: /home/evg/SOFT/Github/sublime_tests/FPGA/PIRFCE/04_uart_test/src/uart_test.v Line: 30
 Info (12021): Found 1 design units, including 1 entities, in source file src/uart_rx.v
-    Info (12023): Found entity 1: uart_rx File: /home/evg/Downloads/PIRFCE/04_uart_test/src/uart_rx.v Line: 29
+    Info (12023): Found entity 1: uart_rx File: /home/evg/SOFT/Github/sublime_tests/FPGA/PIRFCE/04_uart_test/src/uart_rx.v Line: 29
 Info (12127): Elaborating entity "uart_test" for the top level hierarchy
-Info (12128): Elaborating entity "uart_rx" for hierarchy "uart_rx:uart_rx_inst" File: /home/evg/Downloads/PIRFCE/04_uart_test/src/uart_test.v Line: 144
-Info (12128): Elaborating entity "uart_tx" for hierarchy "uart_tx:uart_tx_inst" File: /home/evg/Downloads/PIRFCE/04_uart_test/src/uart_test.v Line: 158
-Info (13000): Registers with preset signals will power-up high File: /home/evg/Downloads/PIRFCE/04_uart_test/src/uart_tx.v Line: 149
+Info (12128): Elaborating entity "uart_rx" for hierarchy "uart_rx:uart_rx_inst" File: /home/evg/SOFT/Github/sublime_tests/FPGA/PIRFCE/04_uart_test/src/uart_test.v Line: 144
+Info (12128): Elaborating entity "uart_tx" for hierarchy "uart_tx:uart_tx_inst" File: /home/evg/SOFT/Github/sublime_tests/FPGA/PIRFCE/04_uart_test/src/uart_test.v Line: 158
+Info (13000): Registers with preset signals will power-up high File: /home/evg/SOFT/Github/sublime_tests/FPGA/PIRFCE/04_uart_test/src/uart_tx.v Line: 149
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 7 registers lost all their fanouts during netlist optimizations.
@@ -427,7 +427,7 @@ Info (21057): Implemented 246 device resources after synthesis - the final resou
     Info (21061): Implemented 242 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 459 megabytes
-    Info: Processing ended: Tue Aug  8 11:27:05 2023
+    Info: Processing ended: Tue Aug  8 12:43:58 2023
     Info: Elapsed time: 00:00:06
     Info: Total CPU time (on all processors): 00:00:13
 

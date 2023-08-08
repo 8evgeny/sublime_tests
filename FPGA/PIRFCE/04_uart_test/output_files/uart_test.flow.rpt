@@ -1,5 +1,5 @@
 Flow report for uart_test
-Tue Aug  8 11:27:12 2023
+Tue Aug  8 12:44:05 2023
 Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Standard Edition
 
 
@@ -41,14 +41,14 @@ https://fpgasoftware.intel.com/eula.
 +-----------------------------------------------------------------------------------------+
 ; Flow Summary                                                                            ;
 +------------------------------------+----------------------------------------------------+
-; Flow Status                        ; Successful - Tue Aug  8 11:27:10 2023              ;
+; Flow Status                        ; Successful - Tue Aug  8 12:44:03 2023              ;
 ; Quartus Prime Version              ; 22.1std.0 Build 915 10/25/2022 SC Standard Edition ;
 ; Revision Name                      ; uart_test                                          ;
 ; Top-level Entity Name              ; uart_test                                          ;
 ; Family                             ; Cyclone IV E                                       ;
 ; Device                             ; EP4CE15F23C8                                       ;
 ; Timing Models                      ; Final                                              ;
-; Total logic elements               ; 225 / 15,408 ( 1 % )                               ;
+; Total logic elements               ; 228 / 15,408 ( 1 % )                               ;
 ;     Total combinational functions  ; 217 / 15,408 ( 1 % )                               ;
 ;     Dedicated logic registers      ; 128 / 15,408 ( < 1 % )                             ;
 ; Total registers                    ; 128                                                ;
@@ -65,7 +65,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 08/08/2023 11:26:59 ;
+; Start date & time ; 08/08/2023 12:43:52 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; uart_test           ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 193662124652367.169148321931059        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 193662124652367.169148783240854        ; --            ; --          ; --         ;
 ; ENABLE_SIGNALTAP                    ; Off                                    ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
@@ -97,11 +97,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:05     ; 1.0                     ; 459 MB              ; 00:00:13                           ;
-; Fitter               ; 00:00:03     ; 1.0                     ; 1099 MB             ; 00:00:03                           ;
-; Assembler            ; 00:00:01     ; 1.0                     ; 364 MB              ; 00:00:01                           ;
-; Timing Analyzer      ; 00:00:01     ; 1.0                     ; 495 MB              ; 00:00:01                           ;
-; Total                ; 00:00:10     ; --                      ; --                  ; 00:00:18                           ;
+; Analysis & Synthesis ; 00:00:06     ; 1.0                     ; 459 MB              ; 00:00:13                           ;
+; Fitter               ; 00:00:03     ; 1.0                     ; 1113 MB             ; 00:00:04                           ;
+; Assembler            ; 00:00:00     ; 1.0                     ; 361 MB              ; 00:00:01                           ;
+; Timing Analyzer      ; 00:00:01     ; 1.0                     ; 507 MB              ; 00:00:01                           ;
+; Total                ; 00:00:10     ; --                      ; --                  ; 00:00:19                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
