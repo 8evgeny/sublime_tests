@@ -49,7 +49,7 @@ int main()
     Sprite sprite2(t2);
 
     Clock clock;
-    float timer=0, delay=0.1;
+    float timer=0, delay=0.5;
 
     f.x=10;
     f.y=10; 
