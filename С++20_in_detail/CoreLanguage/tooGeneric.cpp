@@ -7,6 +7,6 @@ int main(){
     
     std::list<int> myList{1, 10, 3, 2, 5};
     
-    std::sort(myList.begin(), myList.end());
+//    std::sort(myList.begin(), myList.end()); //Ошибка компиляции - нет random iterator
     
 }

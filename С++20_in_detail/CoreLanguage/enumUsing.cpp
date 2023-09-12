@@ -8,10 +8,11 @@ enum class Color {
     green, 
     blue
 };
-
+using enum Color;
 std::string_view toString(Color col) {
+
   switch (col) {
-    using enum Color;                    
+
     case red:   return "red";           
     case green: return "green";         
     case blue:  return "blue";          

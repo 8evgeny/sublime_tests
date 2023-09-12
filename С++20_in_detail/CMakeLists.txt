@@ -5,5 +5,14 @@ project(C++20_in_detail LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(${PROJECT_NAME}_char8Str CoreLanguage/char8Str.cpp)
 
+add_executable(${PROJECT_NAME}_tooSpecific CoreLanguage/tooSpecific.cpp)
+add_executable(${PROJECT_NAME}_tooGeneric CoreLanguage/tooGeneric.cpp)
+add_executable(${PROJECT_NAME}_conceptsIntegralVariations CoreLanguage/conceptsIntegralVariations.cpp)
+
+
+add_executable(${PROJECT_NAME}_char8Str CoreLanguage/char8Str.cpp)
+#add_executable(${PROJECT_NAME}_enumUsing CoreLanguage/enumUsing.cpp) #не работает
+add_executable(${PROJECT_NAME}_bitField CoreLanguage/bitField.cpp)
+add_executable(${PROJECT_NAME}_virtualConstexpr CoreLanguage/virtualConstexpr.cpp)
+add_executable(${PROJECT_NAME}_rangeBasedForLoopInitializer CoreLanguage/rangeBasedForLoopInitializer.cpp)
