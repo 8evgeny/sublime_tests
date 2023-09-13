@@ -12,7 +12,7 @@ add_executable(${PROJECT_NAME}_conceptsIntegralVariations CoreLanguage/conceptsI
 
 
 add_executable(${PROJECT_NAME}_char8Str CoreLanguage/char8Str.cpp)
-#add_executable(${PROJECT_NAME}_enumUsing CoreLanguage/enumUsing.cpp) #не работает
+add_executable(${PROJECT_NAME}_enumUsing CoreLanguage/enumUsing.cpp) #не работает
 add_executable(${PROJECT_NAME}_bitField CoreLanguage/bitField.cpp)
 add_executable(${PROJECT_NAME}_virtualConstexpr CoreLanguage/virtualConstexpr.cpp)
 add_executable(${PROJECT_NAME}_rangeBasedForLoopInitializer CoreLanguage/rangeBasedForLoopInitializer.cpp)
