@@ -9,6 +9,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(${PROJECT_NAME}_tooSpecific CoreLanguage/tooSpecific.cpp)
 add_executable(${PROJECT_NAME}_tooGeneric CoreLanguage/tooGeneric.cpp)
 add_executable(${PROJECT_NAME}_conceptsIntegralVariations CoreLanguage/conceptsIntegralVariations.cpp)
+add_executable(${PROJECT_NAME}_requiresClause CoreLanguage/requiresClause.cpp)
+add_executable(${PROJECT_NAME}_compileTimePredicate CoreLanguage/compileTimePredicate.cpp)
+add_executable(${PROJECT_NAME}_conceptsClassTemplate CoreLanguage/conceptClassTemplate.cpp)
+add_executable(${PROJECT_NAME}_conceptMemberFunction CoreLanguage/conceptMemberFunction.cpp)
+add_executable(${PROJECT_NAME}_allAnyNone CoreLanguage/allAnyNone.cpp)
+add_executable(${PROJECT_NAME}_conceptsOverloadingFunctionTemplates CoreLanguage/conceptsOverloadingFunctionTemplates.cpp)
 
 
 add_executable(${PROJECT_NAME}_char8Str CoreLanguage/char8Str.cpp)

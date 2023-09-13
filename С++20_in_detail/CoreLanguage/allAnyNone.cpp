@@ -21,5 +21,5 @@ int main(){
     std::cout << "any(5, true, false): " << any(5, true, false) << '\n'; 
               
     std::cout << "none(5, true, false): " << none(5, true, false) << '\n';     
-    
+    std::cout << "none(0, false, false): " << none(0, false, false) << '\n';
 }

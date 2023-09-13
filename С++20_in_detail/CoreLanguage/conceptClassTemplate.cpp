@@ -9,6 +9,6 @@ class MyVector{};
 int main() {
 
     MyVector<int> myVec1;
-    MyVector<int&> myVec2;  // ERROR because a reference is not regular
+//    MyVector<int&> myVec2;  // ERROR because a reference is not regular
 
 }

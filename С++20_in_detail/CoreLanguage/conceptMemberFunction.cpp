@@ -19,6 +19,6 @@ int main() {
     myVec1.push_back(2020);
 
     MyVector<NotCopyable> myVec2;
-    myVec2.push_back(NotCopyable());   // ERROR because not copyable
+//    myVec2.push_back(NotCopyable());   // ERROR because not copyable
 
 }
