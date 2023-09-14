@@ -15,7 +15,7 @@ add_executable(${PROJECT_NAME}_conceptsClassTemplate CoreLanguage/conceptClassTe
 add_executable(${PROJECT_NAME}_conceptMemberFunction CoreLanguage/conceptMemberFunction.cpp)
 add_executable(${PROJECT_NAME}_allAnyNone CoreLanguage/allAnyNone.cpp)
 add_executable(${PROJECT_NAME}_conceptsOverloadingFunctionTemplates CoreLanguage/conceptsOverloadingFunctionTemplates.cpp)
-
+add_executable(${PROJECT_NAME}_conceptsSpecialization CoreLanguage/conceptsSpecialization.cpp)
 
 add_executable(${PROJECT_NAME}_char8Str CoreLanguage/char8Str.cpp)
 add_executable(${PROJECT_NAME}_enumUsing CoreLanguage/enumUsing.cpp) #не работает
