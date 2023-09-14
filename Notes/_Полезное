@@ -1,0 +1,1 @@
+grep -rnw . -e "tick1sec"   Поиск в файлах
