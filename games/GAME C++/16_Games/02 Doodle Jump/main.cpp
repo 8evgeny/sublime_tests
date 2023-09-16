@@ -9,7 +9,7 @@ int main()
 {
     srand(time(0));
 
-    RenderWindow app(VideoMode(400, 533), "Doodle Game!");
+    RenderWindow app(VideoMode(400, 533), "Hi Maya!");
     app.setFramerateLimit(60);
 
     Texture t1,t2,t3;
