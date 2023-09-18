@@ -1,1 +1,11 @@
 grep -rnw . -e "tick1sec"   Поиск в файлах
+
+вывести переменные CMake:
+get_cmake_property(_variableNames VARIABLES)
+list (SORT _variableNames)
+foreach (_variableName ${_variableNames})
+    message(STATUS "${_variableName}=${${_variableName}}")
+endforeach()
+
+Установить альтернативную версию компилятора (если в системе 2)
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 60 --slave /usr/bin/g++ g++ /usr/bin/g++-11
