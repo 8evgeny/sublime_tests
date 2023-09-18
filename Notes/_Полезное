@@ -9,3 +9,9 @@ endforeach()
 
 Установить альтернативную версию компилятора (если в системе 2)
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 60 --slave /usr/bin/g++ g++ /usr/bin/g++-11
+
+Сборка Qt
+
+git clone git://code.qt.io/qt/qt5.git .
+git switch dev  (6.6 ...)
+./init-repository --module-subset=
