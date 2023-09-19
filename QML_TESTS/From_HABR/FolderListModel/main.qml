@@ -7,7 +7,7 @@ Window {
     visible: true
     width: 800
     height: 600
-    title: qsTr("QML  PatchView delegate Demo")
+    title: qsTr("QML PatchView delegate Demo")
 
     Rectangle {
         width: 800
@@ -16,12 +16,12 @@ Window {
         FolderListModel {
             id: dataModel
 
-            showDirs: false
+            showDirs: true
             nameFilters: [
                 "*.jpg",
                 "*.png"
             ]
-            folder: "file:///home/evg/Qt6_4/Tools/QtDesignStudio/share/doc/qtcreator/qtdesignstudio/images"
+            folder: "file:///home/evg"
         }
 
         TableView {
