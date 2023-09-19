@@ -34,11 +34,11 @@ Window {
 
 
                 //Open url externally
-                //Qt.openUrlExternally("http://www.blikoontech.com")
+                Qt.openUrlExternally("http://yandex.com")
 
                 //Open local files with default program
-                Qt.openUrlExternally("file:///D:/artwork/LearnQt.png")
-
+//                Qt.openUrlExternally("file:///D:/artwork/LearnQt.png")
+                Qt.openUrlExternally("file:///home/evg/SOFT/Github/sublime_tests/QML_TESTS/[Udemy] Qt Quick and QML For Beginners/2-4QtGlobalObjectDemo/1.png")
                 //Capture platform info
                 console.log("The current platform is : "+Qt.platform.os)
             }
