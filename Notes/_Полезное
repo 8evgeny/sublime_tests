@@ -14,4 +14,16 @@ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 60 --slave /
 
 git clone git://code.qt.io/qt/qt5.git .
 git switch dev  (6.6 ...)
-./init-repository --module-subset=
+./init-repository --module-subset=qtbase,qtshadertools,qtdeclarative,qtdoc,qthttpserver,qtmultimedia,qtserialport,qttools,qtwebsockets
+perl init-repository
+$ mkdir qt6-build
+$ cd qt6-build
+$ ../configure -prefix /home/evg/QT6_09_2023
+$ cmake --build . --parallel 4
+$ sudo cmake --install .
+
+PATH=/usr/local/Qt-6.7.0/bin:$PATH
+$ export PATH
+
+Деплой Qt приложений
+https://evileg.com/ru/post/488/
