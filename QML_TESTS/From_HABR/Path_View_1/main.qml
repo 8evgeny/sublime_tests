@@ -4,7 +4,7 @@ import QtQuick.Window 2.12
 Window {
     visible: true
     width: 500
-    height: 300
+    height: 450
     title: qsTr("QML  PatchView delegate Demo")
 
     Rectangle {
@@ -25,7 +25,7 @@ Window {
                     x: view.width
                     y: 0
                     controlX: view.width / 2
-                    controlY: view.height
+                    controlY: view.height * 4
                 }
             }
             delegate: Rectangle {
