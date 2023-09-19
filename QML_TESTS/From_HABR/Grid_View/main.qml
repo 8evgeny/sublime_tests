@@ -5,7 +5,7 @@ Window {
     visible: true
     width: 400
     height: 300
-    title: qsTr("QML  ListView delegate Demo")
+    title: qsTr("QML  Grid View delegate Demo")
 
     Rectangle {
         width: 360
