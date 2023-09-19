@@ -3,7 +3,7 @@ import QtQuick.Window 2.12
 
 Window {
     visible: true
-    width: 400
+    width: 600
     height: 400
     title: qsTr("QML  PatchView delegate Demo")
 

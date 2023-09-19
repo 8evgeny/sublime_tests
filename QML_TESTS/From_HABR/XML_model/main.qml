@@ -15,7 +15,7 @@ Window {
         XmlListModel {
             id: dataModel
 
-            source: "http://habrahabr.ru/rss/hubs/"
+            source: "http://habrahabr.ru/rss"
             query: "/rss/channel/item"
 
             XmlRole {
