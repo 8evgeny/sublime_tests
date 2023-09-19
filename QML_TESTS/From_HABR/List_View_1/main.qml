@@ -3,8 +3,8 @@ import QtQuick.Window 2.12
 
 Window {
     visible: true
-    width: 400
-    height: 300
+    width: 360
+    height: 220
     title: qsTr("QML  ListView delegate Demo")
 
     Rectangle {
