@@ -102,7 +102,7 @@ Window {
             width: 100
             height: 100
             //Load image from the working directory
-            source: "file:LearnQt.png"
+            source: "file:LearnQt.png"  //?? не работает
         }
 
         Image {
@@ -117,20 +117,20 @@ Window {
         Image {
             x : 300
             y : 150
-            width: 100
-            height: 100
+            width: 80
+            height: 80
             //Specify the full path to the image
-            source: "file:///home/evg/SOFT/Github/Sublime_tests/QML_TESTS/3-1QMLBasicElementsDemo/images/LearnQt.png"
+            source: "file:/home/evg/SOFT/Github/sublime_tests/QML_TESTS/Udemy_Qt_Quick_QML/3-1QMLBasicElementsDemo/images/LearnQt.png"
         }
         //
 
         Image {
             x : 450
             y : 150
-            width: 100
-            height: 100
+            width: 120
+            height: 120
             //Specify the full path to the image
-            source: "http://www.blikoontech.com/wp-content/uploads/2018/04/HttpFileUpload_worked.png"
+            source: "https://www.pngmart.com/files/21/Green-Alligator-PNG-HD.png"
         }
 
     }

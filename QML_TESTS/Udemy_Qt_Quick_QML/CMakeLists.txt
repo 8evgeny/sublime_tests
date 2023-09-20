@@ -15,3 +15,8 @@ add_subdirectory(2-2QMLDataTypesDemo)
 add_subdirectory(2-1QMLSyntaxDemo)
 add_subdirectory(2-3PropertyBindingDemo)
 add_subdirectory(2-4QtGlobalObjectDemo)
+add_subdirectory(2-5PropertiesandHandlersDemo)
+
+add_subdirectory(3-1QMLBasicElementsDemo)
+add_subdirectory(3-1SignalsAndSlotsDemo)
+add_subdirectory(3-2CustomComponentDemo)

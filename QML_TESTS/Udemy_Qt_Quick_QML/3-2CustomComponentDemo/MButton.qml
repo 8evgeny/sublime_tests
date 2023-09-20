@@ -11,10 +11,10 @@ Item {
     Rectangle {
 
         id : containerRectId
-        width: buttonTextId.implicitWidth + 20
-        height: buttonTextId.implicitHeight + 20
-        color: "red"
-        border { color: "blue"; width : 3}
+        width: buttonTextId.implicitWidth + 40
+        height: buttonTextId.implicitHeight + 40
+        color: "yellow"
+        border { color: "black"; width : 2}
 
         Text {
             id : buttonTextId
