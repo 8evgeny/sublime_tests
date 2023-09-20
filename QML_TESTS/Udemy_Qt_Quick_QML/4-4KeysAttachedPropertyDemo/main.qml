@@ -18,20 +18,19 @@ Window {
         Keys.onDigit1Pressed: {
             console.log("Specific Signal : Pressed on Key 1")
             event.accepted = true
-
         }
 
-//        Keys.onDigit5Pressed: {
-//           if ( event.modifiers === Qt.ControlModifier)
-//           {
-//               console.log("Pressed Control + 5")
-//           }else{
-//               console.log("Pressed regular 5")
-//           }
-//        }
+        Keys.onDigit5Pressed: {
+           if ( event.modifiers === Qt.ControlModifier)
+           {
+               console.log("Pressed Control + 5")
+           }else{
+               console.log("Pressed regular 5")
+           }
+        }
 
         Keys.onPressed: {
-            if ( event.key ===Qt.Key_1)
+            if ( event.key === Qt.Key_1)
             {
                  console.log("General Signal :Pressed on Key 1")
             }
@@ -39,7 +38,6 @@ Window {
             if ((event.key === Qt.Key_5) && (event.modifiers & Qt.ControlModifier)){
                 console.log("Pressed Control + 5")
             }
-
         }
     }
 }
