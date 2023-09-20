@@ -22,3 +22,5 @@ add_subdirectory(3-1SignalsAndSlotsDemo)
 add_subdirectory(3-2CustomComponentDemo)
 
 add_subdirectory(4-1TextInputDemo)
+add_subdirectory(4-2TextEditDemo)
+add_subdirectory(4-3MouseAreaDemo)

@@ -18,8 +18,6 @@ Window {
             width: 50
             height: width
             color: "blue"
-
-
         }
 
         MouseArea{
@@ -41,12 +39,9 @@ Window {
                 }else {
                     containerRectId.color = "green"
                 }
-
             }
         }
-
     }
-
 
     Rectangle {
         id : dragContaierId
@@ -60,14 +55,9 @@ Window {
             width: 50
             height: width
             color: "blue"
-
-
-
             onXChanged: {
                 console.log("X Coordinate is : "+ x)
-
             }
-
         }
 
         MouseArea{
@@ -76,9 +66,6 @@ Window {
             drag.axis: Drag.XAxis
             drag.minimumX: 0
             drag.maximumX: dragContaierId.width - draggableRect.width
-
         }
-
-
     }
 }
