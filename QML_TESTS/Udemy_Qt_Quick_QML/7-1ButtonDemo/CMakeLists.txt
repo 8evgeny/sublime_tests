@@ -1,5 +1,5 @@
 set(name "7-1ButtonDemo")
-include_directories(/home/evg/Qt/5.15.2/gcc_64/include/QtQuickControls2)
+include_directories(${Qt5QuickControls2_INCLUDE_DIRS})
 find_package(Qt5 COMPONENTS QuickControls2 REQUIRED)
 qt5_add_resources(QT_RESOURCES  qml.qrc)
 add_executable(${name}  main.cpp ${QT_RESOURCES} )
