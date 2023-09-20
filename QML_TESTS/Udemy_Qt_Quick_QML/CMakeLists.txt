@@ -20,3 +20,5 @@ add_subdirectory(2-5PropertiesandHandlersDemo)
 add_subdirectory(3-1QMLBasicElementsDemo)
 add_subdirectory(3-1SignalsAndSlotsDemo)
 add_subdirectory(3-2CustomComponentDemo)
+
+add_subdirectory(4-1TextInputDemo)

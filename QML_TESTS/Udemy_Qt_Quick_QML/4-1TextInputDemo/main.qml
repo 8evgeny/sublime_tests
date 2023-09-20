@@ -38,17 +38,9 @@ Window {
                 onEditingFinished: {
                     console.log("The first name changed to :"+ text)
                 }
-
             }
-
-
         }
     }
-
-
-
-
-
 
 
     Row {
@@ -83,8 +75,6 @@ Window {
                     console.log("The last name changed to :"+ text)
                 }
             }
-
         }
     }
-
 }
