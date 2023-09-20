@@ -12,15 +12,15 @@ Window {
         width: 300
         height: width
         border.color: "black"
-        //anchors.centerIn: parent
-//        anchors.horizontalCenter: parent.horizontalCenter
-//        anchors.verticalCenter: parent.verticalCenter
+        anchors.centerIn: parent
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
 
         Grid {
            columns: 3
-           //spacing: 10
-//           rowSpacing: 10
-//           columnSpacing: 10
+           spacing: 10
+           rowSpacing: 10
+           columnSpacing: 10
 
            horizontalItemAlignment: Grid.AlignRight
            verticalItemAlignment: Grid.AlignVCenter
