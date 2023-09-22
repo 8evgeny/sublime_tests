@@ -24,14 +24,14 @@ Window {
             currentIndex: tabBarId.currentIndex
 
             Image{
-                source: "http://www.blikoontech.com/wp-content/uploads/2018/06/1.png"
+                source: "https://www.pngarts.com/files/18/Goofy-PNG-Pic-HQ.png"
             }
 
             Image{
-                source: "http://www.blikoontech.com/wp-content/uploads/2018/06/2.png"
+                source: "https://www.pngarts.com/files/18/Goofy-PNG-HQ-Picture.png"
             }
             Image{
-                source: "http://www.blikoontech.com/wp-content/uploads/2018/06/3.png"
+                source: "https://www.pngarts.com/files/18/Goofy-PNG-Photo-HQ.png"
             }
 
 
