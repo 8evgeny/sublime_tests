@@ -85,7 +85,6 @@ int main()
 
   for (auto &i:pool)
     i.join();
-
   std::cout <<std::endl;
 }
 

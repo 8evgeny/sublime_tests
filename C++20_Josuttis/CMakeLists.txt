@@ -10,6 +10,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -pthread -fcoroutines")
 #!!!!! sudo apt install libfmt-dev
 find_package(fmt)
 
+add_executable(${PROJECT_NAME}_1_3_1_coord lang/1_3_1_coord.cpp)
+
+
+
+
+
+
 add_executable(${PROJECT_NAME}_17_1_1_latch lib/17_1_1_latch.cpp)
 add_executable(${PROJECT_NAME}_17_1_1_latchready lib/17_1_1_latchready.cpp)
 add_executable(${PROJECT_NAME}_17_1_2_barrier lib/17_1_2_barrier.cpp)
