@@ -22,7 +22,7 @@ int main()
   std::size_t numThreads = 10;
 
   // initialize latch to start the threads when all of them have been initialized:
-  std::latch allReady = 10;   // initialize countdown with number of threads
+  std::latch allReady{10};   // initialize countdown with number of threads
 
   // start numThreads threads:
   std::vector<std::jthread> threads;
@@ -32,7 +32,7 @@ int main()
                      std::this_thread::sleep_for(100ms * i);
                      //...
                      // synchronize threads so that all start together here:
-                     allReady.arrive_and_wait();
+                     allReady.arrive_and_wait(); // count_down() and wait()
 
                      // perform whatever the thread does
                      // (loop printing its index):
@@ -44,5 +44,11 @@ int main()
     threads.push_back(std::move(t));
   }
   //...
+
+  //Принудительно ожидаю присоединения чтобы быдать endl
+  for (int i = 0; i < numThreads; ++i) {
+      threads[i].join();
+  }
+  std::cout << std::endl;
 }
 
