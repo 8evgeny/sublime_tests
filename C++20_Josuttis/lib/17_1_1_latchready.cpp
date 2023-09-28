@@ -46,9 +46,8 @@ int main()
   //...
 
   //Принудительно ожидаю присоединения чтобы быдать endl
-  for (int i = 0; i < numThreads; ++i) {
-      threads[i].join();
-  }
+  for (auto &i:threads)
+    i.join();
   std::cout << std::endl;
 }
 

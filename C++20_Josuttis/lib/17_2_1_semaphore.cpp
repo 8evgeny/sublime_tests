@@ -82,5 +82,10 @@ int main()
   for (auto& t : pool) {
     t.request_stop();
   }
+
+  for (auto &i:pool)
+    i.join();
+
+  std::cout <<std::endl;
 }
 
