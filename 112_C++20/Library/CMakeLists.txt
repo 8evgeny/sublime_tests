@@ -19,9 +19,11 @@ add_executable(Library_13_eraseCpp20  eraseCpp20.cpp)
 add_executable(Library_14_eraseRemoveElements  eraseRemoveElements.cpp)
 add_executable(Library_15_filterRanges  filterRanges.cpp)
 
+#!!!!! sudo apt install libfmt-dev
 find_package(fmt)
-#add_executable(Library_16_format  format.cpp )
-#target_link_libraries(Library_16_format fmt::fmt)
+add_executable(Library_16_format  format.cpp )
+target_link_libraries(Library_16_format fmt::fmt)
+
 add_executable(Library_17_formatAlternate  formatAlternate.cpp)
 target_link_libraries(Library_17_formatAlternate fmt::fmt)
 add_executable(Library_18_formatArgumentID  formatArgumentID.cpp)

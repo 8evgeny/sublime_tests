@@ -7,9 +7,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -pthread -fcoroutines")
 
+#!!!!! sudo apt install libfmt-dev
+find_package(fmt)
+
 add_executable(${PROJECT_NAME}_17_1_1_latch lib/17_1_1_latch.cpp)
 add_executable(${PROJECT_NAME}_17_1_1_latchready lib/17_1_1_latchready.cpp)
-#add_executable(${PROJECT_NAME}_17_1_2_barrier lib/17_1_2_barrier.cpp)
+add_executable(${PROJECT_NAME}_17_1_2_barrier lib/17_1_2_barrier.cpp)
+target_link_libraries(${PROJECT_NAME}_17_1_2_barrier fmt::fmt)
 
 add_executable(${PROJECT_NAME}_17_5_syncstream lib/17_5_syncstream.cpp)
 add_executable(${PROJECT_NAME}_17_5_syncfilestream lib/17_5_syncfilestream.cpp)
