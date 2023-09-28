@@ -11,7 +11,11 @@
 
 
 #include <iostream>
+
 //#include <format>
+#include <fmt/core.h>
+#include <fmt/format.h>
+
 #include <vector>
 #include <thread>
 #include <cmath>
@@ -28,7 +32,7 @@ int main()
   // - NOTE: has to be noexcept to be used as barrier callback
   auto printValues = [&values] () noexcept{
                        for (auto val : values) {
-                         std::cout << fmt::format(" {:<7.5}", val);
+                         std::cout << fmt::format(" {:<8.6}", val);
                        }
                        std::cout << '\n';
                      };
@@ -44,7 +48,7 @@ int main()
   for (std::size_t idx = 0; idx < values.size(); ++idx) {
     threads.push_back(std::jthread{[idx, &values, &allDone] {
                                      // repeatedly:
-                                     for (int i = 0; i < 5; ++i) {
+                                     for (int i = 0; i < 10; ++i) {
                                        // compute square root:
                                        values[idx] = std::sqrt(values[idx]);
                                        // and synchronize with other threads to print values:

@@ -15,6 +15,9 @@ add_executable(${PROJECT_NAME}_17_1_1_latchready lib/17_1_1_latchready.cpp)
 add_executable(${PROJECT_NAME}_17_1_2_barrier lib/17_1_2_barrier.cpp)
 target_link_libraries(${PROJECT_NAME}_17_1_2_barrier fmt::fmt)
 
+add_executable(${PROJECT_NAME}_17_1_2_barrierstop lib/17_1_2_barrierstop.cpp)
+target_link_libraries(${PROJECT_NAME}_17_1_2_barrierstop fmt::fmt)
+
 add_executable(${PROJECT_NAME}_17_5_syncstream lib/17_5_syncstream.cpp)
 add_executable(${PROJECT_NAME}_17_5_syncfilestream lib/17_5_syncfilestream.cpp)
 add_executable(${PROJECT_NAME}_17_5_syncfilestream2 lib/17_5_syncfilestream2.cpp)

@@ -11,7 +11,11 @@
 
 
 #include <iostream>
-#include <format>
+
+//#include <format>
+#include <fmt/core.h>
+#include <fmt/format.h>
+
 #include <vector>
 #include <thread>
 #include <cmath>
@@ -27,7 +31,7 @@ int main()
   // - NOTE: has to be noexcept to be used as barrier callback
   auto printValues = [&values] () noexcept{
                        for (auto val : values) {
-                         std::cout << std::format(" {:<7.5}", val);
+                         std::cout << fmt::format(" {:<7.5}", val);
                        }
                        std::cout << '\n';
                      };
