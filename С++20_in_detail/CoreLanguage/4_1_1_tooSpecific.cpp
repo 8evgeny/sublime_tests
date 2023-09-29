@@ -6,6 +6,13 @@ void needInt(int i){
     std::cout << "int: " << i << '\n';
 }
 
+template <typename T>
+auto add(T first, T second){
+return first + second;
+}
+
+
+
 int main(){
 	
     std::cout << std::boolalpha << '\n';
@@ -21,6 +28,8 @@ int main(){
     needInt(b);                                  // (4)
 	
     std::cout << '\n';
-	
+
+    std::cout << "add bool: " << add(true, false) << '\n';
+
 }
 
