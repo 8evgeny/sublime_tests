@@ -27,3 +27,6 @@ $ export PATH
 
 Деплой Qt приложений
 https://evileg.com/ru/post/488/
+
+
+sudo pacman -Sy endeavouros-keyring
