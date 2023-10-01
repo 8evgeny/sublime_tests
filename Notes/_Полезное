@@ -30,3 +30,5 @@ https://evileg.com/ru/post/488/
 
 
 sudo pacman -Sy endeavouros-keyring
+
+sudo vmhgfs-fuse .host: /mnt/hgfs -o allow_other -o uid=1000
