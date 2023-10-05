@@ -32,5 +32,10 @@ https://evileg.com/ru/post/488/
 sudo pacman -Sy endeavouros-keyring
 
 sudo vmhgfs-fuse .host: /mnt/hgfs -o allow_other -o uid=1000
+sudo vmhgfs-fuse .host: ~/shared -o allow_other -o uid=1000
 sudo nano /etc/fstab
 .host: /mnt/hgfs fuse.vmhgfs-fuse defaults,allow_other,uid=1000,nonempty 0 0
+
+Деплой конфигуратора
+windeployqt.exe --qmldir C:\Qt5\5.15.2\mingw81_64\qml C:\Users\Professional\Desktop\2022_12\configurator.exe
+windeployqt.exe --qmldir C:\Qt5\5.15.2\winrt_x64_msvc2019\qml C:\Users\Professional\Desktop\111\json_parser.exe
