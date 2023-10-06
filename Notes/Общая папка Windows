@@ -1,0 +1,21 @@
+ping fs01.git-holding.ru
+172.20.6.32
+
+ping 172.20.6.32
+
+Get-WmiObject -class -Win32_Share -computername fs01.git-holding.ru
+
+sudo mount -t cifs -o username=evgeniy.parubets@git-holding.ru,password=Qwerty123Qwerty123,uid=1000,iocharset=utf8 //172.20.6.32/TRANSFER /home/evg/TRANSFER
+sudo mount -t cifs -o username=evgeniy.parubets@git-holding.ru,password=Qwerty123Qwerty123,uid=1000,iocharset=utf8 //fs01.git-holding.ru/TRANSFER /home/evg/TRANSFER
+
+
+sudo mount.cifs //172.20.6.32/share /home/evg/TRANSFER -o username=evgeniy.parubets@git-holding.ru,password=Qwerty123Qwerty123,uid=1000,iocharset=utf8
+
+
+sudo smbclient -L //172.20.6.32 -N
+
+sudo smbclient //172.20.6.32/TRANSFER -N -U evgeniy.parubets@git-holding.ru
+
+
+
+sudo mount.cifs //fs01.git-holding.ru/TRANSFER /home/evg/TRANSFER -o username=evgeniy.parubets@git-holding.ru, password= ,uid=1000,iocharset=utf8 

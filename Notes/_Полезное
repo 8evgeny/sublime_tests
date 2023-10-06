@@ -39,3 +39,8 @@ sudo nano /etc/fstab
 Деплой конфигуратора
 windeployqt.exe --qmldir C:\Qt5\5.15.2\mingw81_64\qml C:\Users\Professional\Desktop\2022_12\configurator.exe
 windeployqt.exe --qmldir C:\Qt5\5.15.2\winrt_x64_msvc2019\qml C:\Users\Professional\Desktop\111\json_parser.exe
+
+Поиск в текущей директории
+grep -r "#include <chrono>" .
+
+
