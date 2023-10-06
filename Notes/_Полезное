@@ -41,11 +41,34 @@ sudo nano /etc/fstab
 
 Деплой конфигуратора
 windeployqt.exe --qmldir C:\Qt5\5.15.2\mingw81_64\qml C:\Users\Professional\Desktop\2022_12\configurator.exe
-windeployqt.exe --qmldir C:\Qt5\5.15.2\winrt_x64_msvc2019\qml C:\Users\Professional\Desktop\11\json_parser.exe
 windeployqt.exe C:\Users\Professional\Desktop\11\json_parser.exe
-
-windeployqt.exe /C/Users/Professional/Desktop/11/json_parser.exe
 
 Portable C and C++ Development Kit for x64 Windows
 https://github.com/skeeto/w64devkit
+set PATH=c:\path\C:\w64devkit-master\w64devkit\bin;%PATH%
+
+CRC32 папки - и затем greep
+C:\Program Files\7-Zip>7z h -scrc C:\Users\Professional\Documents\GIT1\15_Документы_НИОКР\temp_arсhive\ГРЛМ.301561.027СБ
+7z h -scrc /home/evg/SOFT/Github/GIT/15_Документы_НИОКР/temp_arсhive/ГРЛМ.301561.027СБ/Contents | grep "CRC32  for data:"
+
+
+/* сохраняет вывод консольной команды из system */
+main()
+{
+    char buf[BUFSIZ];
+    FILE *ptr;
+
+    if ((ptr = popen(CMD.c_str(), "r")) != NULL)
+            while (fgets(buf, BUFSIZ, ptr) != NULL)
+                    (void) printf("%s", buf);
+                (void) pclose(ptr);
+    string tmp{buf};
+    string result = tmp.substr(30, 9);
+}
+
+
+
+
+
+
 
