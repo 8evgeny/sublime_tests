@@ -1,5 +1,8 @@
 grep -rnw . -e "tick1sec"   Поиск в файлах
 
+Поиск в текущей директории
+grep -r "#include <chrono>" .
+
 вывести переменные CMake:
 get_cmake_property(_variableNames VARIABLES)
 list (SORT _variableNames)
@@ -38,9 +41,11 @@ sudo nano /etc/fstab
 
 Деплой конфигуратора
 windeployqt.exe --qmldir C:\Qt5\5.15.2\mingw81_64\qml C:\Users\Professional\Desktop\2022_12\configurator.exe
-windeployqt.exe --qmldir C:\Qt5\5.15.2\winrt_x64_msvc2019\qml C:\Users\Professional\Desktop\111\json_parser.exe
+windeployqt.exe --qmldir C:\Qt5\5.15.2\winrt_x64_msvc2019\qml C:\Users\Professional\Desktop\11\json_parser.exe
+windeployqt.exe C:\Users\Professional\Desktop\11\json_parser.exe
 
-Поиск в текущей директории
-grep -r "#include <chrono>" .
+windeployqt.exe /C/Users/Professional/Desktop/11/json_parser.exe
 
+Portable C and C++ Development Kit for x64 Windows
+https://github.com/skeeto/w64devkit
 
