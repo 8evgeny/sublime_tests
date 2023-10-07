@@ -46,6 +46,7 @@ windeployqt.exe C:\Users\Professional\Desktop\11\json_parser.exe
 Portable C and C++ Development Kit for x64 Windows
 https://github.com/skeeto/w64devkit
 set PATH=c:\path\C:\w64devkit-master\w64devkit\bin;%PATH%
+set PATH=C:\Program Files\7-Zip;%PATH%
 
 CRC32 папки - и затем greep
 C:\Program Files\7-Zip>7z h -scrc C:\Users\Professional\Documents\GIT1\15_Документы_НИОКР\temp_arсhive\ГРЛМ.301561.027СБ
@@ -66,6 +67,28 @@ main()
     string result = tmp.substr(30, 9);
 }
 
+Включить путь в PATH из кода
+    char buf1[2048];
+    std::size_t bufsize = 2048;
+    int e = getenv_s(&bufsize,buf1,bufsize,"PATH");
+    if (e) {
+        std::cerr << "`getenv_s` failed, returned " << e << '\n';
+        exit(EXIT_FAILURE);
+    }
+    std::string env_path = buf1;
+//    std::cout << "In main process, `PATH`=" << env_path << std::endl;
+    env_path += ";C:\\Program Files\\7-Zip";
+    e = _putenv_s("PATH",env_path.c_str());
+    if (e) {
+        std::cerr << "`_putenv_s` failed, returned " << e << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    std::cout << std::endl;
+//    e = std::system("echo \"In child process `PATH`=%PATH%\"");
+    if (e) {
+        std::cerr << "`std::system` failed, returned " << e << std::endl;
+        exit(EXIT_FAILURE);
+    }
 
 
 
