@@ -9,7 +9,7 @@ sudo mount -t cifs -o username=evgeniy.parubets@git-holding.ru,password=Qwerty12
 sudo mount -t cifs -o username=evgeniy.parubets@git-holding.ru,password=Qwerty123Qwerty123,uid=1000,iocharset=utf8 //fs01.git-holding.ru/TRANSFER /home/evg/TRANSFER
 
 
-sudo mount.cifs //172.20.6.32/share /home/evg/TRANSFER -o username=evgeniy.parubets@git-holding.ru,password=Qwerty123Qwerty123,uid=1000,iocharset=utf8
+sudo mount.cifs //172.20.6.32/git/TRANSFER /home/evg/TRANSFER -o username=evgeniy.parubets@git-holding.ru,password=Qwerty123Qwerty123,uid=1000,iocharset=utf8
 
 
 sudo smbclient -L //172.20.6.32 -N
@@ -17,5 +17,6 @@ sudo smbclient -L //172.20.6.32 -N
 sudo smbclient //172.20.6.32/TRANSFER -N -U evgeniy.parubets@git-holding.ru
 
 
-
-sudo mount.cifs //fs01.git-holding.ru/TRANSFER /home/evg/TRANSFER -o username=evgeniy.parubets@git-holding.ru, password= ,uid=1000,iocharset=utf8 
+ПРАВИЛЬНАЯ КОМАНДА
+sudo mount.cifs //fs01.git-holding.ru/git/TRANSFER /home/evg/TRANSFER -o username=evgeniy.parubets@git-holding.ru, password=Qwerty123Qwerty123 ,uid=1000,iocharset=utf8
+sudo mount.cifs //fs01.git-holding.ru/git/Рабочие\ группы /home/evg/WORKGRUP -o username=evgeniy.parubets@git-holding.ru, password=Qwerty123Qwerty123 ,uid=1000,iocharset=utf8
