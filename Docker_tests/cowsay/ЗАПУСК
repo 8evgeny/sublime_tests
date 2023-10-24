@@ -1,0 +1,5 @@
+docker build -t 8evgeny/cowsay-dockerfile .
+
+docker run -e TERM=xterm  --name cowsay 8evgeny/cowsay-dockerfile
+docker login 8evgeny
+docker push 8evgeny/cowsay-dockerfile
