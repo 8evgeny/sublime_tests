@@ -92,7 +92,17 @@ main()
         exit(EXIT_FAILURE);
     }
 
+Показать текущий PATH
+echo $PATH
+добавить
+export PATH=$PATH:~/.local/bin
 
+В ОС Ubuntu значение переменной PATH содержится в файле /etc/environment
+sudo su 
+export PATH=$PATH:/home/evg/.local/bin && echo $PATH >/etc/environment
+
+Можно поступить и иначе. Содержимое файла .bashrc выполняется при каждом запуске оболочки Bash. Если добавить в конец файла команду export, то для каждой загружаемой оболочки будет автоматически выполняться добавление имени требуемой папки в переменную PATH
+echo 'export PATH=$PATH:~/.local/bin'>>~/.bashrc
 
 
 
