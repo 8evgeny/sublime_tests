@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(Udremi_QML)
+project(from_habr_QML)
 find_package(Qt5 COMPONENTS Widgets Qml Quick REQUIRED)
 include_directories(${Qt5Widgets_INCLUDE_DIRS} ${QtQml_INCLUDE_DIRS})
 add_definitions(${Qt5Widgets_DEFINITIONS} ${QtQml_DEFINITIONS} ${${Qt5Quick_DEFINITIONS}})
