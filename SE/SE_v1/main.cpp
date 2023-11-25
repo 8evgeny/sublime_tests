@@ -13,10 +13,10 @@ int main(int argc, char** argv)
     }
     nativ curr_Time(n);
 //    nativ my("Evgeny");
-        nativ t("Танюша");
+//        nativ t("Танюша");
 //        nativ d1("Stasya");
 //        nativ d2("Taya");
-    //    nativ d3("Maya");
+        nativ d3("Maya");
     //    nativ d4("Ulyana");
 //        nativ nat("Наташа");
     //  muhurta mux;
@@ -32,7 +32,7 @@ int main(int argc, char** argv)
 //        curr_Time.scanHairCut(d1, 360);
     //    curr_Time.scanHairCut(d2, 60);
 //        curr_Time.scanHairCut(d3, 60);
-    curr_Time.scanHairCut(t, 60);
+    curr_Time.scanHairCut(d3, 60);
     //  t1.join();
     //  t2.join();
   //  curr_Time.qtPanchang(my);
