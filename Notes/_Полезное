@@ -1,3 +1,6 @@
+https://habr.com/ru/companies/timeweb/articles/787328/    STM32. Подготавливаем среду разработки в Linux
+
+
 grep -rnw . -e "tick1sec"   Поиск в файлах
 
 Поиск в текущей директории
