@@ -109,4 +109,4 @@ echo 'export PATH=$PATH:~/.local/bin'>>~/.bashrc
 
 Сборка примеров Qt
 set(CMAKE_PREFIX_PATH "/home/evg/Qt6_4/6.4.0/gcc_64")
-
+export CMAKE_PREFIX_PATH=/home/evg/Qt6_4/6.4.0/gcc_64/
