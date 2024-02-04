@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(musicplayer LANGUAGES CXX)
+project(quickcontrol2_musicplayer LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
@@ -11,16 +11,16 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/quickcontrols2/imagine/musicplaye
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick QuickControls2)
 
-qt_add_executable(musicplayer
+qt_add_executable(${PROJECT_NAME}
     musicplayer.cpp
 )
 
-set_target_properties(musicplayer PROPERTIES
+set_target_properties(${PROJECT_NAME} PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(musicplayer PUBLIC
+target_link_libraries(${PROJECT_NAME} PUBLIC
     Qt::Core
     Qt::Gui
     Qt::Quick
@@ -67,7 +67,7 @@ set(icons_resource_files
     "icons/musicplayer/index.theme"
 )
 
-qt6_add_resources(musicplayer "icons"
+qt6_add_resources(${PROJECT_NAME} "icons"
     PREFIX
         "/icons"
     BASE
@@ -188,7 +188,7 @@ set(imagine-assets_resource_files
     "imagine-assets/tooltip-background@2x.9.png"
 )
 
-qt6_add_resources(musicplayer "imagine-assets"
+qt6_add_resources(${PROJECT_NAME} "imagine-assets"
     PREFIX
         "/imagine-assets"
     BASE
@@ -203,14 +203,14 @@ set(qmake_immediate_resource_files
     "qtquickcontrols2.conf"
 )
 
-qt6_add_resources(musicplayer "qmake_immediate"
+qt6_add_resources(${PROJECT_NAME} "qmake_immediate"
     PREFIX
         "/"
     FILES
         ${qmake_immediate_resource_files}
 )
 
-install(TARGETS musicplayer
+install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"

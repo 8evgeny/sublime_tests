@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(texteditor LANGUAGES CXX)
+project(quickcontrol2_texteditor LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
@@ -11,12 +11,12 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/quickcontrols2/texteditor")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick QuickControls2 OPTIONAL_COMPONENTS Widgets)
 
-qt_add_executable(texteditor WIN32 MACOSX_BUNDLE
+qt_add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE
     documenthandler.cpp
     texteditor.cpp
 )
 
-target_link_libraries(texteditor PUBLIC
+target_link_libraries(${PROJECT_NAME} PUBLIC
     Qt::Core
     Qt::Gui
     Qt::Quick
@@ -33,7 +33,7 @@ set(texteditor_resource_files
     "texteditor.html"
 )
 
-qt6_add_resources(texteditor "texteditor"
+qt6_add_resources(${PROJECT_NAME} "texteditor"
     PREFIX
         "/"
     FILES
@@ -41,18 +41,18 @@ qt6_add_resources(texteditor "texteditor"
 )
 
 if(TARGET Qt::Widgets)
-    target_link_libraries(texteditor PUBLIC
+    target_link_libraries(${PROJECT_NAME} PUBLIC
         Qt::Widgets
     )
 endif()
 
 if(CMAKE_CROSSCOMPILING)
-    target_compile_definitions(texteditor PUBLIC
+    target_compile_definitions(${PROJECT_NAME} PUBLIC
         QT_EXTRA_FILE_SELECTOR="touch"
     )
 endif()
 
-install(TARGETS texteditor
+install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"

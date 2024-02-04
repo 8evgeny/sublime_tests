@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(eventcalendar LANGUAGES CXX)
+project(quickcontrol2_eventcalendar LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
@@ -11,26 +11,26 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/quickcontrols2/eventcalendar")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Sql)
 
-qt_add_executable(eventcalendar
+qt_add_executable(${PROJECT_NAME}
     event.h
     eventcalendar.cpp
     eventmodel.cpp eventmodel.h
     sqleventdatabase.cpp sqleventdatabase.h
 )
 
-set_target_properties(eventcalendar PROPERTIES
+set_target_properties(${PROJECT_NAME} PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(eventcalendar PUBLIC
+target_link_libraries(${PROJECT_NAME} PUBLIC
     Qt::Core
     Qt::Gui
     Qt::Qml
     Qt::Sql
 )
 
-qt_add_qml_module(eventcalendar
+qt_add_qml_module(${PROJECT_NAME}
     URI App
     VERSION 1.0
     QML_FILES
@@ -41,7 +41,7 @@ qt_add_qml_module(eventcalendar
     NO_RESOURCE_TARGET_PATH
 )
 
-install(TARGETS eventcalendar
+install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"

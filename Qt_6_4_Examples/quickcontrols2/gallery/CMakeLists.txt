@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(gallery_controls2 LANGUAGES CXX)
+project(quickcontrol2_gallery LANGUAGES CXX)
 set(CMAKE_PREFIX_PATH "/home/evg/Qt6_4/6.4.0/gcc_64")
 set(CMAKE_AUTOMOC ON)
 
@@ -11,16 +11,16 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/quickcontrols2/gallery")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick QuickControls2)
 
-qt_add_executable(gallery_controls2
+qt_add_executable(${PROJECT_NAME}
     gallery.cpp
 )
 
-set_target_properties(gallery_controls2 PROPERTIES
+set_target_properties(${PROJECT_NAME} PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(gallery_controls2 PUBLIC
+target_link_libraries(${PROJECT_NAME} PUBLIC
     Qt::Core
     Qt::Gui
     Qt::Quick
@@ -31,7 +31,7 @@ if(UNIX AND NOT APPLE AND CMAKE_CROSSCOMPILING)
     find_package(Qt6 REQUIRED COMPONENTS QuickTemplates2)
 
     # Work around QTBUG-86533
-    target_link_libraries(gallery_controls2 PRIVATE Qt::QuickTemplates2)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt::QuickTemplates2)
 endif()
 
 # Resources:
@@ -95,14 +95,14 @@ set(qmake_immediate_resource_files
     "qtquickcontrols2.conf"
 )
 
-qt6_add_resources(gallery_controls2 "qmake_immediate"
+qt6_add_resources(${PROJECT_NAME} "qmake_immediate"
     PREFIX
         "/"
     FILES
         ${qmake_immediate_resource_files}
 )
 
-install(TARGETS gallery_controls2
+install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"

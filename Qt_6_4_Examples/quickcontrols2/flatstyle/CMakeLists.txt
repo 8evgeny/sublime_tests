@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(flatstyle LANGUAGES CXX)
+project(quickcontrol2_flatstyle LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
@@ -11,16 +11,16 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/quickcontrols2/flatstyle")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick QuickControls2 Widgets)
 
-qt_add_executable(flatstyle
+qt_add_executable(${PROJECT_NAME}
     main.cpp
 )
 
-set_target_properties(flatstyle PROPERTIES
+set_target_properties(${PROJECT_NAME} PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(flatstyle PUBLIC
+target_link_libraries(${PROJECT_NAME} PUBLIC
     Qt::Core
     Qt::Gui
     Qt::Quick
@@ -41,14 +41,14 @@ set(qmake_immediate_resource_files
     "qtquickcontrols2.conf"
 )
 
-qt6_add_resources(flatstyle "qmake_immediate"
+qt6_add_resources(${PROJECT_NAME} "qmake_immediate"
     PREFIX
         "/"
     FILES
         ${qmake_immediate_resource_files}
 )
 
-install(TARGETS flatstyle
+install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"

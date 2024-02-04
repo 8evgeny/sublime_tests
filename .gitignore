@@ -31,3 +31,5 @@ Makefile
 *.pro.user
 /72_Parallel_programming/build/*
 build-*
+
+Qt_6_4_Examples/build/

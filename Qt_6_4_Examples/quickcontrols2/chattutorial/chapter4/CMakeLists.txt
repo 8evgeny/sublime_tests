@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(chapter4 LANGUAGES CXX)
+project(quickcontrol2_chapter4 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
@@ -11,13 +11,13 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/quickcontrols2/chattutorial/chapt
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick Sql)
 
-qt_add_executable(chattutorial-chapter4 WIN32 MACOSX_BUNDLE
+qt_add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE
     main.cpp
     sqlcontactmodel.cpp sqlcontactmodel.h
     sqlconversationmodel.cpp sqlconversationmodel.h
 )
 
-target_link_libraries(chattutorial-chapter4 PRIVATE
+target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt::Core
     Qt::Gui
     Qt::Qml
@@ -26,7 +26,7 @@ target_link_libraries(chattutorial-chapter4 PRIVATE
 )
 
 # Resources:
-qt_add_qml_module(chattutorial-chapter4
+qt_add_qml_module(${PROJECT_NAME}
     URI chapter4
     VERSION 1.0
     QML_FILES
@@ -48,14 +48,14 @@ qt_add_qml_module(chattutorial-chapter4
         "images/Hans_Gude@4x.png"
 )
 
-qt6_add_resources(chattutorial-chapter4 "conf"
+qt6_add_resources(${PROJECT_NAME} "conf"
     PREFIX
         "/"
     FILES
         "qtquickcontrols2.conf"
 )
 
-install(TARGETS chattutorial-chapter4
+install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"

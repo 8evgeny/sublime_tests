@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(wearable LANGUAGES CXX)
+project(quickcontrol2_wearable LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
@@ -11,16 +11,16 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/quickcontrols2/wearable")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick QuickControls2)
 
-qt_add_executable(wearable
+qt_add_executable(${PROJECT_NAME}
     wearable.cpp
 )
 
-set_target_properties(wearable PROPERTIES
+set_target_properties(${PROJECT_NAME} PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(wearable PUBLIC
+target_link_libraries(${PROJECT_NAME} PUBLIC
     Qt::Core
     Qt::Gui
     Qt::Quick
@@ -31,7 +31,7 @@ if(UNIX AND NOT APPLE AND CMAKE_CROSSCOMPILING)
     find_package(Qt6 REQUIRED COMPONENTS QuickTemplates2)
 
     # Work around QTBUG-86533
-    target_link_libraries(wearable PRIVATE Qt::QuickTemplates2)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt::QuickTemplates2)
 endif()
 
 # Resources:
@@ -189,14 +189,14 @@ set(wearable_resource_files
     "wearable.qml"
 )
 
-qt6_add_resources(wearable "wearable"
+qt6_add_resources(${PROJECT_NAME} "wearable"
     PREFIX
         "/"
     FILES
         ${wearable_resource_files}
 )
 
-install(TARGETS wearable
+install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
