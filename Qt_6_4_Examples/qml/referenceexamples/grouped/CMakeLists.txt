@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(grouped LANGUAGES CXX)
+project(qml_reference_grouped LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
@@ -11,31 +11,31 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/qml/referenceexamples/grouped")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml)
 
-qt_add_executable(grouped
+qt_add_executable(${PROJECT_NAME}
     birthdayparty.cpp birthdayparty.h
     main.cpp
     person.cpp person.h
 )
 
-set_target_properties(grouped PROPERTIES
+set_target_properties(${PROJECT_NAME} PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(grouped PUBLIC
+target_link_libraries(${PROJECT_NAME} PUBLIC
     Qt::Core
     Qt::Gui
     Qt::Qml
 )
 
-qt_add_qml_module(grouped
+qt_add_qml_module(${PROJECT_NAME}
     URI People
     VERSION 1.0
     QML_FILES example.qml
     NO_RESOURCE_TARGET_PATH
 )
 
-install(TARGETS grouped
+install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(valuesource LANGUAGES CXX)
+project(qml_reference_valuesource LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
@@ -11,32 +11,32 @@ set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/qml/referenceexamples/valuesource
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml)
 
-qt_add_executable(valuesource
+qt_add_executable(${PROJECT_NAME}
     birthdayparty.cpp birthdayparty.h
     happybirthdaysong.cpp happybirthdaysong.h
     main.cpp
     person.cpp person.h
 )
 
-set_target_properties(valuesource PROPERTIES
+set_target_properties(${PROJECT_NAME} PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
 
-target_link_libraries(valuesource PUBLIC
+target_link_libraries(${PROJECT_NAME} PUBLIC
     Qt::Core
     Qt::Gui
     Qt::Qml
 )
 
-qt_add_qml_module(valuesource
+qt_add_qml_module(${PROJECT_NAME}
     URI People
     VERSION 1.0
     QML_FILES example.qml
     NO_RESOURCE_TARGET_PATH
 )
 
-install(TARGETS valuesource
+install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
