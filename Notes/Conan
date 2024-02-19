@@ -1,3 +1,8 @@
+
+conan install conanfile.txt --build=missing   (Тогда появляются хидера)
+
+
+
 conan search poco --remote=conancenter
 conan search boost --remote=conancenter
 conan inspect poco/1.9.4
