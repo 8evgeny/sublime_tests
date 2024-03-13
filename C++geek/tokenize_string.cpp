@@ -17,16 +17,14 @@
 После этого, следующие вызовы функции strtok начинаются с этого нулевого символа.
 #endif
 
-int main()
-{
+int main(){
     char str[] = "We_we_love_C++_cool_cool";
     const char tok = '_';
 
     //возвращает первый токен
     char *token = strtok(str, &tok);
 
-    while(token != NULL)
-    {
+    while(token != NULL){
         printf("%s\n", token);
         token = strtok(NULL, &tok);
     }
