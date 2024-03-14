@@ -2,16 +2,13 @@
 #include <string>
 #include <regex>
 
-bool containOnlyLetters(std::string const&str)
-{
+bool containOnlyLetters(std::string const&str){
     return std::regex_match(str,std::regex("^[A-Za-z]+$"));
 }
-bool containOnlyDigits(std::string const&str)
-{
+bool containOnlyDigits(std::string const&str){
     return std::regex_match(str,std::regex("^[0-9]+$"));
 }
-int main()
-{
+int main(){
     std::string str{"String"};
     std::string str1{"String1"};
     std::cout<<std::boolalpha << containOnlyLetters(str)<<std::endl;
