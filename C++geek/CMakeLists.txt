@@ -7,5 +7,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(tokenize_string tokenize_string.cpp)
 add_executable(string_contain_only_letters string_contain_only_letters.cpp)
-#add_executable(string_methods string_methods.cpp)
+add_executable(string_methods string_methods.cpp)
 
