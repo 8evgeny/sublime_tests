@@ -116,3 +116,10 @@ set(CMAKE_PREFIX_PATH "/home/evg/Qt6_4/6.4.0/gcc_64")
 export CMAKE_PREFIX_PATH=/home/evg/Qt6_4/6.4.0/gcc_64/
 
 
+
+Если вы хотите полностью удалить неиспользуемые версии пакетов, для этого понадобится использовать небольшой скрипт:
+sudo vim /usr/local/bin/remove_old_snaps.sh
+i
+sudo chmod ugo+x /usr/local/bin/remove_old_snaps.sh
+sudo ./remove-old-snaps.sh
+
