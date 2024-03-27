@@ -1,9 +1,10 @@
 //стр 46
 #include <thread>
-
+#include <iostream>
 void do_something(int& i)
 {
     ++i;
+    std::cout <<i<<std::endl;
 }
 
 struct func
