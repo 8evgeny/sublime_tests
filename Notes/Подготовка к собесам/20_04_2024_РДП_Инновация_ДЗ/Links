@@ -1,10 +1,11 @@
 https://doc.dpdk.org/guides/index.html
 https://core.dpdk.org/doc/quick-start/
+https://doc.dpdk.org/guides/sample_app_ug/intro.html
 
 https://habr.com/ru/companies/selectel/articles/313150/
 https://habr.com/ru/companies/intel/articles/302126/
 https://habr.com/ru/companies/intel/articles/280502/
-
+https://habr.com/ru/articles/267591/
 
 CMake
 https://github.com/olivermichel/dpdk-cmake/blob/master/tx.cc
@@ -16,3 +17,6 @@ http://book.itep.ru/4/44/l2pr.htm#3
 
 meson
 https://github.com/qtcreator-meson-plugin/qtcreator-meson-plugin
+
+pcap
+https://habr.com/ru/articles/585368/

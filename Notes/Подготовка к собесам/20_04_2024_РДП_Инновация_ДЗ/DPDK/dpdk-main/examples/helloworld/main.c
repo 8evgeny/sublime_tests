@@ -36,7 +36,10 @@ main(int argc, char **argv)
 	ret = rte_eal_init(argc, argv);
 	if (ret < 0)
 		rte_panic("Cannot init EAL\n");
-	/* >8 End of initialization of Environment Abstraction Layer */
+    /* >8 End of initialization of Environment Abstraction Layer */
+
+    /* call it on main lcore too */
+    lcore_hello(NULL);
 
 	/* Launches the function on each lcore. 8< */
 	RTE_LCORE_FOREACH_WORKER(lcore_id) {
