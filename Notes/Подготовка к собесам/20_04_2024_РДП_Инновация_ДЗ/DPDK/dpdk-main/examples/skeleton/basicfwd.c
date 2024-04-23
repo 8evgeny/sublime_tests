@@ -150,7 +150,7 @@ lcore_main(void)
 					bufs, BURST_SIZE);
 
             for (uint16_t buf = 0; buf < nb_rx; ++buf) {
-                printf("num: %d packet_len : %d\r\n", buf + 1, bufs[buf]->pkt_len);
+                printf("packet_%d\tlen : %d\r\n", buf + 1, bufs[buf]->pkt_len);
             }
             flagExit = 1;
 
