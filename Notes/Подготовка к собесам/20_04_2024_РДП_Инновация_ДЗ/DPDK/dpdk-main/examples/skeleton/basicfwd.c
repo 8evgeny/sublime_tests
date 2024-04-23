@@ -148,9 +148,10 @@ lcore_main(void)
 			struct rte_mbuf *bufs[BURST_SIZE];
 			const uint16_t nb_rx = rte_eth_rx_burst(port, 0,
 					bufs, BURST_SIZE);
-
+char tmp[200];
             for (uint16_t buf = 0; buf < nb_rx; ++buf) {
-                printf("packet_%d\tlen : %d\r\n", buf + 1, bufs[buf]->pkt_len);
+                strncpy(tmp, bufs[buf]->pool->pool_data, 100);
+                printf("packet_%u\tlen : %u\t data: %s\r\n", buf + 1, bufs[buf]->pkt_len, tmp);
             }
             flagExit = 1;
 
@@ -158,10 +159,6 @@ lcore_main(void)
 				continue;
 
 			/* Send burst of TX packets, to second port of pair. */
-
-
-
-
 			const uint16_t nb_tx = rte_eth_tx_burst(port ^ 1, 0,
 					bufs, nb_rx);
 
