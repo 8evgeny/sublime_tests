@@ -150,14 +150,23 @@ lcore_main(void)
 				continue;
 
 			/* Send burst of TX packets, to second port of pair. */
+
+
+
+
 			const uint16_t nb_tx = rte_eth_tx_burst(port ^ 1, 0,
 					bufs, nb_rx);
 
 			/* Free any unsent packets. */
 			if (unlikely(nb_tx < nb_rx)) {
 				uint16_t buf;
-				for (buf = nb_tx; buf < nb_rx; buf++)
+                for (buf = nb_tx; buf < nb_rx; buf++) {
+//Перед удалением выводим заголовки пакетов
+printf("packet_len : %d\r\n", bufs[buf]->pkt_len);
+printf("packet_type: %d\r\n", bufs[buf]->packet_type);
+
 					rte_pktmbuf_free(bufs[buf]);
+                }
 			}
 		}
 	}
