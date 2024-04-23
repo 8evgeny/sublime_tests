@@ -145,6 +145,10 @@ lcore_main(void)
 			struct rte_mbuf *bufs[BURST_SIZE];
 			const uint16_t nb_rx = rte_eth_rx_burst(port, 0,
 					bufs, BURST_SIZE);
+for (uint16_t buf = 0; buf < nb_rx; ++buf) {
+    printf("packet_len : %d\r\n", bufs[buf]->pkt_len);
+    printf("packet_type: %d\r\n", bufs[buf]->packet_type);
+}
 
 			if (unlikely(nb_rx == 0))
 				continue;
@@ -161,10 +165,6 @@ lcore_main(void)
 			if (unlikely(nb_tx < nb_rx)) {
 				uint16_t buf;
                 for (buf = nb_tx; buf < nb_rx; buf++) {
-//Перед удалением выводим заголовки пакетов
-printf("packet_len : %d\r\n", bufs[buf]->pkt_len);
-printf("packet_type: %d\r\n", bufs[buf]->packet_type);
-
 					rte_pktmbuf_free(bufs[buf]);
                 }
 			}
