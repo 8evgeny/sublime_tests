@@ -17,7 +17,7 @@
 #define NUM_MBUFS 8191
 #define MBUF_CACHE_SIZE 250
 #define BURST_SIZE 32
-
+uint8_t flagExit;
 /* basicfwd.c: Basic DPDK skeleton forwarding example. */
 
 /*
@@ -113,7 +113,8 @@ port_init(uint16_t port, struct rte_mempool *mbuf_pool)
  */
 
  /* Basic forwarding application lcore. 8< */
-static __rte_noreturn void
+//static __rte_noreturn void
+static void
 lcore_main(void)
 {
 	uint16_t port;
@@ -134,7 +135,9 @@ lcore_main(void)
 			rte_lcore_id());
 
 	/* Main work of application loop. 8< */
-	for (;;) {
+    for (;;) {
+        if (flagExit == 1)
+            return;
 		/*
 		 * Receive packets on a port and forward them on the paired
 		 * port. The mapping is 0 -> 1, 1 -> 0, 2 -> 3, 3 -> 2, etc.
@@ -145,10 +148,11 @@ lcore_main(void)
 			struct rte_mbuf *bufs[BURST_SIZE];
 			const uint16_t nb_rx = rte_eth_rx_burst(port, 0,
 					bufs, BURST_SIZE);
-for (uint16_t buf = 0; buf < nb_rx; ++buf) {
-    printf("packet_len : %d\r\n", bufs[buf]->pkt_len);
-    printf("packet_type: %d\r\n", bufs[buf]->packet_type);
-}
+
+            for (uint16_t buf = 0; buf < nb_rx; ++buf) {
+                printf("num: %d packet_len : %d\r\n", buf + 1, bufs[buf]->pkt_len);
+            }
+            flagExit = 1;
 
 			if (unlikely(nb_rx == 0))
 				continue;
@@ -164,12 +168,11 @@ for (uint16_t buf = 0; buf < nb_rx; ++buf) {
 			/* Free any unsent packets. */
 			if (unlikely(nb_tx < nb_rx)) {
 				uint16_t buf;
-                for (buf = nb_tx; buf < nb_rx; buf++) {
+                for (buf = nb_tx; buf < nb_rx; buf++)
 					rte_pktmbuf_free(bufs[buf]);
-                }
 			}
 		}
-	}
+    }
 	/* >8 End of loop. */
 }
 /* >8 End Basic forwarding application lcore. */
