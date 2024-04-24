@@ -151,10 +151,16 @@ lcore_main(void)
 char tmp[200];
             for (uint16_t buf = 0; buf < nb_rx; ++buf) {
                 strncpy(tmp, bufs[buf]->pool->pool_data, 100);
-                printf("packet_%u\tlen : %u\t seg: %u\r\n",
+                printf("packet_%u\t"
+                       "len : %u\t "
+                       "seg: %u\t"
+                       "type: %u\t"
+                       "\r\n",
                        buf + 1,
                        bufs[buf]->pkt_len,
-                       bufs[buf]->nb_segs);
+                       bufs[buf]->nb_segs,
+                       bufs[buf]->packet_type
+                       );
             }
             flagExit = 1;
 
