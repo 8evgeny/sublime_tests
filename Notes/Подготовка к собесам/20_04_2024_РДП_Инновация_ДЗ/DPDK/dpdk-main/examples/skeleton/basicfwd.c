@@ -148,18 +148,32 @@ lcore_main(void)
 			struct rte_mbuf *bufs[BURST_SIZE];
 			const uint16_t nb_rx = rte_eth_rx_burst(port, 0,
 					bufs, BURST_SIZE);
-char tmp[200];
+
+            struct rte_ether_hdr *eth_addr;
+
             for (uint16_t buf = 0; buf < nb_rx; ++buf) {
-                strncpy(tmp, bufs[buf]->pool->pool_data, 100);
-                printf("packet_%u\t"
-                       "len : %u\t "
-                       "seg: %u\t"
-                       "type: %u\t"
+                eth_addr = rte_pktmbuf_mtod(bufs[buf], struct rte_ether_hdr *);
+                printf("packet_%u \t"
+                       "len : %u \t "
+                       "seg: %u \t"
+                       "srcMAC: %x:%x:%x:%x:%x:%x\t"
+                       "dstMAC: %x:%x:%x:%x:%x:%x\t"
                        "\r\n",
-                       buf + 1,
-                       bufs[buf]->pkt_len,
-                       bufs[buf]->nb_segs,
-                       bufs[buf]->packet_type
+                        buf + 1,
+                        bufs[buf]->pkt_len,
+                        bufs[buf]->nb_segs,
+                        eth_addr->src_addr.addr_bytes[0],
+                        eth_addr->src_addr.addr_bytes[1],
+                        eth_addr->src_addr.addr_bytes[2],
+                        eth_addr->src_addr.addr_bytes[3],
+                        eth_addr->src_addr.addr_bytes[4],
+                        eth_addr->src_addr.addr_bytes[5],
+                        eth_addr->dst_addr.addr_bytes[0],
+                        eth_addr->dst_addr.addr_bytes[1],
+                        eth_addr->dst_addr.addr_bytes[2],
+                        eth_addr->dst_addr.addr_bytes[3],
+                        eth_addr->dst_addr.addr_bytes[4],
+                        eth_addr->dst_addr.addr_bytes[5]
                        );
             }
             flagExit = 1;

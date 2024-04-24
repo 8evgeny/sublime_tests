@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+#if [ ! -d /dev/hugepages ]; then
+#    sudo su
+#    mkdir -p /dev/hugepages
+#    mountpoint -q /dev/hugepages || mount -t hugetlbfs nodev /dev/hugepages
+#    echo 64 > /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
+#fi
+
+
+meson -Dexamples=skeleton build
+ninja -C build
+sudo ./build/examples/dpdk-skeleton -l 1 -n1 --vdev=eth_pcap0,rx_pcap=file_in.pcap  --vdev=eth_pcap1,iface=lo
