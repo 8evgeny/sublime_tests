@@ -149,15 +149,17 @@ lcore_main(void)
 			const uint16_t nb_rx = rte_eth_rx_burst(port, 0,
 					bufs, BURST_SIZE);
 
-            struct rte_ether_hdr *eth_addr;
-
+//struct rte_ipv4_hdr *ip = rte_pktmbuf_mtod(m, struct rte_ipv4_hdr *);
             for (uint16_t buf = 0; buf < nb_rx; ++buf) {
-                eth_addr = rte_pktmbuf_mtod(bufs[buf], struct rte_ether_hdr *);
+            struct rte_ether_hdr *eth_addr = rte_pktmbuf_mtod(bufs[buf], struct rte_ether_hdr *);
+            struct rte_ipv4_hdr *ip = rte_pktmbuf_mtod(bufs[buf], struct rte_ipv4_hdr *);
                 printf("packet_%u \t"
                        "len : %u \t "
                        "seg: %u \t"
                        "srcMAC: %x:%x:%x:%x:%x:%x\t"
                        "dstMAC: %x:%x:%x:%x:%x:%x\t"
+                       "srcIP: %.8x \t"
+//                       "srcIP: %x.%x.%x.%x \t"
                        "\r\n",
                         buf + 1,
                         bufs[buf]->pkt_len,
@@ -173,7 +175,12 @@ lcore_main(void)
                         eth_addr->dst_addr.addr_bytes[2],
                         eth_addr->dst_addr.addr_bytes[3],
                         eth_addr->dst_addr.addr_bytes[4],
-                        eth_addr->dst_addr.addr_bytes[5]
+                        eth_addr->dst_addr.addr_bytes[5],
+//                        (ip->src_addr&0xFF000000) >> 24,
+//                        (ip->src_addr&0x00FF0000) >> 16,
+//                        (ip->src_addr&0x0000FF00) >> 8,
+//                        ip->src_addr&0x000000FF
+                        ip->src_addr
                        );
             }
             flagExit = 1;
