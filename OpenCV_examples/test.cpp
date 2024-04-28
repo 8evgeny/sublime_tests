@@ -22,9 +22,9 @@ int main(void)
     rectangle(rook_image,
         Point(0, 7 * w / 8),
         Point(w, w),
-        Scalar(0, 255, 255),
-        FILLED,
-        LINE_8);
+        Scalar(0, 255, 255)/*,*/
+/*        FILLED,
+        LINE_8*/);
     MyLine(rook_image, Point(0, 15 * w / 16), Point(w, 15 * w / 16));
     MyLine(rook_image, Point(w / 4, 7 * w / 8), Point(w / 4, w));
     MyLine(rook_image, Point(w / 2, 7 * w / 8), Point(w / 2, w));
@@ -55,13 +55,13 @@ void MyFilledCircle(Mat img, Point center)
     circle(img,
         center,
         w / 32,
-        Scalar(0, 0, 255),
+        Scalar(0, 0, 255)/*,
         FILLED,
-        LINE_8);
+        LINE_8*/);
 }
 void MyPolygon(Mat img)
 {
-    int lineType = LINE_8;
+    int lineType = 8/*LINE_8*/;
     Point rook_points[1][4];
     rook_points[0][0] = Point(0, 0);
     rook_points[0][1] = Point(300, 0);
@@ -80,7 +80,7 @@ void MyPolygon(Mat img)
 void MyLine(Mat img, Point start, Point end)
 {
     int thickness = 2;
-    int lineType = LINE_8;
+    int lineType = 8/*LINE_8*/;
     line(img,
         start,
         end,
