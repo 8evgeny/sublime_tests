@@ -42,9 +42,11 @@ int main(int argc, char **argv)
     // Преобразуем кадр в полутоновый формат
     cvtColor(in_frame, out_frame, COLOR_BGR2GRAY);
     // Записываем кадр в видеофайл (кодирование и сохранение)
-    recVid << out_frame;
+//    recVid << out_frame;  //Пока не пишет
+    recVid.write(out_frame);
     imshow(win1, in_frame);  // Показываем кадр в окне
     imshow(win2, out_frame); // Показываем кадр в окне
+
     if (waitKey(1000/fps) >= 0)
             break;
     }
