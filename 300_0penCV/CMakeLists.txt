@@ -4,6 +4,7 @@ project(300)
 set (OpenCV_DIR /home/evg/opencv/build)
 
 find_package( OpenCV REQUIRED )
+#find_package(Qt5Widgets REQUIRED)
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 
 add_executable(1_showImage 1_showImage.cpp)
@@ -13,5 +14,10 @@ add_executable(test test.cpp)
 
 target_link_libraries( 1_showImage  ${OpenCV_LIBS} )
 target_link_libraries( 2_videoCapture  ${OpenCV_LIBS} )
-target_link_libraries( 3_showUI  ${OpenCV_LIBS} )
+target_link_libraries( 3_showUI
+    ${OpenCV_LIBS}
+#    ${Qt5Widgets_LIBRARIES}
+#    Qt5::Core
+#    Qt5::Widgets
+)
 target_link_libraries( test  ${OpenCV_LIBS} )
