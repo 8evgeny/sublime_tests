@@ -13,6 +13,7 @@ int main(int argc, char **argv)
     cout << "Компонента G пикселя (0,0):" << (unsigned int)pixel2[1] << endl;
     cout << "Компонента R пикселя (0,0):" << (unsigned int)pixel2[2] << endl;
 
+    Mat M1(200, 200, CV_64F);
     Mat M(200, 200, CV_64F);
     for(int i = 0; i < M.rows; i++){
         for(int j = 0; j < M.cols; j++){
@@ -21,5 +22,7 @@ int main(int argc, char **argv)
     }
     imshow("main", M);
     waitKey(0); // Бесконечный цикл обработки событий
+    imshow("main", M1);
+    waitKey(0);
     return 0;
 }
