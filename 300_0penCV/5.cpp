@@ -12,4 +12,14 @@ int main(int argc, char **argv)
     cout << "Компонента B пикселя (0,0):" << (unsigned int)pixel2[0] << endl;
     cout << "Компонента G пикселя (0,0):" << (unsigned int)pixel2[1] << endl;
     cout << "Компонента R пикселя (0,0):" << (unsigned int)pixel2[2] << endl;
+
+    Mat M(200, 200, CV_64F);
+    for(int i = 0; i < M.rows; i++){
+        for(int j = 0; j < M.cols; j++){
+            M.at<double>(i,j)=CV_PI;
+        }
+    }
+    imshow("main", M);
+    waitKey(0); // Бесконечный цикл обработки событий
+    return 0;
 }
