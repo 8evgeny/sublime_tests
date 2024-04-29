@@ -1,6 +1,5 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
-//#include <QFont>
 using namespace std;
 using namespace cv;
 // Объявления функций обратного вызова
@@ -15,8 +14,8 @@ void pushbuttonCallBack(int, void *font);
 Mat orig_img, tmp_img;
 const char main_win[]="main_win";
 char msg[50];
-
-int main(int, char* argv[]) {
+//Не создается окно свойств
+int main(int, char* argv[]) {//Аргумент запуска  ../1.jpeg
     const char track1[]="TrackBar 1";
     const char track2[]="TrackBar 2";
     const char checkbox[]="Check Box";
@@ -42,10 +41,8 @@ int main(int, char* argv[]) {
     createButton(pushbutton, pushbuttonCallBack, (void *)&font, CV_PUSH_BUTTON);
 //    createTrackbar(track2, NULL, &tb2_value, 50, tb2_Callback);
 // Передаем значения функциям обратного вызова
-    createButton(radiobox1, radioboxCallBack,
-    (void *)radiobox1, CV_RADIOBOX);
-    createButton(radiobox2, radioboxCallBack,
-    (void *)radiobox2, CV_RADIOBOX);
+    createButton(radiobox1, radioboxCallBack, (void *)radiobox1, CV_RADIOBOX);
+    createButton(radiobox2, radioboxCallBack, (void *)radiobox2, CV_RADIOBOX);
 // показываем исходное изображение
     imshow(main_win, orig_img);
     cout << "Для выхода нажмите 0..." << endl;
