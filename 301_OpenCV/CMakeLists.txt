@@ -8,7 +8,9 @@ find_package( OpenCV REQUIRED )
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 
 add_executable(1_showImage 1_showImage.cpp)
-add_executable(2_showVideo 2_showVideo.cpp)
+add_executable(2_3_showVideo 2_3_showVideo.cpp)
+add_executable(2_4_showVideo 2_4_showVideo.cpp)
 
 target_link_libraries( 1_showImage  ${OpenCV_LIBS} )
-target_link_libraries( 2_showVideo  ${OpenCV_LIBS} )
+target_link_libraries( 2_3_showVideo  ${OpenCV_LIBS} )
+target_link_libraries( 2_4_showVideo  ${OpenCV_LIBS} )
