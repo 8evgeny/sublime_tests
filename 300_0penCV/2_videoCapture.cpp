@@ -8,7 +8,7 @@ int main(int argc, char **argv)
     Mat in_frame2, out_frame2;
     const char win1[]="Захват1", win2[]="Запись1";
     const char win3[]="Захват2", win4[]="Запись2";
-    double fps=30; // Число кадров в секунду
+    double fps=25; // Число кадров в секунду
     char file_out[]="../recorded.avi";
     char file_out2[]="../recorded2.avi";
     VideoCapture inVid(2); // Открыть камеру по умолчанию
@@ -63,26 +63,26 @@ int main(int argc, char **argv)
      moveWindow(win3, 300, 800);
      moveWindow(win4, 1000, 800);
      while (true) {
-    // Читаем кадр с камеры (захват и декодирование)
-                     inVid >> in_frame;
-                     inVid2 >> in_frame2;
-    // Преобразуем кадр
-    cvtColor(in_frame, out_frame, COLOR_BGR2GRAY);
-    cvtColor(in_frame2, out_frame2, COLOR_BGR2HSV);
-//    cvtColor(in_frame, out_frame, COLOR_BGR2HSV);
-//    cvtColor(in_frame, out_frame, COLOR_BGR2Lab);
-//    cvtColor(in_frame, out_frame, COLOR_BGR2HLS);
+        // Читаем кадр с камеры (захват и декодирование)
+                         inVid >> in_frame;
+                         inVid2 >> in_frame2;
+        // Преобразуем кадр
+        cvtColor(in_frame, out_frame, COLOR_BGR2GRAY);
+        cvtColor(in_frame2, out_frame2, COLOR_BGR2GRAY);
+    //    cvtColor(in_frame, out_frame, COLOR_BGR2HSV);
+    //    cvtColor(in_frame, out_frame, COLOR_BGR2Lab);
+    //    cvtColor(in_frame, out_frame, COLOR_BGR2HLS);
 
-    // Записываем кадр в видеофайл (кодирование и сохранение)
-    recVid << out_frame;  //Пока не пишет
-    recVid2 << out_frame2;
-//    recVid.write(out_frame);
-    imshow(win1, in_frame);  // Показываем кадр в окне
-    imshow(win2, out_frame);
-    imshow(win3, in_frame2);
-    imshow(win4, out_frame2);
-    if (waitKey(1000/fps) >= 0)
-            break;
+        // Записываем кадр в видеофайл (кодирование и сохранение)
+        recVid << in_frame;  //Пишет только in
+        recVid2 << in_frame2;
+    //    recVid.write(out_frame);
+        imshow(win1, in_frame);  // Показываем кадр в окне
+        imshow(win2, out_frame);
+        imshow(win3, in_frame2);
+        imshow(win4, out_frame2);
+        if (waitKey(1000/fps) >= 0)
+                break;
     }
     inVid.release(); // Закрываем камеру
     return 0;
