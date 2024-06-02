@@ -28,10 +28,7 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=0;CUDA;0;EUTF-8;1;1;0;%2Fhome%2Fevg%2FSOFT%2FGithub%2FSublime_tests%2F400_Cuda%2FCUDA-by-Example-source-code-for-the-book-s-examples--master%2Fchapter03%2F1_hello.cu;0;4
-FILE_NAME_1=0;CUDA;0;EUTF-8;1;1;0;%2Fhome%2Fevg%2FSOFT%2FGithub%2FSublime_tests%2F400_Cuda%2FCUDA-by-Example-source-code-for-the-book-s-examples--master%2Fchapter03%2F2_simple_device_call.cu;0;4
-FILE_NAME_2=1939;CUDA;0;EUTF-8;1;1;0;%2Fhome%2Fevg%2FSOFT%2FGithub%2FSublime_tests%2F400_Cuda%2FCUDA-by-Example-source-code-for-the-book-s-examples--master%2Fchapter03%2F3_enum_gpu.cu;0;4
+current_page=-1
 
 [VTE]
 last_dir=/home/evg/SOFT/Github/Sublime_tests/400_Cuda/CUDA-by-Example-source-code-for-the-book-s-examples--master/chapter03
@@ -53,8 +50,8 @@ CUDAFT_02_CM=cppcheck --language=c++ --enable=all --template=nvcc  "%f"
 CUDAFT_02_WD=
 filetypes=CUDA;
 CUDAFT_01_LB=_Сборка
-CUDAFT_01_CM=nvcc -o "build/%e" "%f"
+CUDAFT_01_CM=nvcc -o "%e" "%f"
 CUDAFT_01_WD=
 EX_00_LB=_Выполнить
-EX_00_CM="./build/%e"
+EX_00_CM="./%e"
 EX_00_WD=
