@@ -12,8 +12,7 @@ int main( void ) {
 
     add<<<1,1>>>( 2, 7, dev_c );
 
-    HANDLE_ERROR( cudaMemcpy( &c, dev_c, sizeof(int),
-                              cudaMemcpyDeviceToHost ) );
+    HANDLE_ERROR( cudaMemcpy( &c, dev_c, sizeof(int),cudaMemcpyDeviceToHost ) );
     printf( "2 + 7 = %d\n", c );
     HANDLE_ERROR( cudaFree( dev_c ) );
 
