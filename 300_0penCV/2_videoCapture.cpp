@@ -11,8 +11,8 @@ int main(int argc, char **argv)
     double fps=25; // Число кадров в секунду
     char file_out[]="../recorded.avi";
     char file_out2[]="../recorded2.avi";
-    VideoCapture inVid(2); // Открыть камеру по умолчанию
-    VideoCapture inVid2(0);
+    VideoCapture inVid(0); // Открыть камеру по умолчанию
+    VideoCapture inVid2(2);
 
     if (!inVid.isOpened()) { // Проверка ошибок
         cout << "Ошибка! Камера не готова...\n";
