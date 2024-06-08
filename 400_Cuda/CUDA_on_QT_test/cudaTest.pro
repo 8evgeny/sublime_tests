@@ -37,7 +37,7 @@ LIBS += $$CUDA_LIBS
 
 # GPU architecture
 SYSTEM_TYPE = 64
-CUDA_ARCH = sm_30
+CUDA_ARCH = sm_75
 NVCCOPTIONS = -use_fast_math -O2
 
 # Mandatory flags for stepping through the code
