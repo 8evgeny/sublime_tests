@@ -12,13 +12,13 @@ bool answer(uint num, string qw1, string qw2, string qw3, string qw4);
 
 
 bool answers(){
-    if (!answer(1, "","","","Введите имя тестируемого\n"))
+    if (!answer(1, "","","","Введите имя тестируемого  "))
         return false;
-    if (!answer(2, "","","","Введите дату тестирования\n"))
+    if (!answer(2, "","","","Введите дату тестирования  "))
         return false;
-    if (!answer(3, "","","","Введите номер тестирования\n"))
+    if (!answer(3, "","","","Введите номер тестирования  "))
         return false;
-    if (!answer(4, "P ","Канал легких, ", "Правая сторона. ", "Введите измеренное значение\n"))
+    if (!answer(4, "P ","Канал легких, ", "Правая сторона. ", "Введите измеренное значение  "))
         return false;
 
      return true;
@@ -71,11 +71,12 @@ bool answer(uint num, string qw1, string qw2, string qw3, string qw4)
     }
     if (num == 4)
     {
+        auto start_line = num+1;
         echo();
-        mvprintw(num*2-1, 0, qw1.c_str());
-        mvprintw(num*2-1, 5, qw2.c_str());
-        mvprintw(num*2-1, 22, qw3.c_str());
-        mvprintw(num*2-1, 42, qw4.c_str());
+        mvprintw(start_line, 0, qw1.c_str());
+        mvprintw(start_line, 5, qw2.c_str());
+        mvprintw(start_line, 22, qw3.c_str());
+        mvprintw(start_line, 42, qw4.c_str());
         getstr(str);
         r_1 = atoi(str);
     }
