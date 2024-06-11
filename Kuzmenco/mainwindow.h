@@ -13,7 +13,7 @@
 
 void answers();
 void answer(uint num, std::string qw1, std::string qw2, std::string qw3, std::string qw4);
-std::string letter(int r, int l );
+std::string letter(int r, int l , float k);
 
 
 QT_BEGIN_NAMESPACE

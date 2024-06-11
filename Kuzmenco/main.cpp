@@ -44,42 +44,27 @@ int main(int argc, char *argv[])
     init_pair(6, COLOR_MAGENTA, COLOR_BLACK);
     init_pair(7, COLOR_CYAN, COLOR_BLACK);
 
-//    CYAN
-//    mvprintw(25, 5, "k1=%5.3f",k1);
-//    mvprintw(26, 5, "k2=%5.3f",k2);
-//    mvprintw(27, 5, "k3=%5.3f",k3);
-//    mvprintw(28, 5, "k4=%5.3f",k4);
-//    mvprintw(29, 5, "k5=%5.3f",k5);
-//    mvprintw(30, 5, "k6=%5.3f",k6);
-//    mvprintw(25, 20, "k7=%5.3f",k7);
-//    mvprintw(26, 20, "k8=%5.3f",k8);
-//    mvprintw(27, 20, "k9=%5.3f",k9);
-//    mvprintw(28, 20, "k10=%5.3f",k10);
-//    mvprintw(29, 20, "k11=%5.3f",k11);
-//    mvprintw(30, 20, "k12=%5.3f",k12);
     answers();
 
-    mvprintw(5, 45, letter(r_1, l_1).c_str());
-    mvprintw(6, 45, letter(r_2, l_2).c_str());
-    mvprintw(7, 45, letter(r_3, l_3).c_str());
-    mvprintw(8, 45, letter(r_4, l_4).c_str());
-    mvprintw(9, 45, letter(r_5, l_5).c_str());
-    mvprintw(10, 45, letter(r_6, l_6).c_str());
+    mvprintw(5, 45, letter(r_1, l_1, k1).c_str());
+    mvprintw(6, 45, letter(r_2, l_2, k2).c_str());
+    mvprintw(7, 45, letter(r_3, l_3, k3).c_str());
+    mvprintw(8, 45, letter(r_4, l_4, k4).c_str());
+    mvprintw(9, 45, letter(r_5, l_5, k5).c_str());
+    mvprintw(10, 45, letter(r_6, l_6, k6).c_str());
 
-    mvprintw(12, 45, letter(r_7, l_7).c_str());
-    mvprintw(13, 45, letter(r_8, l_8).c_str());
-    mvprintw(14, 45, letter(r_9, l_9).c_str());
-    mvprintw(15, 45, letter(r_10, l_10).c_str());
-    mvprintw(16, 45, letter(r_11, l_11).c_str());
-    mvprintw(17, 45, letter(r_12, l_12).c_str());
+    mvprintw(12, 45, letter(r_7, l_7, k7).c_str());
+    mvprintw(13, 45, letter(r_8, l_8, k8).c_str());
+    mvprintw(14, 45, letter(r_9, l_9, k9).c_str());
+    mvprintw(15, 45, letter(r_10, l_10, k10).c_str());
+    mvprintw(16, 45, letter(r_11, l_11, k11).c_str());
+    mvprintw(17, 45, letter(r_12, l_12, k12).c_str());
+
+    GREEN
+    mvprintw(22, 0, "Для выхода нажмите Ctr-C");
 
     char tmp[10] ;
     getstr(tmp);
-
-//    cout<<"Имя: "<<name<<endl;
-//    cout<<"Дата: "<<date<<endl;
-//    cout<<"Номер: "<<number<<endl;
-//    cout<< "Среднее" <<average<<endl;
 
     return a.exec();
 }

@@ -478,35 +478,35 @@ void answers(){
 
 }
 
-string letter(int r, int l )
+string letter(int r, int l , float k)
 {
     if( r == l)
     {
-        if (abs(r - hight) < 0.6) return "B+1";
-        if (((hight - r) > 0.6) && (r > low)) return "B0";
-        if (abs(r - low) < 0.6) return "B-1";
-        if ((r - hight ) >= 0.6) return "B+2";
-        if ((low - r ) >= 0.6) return "B-2";
+        if (abs(k * r  - hight) < 0.6) return "B+1";
+        if (((hight - k * r) > 0.6) && (k * r > low)) return "B0";
+        if (abs(k * r - low) < 0.6) return "B-1";
+        if ((k * r - hight ) >= 0.6) return "B+2";
+        if ((low - k * r ) >= 0.6) return "B-2";
         return "Err";
     }
     if( r < l)
     {
-        if ((r - hight ) >= 0.6) return "A+2";
-        if ((r < hight ) && (r > low ) && (l > hight )) return "A+1";
-        if ((r > low ) && (l < hight )) return "A0";
-        if ((l > low ) && (l < hight )) return "A-1";
-        if ((low - l ) >= 0.6) return "A-2";
-        if ((r < low) && (l > hight)) return "OK";
+        if ((k * r - hight ) >= 0.6) return "A+2";
+        if ((k * r < hight ) && (k * r > low ) && (k * l > hight )) return "A+1";
+        if ((k * r > low ) && (k * l < hight )) return "A0";
+        if ((k * l > low ) && (k * l < hight )) return "A-1";
+        if ((low - k * l ) >= 0.6) return "A-2";
+        if ((k * r < low) && (k * l > hight)) return "OK";
         return "Err";
     }
     if( r > l)
     {
-        if ((l - hight ) >= 0.6) return "C+2";
-        if ((l < hight ) && (l > low ) && (r > hight )) return "C+1";
-        if ((l > low ) && (r < hight )) return "A0";
-        if ((r > low ) && (r < hight )) return "C-1";
-        if ((low - r ) >= 0.6) return "C-2";
-        if ((l < low) && (r > hight)) return "OП";
+        if ((k * l - hight ) >= 0.6) return "C+2";
+        if ((k * l < hight ) && (k * l > low ) && (k * r > hight )) return "C+1";
+        if ((k * l > low ) && (k * r < hight )) return "A0";
+        if ((k * r > low ) && (k * r < hight )) return "C-1";
+        if ((low - k * r ) >= 0.6) return "C-2";
+        if ((k * l < low) && (k * r > hight)) return "OП";
         return "Err";
     }
     return "---";
