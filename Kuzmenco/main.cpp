@@ -44,19 +44,19 @@ int main(int argc, char *argv[])
     init_pair(6, COLOR_MAGENTA, COLOR_BLACK);
     init_pair(7, COLOR_CYAN, COLOR_BLACK);
 
-    CYAN
-    mvprintw(25, 5, "k1=%5.3f",k1);
-    mvprintw(26, 5, "k2=%5.3f",k2);
-    mvprintw(27, 5, "k3=%5.3f",k3);
-    mvprintw(28, 5, "k4=%5.3f",k4);
-    mvprintw(29, 5, "k5=%5.3f",k5);
-    mvprintw(30, 5, "k6=%5.3f",k6);
-    mvprintw(25, 20, "k7=%5.3f",k7);
-    mvprintw(26, 20, "k8=%5.3f",k8);
-    mvprintw(27, 20, "k9=%5.3f",k9);
-    mvprintw(28, 20, "k10=%5.3f",k10);
-    mvprintw(29, 20, "k11=%5.3f",k11);
-    mvprintw(30, 20, "k12=%5.3f",k12);
+//    CYAN
+//    mvprintw(25, 5, "k1=%5.3f",k1);
+//    mvprintw(26, 5, "k2=%5.3f",k2);
+//    mvprintw(27, 5, "k3=%5.3f",k3);
+//    mvprintw(28, 5, "k4=%5.3f",k4);
+//    mvprintw(29, 5, "k5=%5.3f",k5);
+//    mvprintw(30, 5, "k6=%5.3f",k6);
+//    mvprintw(25, 20, "k7=%5.3f",k7);
+//    mvprintw(26, 20, "k8=%5.3f",k8);
+//    mvprintw(27, 20, "k9=%5.3f",k9);
+//    mvprintw(28, 20, "k10=%5.3f",k10);
+//    mvprintw(29, 20, "k11=%5.3f",k11);
+//    mvprintw(30, 20, "k12=%5.3f",k12);
     answers();
 
     mvprintw(5, 45, letter(r_1, l_1).c_str());
