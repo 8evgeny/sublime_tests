@@ -76,34 +76,15 @@ int main(int argc, char *argv[])
     char tmp[10] ;
     getstr(tmp);
 
-    cout<<"Имя: "<<name<<endl;
-    cout<<"Дата: "<<date<<endl;
-    cout<<"Номер: "<<number<<endl;
-    cout<< "Среднее" <<average<<endl;
+//    cout<<"Имя: "<<name<<endl;
+//    cout<<"Дата: "<<date<<endl;
+//    cout<<"Номер: "<<number<<endl;
+//    cout<< "Среднее" <<average<<endl;
 
     return a.exec();
 }
 
-string letter(int r, int l )
-{
-    if( r == l)
-    {
-        if (abs(r - hight) < 0.6) return "B+1";
-        if (((hight - r) > 0.6) && (r > low)) return "B0";
-        if (abs(r - low) < 0.6) return "B-1";
-        if ((r - hight ) >= 0.6) return "B+2";
-        if ((low - r ) >= 0.6) return "B-2";
-    }
-    if( r < l)
-    {
-        return "A";
-    }
-    if( r > l)
-    {
-        return "C";
-    }
-    return "---";
-}
+
 
 
 
