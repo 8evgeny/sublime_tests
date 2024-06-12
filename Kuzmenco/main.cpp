@@ -67,9 +67,7 @@ int main(int argc, char *argv[])
 
     ofstream fout;
     fout.open(nam + "_" + dat + "_" + num);
-    fout << name <<endl;
-    fout << date <<endl;
-    fout << number <<endl;
+    fout <<"Имя: "<< name <<" / Дата: "<<date <<" / №"<<number<<endl<<endl;
     fout << " P\t Легкие\t\t\t\t"<< r_1 <<"\t" << l_1 <<"\t"<< letter(r_1, l_1, k1) << endl;
     fout << " MC\t Перикард\t\t\t"<< r_2 <<"\t" << l_2 <<"\t"<< letter(r_2, l_2, k2) << endl;
     fout << " С\t Сердце\t\t\t\t"<< r_3 <<"\t" << l_3 <<"\t"<< letter(r_3, l_3, k3) << endl;
@@ -86,24 +84,24 @@ int main(int argc, char *argv[])
     fout << endl<<" Коридор нормы верх: " << average + 7 <<endl;
     fout << " Коридор нормы низ: " << average - 7 <<endl;
     fout << " " << endl;
-    fout << k1 << endl;
-    fout << k2 << endl;
-    fout << k3 << endl;
-    fout << k4 << endl;
-    fout << k5 << endl;
-    fout << k6 << endl;
-    fout << k7 << endl;
-    fout << k8 << endl;
-    fout << k9 << endl;
-    fout << k10 << endl;
-    fout << k11 << endl;
-    fout << k12 << endl;
+//    fout << k1 << endl;
+//    fout << k2 << endl;
+//    fout << k3 << endl;
+//    fout << k4 << endl;
+//    fout << k5 << endl;
+//    fout << k6 << endl;
+//    fout << k7 << endl;
+//    fout << k8 << endl;
+//    fout << k9 << endl;
+//    fout << k10 << endl;
+//    fout << k11 << endl;
+//    fout << k12 << endl;
     fout.close();
 
 
 
     GREEN
-    mvprintw(22, 0, "Для выхода нажмите Ctr-C");
+//    mvprintw(22, 0, "Для выхода нажмите Ctr-C");
 
     char tmp[10] ;
     getstr(tmp);
