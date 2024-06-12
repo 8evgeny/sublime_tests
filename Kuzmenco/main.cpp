@@ -6,6 +6,7 @@
 #include <math.h>
 #include <fstream>
 
+using namespace std::chrono;
 using namespace std;
 
 char name[100];
@@ -29,11 +30,13 @@ float average{0.0};
 float hight{0.0};
 float low{0.0};
 
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 //    MainWindow w;
 //    w.show();
+
     initscr();
     start_color();
     init_pair(1, COLOR_YELLOW, COLOR_BLACK);
@@ -66,7 +69,7 @@ int main(int argc, char *argv[])
     string num(to_string(number));
 
     ofstream fout;
-    fout.open("../Измерения/" + nam + "_" + dat + "_" + num);
+    fout.open("../Измерения/" + nam + "   " + dat + "  № " + num);
     fout <<" Имя: "<< name <<" / Дата: "<<date <<" / Измерение № "<<number<<endl<<endl;
     fout << " P\t Легкие\t\t\t\t"<< r_1 <<"\t" << l_1 <<"\t"<< letter(r_1, l_1, k1) << endl;
     fout << " MC\t Перикард\t\t\t"<< r_2 <<"\t" << l_2 <<"\t"<< letter(r_2, l_2, k2) << endl;

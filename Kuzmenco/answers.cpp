@@ -4,6 +4,12 @@
 #include <curses.h>
 #include <ncursesw/ncurses.h>
 #include <math.h>
+#include <chrono>
+#include <ctime>
+#include <sstream>
+#include <iomanip>
+
+
 using namespace std;
 
 extern char name[100];
@@ -13,6 +19,15 @@ extern int r_1, r_2, r_3, r_4, r_5, r_6, l_1, l_2, l_3, l_4, l_5, l_6;
 extern int r_7, r_8, r_9, r_10, r_11, r_12, l_7, l_8, l_9, l_10, l_11, l_12;
 extern float k1, k2 ,k3, k4, k5, k6, k7, k8, k9, k10, k11, k12;
 extern float average, hight, low;
+
+std::string current_time_and_date()
+{
+    auto now = std::chrono::system_clock::now();
+    auto in_time_t = std::chrono::system_clock::to_time_t(now);
+    std::stringstream ss;
+    ss << std::put_time(std::localtime(&in_time_t), "%Y-%m-%d %X");
+    return ss.str();
+}
 
 void answer(uint num, string qw1, string qw2, string qw3, string qw4)
 {
@@ -41,12 +56,25 @@ void answer(uint num, string qw1, string qw2, string qw3, string qw4)
     if (num == 2)
     {
         mvprintw(num, 0, qw4.c_str());
+        GREEN
+        mvprintw(num, 10, current_time_and_date().c_str());
         MAGENTA
         getstr(date);
-        YELLOW
-        mvprintw(num, 0, "Дата:           ");
-        mvprintw(num, 10, date);
-        clrtoeol();
+        string dat(date);
+        if (dat == "")
+        {
+            YELLOW
+            mvprintw(num, 0, "Дата:           ");
+            mvprintw(num, 10, current_time_and_date().c_str());
+            clrtoeol();
+        }
+        else
+        {
+            YELLOW
+            mvprintw(num, 0, "Дата:           ");
+            mvprintw(num, 10, date);
+            clrtoeol();
+        }
     }
     if (num == 3)
     {
@@ -434,7 +462,7 @@ void answer(uint num, string qw1, string qw2, string qw3, string qw4)
 
 void answers(){
     answer(1, "","","","Введите имя тестируемого  ");
-    answer(2, "","","","Введите дату тестирования  ");
+    answer(2, "","","","Дата  ");
     answer(3, "","","","Введите номер тестирования  ");
     answer(4, "P ","Легкие ", "Правая рука ", "Введите измеренное значение  ");
     answer(5, "MC ","Перикард ", "Правая рука ", "Введите измеренное значение  ");
