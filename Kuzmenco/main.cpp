@@ -28,8 +28,7 @@ float k12 = 90.f/80;
 float average{0.0};
 float hight{0.0};
 float low{0.0};
-//void answer(uint num, string qw1, string qw2, string qw3, string qw4);
-string letter(int r, int l );
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -61,13 +60,14 @@ int main(int argc, char *argv[])
     mvprintw(16, 45, letter(r_11, l_11, k11).c_str());
     mvprintw(17, 45, letter(r_12, l_12, k12).c_str());
 
+    WHITE
     string nam(name);
     string dat(date);
     string num(to_string(number));
 
     ofstream fout;
-    fout.open(nam + "_" + dat + "_" + num);
-    fout <<"Имя: "<< name <<" / Дата: "<<date <<" / №"<<number<<endl<<endl;
+    fout.open("../Измерения/" + nam + "_" + dat + "_" + num);
+    fout <<" Имя: "<< name <<" / Дата: "<<date <<" / Измерение № "<<number<<endl<<endl;
     fout << " P\t Легкие\t\t\t\t"<< r_1 <<"\t" << l_1 <<"\t"<< letter(r_1, l_1, k1) << endl;
     fout << " MC\t Перикард\t\t\t"<< r_2 <<"\t" << l_2 <<"\t"<< letter(r_2, l_2, k2) << endl;
     fout << " С\t Сердце\t\t\t\t"<< r_3 <<"\t" << l_3 <<"\t"<< letter(r_3, l_3, k3) << endl;

@@ -482,6 +482,7 @@ string letter(int r, int l , float k)
 {
     if( r == l)
     {
+        GREEN
         if (abs(k * r  - hight) < 0.6) return "B+1";
         if (((hight - k * r) > 0.6) && (k * r > low)) return "B0";
         if (abs(k * r - low) < 0.6) return "B-1";
@@ -491,6 +492,7 @@ string letter(int r, int l , float k)
     }
     if( r < l)
     {
+        BLUE
         if ((k * r - hight ) >= 0.6) return "A+2";
         if ((k * r < hight ) && (k * r > low ) && (k * l > hight )) return "A+1";
         if ((k * r > low ) && (k * l < hight )) return "A0";
@@ -501,6 +503,7 @@ string letter(int r, int l , float k)
     }
     if( r > l)
     {
+        RED
         if ((k * l - hight ) >= 0.6) return "C+2";
         if ((k * l < hight ) && (k * l > low ) && (k * r > hight )) return "C+1";
         if ((k * l > low ) && (k * r < hight )) return "A0";
