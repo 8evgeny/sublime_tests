@@ -4,6 +4,7 @@
 #include <curses.h>
 #include <ncursesw/ncurses.h>
 #include <math.h>
+#include <fstream>
 
 using namespace std;
 
@@ -59,6 +60,31 @@ int main(int argc, char *argv[])
     mvprintw(15, 45, letter(r_10, l_10, k10).c_str());
     mvprintw(16, 45, letter(r_11, l_11, k11).c_str());
     mvprintw(17, 45, letter(r_12, l_12, k12).c_str());
+
+    string nam(name);
+    string dat(date);
+    string num(to_string(number));
+
+    ofstream fout;
+    fout.open(nam + "_" + dat + "_" + num);
+    fout << name <<endl;
+    fout << date <<endl;
+    fout << number <<endl;
+    fout << " P\t Легкие\t\t\t\t"<< r_1 <<"\t" << l_1 <<"\t"<< letter(r_1, l_1, k1) << endl;
+    fout << " MC\t Перикард\t\t\t"<< r_2 <<"\t" << l_2 <<"\t"<< letter(r_2, l_2, k2) << endl;
+    fout << " С\t Сердце\t\t\t\t"<< r_3 <<"\t" << l_3 <<"\t"<< letter(r_3, l_3, k3) << endl;
+    fout << " IG\t Тонкий кишечник\t\t"<< r_4 <<"\t" << l_4 <<"\t"<< letter(r_4, l_4, k4) << endl;
+    fout << " TR\t Гормональная система\t\t"<< r_5 <<"\t" << l_5 <<"\t"<< letter(r_5, l_5, k5) << endl;
+    fout << " GI\t Толстый кишечник\t\t"<< r_6 <<"\t" << l_6 <<"\t"<< letter(r_6, l_6, k6) << endl;
+    fout << " RP\t Селезенка, Поджелудочная\t"<< r_7 <<"\t" << l_7 <<"\t"<< letter(r_7, l_7, k7) << endl;
+    fout << " F\t Печень\t\t\t\t"<< r_8 <<"\t" << l_8 <<"\t"<< letter(r_8, l_8, k8) << endl;
+    fout << " R\t Почки\t\t\t\t"<< r_9 <<"\t" << l_9 <<"\t"<< letter(r_9, l_9, k9) << endl;
+    fout << " V\t Мочевой пузырь\t\t\t"<< r_10 <<"\t" << l_10 <<"\t"<< letter(r_10, l_10, k10) << endl;
+    fout << " VB\t Желчный пузырь\t\t\t"<< r_11 <<"\t" << l_11 <<"\t"<< letter(r_11, l_11, k11) << endl;
+    fout << " E\t Желудок\t\t\t"<< r_12 <<"\t" << l_12 <<"\t"<< letter(r_12, l_12, k12) << endl;
+    fout.close();
+
+
 
     GREEN
     mvprintw(22, 0, "Для выхода нажмите Ctr-C");
