@@ -1,0 +1,4 @@
+/media/user/3bc58ec6-df18-417c-9605-80936a4da4563/Github/sublime_tests/Kuzmenco/build/CMakeFiles/Kuzmenco.dir
+/media/user/3bc58ec6-df18-417c-9605-80936a4da4563/Github/sublime_tests/Kuzmenco/build/CMakeFiles/edit_cache.dir
+/media/user/3bc58ec6-df18-417c-9605-80936a4da4563/Github/sublime_tests/Kuzmenco/build/CMakeFiles/rebuild_cache.dir
+/media/user/3bc58ec6-df18-417c-9605-80936a4da4563/Github/sublime_tests/Kuzmenco/build/CMakeFiles/Kuzmenco_autogen.dir

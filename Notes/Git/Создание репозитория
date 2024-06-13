@@ -1,0 +1,4 @@
+git init
+git add *
+git commit -m 'Initial project version'
+git remote add shared_memory http://192.168.1.34/Evgeny/shared_memory
