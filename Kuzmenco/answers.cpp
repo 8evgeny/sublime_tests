@@ -8,7 +8,7 @@
 #include <ctime>
 #include <sstream>
 #include <iomanip>
-
+#include <fstream>
 
 using namespace std;
 
@@ -19,6 +19,82 @@ extern int r_1, r_2, r_3, r_4, r_5, r_6, l_1, l_2, l_3, l_4, l_5, l_6;
 extern int r_7, r_8, r_9, r_10, r_11, r_12, l_7, l_8, l_9, l_10, l_11, l_12;
 extern float k1, k2 ,k3, k4, k5, k6, k7, k8, k9, k10, k11, k12;
 extern float average, hight, low;
+
+
+void main_logic()
+{
+    initscr();
+    start_color();
+    init_pair(1, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(2, COLOR_GREEN, COLOR_BLACK);
+    init_pair(3, COLOR_WHITE, COLOR_BLACK);
+    init_pair(4, COLOR_RED, COLOR_BLACK);
+    init_pair(5, COLOR_BLUE, COLOR_BLACK);
+    init_pair(6, COLOR_MAGENTA, COLOR_BLACK);
+    init_pair(7, COLOR_CYAN, COLOR_BLACK);
+
+    answers();
+
+    mvprintw(5, 45, letter(r_1, l_1, k1).c_str());
+    mvprintw(6, 45, letter(r_2, l_2, k2).c_str());
+    mvprintw(7, 45, letter(r_3, l_3, k3).c_str());
+    mvprintw(8, 45, letter(r_4, l_4, k4).c_str());
+    mvprintw(9, 45, letter(r_5, l_5, k5).c_str());
+    mvprintw(10, 45, letter(r_6, l_6, k6).c_str());
+
+    mvprintw(12, 45, letter(r_7, l_7, k7).c_str());
+    mvprintw(13, 45, letter(r_8, l_8, k8).c_str());
+    mvprintw(14, 45, letter(r_9, l_9, k9).c_str());
+    mvprintw(15, 45, letter(r_10, l_10, k10).c_str());
+    mvprintw(16, 45, letter(r_11, l_11, k11).c_str());
+    mvprintw(17, 45, letter(r_12, l_12, k12).c_str());
+
+    WHITE
+    string nam(name);
+    string dat(date);
+    string num(to_string(number));
+
+    ofstream fout;
+    fout.open("../Измерения/" + nam + "   " + dat + "  № " + num);
+    fout <<" Имя: "<< name <<" / Дата: "<<date <<" / Измерение № "<<number<<endl<<endl;
+    fout << " P\t Легкие\t\t\t\t"<< r_1 <<"\t" << l_1 <<"\t"<< letter(r_1, l_1, k1) << endl;
+    fout << " MC\t Перикард\t\t\t"<< r_2 <<"\t" << l_2 <<"\t"<< letter(r_2, l_2, k2) << endl;
+    fout << " С\t Сердце\t\t\t\t"<< r_3 <<"\t" << l_3 <<"\t"<< letter(r_3, l_3, k3) << endl;
+    fout << " IG\t Тонкий кишечник\t\t"<< r_4 <<"\t" << l_4 <<"\t"<< letter(r_4, l_4, k4) << endl;
+    fout << " TR\t Гормональная система\t\t"<< r_5 <<"\t" << l_5 <<"\t"<< letter(r_5, l_5, k5) << endl;
+    fout << " GI\t Толстый кишечник\t\t"<< r_6 <<"\t" << l_6 <<"\t"<< letter(r_6, l_6, k6) << endl;
+    fout << " " << endl;
+    fout << " RP\t Селезенка, Поджелудочная\t"<< r_7 <<"\t" << l_7 <<"\t"<< letter(r_7, l_7, k7) << endl;
+    fout << " F\t Печень\t\t\t\t"<< r_8 <<"\t" << l_8 <<"\t"<< letter(r_8, l_8, k8) << endl;
+    fout << " R\t Почки\t\t\t\t"<< r_9 <<"\t" << l_9 <<"\t"<< letter(r_9, l_9, k9) << endl;
+    fout << " V\t Мочевой пузырь\t\t\t"<< r_10 <<"\t" << l_10 <<"\t"<< letter(r_10, l_10, k10) << endl;
+    fout << " VB\t Желчный пузырь\t\t\t"<< r_11 <<"\t" << l_11 <<"\t"<< letter(r_11, l_11, k11) << endl;
+    fout << " E\t Желудок\t\t\t"<< r_12 <<"\t" << l_12 <<"\t"<< letter(r_12, l_12, k12) << endl;
+    fout << endl<<" Коридор нормы верх: " << average + 7 <<endl;
+    fout << " Коридор нормы низ: " << average - 7 <<endl;
+    fout << " " << endl;
+//    fout << k1 << endl;
+//    fout << k2 << endl;
+//    fout << k3 << endl;
+//    fout << k4 << endl;
+//    fout << k5 << endl;
+//    fout << k6 << endl;
+//    fout << k7 << endl;
+//    fout << k8 << endl;
+//    fout << k9 << endl;
+//    fout << k10 << endl;
+//    fout << k11 << endl;
+//    fout << k12 << endl;
+    fout.close();
+
+    GREEN
+//    mvprintw(22, 0, "Для выхода нажмите Ctr-C");
+
+    char tmp[10] ;
+    getstr(tmp);
+}
+
+
 
 std::string current_time_and_date()
 {
