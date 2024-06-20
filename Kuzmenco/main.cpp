@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow * w = new MainWindow;
-    w->getUi()->centralwidget->setFixedSize(1800,1000);
+    w->getUi()->centralwidget->setFixedSize(1850,1000);
 //    w.getUi()->centralwidget->
 
     QPixmap      pix("/home/user/SOFT/Github/Sublime_tests/Kuzmenco/table.png");
@@ -47,6 +47,8 @@ int main(int argc, char *argv[])
     w->getUi()->frame->setPalette(pal);
     w->getUi()->frame->setAutoFillBackground(true);
     w->getUi()->frame->setFixedSize(pix.width(), pix.height());
+//    w->getUi()->centralwidget->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint);
+
 
 
 
