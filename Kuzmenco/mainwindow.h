@@ -16,19 +16,23 @@ void answer(uint num, std::string qw1, std::string qw2, std::string qw3, std::st
 std::string letter(int r, int l , float k);
 void main_logic();
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+namespace Ui {
+class MainWindow;
+}
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    Ui::MainWindow *getUi() const;
+    void setUi(Ui::MainWindow *newUi);
 
 private:
     Ui::MainWindow *ui;
 };
+
 #endif // MAINWINDOW_H

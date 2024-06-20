@@ -1,10 +1,12 @@
 ﻿#include "mainwindow.h"
+#include "ui_mainwindow.h"
 #include <iostream>
 #include <QApplication>
+#include <QMainWindow>
 #include <curses.h>
 #include <ncursesw/ncurses.h>
 #include <math.h>
-
+#include <QLabel>
 
 using namespace std::chrono;
 using namespace std;
@@ -34,12 +36,29 @@ float low{0.0};
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    MainWindow * w = new MainWindow;
+    w->getUi()->centralwidget->setFixedSize(1800,1000);
+//    w.getUi()->centralwidget->
 
-    main_logic();
+    QPixmap      pix("/home/user/SOFT/Github/Sublime_tests/Kuzmenco/table.png");
 
-    w.show();
-    return a.exec();
+    QPalette pal;
+    pal.setBrush(w->backgroundRole(), QBrush(pix));
+    w->getUi()->frame->setPalette(pal);
+    w->getUi()->frame->setAutoFillBackground(true);
+    w->getUi()->frame->setFixedSize(pix.width(), pix.height());
+
+
+
+
+//    main_logic();
+
+
+
+
+
+    w->show();
+    a.exec();
 }
 
 
