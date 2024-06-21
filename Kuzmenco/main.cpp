@@ -22,6 +22,9 @@ int main(int argc, char *argv[])
 
     QDesktopWidget *desktop = QApplication::desktop();
 
+//    QRect screenres = QApplication::desktop()->screenGeometry(1/*screenNumber*/);
+
+
     int screenWidth = desktop->width();
     int screenHeight = desktop->height();
     int x = (screenWidth - w->width()) / 2;
@@ -33,17 +36,18 @@ int main(int argc, char *argv[])
 
     QPalette pal;
     pal.setBrush(w->backgroundRole(), QBrush(pix));
-    w->getUi()->centralwidget->setGeometry(0,0,1920,1080);
+//    w->getUi()->centralwidget->setGeometry(0,0,1920,1080);
 
-    w->getUi()->frame->setPalette(pal);
-    w->getUi()->frame->setAutoFillBackground(true);
-    w->getUi()->frame->setFixedSize(pix.width(), pix.height());
+    w->getUi()->widget->setPalette(pal);
+    w->getUi()->widget->setAutoFillBackground(true);
+    w->getUi()->widget->setFixedSize(pix.width(), pix.height() );
 
 
 
 //    main_logic();
 
-    w->show();
+    w->showFullScreen();
+//    w->show();
     a.exec();
 }
 
