@@ -58,7 +58,7 @@ private slots:
     void on_l_10_editingFinished();
     void on_l_11_editingFinished();
     void on_l_12_editingFinished();
-
+void paintEvent(QPaintEvent *event);
 
     void on_button_exit_clicked();
 

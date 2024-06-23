@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <iostream>
+#include <QPainter>
 
 using namespace std;
 extern QApplication * app;
@@ -31,6 +32,8 @@ void MainWindow::on_name_field_editingFinished()
 {
     name_field = ui->name_field->text();
     cout<< "name_field: " << name_field.toStdString() << endl;
+    repaint();
+    update();
 }
 
 void MainWindow::on_dateEdit_dateChanged(const QDate &date)
@@ -166,3 +169,55 @@ void MainWindow::on_button_exit_clicked()
     app->exit();
 }
 
+void MainWindow::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+    QPainter painter(ui->widget); // Создаём объект отрисовщика
+painter.begin(this);
+    painter.setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::FlatCap));
+    painter.drawEllipse(100, 50, 150, 150);
+
+}
+#if 0
+            #include <QMainWindow>
+            #include <QScrollArea>
+            #include <QLabel>
+            #include <QApplication>
+            #include <QPainter>
+
+            class MyLabel : public QLabel {
+            protected:
+                virtual void paintEvent(QPaintEvent* e) {
+                    QLabel::paintEvent(e);
+
+                    QPainter p(this);
+
+                    p.setPen(Qt::green);
+                    p.drawLine(0, 0, 100, 100);
+                }
+            };
+
+            class ImageView : public QMainWindow {
+            public:
+
+                ImageView() : QMainWindow() {
+                    QScrollArea* scr = new QScrollArea();
+                    setCentralWidget( scr );
+
+                    QLabel* label = new MyLabel();
+                    label->setPixmap(QPixmap("./moon_from_andrey.jpg"));
+                    scr->setWidget(label);
+                }
+            };
+
+
+            int main(int argc, char* argv[]) {
+                QApplication app(argc, argv);
+
+                ImageView view;
+                view.setGeometry(100, 100, 500, 400);
+                view.show();
+
+                return app.exec();
+            }
+#endif
