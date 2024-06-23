@@ -32,8 +32,8 @@ int main(int argc, char *argv[])
     QPixmap      pix("../table.png");
     QPalette pal;
     pal.setBrush(w->backgroundRole(), QBrush(pix));
-    QRect rect(20,20,1800,1080);
-    w->getUi()->horizontalLayout->setGeometry(rect);
+//    QRect rect(20,20,1800,1080);
+//    w->getUi()->horizontalLayout->setGeometry(rect);
 //w->getUi()->horizontalLayout->setAlignment(w->getUi()->widget,Qt::Alignment(Qt::LeftToRight));
     w->getUi()->widget->setPalette(pal);
     w->getUi()->widget->setAutoFillBackground(true);
