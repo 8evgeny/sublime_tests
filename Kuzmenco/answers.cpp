@@ -13,6 +13,7 @@
 using namespace std;
 
 char name[100];
+
 char date[100];
 int number{0}, summ{0};
 int r_1{0}, r_2{0}, r_3{0}, r_4{0}, r_5{0}, r_6{0}, l_1{0}, l_2{0}, l_3{0}, l_4{0}, l_5{0}, l_6{0};

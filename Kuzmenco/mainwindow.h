@@ -31,6 +31,9 @@ public:
     Ui::MainWindow *getUi() const;
     void setUi(Ui::MainWindow *newUi);
 
+private slots:
+    void on_name_field_editingFinished();
+
 private:
     Ui::MainWindow *ui;
 };
