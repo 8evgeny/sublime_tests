@@ -180,9 +180,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -311,9 +311,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -393,9 +393,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -498,9 +498,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -603,9 +603,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -864,9 +864,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -1023,9 +1023,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -1105,9 +1105,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -1299,9 +1299,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -1427,9 +1427,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -1532,9 +1532,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -1637,9 +1637,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -1742,9 +1742,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -2008,9 +2008,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -2090,9 +2090,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -2172,9 +2172,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -2254,9 +2254,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -2336,9 +2336,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -2418,9 +2418,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -2500,9 +2500,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -2582,9 +2582,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -2664,9 +2664,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -2746,9 +2746,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -2828,9 +2828,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>

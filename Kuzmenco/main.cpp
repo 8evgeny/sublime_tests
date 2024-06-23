@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 //    w->move(x, y);
 
 
-    QPixmap      pix("../table.png");
+    QPixmap      pix("table.png");
     QPalette pal;
     pal.setBrush(w->backgroundRole(), QBrush(pix));
 //    QRect rect(20,20,1800,1080);
@@ -45,7 +45,6 @@ int main(int argc, char *argv[])
 //    main_logic();
 
     w->showFullScreen();
-//    w->show();
     app->exec();
 }
 

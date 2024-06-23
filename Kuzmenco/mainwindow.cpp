@@ -3,7 +3,7 @@
 #include <iostream>
 
 using namespace std;
-extern QApplication * a;
+extern QApplication * app;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -163,6 +163,6 @@ void MainWindow::on_l_12_editingFinished()
 
 void MainWindow::on_button_exit_clicked()
 {
-    a->exit();
+    app->exit();
 }
 

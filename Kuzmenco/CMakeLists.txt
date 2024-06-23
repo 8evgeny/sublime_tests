@@ -14,13 +14,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets REQUIRED)
 
+configure_file("${CMAKE_SOURCE_DIR}/table.png" ${PROJECT_BINARY_DIR} COPYONLY)
+
 set(PROJECT_SOURCES
         main.cpp
-        answers.cpp
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
 )
+#        answers.cpp
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(${PROJECT_NAME}
