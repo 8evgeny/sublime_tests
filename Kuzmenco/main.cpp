@@ -13,10 +13,11 @@
 using namespace std::chrono;
 using namespace std;
 
+QApplication * app;
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    app = new QApplication(argc, argv);
     MainWindow * w = new MainWindow;
 //    w->getUi()->centralwidget->setFixedSize(1920,1080);
 
@@ -45,7 +46,7 @@ int main(int argc, char *argv[])
 
     w->showFullScreen();
 //    w->show();
-    a.exec();
+    app->exec();
 }
 
 

@@ -33,9 +33,41 @@ public:
 
 private slots:
     void on_name_field_editingFinished();
+    void on_dateEdit_dateChanged(const QDate &date);
+    void on_r_1_editingFinished();
+    void on_r_2_editingFinished();
+    void on_r_3_editingFinished();
+    void on_r_4_editingFinished();
+    void on_r_5_editingFinished();
+    void on_r_6_editingFinished();
+    void on_r_7_editingFinished();
+    void on_r_8_editingFinished();
+    void on_r_9_editingFinished();
+    void on_r_10_editingFinished();
+    void on_r_11_editingFinished();
+    void on_r_12_editingFinished();
+    void on_l_1_editingFinished();
+    void on_l_2_editingFinished();
+    void on_l_3_editingFinished();
+    void on_l_4_editingFinished();
+    void on_l_5_editingFinished();
+    void on_l_6_editingFinished();
+    void on_l_7_editingFinished();
+    void on_l_8_editingFinished();
+    void on_l_9_editingFinished();
+    void on_l_10_editingFinished();
+    void on_l_11_editingFinished();
+    void on_l_12_editingFinished();
+
+
+    void on_button_exit_clicked();
 
 private:
     Ui::MainWindow *ui;
+    QString name_field;
+    QString  Date;
+    unsigned int  r1{0}, r2{0}, r3{0}, r4{0}, r5{0}, r6{0}, r7{0}, r8{0}, r9{0}, r10{0}, r11{0}, r12{0};
+    unsigned int  l1{0}, l2{0}, l3{0}, l4{0}, l5{0}, l6{0}, l7{0}, l8{0}, l9{0}, l10{0}, l11{0}, l12{0};
 };
 
 #endif // MAINWINDOW_H

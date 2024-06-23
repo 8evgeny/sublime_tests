@@ -2945,7 +2945,7 @@
         </spacer>
        </item>
        <item alignment="Qt::AlignTop">
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="button_exit">
          <property name="text">
           <string>Выход</string>
          </property>
