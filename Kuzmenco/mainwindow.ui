@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1920</width>
-    <height>1080</height>
+    <width>1440</width>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,20 +23,20 @@
    <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>1557</width>
-      <height>1039</height>
+      <x>0</x>
+      <y>0</y>
+      <width>1236</width>
+      <height>835</height>
      </rect>
     </property>
    </widget>
    <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
-      <x>1610</x>
-      <y>20</y>
-      <width>301</width>
-      <height>1040</height>
+      <x>1237</x>
+      <y>0</y>
+      <width>200</width>
+      <height>900</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -47,14 +47,14 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>299</width>
-       <height>1038</height>
+       <width>198</width>
+       <height>898</height>
       </rect>
      </property>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="r_1">
       <property name="geometry">
        <rect>
-        <x>90</x>
+        <x>50</x>
         <y>230</y>
         <width>55</width>
         <height>30</height>
@@ -190,7 +190,7 @@
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>0</x>
         <y>230</y>
         <width>45</width>
         <height>25</height>
@@ -198,7 +198,7 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -206,19 +206,25 @@
       <property name="text">
        <string>P</string>
       </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>290</y>
+        <x>0</x>
+        <y>280</y>
         <width>45</width>
         <height>25</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -226,12 +232,15 @@
       <property name="text">
        <string>MC</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="r_2">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>290</y>
+        <x>50</x>
+        <y>280</y>
         <width>55</width>
         <height>30</height>
        </rect>
@@ -309,11 +318,11 @@
        </font>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_3">
+     <widget class="QLineEdit" name="r_3">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>350</y>
+        <x>50</x>
+        <y>330</y>
         <width>55</width>
         <height>30</height>
        </rect>
@@ -394,15 +403,15 @@
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>350</y>
+        <x>0</x>
+        <y>330</y>
         <width>45</width>
         <height>25</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -410,12 +419,15 @@
       <property name="text">
        <string>C</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_4">
+     <widget class="QLineEdit" name="r_4">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>410</y>
+        <x>50</x>
+        <y>380</y>
         <width>55</width>
         <height>30</height>
        </rect>
@@ -496,15 +508,15 @@
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>410</y>
+        <x>0</x>
+        <y>380</y>
         <width>45</width>
         <height>25</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -512,12 +524,15 @@
       <property name="text">
        <string>IG</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_5">
+     <widget class="QLineEdit" name="r_5">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>470</y>
+        <x>50</x>
+        <y>430</y>
         <width>55</width>
         <height>30</height>
        </rect>
@@ -598,15 +613,15 @@
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>470</y>
+        <x>0</x>
+        <y>430</y>
         <width>45</width>
         <height>25</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -614,13 +629,16 @@
       <property name="text">
        <string>TR</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_7">
+     <widget class="QLineEdit" name="name_field">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>0</x>
         <y>50</y>
-        <width>261</width>
+        <width>195</width>
         <height>30</height>
        </rect>
       </property>
@@ -744,9 +762,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>18</pointsize>
+        <pointsize>16</pointsize>
         <weight>75</weight>
-        <italic>true</italic>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -771,11 +789,11 @@
        <string>Имя</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_15">
+     <widget class="QLineEdit" name="r_6">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>530</y>
+        <x>50</x>
+        <y>480</y>
         <width>55</width>
         <height>30</height>
        </rect>
@@ -856,15 +874,15 @@
      <widget class="QLabel" name="label_15">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>530</y>
+        <x>0</x>
+        <y>480</y>
         <width>45</width>
         <height>25</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -872,11 +890,14 @@
       <property name="text">
        <string>GI</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_6">
+     <widget class="QLineEdit" name="l_1">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>130</x>
         <y>230</y>
         <width>55</width>
         <height>30</height>
@@ -1009,339 +1030,11 @@
        </font>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_16">
+     <widget class="QLineEdit" name="l_2">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>290</y>
-        <width>55</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>190</red>
-            <green>190</green>
-            <blue>190</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_17">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>350</y>
-        <width>55</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>190</red>
-            <green>190</green>
-            <blue>190</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_18">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>410</y>
-        <width>55</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>190</red>
-            <green>190</green>
-            <blue>190</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_19">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>470</y>
-        <width>55</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>190</red>
-            <green>190</green>
-            <blue>190</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_20">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>530</y>
+        <x>130</x>
+        <y>280</y>
         <width>55</width>
         <height>30</height>
        </rect>
@@ -1442,9 +1135,9 @@
      <widget class="QDateEdit" name="dateEdit">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>0</x>
         <y>130</y>
-        <width>191</width>
+        <width>195</width>
         <height>30</height>
        </rect>
       </property>
@@ -1514,7 +1207,7 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
+        <pointsize>16</pointsize>
         <weight>75</weight>
         <italic>false</italic>
         <bold>true</bold>
@@ -1531,93 +1224,11 @@
        </date>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_21">
+     <widget class="QLineEdit" name="r_7">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>620</y>
-        <width>55</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>190</red>
-            <green>190</green>
-            <blue>190</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_22">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>620</y>
+        <x>50</x>
+        <y>560</y>
         <width>55</width>
         <height>30</height>
        </rect>
@@ -1698,15 +1309,15 @@
      <widget class="QLabel" name="label_17">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>620</y>
+        <x>0</x>
+        <y>560</y>
         <width>45</width>
         <height>25</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -1714,101 +1325,22 @@
       <property name="text">
        <string>RP</string>
       </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_23">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>680</y>
-        <width>55</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>190</red>
-            <green>190</green>
-            <blue>190</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="label_18">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>680</y>
+        <x>0</x>
+        <y>610</y>
         <width>45</width>
         <height>25</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -1816,94 +1348,15 @@
       <property name="text">
        <string>F</string>
       </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_24">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>680</y>
-        <width>55</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>190</red>
-            <green>190</green>
-            <blue>190</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_25">
+     <widget class="QLineEdit" name="r_8">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>740</y>
+        <x>50</x>
+        <y>610</y>
         <width>55</width>
         <height>30</height>
        </rect>
@@ -1984,15 +1437,15 @@
      <widget class="QLabel" name="label_19">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>740</y>
+        <x>0</x>
+        <y>660</y>
         <width>45</width>
         <height>25</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -2000,12 +1453,15 @@
       <property name="text">
        <string>R</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_26">
+     <widget class="QLineEdit" name="r_9">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>740</y>
+        <x>50</x>
+        <y>660</y>
         <width>55</width>
         <height>30</height>
        </rect>
@@ -2086,15 +1542,15 @@
      <widget class="QLabel" name="label_20">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>800</y>
+        <x>0</x>
+        <y>710</y>
         <width>45</width>
         <height>25</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -2102,94 +1558,15 @@
       <property name="text">
        <string>V</string>
       </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_27">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>800</y>
-        <width>55</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>190</red>
-            <green>190</green>
-            <blue>190</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_28">
+     <widget class="QLineEdit" name="r_10">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>800</y>
+        <x>50</x>
+        <y>710</y>
         <width>55</width>
         <height>30</height>
        </rect>
@@ -2270,15 +1647,15 @@
      <widget class="QLabel" name="label_21">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>860</y>
+        <x>0</x>
+        <y>760</y>
         <width>45</width>
         <height>25</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
+        <pointsize>18</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -2286,94 +1663,15 @@
       <property name="text">
        <string>VB</string>
       </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_29">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>860</y>
-        <width>55</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>190</red>
-            <green>190</green>
-            <blue>190</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_30">
+     <widget class="QLineEdit" name="r_11">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>860</y>
+        <x>50</x>
+        <y>760</y>
         <width>55</width>
         <height>30</height>
        </rect>
@@ -2634,6 +1932,1039 @@
         <bold>true</bold>
        </font>
       </property>
+     </widget>
+     <widget class="QLineEdit" name="l_3">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>330</y>
+        <width>55</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>190</red>
+            <green>190</green>
+            <blue>190</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="l_4">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>380</y>
+        <width>55</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>190</red>
+            <green>190</green>
+            <blue>190</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="l_5">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>430</y>
+        <width>55</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>190</red>
+            <green>190</green>
+            <blue>190</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="l_6">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>480</y>
+        <width>55</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>190</red>
+            <green>190</green>
+            <blue>190</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="l_7">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>560</y>
+        <width>55</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>190</red>
+            <green>190</green>
+            <blue>190</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="l_8">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>610</y>
+        <width>55</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>190</red>
+            <green>190</green>
+            <blue>190</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="l_9">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>660</y>
+        <width>55</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>190</red>
+            <green>190</green>
+            <blue>190</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="l_10">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>710</y>
+        <width>55</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>190</red>
+            <green>190</green>
+            <blue>190</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="l_11">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>760</y>
+        <width>55</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>190</red>
+            <green>190</green>
+            <blue>190</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="l_12">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>810</y>
+        <width>55</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>190</red>
+            <green>190</green>
+            <blue>190</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="r_12">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>810</y>
+        <width>55</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>190</red>
+            <green>190</green>
+            <blue>190</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_23">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>810</y>
+        <width>45</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>E</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>836</y>
+      <width>1236</width>
+      <height>65</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1234</width>
+       <height>63</height>
+      </rect>
+     </property>
+     <widget class="QWidget" name="horizontalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>-1</x>
+        <y>-1</y>
+        <width>1231</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item alignment="Qt::AlignTop">
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="text">
+          <string>Очистить</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item alignment="Qt::AlignTop">
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>Сохранить</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item alignment="Qt::AlignTop">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Выход</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
