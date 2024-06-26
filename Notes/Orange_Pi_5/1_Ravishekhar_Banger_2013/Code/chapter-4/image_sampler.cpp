@@ -130,7 +130,12 @@ int main()
     LOG_OCL_ERROR(status, "clCreateBuffer Failed" );
 
     size_t origin[] = {0,0,0};  /* Transfer target coordinate*/
-    size_t region[] = {image_width,image_height,1};  /* Size of object to be transferred */
+
+    size_t const wi = const_cast<cl_int&>(image_width);
+    size_t const he = const_cast<cl_int&>(image_height);
+    size_t region[] = {wi, he,1};
+
+    /*size_t region[] = {image_width,image_height,1};*/  /* Size of object to be transferred */
     float *data = (float *)malloc(image_width*image_height*sizeof(float));
     float pixels[] = {            /* Transfer Data */
         10, 20, 10, 40, 50,
