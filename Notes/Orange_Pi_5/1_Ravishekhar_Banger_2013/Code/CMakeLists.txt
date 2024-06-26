@@ -1,0 +1,22 @@
+# This is the root cmake file. This one shall be used to create the
+# different project build related files
+
+cmake_minimum_required( VERSION 2.8 )
+project( 1_OpenCL_By_Example )
+
+set( CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR} )
+find_package( OpenCL REQUIRED )
+set (OPENCL_LIBRARIES /usr/local/cuda-12.0/targets/x86_64-linux/lib/libOpenCL.so)
+#message($"{OPENCL_LIBRARIES}" ${OPENCL_LIBRARIES})
+include_directories ("${PROJECT_SOURCE_DIR}/include" ${OpenCL_INCLUDE_DIRS})
+SUBDIRS( chapter-1/
+         chapter-2/
+         chapter-3/
+         chapter-4/
+         chapter-5/
+         chapter-6/
+         chapter-7/
+         chapter-8/
+         chapter-9/
+         chapter-11/
+         )
