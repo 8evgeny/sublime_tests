@@ -1,14 +1,14 @@
 # Build each individual OpenCL program
 project(2_Raymond_Tay_2013)
-include_directories("/usr/local/cuda/include")
 
-EXECUTE_PROCESS( COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTURE )
-message( STATUS "Architecture: ${ARCHITECTURE}" )
-if( ${ARCHITECTURE} STREQUAL "x86_64" )
-    set (OPENCL_LIBRARIES /usr/local/cuda-12.0/targets/x86_64-linux/lib/libOpenCL.so)
-else()
-    set (OPENCL_LIBRARIES /usr/lib/aarch64-linux-gnu/libOpenCL.so) # Orange Pi5
-endif()
+#include_directories("/usr/local/cuda/include")
+#EXECUTE_PROCESS( COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTURE )
+#message( STATUS "Architecture: ${ARCHITECTURE}" )
+#if( ${ARCHITECTURE} STREQUAL "x86_64" )
+#    set (OPENCL_LIBRARIES /usr/local/cuda-12.0/targets/x86_64-linux/lib/libOpenCL.so)
+#else()
+#    set (OPENCL_LIBRARIES /usr/lib/aarch64-linux-gnu/libOpenCL.so) # Orange Pi5
+#endif()
 
 SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/modules")
 INCLUDE(FindSSE)
@@ -24,7 +24,10 @@ IF(SSE4_2_FOUND)
 ENDIF(SSE4_2_FOUND)
 ADD_DEFINITIONS(${CXX_DFLAGS})
 
-
+find_package( OpenCL REQUIRED )
+set (OPENCL_LIBRARIES ${OpenCL_LIBRARY})
+message("OPENCL_LIBRARIES: " ${OPENCL_LIBRARIES})
+include_directories (${OpenCL_INCLUDE_DIRS})
 
 add_subdirectory(Ch1/build_opencl_program)
 add_subdirectory(Ch1/context_query)
