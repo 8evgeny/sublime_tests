@@ -80,6 +80,7 @@ all: Ch2/user_buffer_alignment/all
 all: Ch2/work_partitioning/all
 all: Ch2/events/all
 all: Ch3/byte_ordering/all
+all: Ch3/vectorization/all
 all: Ch3/double_support/all
 .PHONY : all
 
@@ -101,6 +102,7 @@ preinstall: Ch2/user_buffer_alignment/preinstall
 preinstall: Ch2/work_partitioning/preinstall
 preinstall: Ch2/events/preinstall
 preinstall: Ch3/byte_ordering/preinstall
+preinstall: Ch3/vectorization/preinstall
 preinstall: Ch3/double_support/preinstall
 .PHONY : preinstall
 
@@ -122,6 +124,7 @@ clean: Ch2/user_buffer_alignment/clean
 clean: Ch2/work_partitioning/clean
 clean: Ch2/events/clean
 clean: Ch3/byte_ordering/clean
+clean: Ch3/vectorization/clean
 clean: Ch3/double_support/clean
 .PHONY : clean
 
@@ -394,6 +397,21 @@ Ch3/double_support/preinstall:
 # Recursive "clean" directory target.
 Ch3/double_support/clean: Ch3/double_support/CMakeFiles/3_DoubleSupport.dir/clean
 .PHONY : Ch3/double_support/clean
+
+#=============================================================================
+# Directory level rules for directory Ch3/vectorization
+
+# Recursive "all" directory target.
+Ch3/vectorization/all: Ch3/vectorization/CMakeFiles/3_Vectorization.dir/all
+.PHONY : Ch3/vectorization/all
+
+# Recursive "preinstall" directory target.
+Ch3/vectorization/preinstall:
+.PHONY : Ch3/vectorization/preinstall
+
+# Recursive "clean" directory target.
+Ch3/vectorization/clean: Ch3/vectorization/CMakeFiles/3_Vectorization.dir/clean
+.PHONY : Ch3/vectorization/clean
 
 #=============================================================================
 # Target rules for target Ch1/build_opencl_program/CMakeFiles/1_BuildOpenCLProgram.dir
@@ -836,6 +854,32 @@ Ch3/byte_ordering/CMakeFiles/3_ShowBytes.dir/rule: cmake_check_build_system
 Ch3/byte_ordering/CMakeFiles/3_ShowBytes.dir/clean:
 	$(MAKE) $(MAKESILENT) -f Ch3/byte_ordering/CMakeFiles/3_ShowBytes.dir/build.make Ch3/byte_ordering/CMakeFiles/3_ShowBytes.dir/clean
 .PHONY : Ch3/byte_ordering/CMakeFiles/3_ShowBytes.dir/clean
+
+#=============================================================================
+# Target rules for target Ch3/vectorization/CMakeFiles/3_Vectorization.dir
+
+# All Build rule for target.
+Ch3/vectorization/CMakeFiles/3_Vectorization.dir/all:
+	$(MAKE) $(MAKESILENT) -f Ch3/vectorization/CMakeFiles/3_Vectorization.dir/build.make Ch3/vectorization/CMakeFiles/3_Vectorization.dir/depend
+	$(MAKE) $(MAKESILENT) -f Ch3/vectorization/CMakeFiles/3_Vectorization.dir/build.make Ch3/vectorization/CMakeFiles/3_Vectorization.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/2_Raymond_Tay _2013/Code/src/Release/CMakeFiles" --progress-num=37,38 "Built target 3_Vectorization"
+.PHONY : Ch3/vectorization/CMakeFiles/3_Vectorization.dir/all
+
+# Build rule for subdir invocation for target.
+Ch3/vectorization/CMakeFiles/3_Vectorization.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/2_Raymond_Tay _2013/Code/src/Release/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Ch3/vectorization/CMakeFiles/3_Vectorization.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/2_Raymond_Tay _2013/Code/src/Release/CMakeFiles" 0
+.PHONY : Ch3/vectorization/CMakeFiles/3_Vectorization.dir/rule
+
+# Convenience name for target.
+3_Vectorization: Ch3/vectorization/CMakeFiles/3_Vectorization.dir/rule
+.PHONY : 3_Vectorization
+
+# clean rule for target.
+Ch3/vectorization/CMakeFiles/3_Vectorization.dir/clean:
+	$(MAKE) $(MAKESILENT) -f Ch3/vectorization/CMakeFiles/3_Vectorization.dir/build.make Ch3/vectorization/CMakeFiles/3_Vectorization.dir/clean
+.PHONY : Ch3/vectorization/CMakeFiles/3_Vectorization.dir/clean
 
 #=============================================================================
 # Target rules for target Ch3/double_support/CMakeFiles/3_DoubleSupport.dir

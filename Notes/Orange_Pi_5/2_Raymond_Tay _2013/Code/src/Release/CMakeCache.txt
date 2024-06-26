@@ -248,6 +248,24 @@ QT_CREATOR_SKIP_PACKAGE_MANAGER_SETUP:BOOL=OFF
 //No help, variable specified on the command line.
 QT_QMAKE_EXECUTABLE:STRING=/usr/lib/qt5/bin/qmake
 
+//SSE2 available on host
+SSE2_FOUND:BOOL=false
+
+//SSE3 available on host
+SSE3_FOUND:BOOL=false
+
+//SSE4.1 available on host
+SSE4_1_FOUND:BOOL=false
+
+//SSE4.2 available on host
+SSE4_2_FOUND:BOOL=false
+
+//The directory containing a CMake configuration file for SSE.
+SSE_DIR:PATH=SSE_DIR-NOTFOUND
+
+//SSSE3 available on host
+SSSE3_FOUND:BOOL=false
+
 //cl_khr_fp64 support
 fp64:BOOL=ON
 
@@ -358,7 +376,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=19
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=20
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -409,4 +427,14 @@ OPENCL_VERSION_2_2:INTERNAL=1
 OpenCL_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OpenCL_LIBRARY
 OpenCL_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SSE2_FOUND
+SSE2_FOUND-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SSE3_FOUND
+SSE3_FOUND-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SSE4_1_FOUND
+SSE4_1_FOUND-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SSE4_2_FOUND
+SSE4_2_FOUND-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SSSE3_FOUND
+SSSE3_FOUND-ADVANCED:INTERNAL=1
 

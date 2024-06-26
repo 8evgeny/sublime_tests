@@ -51,6 +51,9 @@
 /home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/2_Raymond_Tay _2013/Code/src/Release/Ch3/byte_ordering/CMakeFiles/3_ShowBytes.dir
 /home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/2_Raymond_Tay _2013/Code/src/Release/Ch3/byte_ordering/CMakeFiles/edit_cache.dir
 /home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/2_Raymond_Tay _2013/Code/src/Release/Ch3/byte_ordering/CMakeFiles/rebuild_cache.dir
+/home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/2_Raymond_Tay _2013/Code/src/Release/Ch3/vectorization/CMakeFiles/3_Vectorization.dir
+/home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/2_Raymond_Tay _2013/Code/src/Release/Ch3/vectorization/CMakeFiles/edit_cache.dir
+/home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/2_Raymond_Tay _2013/Code/src/Release/Ch3/vectorization/CMakeFiles/rebuild_cache.dir
 /home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/2_Raymond_Tay _2013/Code/src/Release/Ch3/double_support/CMakeFiles/3_DoubleSupport.dir
 /home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/2_Raymond_Tay _2013/Code/src/Release/Ch3/double_support/CMakeFiles/edit_cache.dir
 /home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/2_Raymond_Tay _2013/Code/src/Release/Ch3/double_support/CMakeFiles/rebuild_cache.dir

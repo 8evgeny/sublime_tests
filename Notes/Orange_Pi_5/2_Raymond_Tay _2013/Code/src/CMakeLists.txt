@@ -2,6 +2,21 @@
 
 include_directories("/usr/local/cuda/include")
 set (OPENCL_LIBRARIES /usr/local/cuda-12.0/targets/x86_64-linux/lib/libOpenCL.so)
+SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+INCLUDE(FindSSE)
+FindSSE ()
+IF(SSE3_FOUND)
+    IF(SSSE3_FOUND)
+            SET(CXX_DFLAGS -msse3 -mssse3)
+    ENDIF(SSSE3_FOUND)
+ENDIF(SSE3_FOUND)
+
+IF(SSE4_2_FOUND)
+        SET(CXX_DFLAGS -msse4.2 -mpopcnt)
+ENDIF(SSE4_2_FOUND)
+ADD_DEFINITIONS(${CXX_DFLAGS})
+
+
 
 add_subdirectory(Ch1/build_opencl_program)
 add_subdirectory(Ch1/context_query)
@@ -22,7 +37,7 @@ add_subdirectory(Ch2/work_partitioning)
 add_subdirectory(Ch2/events)
 
 add_subdirectory(Ch3/byte_ordering)
-#add_subdirectory(Ch3/vectorization)
+add_subdirectory(Ch3/vectorization)
 add_subdirectory(Ch3/double_support)
 
 #add_subdirectory(Ch4/simple_vector_load)
@@ -57,3 +72,4 @@ add_subdirectory(Ch3/double_support)
 #add_subdirectory(Ch10/RadixSort_CPU)
 #add_subdirectory(Ch10/RadixSort_GPU)
 #add_subdirectory(Ch10/Reduction)
+
