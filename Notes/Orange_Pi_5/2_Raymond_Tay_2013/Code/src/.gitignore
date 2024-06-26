@@ -9,8 +9,6 @@
 
 # cmake files #
 ###############
-*.cmake
-Makefile
 
 # Packages #
 ############
