@@ -2,7 +2,7 @@
 project(2_Raymond_Tay_2013)
 include_directories("/usr/local/cuda/include")
 set (OPENCL_LIBRARIES /usr/local/cuda-12.0/targets/x86_64-linux/lib/libOpenCL.so)
-SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/modules")
 INCLUDE(FindSSE)
 FindSSE ()
 IF(SSE3_FOUND)
