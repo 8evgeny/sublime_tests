@@ -5,12 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
-
-#ifdef MAC
-#include <OpenCL/cl.h>
-#else  
 #include <CL/cl.h>
-#endif
 
 int main() {
 
