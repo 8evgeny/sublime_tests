@@ -1,7 +1,15 @@
 # Build each individual OpenCL program
 project(2_Raymond_Tay_2013)
 include_directories("/usr/local/cuda/include")
-set (OPENCL_LIBRARIES /usr/local/cuda-12.0/targets/x86_64-linux/lib/libOpenCL.so)
+
+EXECUTE_PROCESS( COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTURE )
+message( STATUS "Architecture: ${ARCHITECTURE}" )
+if( ${ARCHITECTURE} STREQUAL "x86_64" )
+    set (OPENCL_LIBRARIES /usr/local/cuda-12.0/targets/x86_64-linux/lib/libOpenCL.so)
+else()
+    set (OPENCL_LIBRARIES /usr/lib/aarch64-linux-gnu/libOpenCL.so) # Orange Pi5
+endif()
+
 SET (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/modules")
 INCLUDE(FindSSE)
 FindSSE ()
