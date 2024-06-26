@@ -1,5 +1,0 @@
-/home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/3_Matthew_Scarpino_2011/source_code_gnu/Release/CMakeFiles/edit_cache.dir
-/home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/3_Matthew_Scarpino_2011/source_code_gnu/Release/CMakeFiles/rebuild_cache.dir
-/home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/3_Matthew_Scarpino_2011/source_code_gnu/Release/Ch1/matvec/CMakeFiles/1_matvec.dir
-/home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/3_Matthew_Scarpino_2011/source_code_gnu/Release/Ch1/matvec/CMakeFiles/edit_cache.dir
-/home/user/WORK/Github/sublime_tests/Notes/Orange_Pi_5/3_Matthew_Scarpino_2011/source_code_gnu/Release/Ch1/matvec/CMakeFiles/rebuild_cache.dir
