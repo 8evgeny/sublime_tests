@@ -45,7 +45,7 @@ add_subdirectory(Ch2/work_partitioning)
 add_subdirectory(Ch2/events)
 
 add_subdirectory(Ch3/byte_ordering)
-add_subdirectory(Ch3/vectorization)
+#add_subdirectory(Ch3/vectorization) # Не работает только на Orange Pi 5
 add_subdirectory(Ch3/double_support)
 
 add_subdirectory(Ch4/simple_vector_load)
