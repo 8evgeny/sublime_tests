@@ -2,7 +2,7 @@
 # different project build related files
 
 cmake_minimum_required( VERSION 2.8 )
-project( 1_OpenCL_By_Example )
+project( 1_Ravishekhar_Banger_2013 )
 
 set( CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR} )
 find_package( OpenCL REQUIRED )

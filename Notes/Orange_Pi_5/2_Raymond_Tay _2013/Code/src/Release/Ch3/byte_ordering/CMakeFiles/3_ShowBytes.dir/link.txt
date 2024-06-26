@@ -1,1 +1,0 @@
-/usr/bin/gcc -std=c99 -Wall -DUNIX -m64 -O3 -DNDEBUG -rdynamic CMakeFiles/3_ShowBytes.dir/show_bytes.c.o -o 3_ShowBytes 
