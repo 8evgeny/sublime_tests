@@ -12,4 +12,9 @@ endif()
 
 add_subdirectory(Ch1/matvec)
 
-
+add_subdirectory(Ch2/context_count)
+add_subdirectory(Ch2/device_ext_test)
+add_subdirectory(Ch2/kernel_search)
+add_subdirectory(Ch2/platform_ext_test)
+add_subdirectory(Ch2/program_build)
+add_subdirectory(Ch2/queue_kernel)
