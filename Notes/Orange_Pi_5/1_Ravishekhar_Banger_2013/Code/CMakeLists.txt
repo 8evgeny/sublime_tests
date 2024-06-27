@@ -1,12 +1,8 @@
-# This is the root cmake file. This one shall be used to create the
-# different project build related files
-
 cmake_minimum_required( VERSION 2.8 )
 project( 1_Ravishekhar_Banger_2013 )
 
 set( CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR} )
 find_package( OpenCL REQUIRED )
-set (OPENCL_LIBRARIES ${OpenCL_LIBRARY})
 
 #EXECUTE_PROCESS( COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTURE )
 #message( STATUS "Architecture: ${ARCHITECTURE}" )
@@ -15,6 +11,8 @@ set (OPENCL_LIBRARIES ${OpenCL_LIBRARY})
 #else()
 #    set (OPENCL_LIBRARIES /usr/lib/aarch64-linux-gnu/libOpenCL.so) # Orange Pi5
 #endif()
+
+set (CMAKE_C_FLAGS "-std=c99 -Wall -DUNIX ${COMPILE_ARCH}")
 
 message("OPENCL_LIBRARIES: " ${OPENCL_LIBRARIES})
 include_directories ("${PROJECT_SOURCE_DIR}/include" ${OpenCL_INCLUDE_DIRS})

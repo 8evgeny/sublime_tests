@@ -1,19 +1,9 @@
-# Build each individual OpenCL program
+cmake_minimum_required(VERSION 3.22)
 project(3_Matthew_Scarpino_2011)
 
 find_package( OpenCL REQUIRED )
-set (OPENCL_LIBRARIES ${OpenCL_LIBRARY})
-message("OPENCL_LIBRARIES: " ${OPENCL_LIBRARIES})
 include_directories (${OpenCL_INCLUDE_DIRS})
-
-#include_directories("/usr/local/cuda/include")
-#EXECUTE_PROCESS( COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTURE )
-#message( STATUS "Architecture: ${ARCHITECTURE}" )
-#if( ${ARCHITECTURE} STREQUAL "x86_64" )
-#    set (OPENCL_LIBRARIES /usr/local/cuda-12.0/targets/x86_64-linux/lib/libOpenCL.so)
-#else()
-#    set (OPENCL_LIBRARIES /usr/lib/aarch64-linux-gnu/libOpenCL.so) # Orange Pi5
-#endif()
+set (CMAKE_C_FLAGS "-std=c99 -Wall -DUNIX ${COMPILE_ARCH}")
 
 add_subdirectory(Ch1/matvec)
 

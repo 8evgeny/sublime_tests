@@ -1,4 +1,3 @@
-# Build each individual OpenCL program
 project(2_Raymond_Tay_2013)
 
 #include_directories("/usr/local/cuda/include")
@@ -28,6 +27,8 @@ find_package( OpenCL REQUIRED )
 set (OPENCL_LIBRARIES ${OpenCL_LIBRARY})
 message("OPENCL_LIBRARIES: " ${OPENCL_LIBRARIES})
 include_directories (${OpenCL_INCLUDE_DIRS})
+
+set (CMAKE_C_FLAGS "-std=c99 -Wall -DUNIX ${COMPILE_ARCH}")
 
 add_subdirectory(Ch1/build_opencl_program)
 add_subdirectory(Ch1/context_query)

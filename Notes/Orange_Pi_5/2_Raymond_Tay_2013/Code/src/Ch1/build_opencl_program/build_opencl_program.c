@@ -2,21 +2,19 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <alloca.h>
-
-#ifdef APPLE
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
 
 void loadProgramSource(const char** files,
-                       size_t length,
+                       size_t num_files,
                        char** buffer,
-                       size_t* sizes) {
+                       size_t* sizes)
+{
 	   /* Read each source file (*.cl) and store the contents into a temporary datastore */
-	   for(size_t i=0; i < length; i++) {
+       for(size_t i=0; i < num_files; i++)
+       {
 	      FILE* file = fopen(files[i], "r");
-	      if(file == NULL) {
+          if(file == NULL)
+          {
 	         perror("Couldn't read the program file");
 	         exit(1);   
 	      }
@@ -90,32 +88,38 @@ int main(int argc, char** argv) {
 
         /* Create the OpenCL program object */
         program = clCreateProgramWithSource(context, NUMBER_OF_FILES, (const char**)buffer, sizes, &error);				
-	    if(error != CL_SUCCESS) {
-	      perror("Can't create the OpenCL program object");
-	      exit(1);   
+        if(error != CL_SUCCESS)
+        {
+            perror("Can't create the OpenCL program object");
+            exit(1);
 	    }
         /* Build OpenCL program object and dump the error message, if any */
         char *program_log;
         const char options[] = "-cl-finite-math-only -cl-no-signed-zeros";  
         size_t log_size;
         printf("build-options:%s\n", argv[1]);
-        error = clBuildProgram(program, 1, &device, argv[1], NULL, NULL);		
+
+//        error = clBuildProgram(program, 1, &device, argv[1], NULL, NULL);
         // Uncomment the line below, comment the line above; re-build the program to use build options statically
-        // error = clBuildProgram(program, 1, &device, options, NULL, NULL);		
-	    if(error != CL_SUCCESS) {
+        error = clBuildProgram(program, 1, &device, options, NULL, NULL);
+
+        if(error != CL_SUCCESS)
+        {
 	      // If there's an error whilst building the program, dump the log
 	      clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
 	      program_log = (char*) malloc(log_size+1);
 	      program_log[log_size] = '\0';
-	      clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 
-	            log_size+1, program_log, NULL);
+          clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, log_size+1, program_log, NULL);
 	      printf("\n=== ERROR ===\n\n%s\n=============\n", program_log);
 	      free(program_log);
 	      exit(1);
 	    }
    
         /* Clean up */
-        for(i=0; i< NUMBER_OF_FILES; i++) { free(buffer[i]); }
+        for(i=0; i< NUMBER_OF_FILES; i++)
+        {
+            free(buffer[i]);
+        }
         clReleaseProgram(program);
         clReleaseContext(context);
    }
