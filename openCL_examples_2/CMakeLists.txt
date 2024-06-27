@@ -15,7 +15,7 @@ ENDIF(SSE4_2_FOUND)
 ADD_DEFINITIONS(${CXX_DFLAGS})
 
 find_package( OpenCL REQUIRED )
-include_directories (${OpenCL_INCLUDE_DIRS})
+include_directories (${OpenCL_INCLUDE_DIRS} -libclew)
 
 set (CMAKE_C_FLAGS "-std=c99 -Wall -DUNIX ${COMPILE_ARCH}")
 
