@@ -2,12 +2,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <alloca.h>
-
-#ifdef APPLE
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
 
 void loadProgramSource(const char** files,
                        size_t length,

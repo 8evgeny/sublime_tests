@@ -1,13 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <alloca.h>
-
-#ifdef APPLE
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
-
 
 void displayPlatformInfo(cl_platform_id id,
                          cl_platform_info param_name,

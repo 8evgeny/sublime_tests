@@ -2,12 +2,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <alloca.h>
-
-#ifdef APPLE
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
 
 void loadProgramSource(const char** files,
                        size_t length,
@@ -63,7 +58,8 @@ int main(int argc, char** argv) {
    }
    // Search for a CPU/GPU device through the installed platforms
    // Build a OpenCL program and do not run it.
-   for(cl_uint i = 0; i < numOfPlatforms; i++ ) {
+   for(cl_uint i = 0; i < numOfPlatforms; i++ )
+   {
        // Get the GPU device
        error = clGetDeviceIDs(platforms[i], CL_DEVICE_TYPE_GPU, 1, &device, NULL);
        if(error != CL_SUCCESS) {
@@ -81,7 +77,7 @@ int main(int argc, char** argv) {
             exit(1);
         }
 
-        /* Load the two source files into temporary datastores */
+        /* Load the source files into temporary datastores */
         const char *file_names[] = {"hello_world.cl"};
         const int NUMBER_OF_FILES = 1;
         char* buffer[NUMBER_OF_FILES];
