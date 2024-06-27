@@ -3,18 +3,15 @@
 #include <sys/types.h>
 #include <alloca.h>
 #include "user_buffer.h"
-
-#ifdef APPLE
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
 
-#define DATA_SIZE 1048576
+#define DATA_SIZE 1024*1024
 
 // test for valid values
-int valuesOK(UserData* to, UserData* from) {
-    for(int i = 0; i < DATA_SIZE; ++i) {
+int valuesOK(UserData* to, UserData* from)
+{
+    for(int i = 0; i < DATA_SIZE; ++i)
+    {
         if ( to[i].w != from[i].w ) return 0;
     }
   return 1;
@@ -23,7 +20,8 @@ int valuesOK(UserData* to, UserData* from) {
 void loadProgramSource(const char** files,
                        size_t length,
                        char** buffer,
-                       size_t* sizes) {
+                       size_t* sizes)
+{
 	   /* Read each source file (*.cl) and store the contents into a temporary datastore */
 	   for(size_t i=0; i < length; i++) {
 	      FILE* file = fopen(files[i], "r");
@@ -85,25 +83,29 @@ int main(int argc, char** argv) {
    }
    // Search for a CPU/GPU device through the installed platforms
    // Build a OpenCL program and do not run it.
-   for(cl_uint i = 0; i < numOfPlatforms; i++ ) {
+   for(cl_uint i = 0; i < numOfPlatforms; i++ )
+   {
        // Get the GPU device
        error = clGetDeviceIDs(platforms[i], CL_DEVICE_TYPE_GPU, 1, &device, NULL);
-       if(error != CL_SUCCESS) {
+       if(error != CL_SUCCESS)
+       {
           // Otherwise, get the CPU
           error = clGetDeviceIDs(platforms[i], CL_DEVICE_TYPE_CPU, 1, &device, NULL);
        }
-        if(error != CL_SUCCESS) {
+        if(error != CL_SUCCESS)
+        {
             perror("Can't locate any OpenCL compliant device");
             exit(1);
         }
         /* Create a context */
         context = clCreateContext(NULL, 1, &device, NULL, NULL, &error);
-        if(error != CL_SUCCESS) {
+        if(error != CL_SUCCESS)
+        {
             perror("Can't create a valid OpenCL context");
             exit(1);
         }
 
-        /* Load the two source files into temporary datastores */
+        /* Load the source files into temporary datastores */
         const char *file_names[] = {"user_test.cl"}; 
         const int NUMBER_OF_FILES = 1;
         char* buffer[NUMBER_OF_FILES];
@@ -112,36 +114,41 @@ int main(int argc, char** argv) {
 
         /* Create the OpenCL program object */
         program = clCreateProgramWithSource(context, NUMBER_OF_FILES, (const char**)buffer, sizes, &error);				
-	    if(error != CL_SUCCESS) {
-	      perror("Can't create the OpenCL program object");
-	      exit(1);   
+        if(error != CL_SUCCESS)
+        {
+            perror("Can't create the OpenCL program object");
+            exit(1);
 	    }
         /* Build OpenCL program object and dump the error message, if any */
         char *program_log;
         size_t log_size;
         error = clBuildProgram(program, 1, &device, NULL, NULL, NULL);		
-	    if(error != CL_SUCCESS) {
-	      // If there's an error whilst building the program, dump the log
-	      clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
-	      program_log = (char*) malloc(log_size+1);
-	      program_log[log_size] = '\0';
-	      clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 
-	            log_size+1, program_log, NULL);
-	      printf("\n=== ERROR ===\n\n%s\n=============\n", program_log);
-	      free(program_log);
-	      exit(1);
+        if(error != CL_SUCCESS)
+        {
+            // If there's an error whilst building the program, dump the log
+            clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
+            program_log = (char*) malloc(log_size+1);
+            program_log[log_size] = '\0';
+            clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG,
+                log_size+1, program_log, NULL);
+            printf("\n=== ERROR ===\n\n%s\n=============\n", program_log);
+            free(program_log);
+            exit(1);
 	    }
   
         /* Query the program as to how many kernels were detected */
         cl_uint numOfKernels;
         error = clCreateKernelsInProgram(program, 0, NULL, &numOfKernels);
-        if (error != CL_SUCCESS) {
+        if (error != CL_SUCCESS)
+        {
             perror("Unable to retrieve kernel count from program");
             exit(1);
         }
         cl_kernel* kernels = (cl_kernel*) alloca(sizeof(cl_kernel) * numOfKernels);
         error = clCreateKernelsInProgram(program, numOfKernels, kernels, NULL);
-        for(cl_uint i = 0; i < numOfKernels; i++) {
+        printf("numKernels: %d\n",numOfKernels);
+        for(cl_uint i = 0; i < numOfKernels; i++)
+        {
             char kernelName[32];
             cl_uint argCnt;
             clGetKernelInfo(kernels[i], CL_KERNEL_FUNCTION_NAME, sizeof(kernelName), kernelName, NULL);
@@ -151,7 +158,8 @@ int main(int argc, char** argv) {
 
             /* Create a command queue */
             cl_command_queue cQ = clCreateCommandQueue(context, device, 0, &error);
-            if (error != CL_SUCCESS) { 
+            if (error != CL_SUCCESS)
+            {
                 perror("Unable to create command-queue");
                 exit(1);
             }
@@ -159,14 +167,16 @@ int main(int argc, char** argv) {
             /* Create a OpenCL buffer object */
             cl_mem UDObj = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, 
                                            sizeof(UserData) * DATA_SIZE, ud_in, &error);
-            if (error != CL_SUCCESS) { 
+            if (error != CL_SUCCESS)
+            {
                 perror("Unable to create buffer object");
                 exit(1);
             }
 
             /* Let OpenCL know that the kernel is suppose to receive an argument */
             error = clSetKernelArg(kernels[i], 0, sizeof(cl_mem), &UDObj);
-            if (error != CL_SUCCESS) { 
+            if (error != CL_SUCCESS)
+            {
                 perror("Unable to create buffer object");
                 exit(1);
             }
@@ -180,12 +190,15 @@ int main(int argc, char** argv) {
             printf("Task has been enqueued successfully!\n");
 
             /* Enqueue the read-back from device to host */
-            error = clEnqueueReadBuffer(cQ, UDObj,
-                                         CL_TRUE,                    // blocking read
-                                         0,                          // write from the start
-                                         sizeof(UserData) * DATA_SIZE, // how much to copy
-                                         ud_out, 0, NULL, NULL);
-            if ( valuesOK(ud_in, ud_out) ) {
+            error = clEnqueueReadBuffer(cQ,
+                                        UDObj,
+                                        CL_TRUE,                    // blocking read
+                                        0,                          // write from the start
+                                        sizeof(UserData) * DATA_SIZE, // how much to copy
+                                        ud_out,
+                                        0, NULL, NULL);
+            if ( valuesOK(ud_in, ud_out) )
+            {
                 printf("Check passed!\n");
             } else printf("Check failed!\n");
 
