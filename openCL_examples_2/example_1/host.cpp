@@ -1,6 +1,6 @@
 #include <CL/cl.h>
-#include <libclew/ocl_init.h>
-#include <clew.h>
+//#include <libclew/ocl_init.h>
+//#include <clew.h>
 #include <algorithm>
 #include <vector>
 #include <iostream>
@@ -8,7 +8,7 @@
 #include <string>
 #include <fstream>
 
-int align(int x, int y) {
+size_t align(int x, int y) {
     return (x + y - 1) / y * y;
 }
 
@@ -87,8 +87,8 @@ void save_ppm(const cl_uint* p, int w, int h) {
 }
 
 int main() {
-   if (!ocl_init()) throw;
-   static const int res_w = 1200, res_h = 640;
+//   if (!ocl_init()) throw;
+   static const int res_w = 4800, res_h = 2560;
 
    cl_int err;
    cl_device_id device = create_device();

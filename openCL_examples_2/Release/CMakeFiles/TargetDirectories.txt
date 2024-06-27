@@ -1,5 +1,5 @@
-/home/user/WORK/Github/sublime_tests/openCL_examples_2/Release/CMakeFiles/edit_cache.dir
-/home/user/WORK/Github/sublime_tests/openCL_examples_2/Release/CMakeFiles/rebuild_cache.dir
-/home/user/WORK/Github/sublime_tests/openCL_examples_2/Release/example_1/CMakeFiles/example_1.dir
-/home/user/WORK/Github/sublime_tests/openCL_examples_2/Release/example_1/CMakeFiles/edit_cache.dir
-/home/user/WORK/Github/sublime_tests/openCL_examples_2/Release/example_1/CMakeFiles/rebuild_cache.dir
+/home/user/SOFT/Github/Sublime_tests/openCL_examples_2/Release/CMakeFiles/edit_cache.dir
+/home/user/SOFT/Github/Sublime_tests/openCL_examples_2/Release/CMakeFiles/rebuild_cache.dir
+/home/user/SOFT/Github/Sublime_tests/openCL_examples_2/Release/example_1/CMakeFiles/example_1.dir
+/home/user/SOFT/Github/Sublime_tests/openCL_examples_2/Release/example_1/CMakeFiles/edit_cache.dir
+/home/user/SOFT/Github/Sublime_tests/openCL_examples_2/Release/example_1/CMakeFiles/rebuild_cache.dir
