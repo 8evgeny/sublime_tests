@@ -1,6 +1,4 @@
 #include <CL/cl.h>
-//#include <libclew/ocl_init.h>
-//#include <clew.h>
 #include <algorithm>
 #include <vector>
 #include <iostream>
@@ -8,14 +6,12 @@
 #include <string>
 #include <fstream>
 
-size_t align(int x, int y)
-{
+size_t align(int x, int y) {
     return (x + y - 1) / y * y;
 }
 
 void invoke_kernel(cl_kernel kernel, cl_command_queue queue, cl_mem buff, cl_uint* result,
-    float x, float y, float mag, int w, int h, float iterations)
-{
+    float x, float y, float mag, int w, int h, float iterations) {
     cl_int err = 0;
     err |= clSetKernelArg(kernel, 0, sizeof(float), &x);
     err |= clSetKernelArg(kernel, 1, sizeof(float), &y);
@@ -92,8 +88,7 @@ void save_ppm(const cl_uint* p, int w, int h)
     }
 }
 
-int main()
-{
+int main() {
 //   if (!ocl_init()) throw;
    static const int res_w = 4800, res_h = 2560;
 
