@@ -4,17 +4,13 @@
 #include <alloca.h>
 #include <string.h>
 #include "buffer_query.h"
-
-#ifdef APPLE
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
 
 #define DATA_SIZE 8388608 
 
 // test for valid values
-int valuesOK(UserData* to, UserData* from) {
+int valuesOK(UserData* to, UserData* from)
+{
     for(int i = 0; i < DATA_SIZE; ++i) {
         if ( to[i].w != from[i].w ) return 0;
     }
@@ -22,27 +18,31 @@ int valuesOK(UserData* to, UserData* from) {
 }
 
 void loadProgramSource(const char** files,
-                       size_t length,
+                       size_t num_files,
                        char** buffer,
-                       size_t* sizes) {
-	   /* Read each source file (*.cl) and store the contents into a temporary datastore */
-	   for(size_t i=0; i < length; i++) {
-	      FILE* file = fopen(files[i], "r");
-	      if(file == NULL) {
-	         perror("Couldn't read the program file");
-	         exit(1);   
-	      }
-	      fseek(file, 0, SEEK_END);
-	      sizes[i] = ftell(file);
-	      rewind(file); // reset the file pointer so that 'fread' reads from the front
-	      buffer[i] = (char*)malloc(sizes[i]+1);
-	      buffer[i][sizes[i]] = '\0';
-	      fread(buffer[i], sizeof(char), sizes[i], file);
-	      fclose(file);
-	   }
+                       size_t* sizes)
+{
+       /* Read each source file (*.cl) and store the contents into a temporary datastore */
+       for(size_t i=0; i < num_files; i++)
+       {
+          FILE* file = fopen(files[i], "r");
+          if(file == NULL)
+          {
+             perror("Couldn't read the program file");
+             exit(1);
+          }
+          fseek(file, 0, SEEK_END);
+          sizes[i] = ftell(file);
+          rewind(file); // reset the file pointer so that 'fread' reads from the front
+          buffer[i] = (char*)malloc(sizes[i]+1);
+          buffer[i][sizes[i]] = '\0';
+          fread(buffer[i], sizeof(char), sizes[i], file);
+          fclose(file);
+       }
 }
 
-void displayBufferDetails(cl_mem memobj) {
+void displayBufferDetails(cl_mem memobj)
+{
     cl_mem_object_type objT;
     cl_mem_flags flags;
     size_t memSize;
@@ -69,8 +69,8 @@ void displayBufferDetails(cl_mem memobj) {
     printf("\tOpenCL Buffer's details =>\n\t size: %lu MB,\n\t object type is: %s,\n\t flags:0x%lx (%s) \n", memSize >> 20, str, flags, flagStr);
 }
 
-int main(int argc, char** argv) {
-
+int main(int argc, char** argv)
+{
    /* OpenCL 1.1 data structures */
    cl_platform_id* platforms;
    cl_program program;
@@ -86,7 +86,8 @@ int main(int argc, char** argv) {
    */
    UserData* ud_in = (UserData*) malloc( sizeof(UserData) * DATA_SIZE); // input to device
    UserData* ud_out = (UserData*) malloc( sizeof(UserData) * DATA_SIZE); // output from device
-   for( int i = 0; i < DATA_SIZE; ++i) {
+   for( int i = 0; i < DATA_SIZE; ++i)
+   {
       (ud_in + i)->x = i;
       (ud_in + i)->y = i;
       (ud_in + i)->z = i;
@@ -98,7 +99,8 @@ int main(int argc, char** argv) {
       the number of available platform also increased. 
     */
    error = clGetPlatformIDs(0, NULL, &numOfPlatforms);
-   if(error != CL_SUCCESS ) {			
+   if(error != CL_SUCCESS )
+   {
       perror("Unable to find any OpenCL platforms");
       exit(1);
    }
@@ -107,13 +109,15 @@ int main(int argc, char** argv) {
    printf("Number of OpenCL platforms found: %d\n", numOfPlatforms);
 
    error = clGetPlatformIDs(numOfPlatforms, platforms, NULL);
-   if(error != CL_SUCCESS ) {			
+   if(error != CL_SUCCESS )
+   {
       perror("Unable to find any OpenCL platforms");
       exit(1);
    }
    // Search for a CPU/GPU device through the installed platforms
    // Build a OpenCL program and do not run it.
-   for(cl_uint i = 0; i < numOfPlatforms; i++ ) {
+   for(cl_uint i = 0; i < numOfPlatforms; i++ )
+   {
        // Get the GPU device
        error = clGetDeviceIDs(platforms[i], CL_DEVICE_TYPE_GPU, 1, &device, NULL);
        if(error != CL_SUCCESS) {
@@ -132,7 +136,7 @@ int main(int argc, char** argv) {
         }
 
         /* Load the two source files into temporary datastores */
-        const char *file_names[] = {"user_test.cl"}; 
+        const char *file_names[] = {"simple.cl"};
         const int NUMBER_OF_FILES = 1;
         char* buffer[NUMBER_OF_FILES];
         size_t sizes[NUMBER_OF_FILES];
@@ -140,7 +144,8 @@ int main(int argc, char** argv) {
 
         /* Create the OpenCL program object */
         program = clCreateProgramWithSource(context, NUMBER_OF_FILES, (const char**)buffer, sizes, &error);				
-	    if(error != CL_SUCCESS) {
+        if(error != CL_SUCCESS)
+        {
 	      perror("Can't create the OpenCL program object");
 	      exit(1);   
 	    }

@@ -2,6 +2,7 @@
 // header files to be included in kernel files (*.cl)
 
 typedef struct __attribute__((aligned)) UserData {
+//typedef struct  UserData {
     int x;
     int y;
     int z;
