@@ -1,34 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
- 
-#ifdef __APPLE__
-#include <OpenCL/opencl.h>
-#else
 #include <CL/cl.h>
-#endif
  
-void CL_CALLBACK postProcess(cl_event event, cl_int status, void *data) { 
-  printf("%s\n", (char*)data);
+void CL_CALLBACK postProcess(cl_event event, cl_int status, void *data)
+{
+    printf("%s\n", (char*)data);
 }
+
 void loadProgramSource(const char** files,
                        size_t length,
                        char** buffer,
-                       size_t* sizes) {
-	   /* Read each source file (*.cl) and store the contents into a temporary datastore */
-	   for(size_t i=0; i < length; i++) {
-	      FILE* file = fopen(files[i], "r");
-	      if(file == NULL) {
-	         perror("Couldn't read the program file");
-	         exit(1);   
-	      }
-	      fseek(file, 0, SEEK_END);
-	      sizes[i] = ftell(file);
-	      rewind(file); // reset the file pointer so that 'fread' reads from the front
-	      buffer[i] = (char*)malloc(sizes[i]+1);
-	      buffer[i][sizes[i]] = '\0';
-	      fread(buffer[i], sizeof(char), sizes[i], file);
-	      fclose(file);
-	   }
+                       size_t* sizes)
+{
+    /* Read each source file (*.cl) and store the contents into a temporary datastore */
+    for(size_t i=0; i < length; i++)
+    {
+        FILE* file = fopen(files[i], "r");
+        if(file == NULL)
+        {
+         perror("Couldn't read the program file");
+         exit(1);
+        }
+        fseek(file, 0, SEEK_END);
+        sizes[i] = ftell(file);
+        rewind(file); // reset the file pointer so that 'fread' reads from the front
+        buffer[i] = (char*)malloc(sizes[i]+1);
+        buffer[i][sizes[i]] = '\0';
+        fread(buffer[i], sizeof(char), sizes[i], file);
+        fclose(file);
+    }
 }
 
 
@@ -59,8 +59,10 @@ int main()
     C = (float *)malloc(4*4*sizeof(float));
  
     /* Initialize input data */
-    for (i=0; i<4; i++) {
-        for (j=0; j<4; j++) {
+    for (i=0; i<4; i++)
+    {
+        for (j=0; j<4; j++)
+        {
             A[i*4+j] = i*4+j+1;
             B[i*4+j] = j*4+i+1;
         }
@@ -87,12 +89,12 @@ int main()
      * and we tag the event to a callback so when event reaches CL_COMPLETE, it will 
      * execute postProcess
      */ 
-    event1 = clCreateUserEvent(context, &ret);
+    event1 = clCreateUserEvent(context, &ret); if(ret != CL_SUCCESS ) { perror("ERROR clCreateUserEvent"); exit(1); }
     clSetEventCallback(event1, CL_COMPLETE, &postProcess, "Looks like its done.");
 
     /* Copy input data to the memory buffer */
  
-    ret = clEnqueueWriteBuffer(command_queue, objA, CL_TRUE, 0, 4*4*sizeof(float), A, 0, NULL, NULL );
+    ret = clEnqueueWriteBuffer(command_queue, objA, CL_TRUE, 0, 4*4*sizeof(float), A, 0, NULL, NULL ); if(ret != CL_SUCCESS ) { perror("ERROR "); exit(1); }
     printf("A has been written\n");
  
     /* The next command will wait for event1 according to its status*/

@@ -4,12 +4,7 @@
 #include <alloca.h>
 #include <string.h>
 #include "subbuffer_query.h"
-
-#ifdef APPLE
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
 
 #define DATA_SIZE 8388608 
 

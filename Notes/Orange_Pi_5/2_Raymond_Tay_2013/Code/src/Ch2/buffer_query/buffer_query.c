@@ -136,7 +136,7 @@ int main(int argc, char** argv)
         }
 
         /* Load the two source files into temporary datastores */
-        const char *file_names[] = {"simple.cl"};
+        const char *file_names[] = {"user_test.cl"};
         const int NUMBER_OF_FILES = 1;
         char* buffer[NUMBER_OF_FILES];
         size_t sizes[NUMBER_OF_FILES];
@@ -146,35 +146,38 @@ int main(int argc, char** argv)
         program = clCreateProgramWithSource(context, NUMBER_OF_FILES, (const char**)buffer, sizes, &error);				
         if(error != CL_SUCCESS)
         {
-	      perror("Can't create the OpenCL program object");
-	      exit(1);   
+            perror("Can't create the OpenCL program object");
+            exit(1);
 	    }
         /* Build OpenCL program object and dump the error message, if any */
         char *program_log;
         size_t log_size;
         error = clBuildProgram(program, 1, &device, NULL, NULL, NULL);		
-	    if(error != CL_SUCCESS) {
-	      // If there's an error whilst building the program, dump the log
-	      clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
-	      program_log = (char*) malloc(log_size+1);
-	      program_log[log_size] = '\0';
-	      clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 
-	            log_size+1, program_log, NULL);
-	      printf("\n=== ERROR ===\n\n%s\n=============\n", program_log);
-	      free(program_log);
-	      exit(1);
+        if(error != CL_SUCCESS)
+        {
+            // If there's an error whilst building the program, dump the log
+            clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
+            program_log = (char*) malloc(log_size+1);
+            program_log[log_size] = '\0';
+            clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG,
+                log_size+1, program_log, NULL);
+            printf("\n=== ERROR ===\n\n%s\n=============\n", program_log);
+            free(program_log);
+            exit(1);
 	    }
   
         /* Query the program as to how many kernels were detected */
         cl_uint numOfKernels;
         error = clCreateKernelsInProgram(program, 0, NULL, &numOfKernels);
-        if (error != CL_SUCCESS) {
+        if (error != CL_SUCCESS)
+        {
             perror("Unable to retrieve kernel count from program");
             exit(1);
         }
         cl_kernel* kernels = (cl_kernel*) alloca(sizeof(cl_kernel) * numOfKernels);
         error = clCreateKernelsInProgram(program, numOfKernels, kernels, NULL);
-        for(cl_uint i = 0; i < numOfKernels; i++) {
+        for(cl_uint i = 0; i < numOfKernels; i++)
+        {
             char kernelName[32];
             cl_uint argCnt;
             clGetKernelInfo(kernels[i], CL_KERNEL_FUNCTION_NAME, sizeof(kernelName), kernelName, NULL);
@@ -184,7 +187,8 @@ int main(int argc, char** argv)
 
             /* Create a command queue */
             cl_command_queue cQ = clCreateCommandQueue(context, device, 0, &error);
-            if (error != CL_SUCCESS) { 
+            if (error != CL_SUCCESS)
+            {
                 perror("Unable to create command-queue");
                 exit(1);
             }
@@ -192,7 +196,8 @@ int main(int argc, char** argv)
             /* Create a OpenCL buffer object */
             cl_mem UDObj = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, 
                                            sizeof(UserData) * DATA_SIZE, ud_in, &error);
-            if (error != CL_SUCCESS) { 
+            if (error != CL_SUCCESS)
+            {
                 perror("Unable to create buffer object");
                 exit(1);
             }
@@ -202,14 +207,16 @@ int main(int argc, char** argv)
             
             /* Let OpenCL know that the kernel is suppose to receive an argument */
             error = clSetKernelArg(kernels[i], 0, sizeof(cl_mem), &UDObj);
-            if (error != CL_SUCCESS) { 
+            if (error != CL_SUCCESS)
+            {
                 perror("Unable to create buffer object");
                 exit(1);
             }
 
             /* Enqueue the kernel to the command queue */
             error = clEnqueueTask(cQ, kernels[i], 0, NULL, NULL);
-            if (error != CL_SUCCESS) { 
+            if (error != CL_SUCCESS)
+            {
                 perror("Unable to enqueue task to command-queue");
                 exit(1);
             }

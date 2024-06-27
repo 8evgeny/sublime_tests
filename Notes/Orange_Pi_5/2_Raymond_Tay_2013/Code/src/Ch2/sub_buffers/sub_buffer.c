@@ -3,15 +3,11 @@
 #include <sys/types.h>
 #include <alloca.h>
 #include "user_buffer.h"
-
-#ifdef APPLE
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
+#define DEBUG
 
-//#define DATA_SIZE 64      // for test runs,
-#define DATA_SIZE 1048576 // for standard runs,
+#define DATA_SIZE 64      // for test runs,
+//#define DATA_SIZE 1048576 // for standard runs,
 //#define DATA_SIZE 8388608   // for large runs,
 
 /*
@@ -182,7 +178,8 @@ int main(int argc, char** argv) {
 	        error = clCreateKernelsInProgram(program, numOfKernels, kernels, NULL);
 
             /* Loop thru each kernel and execute on device */
-	        for(cl_uint j = 0; j < numOfKernels; j++) {
+            for(cl_uint j = 0; j < numOfKernels; j++)
+            {
 	            char kernelName[32];
 	            cl_uint argCnt;
 	            clGetKernelInfo(kernels[j], CL_KERNEL_FUNCTION_NAME, sizeof(kernelName), kernelName, NULL);
@@ -213,7 +210,8 @@ int main(int argc, char** argv) {
 
 	            /* Let OpenCL know that the kernel is suppose to receive an argument */
 	            error = clSetKernelArg(kernels[j], 0, sizeof(cl_mem), &subUDObj);
-	            if (error != CL_SUCCESS) { 
+                if (error != CL_SUCCESS)
+                {
 	                perror("Unable to set buffer object in kernel");
 	                exit(1);
 	            }
