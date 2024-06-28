@@ -39,28 +39,20 @@ int main(int argc, char *argv[])
     QPixmap      pix("table.png");
     QPalette pal;
     pal.setBrush(w->backgroundRole(), QBrush(pix));
-//    QRect rect(20,20,1800,1080);
-//    w->getUi()->horizontalLayout->setGeometry(rect);
-//w->getUi()->horizontalLayout->setAlignment(w->getUi()->widget,Qt::Alignment(Qt::LeftToRight));
+
     w->getUi()->widget->setPalette(pal);
     w->getUi()->widget->setAutoFillBackground(true);
     w->getUi()->widget->setFixedSize(pix.width(), pix.height() );
     w->getUi()->dateEdit->setDate(QDate::currentDate());
 
-    auto scene=new QGraphicsScene(w->getUi()->centralwidget); //allocate your scene to your main widget
+    auto scene=new QGraphicsScene(w->getUi()->widget); //allocate your scene to your main widget
     auto view=new QGraphicsView(scene, w->getUi()->widget);//here is your view
-    auto pixmap=new QPixmap(QSize(1000,1000));// paint device
-//    QPainter painter(w->getUi()->graphicsView); // Создаём объект отрисовщика
-//graphicsView
-//painter.drawLine(0,0,100,100);
-//w->getUi()->graphicsView->setBackgroundBrush(QBrush(pix));
-//w->getUi()->widget->setScene(scene);
-
-    //Это как раз создана сцена. Сцена - это класс для работы с 2D графикой.
-    //Теперь, раз это график, то построим координатные оси X и Y.
+    view->viewport()->setAutoFillBackground(false);
+    auto pixmap=new QPixmap(QSize(2000,1000));// paint device
     QPen pen(Qt::red);//Просто выбираем цвет для карандашика
-    scene->addLine(0,90,180,90,pen);//x
-    scene->addLine(90,0,90,180,pen);//y
+    pen.setWidth(5);
+    scene->addLine(0,190,500,90,pen);//x
+    scene->addLine(500,0,500,180,pen);//y
 
 //    main_logic();
 

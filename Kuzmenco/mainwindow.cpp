@@ -161,14 +161,6 @@ void MainWindow::on_button_exit_clicked()
     app->exit();
 }
 
-//void MainWindow::paintEvent(QPaintEvent *event)
-//{
-//    Q_UNUSED(event);
-//    QPainter painter(ui->widget); // Создаём объект отрисовщика
-//painter.begin(this);
-//    painter.setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::FlatCap));
-//    painter.drawEllipse(100, 50, 150, 150);
-//}
 void MainWindow::on_name_field_textActivated(const QString &arg1)
 {
         //    name_field = ui->name_field->currentText();
@@ -180,7 +172,7 @@ void MainWindow::on_name_field_textActivated(const QString &arg1)
 
 void MainWindow::paintEvent(QPaintEvent* event)
 {
-    QPainter p(this);
-    p.setPen(Qt::green);
-    p.drawText(10,10,"hello");
+//    QPainter p(this);
+//    p.setPen(Qt::green);
+//    p.drawText(10,10,"hello");
 }
