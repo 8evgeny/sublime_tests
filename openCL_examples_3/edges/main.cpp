@@ -154,8 +154,8 @@ int main(int argc, char *argv[])
             oLine[x] = qRgb(gray, gray, gray);
         }
     }
-
-    qDebug() << "serial" << eTimer.elapsed();
+    auto timeSerial = eTimer.nsecsElapsed();
+    qDebug() << "serial" << timeSerial << " nsec";
 
     imageOut.save("edges-serial.jpg");
     imageIn = imageIn.convertToFormat(QImage::Format_RGBA8888);
@@ -212,8 +212,9 @@ int main(int argc, char *argv[])
     // Retrieve output image
     commandQueue.enqueueReadImage(clImageOut, CL_TRUE, origin, region, 0, 0, imageOut.bits());
 
-    qDebug() << "paralell" << eTimer.elapsed();
-
+    auto timeParallel = eTimer.nsecsElapsed();
+    qDebug() << "parallel" << timeParallel << " nsec";
+    qDebug() << "serial/parallel=" << (float)timeSerial/timeParallel;
     imageOut.save("edges-paralell.jpg");
 
     return 0;
