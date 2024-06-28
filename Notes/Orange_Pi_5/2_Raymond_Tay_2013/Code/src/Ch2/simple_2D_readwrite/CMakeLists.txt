@@ -18,8 +18,8 @@ if(CMAKE_COMPILER_IS_GNUCC)
         set (CMAKE_C_FLAGS "-std=c99 -Wall -DUNIX ${COMPILE_ARCH}")
     endif()
 
-    add_executable(2_Simple2DReadWrite simple_2D_readwrite.c)
-    target_link_libraries(2_Simple2DReadWrite ${OPENCL_LIBRARIES} )
+    add_executable(2_9_Simple2DReadWrite simple_2D_readwrite.c)
+    target_link_libraries(2_9_Simple2DReadWrite ${OPENCL_LIBRARIES} )
 
 endif(CMAKE_COMPILER_IS_GNUCC)
 

@@ -38,15 +38,17 @@ add_subdirectory(Ch1/kernel_query)
 add_subdirectory(Ch1/kernel_queue)
 add_subdirectory(Ch1/platform_details)
 
-add_subdirectory(Ch2/buffer_query)
-add_subdirectory(Ch2/copy_buffer)
-add_subdirectory(Ch2/simple_2D_readwrite)
-add_subdirectory(Ch2/sub_buffer_query)
-add_subdirectory(Ch2/sub_buffers)
 add_subdirectory(Ch2/user_buffer)
 add_subdirectory(Ch2/user_buffer_alignment)
-add_subdirectory(Ch2/work_partitioning)
+add_subdirectory(Ch2/buffer_query)
+add_subdirectory(Ch2/sub_buffers)
+add_subdirectory(Ch2/sub_buffer_query)
 add_subdirectory(Ch2/events)
+add_subdirectory(Ch2/copy_buffer)
+add_subdirectory(Ch2/work_partitioning)
+add_subdirectory(Ch2/simple_2D_readwrite)
+
+
 
 add_subdirectory(Ch3/byte_ordering)
 #add_subdirectory(Ch3/vectorization) # Не работает только на Orange Pi 5

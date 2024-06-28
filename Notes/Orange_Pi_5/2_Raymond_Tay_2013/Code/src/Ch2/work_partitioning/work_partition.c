@@ -3,12 +3,7 @@
 #include <sys/types.h>
 #include <alloca.h>
 #include <math.h>
-
-#ifdef APPLE
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
 
 //#define DATA_SIZE 64      // for test runs,
 #define DATA_SIZE 1048576 // for standard runs,
@@ -41,26 +36,30 @@ int valuesOK(float* to, float* from, size_t length) {
 void loadProgramSource(const char** files,
                        size_t length,
                        char** buffer,
-                       size_t* sizes) {
-	   /* Read each source file (*.cl) and store the contents into a temporary datastore */
-	   for(size_t i=0; i < length; i++) {
-	      FILE* file = fopen(files[i], "r");
-	      if(file == NULL) {
-	         perror("Couldn't read the program file");
-	         exit(1);   
-	      }
-	      fseek(file, 0, SEEK_END);
-	      sizes[i] = ftell(file);
-	      rewind(file); // reset the file pointer so that 'fread' reads from the front
-	      buffer[i] = (char*)malloc(sizes[i]+1);
-	      buffer[i][sizes[i]] = '\0';
-	      fread(buffer[i], sizeof(char), sizes[i], file);
-	      fclose(file);
-	   }
+                       size_t* sizes)
+{
+    /* Read each source file (*.cl) and store the contents into a temporary datastore */
+    for(size_t i=0; i < length; i++)
+    {
+        FILE* file = fopen(files[i], "r");
+        if(file == NULL)
+        {
+            perror("Couldn't read the program file");
+            exit(1);
+        }
+        fseek(file, 0, SEEK_END);
+        sizes[i] = ftell(file);
+        rewind(file); // reset the file pointer so that 'fread' reads from the front
+        buffer[i] = (char*)malloc(sizes[i]+1);
+        buffer[i][sizes[i]] = '\0';
+        fread(buffer[i], sizeof(char), sizes[i], file);
+        fclose(file);
+    }
 }
 
 void displayDeviceType(cl_device_id id,
-                          cl_device_info param_name) {
+                          cl_device_info param_name)
+{
   cl_int error = 0;
   size_t paramSize = 0;
 
@@ -89,7 +88,8 @@ void displayDeviceType(cl_device_id id,
   }
 } 
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv)
+{
 
    /* OpenCL 1.1 data structures */
    cl_platform_id* platforms;
@@ -189,22 +189,24 @@ int main(int argc, char** argv) {
 	        char *program_log;
 	        size_t log_size;
 	        error = clBuildProgram(program, 1, &devices[i], NULL, NULL, NULL);		
-		    if(error != CL_SUCCESS) {
-		      // If there's an error whilst building the program, dump the log
-		      clGetProgramBuildInfo(program, devices[i], CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
-		      program_log = (char*) malloc(log_size+1);
-		      program_log[log_size] = '\0';
-		      clGetProgramBuildInfo(program, devices[i], CL_PROGRAM_BUILD_LOG, 
-		            log_size+1, program_log, NULL);
-		      printf("\n=== ERROR ===\n\n%s\n=============\n", program_log);
-		      free(program_log);
-		      exit(1);
-		    }
+            if(error != CL_SUCCESS)
+            {
+                // If there's an error whilst building the program, dump the log
+                clGetProgramBuildInfo(program, devices[i], CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
+                program_log = (char*) malloc(log_size+1);
+                program_log[log_size] = '\0';
+                clGetProgramBuildInfo(program, devices[i], CL_PROGRAM_BUILD_LOG,
+                    log_size+1, program_log, NULL);
+                printf("\n=== ERROR ===\n\n%s\n=============\n", program_log);
+                free(program_log);
+                exit(1);
+            }
 	  
 	        /* Query the program as to how many kernels were detected */
 	        cl_uint numOfKernels;
 	        error = clCreateKernelsInProgram(program, 0, NULL, &numOfKernels);
-	        if (error != CL_SUCCESS) {
+            if (error != CL_SUCCESS)
+            {
 	            perror("Unable to retrieve kernel count from program");
 	            exit(1);
 	        }
@@ -212,7 +214,8 @@ int main(int argc, char** argv) {
 	        error = clCreateKernelsInProgram(program, numOfKernels, kernels, NULL);
 
             /* Loop thru each kernel and execute on device */
-	        for(cl_uint j = 0; j < numOfKernels; j++) {
+            for(cl_uint j = 0; j < numOfKernels; j++)
+            {
 	            char kernelName[32];
 	            cl_uint argCnt;
 	            clGetKernelInfo(kernels[j], CL_KERNEL_FUNCTION_NAME, sizeof(kernelName), kernelName, NULL);
@@ -222,14 +225,16 @@ int main(int argc, char** argv) {
 	
 	            /* Create a command queue */
 	            cl_command_queue cQ = clCreateCommandQueue(context, devices[i], 0, &error);
-	            if (error != CL_SUCCESS) { 
+                if (error != CL_SUCCESS)
+                {
 	                perror("Unable to create command-queue");
 	                exit(1);
 	            }
 	
 	            cl_mem memOutObj = clCreateBuffer(context, CL_MEM_WRITE_ONLY ,
 	                                              sizeof(cl_float4) * (DATA_SIZE), NULL, &error);
-	            if(error != CL_SUCCESS) {
+                if(error != CL_SUCCESS)
+                {
 	                perror("Can't create an output buffer object");
 	                exit(1);
 	            }
@@ -241,7 +246,8 @@ int main(int argc, char** argv) {
 	                exit(1);
 	            }
 	            error = clSetKernelArg(kernels[j], 1, sizeof(cl_mem), &memOutObj);
-	            if (error != CL_SUCCESS) { 
+                if (error != CL_SUCCESS)
+                {
 	                perror("Unable to set buffer object in kernel");
 	                exit(1);
 	            }
@@ -264,7 +270,8 @@ int main(int argc, char** argv) {
                                                0, 
                                                NULL, &evt);
                 clWaitForEvents(1, &evt);
-	            if (error != CL_SUCCESS) { 
+                if (error != CL_SUCCESS)
+                {
 	                perror("Unable to enqueue task to command-queue");
 	                exit(1);
 	            }
@@ -279,7 +286,8 @@ int main(int argc, char** argv) {
 	                                        h_out, 0, NULL, NULL);
 
                 /* Check the returned data */
-	            if ( valuesOK(h_in, h_out, DATA_SIZE) ) {
+                if ( valuesOK(h_in, h_out, DATA_SIZE) )
+                {
 	                printf("Check passed!\n");
 	            } else printf("Check failed!\n");
 	

@@ -3,12 +3,7 @@
 #include <sys/types.h>
 #include <alloca.h>
 #include "user_buffer.h"
-
-#ifdef APPLE
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
 
 //#define DATA_SIZE 64      // for test runs,
 //#define DATA_SIZE 1048576 // for standard runs,

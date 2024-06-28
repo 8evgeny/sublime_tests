@@ -18,8 +18,8 @@ if(CMAKE_COMPILER_IS_GNUCC)
         set (CMAKE_C_FLAGS "-std=c99 -Wall -DUNIX ${COMPILE_ARCH}")
     endif()
 
-    add_executable(2_CopyBuffer copy_buffer.c)
-    target_link_libraries(2_CopyBuffer ${OPENCL_LIBRARIES} )
+    add_executable(2_7_CopyBuffer copy_buffer.c)
+    target_link_libraries(2_7_CopyBuffer ${OPENCL_LIBRARIES} )
     configure_file(copy_buffer.cl ${CMAKE_CURRENT_BINARY_DIR}/copy_buffer.cl COPYONLY)
 
 endif(CMAKE_COMPILER_IS_GNUCC)

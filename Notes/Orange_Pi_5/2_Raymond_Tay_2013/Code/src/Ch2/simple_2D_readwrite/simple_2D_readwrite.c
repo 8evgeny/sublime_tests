@@ -2,12 +2,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <alloca.h>
-
-#ifdef APPLE
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
 
 #define NUM_BUFFER_ELEMENTS 16
 
@@ -19,7 +14,8 @@
 
 
 // test for valid values
-int valuesOK(cl_int* to, cl_int* from, size_t length) {
+int valuesOK(cl_int* to, cl_int* from, size_t length)
+{
 #ifdef DEBUG
     printf("Checking data of size: %lu\n", length);
 #endif
@@ -32,7 +28,8 @@ int valuesOK(cl_int* to, cl_int* from, size_t length) {
   return 1;
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv)
+{
 
    /* OpenCL 1.1 data structures */
    cl_platform_id* platforms;
@@ -49,7 +46,8 @@ int main(int argc, char** argv) {
       the number of available platform also increased. 
     */
    error = clGetPlatformIDs(0, NULL, &numOfPlatforms);
-   if(error != CL_SUCCESS ) {			
+   if(error != CL_SUCCESS )
+   {
       perror("Unable to find any OpenCL platforms");
       exit(1);
    }
@@ -64,7 +62,8 @@ int main(int argc, char** argv) {
    }
    // Search for a CPU/GPU device through the installed platforms
    // Build a OpenCL program and do not run it.
-   for(cl_uint i = 0; i < numOfPlatforms; i++ ) {
+   for(cl_uint i = 0; i < numOfPlatforms; i++ )
+   {
 
         cl_uint numOfDevices = 0;
 
