@@ -28,15 +28,15 @@ int main(int argc, char *argv[])
     // Query platforms
     VECTOR_CLASS<cl::Platform> platforms;
 
-    if (cl::Platform::get(&platforms) != CL_SUCCESS) {
+    if (cl::Platform::get(&platforms) != CL_SUCCESS)
+    {
         qDebug() << "Cann't query platforms";
-
         return -1;
     }
 
-    if (platforms.size() < 1) {
+    if (platforms.size() < 1)
+    {
         qDebug() << "No platforms available";
-
         return -1;
     }
 
@@ -44,10 +44,10 @@ int main(int argc, char *argv[])
     cl::Platform platform = platforms[0];
     VECTOR_CLASS<cl::Device> devices;
 
-    if (platform.getDevices(CL_DEVICE_TYPE_ALL, &devices) != CL_SUCCESS) {
+    if (platform.getDevices(CL_DEVICE_TYPE_ALL, &devices) != CL_SUCCESS)
+    {
         qDebug() << "No devices available";
-
-       return -1;
+        return -1;
     }
 
     // Create OpenCL context
@@ -62,11 +62,11 @@ int main(int argc, char *argv[])
     // Compile kernels
     cl_int error = program.build();
 
-    if (error != CL_SUCCESS) {
+    if (error != CL_SUCCESS)
+    {
         cl::STRING_CLASS buildLog;
         program.getBuildInfo(devices[0], CL_PROGRAM_BUILD_LOG, &buildLog);
         qDebug() << buildLog.c_str();
-
         return -1;
     }
 
@@ -74,10 +74,12 @@ int main(int argc, char *argv[])
     imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
 
     // Convert to gray scale
-    for (int y = 0; y < imageIn.height(); y++) {
+    for (int y = 0; y < imageIn.height(); y++)
+    {
         QRgb *line = (QRgb *) imageIn.scanLine(y);
 
-        for (int x = 0; x < imageIn.width(); x++) {
+        for (int x = 0; x < imageIn.width(); x++)
+        {
             int r = qGray(line[x]);
             int g = r;
             int b = r;
@@ -109,7 +111,8 @@ int main(int argc, char *argv[])
 
         QRgb *oLine = (QRgb *) imageOut.scanLine(y);
 
-        for (int x = 0; x < imageIn.width(); x++) {
+        for (int x = 0; x < imageIn.width(); x++)
+        {
             int x_m = (x < 1)? x: x - 1;
             int x_p = (x >= imageIn.width())? x: x + 1;
 
