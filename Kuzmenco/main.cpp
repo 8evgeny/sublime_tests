@@ -45,14 +45,17 @@ int main(int argc, char *argv[])
     w->getUi()->widget->setFixedSize(pix.width(), pix.height() );
     w->getUi()->dateEdit->setDate(QDate::currentDate());
 
-    auto scene=new QGraphicsScene(w->getUi()->widget); //allocate your scene to your main widget
-    auto view=new QGraphicsView(scene, w->getUi()->widget);//here is your view
+    auto scene=new QGraphicsScene(w->getUi()->widget);
+    QRect rect(20,20,1200,800);
+    scene->setSceneRect(rect);
+    auto view=new QGraphicsView(scene, w->getUi()->widget);
     view->viewport()->setAutoFillBackground(false);
-    auto pixmap=new QPixmap(QSize(2000,1000));// paint device
-    QPen pen(Qt::red);//Просто выбираем цвет для карандашика
+    QPen pen(Qt::red);
     pen.setWidth(5);
-    scene->addLine(0,190,500,90,pen);//x
-    scene->addLine(500,0,500,180,pen);//y
+
+    scene->addLine(0,190,500,90,pen);
+    scene->addLine(500,0,500,180,pen);
+    scene->addLine(200,200,500,500,pen);
 
 //    main_logic();
 
