@@ -13,6 +13,7 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets REQUIRED)
 
 include_directories (${OpenCL_INCLUDE_DIRS} )
+include_directories (${CMAKE_SOURCE_DIR} )
 set (CMAKE_C_FLAGS "-std=c99 -Wall -DUNIX ${COMPILE_ARCH}")
 
 add_subdirectory(cltest)
