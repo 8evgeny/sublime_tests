@@ -158,12 +158,12 @@ void trac_tmml::yolo_work(const Point& left_top, vector<tr>& vtr)
     const vector<tk::dnn::box>& vtrt = yolo_trt->detect(img4yolo);
     time_point_new = system_clock::now();
     duration_now = time_point_new - time_point_first;
-    yolo_exec_time = duration_now.count();
+    ts->yolo_exec_time = duration_now.count();
     vtr.reserve(vtrt.size());
     for(int i_trt=0; i_trt < vtrt.size(); i_trt++)
     {
         const tk::dnn::box& trt_i = vtrt[i_trt];
-        int cls = vclass[trt_i.cl];
+        char cls = vclass[trt_i.cl];
         int object_pix2 = trt_i.w*trt_i.h;
         if(cls != class_num_musor && trt_i.w*trt_i.h > min_object_pix2)
         {
@@ -184,12 +184,12 @@ void trac_tmml::yolo_work_track(const Point& left_top, vector<tr>& vtr)
     const vector<tk::dnn::box>& vtrt = yolo_trt_track->detect(img4yolo);
     time_point_new = system_clock::now();
     duration_now = time_point_new - time_point_first;
-    yolo_exec_time = duration_now.count();
+    ts->yolo_exec_time = duration_now.count();
     vtr.reserve(vtrt.size());
     for(int i_trt=0; i_trt < vtrt.size(); i_trt++)
     {
         const tk::dnn::box& trt_i = vtrt[i_trt];
-        int cls = vclass_track[trt_i.cl];
+        char cls = vclass_track[trt_i.cl];
         int object_pix2 = trt_i.w*trt_i.h;
         if(cls != class_num_musor && object_pix2 > min_object_pix2)
         {

@@ -92,29 +92,7 @@ shared_ptr<trac_tmml> create_track(const char* config_path,
 
 int get_trac(shared_ptr<trac_tmml>& trac)
 {
-    trac_struct& t_st = *trac->ts;
-
-    if(t_st.key == '`'){return -1;}
-    else if(t_st.key == 27)
-    {
- #ifdef COUT_OK
-        cout << "--------------------------------------------------- deinit5" << endl;
- #endif // END COUT_OK
-        trac->deinit();
-        return 1;
-    } // -- END if((*trac->ts).key == 27)
-
-    if(t_st.roi)
-    {
-        trac->img_orig_roi = Mat(t_st.roi_h, t_st.roi_w, t_st.img_orig_type, t_st.img_orig_data);
-        trac->rct_local_orig = Rect2f(t_st.roi_l, t_st.roi_t, t_st.roi_w, t_st.roi_h);
-    }
-    else{trac->img_orig = Mat(t_st.fr_h0, t_st.fr_w0, t_st.img_orig_type, t_st.img_orig_data);}
-
-    if(t_st.rect_ok == 2){t_st.zahvat = 1;}
-
-    int _find = trac->work(); // Запуск
-    return _find;
+    return trac->work();
 } // -- END get_trac
 
 
@@ -551,6 +529,27 @@ bool trac_tmml::get_obj_xy_smooth(float obj_xy_x, float obj_xy_y)
 
 int trac_tmml::work()
 {
+    trac_struct& t_st = *ts;
+
+    if(t_st.key == 27)
+    {
+ #ifdef COUT_OK
+        cout << "--------------------------------------------------- deinit5" << endl;
+ #endif // END COUT_OK
+        deinit();
+        return 0;
+    } // -- END if((*trac->ts).key == 27)
+
+    if(t_st.roi)
+    {
+        img_orig_roi = Mat(t_st.roi_h, t_st.roi_w, t_st.img_orig_type, t_st.img_orig_data);
+        rct_local_orig = Rect2f(t_st.roi_l, t_st.roi_t, t_st.roi_w, t_st.roi_h);
+    }
+    else{img_orig = Mat(t_st.fr_h0, t_st.fr_w0, t_st.img_orig_type, t_st.img_orig_data);}
+
+    if(t_st.rect_ok == 2){t_st.zahvat = 1;}
+    // =================================================
+
     //(*ts).work_number++;
 #ifdef COUT_OK
     time_point0 = system_clock::now();
@@ -606,7 +605,7 @@ int trac_tmml::work()
            result_sm.create(Size(wh_et.width - wh_sm__2 + 1, wh_et.height - wh_sm__2 + 1), CV_32FC1);
            wh_sm_2 = Point2f(wh_sm__2, wh_sm__2);
            rct_result_sm = Rect2f(wh_et_2 - wh_sm_2, wh_et_2 + wh_sm_2);
-           if(!verify_rect(img_et.size(), rct_result_sm)){deinit(); return 1;}
+           if(!verify_rect(img_et.size(), rct_result_sm)){deinit(); return 0;}
 
            init_work();
            (*ts).validate = (*ts).validate_min;
@@ -639,7 +638,7 @@ int trac_tmml::work()
                cout << "--------------------------------------------------- deinit4" << endl;
  #endif // END COUT_OK
                deinit();
-               return 1;
+               return 0;
            } // -- END if(!(*ts).ok_match)
            first_img = 0;
        } // -- END if(first_img)
@@ -672,7 +671,7 @@ int trac_tmml::work()
            if((*ts).validate == (*ts).validate_min)
            {
               init_work();
-              //if(!list_et.size()){deinit(); return 1;}
+              //if(!list_et.size()){deinit(); return 0;}
            } // -- END if(validate == (*ts).validate_min)
            not_ok_match_start = system_clock::now();
        }
@@ -688,7 +687,7 @@ int trac_tmml::work()
                cout << "--------------------------------------------------- deinit2" << endl;
  #endif // END COUT_OK
                deinit();
-               return 1;
+               return 0;
            } // -- END if(not_ok_match_duration.count() > not_ok_match_count_max)
        } // -- END if(!trac_s.ok_match)
     } // -- END if(trac_s.zahvat)
@@ -717,5 +716,5 @@ int trac_tmml::work()
  #endif // END COUT_OK
         deinit();
     } // -- END if((*ts).ok_match && (abs((*ts).obj_xy_x - 0.5) > object_relative_max || abs((*ts).obj_xy_y - 0.5) > object_relative_max))
-    return 1;
+    return 0;
 } // -- END work

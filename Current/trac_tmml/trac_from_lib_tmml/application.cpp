@@ -59,8 +59,10 @@ Application::Application(const string & pathToConfig,
 #endif // END USE_WEB_CAMERA
 #ifdef USE_SHARED_MEMORY
     case SHARED_MEMORY:
-        device = make_shared<SharedMemory>(config_path, ok);
-        if(!ok){return;}
+//        device = make_shared<SharedMemory>(config_path, ok);
+//        if(!ok){return;}
+        device = devices::shared_memory::create(config_path);
+
         device->setup();
         break;
 #endif // END USE_SHARED_MEMORY
@@ -656,18 +658,15 @@ void Application::workflowShats()
         if(flag)
         {              
  #ifdef GUI_OK
-            if(tracShats->find_)
-            {
-                // приведение рамки цели к абсолютным координатам
-                Rect2f rectShats(aimRectShats.x * frame_show_width, aimRectShats.y * frame_show_height,
-                                 aimRectShats.width * frame_show_width, aimRectShats.height * frame_show_height);
-                // отрисовка рамки цели
-                rectangle(frame_show, rectShats, color::white, 1);
-                // отрисовка центра объекта
-                Point2f center = tracShats->getTargetCenter();
-                center = Point2f(center.x * frame_show_width, center.y * frame_show_height);
-                circle(frame_show, center, 2, color::white, -1);
-            } // END if(tracShats->find_)
+            // приведение рамки цели к абсолютным координатам
+            Rect2f rectShats(aimRectShats.x * frame_show_width, aimRectShats.y * frame_show_height,
+                             aimRectShats.width * frame_show_width, aimRectShats.height * frame_show_height);
+            // отрисовка рамки цели
+            rectangle(frame_show, rectShats, color::white, 1);
+            // отрисовка центра объекта
+            Point2f center0 = tracShats->getTargetCenter();
+            Point2f center = Point2f(center0.x * frame_show_width, center0.y * frame_show_height);
+            circle(frame_show, center, 2, color::white, -1);
 
             // добавление метки размера объекта на кадр
             if(demonstration_mode > 1)

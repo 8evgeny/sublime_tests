@@ -7,45 +7,76 @@ using namespace chrono;
 // Конструктор класса copter.
 trac_tmml::trac_tmml(const string& config_path, bool& ok)
 {
-   cout << "Begin trac_tmml" << endl;
+   cout << "Constructor trac_tmml" << endl;
+   // -------------------------- FIND DISC_ID -----------------------------------------------
+   #ifdef FIND_DISC_ID
+     vector<string> v_disc_id = {
+         "114A4G5FS",
+         "BTHH83700P5L512D",
+         "ZN1BFQHB",
+         "Z524F25F",
+         "2104A9474309",
+         "2J4120178746",
+         "WD-WCC6Y6JDRY7P",
+         "S4BENG0KC32655V",
+         "2L1529A64EGX",
+         "2L1529ABGJNP",
+         "S3PRD9NP",
+         "S649NL0TB45870W",
+         "S6F5NJ0RB46088"
+     };
+     string cmd_result1 = "udevadm info --query=all --name=/dev/sda | grep ID_SERIAL_SHORT";
+     string cmd_result2 = "udevadm info --query=all --name=nvme0n1 | grep ID_SERIAL_SHORT";
+     string cmd_result3 = "udevadm info --query=all --name=/dev/sdb | grep ID_SERIAL_SHORT";
+     string cmd_result4 = "udevadm info --query=all --name=/dev/sdc | grep ID_SERIAL_SHORT";
+     ok = get_cmd_result(cmd_result1, v_disc_id);
+     if(!ok){ok = get_cmd_result(cmd_result2, v_disc_id);}
+     if(!ok){ok = get_cmd_result(cmd_result3, v_disc_id);}
+     if(!ok){ok = get_cmd_result(cmd_result4, v_disc_id);}
+     if(!ok){cout << "=============== Wrong HARDWARE !" << endl; return;}
+   #endif // -------------------------- END FIND DISC_ID -----------------------------------------------
    ok = get_ini_params(config_path);
    if(!ok){cout << "Not get_ini_params!" << endl;}
 } // -- END trac_tmml
 
 trac_tmml::~trac_tmml()
 {
-  cout << "Деструктор trac_tmml" << endl;
+  cout << "Destructor trac_tmml" << endl;
   yolo_trt.release();
   yolo_trt_track.release();
-  cs_ptr.release();
   ltrac_ptr.release();
   ts.release();
 } // END ~trac_tmml()
 
-shared_ptr<trac_tmml> create_track(const char* config_path,
-                       bool& ok,
-                       trac_struct& trac_str0)
+bool trac_tmml::get_cmd_result(const string& get_disk_id, const vector<string>& v_disc_id)
+{
+    array<char, 128> buffer;
+    string cmd_result = "";
+    unique_ptr<FILE, decltype(&pclose)> pipe(popen(get_disk_id.c_str(), "r"), pclose);
+    if(!pipe){throw std::runtime_error("popen() failed!");}
+    while(fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr){cmd_result += buffer.data();}
+    int num_pos = cmd_result.find("=") + 1;
+    int len = cmd_result.length() - num_pos - 1;
+    string disc_id = cmd_result.substr(num_pos, len);
+    bool ok = 0;
+    for(int i=0; i<v_disc_id.size(); i++)
+    {
+        if(v_disc_id[i] == disc_id){ok = 1; break;}
+    } // -- END for(int i=0; i<v_disc_id.size(); i++)
+    return ok;
+} // -- END get_cmd_result
+
+shared_ptr<trac_tmml> create_track(const char* config_path, bool& ok, trac_struct& trac_str0)
 {
     shared_ptr<trac_tmml> copt = make_shared<trac_tmml>(config_path, ok);
     if(!ok){cout << "NOT shared_ptr<trac_tmml>!!!\n"; return copt;}
-
-//    cout << "================================================================================";
-//    cout << " orig=[" << trac_str.fr_w0 << "; " << trac_str.fr_h0 << "; " << trac_str.img_orig_type << "]\n";
 
     copt->img_orig_type = trac_str0.img_orig_type;
     copt->fr_w0 = trac_str0.fr_w0;
     copt->fr_h0 = trac_str0.fr_h0;
     copt->fr_w0_1 = 1.f/copt->fr_w0;
     copt->fr_h0_1 = 1.f/copt->fr_h0;
-
-    copt->cs_ptr = make_unique<copter_struct>(copt->copt_st);
     copt->ltrac_ptr = make_unique<list<trac_st>>(copt->ltrac);
-
-    copt->cs_ptr->img_orig_type = trac_str0.img_orig_type;
-    copt->cs_ptr->fr_w0 = trac_str0.fr_w0;
-    copt->cs_ptr->fr_h0 = trac_str0.fr_h0;
-
-    copt->trac_str = trac_str0;
     copt->ts = make_unique<trac_struct>(copt->trac_str);
 
     cout << "copt->trac_str.work_in_round=" << copt->trac_str.work_in_round << endl;
@@ -68,94 +99,22 @@ shared_ptr<trac_tmml> create_track(const char* config_path,
     copt->ts->roi_w = copt->cfg_w;
     copt->ts->roi_h = copt->cfg_h;
  #ifdef WORK_IN_ROUND
-    copt->cs_ptr->work_in_round = 1;
     copt->ts->work_in_round = 1;
  #endif
  #ifdef WORK_IN_RECT
-    copt->cs_ptr->work_in_round = 0;
     copt->ts->work_in_round = 0;
  #endif
+    copt->ts->vtrac_data.reserve(copt->max_objects);
+    copt->ts->zahvat = 1;
+    copt->ts->ok_match = 1; // Признак успешного захвата на текущем кадре.
+    copt->ts->validate = copt->ts->validate_min; // Степень валидации захвата на текущем кадре.
     return copt;
 } // -- END create_track
 
 
 int get_trac(shared_ptr<trac_tmml>& copt)
 {
-    unique_ptr<trac_struct>& t_st = copt->ts;
-    if(t_st->key == '`'){return -1;}
-    unique_ptr<copter_struct>& copt_st_ptr = copt->cs_ptr;
-    //cout << "copt->ts->roi_w=" << t_st.roi_w << "; copt->ts->roi_h=" << copt->ts->roi_h << endl;
-    if(t_st->new_frame)
-    {
-        //if(!trac->ts->img_orig_data){cout << "NOT data for img_orig!!!" << endl; return -1;}
-        copt->img_orig = Mat(t_st->fr_h0, t_st->fr_w0, t_st->img_orig_type, t_st->img_orig_data);
-    } // -- END if(t_st->new_frame)
-
-    copt_st_ptr->rct_x = copt->scan_left_top.x;
-    copt_st_ptr->rct_y = copt->scan_left_top.y;
-
-    int object_num = copt->work();
-    copt->ltrac_ptr = make_unique<list<trac_st>>(copt->ltrac);
-
-    t_st->roi_l = copt_st_ptr->rct_x;
-    t_st->roi_t = copt_st_ptr->rct_y;
-    t_st->roi_w = copt->cfg_w;
-    t_st->roi_h = copt->cfg_h;
-
-    if(copt->ltrac.size())
-    {
-        int rait_max = 0;
-        list<trac_st>::iterator obj_rait_max;
-        if(copt->ltrac.size() > copt->max_objects)
-        {
-           //cout << "=============== ltrac.size()=" << copt->ltrac.size() << endl;
-           copt->ltrac.sort([](const trac_st& l1, const trac_st& l2)
-           {
-             if(l1.rait > l2.rait){return true;}
-             else{return false;}
-           }); // END -- sort
-           obj_rait_max = copt->ltrac.begin();
-           rait_max = obj_rait_max->rait;
-           while(copt->ltrac.size() > copt->max_objects){copt->ltrac.pop_back();}
-        } // END if(copt->ltrac.size() > copt->max_objects)
-        else
-        {
-           for(list<trac_st>::iterator obj = copt->ltrac.begin(); obj != copt->ltrac.end(); obj++)
-           {
-               if(obj->rait > rait_max)
-               {
-                   obj_rait_max = obj;
-                   rait_max = obj->rait;
-               } // END if(obj->rait > rait_max)
-           } // -- END for(list<trac_st>::iterator obj = copt->ltrac.begin(); obj != copt->ltrac.end(); obj++)
-        } // END if(copt->ltrac.size() <= copt->max_objects)
-
-        if(rait_max)
-        {
-           //t_st.zahvat = 1;
-           t_st->ok_match = 1; // Признак успешного захвата на текущем кадре.
-           t_st->validate = t_st->validate_min; // Степень валидации захвата на текущем кадре.
-           t_st->obj_xy_x = copt->fr_w0_1 * obj_rait_max->predict.x;
-           t_st->obj_xy_y = copt->fr_h0_1 * obj_rait_max->predict.y;
-           t_st->obj_wh_2_w = copt->fr_w0_1 * obj_rait_max->wh_2.x;
-           t_st->obj_wh_2_h = copt->fr_h0_1 * obj_rait_max->wh_2.y;
-        } // END if(rait_max)
-        else
-        {
-             //t_st.zahvat = 0;
-             t_st->ok_match = 0; // Признак успешного захвата на текущем кадре.
-             t_st->validate = 0; // Степень валидации захвата на текущем кадре.
-        } // END if(!rait_max)
-    } // END if(copt->ltrac.size())
-    else
-    {
-        //t_st.zahvat = 0;
-        t_st->ok_match = 0; // Признак успешного захвата на текущем кадре.
-        t_st->validate = 0; // Степень валидации захвата на текущем кадре.
-    } // END if(!copt->ltrac.size())
-    t_st->scan_exec_time = copt->scan_exec_time;
-    t_st->yolo_exec_time = copt->yolo_exec_time;
-    return object_num;
+    return copt->work();
 } // -- END get_trac
 
 
@@ -178,7 +137,7 @@ bool trac_tmml::init_copter_scan(const char* config_path)
     y_scan_max0 = fr_h0;
  #endif
  #ifdef WORK_IN_RECT
-    y_scan_max0 = round(y_scan_max*fr_h0);
+    y_scan_max0 = round(y_scan_max * fr_h0);
  #endif
     int num_y = y_scan_max0/cfg_h;
     int delta_y = cfg_h - (y_scan_max0 - cfg_h)/num_y;
@@ -192,18 +151,18 @@ bool trac_tmml::init_copter_scan(const char* config_path)
     fr_w1 = fr_w0 - 1;
     y_scan_max1 = y_scan_max0 - 1;
     cfg_wh = Point2f(cfg_w, cfg_h);
-    cfg_wh_2 = 0.5*cfg_wh;
+    cfg_wh_2 = 0.5 * cfg_wh;
     y_scan_max2 = y_scan_max1 - cfg_h;
-    fr_h1 = fr_h0*y_scan_max;
+    fr_h1 = fr_h0 * y_scan_max;
     fr_h2 = fr_h0 - cfg_h - 1;
     fr_w_max = fr_w0 - fr_min;
     fr_h_max = fr_h1 - fr_min;
     x_scan_max2 = fr_w0 - cfg_w - 1;
-    cfg_w_2 = 0.5*cfg_w;
-    cfg_h_2 = 0.5*cfg_h;
-    fr_w0_2 = 0.5*fr_w0;
-    fr_h0_2 = 0.5*fr_h0;
-    min_deflect = 0.2*cfg_w;
+    cfg_w_2 = 0.5 * cfg_w;
+    cfg_h_2 = 0.5 * cfg_h;
+    fr_w0_2 = 0.5 * fr_w0;
+    fr_h0_2 = 0.5 * fr_h0;
+    min_deflect = 0.2 * cfg_w;
     max_deflect = cfg_w_2 + min_deflect;
     KF_tr_x.transitionMatrix = (Mat_<float>(4, 4) << 1, 0, dt_tr_1, 0,      0, 1, 0, dt_tr_1,       0, 0, 1, 0,       0, 0, 0, 1);
     KF_tr_y.transitionMatrix = (Mat_<float>(4, 4) << 1, 0, dt_tr_1, 0,      0, 1, 0, dt_tr_1,       0, 0, 1, 0,       0, 0, 0, 1);
@@ -225,19 +184,19 @@ bool trac_tmml::init_copter_scan(const char* config_path)
     shift_x = shift_y;
     crop_num_x = crop_num_y;
     v_point_scan.reserve(scan_x * scan_y);
-    fr_h0_22 = fr_h0_2*fr_h0_2;
+    fr_h0_22 = fr_h0_2 * fr_h0_2;
     int x0 = fr_w0_2 - fr_h0_2;
     int x1 = fr_w0_2 + fr_h0_2 - cfg_h;
     for(int i_y = 0; i_y < scan_y; i_y++)
     {
-        int y = i_y*shift_y;
+        int y = i_y * shift_y;
         if(y > fr_h2){y = fr_h2;}
         for(int i_x = 0; i_x < scan_x; i_x++)
         {
-            int x = x0 + i_x*shift_x;
+            int x = x0 + i_x * shift_x;
             if(x > x1){x = x1;}
-            Point cent_crop_cent_frame(x + cfg_w_2 - 0.5*fr_w0, y + cfg_h_2 - 0.5*fr_h0);
-            int rad2 = cent_crop_cent_frame.x*cent_crop_cent_frame.x + cent_crop_cent_frame.y*cent_crop_cent_frame.y;
+            Point cent_crop_cent_frame(x + cfg_w_2 - 0.5 * fr_w0, y + cfg_h_2 - 0.5 * fr_h0);
+            int rad2 = cent_crop_cent_frame.x * cent_crop_cent_frame.x + cent_crop_cent_frame.y * cent_crop_cent_frame.y;
             if(rad2 < fr_h0_22){v_point_scan.emplace_back(Point(x, y));}
         } // -- END for(int i_x = 0; i_x < scan_y; i_x++)
     } // -- END for(int i_y = 0; i_y < scan_y; i_y++)
@@ -248,11 +207,11 @@ bool trac_tmml::init_copter_scan(const char* config_path)
     v_point_scan.reserve(scan_x * scan_y);
     for(int i_y = 0; i_y < scan_y; i_y++)
     {
-        int y = i_y*shift_y;
+        int y = i_y * shift_y;
         if(y > y_scan_max2){y = y_scan_max2;}
         for(int i_x = 0; i_x < scan_x; i_x++)
         {
-            int x = i_x*shift_x;
+            int x = i_x * shift_x;
             if(x > x_scan_max2){x = x_scan_max2;}
             v_point_scan.emplace_back(Point(x, y));
         } // -- END for(int i_x = 0; i_x < scan_x; i_x++)
@@ -301,8 +260,6 @@ bool trac_tmml::get_ini_params(const string& config)
     yolo_block_track = "yolo_round_trac";
  #endif
 
-
-
     // --------------------------------------------------- main_settings
 
     rotate_frame_180 = reader.GetInteger("main_settings", "rotate_frame_180", -1);
@@ -331,12 +288,12 @@ bool trac_tmml::get_ini_params(const string& config)
     deflect_max = reader.GetReal("copter1", "deflect_max", -1);
     if(deflect_max == -1){cout << "deflect_max not declared!\n"; return 0;}
     else{cout << "deflect_max = " << deflect_max << ";\n";}
-    deflect_max2 = deflect_max*deflect_max;
+    deflect_max2 = deflect_max * deflect_max;
 
     deflect_min = reader.GetReal("copter1", "deflect_min", -1);
     if(deflect_min == -1){cout << "deflect_min not declared!\n"; return 0;}
     else{cout << "deflect_min = " << deflect_min << ";\n";}
-    deflect_min2 = deflect_min*deflect_min;
+    deflect_min2 = deflect_min * deflect_min;
 
     max_objects = reader.GetInteger("copter1", "max_objects", -1);
     if(max_objects == -1){cout << "max_objects not declared!\n"; return 0;}
@@ -403,7 +360,6 @@ double trac_tmml::power(double x, int pw)
 } // END power
 
 
-
 int trac_tmml::get_abc(int K, double* vec_t, double* vec_y, int vec_size, double* B)
 {
     if(vec_size < K){cout << "vec_size < K! \n"; return 0;}
@@ -432,7 +388,6 @@ int trac_tmml::get_abc(int K, double* vec_t, double* vec_y, int vec_size, double
     } // -- END for(int y = 0; y<K; y++)
     return 1;
 } // -- END get_abc
-
 
 
 bool trac_tmml::get_polinom(const list<tr>& lt, double time_now)
@@ -481,13 +436,13 @@ void trac_tmml::correct_copter_trac(list<trac_st>::iterator& obj)
          const tr& tr_i = vtr[i_tr];
          if(obj->cls != tr_i.class_num){continue;}
          Point2f deflect = obj->predict - tr_i.xy;
-         float deflect2 = deflect.x*deflect.x + deflect.y*deflect.y;
+         float deflect2 = deflect.x * deflect.x + deflect.y * deflect.y;
          if(deflect2 < deflect_best2)
          {
              deflect_best2 = deflect2;
              xy_cent_best = tr_i.xy;
              wh_2_best = tr_i.wh_2;
-         } // -- END if(deflect2 < deflect_min2)
+         } // -- END if(deflect2 < deflect_best2)
     } // -- END for(int i_tr = 0; i_tr < vtr.size(); i_tr++)
     if(deflect_best2 < deflect_max2)
     {
@@ -512,12 +467,12 @@ void trac_tmml::correct_copter_trac(list<trac_st>::iterator& obj)
 
 bool trac_tmml::get_predict(const list<tr>& trac, Point2f& predict)
 {
-    Point2f vec = (*trac.begin()).xy - trac.back().xy;
-    double time_trac = (*trac.begin()).tp - trac.back().tp;
+    Point2f vec = trac.begin()->xy - trac.back().xy;
+    double time_trac = trac.begin()->tp - trac.back().tp;
     duration_now = system_clock::now() - time_begin;
-    double diff_tp_now = duration_now.count() - (*trac.begin()).tp;
+    double diff_tp_now = duration_now.count() - trac.begin()->tp;
     float koef = diff_tp_now/time_trac;
-    predict = (*trac.begin()).xy + koef*vec;
+    predict = trac.begin()->xy + koef * vec;
     return 1;
 } // -- END get_mnk_predict
 
@@ -530,8 +485,8 @@ bool trac_tmml::get_mnk_predict(const list<tr>& trac, Point2f& predict)
     {
         Point2f vec(0, 0);
         for(int i=0; i < Polinom_size; i++){vec += Point2f(Polinom_koef_x[i], Polinom_koef_y[i]);}
-        predict.x = vec.x*fr_w0;
-        predict.y = vec.y*fr_h0;
+        predict.x = vec.x * fr_w0;
+        predict.y = vec.y * fr_h0;
         return 1;
     } // -- END if(ok)
     return 0;
@@ -559,7 +514,7 @@ bool trac_tmml::get_kalman_predict(const list<tr>& trac, Point2f& predict)
     while(true)
     {
         it--;
-        trac_mid_wh += it->wh_2.x*it->wh_2.y;
+        trac_mid_wh += it->wh_2.x * it->wh_2.y;
         measurement_tr_x(0) = it->xy.x;
         measurement_tr_y(0) = it->xy.y;
         measurement_tr_x(1) = it->tp;
@@ -579,7 +534,7 @@ bool trac_tmml::get_kalman_predict(const list<tr>& trac, Point2f& predict)
         if(it == trac.begin()){break;}
     } // -- END while(true)
     trac_mid_wh /= trac.size();
-    float area = obj_wh_2.x*obj_wh_2.y;
+    float area = obj_wh_2.x * obj_wh_2.y;
     if(abs(area - trac_mid_wh)/(area + trac_mid_wh) > diff_area_max)
     {
         return 0;
@@ -590,7 +545,7 @@ bool trac_tmml::get_kalman_predict(const list<tr>& trac, Point2f& predict)
     double diff_tp_now = duration_now.count() - tp_kalman_old_old;
     float koef = diff_tp_now/diff_tp_kalman;
     //predict = Point2f(pred_x.at<float>(0), pred_y.at<float>(0));
-    predict = (*trac.begin()).xy + koef*diff_kalman_vec;
+    predict = trac.begin()->xy + koef * diff_kalman_vec;
     return 1;
 } // -- END get_kalman_predict
 
@@ -605,27 +560,10 @@ void trac_tmml::find_candidates()
         for(int i_tr = 0; i_tr < vtr.size(); i_tr++)
         {
             const tr& tr_i = vtr[i_tr];
-            int cls_cand = tr_i.class_num;
-            bool not_match = 1;
-            for(list<trac_st>::iterator obj = ltrac.begin(); obj != ltrac.end(); obj++)
-            {
-                if(obj->cls == cls_cand)
-                {
-                    Point2f deflect = obj->predict - tr_i.xy;
-                    float deflect2 = deflect.x*deflect.x + deflect.y*deflect.y;
-                    if(deflect2 < deflect_min2)
-                    {
-                        not_match = 0; break;
-                    } // -- END if(deflect2 < deflect_min2)
-                } // -- END if(obj->cls == cls_cand)
-            } // -- END for(list<trac_st>::iterator obj = ltrac.begin(); obj != ltrac.end(); obj++)
-
-            if(not_match)
-            {
-               duration_now = system_clock::now() - time_begin;
-               tr cand{tr_i.xy, tr_i.wh_2, cls_cand, duration_now.count()};
-               ltrac.push_back(trac_st{1, rait_init, {cand}, tr_i.xy, tr_i.wh_2, cls_cand});
-            } // -- END if(not_match)
+            char cls_cand = tr_i.class_num;
+            duration_now = system_clock::now() - time_begin;
+            tr cand{tr_i.xy, tr_i.wh_2, cls_cand, duration_now.count()};
+            ltrac.push_back(trac_st{1, rait_init, {cand}, tr_i.xy, tr_i.wh_2, cls_cand});
         } // -- END for(int i_tr = 0; i_tr < vtr.size(); i_tr++)
     } // -- END if(ltrac.size())
     else
@@ -634,7 +572,7 @@ void trac_tmml::find_candidates()
         {
             const tr& tr_i = vtr[i_tr];
             duration_now = system_clock::now() - time_begin;
-            int cls_cand = tr_i.class_num;
+            char cls_cand = tr_i.class_num;
             tr cand{tr_i.xy, tr_i.wh_2, cls_cand, duration_now.count()};
             ltrac.push_back(trac_st{1, rait_init, {cand}, tr_i.xy, tr_i.wh_2, cls_cand});
         } // -- END for(int i_tr = 0; i_tr < vtr.size(); i_tr++)
@@ -665,7 +603,7 @@ void trac_tmml::get_list_objects()
 
  #ifdef WORK_IN_ROUND
         Point predict_cent_frame(predict.x - fr_w0_2, predict.y - fr_h0_2);
-        int rad2 = predict_cent_frame.x*predict_cent_frame.x + predict_cent_frame.y*predict_cent_frame.y;
+        int rad2 = predict_cent_frame.x * predict_cent_frame.x + predict_cent_frame.y * predict_cent_frame.y;
         if(rad2 > fr_h0_22)
         {
  #else
@@ -683,12 +621,34 @@ void trac_tmml::get_list_objects()
         {
             obj = ltrac.erase(obj); // Удаляем плохой трак.
         } // -- END if(it->rait < 1)
-        else if(obj->trac_ok == 2){object_num++;}
+        else // if(obj->rait > 0)
+        {
+           for(list<trac_st>::iterator obj_next = obj; obj_next != ltrac.end();)
+           {
+               obj_next++;
+               if(obj_next->cls == obj->cls)
+               {
+                   Point2f deflect = obj->predict - obj_next->predict;
+                   float deflect2 = deflect.x * deflect.x + deflect.y * deflect.y;
+                   if(deflect2 < deflect_min2)
+                   {
+                       obj_next = ltrac.erase(obj_next); // Удаляем дублированный трак.
+                   } // -- END if(deflect2 < deflect_min2)
+               } // -- END if(obj_next->cls == obj->cls)
+           } // END for(list<trac_st>::iterator obj_next = obj; obj_next != ltrac.end();)
+           if(obj->trac_ok == 2){object_num++;}
+        } // END if(obj->rait > 0)
     } // -- END for(list<trac_st>::iterator obj = ltrac.begin(); obj != ltrac.end(); obj++)
 } // -- END get_list_objects
 
 int trac_tmml::work()
 {
+    if(ts->new_frame)
+    {
+        //if(!ts->img_orig_data){cout << "NOT data for img_orig!!!" << endl; return 0;}
+        img_orig = Mat(ts->fr_h0, ts->fr_w0, ts->img_orig_type, ts->img_orig_data);
+    } // -- END if(t_st->new_frame)
+    // ==========================================================
     get_list_objects();
     find_candidates();    
     i_point_scan++;
@@ -698,15 +658,38 @@ int trac_tmml::work()
         tp_scan_old = tp_scan_new;
         tp_scan_new = system_clock::now();
         duration_now = tp_scan_new - tp_scan_old;
-        scan_exec_time = duration_now.count();
-        cout_num++;
-        if(cout_num > 10)
-        {
-           cout_num = 0;
-           //cout << "================= scan_exec_time=" << scan_exec_time << endl;
-           cout << "ltrac.size=" << ltrac.size() << endl;
-        } // -- END if(cout_num > 10)
+        ts->scan_exec_time = duration_now.count();
+        //cout_num++;
+        //if(cout_num > 10)
+        //{
+        //   cout_num = 0;
+        //   cout << "ltrac.size=" << ltrac.size() << endl;
+        //} // -- END if(cout_num > 10)
     } // -- END if(i_point_scan > N_point_scan_1)
     scan_left_top = v_point_scan[i_point_scan];
+    // =======================
+    ts->vtrac_data.resize(0);
+    if(ltrac.size())
+    {
+        //cout << "=============== ltrac.size()=" << copt->ltrac.size() << endl;
+        ltrac.sort([](const trac_st& l1, const trac_st& l2)
+        {
+          return l1.rait > l2.rait;
+        }); // END -- sort
+        while(ltrac.size() > max_objects){ltrac.pop_back();}
+        // ts->obj_xy_x = fr_w0_1 * ltrac.begin()->predict.x;
+        // ts->obj_xy_y = fr_h0_1 * ltrac.begin()->predict.y;
+        // ts->obj_wh_2_w = fr_w0_1 * ltrac.begin()->wh_2.x;
+        // ts->obj_wh_2_h = fr_h0_1 * ltrac.begin()->wh_2.y;
+        for(list<trac_st>::iterator obj = ltrac.begin(); obj != ltrac.end(); obj++)
+        {
+           ts->vtrac_data.emplace_back(trac_data{fr_w0_1 * obj->predict.x,
+                                                 fr_h0_1 * obj->predict.y,
+                                                 fr_w0_1 * obj->wh_2.x,
+                                                 fr_h0_1 * obj->wh_2.y,
+                                                 obj->rait});
+        } // END for(list<trac_st>::iterator obj = copt->ltrac.begin(); obj != copt->ltrac.end(); obj++)
+    } // END if(copt->ltrac.size())
+    // ltrac_ptr = make_unique<list<trac_st>>(ltrac);
     return object_num;
 } // -- END work

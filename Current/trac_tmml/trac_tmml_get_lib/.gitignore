@@ -6,8 +6,6 @@
 /debub
 /Release
 /release
-/cmake
-*.cmake
 *.user*
 *.o
 *.qrc

@@ -11,7 +11,7 @@ set(COPTER_LIB _trac_tmml_10)
 set(USE_polinom 0)
 
 set(work_in round) # Работа в круге, вписанном в центр фрейма (round), либо во всём фрейме (rect).
-#set(work_in rect) # Работа в круге, вписанном в центр фрейма (round), либо во всём фрейме (rect).
+# set(work_in rect) # Работа в круге, вписанном в центр фрейма (round), либо во всём фрейме (rect).
 
 set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda_static)
 
@@ -20,7 +20,7 @@ set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../trac_from_lib_tmml/)
 set(trt_enable 1) # TensorRT
 set(yolo_enable 0) # Yolo
 set(USE_YOLO_VERSION v4) # Использование версии Yolo (v3 или v4):
-
+set(FIND_DISC_ID 0) # Привязка к железу вычислителя.
 ##################################################################################################
 set(threads_num ${nproc}) # Число потоков компиляции:
 set(CMAKE_MAKE_PROGRAM "${CMAKE_MAKE_PROGRAM} -j${threads_num}")
@@ -53,6 +53,10 @@ include(${CMAKE_CURRENT_LIST_DIR}/opencv_static.cmake)
 find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
 include_directories(${OpenCV_DIR})
 
+if(${FIND_DISC_ID} EQUAL 1)
+  add_definitions(-DFIND_DISC_ID)
+  message("----- FIND_DISC_ID enable")
+endif() # END if(${FIND_DISC_ID} EQUAL 1)
 
 ############################## IF YOLO_ENABLE:
 if(${yolo_enable} EQUAL 1)

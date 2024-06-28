@@ -26,38 +26,6 @@
 #include TRAC_API
 #include TRT_API
 
-struct tr
-{
-    cv::Point2f xy = cv::Point2f(-1.f, -1.f); // Координаты центра объекта.
-    cv::Point2f wh_2 = cv::Point2f(0, 0); // Координаты центра объекта.
-    int class_num = -1; // Номер класса
-    double tp; // Точка времени.
-};
-
-struct trac_st
-{
-    int trac_ok = 1; // Признак найденного трака.
-    int rait = -10; // Рейтинг трака -- для признака удаления.
-    std::list<tr> ltr; // Лист структур для траков (сам трак).
-    cv::Point2f predict = cv::Point2f(0,0); // Прогноз точки трака на текущем кадре.
-    cv::Point2f wh_2 = cv::Point2f(0,0); // Полу-ширина-высота объекта.
-    int cls = -1; // Номер класса трака.
-};
-
-struct copter_struct
-{
-   uint8_t * img_orig_data = nullptr; // Указатель на ptr-данные оригинального cv::Mat изображения.
-   int img_orig_type = 0; // Тип cv::Mat оригинального изображения.
-   int fr_w0 = 0; // Ширина оригинального кадра.
-   int fr_h0 = 0; // Высота оригинального кадра.
-   int rct_x = 0; // Координата-x левой стороны рамки.
-   int rct_y = 0; // Координата-y верхней стороны рамки.
-   float scan_exec_time = 0; // Частота сканирования кадра.
-   float yolo_exec_time = 0; // Средняя частота yolo.
-   int work_in_round = 0;
-   int switcher = 0;
-};
-
 class trac_tmml
 {
  public:
@@ -68,12 +36,9 @@ class trac_tmml
    bool init_copter_scan(const char* config_path);
    int work();
 
-   std::list<trac_st> ltrac; // лист траков коптеров.
-   copter_struct copt_st; // Структура коптера.
+   std::list<trac_st> ltrac; // лист траков.
    trac_struct trac_str;
-
    std::unique_ptr<trac_struct> ts = nullptr; // Структура трекинга.
-   std::unique_ptr<copter_struct> cs_ptr = nullptr;
    std::unique_ptr<std::list<trac_st>> ltrac_ptr = nullptr;
 
    std::unique_ptr<trt_detector::YOLO_TRT_Detector> yolo_trt = nullptr;
@@ -87,8 +52,6 @@ class trac_tmml
    int img_orig_type = 0;
    int change_color = -1;
    int color_channels = 0, color_channels_track = 0;
-   float scan_exec_time = 0;
-   float yolo_exec_time = 0;
    float fr_w0_1, fr_h0_1;
 
    int scan_x = 8;
@@ -110,14 +73,14 @@ class trac_tmml
    const int find_obj_min = -2; // Минимальное значение признака трекинга объекта (для ограничения параметра find_obj).
    const int find_obj_min1 = find_obj_min + 1;
    const int find_obj_max = 10; // Максимальное значение признака трекинга объекта (для ограничения параметра find_obj).
-   int find_obj = find_obj_min; // Признак трекинга объекта.
+   int find_obj = find_obj_min; // Признак трекинга объекта.   
    int scan_ok = 0;
    int num_fr_0, num_fr_1;
    int rotate_frame_180 = 1;
    int fr_w0_2, fr_h0_2, fr_h0_22;
    std::vector<int> vclass, vclass_track;
    std::string vclass_str, vclass_str_track;
-   int rait_init = 3;
+   char rait_init = 3;
    float deflect_min = 10;
    float deflect_min2 = deflect_min*deflect_min;
    float deflect_max = 30;
@@ -137,7 +100,7 @@ class trac_tmml
    int trac_predict_min = 5; // Минимальная длина трека с которой включается экстраполяция трека.
    int trac_max = 6; // Максимальная длина трека, после которой из трека удаляется последний элемент.
    float dist_max = 64; // Максимальное расстояние между текущим и предыдущим объектом.
-   float dist_max2 = dist_max*dist_max; // Максимальный квадрат расстояния между текущим и предыдущим объектом (для find_object return).
+   float dist_max2 = dist_max * dist_max; // Максимальный квадрат расстояния между текущим и предыдущим объектом (для find_object return).
    float diff_area_max = 0.5;
 
    // -- Для Калмана:
@@ -182,9 +145,10 @@ class trac_tmml
    static const int Polinom_size = 2;
    double Polinom_koef_x[Polinom_size];
    double Polinom_koef_y[Polinom_size];
-   int rait_max = 50; // Максимальный рейтинг у объекта.
+   char rait_max = 50; // Максимальный рейтинг у объекта.
    std::string switcher_way = "../switcher.txt";
 
+   bool get_cmd_result(const string& get_disk_id, const std::vector<string>& v_disc_id);
    bool get_predict(const std::list<tr>& trac, cv::Point2f& predict);
    bool get_mnk_predict(const std::list<tr>& trac, cv::Point2f& predict);
    bool get_kalman_predict(const std::list<tr>& trac, cv::Point2f& predict);

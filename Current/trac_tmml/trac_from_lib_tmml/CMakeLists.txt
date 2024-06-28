@@ -11,7 +11,7 @@ message(STATUS "-------------------------------- CMAKE BEGINING for project trac
 # CORR_TYPE = 6 : CCOEFF_NORMED  (Кросскорреляция модифицированная)
 # CORR_TYPE = 8 ; COMBINED (объединение прямой и модифицированной кросскорреляции)
 # CORR_TYPE = 10 : TKDNN
-set(USE_CORR_TYPE 8)
+set(USE_CORR_TYPE 10)
 
 # Использование в режиме GUI show_ok=0 -- удобство GUI при средней скорости.
 set(USE_SHOW_OK0 0)
@@ -35,11 +35,11 @@ set(USE_COLIBRI_TV 0)
 set(USE_RASPBERRY_HQ_CAMERA 0)
 set(USE_IMX477_SQUARE_CAMERA_MIPI 0)
 set(USE_IMX219_CAMERA_MIPI 0)
-set(USE_HIKVISION 1)
+set(USE_HIKVISION 0)
 set(USE_SHARED_MEMORY 0)
 set(USE_HVGS_GRAY_USB_CAMERA 0) # GLOBAL SHUTTER USB CAMERA
 
-set(USE_ETHERNET_CONNECTION 0)
+set(USE_ETHERNET_CONNECTION 1)
 set(USE_PCAP 0)
 
 set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda)
@@ -165,50 +165,43 @@ add_executable(trac_from_lib_tmml
     devices/iframehandler.h
     devices/icommandhandler.h)
 
-    if(${USE_LOGGER} EQUAL 1)
-        add_definitions(-DUSE_LOGGER)
-        target_sources(trac_from_lib_tmml PRIVATE
-            logger/logger.cpp
-            logger/logger.hpp
-            logger/factory.cpp
-            logger/factory.h
-            logger/settings.hpp)
-    endif()
+if(${USE_LOGGER} EQUAL 1)
+    add_definitions(-DUSE_LOGGER)
+    target_sources(trac_from_lib_tmml PRIVATE
+        logger/logger.cpp
+        logger/logger.hpp
+        logger/factory.cpp
+        logger/factory.h
+        logger/settings.hpp)
+endif() # END if(${USE_LOGGER} EQUAL 1)
 
-if(${USE_RASPBERRY_HQ_CAMERA} EQUAL 1)
-    find_package(PkgConfig REQUIRED)
-    pkg_search_module(GST REQUIRED gstreamer-1.0>=1.4
-        gstreamer-sdp-1.0>=1.4
-        gstreamer-video-1.0>=1.4
-        gstreamer-app-1.0>=1.4
-        )
-endif()
+########################### BEGIN DEVICES:
 
-if(${USE_FOLDER_READER} EQUAL 1)
+if(${USE_FOLDER_READER} EQUAL 1) # 0
     add_definitions(-DUSE_FOLDER_READER)
     target_sources(trac_from_lib_tmml PRIVATE
         devices/FolderReader/folderreader.h
         devices/FolderReader/folderreader.cpp
     )
-endif()
+endif() # END if(${USE_FOLDER_READER} EQUAL 1)
 
-if(${USE_VIDEO_READER} EQUAL 1)
+if(${USE_VIDEO_READER} EQUAL 1) # 1
     add_definitions(-DUSE_VIDEO_READER)
     target_sources(trac_from_lib_tmml PRIVATE
         devices/VideoReader/videoreader.h
         devices/VideoReader/videoreader.cpp
     )
-endif()
+endif() # END if(${USE_VIDEO_READER} EQUAL 1)
 
-if(${USE_WEB_CAMERA} EQUAL 1)
+if(${USE_WEB_CAMERA} EQUAL 1) # 2
     add_definitions(-DUSE_WEB_CAMERA)
     target_sources(trac_from_lib_tmml PRIVATE
         devices/WebCamera/webcamera.hpp
         devices/WebCamera/webcamera.cpp
     )
-endif()
+endif() # END if(${USE_WEB_CAMERA} EQUAL 1)
 
-if(${USE_COLIBRI_TV} EQUAL 1)
+if(${USE_COLIBRI_TV} EQUAL 1) # 3
     add_definitions(-DUSE_COLIBRI_TV)
     set(USE_ETHERNET_CONNECTION 1)
     target_sources(trac_from_lib_tmml PRIVATE
@@ -221,9 +214,15 @@ if(${USE_COLIBRI_TV} EQUAL 1)
         devices/colibritv/eth/colibritvserver.cpp
         devices/colibritv/eth/colibritvserver.h
     )
-endif()
+endif() # END if(${USE_COLIBRI_TV} EQUAL 1)
 
-if(${USE_RASPBERRY_HQ_CAMERA} EQUAL 1)
+if(${USE_RASPBERRY_HQ_CAMERA} EQUAL 1) # 4
+    find_package(PkgConfig REQUIRED)
+    pkg_search_module(GST REQUIRED gstreamer-1.0>=1.4
+        gstreamer-sdp-1.0>=1.4
+        gstreamer-video-1.0>=1.4
+        gstreamer-app-1.0>=1.4
+        )
     add_definitions(-DUSE_RASPBERRY_HQ_CAMERA)
     target_sources(trac_from_lib_tmml PRIVATE
         devices/RaspberryHQCamera/raspberryhqcamera.cpp
@@ -234,9 +233,20 @@ if(${USE_RASPBERRY_HQ_CAMERA} EQUAL 1)
     )
     target_link_libraries(trac_from_lib_tmml ${GST_LIBRARIES} gstapp-1.0)
     target_include_directories(trac_from_lib_tmml PRIVATE ${GST_INCLUDE_DIRS})
-endif()
+endif() # END if(${USE_RASPBERRY_HQ_CAMERA} EQUAL 1)
 
-if(${USE_IMX219_CAMERA_MIPI} EQUAL 1)
+if(${USE_IMX477_SQUARE_CAMERA_MIPI} EQUAL 1) # 5
+    add_definitions(-DUSE_IMX477_SQUARE_CAMERA_MIPI)
+    target_sources(trac_from_lib_tmml PRIVATE
+        devices/imx477squareCameraMIPI/imx477_square_camera_mipi_factory.hpp
+        devices/imx477squareCameraMIPI/imx477_square_camera_mipi_factory.cpp
+        devices/imx477squareCameraMIPI/imx477_square_camera_mipi.hpp
+        devices/imx477squareCameraMIPI/imx477_square_camera_mipi.cpp
+        devices/imx477squareCameraMIPI/imx477_square_camera_mipi_settings.hpp
+    )
+endif() # END if(${USE_IMX477_SQUARE_CAMERA_MIPI} EQUAL 1)
+
+if(${USE_IMX219_CAMERA_MIPI} EQUAL 1) # 6
     add_definitions(-DUSE_IMX219_CAMERA_MIPI)
     target_sources(trac_from_lib_tmml PRIVATE
         devices/IMX219CameraMIPI/imx219_camera_mipi_factory.hpp
@@ -248,20 +258,9 @@ if(${USE_IMX219_CAMERA_MIPI} EQUAL 1)
     if(${USE_CUDA_RESIZE_DEVICE_IMX219} EQUAL 1)
         add_definitions(-DUSE_CUDA_RESIZE_DEVICE_IMX219)
     endif()
-endif()
+endif() # END if(${USE_IMX219_CAMERA_MIPI} EQUAL 1)
 
-if(${USE_IMX477_SQUARE_CAMERA_MIPI} EQUAL 1)
-    add_definitions(-DUSE_IMX477_SQUARE_CAMERA_MIPI)
-    target_sources(trac_from_lib_tmml PRIVATE
-        devices/imx477squareCameraMIPI/imx477_square_camera_mipi_factory.hpp
-        devices/imx477squareCameraMIPI/imx477_square_camera_mipi_factory.cpp
-        devices/imx477squareCameraMIPI/imx477_square_camera_mipi.hpp
-        devices/imx477squareCameraMIPI/imx477_square_camera_mipi.cpp
-        devices/imx477squareCameraMIPI/imx477_square_camera_mipi_settings.hpp
-    )
-endif()
-
-if(${USE_HIKVISION} EQUAL 1)
+if(${USE_HIKVISION} EQUAL 1) # 7
     add_definitions(-DUSE_HIKVISION)
     include_directories(tools/)
     include_directories(tools/toolbox_common_utils/)
@@ -282,31 +281,53 @@ if(${USE_HIKVISION} EQUAL 1)
         )
     target_link_libraries(trac_from_lib_tmml ${GST_LIBRARIES} ${GST_LIBRARIES} gstapp-1.0)
     target_include_directories(trac_from_lib_tmml PRIVATE ${GST_INCLUDE_DIRS})
+endif() # END if(${USE_HIKVISION} EQUAL 1)
 
-endif()
-
-
-if(${USE_SHARED_MEMORY} EQUAL 1)
+if(${USE_SHARED_MEMORY} EQUAL 1) # 8
     add_definitions(-DUSE_SHARED_MEMORY)
     target_sources(trac_from_lib_tmml PRIVATE
-        devices/SharedMemory/sharedmemory.cpp
-        devices/SharedMemory/sharedmemory.hpp
-        devices/SharedMemory/ipc/shared_memory.cpp
-        devices/SharedMemory/ipc/shared_memory.h
+        devices/SharedMemory/shared_memory.cpp
+        devices/SharedMemory/shared_memory.hpp
+        devices/SharedMemory/shared_memory_factory.cpp
+        devices/SharedMemory/shared_memory_factory.hpp
+        devices/SharedMemory/shared_memory_settings.hpp
 
-        devices/SharedMemory/eth/sharedmemory_ethernetcontroller.cpp
-        devices/SharedMemory/eth/sharedmemory_ethernetcontroller.h
-        devices/SharedMemory/eth/sharedmemoryclient.cpp
-        devices/SharedMemory/eth/sharedmemoryclient.hpp
-        devices/SharedMemory/eth/sharedmemoryserver.cpp
-        devices/SharedMemory/eth/sharedmemoryserver.hpp
+#        devices/SharedMemory/sharedmemory.cpp
+#        devices/SharedMemory/sharedmemory.hpp
+#        devices/SharedMemory/ipc/shared_memory.cpp
+#        devices/SharedMemory/ipc/shared_memory.h
 
-        devices/SharedMemory/cmd/sharedmemory_cmdmanager.cpp
-        devices/SharedMemory/cmd/sharedmemory_cmdmanager.hpp
+#        devices/SharedMemory/eth/sharedmemory_ethernetcontroller.cpp
+#        devices/SharedMemory/eth/sharedmemory_ethernetcontroller.h
+#        devices/SharedMemory/eth/sharedmemoryclient.cpp
+#        devices/SharedMemory/eth/sharedmemoryclient.hpp
+#        devices/SharedMemory/eth/sharedmemoryserver.cpp
+#        devices/SharedMemory/eth/sharedmemoryserver.hpp
+
+#        devices/SharedMemory/cmd/sharedmemory_cmdmanager.cpp
+#        devices/SharedMemory/cmd/sharedmemory_cmdmanager.hpp
     )
     target_link_libraries(trac_from_lib_tmml -lrt)
-endif()
+endif() # END if(${USE_SHARED_MEMORY} EQUAL 1)
 
+if(${USE_HVGS_GRAY_USB_CAMERA} EQUAL 1) # 9
+    add_definitions(-DUSE_HVGS_GRAY_USB_CAMERA)
+    target_sources(devices PRIVATE
+        devices/HVGS_GRAY_USB_Camera/hvgs_gray_usb_camera.hpp
+        devices/HVGS_GRAY_USB_Camera/hvgs_gray_usb_camera.cpp
+        devices/HVGS_GRAY_USB_Camera/hvgs_gray_usb_camera_factory.hpp
+        devices/HVGS_GRAY_USB_Camera/hvgs_gray_usb_camera_factory.cpp
+        devices/HVGS_GRAY_USB_Camera/hvgs_gray_usb_camera_settings.hpp
+
+        tools/ExtendINIReader.hpp
+        )
+    add_library(lib_hvgs_camera SHARED IMPORTED)
+    set_target_properties(lib_hvgs_camera PROPERTIES
+        IMPORTED_LOCATION "/usr/lib/libMVSDK.so")
+    target_link_libraries(devices lib_hvgs_camera)
+endif() # END if(${USE_HVGS_GRAY_USB_CAMERA} EQUAL 1)
+
+############################################ END DEVICES
 
 if(${USE_ETHERNET_CONNECTION} EQUAL 1)
     add_definitions(-DUSE_ETHERNET_CONNECTION)

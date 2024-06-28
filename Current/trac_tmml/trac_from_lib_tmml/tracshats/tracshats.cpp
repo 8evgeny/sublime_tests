@@ -6,7 +6,7 @@ using namespace chrono;
 
 TracShats::TracShats(const string& config_path, Mat& frame_process_0, bool& ok)
 {
-    cout << "Конструктор TrackShats" << endl;
+    cout << "Constructor TrackShats" << endl;
     setOriginalFrameSize(frame_process_0);
     ok = get_ini_params(config_path);
     if(!ok){return;}
@@ -17,10 +17,10 @@ TracShats::TracShats(const string& config_path, Mat& frame_process_0, bool& ok)
 
 TracShats::~TracShats()
 {
-   cout << "Деструктор TrackShats" << endl;
+   cout << "Destructor TrackShats" << endl;
 } // END ~TracShats()
 
-bool TracShats::update(Mat &img, Rect2f& target)
+bool TracShats::update(Mat& img, Rect2f& target)
 {
     //cout << "Work num: " << trac_str.work_number << endl;
     if(first_frame)
@@ -65,6 +65,7 @@ bool TracShats::update(Mat &img, Rect2f& target)
     } // -- END if(ok)
     return 0;
 } // -- END update
+
 
 Rect2f TracShats::getROI()
 {
@@ -322,44 +323,40 @@ bool TracShats::img_orig_prepare()
 
 bool TracShats::process()
 {    
-       trac_str.work_number++;
-       if(!trac_str.zahvat){return false;}
-       if(roi)
-       {
-           bool ok = img_orig_roi_prepare();
-           if(!ok)
-           {
-               trac_str.zahvat = 0;
-               cout << "Don't img_orig_roi_prepare!\n";
-               return 0;
-           } // -- END if(!ok)
-       }
-       else
-       {
-           bool ok = img_orig_prepare();
-           if(!ok)
-           {
-               trac_str.zahvat = 0;
-               cout << "Don't img_orig_prepare!\n";
-               return 0;
-           } // -- END if(!ok)
-       } // -- END if(!roi)
-
-       find_ = get_trac(trac);
-
-    if(trac_str.zahvat)
+    trac_str.work_number++;
+    if(!trac_str.zahvat){return 0;}
+    if(roi)
     {
-        if(find_ == -1)
+        bool ok = img_orig_roi_prepare();
+        if(!ok)
         {
-            cout << "Escape" << endl;
+            trac_str.zahvat = 0;
+            cout << "Don't img_orig_roi_prepare!\n";
             return 0;
-        } // -- END if(find_ == -1)
-    } // -- END if(trac_str.zahvat)
+        } // -- END if(!ok)
+    }
+    else
+    {
+        bool ok = img_orig_prepare();
+        if(!ok)
+        {
+            trac_str.zahvat = 0;
+            cout << "Don't img_orig_prepare!\n";
+            return 0;
+        } // -- END if(!ok)
+    } // -- END if(!roi)
+
+    find_ = get_trac(trac);
+    if(find_ == -1)
+    {
+        cout << "Escape" << endl;
+        return 0;
+    } // -- END if(find_ == -1)
     return 1;
 } // -- END process
 
 
 int TracShats::work()
-{
+{   // ======================== Эта функция только для нейросетевой библиотеки.
     return get_trac(trac);
 } // -- END work
