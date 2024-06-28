@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
     cl::Context context(devices);
 
     // Load OpenCL program
-    QFile kernelFile(":/parsum.cl");
+    QFile kernelFile("parsum.cl");
     kernelFile.open(QIODevice::ReadOnly | QIODevice::Text);
     cl::Program program(context, kernelFile.readAll().toStdString());
     kernelFile.close();
@@ -134,7 +134,8 @@ int main(int argc, char *argv[])
     int range;
 
     // Parallel sum
-    forever {
+    forever
+    {
         calculateNDRange(inputSize, groupSize,
                          &range, &groupSize, &oSize);
 

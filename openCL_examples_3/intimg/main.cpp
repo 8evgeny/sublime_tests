@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
     cl::Context context(devices);
 
     // Load OpenCL program
-    QFile kernelFile(":/intimg.cl");
+    QFile kernelFile("intimg.cl");
     kernelFile.open(QIODevice::ReadOnly | QIODevice::Text);
     cl::Program program(context, kernelFile.readAll().toStdString());
     kernelFile.close();
@@ -82,7 +82,8 @@ int main(int argc, char *argv[])
     // Compile kernels
     cl_int error = program.build();
 
-    if (error != CL_SUCCESS) {
+    if (error != CL_SUCCESS)
+    {
         cl::STRING_CLASS buildLog;
         program.getBuildInfo(devices[0], CL_PROGRAM_BUILD_LOG, &buildLog);
         qDebug() << buildLog.c_str();
@@ -90,7 +91,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    QImage image(":/image.jpg");
+    QImage image("image.jpg");
     image = image.convertToFormat(QImage::Format_ARGB32);
     int videoArea = image.width() * image.height();
 

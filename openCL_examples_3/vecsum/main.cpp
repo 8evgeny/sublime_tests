@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
     cl::Context context(devices);
 
     // Load OpenCL program
-    QFile kernelFile(":/vecsum.cl");
+    QFile kernelFile("vecsum.cl");
     kernelFile.open(QIODevice::ReadOnly | QIODevice::Text);
     cl::Program program(context, kernelFile.readAll().toStdString());
     kernelFile.close();

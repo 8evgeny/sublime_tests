@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>vecsum.cl</file>
-    </qresource>
-</RCC>
