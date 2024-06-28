@@ -10,15 +10,14 @@
 #include <QStyle>
 #include <QDesktopWidget>
 #include <QGraphicsScene>
+#include <QGraphicsView>
 #include <QPainter>
-
+#include <QPixmap>
 
 using namespace std::chrono;
 using namespace std;
 
 QApplication * app;
-
-
 
 
 
@@ -48,15 +47,18 @@ int main(int argc, char *argv[])
     w->getUi()->widget->setFixedSize(pix.width(), pix.height() );
     w->getUi()->dateEdit->setDate(QDate::currentDate());
 
+    auto scene=new QGraphicsScene(w->getUi()->centralwidget); //allocate your scene to your main widget
+    auto view=new QGraphicsView(scene, w->getUi()->widget);//here is your view
+    auto pixmap=new QPixmap(QSize(1000,1000));// paint device
 //    QPainter painter(w->getUi()->graphicsView); // Создаём объект отрисовщика
 //graphicsView
 //painter.drawLine(0,0,100,100);
 //w->getUi()->graphicsView->setBackgroundBrush(QBrush(pix));
 //w->getUi()->widget->setScene(scene);
-    QGraphicsScene *scene = new QGraphicsScene(w->getUi()->widget);
+
     //Это как раз создана сцена. Сцена - это класс для работы с 2D графикой.
     //Теперь, раз это график, то построим координатные оси X и Y.
-    QPen pen(Qt::green);//Просто выбираем цвет для карандашика
+    QPen pen(Qt::red);//Просто выбираем цвет для карандашика
     scene->addLine(0,90,180,90,pen);//x
     scene->addLine(90,0,90,180,pen);//y
 
