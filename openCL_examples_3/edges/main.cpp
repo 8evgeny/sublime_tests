@@ -155,7 +155,7 @@ int main(int argc, char *argv[])
         }
     }
     auto timeSerial = eTimer.nsecsElapsed();
-    qDebug() << "serial" << timeSerial << " nsec";
+    qDebug() << "serial   " << (float)timeSerial/1000000 << " ms";
 
     imageOut.save("edges-serial.jpg");
     imageIn = imageIn.convertToFormat(QImage::Format_RGBA8888);
@@ -213,7 +213,7 @@ int main(int argc, char *argv[])
     commandQueue.enqueueReadImage(clImageOut, CL_TRUE, origin, region, 0, 0, imageOut.bits());
 
     auto timeParallel = eTimer.nsecsElapsed();
-    qDebug() << "parallel" << timeParallel << " nsec";
+    qDebug() << "parallel " << (float)timeParallel/1000000 << " ms";
     qDebug() << "serial/parallel=" << (float)timeSerial/timeParallel;
     imageOut.save("edges-paralell.jpg");
 
