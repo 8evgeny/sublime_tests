@@ -28,14 +28,6 @@ void MainWindow::setUi(Ui::MainWindow *newUi)
     ui = newUi;
 }
 
-void MainWindow::on_name_field_editingFinished()
-{
-    name_field = ui->name_field->text();
-    cout<< "name_field: " << name_field.toStdString() << endl;
-    repaint();
-    update();
-}
-
 void MainWindow::on_dateEdit_dateChanged(const QDate &date)
 {
     Date = ui->dateEdit->text();
@@ -221,3 +213,13 @@ painter.begin(this);
                 return app.exec();
             }
 #endif
+
+void MainWindow::on_name_field_textActivated(const QString &arg1)
+{
+        //    name_field = ui->name_field->currentText();
+    name_field = arg1;
+    cout<< "name_field: " << name_field.toStdString() << endl;
+    repaint();
+    update();
+}
+

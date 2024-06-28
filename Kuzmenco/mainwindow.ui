@@ -633,142 +633,6 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="name_field">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>50</y>
-        <width>195</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="WindowText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="ButtonText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>237</red>
-            <green>51</green>
-            <blue>59</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="WindowText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="ButtonText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>237</red>
-            <green>51</green>
-            <blue>59</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="WindowText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>190</red>
-            <green>190</green>
-            <blue>190</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Text">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>190</red>
-            <green>190</green>
-            <blue>190</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="ButtonText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>190</red>
-            <green>190</green>
-            <blue>190</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="PlaceholderText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="128">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-        <weight>75</weight>
-        <italic>false</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
@@ -781,8 +645,8 @@
       <property name="font">
        <font>
         <pointsize>18</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -1124,8 +988,8 @@
       <property name="font">
        <font>
         <pointsize>18</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -1147,9 +1011,9 @@
          <colorrole role="Text">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
+            <red>23</red>
+            <green>20</green>
+            <blue>33</blue>
            </color>
           </brush>
          </colorrole>
@@ -1167,9 +1031,9 @@
          <colorrole role="Text">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>224</red>
-            <green>27</green>
-            <blue>36</blue>
+            <red>23</red>
+            <green>20</green>
+            <blue>33</blue>
            </color>
           </brush>
          </colorrole>
@@ -2857,6 +2721,134 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+     </widget>
+     <widget class="QComboBox" name="name_field">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>50</y>
+        <width>195</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="WindowText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="WindowText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>224</red>
+            <green>27</green>
+            <blue>36</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="WindowText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>190</red>
+            <green>190</green>
+            <blue>190</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>190</red>
+            <green>190</green>
+            <blue>190</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="PlaceholderText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="128">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Женя</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Таня</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Семен</string>
+       </property>
+      </item>
      </widget>
     </widget>
    </widget>

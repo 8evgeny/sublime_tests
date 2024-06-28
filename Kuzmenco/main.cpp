@@ -46,6 +46,7 @@ int main(int argc, char *argv[])
     w->getUi()->widget->setPalette(pal);
     w->getUi()->widget->setAutoFillBackground(true);
     w->getUi()->widget->setFixedSize(pix.width(), pix.height() );
+    w->getUi()->dateEdit->setDate(QDate::currentDate());
 
 //    QPainter painter(w->getUi()->graphicsView); // Создаём объект отрисовщика
 //graphicsView

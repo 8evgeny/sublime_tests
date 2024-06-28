@@ -32,7 +32,6 @@ public:
     void setUi(Ui::MainWindow *newUi);
 
 private slots:
-    void on_name_field_editingFinished();
     void on_dateEdit_dateChanged(const QDate &date);
     void on_r_1_editingFinished();
     void on_r_2_editingFinished();
@@ -61,6 +60,7 @@ private slots:
 void paintEvent(QPaintEvent *event);
 
     void on_button_exit_clicked();
+    void on_name_field_textActivated(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
