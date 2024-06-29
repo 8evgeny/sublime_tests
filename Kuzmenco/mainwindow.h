@@ -61,6 +61,7 @@ void paintEvent(QPaintEvent *event);
 
     void on_button_exit_clicked();
     void on_name_field_textActivated(const QString &arg1);
+    void drawPoints();
 
 private:
     Ui::MainWindow *ui;

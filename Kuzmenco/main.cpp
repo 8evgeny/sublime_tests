@@ -21,6 +21,7 @@ QApplication * app;
 QPen penRed(Qt::red);
 QPen penGreen(Qt::green);
 QPen penBlue(Qt::blue);
+QPen penTransparent(Qt::transparent);
 QGraphicsScene * scene;
 
 int main(int argc, char *argv[])
@@ -44,9 +45,9 @@ int main(int argc, char *argv[])
     auto view=new QGraphicsView(scene, w->getUi()->widget);
     view->viewport()->setAutoFillBackground(false);
 
-    penRed.setWidth(8);
-    penGreen.setWidth(8);
-    penBlue.setWidth(8);
+    penRed.setWidth(4);
+    penGreen.setWidth(4);
+    penBlue.setWidth(4);
 
 //    scene->addEllipse(600,600,8,8,penRed);
 //    scene->addEllipse(650,650,8,8,penGreen);
