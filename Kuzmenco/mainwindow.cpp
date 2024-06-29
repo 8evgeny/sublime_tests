@@ -9,7 +9,9 @@ extern QApplication * app;
 extern QPen penRed;
 extern QPen penGreen;
 extern QPen penBlue;
-extern QPen penTransparent;
+extern QPen penRedLine;
+extern QPen penGreenLine;
+extern QPen penBlueLine;
 extern QGraphicsScene * scene;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -86,7 +88,7 @@ void MainWindow::drawPoints()
             case 185: r1y = 195; break;
             case 190: r1y = 186; break;
         }
-        scene->addEllipse(r1x, r1y, 4, 4, penRed);
+        scene->addEllipse(r1x, r1y, 5, 5, penRed);
     }// r1
     if (l1>0)
     {
@@ -133,6 +135,8 @@ void MainWindow::drawPoints()
         }
         scene->addEllipse(l1x, l1y, 4, 4, penRed);
     }
+    if (r1 > 0 && l1 > 0)
+    scene->addLine(r1x,r1y,l1x,l1y, penRedLine);
 //        scene->addEllipse(123,r1,4,4,penRed);
 
 
