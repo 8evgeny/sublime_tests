@@ -21,6 +21,7 @@ QApplication * app;
 QPen penRed(Qt::red);
 QPen penGreen(Qt::green);
 QPen penBlue(Qt::blue);
+QPen penYellow(Qt::darkYellow);
 QPen penRedLine(Qt::red);
 QPen penGreenLine(Qt::green);
 QPen penBlueLine(Qt::blue);
@@ -50,6 +51,7 @@ int main(int argc, char *argv[])
     penRed.setWidth(4);
     penGreen.setWidth(4);
     penBlue.setWidth(4);
+    penYellow.setWidth(4);
     penRedLine.setWidth(3);
     penGreenLine.setWidth(3);
     penBlueLine.setWidth(3);
