@@ -67,7 +67,7 @@ private:
     Ui::MainWindow *ui;
     QString name_field;
     QString  Date;
-    unsigned int  r1x{123}, lix{181};
+    unsigned int  r1x{123}, l1x{181};
     unsigned int  r1y{0}, r2y{0}, r3y{0}, r4y{0}, r5y{0}, r6y{0}, r7y{0}, r8y{0}, r9y{0}, r10y{0}, r11y{0}, r12y{0};
     unsigned int  l1y{0}, l2y{0}, l3y{0}, l4y{0}, l5y{0}, l6y{0}, l7y{0}, l8y{0}, l9y{0}, l10y{0}, l11y{0}, l12y{0};
     unsigned int  r1{0}, r2{0}, r3{0}, r4{0}, r5{0}, r6{0}, r7{0}, r8{0}, r9{0}, r10{0}, r11{0}, r12{0};

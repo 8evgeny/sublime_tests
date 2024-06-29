@@ -43,96 +43,97 @@ void MainWindow::on_dateEdit_dateChanged(const QDate &date)
 void MainWindow::drawPoints()
 {
     scene->clear();
-    if (r1>0)
+    if (r1 > 0)
     {
-//        scene->addEllipse(123,r1,4,4,penRed);
         switch (r1)
         {
-            case 5: scene->addEllipse(123,720,4,4,penRed);break;
-            case 10: scene->addEllipse(123,690,4,4,penRed);break;
-            case 15: scene->addEllipse(123,670,4,4,penRed);break;
-            case 20: scene->addEllipse(123,645,4,4,penRed);break;
-            case 25: scene->addEllipse(123,625,4,4,penRed);break;
-            case 30: scene->addEllipse(123,605,4,4,penRed);break;
-            case 35: scene->addEllipse(123,585,4,4,penRed);break;
-            case 40: scene->addEllipse(123,565,4,4,penRed);break;
-            case 45: scene->addEllipse(123,548,4,4,penRed);break;
-            case 50: scene->addEllipse(123,530,4,4,penRed);break;
-            case 55: scene->addEllipse(123,513,4,4,penRed);break;
-            case 60: scene->addEllipse(123,493,4,4,penRed);break;
-            case 65: scene->addEllipse(123,479,4,4,penRed);break;
-            case 70: scene->addEllipse(123,462,4,4,penRed);break;
-            case 75: scene->addEllipse(123,444,4,4,penRed);break;
-            case 80: scene->addEllipse(123,427,4,4,penRed);break;
-            case 85: scene->addEllipse(123,416,4,4,penRed);break;
-            case 90: scene->addEllipse(123,401,4,4,penRed);break;
-            case 95: scene->addEllipse(123,387,4,4,penRed);break;
-            case 100: scene->addEllipse(123,373,4,4,penRed);break;
-            case 105: scene->addEllipse(123,361,4,4,penRed);break;
-            case 110: scene->addEllipse(123,347,4,4,penRed);break;
-            case 115: scene->addEllipse(123,335,4,4,penRed);break;
-            case 120: scene->addEllipse(123,321,4,4,penRed);break;
-            case 125: scene->addEllipse(123,312,4,4,penRed);break;
-            case 130: scene->addEllipse(123,301,4,4,penRed);break;
-            case 135: scene->addEllipse(123,290,4,4,penRed);break;
-            case 140: scene->addEllipse(123,278,4,4,penRed);break;
-            case 145: scene->addEllipse(123,267,4,4,penRed);break;
-            case 150: scene->addEllipse(123,258,4,4,penRed);break;
-            case 155: scene->addEllipse(123,249,4,4,penRed);break;
-            case 160: scene->addEllipse(123,238,4,4,penRed);break;
-            case 165: scene->addEllipse(123,228,4,4,penRed);break;
-            case 170: scene->addEllipse(123,218,4,4,penRed);break;
-            case 175: scene->addEllipse(123,210,4,4,penRed);break;
-            case 180: scene->addEllipse(123,201,4,4,penRed);break;
-            case 185: scene->addEllipse(123,195,4,4,penRed);break;
-            case 190: scene->addEllipse(123,186,4,4,penRed);break;
+            case 5:  r1y = 720; break;
+            case 10: r1y = 690; break;
+            case 15: r1y = 670; break;
+            case 20: r1y = 645; break;
+            case 25: r1y = 625; break;
+            case 30: r1y = 605; break;
+            case 35: r1y = 585; break;
+            case 40: r1y = 565; break;
+            case 45: r1y = 548; break;
+            case 50: r1y = 530; break;
+            case 55: r1y = 513; break;
+            case 60: r1y = 493; break;
+            case 65: r1y = 479; break;
+            case 70: r1y = 462; break;
+            case 75: r1y = 444; break;
+            case 80: r1y = 427; break;
+            case 85: r1y = 416; break;
+            case 90: r1y = 401; break;
+            case 95: r1y = 387; break;
+            case 100: r1y = 373; break;
+            case 105: r1y = 361; break;
+            case 110: r1y = 347; break;
+            case 115: r1y = 335; break;
+            case 120: r1y = 321; break;
+            case 125: r1y = 312; break;
+            case 130: r1y = 301; break;
+            case 135: r1y = 290; break;
+            case 140: r1y = 278; break;
+            case 145: r1y = 267; break;
+            case 150: r1y = 258; break;
+            case 155: r1y = 249; break;
+            case 160: r1y = 238; break;
+            case 165: r1y = 228; break;
+            case 170: r1y = 218; break;
+            case 175: r1y = 210; break;
+            case 180: r1y = 201; break;
+            case 185: r1y = 195; break;
+            case 190: r1y = 186; break;
         }
-    }
+        scene->addEllipse(r1x, r1y, 4, 4, penRed);
+    }// r1
     if (l1>0)
     {
         switch (l1)
         {
-            case 5: scene->addEllipse(181,720,4,4,penRed);break;
-            case 10: scene->addEllipse(181,690,4,4,penRed);break;
-            case 15: scene->addEllipse(181,670,4,4,penRed);break;
-            case 20: scene->addEllipse(181,645,4,4,penRed);break;
-            case 25: scene->addEllipse(181,625,4,4,penRed);break;
-            case 30: scene->addEllipse(181,605,4,4,penRed);break;
-            case 35: scene->addEllipse(181,585,4,4,penRed);break;
-            case 40: scene->addEllipse(181,565,4,4,penRed);break;
-            case 45: scene->addEllipse(181,548,4,4,penRed);break;
-            case 50: scene->addEllipse(181,530,4,4,penRed);break;
-            case 55: scene->addEllipse(181,513,4,4,penRed);break;
-            case 60: scene->addEllipse(181,493,4,4,penRed);break;
-            case 65: scene->addEllipse(181,479,4,4,penRed);break;
-            case 70: scene->addEllipse(181,462,4,4,penRed);break;
-            case 75: scene->addEllipse(181,444,4,4,penRed);break;
-            case 80: scene->addEllipse(181,427,4,4,penRed);break;
-            case 85: scene->addEllipse(181,416,4,4,penRed);break;
-            case 90: scene->addEllipse(181,401,4,4,penRed);break;
-            case 95: scene->addEllipse(181,387,4,4,penRed);break;
-            case 100: scene->addEllipse(181,373,4,4,penRed);break;
-            case 105: scene->addEllipse(181,361,4,4,penRed);break;
-            case 110: scene->addEllipse(181,347,4,4,penRed);break;
-            case 115: scene->addEllipse(181,335,4,4,penRed);break;
-            case 120: scene->addEllipse(181,321,4,4,penRed);break;
-            case 125: scene->addEllipse(181,312,4,4,penRed);break;
-            case 130: scene->addEllipse(181,301,4,4,penRed);break;
-            case 135: scene->addEllipse(181,290,4,4,penRed);break;
-            case 140: scene->addEllipse(181,278,4,4,penRed);break;
-            case 145: scene->addEllipse(181,267,4,4,penRed);break;
-            case 150: scene->addEllipse(181,258,4,4,penRed);break;
-            case 155: scene->addEllipse(181,249,4,4,penRed);break;
-            case 160: scene->addEllipse(181,238,4,4,penRed);break;
-            case 165: scene->addEllipse(181,228,4,4,penRed);break;
-            case 170: scene->addEllipse(181,218,4,4,penRed);break;
-            case 175: scene->addEllipse(181,210,4,4,penRed);break;
-            case 180: scene->addEllipse(181,201,4,4,penRed);break;
-            case 185: scene->addEllipse(181,195,4,4,penRed);break;
-            case 190: scene->addEllipse(181,186,4,4,penRed);break;
+            case 5:  l1y = 720; break;
+            case 10: l1y = 690; break;
+            case 15: l1y = 670; break;
+            case 20: l1y = 645; break;
+            case 25: l1y = 625; break;
+            case 30: l1y = 605; break;
+            case 35: l1y = 585; break;
+            case 40: l1y = 565; break;
+            case 45: l1y = 548; break;
+            case 50: l1y = 530; break;
+            case 55: l1y = 513; break;
+            case 60: l1y = 493; break;
+            case 65: l1y = 479; break;
+            case 70: l1y = 462; break;
+            case 75: l1y = 444; break;
+            case 80: l1y = 427; break;
+            case 85: l1y = 416; break;
+            case 90: l1y = 401; break;
+            case 95: l1y = 387; break;
+            case 100: l1y = 373; break;
+            case 105: l1y = 361; break;
+            case 110: l1y = 347; break;
+            case 115: l1y = 335; break;
+            case 120: l1y = 321; break;
+            case 125: l1y = 312; break;
+            case 130: l1y = 301; break;
+            case 135: l1y = 290; break;
+            case 140: l1y = 278; break;
+            case 145: l1y = 267; break;
+            case 150: l1y = 258; break;
+            case 155: l1y = 249; break;
+            case 160: l1y = 238; break;
+            case 165: l1y = 228; break;
+            case 170: l1y = 218; break;
+            case 175: l1y = 210; break;
+            case 180: l1y = 201; break;
+            case 185: l1y = 195; break;
+            case 190: l1y = 186; break;
         }
+        scene->addEllipse(l1x, l1y, 4, 4, penRed);
     }
-
+//        scene->addEllipse(123,r1,4,4,penRed);
 
 
 
