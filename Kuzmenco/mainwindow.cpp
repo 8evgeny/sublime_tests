@@ -2,9 +2,14 @@
 #include "ui_mainwindow.h"
 #include <iostream>
 #include <QPainter>
+#include <QGraphicsScene>
 
 using namespace std;
 extern QApplication * app;
+extern QPen penRed;
+extern QPen penGreen;
+extern QPen penBlue;
+extern QGraphicsScene * scene;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -38,6 +43,7 @@ void MainWindow::on_r_1_editingFinished()
 {
     r1 = ui->r_1->text().toInt();
     cout<< "r1: " << r1 << endl;
+    scene->addEllipse(600,600,8,8,penRed);
 }
 void MainWindow::on_r_2_editingFinished()
 {
