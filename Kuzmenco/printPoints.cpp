@@ -6,7 +6,9 @@
 #include <QGraphicsTextItem>
 #include <QRect>
 #include <QScreen>
+#include <fstream>
 
+using namespace std;
 extern QScreen *screenMain;
 extern QPen penRed;
 extern QPen penGreen;
@@ -51,9 +53,38 @@ void MainWindow::on_button_save_clicked()
     QPainter painter(&image);
     scene->render(&painter);
     image.save("../Измерения/file_name.png");
+    writeText();
 
 }
 
+void MainWindow::writeText()
+{
+    fout << " GI\t Толстый кишечник\t\t"<< r_6 <<"\t" << l_6 <<"\t"<< letter(r_6, l_6, k6) << endl;
+    fout << " " << endl;
+    fout << " RP\t Селезенка, Поджелудочная\t"<< r_7 <<"\t" << l_7 <<"\t"<< letter(r_7, l_7, k7) << endl;
+    fout << " F\t Печень\t\t\t\t"<< r_8 <<"\t" << l_8 <<"\t"<< letter(r_8, l_8, k8) << endl;
+    fout << " R\t Почки\t\t\t\t"<< r_9 <<"\t" << l_9 <<"\t"<< letter(r_9, l_9, k9) << endl;
+    fout << " V\t Мочевой пузырь\t\t\t"<< r_10 <<"\t" << l_10 <<"\t"<< letter(r_10, l_10, k10) << endl;
+    fout << " VB\t Желчный пузырь\t\t\t"<< r_11 <<"\t" << l_11 <<"\t"<< letter(r_11, l_11, k11) << endl;
+    fout << " E\t Желудок\t\t\t"<< r_12 <<"\t" << l_12 <<"\t"<< letter(r_12, l_12, k12) << endl;
+    fout << endl<<" Коридор нормы верх: " << average + 7 <<endl;
+    fout << " Коридор нормы низ: " << average - 7 <<endl;
+    fout << " " << endl;
+//    fout << k1 << endl;
+//    fout << k2 << endl;
+//    fout << k3 << endl;
+//    fout << k4 << endl;
+//    fout << k5 << endl;
+//    fout << k6 << endl;
+//    fout << k7 << endl;
+//    fout << k8 << endl;
+//    fout << k9 << endl;
+//    fout << k10 << endl;
+//    fout << k11 << endl;
+//    fout << k12 << endl;
+    fout.close();
+
+}
 
 void MainWindow::paintEvent(QPaintEvent* event)
 {

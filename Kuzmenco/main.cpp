@@ -59,10 +59,6 @@ int main(int argc, char *argv[])
     penRedLine.setWidth(3);
     penGreenLine.setWidth(3);
     penBlueLine.setWidth(3);
-//    scene->addEllipse(600,600,8,8,penRed);
-//    scene->addEllipse(650,650,8,8,penGreen);
-//    scene->addEllipse(700,700,8,8,penBlue);
-
 
 //    main_logic();
 

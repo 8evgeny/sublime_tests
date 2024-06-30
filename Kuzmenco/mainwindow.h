@@ -29,7 +29,6 @@ public:
     ~MainWindow();
 
     Ui::MainWindow *getUi() const;
-    void setUi(Ui::MainWindow *newUi);
 
 private slots:
     void on_dateEdit_dateChanged(const QDate &date);
@@ -76,6 +75,8 @@ void paintEvent(QPaintEvent *event);
     void r12l12();
 
     void on_button_save_clicked();
+    void writeText();
+
 
 private:
     Ui::MainWindow *ui;
