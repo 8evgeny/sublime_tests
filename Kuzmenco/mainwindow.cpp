@@ -22,11 +22,6 @@ Ui::MainWindow *MainWindow::getUi() const
     return ui;
 }
 
-void MainWindow::setUi(Ui::MainWindow *newUi)
-{
-    ui = newUi;
-}
-
 void MainWindow::on_dateEdit_dateChanged(const QDate &date)
 {
     Date = ui->dateEdit->text();
@@ -191,5 +186,8 @@ void MainWindow::on_name_field_textActivated(const QString &arg1)
     update();
 }
 
-
+void MainWindow::on_Izmereniye_editingFinished()
+{
+    izmereniye = ui->Izmereniye->text().toInt();
+}
 

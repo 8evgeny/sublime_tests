@@ -7,6 +7,7 @@
 #include <QRect>
 #include <QScreen>
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 extern QScreen *screenMain;
@@ -18,6 +19,12 @@ extern QPen penRedLine;
 extern QPen penGreenLine;
 extern QPen penBlueLine;
 extern QGraphicsScene * scene;
+
+void MainWindow::drawCorner()
+{
+    scene->addLine(corner_x_begin, 505 , corner_x_end, 505, penYellow);
+}
+
 
 void MainWindow::drawPoints()
 {
@@ -35,6 +42,14 @@ void MainWindow::drawPoints()
     r11l11();
     r12l12();
     QWidget::repaint();
+    averadge = (float)(r1+r2+r3+r4+r5+r6+r7+r8+r9+r10+r11+r12+
+                l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12)/24;
+    hight = averadge + 7;
+    low = averadge - 7;
+    if (low < 0) low = 0;
+//    cout<<"hight: "<<hight<<endl;
+//    cout<<"low: "<<low<<endl;
+    drawCorner();
 }
 
 void MainWindow::on_button_save_clicked()
@@ -52,36 +67,34 @@ void MainWindow::on_button_save_clicked()
 //    image.load("screenshot.png");
     QPainter painter(&image);
     scene->render(&painter);
-    image.save("../Измерения/file_name.png");
+
+    nameOutFile = "../Измерения/" + name_field.toStdString() + "__" + Date.toStdString()  + "__№" + to_string(izmereniye);
+    image.save(QString::fromStdString(nameOutFile + "_.png"));
     writeText();
 
 }
 
 void MainWindow::writeText()
 {
-    fout << " GI\t Толстый кишечник\t\t"<< r_6 <<"\t" << l_6 <<"\t"<< letter(r_6, l_6, k6) << endl;
+    ofstream fout;
+    fout.open(nameOutFile + "_.txt");
+    fout <<" Имя: "<< name_field.toStdString() <<" / Дата: "<<Date.toStdString() <<" / Измерение № "<<to_string(izmereniye)<<endl<<endl;
+    fout << " P\t Легкие\t\t\t\t"<< r1 <<"\t" << l1 <<"\t" << endl;
+    fout << " MC\t Перикард\t\t\t"<< r2 <<"\t" << l2 <<"\t" << endl;
+    fout << " С\t Сердце\t\t\t\t"<< r3 <<"\t" << l3 <<"\t" << endl;
+    fout << " IG\t Тонкий кишечник\t\t"<< r4 <<"\t" << l4 <<"\t" << endl;
+    fout << " TR\t Гормональная система\t\t"<< r5 <<"\t" << l5 <<"\t" << endl;
+    fout << " GI\t Толстый кишечник\t\t"<< r6 <<"\t" << l6 <<"\t" << endl;
     fout << " " << endl;
-    fout << " RP\t Селезенка, Поджелудочная\t"<< r_7 <<"\t" << l_7 <<"\t"<< letter(r_7, l_7, k7) << endl;
-    fout << " F\t Печень\t\t\t\t"<< r_8 <<"\t" << l_8 <<"\t"<< letter(r_8, l_8, k8) << endl;
-    fout << " R\t Почки\t\t\t\t"<< r_9 <<"\t" << l_9 <<"\t"<< letter(r_9, l_9, k9) << endl;
-    fout << " V\t Мочевой пузырь\t\t\t"<< r_10 <<"\t" << l_10 <<"\t"<< letter(r_10, l_10, k10) << endl;
-    fout << " VB\t Желчный пузырь\t\t\t"<< r_11 <<"\t" << l_11 <<"\t"<< letter(r_11, l_11, k11) << endl;
-    fout << " E\t Желудок\t\t\t"<< r_12 <<"\t" << l_12 <<"\t"<< letter(r_12, l_12, k12) << endl;
-    fout << endl<<" Коридор нормы верх: " << average + 7 <<endl;
-    fout << " Коридор нормы низ: " << average - 7 <<endl;
+    fout << " RP\t Селезенка, Поджелудочная\t"<< r7 <<"\t" << l7 <<"\t" << endl;
+    fout << " F\t Печень\t\t\t\t"<< r8 <<"\t" << l8 <<"\t"<< endl;
+    fout << " R\t Почки\t\t\t\t"<< r9 <<"\t" << l9 <<"\t" << endl;
+    fout << " V\t Мочевой пузырь\t\t\t"<< r10 <<"\t" << l10 <<"\t" << endl;
+    fout << " VB\t Желчный пузырь\t\t\t"<< r11 <<"\t" << l11 <<"\t" << endl;
+    fout << " E\t Желудок\t\t\t"<< r12 <<"\t" << l12 <<"\t" << endl;
+    fout << endl<<" Коридор нормы верх: " << to_string(hight) <<endl;
+    fout << " Коридор нормы низ: " << to_string(low) <<endl;
     fout << " " << endl;
-//    fout << k1 << endl;
-//    fout << k2 << endl;
-//    fout << k3 << endl;
-//    fout << k4 << endl;
-//    fout << k5 << endl;
-//    fout << k6 << endl;
-//    fout << k7 << endl;
-//    fout << k8 << endl;
-//    fout << k9 << endl;
-//    fout << k10 << endl;
-//    fout << k11 << endl;
-//    fout << k12 << endl;
     fout.close();
 
 }
@@ -90,16 +103,16 @@ void MainWindow::paintEvent(QPaintEvent* event)
 {
     if (r1 > 0 && l1 > 0)
     {
-        QGraphicsTextItem * io = new QGraphicsTextItem;
-        io->setDefaultTextColor(Qt::red);
-        QFont font;
-        font.setPixelSize(30);
-        font.setBold(true);
-        font.setFamily("Calibri");
-        io->setPos(r1x + 5 ,700);
-        io->setFont(font);
-        io->setPlainText("A0");
-        scene->addItem(io);
+//        QGraphicsTextItem * io = new QGraphicsTextItem;
+//        io->setDefaultTextColor(Qt::red);
+//        QFont font;
+//        font.setPixelSize(30);
+//        font.setBold(true);
+//        font.setFamily("Calibri");
+//        io->setPos(r1x + 5 ,700);
+//        io->setFont(font);
+//        io->setPlainText("A0");
+//        scene->addItem(io);
     }
 
 
