@@ -2957,7 +2957,7 @@
         </spacer>
        </item>
        <item alignment="Qt::AlignTop">
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="button_save">
          <property name="text">
           <string>Сохранить</string>
          </property>

@@ -193,7 +193,3 @@ void MainWindow::on_name_field_textActivated(const QString &arg1)
 
 
 
-
-
-
-

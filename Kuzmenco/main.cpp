@@ -27,12 +27,13 @@ QPen penGreenLine(Qt::green);
 QPen penBlueLine(Qt::blue);
 QGraphicsScene * scene;
 
+
 int main(int argc, char *argv[])
 {
     app = new QApplication(argc, argv);
     MainWindow * w = new MainWindow;
-
     QPixmap      pix("table.png");
+
     QPalette pal;
     pal.setBrush(w->backgroundRole(), QBrush(pix));
 

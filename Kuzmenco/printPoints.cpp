@@ -29,20 +29,38 @@ void MainWindow::drawPoints()
     QWidget::repaint();
 }
 
+
+#include <QFile>
+#include <QDebug>
+#include <QGraphicsScene>
+#include <QGraphicsTextItem>
+
+extern QGraphicsScene * scene;
+void MainWindow::on_button_save_clicked()
+{
+    QImage image(scene->sceneRect().size().toSize(), QImage::Format_ARGB32);  // Create the image with the exact size of the shrunk scene
+    image.load("table.png");
+    QPainter painter(&image);
+    scene->render(&painter);
+    image.save("../Измерения/file_name.png");
+}
+
+
 void MainWindow::paintEvent(QPaintEvent* event)
 {
     if (r1 > 0 && l1 > 0)
     {
-        QPainter p(this);
-        p.setPen(Qt::red);
-        QFont font = p.font();
-        font.setPixelSize(25);
-        p.setFont(font);
-        p.drawText(r1x + 20, 20, "A0");
+        QGraphicsTextItem * io = new QGraphicsTextItem;
+        io->setDefaultTextColor(Qt::red);
+        QFont font;
+        font.setPixelSize(30);
+        font.setBold(true);
+        font.setFamily("Calibri");
+        io->setPos(r1x + 5 ,700);
+        io->setFont(font);
+        io->setPlainText("A0");
+        scene->addItem(io);
     }
-
-
-
 
 
 }

@@ -75,6 +75,8 @@ void paintEvent(QPaintEvent *event);
     void r11l11();
     void r12l12();
 
+    void on_button_save_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString name_field;
