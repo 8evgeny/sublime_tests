@@ -76,7 +76,7 @@ void paintEvent(QPaintEvent *event);
 
     void on_button_save_clicked();
     void writeText();
-    void drawCorner();
+    float calcCornerLine(float input);
     void on_Izmereniye_editingFinished();
 
 private:
@@ -85,6 +85,7 @@ private:
     QString  Date;
     std::string  nameOutFile;
     float averadge;
+    float averadgeY;
     float hight;
     float low;
     unsigned int izmereniye{1};

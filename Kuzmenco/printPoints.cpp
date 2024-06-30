@@ -18,11 +18,40 @@ extern QPen penYellow;
 extern QPen penRedLine;
 extern QPen penGreenLine;
 extern QPen penBlueLine;
+extern QPen penBlack;
 extern QGraphicsScene * scene;
 
-void MainWindow::drawCorner()
+float MainWindow::calcCornerLine(float in)
 {
-    scene->addLine(corner_x_begin, 505 , corner_x_end, 505, penYellow);
+    if (in > 0 && in < 5) return (712.0f + (5.0f - in) * 4.4f);
+    if (in > 5 && in <= 10) return (684.0f + (10.0f - in) * 5.6f);
+    if (in > 10 && in <= 15) return (661.0f + (15.0f - in) * 4.6f);
+    if (in > 15 && in <= 20) return (635.0f + (20.0f - in) * 5.2f);
+    if (in > 20 && in <= 25) return (612.0f + (25.0f - in) * 4.8f);
+    if (in > 25 && in <= 30) return (589.0f + (30.0f - in) * 4.6f);
+    if (in > 30 && in <= 35) return 566.0f + (35.0f - in) * 4.6f;
+    if (in > 35 && in <= 40) return 544.0f + (40.0f - in) * 4.4f;
+    if (in > 40 && in <= 45) return 523 + (45.0f - in) * 4.2f;
+    if (in > 45 && in <= 50) return 503 + (50.0f - in) * 4.0f;
+    if (in > 50 && in <= 55) return 483 + (55.0f - in) * 4.0f;
+    if (in > 55 && in <= 60) return 463 + (60.0f - in) * 4.0f;
+    if (in > 60 && in <= 65) return 443 + (65.0f - in) * 4.0f;
+    if (in > 65 && in <= 70) return 423 + (70.0f - in) * 4.0f;
+    if (in > 70 && in <= 75) return 409 + (75.0f - in) * 2.8f;
+    if (in > 75 && in <= 80) return 394 + (80.0f - in) * 3.0f;
+    if (in > 80 && in <= 85) return 380 + (85.0f - in) * 2.8f;
+    if (in > 85 && in <= 90) return 363 + (90.0f - in) * 3.4f;
+    if (in > 90 && in <= 95) return 349 + (95.0f - in) * 2.8f;
+    if (in > 95 && in <= 100) return 334 + (100.0f - in) * 3.0f;
+    if (in > 100 && in <= 105) return 323 + (105.0f - in) * 2.2f;
+    if (in > 105 && in <= 110) return 309 + (110.0f - in) * 2.8f;
+    if (in > 110 && in <= 115) return 295 + (115.0f - in) * 2.8f;
+    if (in > 115 && in <= 120) return 283 + (120.0f - in) * 2.4f;
+    if (in > 120 && in <= 125) return 269 + (125.0f - in) * 2.8f;
+    if (in > 125 && in <= 130) return 254 + (130.0f - in) * 3.0f;
+    if (in > 130 && in <= 135) return 245 + (135.0f - in) * 1.8f;
+    if (in > 135 && in <= 140) return 234 + (140.0f - in) * 2.2f;
+    return 734;
 }
 
 
@@ -44,12 +73,15 @@ void MainWindow::drawPoints()
     QWidget::repaint();
     averadge = (float)(r1+r2+r3+r4+r5+r6+r7+r8+r9+r10+r11+r12+
                 l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12)/24;
+
     hight = averadge + 7;
     low = averadge - 7;
     if (low < 0) low = 0;
-//    cout<<"hight: "<<hight<<endl;
-//    cout<<"low: "<<low<<endl;
-    drawCorner();
+    cout<<"hight: "<<hight<<endl;
+    cout<<"low: "<<low<<endl;
+
+//    scene->addLine(corner_x_begin, calcCornerLine(hight), corner_x_end, calcCornerLine(hight), penYellow);
+//    scene->addLine(corner_x_begin, calcCornerLine(low), corner_x_end, calcCornerLine(low), penYellow);
 }
 
 void MainWindow::on_button_save_clicked()

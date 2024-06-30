@@ -26,6 +26,7 @@ QPen penYellow(Qt::darkYellow);
 QPen penRedLine(Qt::red);
 QPen penGreenLine(Qt::green);
 QPen penBlueLine(Qt::blue);
+QPen penBlack(Qt::black);
 QGraphicsScene * scene;
 QScreen *screenMain;
 
@@ -59,6 +60,7 @@ int main(int argc, char *argv[])
     penRedLine.setWidth(3);
     penGreenLine.setWidth(3);
     penBlueLine.setWidth(3);
+    penBlack.setWidth(1);
 
 //    main_logic();
 
