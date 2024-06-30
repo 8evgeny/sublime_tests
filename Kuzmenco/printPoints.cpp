@@ -26,6 +26,7 @@ void MainWindow::drawPoints()
     r10l10();
     r11l11();
     r12l12();
+    QWidget::repaint();
 }
 
 void MainWindow::paintEvent(QPaintEvent* event)
@@ -37,7 +38,7 @@ void MainWindow::paintEvent(QPaintEvent* event)
         QFont font = p.font();
         font.setPixelSize(25);
         p.setFont(font);
-        p.drawText(r1x,20,"A0");
+        p.drawText(r1x + 20, 20, "A0");
     }
 
 
@@ -159,7 +160,6 @@ void MainWindow::r1l1()
             scene->addEllipse(r1x, r1y, 4, 4, penBlue);
         }
     }
-    QWidget::repaint();
 }
 
 void MainWindow::r2l2()
