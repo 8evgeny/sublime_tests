@@ -19,6 +19,7 @@ configure_file("${CMAKE_SOURCE_DIR}/table.png" ${PROJECT_BINARY_DIR} COPYONLY)
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
+        printPoints.cpp
         mainwindow.h
         mainwindow.ui
 )
