@@ -1,7 +1,13 @@
 #include "mainwindow.h"
 #include <QGraphicsScene>
 #include <QPainter>
+#include <QFile>
+#include <QDebug>
+#include <QGraphicsTextItem>
+#include <QRect>
+#include <QScreen>
 
+extern QScreen *screenMain;
 extern QPen penRed;
 extern QPen penGreen;
 extern QPen penBlue;
@@ -29,20 +35,23 @@ void MainWindow::drawPoints()
     QWidget::repaint();
 }
 
-
-#include <QFile>
-#include <QDebug>
-#include <QGraphicsScene>
-#include <QGraphicsTextItem>
-
-extern QGraphicsScene * scene;
 void MainWindow::on_button_save_clicked()
 {
     QImage image(scene->sceneRect().size().toSize(), QImage::Format_ARGB32);  // Create the image with the exact size of the shrunk scene
     image.load("table.png");
+
+    QPixmap screenshot = screenMain->grabWindow(0);
+//    QPixmap screenShot = screenMain->grabWindow(0, 100, 100, 1000, 800);
+    QFile file("screenshot.png");
+    file.open(QIODevice::WriteOnly);
+    screenshot.save(&file, "PNG");
+    file.close();
+//    QImage image;
+//    image.load("screenshot.png");
     QPainter painter(&image);
     scene->render(&painter);
     image.save("../Измерения/file_name.png");
+
 }
 
 

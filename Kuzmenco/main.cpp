@@ -13,6 +13,7 @@
 #include <QGraphicsView>
 #include <QPainter>
 #include <QPixmap>
+#include <QScreen>
 
 using namespace std::chrono;
 using namespace std;
@@ -26,11 +27,13 @@ QPen penRedLine(Qt::red);
 QPen penGreenLine(Qt::green);
 QPen penBlueLine(Qt::blue);
 QGraphicsScene * scene;
-
+QScreen *screenMain;
 
 int main(int argc, char *argv[])
 {
     app = new QApplication(argc, argv);
+    screenMain = app->primaryScreen();
+
     MainWindow * w = new MainWindow;
     QPixmap      pix("table.png");
 
