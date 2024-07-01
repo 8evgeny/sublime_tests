@@ -22,7 +22,7 @@ inline void calculateNDRange(int size, int groupSize,
     *oSize = size / groupSize;
 }
 
-void workSerial(QImage &imageIn, QImage &imageOut)
+void workSerialEdge(QImage &imageIn, QImage &imageOut)
 {
     eTimer.start();
 
@@ -67,12 +67,11 @@ void workSerial(QImage &imageIn, QImage &imageOut)
         }
     }
     timeSerial = eTimer.nsecsElapsed();
-    qDebug() << "serial   " << (float)timeSerial/1000000 << " ms";
 
     imageOut.save("edges-serial.jpg");
 }
 
-int workParallel(QImage &imageIn, QImage &imageOut)
+int workParallelEdge(QImage &imageIn, QImage &imageOut)
 {
     // Query platforms
     VECTOR_CLASS<cl::Platform> platforms;
@@ -178,8 +177,6 @@ int workParallel(QImage &imageIn, QImage &imageOut)
     commandQueue.enqueueReadImage(clImageOut, CL_TRUE, origin, region, 0, 0, imageOut.bits());
 
     timeParallel = eTimer.nsecsElapsed();
-    qDebug() << "parallel " << (float)timeParallel/1000000 << " ms";
-    qDebug() << "serial/parallel=" << (float)timeSerial/timeParallel;
     imageOut.save("edges-paralell.jpg");
     return 0;
 }
@@ -211,10 +208,19 @@ int main(int argc, char *argv[])
     convertToGrey(imageIn);
     QImage imageOut(imageIn.size(), imageIn.format());
 
-    workSerial(imageIn, imageOut);
-
-    if(workParallel(imageIn, imageOut) != CL_SUCCESS)
+    workSerialEdge(imageIn, imageOut);
+    if(workParallelEdge(imageIn, imageOut) != CL_SUCCESS)
         return -1;
+
+
+
+
+
+    qDebug() << "serial   " << (float)timeSerial/1000000 << " ms";
+    qDebug() << "parallel " << (float)timeParallel/1000000 << " ms";
+    qDebug() << "serial/parallel=" << (float)timeSerial/timeParallel;
+
+
 
     return 0;
 }
