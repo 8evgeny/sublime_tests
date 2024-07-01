@@ -72,28 +72,8 @@ void workSerial(QImage &imageIn, QImage &imageOut)
     imageOut.save("edges-serial.jpg");
 }
 
-void convertToGrey(QImage &imageIn)
+int workParallel(QImage &imageIn, QImage &imageOut)
 {
-    // Convert to gray scale
-    for (int y = 0; y < imageIn.height(); y++)
-    {
-        QRgb *line = (QRgb *) imageIn.scanLine(y);
-
-        for (int x = 0; x < imageIn.width(); x++)
-        {
-            int r = qGray(line[x]);
-            int g = r;
-            int b = r;
-            line[x] = qRgb(r, g, b);
-        }
-    }
-}
-
-int main(int argc, char *argv[])
-{
-    QCoreApplication a(argc, argv);
-    Q_UNUSED(a)
-
     // Query platforms
     VECTOR_CLASS<cl::Platform> platforms;
 
@@ -138,15 +118,6 @@ int main(int argc, char *argv[])
         qDebug() << buildLog.c_str();
         return -1;
     }
-
-
-    QImage imageIn("image.jpg");
-    imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
-    convertToGrey(imageIn);
-    QImage imageOut(imageIn.size(), imageIn.format());
-
-    workSerial(imageIn, imageOut);
-
 
 
     imageIn = imageIn.convertToFormat(QImage::Format_RGBA8888);
@@ -210,6 +181,40 @@ int main(int argc, char *argv[])
     qDebug() << "parallel " << (float)timeParallel/1000000 << " ms";
     qDebug() << "serial/parallel=" << (float)timeSerial/timeParallel;
     imageOut.save("edges-paralell.jpg");
+    return 0;
+}
+
+void convertToGrey(QImage &imageIn)
+{
+    // Convert to gray scale
+    for (int y = 0; y < imageIn.height(); y++)
+    {
+        QRgb *line = (QRgb *) imageIn.scanLine(y);
+
+        for (int x = 0; x < imageIn.width(); x++)
+        {
+            int r = qGray(line[x]);
+            int g = r;
+            int b = r;
+            line[x] = qRgb(r, g, b);
+        }
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    QCoreApplication a(argc, argv);
+    Q_UNUSED(a)
+
+    QImage imageIn("image.jpg");
+    imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
+    convertToGrey(imageIn);
+    QImage imageOut(imageIn.size(), imageIn.format());
+
+    workSerial(imageIn, imageOut);
+
+    if(workParallel(imageIn, imageOut) != CL_SUCCESS)
+        return -1;
 
     return 0;
 }

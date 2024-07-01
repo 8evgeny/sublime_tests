@@ -9,5 +9,5 @@ target_link_libraries(${PROJECT_NAME}
     )
 configure_file(find_min_max.cl ${CMAKE_CURRENT_BINARY_DIR}/find_min_max.cl COPYONLY)
 #configure_file(tank_1.png ${CMAKE_CURRENT_BINARY_DIR}/imageIn COPYONLY)
-configure_file(city.jpg ${CMAKE_CURRENT_BINARY_DIR}/image.jpg COPYONLY)
+configure_file(image.jpg ${CMAKE_CURRENT_BINARY_DIR}/image.jpg COPYONLY)
 #configure_file(tank_2.png ${CMAKE_CURRENT_BINARY_DIR}/imageTmpl COPYONLY)
