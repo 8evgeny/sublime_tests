@@ -70,6 +70,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
+
     QImage imageIn("image.jpg");
     imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
 
@@ -88,11 +89,6 @@ int main(int argc, char *argv[])
     }
 
     QImage imageOut(imageIn.size(), imageIn.format());
-
-    cl::CommandQueue commandQueue(context, devices[0]);
-
-    // Obtain a reference to the kernel
-    cl::make_kernel<cl::Image2D &, cl::Image2D &> edges(program, "edges");
 
     QElapsedTimer eTimer;
     eTimer.start();
@@ -141,7 +137,13 @@ int main(int argc, char *argv[])
     qDebug() << "serial   " << (float)timeSerial/1000000 << " ms";
 
     imageOut.save("edges-serial.jpg");
+
+
+
     imageIn = imageIn.convertToFormat(QImage::Format_RGBA8888);
+    cl::CommandQueue commandQueue(context, devices[0]);
+    // Obtain a reference to the kernel
+    cl::make_kernel<cl::Image2D &, cl::Image2D &> edges(program, "edges");
 
     // Create image buffers
     cl::Image2D clImageIn(context,
