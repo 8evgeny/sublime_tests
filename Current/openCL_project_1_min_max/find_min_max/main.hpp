@@ -9,3 +9,6 @@ void workSerialEdges(QImage &imageIn, QImage &imageOut);
 inline void calculateNDRange(int size, int groupSize, int *bSize, int *bGroupSize, int *oSize);
 void convertToGrey(QImage &imageIn);
 int testEdges();
+
+int testMatches();
+void workSerialMatches(QImage &imageIn, QImage &imageTempl, QImage &imageOut);

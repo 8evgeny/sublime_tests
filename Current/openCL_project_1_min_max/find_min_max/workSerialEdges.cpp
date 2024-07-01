@@ -1,6 +1,6 @@
 #include <QtCore>
 #include <QImage>
-#include "find_min_max.hpp"
+#include "main.hpp"
 
 extern QElapsedTimer eTimer;
 extern quint64 timeSerial;

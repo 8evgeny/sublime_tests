@@ -3,6 +3,8 @@ file(GLOB src
     workParallelEdges.cpp
     workSerialEdges.cpp
     edges.cpp
+    workSerialMatches.cpp
+    matches.cpp
     )
 
 add_executable(${PROJECT_NAME} ${src})
