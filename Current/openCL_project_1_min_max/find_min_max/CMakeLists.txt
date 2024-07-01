@@ -1,4 +1,7 @@
-file(GLOB src find_min_max.cpp)
+file(GLOB src
+    find_min_max.cpp
+    workParallelEdge.cpp
+    )
 
 add_executable(${PROJECT_NAME} ${src})
 target_link_libraries(${PROJECT_NAME}
