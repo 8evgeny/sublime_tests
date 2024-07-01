@@ -1,6 +1,8 @@
 file(GLOB src
     find_min_max.cpp
     workParallelEdge.cpp
+    workSerialEdge.cpp
+    edge.cpp
     )
 
 add_executable(${PROJECT_NAME} ${src})
