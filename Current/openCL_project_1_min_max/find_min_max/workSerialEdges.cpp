@@ -6,7 +6,7 @@ extern QElapsedTimer eTimer;
 extern quint64 timeSerial;
 
 
-void workSerialEdge(QImage &imageIn, QImage &imageOut)
+void workSerialEdges(QImage &imageIn, QImage &imageOut)
 {
     eTimer.restart();
 

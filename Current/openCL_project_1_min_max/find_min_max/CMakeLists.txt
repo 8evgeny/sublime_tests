@@ -1,8 +1,8 @@
 file(GLOB src
-    find_min_max.cpp
-    workParallelEdge.cpp
-    workSerialEdge.cpp
-    edge.cpp
+    main.cpp
+    workParallelEdges.cpp
+    workSerialEdges.cpp
+    edges.cpp
     )
 
 add_executable(${PROJECT_NAME} ${src})
@@ -12,10 +12,13 @@ target_link_libraries(${PROJECT_NAME}
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Gui
     )
-configure_file(find_min_max.cl ${CMAKE_CURRENT_BINARY_DIR}/find_min_max.cl COPYONLY)
+configure_file(edges.cl ${CMAKE_CURRENT_BINARY_DIR}/edges.cl COPYONLY)
 
-#configure_file(tank_1.png ${CMAKE_CURRENT_BINARY_DIR}/image COPYONLY)
-#configure_file(image.jpg ${CMAKE_CURRENT_BINARY_DIR}/image COPYONLY)
-configure_file(room.jpeg ${CMAKE_CURRENT_BINARY_DIR}/image COPYONLY)
+#configure_file(tank.png ${CMAKE_CURRENT_BINARY_DIR}/image COPYONLY)
+#configure_file(tankTemplate.png ${CMAKE_CURRENT_BINARY_DIR}/template COPYONLY)
 
-#configure_file(tank_2.png ${CMAKE_CURRENT_BINARY_DIR}/imageTmpl COPYONLY)
+configure_file(building.jpg ${CMAKE_CURRENT_BINARY_DIR}/image COPYONLY)
+configure_file(buildingTemplate.jpg ${CMAKE_CURRENT_BINARY_DIR}/template COPYONLY)
+
+#configure_file(room.jpeg ${CMAKE_CURRENT_BINARY_DIR}/image COPYONLY)
+

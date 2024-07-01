@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
     Q_UNUSED(a)
 
-    if (testEdge() != 0)
+    if (testEdges() != 0)
         return -1;
 
     return 0;

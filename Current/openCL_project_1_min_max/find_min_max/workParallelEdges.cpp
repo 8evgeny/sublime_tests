@@ -24,7 +24,7 @@ inline void calculateNDRange(int size, int groupSize,
 
 
 
-int workParallelEdge(QImage &imageIn, QImage &imageOut)
+int workParallelEdges(QImage &imageIn, QImage &imageOut)
 {
     // Query platforms
     VECTOR_CLASS<cl::Platform> platforms;
@@ -55,7 +55,7 @@ int workParallelEdge(QImage &imageIn, QImage &imageOut)
     cl::Context context(devices);
 
     // Load OpenCL program
-    QFile kernelFile("find_min_max.cl");
+    QFile kernelFile("edges.cl");
     kernelFile.open(QIODevice::ReadOnly | QIODevice::Text);
     cl::Program program(context, kernelFile.readAll().toStdString());
     kernelFile.close();

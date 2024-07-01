@@ -5,18 +5,18 @@
 extern QElapsedTimer eTimer;
 extern quint64 timeSerial, timeParallel;
 
-int testEdge()
+int testEdges()
 {
     QImage imageIn("image");
     imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
     convertToGrey(imageIn);
     QImage imageOut(imageIn.size(), imageIn.format());
 
-    workSerialEdge(imageIn, imageOut);
-    if(workParallelEdge(imageIn, imageOut) != CL_SUCCESS)
+    workSerialEdges(imageIn, imageOut);
+    if(workParallelEdges(imageIn, imageOut) != CL_SUCCESS)
         return -1;
-    qDebug() << "serialEdge   " << (float)timeSerial/1000000 << " ms";
-    qDebug() << "parallelEdge " << (float)timeParallel/1000000 << " ms";
+    qDebug() << "serialEdges   " << (float)timeSerial/1000000 << " ms";
+    qDebug() << "parallelEdges " << (float)timeParallel/1000000 << " ms";
     qDebug() << "serial/parallel=" << (float)timeSerial/timeParallel;
     return 0;
 }
