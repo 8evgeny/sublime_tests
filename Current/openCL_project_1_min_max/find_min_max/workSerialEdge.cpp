@@ -52,5 +52,5 @@ void workSerialEdge(QImage &imageIn, QImage &imageOut)
     }
     timeSerial = eTimer.nsecsElapsed();
 
-    imageOut.save("edges-serial.jpg");
+    imageOut.save("edges-serial.png");
 }

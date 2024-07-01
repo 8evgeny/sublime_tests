@@ -130,6 +130,6 @@ int workParallelEdge(QImage &imageIn, QImage &imageOut)
     commandQueue.enqueueReadImage(clImageOut, CL_TRUE, origin, region, 0, 0, imageOut.bits());
 
     timeParallel = eTimer.nsecsElapsed();
-    imageOut.save("edges-paralell.jpg");
+    imageOut.save("edges-paralell.png");
     return 0;
 }
