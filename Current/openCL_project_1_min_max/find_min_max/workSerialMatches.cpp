@@ -4,6 +4,7 @@
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
+#include <iostream>
 
 using namespace std;
 using namespace cv;
@@ -39,7 +40,7 @@ void workSerialMatches()
     eTimer.restart();
     MatchingMethod( 0, 0 );
     timeSerial = eTimer.nsecsElapsed();
-    printf("timeSerial = %.3f ms\n",(float)timeSerial/1000000);
+    cout<< "timeSerial = " << (float)timeSerial/1000000 <<" ms"<<endl;
     waitKey(0);
 
 
