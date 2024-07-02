@@ -1,10 +1,15 @@
 #include <QtCore>
 #include <QImage>
 #include "main.hpp"
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/imgproc.hpp"
 
 extern QElapsedTimer eTimer;
 extern quint64 timeSerial;
 
+using namespace std;
+using namespace cv;
 
 void workSerialEdges(QImage &imageIn, QImage &imageOut)
 {
@@ -53,4 +58,55 @@ void workSerialEdges(QImage &imageIn, QImage &imageOut)
     timeSerial = eTimer.nsecsElapsed();
 
     imageOut.save("edges-serial.png");
+
+    Mat edges = imread("edges-serial.png", IMREAD_GRAYSCALE);
+    imshow("result edges serial", edges );
+    waitKey(0);
+}
+
+void workSerialEdgesOpenCV()
+{
+  Mat img = imread("image.jpg", IMREAD_COLOR );
+  // Convert to graycsale
+  Mat img_gray;
+  cvtColor(img, img_gray, COLOR_BGR2GRAY);
+
+  // Blur the image for better edge detection
+  Mat img_blur;
+  GaussianBlur(img_gray, img_blur, Size(3,3), 0);
+
+    eTimer.restart();
+
+  // Sobel edge detection
+
+//  Mat sobelx, sobely, sobelxy;
+//  Sobel(img_blur, sobelx, CV_64F, 1, 0, 5);
+//  Sobel(img_blur, sobely, CV_64F, 0, 1, 5);
+//  Sobel(img_blur, sobelxy, CV_64F, 1, 1, 5);
+//  imshow("Sobel X", sobelx);
+//  waitKey(0);
+//  imshow("Sobel Y", sobely);
+//  waitKey(0);
+//  imshow("Sobel XY using Sobel() function", sobelxy);
+//  waitKey(0);
+
+
+    // Canny edge detection
+    Mat edges;
+    Canny(img_gray, edges, 100, 200, 3, false);
+//    Canny(img_blur, edges, 100, 200, 3, false);
+
+    timeSerial = eTimer.nsecsElapsed();
+
+    imshow("result edges OpenCV", edges);
+    waitKey(0);
+
+    destroyAllWindows();
+
+
+
+
+
+
+
 }

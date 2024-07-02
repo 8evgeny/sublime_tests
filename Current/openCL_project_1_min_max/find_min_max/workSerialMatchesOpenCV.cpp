@@ -34,8 +34,8 @@ void MatchingMethod( int, void* );
 void workSerialMatchesOpenCV()
 {
     /// Load image and template
-    img = imread("image", 1 );
-    templ = imread("template", 1 );
+    img = imread("image.jpg", IMREAD_COLOR );
+    templ = imread("template.jpg", IMREAD_COLOR );
 
     namedWindow( image_window, WINDOW_AUTOSIZE );
     namedWindow( result_window, WINDOW_AUTOSIZE );

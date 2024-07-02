@@ -13,6 +13,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     Q_UNUSED(a)
 
+// Bugs  Без Serial parallel не работает ??????
+
     if (testEdges() != 0)
         return -1;
 

@@ -7,27 +7,22 @@ extern quint64 timeSerial, timeParallel;
 
 int testEdges()
 {
-    QImage imageIn("image");
+    QImage imageIn("image.jpg");
     imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
     convertToGrey(imageIn);
     QImage imageOut(imageIn.size(), imageIn.format());
 
     workSerialEdges(imageIn, imageOut);
-
-
-//    QImage imageIn2("image");
-//    imageIn2 = imageIn2.convertToFormat(QImage::Format_ARGB32);
-//    convertToGrey(imageIn2);
-
-//    imageIn2.save("in.png");
-//    QImage imageOut2(imageIn2.size(), imageIn2.format());
-//    imageOut2 = imageIn2;
-
-    if(workParallelEdges(imageIn, imageOut) != CL_SUCCESS)
-        return -1;
     qDebug() << "serialEdges   " << (float)timeSerial/1000000 << " ms";
-    qDebug() << "parallelEdges " << (float)timeParallel/1000000 << " ms";
-    qDebug() << "serial/parallel=" << (float)timeSerial/timeParallel;
+
+    workSerialEdgesOpenCV();
+    qDebug() << "serialEdgesOpenCV   " << (float)timeSerial/1000000 << " ms";
+
+//    if(workParallelEdges(imageIn, imageOut) != CL_SUCCESS)
+//        return -1;
+
+//    qDebug() << "parallelEdges " << (float)timeParallel/1000000 << " ms";
+//    qDebug() << "serial/parallel=" << (float)timeSerial/timeParallel;
     return 0;
 }
 

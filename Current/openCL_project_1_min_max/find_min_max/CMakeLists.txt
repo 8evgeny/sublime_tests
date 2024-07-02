@@ -22,8 +22,8 @@ configure_file(matches.cl ${CMAKE_CURRENT_BINARY_DIR}/matches.cl COPYONLY)
 #configure_file(tank.png ${CMAKE_CURRENT_BINARY_DIR}/image COPYONLY)
 #configure_file(tankTemplate.png ${CMAKE_CURRENT_BINARY_DIR}/template COPYONLY)
 
-configure_file(building.jpg ${CMAKE_CURRENT_BINARY_DIR}/image COPYONLY)
-configure_file(buildingTemplate.jpg ${CMAKE_CURRENT_BINARY_DIR}/template COPYONLY)
+configure_file(building.jpg ${CMAKE_CURRENT_BINARY_DIR}/image.jpg COPYONLY)
+configure_file(buildingTemplate.jpg ${CMAKE_CURRENT_BINARY_DIR}/template.jpg COPYONLY)
 
 #configure_file(room.jpeg ${CMAKE_CURRENT_BINARY_DIR}/image COPYONLY)
 
