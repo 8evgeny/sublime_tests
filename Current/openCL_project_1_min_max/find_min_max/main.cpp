@@ -2,7 +2,7 @@
 #include <QImage>
 #include <CL/cl.hpp>
 #include "main.hpp"
-
+#include <QApplication>
 
 QElapsedTimer eTimer;
 quint64 timeSerial, timeParallel;
@@ -10,7 +10,7 @@ quint64 timeSerial, timeParallel;
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    QApplication a(argc, argv);
     Q_UNUSED(a)
 
 //    if (testEdges() != 0)
