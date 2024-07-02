@@ -68,14 +68,13 @@ void MatchingMethod( int, void* )
   matchTemplate( img, templ, result, match_method );
   normalize( result, result, 0, 1, NORM_MINMAX, -1, Mat() );
 
-  timeSerial = eTimer.nsecsElapsed();
-
   /// Localizing the best match with minMaxLoc
   double minVal; double maxVal; Point minLoc; Point maxLoc;
   Point matchLoc;
 
   minMaxLoc( result, &minVal, &maxVal, &minLoc, &maxLoc, Mat() );
 
+  timeSerial = eTimer.nsecsElapsed();
 
   /// For SQDIFF and SQDIFF_NORMED, the best matches are lower values. For all the other methods, the higher the better
   if( match_method  == TM_SQDIFF || match_method == TM_SQDIFF_NORMED )

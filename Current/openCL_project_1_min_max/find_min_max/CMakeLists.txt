@@ -1,10 +1,11 @@
 file(GLOB src
     main.cpp
-    workParallelEdges.cpp
-    workSerialEdges.cpp
     edges.cpp
-    workSerialMatchesOpenCV.cpp
+    workSerialEdges.cpp
+    workParallelEdges.cpp
     matches.cpp
+    workSerialMatchesOpenCV.cpp
+    workParallelMatches.cpp
     )
 
 add_executable(${PROJECT_NAME} ${src})
@@ -16,6 +17,7 @@ target_link_libraries(${PROJECT_NAME}
     ${OpenCV_LIBS}
     )
 configure_file(edges.cl ${CMAKE_CURRENT_BINARY_DIR}/edges.cl COPYONLY)
+configure_file(matches.cl ${CMAKE_CURRENT_BINARY_DIR}/matches.cl COPYONLY)
 
 #configure_file(tank.png ${CMAKE_CURRENT_BINARY_DIR}/image COPYONLY)
 #configure_file(tankTemplate.png ${CMAKE_CURRENT_BINARY_DIR}/template COPYONLY)

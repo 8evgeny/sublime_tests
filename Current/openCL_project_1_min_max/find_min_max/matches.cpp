@@ -8,23 +8,17 @@ extern quint64 timeSerial, timeParallel;
 
 int testMatches()
 {
-    QImage imageIn("image");
-    QImage imageTempl("template");
+//    workSerialMatchesOpenCV();
 
+    QImage imageIn("image");
     imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
     convertToGrey(imageIn);
-    imageTempl = imageTempl.convertToFormat(QImage::Format_ARGB32);
-    convertToGrey(imageTempl);
     QImage imageOut(imageIn.size(), imageIn.format());
 
+    workSerialEdges(imageIn, imageOut);
+    if(workParallelEdges(imageIn, imageOut) != CL_SUCCESS)
+        return -1;
 
-    workSerialMatchesOpenCV();
-
-//    if(workParallelMatches(imageIn, imageOut) != CL_SUCCESS)
-//        return -1;
-//    qDebug() << "\nserialMatches   " << (float)timeSerial/1000000 << " ms";
-//    qDebug() << "parallelMatches " << (float)timeParallel/1000000 << " ms";
-//    qDebug() << "serial/parallel=" << (float)timeSerial/timeParallel;
     return 0;
 
 }

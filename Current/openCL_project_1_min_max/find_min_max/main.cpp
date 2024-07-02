@@ -13,11 +13,11 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     Q_UNUSED(a)
 
-//    if (testEdges() != 0)
-//        return -1;
-
-    if (testMatches() != 0)
+    if (testEdges() != 0)
         return -1;
+
+//    if (testMatches() != 0)
+//        return -1;
 
 
     return 0;
