@@ -95,7 +95,7 @@ private:
     unsigned int  r4x{380}, l4x{439};
     unsigned int  r5x{466}, l5x{524};
     unsigned int  r6x{551}, l6x{610};
-    unsigned int  r7x{637}, l7x{696};
+    unsigned int  r7x{638}, l7x{696};
     unsigned int  r8x{724}, l8x{782};
     unsigned int  r9x{809}, l9x{868};
     unsigned int  r10x{896}, l10x{954};

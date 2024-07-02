@@ -80,8 +80,8 @@ void MainWindow::drawPoints()
     cout<<"hight: "<<hight<<endl;
     cout<<"low: "<<low<<endl;
 
-//    scene->addLine(corner_x_begin, calcCornerLine(hight), corner_x_end, calcCornerLine(hight), penYellow);
-//    scene->addLine(corner_x_begin, calcCornerLine(low), corner_x_end, calcCornerLine(low), penYellow);
+    scene->addLine(corner_x_begin, calcCornerLine(hight), corner_x_end, calcCornerLine(hight), penYellow);
+    scene->addLine(corner_x_begin, calcCornerLine(low), corner_x_end, calcCornerLine(low), penYellow);
 }
 
 void MainWindow::on_button_save_clicked()
@@ -150,7 +150,7 @@ void MainWindow::paintEvent(QPaintEvent* event)
 
 }
 
-void MainWindow::r1l1()
+void MainWindow::r1l1() //P
 {
     if (r1 > 0)
     {
@@ -265,52 +265,46 @@ void MainWindow::r1l1()
     }
 }
 
-void MainWindow::r2l2()
+void MainWindow::r2l2() //MC
 {
-scene->addEllipse(r2x, r2, 4, 4, penRed);
-scene->addEllipse(l2x, l2, 4, 4, penRed);
     if (r2 > 0)
     {
         switch (r2)
         {
-            case 5:  r2y = 000; break;
-            case 10: r2y = 000; break;
-            case 15: r2y = 000; break;
-            case 20: r2y = 000; break;
-            case 25: r2y = 000; break;
-            case 30: r2y = 000; break;
-            case 35: r2y = 000; break;
-            case 40: r2y = 000; break;
-            case 45: r2y = 000; break;
-            case 50: r2y = 000; break;
-            case 55: r2y = 000; break;
-            case 60: r2y = 000; break;
-            case 65: r2y = 000; break;
-            case 70: r2y = 000; break;
-            case 75: r2y = 000; break;
-            case 80: r2y = 000; break;
-            case 85: r2y = 000; break;
-            case 90: r2y = 000; break;
-            case 95: r2y = 000; break;
-            case 100: r2y = 000; break;
-            case 105: r2y = 000; break;
-            case 110: r2y = 000; break;
-            case 115: r2y = 000; break;
-            case 120: r2y = 000; break;
-            case 125: r2y = 000; break;
-            case 130: r2y = 000; break;
-            case 135: r2y = 000; break;
-            case 140: r2y = 000; break;
-            case 145: r2y = 000; break;
-            case 150: r2y = 000; break;
-            case 155: r2y = 000; break;
-            case 160: r2y = 000; break;
-            case 165: r2y = 000; break;
-            case 170: r2y = 000; break;
-            case 175: r2y = 000; break;
-            case 180: r2y = 000; break;
-            case 185: r2y = 000; break;
-            case 190: r2y = 000; break;
+            case 5:  r2y = 714; break;
+            case 10: r2y = 685; break;
+            case 15: r2y = 662; break;
+            case 20: r2y = 639; break;
+            case 25: r2y = 616; break;
+            case 30: r2y = 593; break;
+            case 35: r2y = 570; break;
+            case 40: r2y = 550; break;
+            case 45: r2y = 530; break;
+            case 50: r2y = 513; break;
+            case 55: r2y = 493; break;
+            case 60: r2y = 476; break;
+            case 65: r2y = 456; break;
+            case 70: r2y = 439; break;
+            case 75: r2y = 424; break;
+            case 80: r2y = 407; break;
+            case 85: r2y = 393; break;
+            case 90: r2y = 379; break;
+            case 95: r2y = 364; break;
+            case 100: r2y = 350; break;
+            case 105: r2y = 335; break;
+            case 110: r2y = 321; break;
+            case 115: r2y = 310; break;
+            case 120: r2y = 298; break;
+            case 125: r2y = 287; break;
+            case 130: r2y = 275; break;
+            case 135: r2y = 264; break;
+            case 140: r2y = 252; break;
+            case 145: r2y = 241; break;
+            case 150: r2y = 229; break;
+            case 155: r2y = 219; break;
+            case 160: r2y = 209; break;
+            case 165: r2y = 201; break;
+            case 170: r2y = 192; break;
         }
         scene->addEllipse(r2x, r2y, 4, 4, penYellow);
     }// r2
@@ -318,44 +312,40 @@ scene->addEllipse(l2x, l2, 4, 4, penRed);
     {
         switch (l2)
         {
-            case 5:  l2y = 000; break;
-            case 10: l2y = 000; break;
-            case 15: l2y = 000; break;
-            case 20: l2y = 000; break;
-            case 25: l2y = 000; break;
-            case 30: l2y = 000; break;
-            case 35: l2y = 000; break;
-            case 40: l2y = 000; break;
-            case 45: l2y = 000; break;
-            case 50: l2y = 000; break;
-            case 55: l2y = 000; break;
-            case 60: l2y = 000; break;
-            case 65: l2y = 000; break;
-            case 70: l2y = 000; break;
-            case 75: l2y = 000; break;
-            case 80: l2y = 000; break;
-            case 85: l2y = 000; break;
-            case 90: l2y = 000; break;
-            case 95: l2y = 000; break;
-            case 100: l2y = 000; break;
-            case 105: l2y = 000; break;
-            case 110: l2y = 000; break;
-            case 115: l2y = 000; break;
-            case 120: l2y = 000; break;
-            case 125: l2y = 000; break;
-            case 130: l2y = 000; break;
-            case 135: l2y = 000; break;
-            case 140: l2y = 000; break;
-            case 145: l2y = 000; break;
-            case 150: l2y = 000; break;
-            case 155: l2y = 000; break;
-            case 160: l2y = 000; break;
-            case 165: l2y = 000; break;
-            case 170: l2y = 000; break;
-            case 175: l2y = 000; break;
-            case 180: l2y = 000; break;
-            case 185: l2y = 000; break;
-            case 190: l2y = 000; break;
+        case 5:  l2y = 714; break;
+        case 10: l2y = 685; break;
+        case 15: l2y = 662; break;
+        case 20: l2y = 639; break;
+        case 25: l2y = 616; break;
+        case 30: l2y = 593; break;
+        case 35: l2y = 570; break;
+        case 40: l2y = 550; break;
+        case 45: l2y = 530; break;
+        case 50: l2y = 513; break;
+        case 55: l2y = 493; break;
+        case 60: l2y = 476; break;
+        case 65: l2y = 456; break;
+        case 70: l2y = 439; break;
+        case 75: l2y = 424; break;
+        case 80: l2y = 407; break;
+        case 85: l2y = 393; break;
+        case 90: l2y = 379; break;
+        case 95: l2y = 364; break;
+        case 100: l2y = 350; break;
+        case 105: l2y = 335; break;
+        case 110: l2y = 321; break;
+        case 115: l2y = 310; break;
+        case 120: l2y = 298; break;
+        case 125: l2y = 287; break;
+        case 130: l2y = 275; break;
+        case 135: l2y = 264; break;
+        case 140: l2y = 252; break;
+        case 145: l2y = 241; break;
+        case 150: l2y = 229; break;
+        case 155: l2y = 219; break;
+        case 160: l2y = 209; break;
+        case 165: l2y = 201; break;
+        case 170: l2y = 192; break;
         }
         scene->addEllipse(l2x, l2y, 4, 4, penYellow);
     }
@@ -382,52 +372,40 @@ scene->addEllipse(l2x, l2, 4, 4, penRed);
     }
 }
 
-void MainWindow::r3l3()
+void MainWindow::r3l3() //C
 {
-scene->addEllipse(r3x, r3, 4, 4, penRed);
-scene->addEllipse(l3x, l3, 4, 4, penRed);
     if (r3 > 0)
     {
         switch (r3)
         {
-            case 5:  r3y = 000; break;
-            case 10: r3y = 000; break;
-            case 15: r3y = 000; break;
-            case 20: r3y = 000; break;
-            case 25: r3y = 000; break;
-            case 30: r3y = 000; break;
-            case 35: r3y = 000; break;
-            case 40: r3y = 000; break;
-            case 45: r3y = 000; break;
-            case 50: r3y = 000; break;
-            case 55: r3y = 000; break;
-            case 60: r3y = 000; break;
-            case 65: r3y = 000; break;
-            case 70: r3y = 000; break;
-            case 75: r3y = 000; break;
-            case 80: r3y = 000; break;
-            case 85: r3y = 000; break;
-            case 90: r3y = 000; break;
-            case 95: r3y = 000; break;
-            case 100: r3y = 000; break;
-            case 105: r3y = 000; break;
-            case 110: r3y = 000; break;
-            case 115: r3y = 000; break;
-            case 120: r3y = 000; break;
-            case 125: r3y = 000; break;
-            case 130: r3y = 000; break;
-            case 135: r3y = 000; break;
-            case 140: r3y = 000; break;
-            case 145: r3y = 000; break;
-            case 150: r3y = 000; break;
-            case 155: r3y = 000; break;
-            case 160: r3y = 000; break;
-            case 165: r3y = 000; break;
-            case 170: r3y = 000; break;
-            case 175: r3y = 000; break;
-            case 180: r3y = 000; break;
-            case 185: r3y = 000; break;
-            case 190: r3y = 000; break;
+            case 5:  r3y = 708; break;
+            case 10: r3y = 679; break;
+            case 15: r3y = 651; break;
+            case 20: r3y = 625; break;
+            case 25: r3y = 599; break;
+            case 30: r3y = 571; break;
+            case 35: r3y = 548; break;
+            case 40: r3y = 525; break;
+            case 45: r3y = 499; break;
+            case 50: r3y = 476; break;
+            case 55: r3y = 456; break;
+            case 60: r3y = 436; break;
+            case 65: r3y = 419; break;
+            case 70: r3y = 398; break;
+            case 75: r3y = 379; break;
+            case 80: r3y = 361; break;
+            case 85: r3y = 347; break;
+            case 90: r3y = 333; break;
+            case 95: r3y = 316; break;
+            case 100: r3y = 301; break;
+            case 105: r3y = 287; break;
+            case 110: r3y = 273; break;
+            case 115: r3y = 258; break;
+            case 120: r3y = 244; break;
+            case 125: r3y = 232; break;
+            case 130: r3y = 221; break;
+            case 135: r3y = 210; break;
+            case 140: r3y = 198; break;
         }
         scene->addEllipse(r3x, r3y, 4, 4, penYellow);
     }// r3
@@ -435,44 +413,34 @@ scene->addEllipse(l3x, l3, 4, 4, penRed);
     {
         switch (l3)
         {
-            case 5:  l3y = 000; break;
-            case 10: l3y = 000; break;
-            case 15: l3y = 000; break;
-            case 20: l3y = 000; break;
-            case 25: l3y = 000; break;
-            case 30: l3y = 000; break;
-            case 35: l3y = 000; break;
-            case 40: l3y = 000; break;
-            case 45: l3y = 000; break;
-            case 50: l3y = 000; break;
-            case 55: l3y = 000; break;
-            case 60: l3y = 000; break;
-            case 65: l3y = 000; break;
-            case 70: l3y = 000; break;
-            case 75: l3y = 000; break;
-            case 80: l3y = 000; break;
-            case 85: l3y = 000; break;
-            case 90: l3y = 000; break;
-            case 95: l3y = 000; break;
-            case 100: l3y = 000; break;
-            case 105: l3y = 000; break;
-            case 110: l3y = 000; break;
-            case 115: l3y = 000; break;
-            case 120: l3y = 000; break;
-            case 125: l3y = 000; break;
-            case 130: l3y = 000; break;
-            case 135: l3y = 000; break;
-            case 140: l3y = 000; break;
-            case 145: l3y = 000; break;
-            case 150: l3y = 000; break;
-            case 155: l3y = 000; break;
-            case 160: l3y = 000; break;
-            case 165: l3y = 000; break;
-            case 170: l3y = 000; break;
-            case 175: l3y = 000; break;
-            case 180: l3y = 000; break;
-            case 185: l3y = 000; break;
-            case 190: l3y = 000; break;
+        case 5:  l3y = 708; break;
+        case 10: l3y = 679; break;
+        case 15: l3y = 651; break;
+        case 20: l3y = 625; break;
+        case 25: l3y = 599; break;
+        case 30: l3y = 571; break;
+        case 35: l3y = 548; break;
+        case 40: l3y = 525; break;
+        case 45: l3y = 499; break;
+        case 50: l3y = 476; break;
+        case 55: l3y = 456; break;
+        case 60: l3y = 436; break;
+        case 65: l3y = 419; break;
+        case 70: l3y = 398; break;
+        case 75: l3y = 379; break;
+        case 80: l3y = 361; break;
+        case 85: l3y = 347; break;
+        case 90: l3y = 333; break;
+        case 95: l3y = 316; break;
+        case 100: l3y = 301; break;
+        case 105: l3y = 287; break;
+        case 110: l3y = 273; break;
+        case 115: l3y = 258; break;
+        case 120: l3y = 244; break;
+        case 125: l3y = 232; break;
+        case 130: l3y = 221; break;
+        case 135: l3y = 210; break;
+        case 140: l3y = 198; break;
         }
         scene->addEllipse(l3x, l3y, 4, 4, penYellow);
     }
@@ -499,52 +467,46 @@ scene->addEllipse(l3x, l3, 4, 4, penRed);
     }
 }
 
-void MainWindow::r4l4()
+void MainWindow::r4l4() //IG
 {
-scene->addEllipse(r4x, r4, 4, 4, penRed);
-scene->addEllipse(l4x, l4, 4, 4, penRed);
     if (r4 > 0)
     {
         switch (r4)
         {
-            case 5:  r4y = 000; break;
-            case 10: r4y = 000; break;
-            case 15: r4y = 000; break;
-            case 20: r4y = 000; break;
-            case 25: r4y = 000; break;
-            case 30: r4y = 000; break;
-            case 35: r4y = 000; break;
-            case 40: r4y = 000; break;
-            case 45: r4y = 000; break;
-            case 50: r4y = 000; break;
-            case 55: r4y = 000; break;
-            case 60: r4y = 000; break;
-            case 65: r4y = 000; break;
-            case 70: r4y = 000; break;
-            case 75: r4y = 000; break;
-            case 80: r4y = 000; break;
-            case 85: r4y = 000; break;
-            case 90: r4y = 000; break;
-            case 95: r4y = 000; break;
-            case 100: r4y = 000; break;
-            case 105: r4y = 000; break;
-            case 110: r4y = 000; break;
-            case 115: r4y = 000; break;
-            case 120: r4y = 000; break;
-            case 125: r4y = 000; break;
-            case 130: r4y = 000; break;
-            case 135: r4y = 000; break;
-            case 140: r4y = 000; break;
-            case 145: r4y = 000; break;
-            case 150: r4y = 000; break;
-            case 155: r4y = 000; break;
-            case 160: r4y = 000; break;
-            case 165: r4y = 000; break;
-            case 170: r4y = 000; break;
-            case 175: r4y = 000; break;
-            case 180: r4y = 000; break;
-            case 185: r4y = 000; break;
-            case 190: r4y = 000; break;
+        case 5:  r4y = 714; break;
+        case 10: r4y = 685; break;
+        case 15: r4y = 662; break;
+        case 20: r4y = 639; break;
+        case 25: r4y = 616; break;
+        case 30: r4y = 593; break;
+        case 35: r4y = 570; break;
+        case 40: r4y = 550; break;
+        case 45: r4y = 530; break;
+        case 50: r4y = 513; break;
+        case 55: r4y = 493; break;
+        case 60: r4y = 476; break;
+        case 65: r4y = 456; break;
+        case 70: r4y = 439; break;
+        case 75: r4y = 424; break;
+        case 80: r4y = 407; break;
+        case 85: r4y = 393; break;
+        case 90: r4y = 379; break;
+        case 95: r4y = 364; break;
+        case 100: r4y = 350; break;
+        case 105: r4y = 335; break;
+        case 110: r4y = 321; break;
+        case 115: r4y = 310; break;
+        case 120: r4y = 298; break;
+        case 125: r4y = 287; break;
+        case 130: r4y = 275; break;
+        case 135: r4y = 264; break;
+        case 140: r4y = 252; break;
+        case 145: r4y = 241; break;
+        case 150: r4y = 229; break;
+        case 155: r4y = 219; break;
+        case 160: r4y = 209; break;
+        case 165: r4y = 201; break;
+        case 170: r4y = 192; break;
         }
         scene->addEllipse(r4x, r4y, 4, 4, penYellow);
     }// r4
@@ -552,44 +514,40 @@ scene->addEllipse(l4x, l4, 4, 4, penRed);
     {
         switch (l4)
         {
-            case 5:  l4y = 000; break;
-            case 10: l4y = 000; break;
-            case 15: l4y = 000; break;
-            case 20: l4y = 000; break;
-            case 25: l4y = 000; break;
-            case 30: l4y = 000; break;
-            case 35: l4y = 000; break;
-            case 40: l4y = 000; break;
-            case 45: l4y = 000; break;
-            case 50: l4y = 000; break;
-            case 55: l4y = 000; break;
-            case 60: l4y = 000; break;
-            case 65: l4y = 000; break;
-            case 70: l4y = 000; break;
-            case 75: l4y = 000; break;
-            case 80: l4y = 000; break;
-            case 85: l4y = 000; break;
-            case 90: l4y = 000; break;
-            case 95: l4y = 000; break;
-            case 100: l4y = 000; break;
-            case 105: l4y = 000; break;
-            case 110: l4y = 000; break;
-            case 115: l4y = 000; break;
-            case 120: l4y = 000; break;
-            case 125: l4y = 000; break;
-            case 130: l4y = 000; break;
-            case 135: l4y = 000; break;
-            case 140: l4y = 000; break;
-            case 145: l4y = 000; break;
-            case 150: l4y = 000; break;
-            case 155: l4y = 000; break;
-            case 160: l4y = 000; break;
-            case 165: l4y = 000; break;
-            case 170: l4y = 000; break;
-            case 175: l4y = 000; break;
-            case 180: l4y = 000; break;
-            case 185: l4y = 000; break;
-            case 190: l4y = 000; break;
+        case 5:  l4y = 714; break;
+        case 10: l4y = 685; break;
+        case 15: l4y = 662; break;
+        case 20: l4y = 639; break;
+        case 25: l4y = 616; break;
+        case 30: l4y = 593; break;
+        case 35: l4y = 570; break;
+        case 40: l4y = 550; break;
+        case 45: l4y = 530; break;
+        case 50: l4y = 513; break;
+        case 55: l4y = 493; break;
+        case 60: l4y = 476; break;
+        case 65: l4y = 456; break;
+        case 70: l4y = 439; break;
+        case 75: l4y = 424; break;
+        case 80: l4y = 407; break;
+        case 85: l4y = 393; break;
+        case 90: l4y = 379; break;
+        case 95: l4y = 364; break;
+        case 100: l4y = 350; break;
+        case 105: l4y = 335; break;
+        case 110: l4y = 321; break;
+        case 115: l4y = 310; break;
+        case 120: l4y = 298; break;
+        case 125: l4y = 287; break;
+        case 130: l4y = 275; break;
+        case 135: l4y = 264; break;
+        case 140: l4y = 252; break;
+        case 145: l4y = 241; break;
+        case 150: l4y = 229; break;
+        case 155: l4y = 219; break;
+        case 160: l4y = 209; break;
+        case 165: l4y = 201; break;
+        case 170: l4y = 192; break;
         }
         scene->addEllipse(l4x, l4y, 4, 4, penYellow);
     }
@@ -616,52 +574,52 @@ scene->addEllipse(l4x, l4, 4, 4, penRed);
     }
 }
 
-void MainWindow::r5l5()
+void MainWindow::r5l5() //TR
 {
-scene->addEllipse(r5x, r5, 4, 4, penRed);
-scene->addEllipse(l5x, l5, 4, 4, penRed);
     if (r5 > 0)
     {
         switch (r5)
         {
-            case 5:  r5y = 000; break;
-            case 10: r5y = 000; break;
-            case 15: r5y = 000; break;
-            case 20: r5y = 000; break;
-            case 25: r5y = 000; break;
-            case 30: r5y = 000; break;
-            case 35: r5y = 000; break;
-            case 40: r5y = 000; break;
-            case 45: r5y = 000; break;
-            case 50: r5y = 000; break;
-            case 55: r5y = 000; break;
-            case 60: r5y = 000; break;
-            case 65: r5y = 000; break;
-            case 70: r5y = 000; break;
-            case 75: r5y = 000; break;
-            case 80: r5y = 000; break;
-            case 85: r5y = 000; break;
-            case 90: r5y = 000; break;
-            case 95: r5y = 000; break;
-            case 100: r5y = 000; break;
-            case 105: r5y = 000; break;
-            case 110: r5y = 000; break;
-            case 115: r5y = 000; break;
-            case 120: r5y = 000; break;
-            case 125: r5y = 000; break;
-            case 130: r5y = 000; break;
-            case 135: r5y = 000; break;
-            case 140: r5y = 000; break;
-            case 145: r5y = 000; break;
-            case 150: r5y = 000; break;
-            case 155: r5y = 000; break;
-            case 160: r5y = 000; break;
-            case 165: r5y = 000; break;
-            case 170: r5y = 000; break;
-            case 175: r5y = 000; break;
-            case 180: r5y = 000; break;
-            case 185: r5y = 000; break;
-            case 190: r5y = 000; break;
+            case 5:  r5y = 722; break;
+            case 10: r5y = 694; break;
+            case 15: r5y = 671; break;
+            case 20: r5y = 651; break;
+            case 25: r5y = 634; break;
+            case 30: r5y = 614; break;
+            case 35: r5y = 593; break;
+            case 40: r5y = 576; break;
+            case 45: r5y = 556; break;
+            case 50: r5y = 539; break;
+            case 55: r5y = 522; break;
+            case 60: r5y = 505; break;
+            case 65: r5y = 487; break;
+            case 70: r5y = 473; break;
+            case 75: r5y = 459; break;
+            case 80: r5y = 442; break;
+            case 85: r5y = 427; break;
+            case 90: r5y = 416; break;
+            case 95: r5y = 401; break;
+            case 100: r5y = 387; break;
+            case 105: r5y = 376; break;
+            case 110: r5y = 361; break;
+            case 115: r5y = 352; break;
+            case 120: r5y = 341; break;
+            case 125: r5y = 330; break;
+            case 130: r5y = 318; break;
+            case 135: r5y = 307; break;
+            case 140: r5y = 296; break;
+            case 145: r5y = 284; break;
+            case 150: r5y = 272; break;
+            case 155: r5y = 264; break;
+            case 160: r5y = 255; break;
+            case 165: r5y = 246; break;
+            case 170: r5y = 235; break;
+            case 175: r5y = 227; break;
+            case 180: r5y = 218; break;
+            case 185: r5y = 211; break;
+            case 190: r5y = 204; break;
+            case 195: r5y = 198; break;
+            case 200: r5y = 192; break;
         }
         scene->addEllipse(r5x, r5y, 4, 4, penYellow);
     }// r5
@@ -669,44 +627,46 @@ scene->addEllipse(l5x, l5, 4, 4, penRed);
     {
         switch (l5)
         {
-            case 5:  l5y = 000; break;
-            case 10: l5y = 000; break;
-            case 15: l5y = 000; break;
-            case 20: l5y = 000; break;
-            case 25: l5y = 000; break;
-            case 30: l5y = 000; break;
-            case 35: l5y = 000; break;
-            case 40: l5y = 000; break;
-            case 45: l5y = 000; break;
-            case 50: l5y = 000; break;
-            case 55: l5y = 000; break;
-            case 60: l5y = 000; break;
-            case 65: l5y = 000; break;
-            case 70: l5y = 000; break;
-            case 75: l5y = 000; break;
-            case 80: l5y = 000; break;
-            case 85: l5y = 000; break;
-            case 90: l5y = 000; break;
-            case 95: l5y = 000; break;
-            case 100: l5y = 000; break;
-            case 105: l5y = 000; break;
-            case 110: l5y = 000; break;
-            case 115: l5y = 000; break;
-            case 120: l5y = 000; break;
-            case 125: l5y = 000; break;
-            case 130: l5y = 000; break;
-            case 135: l5y = 000; break;
-            case 140: l5y = 000; break;
-            case 145: l5y = 000; break;
-            case 150: l5y = 000; break;
-            case 155: l5y = 000; break;
-            case 160: l5y = 000; break;
-            case 165: l5y = 000; break;
-            case 170: l5y = 000; break;
-            case 175: l5y = 000; break;
-            case 180: l5y = 000; break;
-            case 185: l5y = 000; break;
-            case 190: l5y = 000; break;
+        case 5:  l5y = 722; break;
+        case 10: l5y = 694; break;
+        case 15: l5y = 671; break;
+        case 20: l5y = 651; break;
+        case 25: l5y = 634; break;
+        case 30: l5y = 614; break;
+        case 35: l5y = 593; break;
+        case 40: l5y = 576; break;
+        case 45: l5y = 556; break;
+        case 50: l5y = 539; break;
+        case 55: l5y = 522; break;
+        case 60: l5y = 505; break;
+        case 65: l5y = 487; break;
+        case 70: l5y = 473; break;
+        case 75: l5y = 459; break;
+        case 80: l5y = 442; break;
+        case 85: l5y = 427; break;
+        case 90: l5y = 416; break;
+        case 95: l5y = 401; break;
+        case 100: l5y = 387; break;
+        case 105: l5y = 376; break;
+        case 110: l5y = 361; break;
+        case 115: l5y = 352; break;
+        case 120: l5y = 341; break;
+        case 125: l5y = 330; break;
+        case 130: l5y = 318; break;
+        case 135: l5y = 307; break;
+        case 140: l5y = 296; break;
+        case 145: l5y = 284; break;
+        case 150: l5y = 272; break;
+        case 155: l5y = 264; break;
+        case 160: l5y = 255; break;
+        case 165: l5y = 246; break;
+        case 170: l5y = 235; break;
+        case 175: l5y = 227; break;
+        case 180: l5y = 218; break;
+        case 185: l5y = 211; break;
+        case 190: l5y = 204; break;
+        case 195: l5y = 198; break;
+        case 200: l5y = 192; break;
         }
         scene->addEllipse(l5x, l5y, 4, 4, penYellow);
     }
@@ -733,52 +693,52 @@ scene->addEllipse(l5x, l5, 4, 4, penRed);
     }
 }
 
-void MainWindow::r6l6()
+void MainWindow::r6l6() //GI
 {
-scene->addEllipse(r6x, r6, 4, 4, penRed);
-scene->addEllipse(l6x, l6, 4, 4, penRed);
     if (r6 > 0)
     {
         switch (r6)
         {
-            case 5:  r6y = 000; break;
-            case 10: r6y = 000; break;
-            case 15: r6y = 000; break;
-            case 20: r6y = 000; break;
-            case 25: r6y = 000; break;
-            case 30: r6y = 000; break;
-            case 35: r6y = 000; break;
-            case 40: r6y = 000; break;
-            case 45: r6y = 000; break;
-            case 50: r6y = 000; break;
-            case 55: r6y = 000; break;
-            case 60: r6y = 000; break;
-            case 65: r6y = 000; break;
-            case 70: r6y = 000; break;
-            case 75: r6y = 000; break;
-            case 80: r6y = 000; break;
-            case 85: r6y = 000; break;
-            case 90: r6y = 000; break;
-            case 95: r6y = 000; break;
-            case 100: r6y = 000; break;
-            case 105: r6y = 000; break;
-            case 110: r6y = 000; break;
-            case 115: r6y = 000; break;
-            case 120: r6y = 000; break;
-            case 125: r6y = 000; break;
-            case 130: r6y = 000; break;
-            case 135: r6y = 000; break;
-            case 140: r6y = 000; break;
-            case 145: r6y = 000; break;
-            case 150: r6y = 000; break;
-            case 155: r6y = 000; break;
-            case 160: r6y = 000; break;
-            case 165: r6y = 000; break;
-            case 170: r6y = 000; break;
-            case 175: r6y = 000; break;
-            case 180: r6y = 000; break;
-            case 185: r6y = 000; break;
-            case 190: r6y = 000; break;
+        case 5:  r6y = 722; break;
+        case 10: r6y = 694; break;
+        case 15: r6y = 671; break;
+        case 20: r6y = 651; break;
+        case 25: r6y = 634; break;
+        case 30: r6y = 614; break;
+        case 35: r6y = 593; break;
+        case 40: r6y = 576; break;
+        case 45: r6y = 556; break;
+        case 50: r6y = 539; break;
+        case 55: r6y = 522; break;
+        case 60: r6y = 505; break;
+        case 65: r6y = 487; break;
+        case 70: r6y = 473; break;
+        case 75: r6y = 459; break;
+        case 80: r6y = 442; break;
+        case 85: r6y = 427; break;
+        case 90: r6y = 416; break;
+        case 95: r6y = 401; break;
+        case 100: r6y = 387; break;
+        case 105: r6y = 376; break;
+        case 110: r6y = 361; break;
+        case 115: r6y = 352; break;
+        case 120: r6y = 341; break;
+        case 125: r6y = 330; break;
+        case 130: r6y = 318; break;
+        case 135: r6y = 307; break;
+        case 140: r6y = 296; break;
+        case 145: r6y = 284; break;
+        case 150: r6y = 272; break;
+        case 155: r6y = 264; break;
+        case 160: r6y = 255; break;
+        case 165: r6y = 246; break;
+        case 170: r6y = 235; break;
+        case 175: r6y = 227; break;
+        case 180: r6y = 218; break;
+        case 185: r6y = 211; break;
+        case 190: r6y = 204; break;
+        case 195: r6y = 198; break;
+        case 200: r6y = 192; break;
         }
         scene->addEllipse(r6x, r6y, 4, 4, penYellow);
     }// r6
@@ -786,44 +746,46 @@ scene->addEllipse(l6x, l6, 4, 4, penRed);
     {
         switch (l6)
         {
-            case 5:  l6y = 000; break;
-            case 10: l6y = 000; break;
-            case 15: l6y = 000; break;
-            case 20: l6y = 000; break;
-            case 25: l6y = 000; break;
-            case 30: l6y = 000; break;
-            case 35: l6y = 000; break;
-            case 40: l6y = 000; break;
-            case 45: l6y = 000; break;
-            case 50: l6y = 000; break;
-            case 55: l6y = 000; break;
-            case 60: l6y = 000; break;
-            case 65: l6y = 000; break;
-            case 70: l6y = 000; break;
-            case 75: l6y = 000; break;
-            case 80: l6y = 000; break;
-            case 85: l6y = 000; break;
-            case 90: l6y = 000; break;
-            case 95: l6y = 000; break;
-            case 100: l6y = 000; break;
-            case 105: l6y = 000; break;
-            case 110: l6y = 000; break;
-            case 115: l6y = 000; break;
-            case 120: l6y = 000; break;
-            case 125: l6y = 000; break;
-            case 130: l6y = 000; break;
-            case 135: l6y = 000; break;
-            case 140: l6y = 000; break;
-            case 145: l6y = 000; break;
-            case 150: l6y = 000; break;
-            case 155: l6y = 000; break;
-            case 160: l6y = 000; break;
-            case 165: l6y = 000; break;
-            case 170: l6y = 000; break;
-            case 175: l6y = 000; break;
-            case 180: l6y = 000; break;
-            case 185: l6y = 000; break;
-            case 190: l6y = 000; break;
+        case 5:  l6y = 722; break;
+        case 10: l6y = 694; break;
+        case 15: l6y = 671; break;
+        case 20: l6y = 651; break;
+        case 25: l6y = 634; break;
+        case 30: l6y = 614; break;
+        case 35: l6y = 593; break;
+        case 40: l6y = 576; break;
+        case 45: l6y = 556; break;
+        case 50: l6y = 539; break;
+        case 55: l6y = 522; break;
+        case 60: l6y = 505; break;
+        case 65: l6y = 487; break;
+        case 70: l6y = 473; break;
+        case 75: l6y = 459; break;
+        case 80: l6y = 442; break;
+        case 85: l6y = 427; break;
+        case 90: l6y = 416; break;
+        case 95: l6y = 401; break;
+        case 100: l6y = 387; break;
+        case 105: l6y = 376; break;
+        case 110: l6y = 361; break;
+        case 115: l6y = 352; break;
+        case 120: l6y = 341; break;
+        case 125: l6y = 330; break;
+        case 130: l6y = 318; break;
+        case 135: l6y = 307; break;
+        case 140: l6y = 296; break;
+        case 145: l6y = 284; break;
+        case 150: l6y = 272; break;
+        case 155: l6y = 264; break;
+        case 160: l6y = 255; break;
+        case 165: l6y = 246; break;
+        case 170: l6y = 235; break;
+        case 175: l6y = 227; break;
+        case 180: l6y = 218; break;
+        case 185: l6y = 211; break;
+        case 190: l6y = 204; break;
+        case 195: l6y = 198; break;
+        case 200: l6y = 192; break;
         }
         scene->addEllipse(l6x, l6y, 4, 4, penYellow);
     }
@@ -850,52 +812,44 @@ scene->addEllipse(l6x, l6, 4, 4, penRed);
     }
 }
 
-void MainWindow::r7l7()
+void MainWindow::r7l7() //RP
 {
-scene->addEllipse(r7x, r7, 4, 4, penRed);
-scene->addEllipse(l7x, l7, 4, 4, penRed);
     if (r7 > 0)
     {
         switch (r7)
         {
-            case 5:  r7y = 000; break;
-            case 10: r7y = 000; break;
-            case 15: r7y = 000; break;
-            case 20: r7y = 000; break;
-            case 25: r7y = 000; break;
-            case 30: r7y = 000; break;
-            case 35: r7y = 000; break;
-            case 40: r7y = 000; break;
-            case 45: r7y = 000; break;
-            case 50: r7y = 000; break;
-            case 55: r7y = 000; break;
-            case 60: r7y = 000; break;
-            case 65: r7y = 000; break;
-            case 70: r7y = 000; break;
-            case 75: r7y = 000; break;
-            case 80: r7y = 000; break;
-            case 85: r7y = 000; break;
-            case 90: r7y = 000; break;
-            case 95: r7y = 000; break;
-            case 100: r7y = 000; break;
-            case 105: r7y = 000; break;
-            case 110: r7y = 000; break;
-            case 115: r7y = 000; break;
-            case 120: r7y = 000; break;
-            case 125: r7y = 000; break;
-            case 130: r7y = 000; break;
-            case 135: r7y = 000; break;
-            case 140: r7y = 000; break;
-            case 145: r7y = 000; break;
-            case 150: r7y = 000; break;
-            case 155: r7y = 000; break;
-            case 160: r7y = 000; break;
-            case 165: r7y = 000; break;
-            case 170: r7y = 000; break;
-            case 175: r7y = 000; break;
-            case 180: r7y = 000; break;
-            case 185: r7y = 000; break;
-            case 190: r7y = 000; break;
+            case 5:  r7y = 710; break;
+            case 10: r7y = 682; break;
+            case 15: r7y = 659; break;
+            case 20: r7y = 633; break;
+            case 25: r7y = 607; break;
+            case 30: r7y = 584; break;
+            case 35: r7y = 561; break;
+            case 40: r7y = 541; break;
+            case 45: r7y = 518; break;
+            case 50: r7y = 498; break;
+            case 55: r7y = 481; break;
+            case 60: r7y = 461; break;
+            case 65: r7y = 441; break;
+            case 70: r7y = 424; break;
+            case 75: r7y = 410; break;
+            case 80: r7y = 389; break;
+            case 85: r7y = 375; break;
+            case 90: r7y = 361; break;
+            case 95: r7y = 347; break;
+            case 100: r7y = 332; break;
+            case 105: r7y = 318; break;
+            case 110: r7y = 304; break;
+            case 115: r7y = 292; break;
+            case 120: r7y = 278; break;
+            case 125: r7y = 266; break;
+            case 130: r7y = 252; break;
+            case 135: r7y = 241; break;
+            case 140: r7y = 229; break;
+            case 145: r7y = 218; break;
+            case 150: r7y = 206; break;
+            case 155: r7y = 197; break;
+            case 160: r7y = 189; break;
         }
         scene->addEllipse(r7x, r7y, 4, 4, penYellow);
     }// r7
@@ -903,44 +857,38 @@ scene->addEllipse(l7x, l7, 4, 4, penRed);
     {
         switch (l7)
         {
-            case 5:  l7y = 000; break;
-            case 10: l7y = 000; break;
-            case 15: l7y = 000; break;
-            case 20: l7y = 000; break;
-            case 25: l7y = 000; break;
-            case 30: l7y = 000; break;
-            case 35: l7y = 000; break;
-            case 40: l7y = 000; break;
-            case 45: l7y = 000; break;
-            case 50: l7y = 000; break;
-            case 55: l7y = 000; break;
-            case 60: l7y = 000; break;
-            case 65: l7y = 000; break;
-            case 70: l7y = 000; break;
-            case 75: l7y = 000; break;
-            case 80: l7y = 000; break;
-            case 85: l7y = 000; break;
-            case 90: l7y = 000; break;
-            case 95: l7y = 000; break;
-            case 100: l7y = 000; break;
-            case 105: l7y = 000; break;
-            case 110: l7y = 000; break;
-            case 115: l7y = 000; break;
-            case 120: l7y = 000; break;
-            case 125: l7y = 000; break;
-            case 130: l7y = 000; break;
-            case 135: l7y = 000; break;
-            case 140: l7y = 000; break;
-            case 145: l7y = 000; break;
-            case 150: l7y = 000; break;
-            case 155: l7y = 000; break;
-            case 160: l7y = 000; break;
-            case 165: l7y = 000; break;
-            case 170: l7y = 000; break;
-            case 175: l7y = 000; break;
-            case 180: l7y = 000; break;
-            case 185: l7y = 000; break;
-            case 190: l7y = 000; break;
+        case 5:  l7y = 710; break;
+        case 10: l7y = 682; break;
+        case 15: l7y = 659; break;
+        case 20: l7y = 633; break;
+        case 25: l7y = 607; break;
+        case 30: l7y = 584; break;
+        case 35: l7y = 561; break;
+        case 40: l7y = 541; break;
+        case 45: l7y = 518; break;
+        case 50: l7y = 498; break;
+        case 55: l7y = 481; break;
+        case 60: l7y = 461; break;
+        case 65: l7y = 441; break;
+        case 70: l7y = 424; break;
+        case 75: l7y = 410; break;
+        case 80: l7y = 389; break;
+        case 85: l7y = 375; break;
+        case 90: l7y = 361; break;
+        case 95: l7y = 347; break;
+        case 100: l7y = 332; break;
+        case 105: l7y = 318; break;
+        case 110: l7y = 304; break;
+        case 115: l7y = 292; break;
+        case 120: l7y = 278; break;
+        case 125: l7y = 266; break;
+        case 130: l7y = 252; break;
+        case 135: l7y = 241; break;
+        case 140: l7y = 229; break;
+        case 145: l7y = 218; break;
+        case 150: l7y = 206; break;
+        case 155: l7y = 197; break;
+        case 160: l7y = 189; break;
         }
         scene->addEllipse(l7x, l7y, 4, 4, penYellow);
     }
@@ -967,52 +915,38 @@ scene->addEllipse(l7x, l7, 4, 4, penRed);
     }
 }
 
-void MainWindow::r8l8()
+void MainWindow::r8l8() //F
 {
-scene->addEllipse(r8x, r8, 4, 4, penRed);
-scene->addEllipse(l8x, l8, 4, 4, penRed);
     if (r8 > 0)
     {
         switch (r8)
         {
-            case 5:  r8y = 000; break;
-            case 10: r8y = 000; break;
-            case 15: r8y = 000; break;
-            case 20: r8y = 000; break;
-            case 25: r8y = 000; break;
-            case 30: r8y = 000; break;
-            case 35: r8y = 000; break;
-            case 40: r8y = 000; break;
-            case 45: r8y = 000; break;
-            case 50: r8y = 000; break;
-            case 55: r8y = 000; break;
-            case 60: r8y = 000; break;
-            case 65: r8y = 000; break;
-            case 70: r8y = 000; break;
-            case 75: r8y = 000; break;
-            case 80: r8y = 000; break;
-            case 85: r8y = 000; break;
-            case 90: r8y = 000; break;
-            case 95: r8y = 000; break;
-            case 100: r8y = 000; break;
-            case 105: r8y = 000; break;
-            case 110: r8y = 000; break;
-            case 115: r8y = 000; break;
-            case 120: r8y = 000; break;
-            case 125: r8y = 000; break;
-            case 130: r8y = 000; break;
-            case 135: r8y = 000; break;
-            case 140: r8y = 000; break;
-            case 145: r8y = 000; break;
-            case 150: r8y = 000; break;
-            case 155: r8y = 000; break;
-            case 160: r8y = 000; break;
-            case 165: r8y = 000; break;
-            case 170: r8y = 000; break;
-            case 175: r8y = 000; break;
-            case 180: r8y = 000; break;
-            case 185: r8y = 000; break;
-            case 190: r8y = 000; break;
+            case 5:  r8y = 708; break;
+            case 10: r8y = 673; break;
+            case 15: r8y = 639; break;
+            case 20: r8y = 607; break;
+            case 25: r8y = 579; break;
+            case 30: r8y = 553; break;
+            case 35: r8y = 524; break;
+            case 40: r8y = 496; break;
+            case 45: r8y = 473; break;
+            case 50: r8y = 447; break;
+            case 55: r8y = 427; break;
+            case 60: r8y = 407; break;
+            case 65: r8y = 387; break;
+            case 70: r8y = 367; break;
+            case 75: r8y = 347; break;
+            case 80: r8y = 326; break;
+            case 85: r8y = 309; break;
+            case 90: r8y = 295; break;
+            case 95: r8y = 278; break;
+            case 100: r8y = 263; break;
+            case 105: r8y = 246; break;
+            case 110: r8y = 232; break;
+            case 115: r8y = 218; break;
+            case 120: r8y = 206; break;
+            case 125: r8y = 198; break;
+            case 130: r8y = 189; break;
         }
         scene->addEllipse(r8x, r8y, 4, 4, penYellow);
     }// r8
@@ -1020,44 +954,32 @@ scene->addEllipse(l8x, l8, 4, 4, penRed);
     {
         switch (l8)
         {
-            case 5:  l8y = 000; break;
-            case 10: l8y = 000; break;
-            case 15: l8y = 000; break;
-            case 20: l8y = 000; break;
-            case 25: l8y = 000; break;
-            case 30: l8y = 000; break;
-            case 35: l8y = 000; break;
-            case 40: l8y = 000; break;
-            case 45: l8y = 000; break;
-            case 50: l8y = 000; break;
-            case 55: l8y = 000; break;
-            case 60: l8y = 000; break;
-            case 65: l8y = 000; break;
-            case 70: l8y = 000; break;
-            case 75: l8y = 000; break;
-            case 80: l8y = 000; break;
-            case 85: l8y = 000; break;
-            case 90: l8y = 000; break;
-            case 95: l8y = 000; break;
-            case 100: l8y = 000; break;
-            case 105: l8y = 000; break;
-            case 110: l8y = 000; break;
-            case 115: l8y = 000; break;
-            case 120: l8y = 000; break;
-            case 125: l8y = 000; break;
-            case 130: l8y = 000; break;
-            case 135: l8y = 000; break;
-            case 140: l8y = 000; break;
-            case 145: l8y = 000; break;
-            case 150: l8y = 000; break;
-            case 155: l8y = 000; break;
-            case 160: l8y = 000; break;
-            case 165: l8y = 000; break;
-            case 170: l8y = 000; break;
-            case 175: l8y = 000; break;
-            case 180: l8y = 000; break;
-            case 185: l8y = 000; break;
-            case 190: l8y = 000; break;
+        case 5:  l8y = 708; break;
+        case 10: l8y = 673; break;
+        case 15: l8y = 639; break;
+        case 20: l8y = 607; break;
+        case 25: l8y = 579; break;
+        case 30: l8y = 553; break;
+        case 35: l8y = 524; break;
+        case 40: l8y = 496; break;
+        case 45: l8y = 473; break;
+        case 50: l8y = 447; break;
+        case 55: l8y = 427; break;
+        case 60: l8y = 407; break;
+        case 65: l8y = 387; break;
+        case 70: l8y = 367; break;
+        case 75: l8y = 347; break;
+        case 80: l8y = 326; break;
+        case 85: l8y = 309; break;
+        case 90: l8y = 295; break;
+        case 95: l8y = 278; break;
+        case 100: l8y = 263; break;
+        case 105: l8y = 246; break;
+        case 110: l8y = 232; break;
+        case 115: l8y = 218; break;
+        case 120: l8y = 206; break;
+        case 125: l8y = 198; break;
+        case 130: l8y = 189; break;
         }
         scene->addEllipse(l8x, l8y, 4, 4, penYellow);
     }
@@ -1084,52 +1006,44 @@ scene->addEllipse(l8x, l8, 4, 4, penRed);
     }
 }
 
-void MainWindow::r9l9()
+void MainWindow::r9l9() //R
 {
-scene->addEllipse(r9x, r9, 4, 4, penRed);
-scene->addEllipse(l9x, l9, 4, 4, penRed);
     if (r9 > 0)
     {
         switch (r9)
         {
-            case 5:  r9y = 000; break;
-            case 10: r9y = 000; break;
-            case 15: r9y = 000; break;
-            case 20: r9y = 000; break;
-            case 25: r9y = 000; break;
-            case 30: r9y = 000; break;
-            case 35: r9y = 000; break;
-            case 40: r9y = 000; break;
-            case 45: r9y = 000; break;
-            case 50: r9y = 000; break;
-            case 55: r9y = 000; break;
-            case 60: r9y = 000; break;
-            case 65: r9y = 000; break;
-            case 70: r9y = 000; break;
-            case 75: r9y = 000; break;
-            case 80: r9y = 000; break;
-            case 85: r9y = 000; break;
-            case 90: r9y = 000; break;
-            case 95: r9y = 000; break;
-            case 100: r9y = 000; break;
-            case 105: r9y = 000; break;
-            case 110: r9y = 000; break;
-            case 115: r9y = 000; break;
-            case 120: r9y = 000; break;
-            case 125: r9y = 000; break;
-            case 130: r9y = 000; break;
-            case 135: r9y = 000; break;
-            case 140: r9y = 000; break;
-            case 145: r9y = 000; break;
-            case 150: r9y = 000; break;
-            case 155: r9y = 000; break;
-            case 160: r9y = 000; break;
-            case 165: r9y = 000; break;
-            case 170: r9y = 000; break;
-            case 175: r9y = 000; break;
-            case 180: r9y = 000; break;
-            case 185: r9y = 000; break;
-            case 190: r9y = 000; break;
+        case 5:  r9y = 710; break;
+        case 10: r9y = 682; break;
+        case 15: r9y = 659; break;
+        case 20: r9y = 633; break;
+        case 25: r9y = 607; break;
+        case 30: r9y = 584; break;
+        case 35: r9y = 561; break;
+        case 40: r9y = 541; break;
+        case 45: r9y = 518; break;
+        case 50: r9y = 498; break;
+        case 55: r9y = 481; break;
+        case 60: r9y = 461; break;
+        case 65: r9y = 441; break;
+        case 70: r9y = 424; break;
+        case 75: r9y = 410; break;
+        case 80: r9y = 389; break;
+        case 85: r9y = 375; break;
+        case 90: r9y = 361; break;
+        case 95: r9y = 347; break;
+        case 100: r9y = 332; break;
+        case 105: r9y = 318; break;
+        case 110: r9y = 304; break;
+        case 115: r9y = 292; break;
+        case 120: r9y = 278; break;
+        case 125: r9y = 266; break;
+        case 130: r9y = 252; break;
+        case 135: r9y = 241; break;
+        case 140: r9y = 229; break;
+        case 145: r9y = 218; break;
+        case 150: r9y = 206; break;
+        case 155: r9y = 197; break;
+        case 160: r9y = 189; break;
         }
         scene->addEllipse(r9x, r9y, 4, 4, penYellow);
     }// r9
@@ -1137,44 +1051,38 @@ scene->addEllipse(l9x, l9, 4, 4, penRed);
     {
         switch (l9)
         {
-            case 5:  l9y = 000; break;
-            case 10: l9y = 000; break;
-            case 15: l9y = 000; break;
-            case 20: l9y = 000; break;
-            case 25: l9y = 000; break;
-            case 30: l9y = 000; break;
-            case 35: l9y = 000; break;
-            case 40: l9y = 000; break;
-            case 45: l9y = 000; break;
-            case 50: l9y = 000; break;
-            case 55: l9y = 000; break;
-            case 60: l9y = 000; break;
-            case 65: l9y = 000; break;
-            case 70: l9y = 000; break;
-            case 75: l9y = 000; break;
-            case 80: l9y = 000; break;
-            case 85: l9y = 000; break;
-            case 90: l9y = 000; break;
-            case 95: l9y = 000; break;
-            case 100: l9y = 000; break;
-            case 105: l9y = 000; break;
-            case 110: l9y = 000; break;
-            case 115: l9y = 000; break;
-            case 120: l9y = 000; break;
-            case 125: l9y = 000; break;
-            case 130: l9y = 000; break;
-            case 135: l9y = 000; break;
-            case 140: l9y = 000; break;
-            case 145: l9y = 000; break;
-            case 150: l9y = 000; break;
-            case 155: l9y = 000; break;
-            case 160: l9y = 000; break;
-            case 165: l9y = 000; break;
-            case 170: l9y = 000; break;
-            case 175: l9y = 000; break;
-            case 180: l9y = 000; break;
-            case 185: l9y = 000; break;
-            case 190: l9y = 000; break;
+        case 5:  l9y = 710; break;
+        case 10: l9y = 682; break;
+        case 15: l9y = 659; break;
+        case 20: l9y = 633; break;
+        case 25: l9y = 607; break;
+        case 30: l9y = 584; break;
+        case 35: l9y = 561; break;
+        case 40: l9y = 541; break;
+        case 45: l9y = 518; break;
+        case 50: l9y = 498; break;
+        case 55: l9y = 481; break;
+        case 60: l9y = 461; break;
+        case 65: l9y = 441; break;
+        case 70: l9y = 424; break;
+        case 75: l9y = 410; break;
+        case 80: l9y = 389; break;
+        case 85: l9y = 375; break;
+        case 90: l9y = 361; break;
+        case 95: l9y = 347; break;
+        case 100: l9y = 332; break;
+        case 105: l9y = 318; break;
+        case 110: l9y = 304; break;
+        case 115: l9y = 292; break;
+        case 120: l9y = 278; break;
+        case 125: l9y = 266; break;
+        case 130: l9y = 252; break;
+        case 135: l9y = 241; break;
+        case 140: l9y = 229; break;
+        case 145: l9y = 218; break;
+        case 150: l9y = 206; break;
+        case 155: l9y = 197; break;
+        case 160: l9y = 189; break;
         }
         scene->addEllipse(l9x, l9y, 4, 4, penYellow);
     }
@@ -1201,52 +1109,42 @@ scene->addEllipse(l9x, l9, 4, 4, penRed);
     }
 }
 
-void MainWindow::r10l10()
+void MainWindow::r10l10() //V
 {
-scene->addEllipse(r10x, r10, 4, 4, penRed);
-scene->addEllipse(l10x, l10, 4, 4, penRed);
     if (r10 > 0)
     {
         switch (r10)
         {
-            case 5:  r10y = 000; break;
-            case 10: r10y = 000; break;
-            case 15: r10y = 000; break;
-            case 20: r10y = 000; break;
-            case 25: r10y = 000; break;
-            case 30: r10y = 000; break;
-            case 35: r10y = 000; break;
-            case 40: r10y = 000; break;
-            case 45: r10y = 000; break;
-            case 50: r10y = 000; break;
-            case 55: r10y = 000; break;
-            case 60: r10y = 000; break;
-            case 65: r10y = 000; break;
-            case 70: r10y = 000; break;
-            case 75: r10y = 000; break;
-            case 80: r10y = 000; break;
-            case 85: r10y = 000; break;
-            case 90: r10y = 000; break;
-            case 95: r10y = 000; break;
-            case 100: r10y = 000; break;
-            case 105: r10y = 000; break;
-            case 110: r10y = 000; break;
-            case 115: r10y = 000; break;
-            case 120: r10y = 000; break;
-            case 125: r10y = 000; break;
-            case 130: r10y = 000; break;
-            case 135: r10y = 000; break;
-            case 140: r10y = 000; break;
-            case 145: r10y = 000; break;
-            case 150: r10y = 000; break;
-            case 155: r10y = 000; break;
-            case 160: r10y = 000; break;
-            case 165: r10y = 000; break;
-            case 170: r10y = 000; break;
-            case 175: r10y = 000; break;
-            case 180: r10y = 000; break;
-            case 185: r10y = 000; break;
-            case 190: r10y = 000; break;
+            case 5:  r10y = 707; break;
+            case 10: r10y = 679; break;
+            case 15: r10y = 650; break;
+            case 20: r10y = 624; break;
+            case 25: r10y = 602; break;
+            case 30: r10y = 576; break;
+            case 35: r10y = 553; break;
+            case 40: r10y = 527; break;
+            case 45: r10y = 504; break;
+            case 50: r10y = 481; break;
+            case 55: r10y = 461; break;
+            case 60: r10y = 441; break;
+            case 65: r10y = 424; break;
+            case 70: r10y = 407; break;
+            case 75: r10y = 387; break;
+            case 80: r10y = 370; break;
+            case 85: r10y = 355; break;
+            case 90: r10y = 338; break;
+            case 95: r10y = 321; break;
+            case 100: r10y = 306; break;
+            case 105: r10y = 292; break;
+            case 110: r10y = 281; break;
+            case 115: r10y = 266; break;
+            case 120: r10y = 252; break;
+            case 125: r10y = 241; break;
+            case 130: r10y = 229; break;
+            case 135: r10y = 218; break;
+            case 140: r10y = 206; break;
+            case 145: r10y = 197; break;
+            case 150: r10y = 186; break;
         }
         scene->addEllipse(r10x, r10y, 4, 4, penYellow);
     }// r10
@@ -1254,44 +1152,36 @@ scene->addEllipse(l10x, l10, 4, 4, penRed);
     {
         switch (l10)
         {
-            case 5:  l10y = 000; break;
-            case 10: l10y = 000; break;
-            case 15: l10y = 000; break;
-            case 20: l10y = 000; break;
-            case 25: l10y = 000; break;
-            case 30: l10y = 000; break;
-            case 35: l10y = 000; break;
-            case 40: l10y = 000; break;
-            case 45: l10y = 000; break;
-            case 50: l10y = 000; break;
-            case 55: l10y = 000; break;
-            case 60: l10y = 000; break;
-            case 65: l10y = 000; break;
-            case 70: l10y = 000; break;
-            case 75: l10y = 000; break;
-            case 80: l10y = 000; break;
-            case 85: l10y = 000; break;
-            case 90: l10y = 000; break;
-            case 95: l10y = 000; break;
-            case 100: l10y = 000; break;
-            case 105: l10y = 000; break;
-            case 110: l10y = 000; break;
-            case 115: l10y = 000; break;
-            case 120: l10y = 000; break;
-            case 125: l10y = 000; break;
-            case 130: l10y = 000; break;
-            case 135: l10y = 000; break;
-            case 140: l10y = 000; break;
-            case 145: l10y = 000; break;
-            case 150: l10y = 000; break;
-            case 155: l10y = 000; break;
-            case 160: l10y = 000; break;
-            case 165: l10y = 000; break;
-            case 170: l10y = 000; break;
-            case 175: l10y = 000; break;
-            case 180: l10y = 000; break;
-            case 185: l10y = 000; break;
-            case 190: l10y = 000; break;
+        case 5:  l10y = 707; break;
+        case 10: l10y = 679; break;
+        case 15: l10y = 650; break;
+        case 20: l10y = 624; break;
+        case 25: l10y = 602; break;
+        case 30: l10y = 576; break;
+        case 35: l10y = 553; break;
+        case 40: l10y = 527; break;
+        case 45: l10y = 504; break;
+        case 50: l10y = 481; break;
+        case 55: l10y = 461; break;
+        case 60: l10y = 441; break;
+        case 65: l10y = 424; break;
+        case 70: l10y = 407; break;
+        case 75: l10y = 387; break;
+        case 80: l10y = 370; break;
+        case 85: l10y = 355; break;
+        case 90: l10y = 338; break;
+        case 95: l10y = 321; break;
+        case 100: l10y = 306; break;
+        case 105: l10y = 292; break;
+        case 110: l10y = 281; break;
+        case 115: l10y = 266; break;
+        case 120: l10y = 252; break;
+        case 125: l10y = 241; break;
+        case 130: l10y = 229; break;
+        case 135: l10y = 218; break;
+        case 140: l10y = 206; break;
+        case 145: l10y = 197; break;
+        case 150: l10y = 186; break;
         }
         scene->addEllipse(l10x, l10y, 4, 4, penYellow);
     }
@@ -1318,52 +1208,38 @@ scene->addEllipse(l10x, l10, 4, 4, penRed);
     }
 }
 
-void MainWindow::r11l11()
+void MainWindow::r11l11() //VB
 {
-scene->addEllipse(r11x, r11, 4, 4, penRed);
-scene->addEllipse(l11x, l11, 4, 4, penRed);
     if (r11 > 0)
     {
         switch (r11)
         {
-            case 5:  r11y = 000; break;
-            case 10: r11y = 000; break;
-            case 15: r11y = 000; break;
-            case 20: r11y = 000; break;
-            case 25: r11y = 000; break;
-            case 30: r11y = 000; break;
-            case 35: r11y = 000; break;
-            case 40: r11y = 000; break;
-            case 45: r11y = 000; break;
-            case 50: r11y = 000; break;
-            case 55: r11y = 000; break;
-            case 60: r11y = 000; break;
-            case 65: r11y = 000; break;
-            case 70: r11y = 000; break;
-            case 75: r11y = 000; break;
-            case 80: r11y = 000; break;
-            case 85: r11y = 000; break;
-            case 90: r11y = 000; break;
-            case 95: r11y = 000; break;
-            case 100: r11y = 000; break;
-            case 105: r11y = 000; break;
-            case 110: r11y = 000; break;
-            case 115: r11y = 000; break;
-            case 120: r11y = 000; break;
-            case 125: r11y = 000; break;
-            case 130: r11y = 000; break;
-            case 135: r11y = 000; break;
-            case 140: r11y = 000; break;
-            case 145: r11y = 000; break;
-            case 150: r11y = 000; break;
-            case 155: r11y = 000; break;
-            case 160: r11y = 000; break;
-            case 165: r11y = 000; break;
-            case 170: r11y = 000; break;
-            case 175: r11y = 000; break;
-            case 180: r11y = 000; break;
-            case 185: r11y = 000; break;
-            case 190: r11y = 000; break;
+        case 5:  r11y = 708; break;
+        case 10: r11y = 673; break;
+        case 15: r11y = 639; break;
+        case 20: r11y = 607; break;
+        case 25: r11y = 579; break;
+        case 30: r11y = 553; break;
+        case 35: r11y = 524; break;
+        case 40: r11y = 496; break;
+        case 45: r11y = 473; break;
+        case 50: r11y = 447; break;
+        case 55: r11y = 427; break;
+        case 60: r11y = 407; break;
+        case 65: r11y = 387; break;
+        case 70: r11y = 367; break;
+        case 75: r11y = 347; break;
+        case 80: r11y = 326; break;
+        case 85: r11y = 309; break;
+        case 90: r11y = 295; break;
+        case 95: r11y = 278; break;
+        case 100: r11y = 263; break;
+        case 105: r11y = 246; break;
+        case 110: r11y = 232; break;
+        case 115: r11y = 218; break;
+        case 120: r11y = 206; break;
+        case 125: r11y = 198; break;
+        case 130: r11y = 189; break;
         }
         scene->addEllipse(r11x, r11y, 4, 4, penYellow);
     }// r11
@@ -1371,44 +1247,32 @@ scene->addEllipse(l11x, l11, 4, 4, penRed);
     {
         switch (l11)
         {
-            case 5:  l11y = 000; break;
-            case 10: l11y = 000; break;
-            case 15: l11y = 000; break;
-            case 20: l11y = 000; break;
-            case 25: l11y = 000; break;
-            case 30: l11y = 000; break;
-            case 35: l11y = 000; break;
-            case 40: l11y = 000; break;
-            case 45: l11y = 000; break;
-            case 50: l11y = 000; break;
-            case 55: l11y = 000; break;
-            case 60: l11y = 000; break;
-            case 65: l11y = 000; break;
-            case 70: l11y = 000; break;
-            case 75: l11y = 000; break;
-            case 80: l11y = 000; break;
-            case 85: l11y = 000; break;
-            case 90: l11y = 000; break;
-            case 95: l11y = 000; break;
-            case 100: l11y = 000; break;
-            case 105: l11y = 000; break;
-            case 110: l11y = 000; break;
-            case 115: l11y = 000; break;
-            case 120: l11y = 000; break;
-            case 125: l11y = 000; break;
-            case 130: l11y = 000; break;
-            case 135: l11y = 000; break;
-            case 140: l11y = 000; break;
-            case 145: l11y = 000; break;
-            case 150: l11y = 000; break;
-            case 155: l11y = 000; break;
-            case 160: l11y = 000; break;
-            case 165: l11y = 000; break;
-            case 170: l11y = 000; break;
-            case 175: l11y = 000; break;
-            case 180: l11y = 000; break;
-            case 185: l11y = 000; break;
-            case 190: l11y = 000; break;
+        case 5:  l11y = 708; break;
+        case 10: l11y = 673; break;
+        case 15: l11y = 639; break;
+        case 20: l11y = 607; break;
+        case 25: l11y = 579; break;
+        case 30: l11y = 553; break;
+        case 35: l11y = 524; break;
+        case 40: l11y = 496; break;
+        case 45: l11y = 473; break;
+        case 50: l11y = 447; break;
+        case 55: l11y = 427; break;
+        case 60: l11y = 407; break;
+        case 65: l11y = 387; break;
+        case 70: l11y = 367; break;
+        case 75: l11y = 347; break;
+        case 80: l11y = 326; break;
+        case 85: l11y = 309; break;
+        case 90: l11y = 295; break;
+        case 95: l11y = 278; break;
+        case 100: l11y = 263; break;
+        case 105: l11y = 246; break;
+        case 110: l11y = 232; break;
+        case 115: l11y = 218; break;
+        case 120: l11y = 206; break;
+        case 125: l11y = 198; break;
+        case 130: l11y = 189; break;
         }
         scene->addEllipse(l11x, l11y, 4, 4, penYellow);
     }
@@ -1437,50 +1301,38 @@ scene->addEllipse(l11x, l11, 4, 4, penRed);
 
 void MainWindow::r12l12()
 {
-    scene->addEllipse(r12x, r12, 4, 4, penRed);
-    scene->addEllipse(l12x, l12, 4, 4, penRed);
     if (r12 > 0)
     {
         switch (r12)
         {
-            case 5:  r12y = 000; break;
-            case 10: r12y = 000; break;
-            case 15: r12y = 000; break;
-            case 20: r12y = 000; break;
-            case 25: r12y = 000; break;
-            case 30: r12y = 000; break;
-            case 35: r12y = 000; break;
-            case 40: r12y = 000; break;
-            case 45: r12y = 000; break;
-            case 50: r12y = 000; break;
-            case 55: r12y = 000; break;
-            case 60: r12y = 000; break;
-            case 65: r12y = 000; break;
-            case 70: r12y = 000; break;
-            case 75: r12y = 000; break;
-            case 80: r12y = 000; break;
-            case 85: r12y = 000; break;
-            case 90: r12y = 000; break;
-            case 95: r12y = 000; break;
-            case 100: r12y = 000; break;
-            case 105: r12y = 000; break;
-            case 110: r12y = 000; break;
-            case 115: r12y = 000; break;
-            case 120: r12y = 000; break;
-            case 125: r12y = 000; break;
-            case 130: r12y = 000; break;
-            case 135: r12y = 000; break;
-            case 140: r12y = 000; break;
-            case 145: r12y = 000; break;
-            case 150: r12y = 000; break;
-            case 155: r12y = 000; break;
-            case 160: r12y = 000; break;
-            case 165: r12y = 000; break;
-            case 170: r12y = 000; break;
-            case 175: r12y = 000; break;
-            case 180: r12y = 000; break;
-            case 185: r12y = 000; break;
-            case 190: r12y = 000; break;
+        case 5:  r12y = 708; break;
+        case 10: r12y = 679; break;
+        case 15: r12y = 651; break;
+        case 20: r12y = 625; break;
+        case 25: r12y = 599; break;
+        case 30: r12y = 571; break;
+        case 35: r12y = 548; break;
+        case 40: r12y = 525; break;
+        case 45: r12y = 499; break;
+        case 50: r12y = 476; break;
+        case 55: r12y = 456; break;
+        case 60: r12y = 436; break;
+        case 65: r12y = 419; break;
+        case 70: r12y = 398; break;
+        case 75: r12y = 379; break;
+        case 80: r12y = 361; break;
+        case 85: r12y = 347; break;
+        case 90: r12y = 333; break;
+        case 95: r12y = 316; break;
+        case 100: r12y = 301; break;
+        case 105: r12y = 287; break;
+        case 110: r12y = 273; break;
+        case 115: r12y = 258; break;
+        case 120: r12y = 244; break;
+        case 125: r12y = 232; break;
+        case 130: r12y = 221; break;
+        case 135: r12y = 210; break;
+        case 140: r12y = 198; break;
         }
         scene->addEllipse(r12x, r12y, 4, 4, penYellow);
     }// r12
@@ -1488,44 +1340,34 @@ void MainWindow::r12l12()
     {
         switch (l12)
         {
-            case 5:  l12y = 000; break;
-            case 10: l12y = 000; break;
-            case 15: l12y = 000; break;
-            case 20: l12y = 000; break;
-            case 25: l12y = 000; break;
-            case 30: l12y = 000; break;
-            case 35: l12y = 000; break;
-            case 40: l12y = 000; break;
-            case 45: l12y = 000; break;
-            case 50: l12y = 000; break;
-            case 55: l12y = 000; break;
-            case 60: l12y = 000; break;
-            case 65: l12y = 000; break;
-            case 70: l12y = 000; break;
-            case 75: l12y = 000; break;
-            case 80: l12y = 000; break;
-            case 85: l12y = 000; break;
-            case 90: l12y = 000; break;
-            case 95: l12y = 000; break;
-            case 100: l12y = 000; break;
-            case 105: l12y = 000; break;
-            case 110: l12y = 000; break;
-            case 115: l12y = 000; break;
-            case 120: l12y = 000; break;
-            case 125: l12y = 000; break;
-            case 130: l12y = 000; break;
-            case 135: l12y = 000; break;
-            case 140: l12y = 000; break;
-            case 145: l12y = 000; break;
-            case 150: l12y = 000; break;
-            case 155: l12y = 000; break;
-            case 160: l12y = 000; break;
-            case 165: l12y = 000; break;
-            case 170: l12y = 000; break;
-            case 175: l12y = 000; break;
-            case 180: l12y = 000; break;
-            case 185: l12y = 000; break;
-            case 190: l12y = 000; break;
+        case 5:  l12y = 708; break;
+        case 10: l12y = 679; break;
+        case 15: l12y = 651; break;
+        case 20: l12y = 625; break;
+        case 25: l12y = 599; break;
+        case 30: l12y = 571; break;
+        case 35: l12y = 548; break;
+        case 40: l12y = 525; break;
+        case 45: l12y = 499; break;
+        case 50: l12y = 476; break;
+        case 55: l12y = 456; break;
+        case 60: l12y = 436; break;
+        case 65: l12y = 419; break;
+        case 70: l12y = 398; break;
+        case 75: l12y = 379; break;
+        case 80: l12y = 361; break;
+        case 85: l12y = 347; break;
+        case 90: l12y = 333; break;
+        case 95: l12y = 316; break;
+        case 100: l12y = 301; break;
+        case 105: l12y = 287; break;
+        case 110: l12y = 273; break;
+        case 115: l12y = 258; break;
+        case 120: l12y = 244; break;
+        case 125: l12y = 232; break;
+        case 130: l12y = 221; break;
+        case 135: l12y = 210; break;
+        case 140: l12y = 198; break;
         }
         scene->addEllipse(l12x, l12y, 4, 4, penYellow);
     }
