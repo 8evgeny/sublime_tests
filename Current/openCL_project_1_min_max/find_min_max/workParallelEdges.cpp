@@ -2,9 +2,15 @@
 #include <QImage>
 #include <CL/cl.hpp>
 #include "main.hpp"
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/imgproc.hpp"
 
 extern QElapsedTimer eTimer;
 extern quint64 timeParallel;
+
+using namespace std;
+using namespace cv;
 
 inline void calculateNDRange(int size, int groupSize,
                              int *bSize, int *bGroupSize, int *oSize)
@@ -24,9 +30,25 @@ inline void calculateNDRange(int size, int groupSize,
 
 
 
-int workParallelEdges(QImage &imageIn, QImage &imageOut)
+int workParallelEdges()
 {
-    // Query platforms
+    QImage imageIn("image");
+    imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
+
+    Mat tmp1 = imread("image", IMREAD_UNCHANGED);
+    imshow("tmp1", tmp1 );
+    waitKey(0);
+
+    Mat tmp2;
+    convertToGrey(imageIn);
+    qimage_to_mat(imageIn, tmp2);
+    imshow("tmp2", tmp2 );
+    waitKey(0);
+
+    QImage imageOut(imageIn.size(), imageIn.format());
+
+
+//     Query platforms
     VECTOR_CLASS<cl::Platform> platforms;
 
     if (cl::Platform::get(&platforms) != CL_SUCCESS)

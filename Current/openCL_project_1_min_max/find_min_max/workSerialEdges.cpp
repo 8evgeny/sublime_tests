@@ -11,8 +11,13 @@ extern quint64 timeSerial;
 using namespace std;
 using namespace cv;
 
-void workSerialEdges(QImage &imageIn, QImage &imageOut)
+void workSerialEdges()
 {
+    QImage imageIn("image");
+    imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
+    convertToGrey(imageIn);
+    QImage imageOut(imageIn.size(), imageIn.format());
+
     eTimer.restart();
 
     // Serial edge detector
@@ -66,7 +71,7 @@ void workSerialEdges(QImage &imageIn, QImage &imageOut)
 
 void workSerialEdgesOpenCV()
 {
-  Mat img = imread("image.jpg", IMREAD_COLOR );
+  Mat img = imread("image", IMREAD_COLOR );
   // Convert to graycsale
   Mat img_gray;
   cvtColor(img, img_gray, COLOR_BGR2GRAY);

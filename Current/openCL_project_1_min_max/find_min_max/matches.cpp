@@ -10,7 +10,7 @@ int testMatches()
 {
     workSerialMatchesOpenCV();
 
-    QImage imageIn("image.jpg");
+    QImage imageIn("image");
     imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
     convertToGrey(imageIn);
     QImage imageOut(imageIn.size(), imageIn.format());
