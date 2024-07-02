@@ -9,7 +9,7 @@ extern quint64 timeSerial, timeParallel;
 int testMatches()
 {
     workSerialMatches();
-    workSerialMatchesOpenCV();
+//    workSerialMatchesOpenCV();
 
 //    QImage imageIn("image");
 //    imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);

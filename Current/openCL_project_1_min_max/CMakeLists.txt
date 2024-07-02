@@ -23,3 +23,4 @@ include_directories (${CMAKE_SOURCE_DIR} )
 set (CMAKE_C_FLAGS "-std=c99 -Wall -DUNIX ${COMPILE_ARCH}")
 
 add_subdirectory(find_min_max)
+add_subdirectory(image_filtering)
