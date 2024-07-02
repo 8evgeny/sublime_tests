@@ -38,10 +38,11 @@ void workSerialMatches()
 
     eTimer.restart();
     MatchingMethod( 0, 0 );
-
+    timeSerial = eTimer.nsecsElapsed();
+    printf("timeSerial = %.3f ms\n",(float)timeSerial/1000000);
     waitKey(0);
 
-    timeSerial = eTimer.nsecsElapsed();
+
 
 }
 
@@ -59,7 +60,7 @@ void MatchingMethod( int, void* )
 
   /// Do the Matching and Normalize
   matchTemplate( img, templ, result, match_method );
-  normalize( result, result, 0, 1, NORM_MINMAX, -1, Mat() );
+//  normalize( result, result, 0, 1, NORM_MINMAX, -1, Mat() );
 
   /// Localizing the best match with minMaxLoc
   double minVal; double maxVal; Point minLoc; Point maxLoc;
