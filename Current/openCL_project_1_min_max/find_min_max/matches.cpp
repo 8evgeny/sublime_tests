@@ -18,9 +18,7 @@ int testMatches()
     QImage imageOut(imageIn.size(), imageIn.format());
 
 
-
-
-    workSerialMatches();
+    workSerialMatchesOpenCV();
 
 //    if(workParallelMatches(imageIn, imageOut) != CL_SUCCESS)
 //        return -1;

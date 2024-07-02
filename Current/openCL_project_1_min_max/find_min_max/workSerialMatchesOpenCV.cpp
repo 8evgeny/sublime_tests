@@ -15,7 +15,15 @@ extern quint64 timeSerial;
 Mat img; Mat templ; Mat result;
 const char* image_window = "Source Image";
 const char* result_window = "Result window";
-int match_method = 3;
+int match_method = TM_SQDIFF;
+
+//TM_SQDIFF
+//TM_SQDIFF_NORMED
+//TM_CCORR
+//TM_CCORR_NORMED
+//TM_CCOEFF
+//TM_CCOEFF_NORMED
+
 int max_Trackbar = 5;
 
 void MatchingMethod( int, void* );
@@ -23,7 +31,7 @@ void MatchingMethod( int, void* );
 
 
 
-void workSerialMatches()
+void workSerialMatchesOpenCV()
 {
     /// Load image and template
     img = imread("image", 1 );
@@ -39,12 +47,9 @@ void workSerialMatches()
 
     eTimer.restart();
     MatchingMethod( 0, 0 );
-    timeSerial = eTimer.nsecsElapsed();
+
     cout<< "timeSerial = " << (float)timeSerial/1000000 <<" ms"<<endl;
     waitKey(0);
-
-
-
 }
 
 void MatchingMethod( int, void* )
@@ -61,7 +66,9 @@ void MatchingMethod( int, void* )
 
   /// Do the Matching and Normalize
   matchTemplate( img, templ, result, match_method );
-//  normalize( result, result, 0, 1, NORM_MINMAX, -1, Mat() );
+  normalize( result, result, 0, 1, NORM_MINMAX, -1, Mat() );
+
+  timeSerial = eTimer.nsecsElapsed();
 
   /// Localizing the best match with minMaxLoc
   double minVal; double maxVal; Point minLoc; Point maxLoc;
