@@ -20,7 +20,7 @@ int testMatches()
 
 
 
-    workSerialMatches(imageIn, imageTempl, imageOut);
+    workSerialMatches();
 
 //    if(workParallelMatches(imageIn, imageOut) != CL_SUCCESS)
 //        return -1;

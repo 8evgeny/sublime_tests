@@ -11,4 +11,4 @@ void convertToGrey(QImage &imageIn);
 int testEdges();
 
 int testMatches();
-void workSerialMatches(QImage &imageIn, QImage &imageTempl, QImage &imageOut);
+void workSerialMatches();
