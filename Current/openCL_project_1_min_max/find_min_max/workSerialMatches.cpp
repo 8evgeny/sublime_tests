@@ -26,10 +26,10 @@ int match_method = TM_SQDIFF;
 
 int max_Trackbar = 5;
 
-void MatchingMethod( int, void* );
+void workSerialMatches()
+{
 
-
-
+}
 
 void workSerialMatchesOpenCV()
 {
@@ -91,3 +91,5 @@ void MatchingMethod( int, void* )
 
   return;
 }
+
+

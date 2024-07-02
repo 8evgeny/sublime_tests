@@ -21,10 +21,10 @@ int main(int argc, char *argv[])
 
 // Bugs  Без Serial parallel не работает ??????
 
-    if (testEdges() != 0)
-        return -1;
+//    if (testEdges() != 0)
+//        return -1;
 
-//    if (testMatches() != 0)
+    if (testMatches() != 0)
 //        return -1;
 
 

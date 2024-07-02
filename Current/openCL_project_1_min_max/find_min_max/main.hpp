@@ -11,14 +11,16 @@
 int testEdges();
 void workSerialEdges();
 void workSerialEdgesOpenCV();
-
 int workParallelEdges();
-inline void calculateNDRange(int size, int groupSize, int *bSize, int *bGroupSize, int *oSize);
-void convertToGrey(QImage &imageIn);
 
 int testMatches();
+void workSerialMatches();
 void workSerialMatchesOpenCV();
+void MatchingMethod( int, void* );
 int workParallelMatches(QImage &imageIn, QImage &imageOut);
+
+inline void calculateNDRange(int size, int groupSize, int *bSize, int *bGroupSize, int *oSize);
+void convertToGrey(QImage &imageIn);
 
 void qimage_to_mat(const QImage& image, cv::OutputArray out);
 void mat_to_qimage(cv::InputArray image, QImage& out);

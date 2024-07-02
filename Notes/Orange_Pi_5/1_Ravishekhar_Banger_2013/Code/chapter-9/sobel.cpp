@@ -1,7 +1,7 @@
 #include "sobel.h"
 #include "sobel_kernel.h"
 #include <math.h>
-
+#define OPENCL_1_2
 using std::cout;
 using std::cin;
 using std::endl;

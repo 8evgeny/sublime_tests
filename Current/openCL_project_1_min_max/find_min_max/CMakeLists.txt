@@ -4,7 +4,7 @@ file(GLOB src
     workSerialEdges.cpp
     workParallelEdges.cpp
     matches.cpp
-    workSerialMatchesOpenCV.cpp
+    workSerialMatches.cpp
     workParallelMatches.cpp
     )
 
