@@ -56,38 +56,41 @@ float MainWindow::calcCornerLine(float in)
 
 string MainWindow::calculateLetter(float r, float l)
 {
-    float hightY = calcCornerLine(hight);
-    float lowY = calcCornerLine(low);
-if (r > l)
+    r = 1000.0f - r;
+    l = 1000.0f - r;
+    float hightY = 1000.0f - calcCornerLine(hight);
+    float lowY = 1000.0f - calcCornerLine(low);
+if (r < l)
 {
-    if (r > lowY && l < hightY) return "OK";
-    if (l>lowY) return "A/-2";
-    if (r>lowY && l<=lowY && l>=hightY) return "A/-1";
-    if (r<=lowY && r>hightY && l<lowY && l>=hightY) return "A/0";
-    if (r<=lowY && r>=hightY && l<hightY) return "A/1";
-    if (r<hightY) return "A/2";
+    if (r < lowY && l > hightY) return "OK";
+    if (l<lowY) return "A/-2";
+    if (r<lowY && l>=lowY && l<=hightY) return "A/-1";
+    if (r>=lowY && r<hightY && l<=hightY) return "A/0";
+    if (r>=lowY && r<=hightY && l>hightY) return "A/1";
+    if (r>hightY) return "A/2";
     return "ERR1";
 }
 if (r == l)
 {
-    if (r>lowY) return "B/-2";
+    if (r<lowY) return "B/-2";
     if (r == lowY) return "B/-1";
-    if (r<lowY && r>hightY) return "B/0";
+    if (r>lowY && r<hightY) return "B/0";
     if (r == hightY) return "B/1";
-    if (r<hightY ) return "B/2";
+    if (r>hightY ) return "B/2";
     return "ERR2";
 }
-if (r < l)
+if (r > l)
 {
-    if (l>lowY && r<hightY) return "OP";
-    if (r>lowY) return "C/-2";
-    if (r<=lowY && r >=hightY && l>lowY ) return "C/-1";
-    if (r>=hightY && l<=lowY) return "C/0";
-    if (r<hightY && l>=hightY ) return "C/1";
-    if (l<hightY) return "A/2";
+    if (l<lowY && r>hightY) return "OP";
+    if (r<lowY) return "C/-2";
+
+    if (r>=lowY && r <=hightY && l<lowY ) return "C/-1";
+    if (r<=hightY && l>=lowY) return "C/0";
+    if (r>hightY && l<=hightY ) return "C/1";
+    if (l>hightY) return "A/2";
     return "ERR3";
 }
-return "ERR4";
+return "ERR";
 }
 
 void MainWindow::calculateLetters()
