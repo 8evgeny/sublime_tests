@@ -24,4 +24,5 @@ set (CMAKE_C_FLAGS "-std=c99 -Wall -DUNIX ${COMPILE_ARCH}")
 
 add_subdirectory(0_Simple_add)
 #add_subdirectory(1_find_min_max)
+add_subdirectory(2_Matching)
 add_subdirectory(5_mandelbrot)
