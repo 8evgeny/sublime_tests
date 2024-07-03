@@ -1,5 +1,4 @@
 // https://simpleopencl.blogspot.com/2013/06/tutorial-simple-start-with-opencl-and-c.html
-
 #include <iostream>
 #include <CL/cl.hpp>
 #include <QtCore>
