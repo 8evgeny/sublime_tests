@@ -29,148 +29,292 @@ void MainWindow::on_dateEdit_dateChanged(const QDate &date)
 }
 void MainWindow::on_r_1_editingFinished()
 {
-    r1 = ui->r_1->text().toInt();
-    cout<< "r1: " << r1 << endl;
-    drawPoints();
+    if (ui->r_1->text().toInt()%5 == 0)
+    {
+        r1 = ui->r_1->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->r_1->setText("");
+    }
 }
 void MainWindow::on_r_2_editingFinished()
 {
-    r2 = ui->r_2->text().toInt();
-    cout<< "r2: " << r2 << endl;
-    drawPoints();
+    if (ui->r_2->text().toInt()%5 == 0)
+    {
+        r2 = ui->r_2->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->r_2->setText("");
+    }
 }
 void MainWindow::on_r_3_editingFinished()
 {
-    r3 = ui->r_3->text().toInt();
-    cout<< "r3: " << r3 << endl;
-    drawPoints();
+    if (ui->r_3->text().toInt()%5 == 0)
+    {
+        r3 = ui->r_3->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->r_3->setText("");
+    }
 }
 void MainWindow::on_r_4_editingFinished()
 {
-    r4 = ui->r_4->text().toInt();
-    cout<< "r4: " << r4 << endl;
-    drawPoints();
+    if (ui->r_4->text().toInt()%5 == 0)
+    {
+        r4 = ui->r_4->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->r_4->setText("");
+    }
 }
 void MainWindow::on_r_5_editingFinished()
 {
-    r5 = ui->r_5->text().toInt();
-    cout<< "r5: " << r5 << endl;
-    drawPoints();
+    if (ui->r_5->text().toInt()%5 == 0)
+    {
+        r5 = ui->r_5->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->r_5->setText("");
+    }
 }
 void MainWindow::on_r_6_editingFinished()
 {
-    r6 = ui->r_6->text().toInt();
-    cout<< "r6: " << r6 << endl;
-    drawPoints();
+    if (ui->r_6->text().toInt()%5 == 0)
+    {
+        r6 = ui->r_6->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->r_6->setText("");
+    }
 }
 void MainWindow::on_r_7_editingFinished()
 {
-    r7 = ui->r_7->text().toInt();
-    cout<< "r7: " << r7 << endl;
-    drawPoints();
+    if (ui->r_7->text().toInt()%5 == 0)
+    {
+        r7 = ui->r_7->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->r_7->setText("");
+    }
 }
 void MainWindow::on_r_8_editingFinished()
 {
-    r8 = ui->r_8->text().toInt();
-    cout<< "r8: " << r8 << endl;
-    drawPoints();
+    if (ui->r_8->text().toInt()%5 == 0)
+    {
+        r8 = ui->r_8->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->r_8->setText("");
+    }
 }
 void MainWindow::on_r_9_editingFinished()
 {
-    r9 = ui->r_9->text().toInt();
-    cout<< "r9: " << r9 << endl;
-    drawPoints();
+    if (ui->r_9->text().toInt()%5 == 0)
+    {
+        r9 = ui->r_9->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->r_9->setText("");
+    }
 }
 void MainWindow::on_r_10_editingFinished()
 {
-    r10 = ui->r_10->text().toInt();
-    cout<< "r10: " << r10 << endl;
-    drawPoints();
+    if (ui->r_10->text().toInt()%5 == 0)
+    {
+        r10 = ui->r_10->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->r_10->setText("");
+    }
 }
 void MainWindow::on_r_11_editingFinished()
 {
-    r11 = ui->r_11->text().toInt();
-    cout<< "r11: " << r11 << endl;
-    drawPoints();
+    if (ui->r_11->text().toInt()%5 == 0)
+    {
+        r11 = ui->r_11->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->r_11->setText("");
+    }
 }
 void MainWindow::on_r_12_editingFinished()
 {
-    r12 = ui->r_12->text().toInt();
-    cout<< "r12: " << r12 << endl;
-    drawPoints();
+    if (ui->r_12->text().toInt()%5 == 0)
+    {
+        r12 = ui->r_12->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->r_12->setText("");
+    }
 }
 
 void MainWindow::on_l_1_editingFinished()
 {
-    l1 = ui->l_1->text().toInt();
-    cout<< "l1: " << l1 << endl;
-    drawPoints();
+    if (ui->l_1->text().toInt()%5 == 0)
+    {
+        l1 = ui->l_1->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->l_1->setText("");
+    }
 }
 void MainWindow::on_l_2_editingFinished()
 {
-    l2 = ui->l_2->text().toInt();
-    cout<< "l2: " << l2 << endl;
-    drawPoints();
+    if (ui->l_2->text().toInt()%5 == 0)
+    {
+        l2 = ui->l_2->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->l_2->setText("");
+    }
 }
 void MainWindow::on_l_3_editingFinished()
 {
-    l3 = ui->l_3->text().toInt();
-    cout<< "l3: " << l3 << endl;
-    drawPoints();
+    if (ui->l_3->text().toInt()%5 == 0)
+    {
+        l3 = ui->l_3->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->l_3->setText("");
+    }
 }
 void MainWindow::on_l_4_editingFinished()
 {
-    l4 = ui->l_4->text().toInt();
-    cout<< "l4: " << l4 << endl;
-    drawPoints();
+    if (ui->l_4->text().toInt()%5 == 0)
+    {
+        l4 = ui->l_4->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->l_4->setText("");
+    }
 }
 void MainWindow::on_l_5_editingFinished()
 {
-    l5 = ui->l_5->text().toInt();
-    cout<< "l5: " << l5 << endl;
-    drawPoints();
+    if (ui->l_5->text().toInt()%5 == 0)
+    {
+        l5 = ui->l_5->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->l_5->setText("");
+    }
 }
 void MainWindow::on_l_6_editingFinished()
 {
-    l6 = ui->l_6->text().toInt();
-    cout<< "l6: " << l6 << endl;
-    drawPoints();
+    if (ui->l_6->text().toInt()%5 == 0)
+    {
+        l6 = ui->l_6->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->l_6->setText("");
+    }
 }
 void MainWindow::on_l_7_editingFinished()
 {
-    l7 = ui->l_7->text().toInt();
-    cout<< "l7: " << l7 << endl;
-    drawPoints();
+    if (ui->l_7->text().toInt()%5 == 0)
+    {
+        l7 = ui->l_7->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->l_7->setText("");
+    }
 }
 void MainWindow::on_l_8_editingFinished()
 {
-    l8 = ui->l_8->text().toInt();
-    cout<< "l8: " << l8 << endl;
-    drawPoints();
+    if (ui->l_8->text().toInt()%5 == 0)
+    {
+        l8 = ui->l_8->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->l_8->setText("");
+    }
 }
 void MainWindow::on_l_9_editingFinished()
 {
-    l9 = ui->l_9->text().toInt();
-    cout<< "l9: " << l9 << endl;
-    drawPoints();
+    if (ui->l_9->text().toInt()%5 == 0)
+    {
+        l9 = ui->l_9->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->l_9->setText("");
+    }
 }
 void MainWindow::on_l_10_editingFinished()
 {
-    l10 = ui->l_10->text().toInt();
-    cout<< "l10: " << l10 << endl;
-    drawPoints();
+    if (ui->l_10->text().toInt()%5 == 0)
+    {
+        l10 = ui->l_10->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->l_10->setText("");
+    }
 }
 void MainWindow::on_l_11_editingFinished()
 {
-    l11 = ui->l_11->text().toInt();
-    cout<< "l11: " << l11 << endl;
-    drawPoints();
+    if (ui->l_11->text().toInt()%5 == 0)
+    {
+        l11 = ui->l_11->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->l_11->setText("");
+    }
 }
 void MainWindow::on_l_12_editingFinished()
 {
-    l12 = ui->l_12->text().toInt();
-    cout<< "l12: " << l12 << endl;
-    drawPoints();
+    if (ui->l_12->text().toInt()%5 == 0)
+    {
+        l12 = ui->l_12->text().toInt();
+        drawPoints();
+    }
+    else
+    {
+        ui->l_12->setText("");
+    }
 }
 
 void MainWindow::on_button_exit_clicked()

@@ -54,6 +54,54 @@ float MainWindow::calcCornerLine(float in)
     return 734;
 }
 
+string MainWindow::calculateLetter(int r, int l)
+{
+    float hightY = calcCornerLine(hight);
+    float lowY = calcCornerLine(low);
+if (r < l)
+{
+    if (r<lowY && l>hightY) return "OK";
+    if (l<lowY) return "A/-2";
+    if (r<lowY && l>=lowY && l<=hightY) return "A/-1";
+    if (r>=lowY && r<hightY && l>lowY && l<=hightY) return "A/0";
+    if (r>=lowY && r<=hightY && l>hightY) return "A/1";
+    if (r>hightY) return "A/2";
+}
+if (r == l)
+{
+    if (r<lowY) return "B/-2";
+    if (r == lowY) return "B/-1";
+    if (r>lowY && r<hightY) return "B/0";
+    if (r == hightY) return "B/1";
+    if (r>hightY ) return "B/2";
+}
+if (r > l)
+{
+    if (l<lowY && r>hightY) return "OP";
+    if (r<lowY) return "C/-2";
+    if (r>=lowY && r <=hightY && l<lowY ) return "C/-1";
+    if (r<=hightY && l>=lowY) return "C/0";
+    if (r>hightY && l<=hightY ) return "C/1";
+    if (l>hightY) return "A/2";
+}
+return "ERR";
+}
+
+void MainWindow::calculateLetters()
+{
+    letter1 = calculateLetter(r1y,l1y);
+    letter2 = calculateLetter(r2y,l2y);
+    letter3 = calculateLetter(r3y,l3y);
+    letter4 = calculateLetter(r4y,l4y);
+    letter5 = calculateLetter(r5y,l5y);
+    letter6 = calculateLetter(r6y,l6y);
+    letter7 = calculateLetter(r7y,l7y);
+    letter8 = calculateLetter(r8y,l8y);
+    letter9 = calculateLetter(r9y,l9y);
+    letter10 = calculateLetter(r10y,l10y);
+    letter11 = calculateLetter(r11y,l11y);
+    letter12 = calculateLetter(r12y,l12y);
+}
 
 void MainWindow::drawPoints()
 {
@@ -77,11 +125,16 @@ void MainWindow::drawPoints()
     hight = averadge + 7;
     low = averadge - 7;
     if (low < 0) low = 0;
-    cout<<"hight: "<<hight<<endl;
-    cout<<"low: "<<low<<endl;
 
-    scene->addLine(corner_x_begin, calcCornerLine(hight), corner_x_end, calcCornerLine(hight), penYellow);
-    scene->addLine(corner_x_begin, calcCornerLine(low), corner_x_end, calcCornerLine(low), penYellow);
+    if (r1>0 && r2>0 && r3>0 && r4>0 && r5>0 && r6>0 && r7>0 && r8>0 && r9>0 && r10>0 && r11>0 && r12>0 &&
+        l1>0 && l2>0 && l3>0 && l4>0 && l5>0 && l6>0 && l7>0 && l8>0 && l9>0 && l10>0 && l11>0 && l12>0)
+    {
+        scene->addLine(corner_x_begin, calcCornerLine(hight), corner_x_end, calcCornerLine(hight), penYellow);
+        scene->addLine(corner_x_begin, calcCornerLine(low), corner_x_end, calcCornerLine(low), penYellow);
+
+        calculateLetters();
+    }
+
 }
 
 void MainWindow::on_button_save_clicked()
@@ -111,19 +164,19 @@ void MainWindow::writeText()
     ofstream fout;
     fout.open(nameOutFile + "_.txt");
     fout <<" Имя: "<< name_field.toStdString() <<" / Дата: "<<Date.toStdString() <<" / Измерение № "<<to_string(izmereniye)<<endl<<endl;
-    fout << " P\t Легкие\t\t\t\t"<< r1 <<"\t" << l1 <<"\t" << endl;
-    fout << " MC\t Перикард\t\t\t"<< r2 <<"\t" << l2 <<"\t" << endl;
-    fout << " С\t Сердце\t\t\t\t"<< r3 <<"\t" << l3 <<"\t" << endl;
-    fout << " IG\t Тонкий кишечник\t\t"<< r4 <<"\t" << l4 <<"\t" << endl;
-    fout << " TR\t Гормональная система\t\t"<< r5 <<"\t" << l5 <<"\t" << endl;
-    fout << " GI\t Толстый кишечник\t\t"<< r6 <<"\t" << l6 <<"\t" << endl;
+    fout << " P\t Легкие\t\t\t\t"<< r1 <<"\t" << l1 <<"\t" << letter1 <<endl;
+    fout << " MC\t Перикард\t\t\t"<< r2 <<"\t" << l2 <<"\t" << letter2 <<endl;
+    fout << " С\t Сердце\t\t\t\t"<< r3 <<"\t" << l3 <<"\t" << letter3 <<endl;
+    fout << " IG\t Тонкий кишечник\t\t"<< r4 <<"\t" << l4 <<"\t" << letter4 <<endl;
+    fout << " TR\t Гормональная система\t\t"<< r5 <<"\t" << l5 <<"\t" << letter5 <<endl;
+    fout << " GI\t Толстый кишечник\t\t"<< r6 <<"\t" << l6 <<"\t" << letter6 <<endl;
     fout << " " << endl;
-    fout << " RP\t Селезенка, Поджелудочная\t"<< r7 <<"\t" << l7 <<"\t" << endl;
-    fout << " F\t Печень\t\t\t\t"<< r8 <<"\t" << l8 <<"\t"<< endl;
-    fout << " R\t Почки\t\t\t\t"<< r9 <<"\t" << l9 <<"\t" << endl;
-    fout << " V\t Мочевой пузырь\t\t\t"<< r10 <<"\t" << l10 <<"\t" << endl;
-    fout << " VB\t Желчный пузырь\t\t\t"<< r11 <<"\t" << l11 <<"\t" << endl;
-    fout << " E\t Желудок\t\t\t"<< r12 <<"\t" << l12 <<"\t" << endl;
+    fout << " RP\t Селезенка, Поджелудочная\t"<< r7 <<"\t" << l7 <<"\t" << letter7 <<endl;
+    fout << " F\t Печень\t\t\t\t"<< r8 <<"\t" << l8 <<"\t"<< letter8 <<endl;
+    fout << " R\t Почки\t\t\t\t"<< r9 <<"\t" << l9 <<"\t" << letter9 <<endl;
+    fout << " V\t Мочевой пузырь\t\t\t"<< r10 <<"\t" << l10 <<"\t" << letter10 <<endl;
+    fout << " VB\t Желчный пузырь\t\t\t"<< r11 <<"\t" << l11 <<"\t" << letter11 <<endl;
+    fout << " E\t Желудок\t\t\t"<< r12 <<"\t" << l12 <<"\t" << letter12 <<endl;
     fout << endl<<" Коридор нормы верх: " << to_string(hight) <<endl;
     fout << " Коридор нормы низ: " << to_string(low) <<endl;
     fout << " " << endl;

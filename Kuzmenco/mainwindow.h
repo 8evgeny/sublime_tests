@@ -78,6 +78,8 @@ void paintEvent(QPaintEvent *event);
     void writeText();
     float calcCornerLine(float input);
     void on_Izmereniye_editingFinished();
+    void calculateLetters();
+    std::string calculateLetter(int r, int l);
 
 private:
     Ui::MainWindow *ui;
@@ -88,6 +90,7 @@ private:
     float averadgeY;
     float hight;
     float low;
+    std::string letter1, letter2, letter3, letter4, letter5, letter6, letter7, letter8, letter9,letter10, letter11, letter12;
     unsigned int izmereniye{1};
     unsigned int  r1x{123}, l1x{181};
     unsigned int  r2x{208}, l2x{267};
