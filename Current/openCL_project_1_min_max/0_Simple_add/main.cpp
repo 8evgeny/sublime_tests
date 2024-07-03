@@ -10,7 +10,7 @@ QElapsedTimer eTimer;
 quint64 timeSerial, timeParallel;
 
 using namespace std;
-#define vectorSize 10000000
+#define vectorSize 100000000
 vector<int> randomVector(size_t size)
 {
     vector<int> v(size);
@@ -102,7 +102,7 @@ int main(){
     //write arrays A and B to the device
     queue.enqueueWriteBuffer(buffer_A,CL_TRUE,0,sizeof(int)*vectorSize, v1.data());
     queue.enqueueWriteBuffer(buffer_B,CL_TRUE,0,sizeof(int)*vectorSize, v2.data());
- 
+
 
     //run the kernel
     cl::Kernel kernel_add=cl::Kernel(program,"simple_add");
