@@ -10,7 +10,7 @@ QElapsedTimer eTimer;
 quint64 timeSerial, timeParallel;
 
 using namespace std;
-
+#define vectorSize 1000
 vector<int> randomVector(size_t size)
 {
     vector<int> v(size);
@@ -29,7 +29,6 @@ void vectorsAddSerial(vector<int>&v1,vector<int>&v2,vector<int>&v3)
         v3[i] = v1[i] + v2[i];
     }
     timeSerial = eTimer.nsecsElapsed();
-    cout<<"timeSerial="<<(float)timeSerial/1000<<" mks "<<endl;
 }
 
 int main(){
@@ -80,55 +79,50 @@ int main(){
     }
  
     // create buffers on the device
-    cl::Buffer buffer_A(context,CL_MEM_READ_WRITE,sizeof(int)*10);
-    cl::Buffer buffer_B(context,CL_MEM_READ_WRITE,sizeof(int)*10);
-    cl::Buffer buffer_C(context,CL_MEM_READ_WRITE,sizeof(int)*10);
+    cl::Buffer buffer_A(context,CL_MEM_READ_WRITE,sizeof(int)*vectorSize);
+    cl::Buffer buffer_B(context,CL_MEM_READ_WRITE,sizeof(int)*vectorSize);
+    cl::Buffer buffer_C(context,CL_MEM_READ_WRITE,sizeof(int)*vectorSize);
  
-    vector<int> v1(randomVector(1000000));
+    vector<int> v1(randomVector(vectorSize));
 //    copy(v1.begin(), v1.end(), ostream_iterator<int>(cout, " "));
     cout<<endl;
-    vector<int> v2(randomVector(1000000));
+    vector<int> v2(randomVector(vectorSize));
 //    copy(v2.begin(), v2.end(), ostream_iterator<int>(cout, " "));
     cout<<endl;
-    vector<int> v3(1000000);
-
+    vector<int> v3(vectorSize);
+    vector<int> v4(vectorSize);
 
     vectorsAddSerial(v1,v2,v3);
 //    copy(v3.begin(), v3.end(), ostream_iterator<int>(cout, " "));
+    std::cout<<"\n\n\n";
 
-    int A[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    int B[] = {0, 1, 2, 0, 1, 2, 0, 1, 2, 0};
- 
     //create queue to which we will push commands for the device.
     cl::CommandQueue queue(context, default_device);
  
     //write arrays A and B to the device
-    queue.enqueueWriteBuffer(buffer_A,CL_TRUE,0,sizeof(int)*10,A);
-    queue.enqueueWriteBuffer(buffer_B,CL_TRUE,0,sizeof(int)*10,B);
+    queue.enqueueWriteBuffer(buffer_A,CL_TRUE,0,sizeof(int)*vectorSize, v1.data());
+    queue.enqueueWriteBuffer(buffer_B,CL_TRUE,0,sizeof(int)*vectorSize, v2.data());
  
- 
+
     //run the kernel
-//    cl::KernelFunctor simple_add(cl::Kernel(program,"simple_add"),queue,cl::NullRange,cl::NDRange(10),cl::NullRange);
-//    simple_add(buffer_A,buffer_B,buffer_C);
- 
-    //alternative way to run the kernel
     cl::Kernel kernel_add=cl::Kernel(program,"simple_add");
-    kernel_add.setArg(0,buffer_A);
-    kernel_add.setArg(1,buffer_B);
-    kernel_add.setArg(2,buffer_C);
-    queue.enqueueNDRangeKernel(kernel_add,cl::NullRange,cl::NDRange(10),cl::NullRange);
+    kernel_add.setArg(0, buffer_A);
+    kernel_add.setArg(1, buffer_B);
+    kernel_add.setArg(2, buffer_C);
+    eTimer.restart();
+    queue.enqueueNDRangeKernel(kernel_add,cl::NullRange,cl::NDRange(vectorSize),cl::NullRange);
+    timeParallel = eTimer.nsecsElapsed();
     queue.finish();
+
+    //read result from the device to vector
+    queue.enqueueReadBuffer(buffer_C, CL_TRUE, 0, sizeof(int)*vectorSize, v4.data());
  
-    int C[10];
-    //read result C from the device to array C
-    queue.enqueueReadBuffer(buffer_C, CL_TRUE, 0, sizeof(int)*10, C);
- 
-    std::cout<<"result parallel: \n";
-    for(int i=0;i<10;i++)
-    {
-        std::cout<<C[i]<<" ";
-    }
+    std::cout<<"\nresult parallel: \n";
+    copy(v4.begin(), v4.end(), ostream_iterator<int>(cout, " "));
     std::cout<<"\n";
+
+    cout<<"timeSerial="<<(float)timeSerial/1000<<" mks "<<endl;
+    cout<<"timeParallel="<<(float)timeParallel/1000<<" mks "<<endl;
     return 0;
 }
 
