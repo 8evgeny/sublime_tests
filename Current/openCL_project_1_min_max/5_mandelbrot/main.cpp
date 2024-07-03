@@ -7,7 +7,10 @@
 #include <chrono>
 #include <string>
 #include <fstream>
-
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/imgproc.hpp"
+using namespace cv;
 size_t align(int x, int y)
 {
     return (x + y - 1) / y * y;
@@ -82,7 +85,7 @@ cl_program build_program(cl_context ctx, cl_device_id dev)
 
 void save_ppm(const cl_uint* p, int w, int h)
 {
-    std::ofstream file("result.ppm", std::ios::binary);
+    std::ofstream file("result", std::ios::binary);
     file << "P6\n" << w << " " << h << "\n255\n";
     for (int y = 0; y < h; ++y)
     {
@@ -93,11 +96,11 @@ void save_ppm(const cl_uint* p, int w, int h)
         }
     }
 }
-
+const char* image_window = "Result";
 int main()
 {
 //   if (!ocl_init()) throw;
-   static const int res_w = 4800, res_h = 2560;
+   static const int res_w = 640, res_h = 480;
 
    cl_int err;
    cl_device_id device = create_device();
@@ -118,6 +121,9 @@ int main()
    clReleaseCommandQueue(queue);
    clReleaseProgram(program);
    clReleaseContext(context);
-
+   Mat mandel = imread("result", IMREAD_UNCHANGED);
+   namedWindow( image_window, WINDOW_AUTOSIZE );
+   imshow(image_window, mandel );
+   waitKey(0);
    return 0;
 }
