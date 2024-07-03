@@ -54,53 +54,56 @@ float MainWindow::calcCornerLine(float in)
     return 734;
 }
 
-string MainWindow::calculateLetter(int r, int l)
+string MainWindow::calculateLetter(float r, float l)
 {
     float hightY = calcCornerLine(hight);
     float lowY = calcCornerLine(low);
-if (r < l)
+if (r > l)
 {
-    if (r<lowY && l>hightY) return "OK";
-    if (l<lowY) return "A/-2";
-    if (r<lowY && l>=lowY && l<=hightY) return "A/-1";
-    if (r>=lowY && r<hightY && l>lowY && l<=hightY) return "A/0";
-    if (r>=lowY && r<=hightY && l>hightY) return "A/1";
-    if (r>hightY) return "A/2";
+    if (r > lowY && l < hightY) return "OK";
+    if (l>lowY) return "A/-2";
+    if (r>lowY && l<=lowY && l>=hightY) return "A/-1";
+    if (r<=lowY && r>hightY && l<lowY && l>=hightY) return "A/0";
+    if (r<=lowY && r>=hightY && l<hightY) return "A/1";
+    if (r<hightY) return "A/2";
+    return "ERR1";
 }
 if (r == l)
 {
-    if (r<lowY) return "B/-2";
+    if (r>lowY) return "B/-2";
     if (r == lowY) return "B/-1";
-    if (r>lowY && r<hightY) return "B/0";
+    if (r<lowY && r>hightY) return "B/0";
     if (r == hightY) return "B/1";
-    if (r>hightY ) return "B/2";
+    if (r<hightY ) return "B/2";
+    return "ERR2";
 }
-if (r > l)
+if (r < l)
 {
-    if (l<lowY && r>hightY) return "OP";
-    if (r<lowY) return "C/-2";
-    if (r>=lowY && r <=hightY && l<lowY ) return "C/-1";
-    if (r<=hightY && l>=lowY) return "C/0";
-    if (r>hightY && l<=hightY ) return "C/1";
-    if (l>hightY) return "A/2";
+    if (l>lowY && r<hightY) return "OP";
+    if (r>lowY) return "C/-2";
+    if (r<=lowY && r >=hightY && l>lowY ) return "C/-1";
+    if (r>=hightY && l<=lowY) return "C/0";
+    if (r<hightY && l>=hightY ) return "C/1";
+    if (l<hightY) return "A/2";
+    return "ERR3";
 }
-return "ERR";
+return "ERR4";
 }
 
 void MainWindow::calculateLetters()
 {
-    letter1 = calculateLetter(r1y,l1y);
-    letter2 = calculateLetter(r2y,l2y);
-    letter3 = calculateLetter(r3y,l3y);
-    letter4 = calculateLetter(r4y,l4y);
-    letter5 = calculateLetter(r5y,l5y);
-    letter6 = calculateLetter(r6y,l6y);
-    letter7 = calculateLetter(r7y,l7y);
-    letter8 = calculateLetter(r8y,l8y);
-    letter9 = calculateLetter(r9y,l9y);
-    letter10 = calculateLetter(r10y,l10y);
-    letter11 = calculateLetter(r11y,l11y);
-    letter12 = calculateLetter(r12y,l12y);
+    letter1 = calculateLetter((float)r1y, (float)l1y);
+    letter2 = calculateLetter((float)r2y, (float)l2y);
+    letter3 = calculateLetter((float)r3y, (float)l3y);
+    letter4 = calculateLetter((float)r4y, (float)l4y);
+    letter5 = calculateLetter((float)r5y, (float)l5y);
+    letter6 = calculateLetter((float)r6y, (float)l6y);
+    letter7 = calculateLetter((float)r7y, (float)l7y);
+    letter8 = calculateLetter((float)r8y, (float)l8y);
+    letter9 = calculateLetter((float)r9y, (float)l9y);
+    letter10 = calculateLetter((float)r10y, (float)l10y);
+    letter11 = calculateLetter((float)r11y, (float)l11y);
+    letter12 = calculateLetter((float)r12y, (float)l12y);
 }
 
 void MainWindow::drawPoints()
@@ -177,8 +180,8 @@ void MainWindow::writeText()
     fout << " V\t Мочевой пузырь\t\t\t"<< r10 <<"\t" << l10 <<"\t" << letter10 <<endl;
     fout << " VB\t Желчный пузырь\t\t\t"<< r11 <<"\t" << l11 <<"\t" << letter11 <<endl;
     fout << " E\t Желудок\t\t\t"<< r12 <<"\t" << l12 <<"\t" << letter12 <<endl;
-    fout << endl<<" Коридор нормы верх: " << to_string(hight) <<endl;
-    fout << " Коридор нормы низ: " << to_string(low) <<endl;
+//    fout << endl<<" Коридор нормы верх: " << to_string(hight) <<endl;
+//    fout << " Коридор нормы низ: " << to_string(low) <<endl;
     fout << " " << endl;
     fout.close();
 

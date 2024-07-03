@@ -79,7 +79,7 @@ void paintEvent(QPaintEvent *event);
     float calcCornerLine(float input);
     void on_Izmereniye_editingFinished();
     void calculateLetters();
-    std::string calculateLetter(int r, int l);
+    std::string calculateLetter(float r, float l);
 
 private:
     Ui::MainWindow *ui;
