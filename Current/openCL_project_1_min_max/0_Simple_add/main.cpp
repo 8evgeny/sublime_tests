@@ -10,7 +10,7 @@ QElapsedTimer eTimer;
 quint64 timeSerial, timeParallel;
 
 using namespace std;
-#define vectorSize 1000
+#define vectorSize 10000000
 vector<int> randomVector(size_t size)
 {
     vector<int> v(size);
@@ -117,8 +117,8 @@ int main(){
     //read result from the device to vector
     queue.enqueueReadBuffer(buffer_C, CL_TRUE, 0, sizeof(int)*vectorSize, v4.data());
  
-    std::cout<<"\nresult parallel: \n";
-    copy(v4.begin(), v4.end(), ostream_iterator<int>(cout, " "));
+//    std::cout<<"\nresult parallel: \n";
+//    copy(v4.begin(), v4.end(), ostream_iterator<int>(cout, " "));
     std::cout<<"\n";
 
     cout<<"timeSerial="<<(float)timeSerial/1000<<" mks "<<endl;
