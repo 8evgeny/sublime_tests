@@ -54,10 +54,10 @@ float MainWindow::calcCornerLine(float in)
     return 734;
 }
 
-string MainWindow::calculateLetter(float r, float l)
+string MainWindow::calculateLetter(float r1, float l1)
 {
-    r = 1000.0f - r;
-    l = 1000.0f - r;
+    float r = 1000.0f - r1;
+    float l = 1000.0f - l1;
     float hightY = 1000.0f - calcCornerLine(hight);
     float lowY = 1000.0f - calcCornerLine(low);
 if (r < l)
