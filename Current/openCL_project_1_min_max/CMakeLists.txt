@@ -22,5 +22,5 @@ include_directories (${OpenCL_INCLUDE_DIRS} )
 include_directories (${CMAKE_SOURCE_DIR} )
 set (CMAKE_C_FLAGS "-std=c99 -Wall -DUNIX ${COMPILE_ARCH}")
 
-add_subdirectory(find_min_max)
-add_subdirectory(image_filtering)
+add_subdirectory(0_Simple_add)
+add_subdirectory(1_find_min_max)

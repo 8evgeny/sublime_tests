@@ -8,8 +8,8 @@ file(GLOB src
     workParallelMatches.cpp
     )
 
-add_executable(${PROJECT_NAME} ${src})
-target_link_libraries(${PROJECT_NAME}
+add_executable(1_edges ${src})
+target_link_libraries(1_edges
     ${OpenCL_LIBRARY}
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Core
@@ -17,7 +17,7 @@ target_link_libraries(${PROJECT_NAME}
     ${OpenCV_LIBS}
     )
 configure_file(edges.cl ${CMAKE_CURRENT_BINARY_DIR}/edges.cl COPYONLY)
-configure_file(matches.cl ${CMAKE_CURRENT_BINARY_DIR}/matches.cl COPYONLY)
+#configure_file(matches.cl ${CMAKE_CURRENT_BINARY_DIR}/matches.cl COPYONLY)
 
 #configure_file(tank.png ${CMAKE_CURRENT_BINARY_DIR}/image COPYONLY)
 #configure_file(tankTemplate.png ${CMAKE_CURRENT_BINARY_DIR}/template COPYONLY)
