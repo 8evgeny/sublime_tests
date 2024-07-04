@@ -5,7 +5,7 @@ typedef struct tag_result{
 
 
     // pa testear
-    kernel void test(global uchar* imageData,global uchar* templateData, global result* res, int w, int h,int t_cols, int t_rows, global int* aux)
+    kernel void matching(global uchar* imageData,global uchar* templateData, global result* res, int w, int h,int t_cols, int t_rows, global int* aux)
 {
 
         // get index into global data array

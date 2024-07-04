@@ -163,7 +163,7 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
 	// Kernels
 	int iclError = 0;
 
-    clkProcess=cl::Kernel(program,"kernel", &iclError );
+    clkProcess=cl::Kernel(program,"matching", &iclError );
 
 	if (iclError != 0 )
     {
@@ -236,9 +236,9 @@ int main(int argc, const char** argv)
     TemplateMatch tmM(image);
 	result r;
 
-    timeCPU = clock();    //start timer
+//    timeCPU = clock();    //start timer  //   Некорректное время
     r = tmM.check(tmpl, tmpl.rows, tmpl.cols);
-    timeCPU = clock() - timeCPU;
+//    timeCPU = clock() - timeCPU;
     int retGpu;
 
     retGpu = gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols,r);
@@ -250,13 +250,12 @@ int main(int argc, const char** argv)
     timeGPU = clock() - timeGPU;
 
 
-    double time_matchingCPU = ((double)timeCPU)/*/CLOCKS_PER_SEC*/;
+//    double time_matchingCPU = ((double)timeCPU)/*/CLOCKS_PER_SEC*/;
     double time_matchingGPU = ((double)timeGPU)/*/CLOCKS_PER_SEC*/;
 
-    printf("\nTime matching CPU = %.3f ms \n", time_matchingCPU/1000);
+//    printf("\nTime matching CPU = %.3f ms \n", time_matchingCPU/1000);
     printf("Time matching GPU = %.3f ms \n", time_matchingGPU/1000);
-    printf("Time matching CPU / Time matching GPU  = %.d \n\n"
-           "", (int)(time_matchingCPU/time_matchingGPU));
+//    printf("Time matching CPU / Time matching GPU  = %.d \n\n", (int)(time_matchingCPU/time_matchingGPU));
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
 
     cv::rectangle(image,cv::Point(r.xpos, r.ypos), cv::Point(r.xpos+tmpl.cols, r.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
