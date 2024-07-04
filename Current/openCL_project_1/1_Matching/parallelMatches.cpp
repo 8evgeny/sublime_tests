@@ -12,20 +12,18 @@ using namespace std;
 
 std::string kernel_source;
 
-void loadKernelFile(std::string program)
+int loadKernelFile(std::string program)
 {
-    if (ifstream(program.c_str()))
+    QFile kernelFile(program.c_str());
+    if (!kernelFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        std::ifstream infile;
-        infile.open(program.c_str(), std::ifstream::in);
-        char c = infile.get();
-        while (!infile.eof())
-        {
-            kernel_source.push_back(c);
-            c = infile.get();
-        }
-        infile.close();
+        cout <<"error kernel file"<<endl;
+        return -1;
     }
+    kernel_source = kernelFile.readAll().toStdString();
+    kernelFile.close();
+
+    return 0;
 }
 
 cl::Kernel clkProcess;
@@ -73,7 +71,16 @@ int initDevice()
 
 int loadAndBuildProgram(std::string programFile)
 {
-    loadKernelFile(programFile);
+    if ( loadKernelFile(programFile) != 0)
+    {
+        cout<<"loadKernelFile error"<<endl;
+          return -1;
+    }
+    else
+    {
+//        cout<<"loadKernelFile OK"<<endl;
+    }
+
     std::pair<const char*, ::size_t> src(kernel_source.c_str(), kernel_source.length());
     sources.push_back(src);
 
@@ -94,10 +101,24 @@ int loadAndBuildProgram(std::string programFile)
 int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, result & r)
 {
     if (initDevice() < 0 )
+    {
+        cout<<"initDevice error"<<endl;
           return -1;
+    }
+    else
+    {
+//        cout<<"initDevice OK"<<endl;
+    }
     // kernel
-    if ( loadAndBuildProgram("Lab4.cl") < 0)
-         return -1;
+    if ( loadAndBuildProgram("kernel") < 0)
+    {
+        cout<<"load and Build error"<<endl;
+          return -1;
+    }
+    else
+    {
+//        cout<<"load and Build OK"<<endl;
+    }
 
     // Data
     result res;
@@ -131,6 +152,7 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
     {
         delete[] imageData;
         delete[] templateData;
+        cout<<"iclError"<<endl;
         return -1;
     }
     // Send Data
@@ -202,7 +224,14 @@ int parallelMatches(QImage &imageIn, QImage &imageTempl, QImage &imageOut)
     r = tmM.check(tmpl, tmpl.rows, tmpl.cols);
 //    timeCPU = clock() - timeCPU;
 
-    gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols,r);
+    int retGpu;
+
+    retGpu = gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols,r);
+    if (retGpu != 0)
+    {
+        cout<<"error gpuProcess "<< retGpu <<endl;
+        return -1;
+    }
     timeGPU = clock() - timeGPU;
 
 

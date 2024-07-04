@@ -43,7 +43,7 @@ void serialMatchesOpenCV()
     eTimer.restart();
     MatchingMethod( 0, 0 );
 
-    cout<< "timeSerial = " << (float)timeSerial/1000000 <<" ms"<<endl;
+    cout<< "Time matching CPU OpenCV = " << (float)timeSerial/1000000 <<" ms"<<endl<<endl;
     waitKey(0);
 }
 

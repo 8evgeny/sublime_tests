@@ -8,8 +8,8 @@ extern quint64 timeSerial, timeParallel;
 
 int Matches()
 {
-//    serialMatches(); //Не реализовано
-//    serialMatchesOpenCV();
+    serialMatches(); //Не реализовано
+    serialMatchesOpenCV();
 
     QImage imageIn("image");
     imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);

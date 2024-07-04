@@ -13,8 +13,9 @@ target_link_libraries(1_matching
     Qt${QT_VERSION_MAJOR}::Gui
     ${OpenCV_LIBS}
     )
-#configure_file(matches.cl ${CMAKE_CURRENT_BINARY_DIR}/kernel.cl COPYONLY)
-configure_file(Lab4_1.cl ${CMAKE_CURRENT_BINARY_DIR}/kernel.cl COPYONLY)
+#configure_file(matches.cl ${CMAKE_CURRENT_BINARY_DIR}/kernel COPYONLY)
+configure_file(Lab4.cl ${CMAKE_CURRENT_BINARY_DIR}/kernel COPYONLY)
+#configure_file(Lab4_1.cl ${CMAKE_CURRENT_BINARY_DIR}/kernel COPYONLY)
 
 configure_file(tank.png ${CMAKE_CURRENT_BINARY_DIR}/image COPYONLY)
 configure_file(tankTemplate.png ${CMAKE_CURRENT_BINARY_DIR}/template COPYONLY)
