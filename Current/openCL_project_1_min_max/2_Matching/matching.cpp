@@ -189,14 +189,14 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
 
 int main(int argc, const char** argv)
 {
-    cv::Mat tmpl = cv::imread("template.jpg");
+    cv::Mat tmpl = cv::imread("template");
     if (tmpl.rows == 0)
 	{
         std::cout<< "template.jpg  error \n";
 		return -1;
 	}
 
-    cv::Mat image = cv::imread("image.jpg");
+    cv::Mat image = cv::imread("image");
     if (image.rows == 0)
 	{
         std::cout<< "image.jpg  error \n";
