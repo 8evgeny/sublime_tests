@@ -8,21 +8,20 @@ extern quint64 timeSerial, timeParallel;
 
 int Matches()
 {
-    serialMatches(); //Не реализовано
-    serialMatchesOpenCV();
+    matchesOpenCV();
 
-    QImage imageIn("image");
-    imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
-    convertToGrey(imageIn);
+//    QImage imageIn("image");
+//    imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
+//    convertToGrey(imageIn);
 
-    QImage imageTempl("template");
-    imageIn = imageTempl.convertToFormat(QImage::Format_ARGB32);
-    convertToGrey(imageTempl);
+//    QImage imageTempl("template");
+//    imageIn = imageTempl.convertToFormat(QImage::Format_ARGB32);
+//    convertToGrey(imageTempl);
 
-     QImage imageOut(imageIn.size(), imageIn.format());
+//     QImage imageOut(imageIn.size(), imageIn.format());
 
 
-    if(parallelMatches(imageIn, imageTempl, imageOut) != CL_SUCCESS)
+    if(matches() != CL_SUCCESS)
         return -1;
 
     return 0;

@@ -9,10 +9,10 @@
 #define WORKGROUPSIZE 16
 
 int Matches();
-void serialMatches();
-void serialMatchesOpenCV();
+void matchesOpenCV();
+int matches();
 void MatchingMethod( int, void* );
-int parallelMatches(QImage &imageIn, QImage &imageTempl, QImage &imageOut);
+int parallelMatches();
 
 inline void calculateNDRange(int size, int groupSize, int *bSize, int *bGroupSize, int *oSize);
 void convertToGrey(QImage &imageIn);

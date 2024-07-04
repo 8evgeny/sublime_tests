@@ -4,11 +4,15 @@
 #include "main.hpp"
 #include <fstream>
 #include "templateMatch.h"
+//#include "opencv2/imgcodecs.hpp"
+//#include "opencv2/highgui.hpp"
+//#include "opencv2/imgproc.hpp"
 
 extern QElapsedTimer eTimer;
 extern quint64 timeParallel;
 
 using namespace std;
+using namespace cv;
 
 std::string kernel_source;
 
@@ -246,7 +250,7 @@ result TemplateMatch::check(cv::Mat _template, int t_rows, int t_cols)
     return res;
 }
 
-int parallelMatches(QImage &imageIn, QImage &imageTempl, QImage &imageOut)
+int matches()
 {
     cv::Mat tmpl = cv::imread("template");
     if (tmpl.rows == 0)
@@ -292,8 +296,10 @@ int parallelMatches(QImage &imageIn, QImage &imageTempl, QImage &imageOut)
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
 
     cv::rectangle(image,cv::Point(r.xpos, r.ypos), cv::Point(r.xpos+tmpl.cols, r.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
-
-    cv::imshow("Parallel matching", image);
+    const char* parallel_window = "Parallel matching";
+    namedWindow( parallel_window, WINDOW_AUTOSIZE );
+    moveWindow(parallel_window, 300,300);
+    imshow(parallel_window, image);
 
     cout<<"\nPosition"<<", x: "<<r.xpos<<", y: "<<r.ypos<<"\n";
     cv::waitKey(-1);

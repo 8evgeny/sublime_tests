@@ -26,7 +26,7 @@ int match_method = TM_CCORR;
 
 int max_Trackbar = 5;
 
-void serialMatchesOpenCV()
+void matchesOpenCV()
 {
     /// Load image and template
     img = imread("image", IMREAD_COLOR );
@@ -35,7 +35,7 @@ void serialMatchesOpenCV()
     namedWindow( image_window, WINDOW_AUTOSIZE );
     namedWindow( result_window, WINDOW_AUTOSIZE );
     moveWindow(image_window, 100,100);
-    moveWindow(result_window, 750, 140);
+    moveWindow(result_window, 550, 140);
     // Create Trackbar (Переклюячение метода вручную)
     const char* trackbar_label = "Method: \n 0: SQDIFF \n 1: SQDIFF NORMED \n 2: TM CCORR \n 3: TM CCORR NORMED \n 4: TM COEFF \n 5: TM COEFF NORMED";
 //    createTrackbar( trackbar_label, image_window, &match_method, max_Trackbar, MatchingMethod );
@@ -87,16 +87,3 @@ void MatchingMethod( int, void* )
   return;
 }
 
-void serialMatches()
-{
-  //  Используя только Qt и алгоритм
-
-//    QImage imageIn("image");
-//    imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
-//    convertToGrey(imageIn);
-//    QImage imageOut(imageIn.size(), imageIn.format());
-
-//    eTimer.restart();
-
-
-}
