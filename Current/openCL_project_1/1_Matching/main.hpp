@@ -19,3 +19,13 @@ void convertToGrey(QImage &imageIn);
 
 void qimage_to_mat(const QImage& image, cv::OutputArray out);
 void mat_to_qimage(cv::InputArray image, QImage& out);
+
+enum matchMetod
+{
+    TM_SQDIFF = 0,
+    TM_SQDIFF_NORMED,
+    TM_CCORR,
+    TM_CCORR_NORMED,
+    TM_CCOEFF,
+    TM_CCOEFF_NORMED
+};

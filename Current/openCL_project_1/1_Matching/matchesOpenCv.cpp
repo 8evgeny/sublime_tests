@@ -15,14 +15,7 @@ extern quint64 timeSerial;
 Mat img; Mat templ; Mat result;
 const char* image_window = "matches openCV";
 const char* result_window = "result matches openCV";
-int match_method = TM_CCORR;
-
-//TM_SQDIFF
-//TM_SQDIFF_NORMED
-//TM_CCORR
-//TM_CCORR_NORMED
-//TM_CCOEFF
-//TM_CCOEFF_NORMED
+int match_method = matchMetod::TM_CCORR;
 
 int max_Trackbar = 5;
 
@@ -70,7 +63,7 @@ void MatchingMethod( int, void* )
   timeSerial = eTimer.nsecsElapsed();
 
   /// For SQDIFF and SQDIFF_NORMED, the best matches are lower values. For all the other methods, the higher the better
-  if( match_method  == TM_SQDIFF || match_method == TM_SQDIFF_NORMED )
+  if( match_method  == matchMetod::TM_SQDIFF || match_method == matchMetod::TM_SQDIFF_NORMED )
     { matchLoc = minLoc; }
   else
     { matchLoc = maxLoc; }

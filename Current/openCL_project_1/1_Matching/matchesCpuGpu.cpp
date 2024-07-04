@@ -10,6 +10,7 @@
 
 extern QElapsedTimer eTimer;
 extern quint64 timeParallel;
+extern int match_method;
 
 using namespace std;
 using namespace cv;
@@ -291,8 +292,37 @@ int matches()
     double time_matchingCPU = ((double)timeCPU)/*/CLOCKS_PER_SEC*/;
     double time_matchingGPU = ((double)timeGPU)/*/CLOCKS_PER_SEC*/;
 
+    string mm;
+    switch (match_method)
+    {
+        case matchMetod::TM_CCOEFF:
+        {
+            mm = "TM_CCOEFF";break;
+        }
+        case matchMetod::TM_CCOEFF_NORMED:
+        {
+            mm = "TM_CCOEFF_NORMED";break;
+        }
+        case matchMetod::TM_CCORR:
+        {
+            mm = "TM_CCORR";break;
+        }
+        case matchMetod::TM_CCORR_NORMED:
+        {
+            mm = "TM_CCOEFF";break;
+        }
+        case matchMetod::TM_SQDIFF:
+        {
+            mm = "TM_CCOEFF_NORMED";break;
+        }
+        case matchMetod::TM_SQDIFF_NORMED:
+        {
+            mm = "TM_CCORR";break;
+        }
+    }
+
     printf("\nTime matching CPU = %.3f ms ", time_matchingCPU/1000);
-    printf("\nTime matching CPU OpenCV = %.3f ms \n", (float)timeSerial/1000000);
+    printf("\nTime matching CPU OpenCV = %.3f ms metod: %s\n", (float)timeSerial/1000000, mm.c_str());
     printf("Time matching GPU = %.3f ms \n", time_matchingGPU/1000);
 
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
