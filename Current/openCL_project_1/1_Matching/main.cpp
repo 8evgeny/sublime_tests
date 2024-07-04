@@ -12,15 +12,16 @@ using namespace cv;
 
 QElapsedTimer eTimer;
 quint64 timeSerial, timeParallel;
-
+int match_method = matchMetod::TM_CCOEFF_NORMED;
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Q_UNUSED(a)
 
-    if (Matches() != 0)
-//        return -1;
+    matchesOpenCV();
+
+    matches();
 
     return 0;
 }
@@ -87,6 +88,23 @@ void mat_to_qimage(cv::InputArray image, QImage& out)
         {
             throw invalid_argument("Image format not supported");
             break;
+        }
+    }
+}
+
+void convertToGrey(QImage &imageIn)
+{
+    // Convert to gray scale
+    for (int y = 0; y < imageIn.height(); y++)
+    {
+        QRgb *line = (QRgb *) imageIn.scanLine(y);
+
+        for (int x = 0; x < imageIn.width(); x++)
+        {
+            int r = qGray(line[x]);
+            int g = r;
+            int b = r;
+            line[x] = qRgb(r, g, b);
         }
     }
 }

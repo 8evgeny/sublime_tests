@@ -14,7 +14,7 @@ extern quint64 timeSerial;
 
 Mat img; Mat templ; Mat result;
 
-int match_method = matchMetod::TM_CCORR;
+extern int match_method;
 
 int max_Trackbar = 5;
 
@@ -72,8 +72,8 @@ void MatchingMethod( int, void* )
   const char* result_window = "result matches openCV";
   namedWindow( image_window, WINDOW_AUTOSIZE );
   namedWindow( result_window, WINDOW_AUTOSIZE );
-  moveWindow(image_window, 700,100);
-  moveWindow(result_window, 1100, 140);
+  moveWindow(image_window, 900,100);
+  moveWindow(result_window, 1300, 140);
   imshow( image_window, img_display );
   imshow( result_window, result );
 

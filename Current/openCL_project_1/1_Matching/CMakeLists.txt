@@ -1,6 +1,5 @@
 file(GLOB src
     main.cpp
-    matches.cpp
     matchesOpenCv.cpp
     matchesCpuGpu.cpp
     )

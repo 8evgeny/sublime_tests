@@ -10,7 +10,7 @@
 
 extern QElapsedTimer eTimer;
 extern quint64 timeParallel;
-extern int match_method;
+extern int const match_method;
 
 using namespace std;
 using namespace cv;
@@ -321,16 +321,16 @@ int matches()
         }
     }
 
-    printf("\nTime matching CPU = \t%.3f \tms ", time_matchingCPU/1000);
-    printf("\nTime matching OpenCV = \t%.3f \tms metod: %s\n", (float)timeSerial/1000000, mm.c_str());
-    printf("Time matching GPU = \t%.3f \tms \n", time_matchingGPU/1000);
+    printf("\nTime matching CPU = \t%.2f ms ", time_matchingCPU/1000);
+    printf("\nTime matching OpenCV = \t%.2f ms metod: %s\n", (float)timeSerial/1000000, mm.c_str());
+    printf("Time matching GPU = \t%.2f ms \n", time_matchingGPU/1000);
 
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
 
     cv::rectangle(image,cv::Point(r.xpos, r.ypos), cv::Point(r.xpos+tmpl.cols, r.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
     const char* parallel_window = "Parallel matching";
     namedWindow( parallel_window, WINDOW_AUTOSIZE );
-    moveWindow(parallel_window, 700,450);
+    moveWindow(parallel_window, 900,450);
     imshow(parallel_window, image);
 
     cout<<"\nPosition"<<", x: "<<r.xpos<<", y: "<<r.ypos<<"\n";
