@@ -7,14 +7,17 @@ extern quint64 timeSerial, timeParallel;
 
 int testEdges()
 {
-//    workSerialEdges();
-//    qDebug() << "serialEdges   " << (float)timeSerial/1000000 << " ms";
+    workSerialEdges();
+    qDebug() << "serialEdges   " << (float)timeSerial/1000000 << " ms";
 
-//    workSerialEdgesOpenCV();
-//    qDebug() << "serialEdgesOpenCV   " << (float)timeSerial/1000000 << " ms";
+    workSerialEdgesOpenCV();
+    qDebug() << "serialEdgesOpenCV   " << (float)timeSerial/1000000 << " ms";
 
-    if(workParallelEdges() != CL_SUCCESS)
-        return -1;
+
+    // Parallel edge не работает  !!!!!
+
+//    if(workParallelEdges() != CL_SUCCESS)
+//        return -1;
 
 //    qDebug() << "parallelEdges " << (float)timeParallel/1000000 << " ms";
 //    qDebug() << "serial/parallel=" << (float)timeSerial/timeParallel;

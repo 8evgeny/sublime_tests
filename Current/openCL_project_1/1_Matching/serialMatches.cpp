@@ -13,9 +13,9 @@ extern QElapsedTimer eTimer;
 extern quint64 timeSerial;
 
 Mat img; Mat templ; Mat result;
-const char* image_window = "Source Image";
-const char* result_window = "Result window";
-int match_method = TM_SQDIFF;
+const char* image_window = "matches openCV";
+const char* result_window = "result matches openCV";
+int match_method = TM_CCORR;
 
 //TM_SQDIFF
 //TM_SQDIFF_NORMED
@@ -26,7 +26,7 @@ int match_method = TM_SQDIFF;
 
 int max_Trackbar = 5;
 
-void workSerialMatchesOpenCV()
+void serialMatchesOpenCV()
 {
     /// Load image and template
     img = imread("image", IMREAD_COLOR );
@@ -87,61 +87,16 @@ void MatchingMethod( int, void* )
   return;
 }
 
-void workSerialMatches()
+void serialMatches()
 {
-    QImage imageIn("image");
-    imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
-    convertToGrey(imageIn);
-    QImage imageOut(imageIn.size(), imageIn.format());
+  //  Используя только Qt и алгоритм
 
-    eTimer.restart();
+//    QImage imageIn("image");
+//    imageIn = imageIn.convertToFormat(QImage::Format_ARGB32);
+//    convertToGrey(imageIn);
+//    QImage imageOut(imageIn.size(), imageIn.format());
 
-//    // Serial edge detector
-//    for (int y = 0; y < imageIn.height(); y++) {
-//        QRgb *iLine = (QRgb *) imageIn.scanLine(y);
+//    eTimer.restart();
 
-//        QRgb *iLine_m1 = (y < 1)?
-//                             iLine:
-//                             (QRgb *) imageIn.scanLine(y - 1);
-
-//        QRgb *iLine_p1 = (y >= imageIn.height())?
-//                             iLine:
-//                             (QRgb *) imageIn.scanLine(y + 1);
-
-//        QRgb *oLine = (QRgb *) imageOut.scanLine(y);
-
-//        for (int x = 0; x < imageIn.width(); x++)
-//        {
-//            int x_m = (x < 1)? x: x - 1;
-//            int x_p = (x >= imageIn.width())? x: x + 1;
-
-//            // Sobel operator
-//            int grayX = qRed(iLine_p1[x_m])
-//                      + 2 * qRed(iLine_p1[x])
-//                      + qRed(iLine_p1[x_p])
-//                      - qRed(iLine_m1[x_m])
-//                      - 2 * qRed(iLine_m1[x])
-//                      - qRed(iLine_m1[x_p]);
-
-//            int grayY = qRed(iLine_m1[x_p])
-//                      + 2 * qRed(iLine[x_p])
-//                      + qRed(iLine_p1[x_p])
-//                      - qRed(iLine_m1[x_m])
-//                      - 2 * qRed(iLine[x_m])
-//                      - qRed(iLine_p1[x_m]);
-
-//            int gray = sqrt(grayX * grayX + grayY * grayY);
-//            gray = qBound(0, gray, 255);
-
-//            oLine[x] = qRgb(gray, gray, gray);
-//        }
-//    }
-//    timeSerial = eTimer.nsecsElapsed();
-
-//    imageOut.save("edges-serial.png");
-
-//    Mat edges = imread("edges-serial.png", IMREAD_GRAYSCALE);
-//    imshow("result edges serial", edges );
-//    waitKey(0);
 
 }

@@ -108,10 +108,4 @@ void workSerialEdgesOpenCV()
 
     destroyAllWindows();
 
-
-
-
-
-
-
 }
