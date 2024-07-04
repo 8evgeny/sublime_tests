@@ -110,30 +110,31 @@ int loadAndBuildProgram(std::string programFile)
 
 int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, result & r)
 {
-	if (initDevice() < 0 )
-		  return -1;
-	// kernel
-	if ( loadAndBuildProgram("Lab4.cl") < 0)
-		 return -1;
+    if (initDevice() < 0 )
+          return -1;
+    // kernel
+    if ( loadAndBuildProgram("Lab4.cl") < 0)
+         return -1;
 
-	// Data
+    // Data
 
     result res;
-	res.SAD = 100000000;
-	res.xpos=0;
-	res.ypos=0;
-	int w = tmM.WIDTH;
-	int h = tmM.HEIGHT;
+    res.SAD = 100000000;
+    res.xpos=0;
+    res.ypos=0;
+    int w = tmM.WIDTH;
+    int h = tmM.HEIGHT;
 
-	int aux=10000000;
+//	int aux=10000000;
 
     uchar* imageData = new uchar[w*h];
-	uchar* templateData = new uchar[t_rows*t_cols];
+    uchar* templateData = new uchar[t_rows*t_cols];
 
-	loadDataMatToUchar(imageData,tmM.image,1);
-	loadDataMatToUchar(templateData,_template,1);
+    timeGPU = clock();    //start timer
 
-	// Creo una instancia de memoria GPU
+    loadDataMatToUchar(imageData,tmM.image,1);
+    loadDataMatToUchar(templateData,_template,1);
+
 	clInputImg=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(unsigned char)*w*h);
 	clInputTemp=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(unsigned char)*t_rows*t_cols);
 	clInputVar=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(result));
@@ -142,8 +143,7 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
 	// Kernels
 	int iclError = 0;
 
-	//Cargar el kernel correcto
-    clkProcess=cl::Kernel(program,"test", &iclError );
+    clkProcess=cl::Kernel(program,"matching", &iclError );
 
 	if (iclError != 0 )
 		  return -1;
@@ -163,7 +163,7 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
 	iclError |= clkProcess.setArg(4,(int)h);
 	iclError |= clkProcess.setArg(5,(int)t_cols);
 	iclError |= clkProcess.setArg(6,(int)t_rows);
-	 iclError |= clkProcess.setArg(7,clInputAux);
+//	 iclError |= clkProcess.setArg(7,clInputAux);
 
 
 	// Tratar la imagen como 1D
@@ -179,12 +179,11 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
 	iclError |= queue.enqueueNDRangeKernel(clkProcess,cl::NullRange,gRM,cl::NullRange);
 	iclError |= queue.finish();
 
-	queue.enqueueReadBuffer(clInputAux, CL_TRUE,0, sizeof(int),&aux);
+//	queue.enqueueReadBuffer(clInputAux, CL_TRUE,0, sizeof(int),&aux);
 	queue.enqueueReadBuffer(clInputVar, CL_TRUE,0, sizeof(result),&res);
 
     r=res;
-
-	return 0;
+    return 0;
 }
 
 int main(int argc, const char** argv)
@@ -218,7 +217,6 @@ int main(int argc, const char** argv)
     r = tmM.check(tmpl, tmpl.rows, tmpl.cols);
     timeCPU = clock() - timeCPU;
 
-    timeGPU = clock();    //start timer
     gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols,r);
     timeGPU = clock() - timeGPU;
 
