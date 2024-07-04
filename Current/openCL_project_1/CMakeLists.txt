@@ -23,6 +23,14 @@ include_directories (${CMAKE_SOURCE_DIR} )
 set (CMAKE_C_FLAGS "-std=c99 -Wall -DUNIX ${COMPILE_ARCH}")
 
 add_subdirectory(0_Simple_add)
-#add_subdirectory(1_find_min_max)
+
+#add_subdirectory(1_Matching)
 add_subdirectory(2_Matching)
+
+#add_subdirectory(3_edge)
+#add_subdirectory(3_edge2)
+#add_subdirectory(3_edge3)
+
+#add_subdirectory(4_image_filtering)
+
 add_subdirectory(5_mandelbrot)
