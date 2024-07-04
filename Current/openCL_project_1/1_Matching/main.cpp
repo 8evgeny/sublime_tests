@@ -11,7 +11,7 @@ using namespace std;
 using namespace cv;
 
 QElapsedTimer eTimer;
-quint64 timeSerial, timeParallel;
+quint64 timeSerial, timeOpenCV, timeParallel;
 int match_method = matchMetod::TM_CCOEFF_NORMED;
 
 int main(int argc, char *argv[])

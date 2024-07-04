@@ -4,19 +4,16 @@
 #include "main.hpp"
 #include <fstream>
 #include "templateMatch.h"
-//#include "opencv2/imgcodecs.hpp"
-//#include "opencv2/highgui.hpp"
-//#include "opencv2/imgproc.hpp"
 
 extern QElapsedTimer eTimer;
-extern quint64 timeParallel;
+extern quint64 timeParallel, timeSerial, timeOpenCV;
 extern int const match_method;
 
 using namespace std;
 using namespace cv;
 
 std::string kernel_source;
-extern quint64 timeSerial;
+
 
 int loadKernelFile(std::string program)
 {
@@ -139,7 +136,7 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
     uchar* imageData = new uchar[w*h];
     uchar* templateData = new uchar[t_rows*t_cols];
 
-    timeGPU = clock();    //start timer
+    eTimer.restart();
 
     loadDataMatToUchar(imageData,tmM.image,1);
     loadDataMatToUchar(templateData,_template,1);
@@ -195,6 +192,7 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
     queue.enqueueReadBuffer(clInputVar, CL_TRUE,0, sizeof(result),&res);
 
     r=res;
+    timeParallel = eTimer.nsecsElapsed();
     return 0;
 }
 
@@ -213,7 +211,7 @@ result TemplateMatch::check(cv::Mat _template, int t_rows, int t_cols)
     loadDataMatToUchar(imageData,image,1);
     loadDataMatToUchar(templateData,_template,1);
 
-    timeCPU = clock();
+    eTimer.restart();
 
 // loop through the search image
     for ( int y = 0; y <= HEIGHT - t_rows; y++ )
@@ -246,7 +244,7 @@ result TemplateMatch::check(cv::Mat _template, int t_rows, int t_cols)
             }
         }
     }
-    timeCPU = clock() - timeCPU;
+    timeSerial = eTimer.nsecsElapsed();
     delete[] imageData;
     delete[] templateData;
     return res;
@@ -257,14 +255,14 @@ int matches()
     cv::Mat tmpl = cv::imread("template");
     if (tmpl.rows == 0)
     {
-        std::cout<< "template.jpg  error \n";
+        std::cout<< "template  error \n";
         return -1;
     }
 
     cv::Mat image = cv::imread("image");
     if (image.rows == 0)
     {
-        std::cout<< "image.jpg  error \n";
+        std::cout<< "image  error \n";
         return -1;
     }
 
@@ -287,7 +285,6 @@ int matches()
         cout<<"error gpuProcess "<< retGpu <<endl;
         return -1;
     }
-    timeGPU = clock() - timeGPU;
 
     double time_matchingCPU = ((double)timeCPU)/*/CLOCKS_PER_SEC*/;
     double time_matchingGPU = ((double)timeGPU)/*/CLOCKS_PER_SEC*/;
@@ -321,9 +318,9 @@ int matches()
         }
     }
 
-    printf("\nTime matching CPU = \t%.2f ms ", time_matchingCPU/1000);
-    printf("\nTime matching OpenCV = \t%.2f ms metod: %s\n", (float)timeSerial/1000000, mm.c_str());
-    printf("Time matching GPU = \t%.2f ms \n", time_matchingGPU/1000);
+    printf("\nTime matching CPU = \t%.2f ms ", (float)timeSerial/1000000);
+    printf("\nTime matching OpenCV = \t%.2f ms metod: %s\n", (float)timeOpenCV/1000000, mm.c_str());
+    printf("Time matching GPU = \t%.2f ms \n", (float)timeParallel/1000000);
 
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
 

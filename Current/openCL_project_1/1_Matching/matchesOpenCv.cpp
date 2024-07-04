@@ -10,7 +10,7 @@ using namespace std;
 using namespace cv;
 
 extern QElapsedTimer eTimer;
-extern quint64 timeSerial;
+extern quint64 timeOpenCV;
 
 Mat img; Mat templ; Mat result;
 
@@ -56,7 +56,7 @@ void MatchingMethod( int, void* )
 
   minMaxLoc( result, &minVal, &maxVal, &minLoc, &maxLoc, Mat() );
 
-  timeSerial = eTimer.nsecsElapsed();
+  timeOpenCV = eTimer.nsecsElapsed();
 
   /// For SQDIFF and SQDIFF_NORMED, the best matches are lower values. For all the other methods, the higher the better
   if( match_method  == matchMetod::TM_SQDIFF || match_method == matchMetod::TM_SQDIFF_NORMED )
