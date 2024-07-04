@@ -192,8 +192,59 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
     return 0;
 }
 
+result TemplateMatch::check(cv::Mat _template, int t_rows, int t_cols)
+{
+
+    uchar* imageData = new uchar[image.cols * image.rows];
+    uchar* templateData = new uchar[_template.cols * _template.rows];
+
+    result res;
+    res.SAD = 100000000;
+    WIDTH = image.cols;
+    HEIGHT = image.rows;
 
 
+    loadDataMatToUchar(imageData,image,1);
+    loadDataMatToUchar(templateData,_template,1);
+
+    timeCPU = clock();
+
+// loop through the search image
+    for ( int y = 0; y <= HEIGHT - t_rows; y++ )
+    {
+        for ( int x =0; x <= WIDTH - t_cols; x++ )
+        {
+           float SAD = 0.0;
+
+        // loop through the template image
+
+            for ( int y1 = 0; y1 < t_rows; y1++ )
+                for ( int x1 = 0; x1 < t_cols; x1++ )
+                {
+
+                    int p_SearchIMG = imageData[(y+y1) * WIDTH + (x+x1)];
+                    int p_TemplateIMG = templateData[y1 *  t_cols + x1];
+
+                    SAD += abs( p_SearchIMG - p_TemplateIMG );
+                }
+
+            // save the best found position
+            if ( res.SAD > SAD )
+            {
+                res.SAD = SAD;
+                // give me min SAD
+                res.xpos = x;
+                res.ypos = y;
+                //std::cout<< " x "<< x <<" y "<<y << " SAD "<< SAD << "\n";
+
+            }
+        }
+    }
+    timeCPU = clock() - timeCPU;
+    delete[] imageData;
+    delete[] templateData;
+    return res;
+}
 
 int parallelMatches(QImage &imageIn, QImage &imageTempl, QImage &imageOut)
 {
@@ -220,13 +271,11 @@ int parallelMatches(QImage &imageIn, QImage &imageTempl, QImage &imageOut)
     TemplateMatch tmM(image);
     result r;
 
-//    timeCPU = clock();    //Некорректно - учитывает лишнее
+    //Time matching CPU
     r = tmM.check(tmpl, tmpl.rows, tmpl.cols);
-//    timeCPU = clock() - timeCPU;
 
-    int retGpu;
-
-    retGpu = gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols,r);
+    //Time matching GPU
+    int retGpu = gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols, r);
     if (retGpu != 0)
     {
         cout<<"error gpuProcess "<< retGpu <<endl;
@@ -234,13 +283,12 @@ int parallelMatches(QImage &imageIn, QImage &imageTempl, QImage &imageOut)
     }
     timeGPU = clock() - timeGPU;
 
-
-//    double time_matchingCPU = ((double)timeCPU)/*/CLOCKS_PER_SEC*/;
+    double time_matchingCPU = ((double)timeCPU)/*/CLOCKS_PER_SEC*/;
     double time_matchingGPU = ((double)timeGPU)/*/CLOCKS_PER_SEC*/;
 
-//    printf("Time matching CPU = %.3f ms \n", time_matchingCPU/1000);
-    printf("\nTime matching GPU = %.3f ms \n", time_matchingGPU/1000);
-//    printf("Time matching CPU / Time matching GPU  = %.d \n\n", (int)(time_matchingCPU/time_matchingGPU));
+    printf("\nTime matching CPU = %.3f ms \n", time_matchingCPU/1000);
+    printf("Time matching GPU = %.3f ms \n", time_matchingGPU/1000);
+
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
 
     cv::rectangle(image,cv::Point(r.xpos, r.ypos), cv::Point(r.xpos+tmpl.cols, r.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
