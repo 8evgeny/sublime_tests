@@ -53,7 +53,8 @@ void loadKernelFile(std::string program)
     std::vector<cl::Device> all_devices;
     cl::Platform default_platform;
     std::vector<cl::Platform> all_platforms;
-    clock_t timeMatching;
+    clock_t timeCPU;
+    clock_t timeGPU;
     int aux=0;
 
 
@@ -188,22 +189,6 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
 
 int main(int argc, const char** argv)
 {
-
-    bool useGPU = true;
-    if (argc>1)
-    {
-        std::string par = argv[1];
-//        if (par.compare("gpu") == 0)
-//        {
-
-//        }
-        if (par.compare("cpu") == 0)
-        {
-            useGPU = false;
-        }
-     }
-
-
     cv::Mat tmpl = cv::imread("template.jpg");
     if (tmpl.rows == 0)
 	{
@@ -218,7 +203,6 @@ int main(int argc, const char** argv)
 		return -1;
 	}
 
-
     if (tmpl.channels() == 3)
         cv::cvtColor(tmpl, tmpl, cv::COLOR_BGR2GRAY);
 
@@ -227,24 +211,23 @@ int main(int argc, const char** argv)
 
     cv::imshow("Result", image);
 
-
-
     TemplateMatch tmM(image);
 	result r;
 
-    timeMatching = clock();    //start timer
-    if (!useGPU){
-        r = tmM.check(tmpl, tmpl.rows, tmpl.cols);
-    }
-    else{
-        gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols,r);
-    }
+    timeCPU = clock();    //start timer
+    r = tmM.check(tmpl, tmpl.rows, tmpl.cols);
+    timeCPU = clock() - timeCPU;
 
-    timeMatching = clock() - timeMatching;
+    timeGPU = clock();    //start timer
+    gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols,r);
+    timeGPU = clock() - timeGPU;
 
-    double time_matching = ((double)timeMatching)/CLOCKS_PER_SEC; // in seconds
-    if (useGPU)     printf("Time matching GPU = %f sec \n", time_matching);
-    if (!useGPU)     printf("Time matching CPU = %f sec \n", time_matching);
+
+    double time_matchingCPU = ((double)timeCPU)/*/CLOCKS_PER_SEC*/;
+    double time_matchingGPU = ((double)timeGPU)/*/CLOCKS_PER_SEC*/;
+
+    printf("Time matching CPU = %.3f ms \n", time_matchingCPU/1000);
+    printf("Time matching GPU = %.3f ms \n", time_matchingGPU/1000);
 
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
 
