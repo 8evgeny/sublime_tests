@@ -10,8 +10,8 @@ target_link_libraries(2_matching
     Qt${QT_VERSION_MAJOR}::Gui
     ${OpenCV_LIBS}
     )
-configure_file(Lab4.cl ${CMAKE_CURRENT_BINARY_DIR}/Lab4.cl COPYONLY)
-#configure_file(Lab4_1.cl ${CMAKE_CURRENT_BINARY_DIR}/Lab4_1.cl COPYONLY)
+configure_file(Lab4.cl ${CMAKE_CURRENT_BINARY_DIR}/kernel COPYONLY)
+#configure_file(Lab4_1.cl ${CMAKE_CURRENT_BINARY_DIR}/kernel COPYONLY)
 
 #configure_file(colaImage.jpg ${CMAKE_CURRENT_BINARY_DIR}/image COPYONLY)
 #configure_file(colaTemplate.jpg ${CMAKE_CURRENT_BINARY_DIR}/template COPYONLY)
