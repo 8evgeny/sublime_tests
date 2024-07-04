@@ -225,9 +225,10 @@ int main(int argc, const char** argv)
     double time_matchingCPU = ((double)timeCPU)/*/CLOCKS_PER_SEC*/;
     double time_matchingGPU = ((double)timeGPU)/*/CLOCKS_PER_SEC*/;
 
-    printf("Time matching CPU = %.3f ms \n", time_matchingCPU/1000);
+    printf("\nTime matching CPU = %.3f ms \n", time_matchingCPU/1000);
     printf("Time matching GPU = %.3f ms \n", time_matchingGPU/1000);
-    printf("Time matching CPU / Time matching GPU  = %.d \n", (int)(time_matchingCPU/time_matchingGPU));
+    printf("Time matching CPU / Time matching GPU  = %.d \n\n"
+           "", (int)(time_matchingCPU/time_matchingGPU));
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
 
     cv::rectangle(image,cv::Point(r.xpos, r.ypos), cv::Point(r.xpos+tmpl.cols, r.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
