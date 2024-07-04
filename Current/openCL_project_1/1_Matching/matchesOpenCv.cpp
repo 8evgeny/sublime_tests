@@ -13,8 +13,7 @@ extern QElapsedTimer eTimer;
 extern quint64 timeSerial;
 
 Mat img; Mat templ; Mat result;
-const char* image_window = "matches openCV";
-const char* result_window = "result matches openCV";
+
 int match_method = matchMetod::TM_CCORR;
 
 int max_Trackbar = 5;
@@ -22,13 +21,10 @@ int max_Trackbar = 5;
 void matchesOpenCV()
 {
     /// Load image and template
-    img = imread("image", IMREAD_COLOR );
-    templ = imread("template", IMREAD_COLOR );
+    img = imread("image", IMREAD_GRAYSCALE );
+    templ = imread("template", IMREAD_GRAYSCALE );
 
-    namedWindow( image_window, WINDOW_AUTOSIZE );
-    namedWindow( result_window, WINDOW_AUTOSIZE );
-    moveWindow(image_window, 700,100);
-    moveWindow(result_window, 1100, 140);
+
     // Create Trackbar (Переклюячение метода вручную)
     const char* trackbar_label = "Method: \n 0: SQDIFF \n 1: SQDIFF NORMED \n 2: TM CCORR \n 3: TM CCORR NORMED \n 4: TM COEFF \n 5: TM COEFF NORMED";
 //    createTrackbar( trackbar_label, image_window, &match_method, max_Trackbar, MatchingMethod );
@@ -72,6 +68,12 @@ void MatchingMethod( int, void* )
   rectangle( img_display, matchLoc, Point( matchLoc.x + templ.cols , matchLoc.y + templ.rows ), Scalar::all(0), 2, 8, 0 );
   rectangle( result, matchLoc, Point( matchLoc.x + templ.cols , matchLoc.y + templ.rows ), Scalar::all(0), 2, 8, 0 );
 
+  const char* image_window = "matches openCV";
+  const char* result_window = "result matches openCV";
+  namedWindow( image_window, WINDOW_AUTOSIZE );
+  namedWindow( result_window, WINDOW_AUTOSIZE );
+  moveWindow(image_window, 700,100);
+  moveWindow(result_window, 1100, 140);
   imshow( image_window, img_display );
   imshow( result_window, result );
 

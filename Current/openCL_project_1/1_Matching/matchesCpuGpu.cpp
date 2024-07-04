@@ -321,9 +321,9 @@ int matches()
         }
     }
 
-    printf("\nTime matching CPU = %.3f ms ", time_matchingCPU/1000);
-    printf("\nTime matching CPU OpenCV = %.3f ms metod: %s\n", (float)timeSerial/1000000, mm.c_str());
-    printf("Time matching GPU = %.3f ms \n", time_matchingGPU/1000);
+    printf("\nTime matching CPU = \t%.3f \tms ", time_matchingCPU/1000);
+    printf("\nTime matching OpenCV = \t%.3f \tms metod: %s\n", (float)timeSerial/1000000, mm.c_str());
+    printf("Time matching GPU = \t%.3f \tms \n", time_matchingGPU/1000);
 
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
 
