@@ -117,7 +117,6 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
          return -1;
 
     // Data
-
     result res;
     res.SAD = 100000000;
     res.xpos=0;
@@ -125,7 +124,7 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
     int w = tmM.WIDTH;
     int h = tmM.HEIGHT;
 
-//	int aux=10000000;
+    int aux=10000000;
 
     uchar* imageData = new uchar[w*h];
     uchar* templateData = new uchar[t_rows*t_cols];
@@ -146,8 +145,11 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
     clkProcess=cl::Kernel(program,"matching", &iclError );
 
 	if (iclError != 0 )
-		  return -1;
-
+    {
+        delete[] imageData;
+        delete[] templateData;
+        return -1;
+    }
 	// Send Data
 	iclError = queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char)*w*h, &imageData[0]);
 	iclError = queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char)*t_rows*t_cols, &templateData[0]);
@@ -163,15 +165,14 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
 	iclError |= clkProcess.setArg(4,(int)h);
 	iclError |= clkProcess.setArg(5,(int)t_cols);
 	iclError |= clkProcess.setArg(6,(int)t_rows);
-//	 iclError |= clkProcess.setArg(7,clInputAux);
+    iclError |= clkProcess.setArg(7,clInputAux);
 
 
-	// Tratar la imagen como 1D
+    // Image 1D
 	//cl::NDRange gRM=cl::NDRange((w-t_cols)*(h-t_rows));
 	//cl::NDRange lRW=cl::NDRange(localWGrp);
 
-	// Tratar la imagen como 2D
-
+    // Image 2D
 	cl::NDRange gRM=cl::NDRange((w-t_cols),(h-t_rows));
 	//El work group dejo que lo asigne automaticamente
 
@@ -179,7 +180,7 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
 	iclError |= queue.enqueueNDRangeKernel(clkProcess,cl::NullRange,gRM,cl::NullRange);
 	iclError |= queue.finish();
 
-//	queue.enqueueReadBuffer(clInputAux, CL_TRUE,0, sizeof(int),&aux);
+    queue.enqueueReadBuffer(clInputAux, CL_TRUE,0, sizeof(int),&aux);
 	queue.enqueueReadBuffer(clInputVar, CL_TRUE,0, sizeof(result),&res);
 
     r=res;
