@@ -34,8 +34,8 @@ void matchesOpenCV()
 
     namedWindow( image_window, WINDOW_AUTOSIZE );
     namedWindow( result_window, WINDOW_AUTOSIZE );
-    moveWindow(image_window, 100,100);
-    moveWindow(result_window, 550, 140);
+    moveWindow(image_window, 700,100);
+    moveWindow(result_window, 1100, 140);
     // Create Trackbar (Переклюячение метода вручную)
     const char* trackbar_label = "Method: \n 0: SQDIFF \n 1: SQDIFF NORMED \n 2: TM CCORR \n 3: TM CCORR NORMED \n 4: TM COEFF \n 5: TM COEFF NORMED";
 //    createTrackbar( trackbar_label, image_window, &match_method, max_Trackbar, MatchingMethod );
@@ -43,8 +43,6 @@ void matchesOpenCV()
     eTimer.restart();
     MatchingMethod( 0, 0 );
 
-    cout<< "Time matching CPU OpenCV = " << (float)timeSerial/1000000 <<" ms"<<endl<<endl;
-    waitKey(0);
 }
 
 void MatchingMethod( int, void* )

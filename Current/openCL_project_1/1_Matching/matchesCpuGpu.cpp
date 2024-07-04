@@ -15,6 +15,7 @@ using namespace std;
 using namespace cv;
 
 std::string kernel_source;
+extern quint64 timeSerial;
 
 int loadKernelFile(std::string program)
 {
@@ -290,7 +291,8 @@ int matches()
     double time_matchingCPU = ((double)timeCPU)/*/CLOCKS_PER_SEC*/;
     double time_matchingGPU = ((double)timeGPU)/*/CLOCKS_PER_SEC*/;
 
-    printf("\nTime matching CPU = %.3f ms \n", time_matchingCPU/1000);
+    printf("\nTime matching CPU = %.3f ms ", time_matchingCPU/1000);
+    printf("\nTime matching CPU OpenCV = %.3f ms \n", (float)timeSerial/1000000);
     printf("Time matching GPU = %.3f ms \n", time_matchingGPU/1000);
 
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
@@ -298,7 +300,7 @@ int matches()
     cv::rectangle(image,cv::Point(r.xpos, r.ypos), cv::Point(r.xpos+tmpl.cols, r.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
     const char* parallel_window = "Parallel matching";
     namedWindow( parallel_window, WINDOW_AUTOSIZE );
-    moveWindow(parallel_window, 300,300);
+    moveWindow(parallel_window, 700,450);
     imshow(parallel_window, image);
 
     cout<<"\nPosition"<<", x: "<<r.xpos<<", y: "<<r.ypos<<"\n";

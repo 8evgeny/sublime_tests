@@ -1,8 +1,8 @@
 file(GLOB src
     main.cpp
     matches.cpp
-    serialMatches.cpp
-    parallelMatches.cpp
+    matchesOpenCv.cpp
+    matchesCpuGpu.cpp
     )
 
 add_executable(1_matching ${src})
