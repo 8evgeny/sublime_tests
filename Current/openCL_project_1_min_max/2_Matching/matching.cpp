@@ -53,7 +53,7 @@ void loadKernelFile(std::string program)
     std::vector<cl::Device> all_devices;
     cl::Platform default_platform;
     std::vector<cl::Platform> all_platforms;
-    clock_t reloj;
+    clock_t timeMatching;
     int aux=0;
 
 
@@ -204,18 +204,17 @@ int main(int argc, const char** argv)
      }
 
 
-    //cargo las imagenes
     cv::Mat tmpl = cv::imread("template.jpg");
     if (tmpl.rows == 0)
 	{
-		std::cout<< "La imagen template no se pudo cargar \n";
+        std::cout<< "template.jpg  error \n";
 		return -1;
 	}
 
-    cv::Mat image = cv::imread("baseImage.jpg");
+    cv::Mat image = cv::imread("image.jpg");
     if (image.rows == 0)
 	{
-		std::cout<< "La imagen base no se pudo cargar \n";
+        std::cout<< "image.jpg  error \n";
 		return -1;
 	}
 
@@ -233,7 +232,7 @@ int main(int argc, const char** argv)
     TemplateMatch tmM(image);
 	result r;
 
-    reloj = clock();    //arranco a tomar el tiempo
+    timeMatching = clock();    //start timer
     if (!useGPU){
         r = tmM.check(tmpl, tmpl.rows, tmpl.cols);
     }
@@ -241,11 +240,11 @@ int main(int argc, const char** argv)
         gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols,r);
     }
 
-	reloj = clock() - reloj;
+    timeMatching = clock() - timeMatching;
 
-    double time_taken = ((double)reloj)/CLOCKS_PER_SEC; // in seconds
-    printf("Tardó %f segundos \n", time_taken);
-
+    double time_matching = ((double)timeMatching)/CLOCKS_PER_SEC; // in seconds
+    if (useGPU)     printf("Time matching GPU = %f sec \n", time_matching);
+    if (!useGPU)     printf("Time matching CPU = %f sec \n", time_matching);
 
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
 
@@ -253,7 +252,7 @@ int main(int argc, const char** argv)
 
     cv::imshow("Result", image);
 
-    cout<<"Posicion del matching encontrado"<<", x: "<<r.xpos<<", y: "<<r.ypos<<"\n";
+    cout<<"Position"<<", x: "<<r.xpos<<", y: "<<r.ypos<<"\n";
 	cv::waitKey(-1);
 	return 0;
 
