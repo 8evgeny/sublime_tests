@@ -10,7 +10,7 @@
 using namespace std;
 using namespace cv;
 
-QElapsedTimer eTimer;
+QElapsedTimer eTimerSerial, eTimerOpenCV, eTimerParallel;
 quint64 timeSerial, timeOpenCV, timeParallel;
 int match_method = matchMetod::TM_CCOEFF_NORMED;
 
