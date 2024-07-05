@@ -30,13 +30,14 @@ typedef struct tag_result{
 
 
 		for ( int y1 = 0; y1 < t_rows; y1++ )
+        {
             for ( int x1 = 0; x1 < t_cols; x1++ )
 			{
                 int p_SearchIMG = imageData[(y+y1) * w + (x+x1)];
                 int p_TemplateIMG = templateData[y1 *  t_cols + x1];
                 SAD += abs( p_SearchIMG - p_TemplateIMG );
-
             }
+        }
 
         // save the best found position
 
