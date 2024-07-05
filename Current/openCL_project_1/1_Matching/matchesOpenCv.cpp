@@ -9,9 +9,9 @@
 using namespace std;
 using namespace cv;
 
-extern QElapsedTimer eTimer;
 extern quint64 timeOpenCV;
-
+extern chrono::high_resolution_clock::time_point
+    time_start_OpenCV, time_end_OpenCV;
 Mat img; Mat templ; Mat result;
 
 extern int match_method;
@@ -29,7 +29,7 @@ void matchesOpenCV()
     const char* trackbar_label = "Method: \n 0: SQDIFF \n 1: SQDIFF NORMED \n 2: TM CCORR \n 3: TM CCORR NORMED \n 4: TM COEFF \n 5: TM COEFF NORMED";
 //    createTrackbar( trackbar_label, image_window, &match_method, max_Trackbar, MatchingMethod );
 
-    eTimer.restart();
+    time_start_OpenCV = chrono::high_resolution_clock::now();
     MatchingMethod( 0, 0 );
 
 }
@@ -56,7 +56,7 @@ void MatchingMethod( int, void* )
 
   minMaxLoc( result, &minVal, &maxVal, &minLoc, &maxLoc, Mat() );
 
-  timeOpenCV = eTimer.nsecsElapsed();
+  time_end_OpenCV = chrono::high_resolution_clock::now();
 
   /// For SQDIFF and SQDIFF_NORMED, the best matches are lower values. For all the other methods, the higher the better
   if( match_method  == matchMetod::TM_SQDIFF || match_method == matchMetod::TM_SQDIFF_NORMED )

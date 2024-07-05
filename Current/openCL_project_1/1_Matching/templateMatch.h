@@ -23,7 +23,7 @@ public:
 	TemplateMatch(  cv::Mat img );
 	cv::Mat image;
 
-	result check(cv::Mat _template, int t_rows, int t_cols);
+    result matchesCPU(cv::Mat _template, int t_rows, int t_cols);
 };
 
 
