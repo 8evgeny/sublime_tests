@@ -5,8 +5,6 @@
 #include <fstream>
 #include "templateMatch.h"
 
-extern QElapsedTimer eTimerSerial, eTimerOpenCV, eTimerParallel;
-extern quint64 timeParallel, timeSerial, timeOpenCV;
 extern int const match_method;
 
 using namespace std;
@@ -142,7 +140,6 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
 
     time_start_GPU = chrono::high_resolution_clock::now();
     timeGPU = clock();
-    eTimerParallel.start();
 
     loadDataMatToUchar(imageData,tmM.image,1);
     loadDataMatToUchar(templateData,_template,1);
@@ -291,7 +288,6 @@ int matches()
         cout<<"error gpuProcess "<< retGpu <<endl;
         return -1;
     }
-    auto time_m_GPU = eTimerParallel.nsecsElapsed();
     time_end_GPU = chrono::high_resolution_clock::now();
     timeGPU = clock() - timeGPU;
 
@@ -331,9 +327,9 @@ int matches()
     printf("\nTime matching OpenCV = \t%.2f ms metod: %s\n", (float)time_matching_OpenCV.count()/1000, mm.c_str());
 
     auto time_matching_GPU = std::chrono::duration_cast<chrono::microseconds>(time_end_GPU - time_start_GPU);
-    printf("Time matching GPU = \t%.2f ms \n", (float)time_matching_GPU.count()/1000);
-    printf("Time matching GPU = \t%.2f ms \n", (float)timeGPU/1000);
-    printf("Time matching GPU = \t%.2f ms \n", (float)time_m_GPU/1000000);
+    printf("Time matching GPU(chrono) = \t%.2f ms \n", (float)time_matching_GPU.count()/1000);
+    printf("Time matching GPU(time_t) = \t%.2f ms \n", (float)timeGPU/1000);
+
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
     cv::rectangle(image,cv::Point(r.xpos, r.ypos), cv::Point(r.xpos+tmpl.cols, r.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
     const char* parallel_window = "Parallel matching";
