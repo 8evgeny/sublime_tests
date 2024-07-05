@@ -321,10 +321,10 @@ int matches()
     }
 
     auto time_matching_CPU = std::chrono::duration_cast<chrono::microseconds>(time_end_Serial - time_start_Serial);
-    printf("\nTime matching CPU = \t%.2f ms ", (float)time_matching_CPU.count()/1000);
+    printf("\nTime matching CPU = \t\t%.2f ms ", (float)time_matching_CPU.count()/1000);
 
     auto time_matching_OpenCV = std::chrono::duration_cast<chrono::microseconds>(time_end_OpenCV - time_start_OpenCV);
-    printf("\nTime matching OpenCV = \t%.2f ms metod: %s\n", (float)time_matching_OpenCV.count()/1000, mm.c_str());
+    printf("\nTime matching OpenCV = \t\t%.2f ms (%s)\n", (float)time_matching_OpenCV.count()/1000, mm.c_str());
 
     auto time_matching_GPU = std::chrono::duration_cast<chrono::microseconds>(time_end_GPU - time_start_GPU);
     printf("Time matching GPU(chrono) = \t%.2f ms \n", (float)time_matching_GPU.count()/1000);
