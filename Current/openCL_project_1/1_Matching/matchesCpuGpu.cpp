@@ -136,7 +136,8 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
     uchar* imageData = new uchar[w*h];
     uchar* templateData = new uchar[t_rows*t_cols];
 
-    eTimer.restart();
+//    eTimer.restart();
+    timeGPU = clock();
 
     loadDataMatToUchar(imageData,tmM.image,1);
     loadDataMatToUchar(templateData,_template,1);
@@ -192,7 +193,8 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
     queue.enqueueReadBuffer(clInputVar, CL_TRUE,0, sizeof(result),&res);
 
     r=res;
-    timeParallel = eTimer.nsecsElapsed();
+    //    timeParallel = eTimer.nsecsElapsed();
+
     return 0;
 }
 
@@ -285,6 +287,7 @@ int matches()
         cout<<"error gpuProcess "<< retGpu <<endl;
         return -1;
     }
+    timeGPU = clock() - timeGPU;
 
     double time_matchingCPU = ((double)timeCPU)/*/CLOCKS_PER_SEC*/;
     double time_matchingGPU = ((double)timeGPU)/*/CLOCKS_PER_SEC*/;
@@ -320,8 +323,8 @@ int matches()
 
     printf("\nTime matching CPU = \t%.2f ms ", (float)timeSerial/1000000);
     printf("\nTime matching OpenCV = \t%.2f ms metod: %s\n", (float)timeOpenCV/1000000, mm.c_str());
-    printf("Time matching GPU = \t%.2f ms \n", (float)timeParallel/1000000);
-
+//    printf("Time matching GPU = \t%.2f ms \n", (float)timeParallel/1000000);
+    printf("Time matching GPU = \t%.2f ms \n", time_matchingGPU/1000000);
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
 
     cv::rectangle(image,cv::Point(r.xpos, r.ypos), cv::Point(r.xpos+tmpl.cols, r.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
