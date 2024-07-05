@@ -135,6 +135,7 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
 
     int aux=10000000;
 
+
     uchar* imageData = new uchar[w*h];
     uchar* templateData = new uchar[t_rows*t_cols];
 
