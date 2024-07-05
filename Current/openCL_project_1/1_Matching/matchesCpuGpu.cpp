@@ -324,7 +324,7 @@ int matches()
     printf("\nTime matching CPU = \t%.2f ms ", (float)timeSerial/1000000);
     printf("\nTime matching OpenCV = \t%.2f ms metod: %s\n", (float)timeOpenCV/1000000, mm.c_str());
 //    printf("Time matching GPU = \t%.2f ms \n", (float)timeParallel/1000000);
-    printf("Time matching GPU = \t%.2f ms \n", time_matchingGPU/1000000);
+    printf("Time matching GPU = \t%.2f ms \n", time_matchingGPU/1000);
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
 
     cv::rectangle(image,cv::Point(r.xpos, r.ypos), cv::Point(r.xpos+tmpl.cols, r.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
