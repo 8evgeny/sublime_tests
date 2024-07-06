@@ -35,7 +35,7 @@ int main ()
 	
 	std::cout <<"gpio init...\n"<<std::endl; 
 	system("gpio readall");
-     
+    std::string temper;
 	while(1)
 	{
         char *cmd = "./tempread.sh";
@@ -43,13 +43,16 @@ int main ()
         FILE *ptr;
         if ((ptr = popen(cmd, "r")) != NULL)
         {
-            while(fgets(buf, BUFSIZ, ptr) != NULL)
-                (void) printf("%s", buf);
+            while(fgets(buf, BUFSIZ, ptr) != NULL);
+//                (void) printf("%s", buf);
             std::string tmp{buf};
-            std::cout <<"Temp="<<tmp<<std::endl;
-                (void) pclose(ptr);
+            temper = tmp;
+            (void) pclose(ptr);
         }
-delay(2000);
+        std::cout << "Temp=" << temper;
+
+
+        delay(2000);
 
 //		digitalWrite(gpio_pin_RESERV, HIGH);
 //		printf("PIN_22 ON\n");
