@@ -41,14 +41,15 @@ int main ()
         char *cmd = "./tempread.sh";
         char buf[BUFSIZ];
         FILE *ptr;
-
         if ((ptr = popen(cmd, "r")) != NULL)
         {
-                while (fgets(buf, BUFSIZ, ptr) != NULL)
-                    (void) printf("%s", buf);
+            while(fgets(buf, BUFSIZ, ptr) != NULL)
+                (void) printf("%s", buf);
+            std::string tmp{buf};
+            std::cout <<"Temp="<<tmp<<std::endl;
                 (void) pclose(ptr);
         }
-delay(5000);
+delay(2000);
 
 //		digitalWrite(gpio_pin_RESERV, HIGH);
 //		printf("PIN_22 ON\n");
