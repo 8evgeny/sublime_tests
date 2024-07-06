@@ -38,49 +38,61 @@ int main ()
      
 	while(1)
 	{
-		digitalWrite(gpio_pin_RESERV, HIGH);
-		printf("PIN_22 ON\n");
-		delay(1000);
-		digitalWrite(gpio_pin_COLD, HIGH);
-		printf("PIN_23 ON\n");
-		delay(1000);
-		digitalWrite(gpio_pin_LAMP, HIGH);
-		printf("PIN_29 ON\n");
-		delay(1000);
-		digitalWrite(gpio_pin_HEAT, HIGH);
-		printf("PIN_30 ON\n");
-		delay(1000);		
-		digitalWrite(gpio_pin_PUMP, HIGH);
-		printf("PIN_31 ON\n");
-		delay(1000);		
-		digitalWrite(gpio_pin_LAMP, HIGH);
-		printf("PIN_32 ON\n");
-		delay(1000);		
-		digitalWrite(gpio_pin_FOOD, HIGH);
-		printf("PIN_35 ON\n");
-		delay(1000);		
+        char *cmd = "./tempread.sh";
+        char buf[BUFSIZ];
+        FILE *ptr;
 
-		digitalWrite(gpio_pin_RESERV, LOW);
-		printf("PIN_22 OFF\n");
-		delay(1000);
-		digitalWrite(gpio_pin_COLD, LOW);
-		printf("PIN_23 OFF\n");
-		delay(1000);
-		digitalWrite(gpio_pin_LAMP, LOW);
-		printf("PIN_29 OFF\n");
-		delay(1000);
-		digitalWrite(gpio_pin_HEAT, LOW);
-		printf("PIN_30 OFF\n");
-		delay(1000);		
-		digitalWrite(gpio_pin_PUMP, LOW);
-		printf("PIN_31 OFF\n");
-		delay(1000);		
-		digitalWrite(gpio_pin_LAMP, LOW);
-		printf("PIN_32 OFF\n");
-		delay(1000);		
-		digitalWrite(gpio_pin_FOOD, LOW);
-		printf("PIN_35 OFF\n");
-		delay(1000);		
+        if ((ptr = popen(cmd, "r")) != NULL)
+        {
+                while (fgets(buf, BUFSIZ, ptr) != NULL)
+                    (void) printf("%s", buf);
+                (void) pclose(ptr);
+        }
+delay(5000);
+
+//		digitalWrite(gpio_pin_RESERV, HIGH);
+//		printf("PIN_22 ON\n");
+//		delay(1000);
+//		digitalWrite(gpio_pin_COLD, HIGH);
+//		printf("PIN_23 ON\n");
+//		delay(1000);
+//		digitalWrite(gpio_pin_LAMP, HIGH);
+//		printf("PIN_29 ON\n");
+//		delay(1000);
+//		digitalWrite(gpio_pin_HEAT, HIGH);
+//		printf("PIN_30 ON\n");
+//		delay(1000);
+//		digitalWrite(gpio_pin_PUMP, HIGH);
+//		printf("PIN_31 ON\n");
+//		delay(1000);
+//		digitalWrite(gpio_pin_LAMP, HIGH);
+//		printf("PIN_32 ON\n");
+//		delay(1000);
+//		digitalWrite(gpio_pin_FOOD, HIGH);
+//		printf("PIN_35 ON\n");
+//		delay(1000);
+
+//		digitalWrite(gpio_pin_RESERV, LOW);
+//		printf("PIN_22 OFF\n");
+//		delay(1000);
+//		digitalWrite(gpio_pin_COLD, LOW);
+//		printf("PIN_23 OFF\n");
+//		delay(1000);
+//		digitalWrite(gpio_pin_LAMP, LOW);
+//		printf("PIN_29 OFF\n");
+//		delay(1000);
+//		digitalWrite(gpio_pin_HEAT, LOW);
+//		printf("PIN_30 OFF\n");
+//		delay(1000);
+//		digitalWrite(gpio_pin_PUMP, LOW);
+//		printf("PIN_31 OFF\n");
+//		delay(1000);
+//		digitalWrite(gpio_pin_LAMP, LOW);
+//		printf("PIN_32 OFF\n");
+//		delay(1000);
+//		digitalWrite(gpio_pin_FOOD, LOW);
+//		printf("PIN_35 OFF\n");
+//		delay(1000);
 	}
     
     
