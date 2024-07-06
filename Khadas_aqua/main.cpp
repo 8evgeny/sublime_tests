@@ -35,7 +35,8 @@ int main ()
 	
 	std::cout <<"gpio init...\n"<<std::endl; 
 	system("gpio readall");
-    std::string temper;
+    std::string tmp;
+    float temp;
 	while(1)
 	{
         char *cmd = "./tempread.sh";
@@ -45,12 +46,12 @@ int main ()
         {
             while(fgets(buf, BUFSIZ, ptr) != NULL);
 //                (void) printf("%s", buf);
-            std::string tmp{buf};
-            temper = tmp;
+            std::string tmp2{buf};
+            tmp = tmp2;
             (void) pclose(ptr);
         }
-        std::cout << "Temp=" << temper;
-
+        temp = std::stof(tmp);
+        std::cout << "Temp=" << temp <<std::endl;
 
         delay(2000);
 
