@@ -37,7 +37,7 @@ void receiveTemp()
             (void) pclose(ptr);
         }
         std::cout << "Temp=" << std::stof(tmp) <<std::endl;
-        delay(10000);
+        delay(60000);
     }
 }
 
@@ -67,7 +67,7 @@ int main ()
 
 	while(1)
 	{
-
+    delay(60000);
 //		digitalWrite(gpio_pin_RESERV, HIGH);
 //		printf("PIN_22 ON\n");
 //		delay(1000);
