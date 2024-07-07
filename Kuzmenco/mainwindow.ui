@@ -3042,6 +3042,42 @@
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>Izmereniye</tabstop>
+  <tabstop>r_1</tabstop>
+  <tabstop>r_2</tabstop>
+  <tabstop>r_3</tabstop>
+  <tabstop>r_4</tabstop>
+  <tabstop>r_5</tabstop>
+  <tabstop>r_6</tabstop>
+  <tabstop>l_1</tabstop>
+  <tabstop>l_2</tabstop>
+  <tabstop>l_3</tabstop>
+  <tabstop>l_4</tabstop>
+  <tabstop>l_5</tabstop>
+  <tabstop>l_6</tabstop>
+  <tabstop>r_7</tabstop>
+  <tabstop>r_8</tabstop>
+  <tabstop>r_9</tabstop>
+  <tabstop>r_10</tabstop>
+  <tabstop>r_11</tabstop>
+  <tabstop>r_12</tabstop>
+  <tabstop>l_7</tabstop>
+  <tabstop>l_8</tabstop>
+  <tabstop>l_9</tabstop>
+  <tabstop>l_10</tabstop>
+  <tabstop>l_11</tabstop>
+  <tabstop>l_12</tabstop>
+  <tabstop>button_save</tabstop>
+  <tabstop>name_field</tabstop>
+  <tabstop>dateEdit</tabstop>
+  <tabstop>lineEdit_31</tabstop>
+  <tabstop>lineEdit_32</tabstop>
+  <tabstop>scrollArea_2</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>button_exit</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
