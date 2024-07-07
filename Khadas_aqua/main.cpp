@@ -4,7 +4,6 @@
 #include <wiringPiI2C.h>
 
 const int gpio_pin_RESERV = 6; 	//PIN22
-
 const int gpio_pin_COLD = 	7; 	//PIN23
 const int gpio_pin_LAMP = 	10;	//PIN29
 const int gpio_pin_HEAT = 	11;	//PIN30
@@ -12,10 +11,32 @@ const int gpio_pin_PUMP = 	12;	//PIN31
 const int gpio_pin_AIR  = 	13;	//PIN32
 const int gpio_pin_FOOD =	15;	//PIN35
 
+
 								//PIN37   onewire  измерение температуры
 								//PIN40   GND
 								//PIN1    +5
 								//PIN2    +5
+
+
+float receiveTemp()
+{
+    std::string tmp;
+//    float temp;
+    char *cmd = "./tempread.sh";
+    char buf[BUFSIZ];
+    FILE *ptr;
+    if ((ptr = popen(cmd, "r")) != NULL)
+    {
+        while(fgets(buf, BUFSIZ, ptr) != NULL);
+//                (void) printf("%s", buf);
+        std::string tmp2{buf};
+        tmp = tmp2;
+        (void) pclose(ptr);
+    }
+    return std::stof(tmp);
+}
+
+
 
 int main () 
 {
@@ -35,25 +56,11 @@ int main ()
 	
 	std::cout <<"gpio init...\n"<<std::endl; 
 	system("gpio readall");
-    std::string tmp;
-    float temp;
+
 	while(1)
 	{
-        char *cmd = "./tempread.sh";
-        char buf[BUFSIZ];
-        FILE *ptr;
-        if ((ptr = popen(cmd, "r")) != NULL)
-        {
-            while(fgets(buf, BUFSIZ, ptr) != NULL);
-//                (void) printf("%s", buf);
-            std::string tmp2{buf};
-            tmp = tmp2;
-            (void) pclose(ptr);
-        }
-        temp = std::stof(tmp);
-        std::cout << "Temp=" << temp <<std::endl;
-
-        delay(2000);
+        std::cout << "Temp=" << receiveTemp() <<std::endl;
+        delay(5000);
 
 //		digitalWrite(gpio_pin_RESERV, HIGH);
 //		printf("PIN_22 ON\n");
