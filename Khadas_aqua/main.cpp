@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <wiringPi.h>
 #include <wiringPiI2C.h>
+#include <thread>
 
 const int gpio_pin_RESERV = 6; 	//PIN22
 const int gpio_pin_COLD = 	7; 	//PIN23
@@ -18,22 +19,26 @@ const int gpio_pin_FOOD =	15;	//PIN35
 								//PIN2    +5
 
 
-float receiveTemp()
+void receiveTemp()
 {
-    std::string tmp;
-//    float temp;
-    char *cmd = "./tempread.sh";
-    char buf[BUFSIZ];
-    FILE *ptr;
-    if ((ptr = popen(cmd, "r")) != NULL)
+    while(1)
     {
-        while(fgets(buf, BUFSIZ, ptr) != NULL);
-//                (void) printf("%s", buf);
-        std::string tmp2{buf};
-        tmp = tmp2;
-        (void) pclose(ptr);
+        std::string tmp;
+    //    float temp;
+        char *cmd = "./tempread.sh";
+        char buf[BUFSIZ];
+        FILE *ptr;
+        if ((ptr = popen(cmd, "r")) != NULL)
+        {
+            while(fgets(buf, BUFSIZ, ptr) != NULL);
+    //                (void) printf("%s", buf);
+            std::string tmp2{buf};
+            tmp = tmp2;
+            (void) pclose(ptr);
+        }
+        std::cout << "Temp=" << std::stof(tmp) <<std::endl;
+        delay(10000);
     }
-    return std::stof(tmp);
 }
 
 
@@ -57,10 +62,11 @@ int main ()
 	std::cout <<"gpio init...\n"<<std::endl; 
 	system("gpio readall");
 
+    std::thread tt(receiveTemp);
+    tt.detach();
+
 	while(1)
 	{
-        std::cout << "Temp=" << receiveTemp() <<std::endl;
-        delay(5000);
 
 //		digitalWrite(gpio_pin_RESERV, HIGH);
 //		printf("PIN_22 ON\n");
