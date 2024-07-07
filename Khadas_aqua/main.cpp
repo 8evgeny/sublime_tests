@@ -19,7 +19,6 @@ const int gpio_pin_AIR  = 	13;	//PIN32
 const int gpio_pin_FOOD =	15;	//PIN35
 int min_temp;
 int max_temp;
-
 QString time_on;
 QString time_off;
 								//PIN37   onewire  измерение температуры
@@ -27,8 +26,10 @@ QString time_off;
 								//PIN1    +5
 								//PIN2    +5
 
+float temperature;
 
-void receiveTemp()
+
+void receiveTemp(float & temperature)
 {
     float temperatureOld;
     float temperatureNew;
@@ -47,16 +48,8 @@ void receiveTemp()
             tmp = tmp2;
             (void) pclose(ptr);
         }
-        temperatureNew = std::stof(tmp);
-        if (temperatureNew != temperatureOld)
-        {
-            std::cout << "new temp=" << temperatureNew <<"\t\t";
-            const auto now = std::chrono::system_clock::now();
-            const auto t_c = std::chrono::system_clock::to_time_t(now);
-            std::cout << std::put_time(std::localtime(&t_c), "%T %d.%b.%y \n");
-            temperatureOld = temperatureNew;
-        }
-        delay(60000);
+        temperature = std::stof(tmp);
+        this_thread::sleep_for(chrono::milliseconds(10000));
     }
 }
 
@@ -82,8 +75,8 @@ int main ()
     time_off = settings.value( "time_off").toString();
     settings.endGroup();
 
-    qDebug()<<"min_temp="<<min_temp<<"\tmax_temp="<<max_temp;
-    qDebug()<<"time_on="<<time_on<<"\ttime_off="<<time_off;
+    qDebug()<<"min_temp ="<<min_temp<<"\tmax_temp ="<<max_temp;
+    qDebug()<<"time_on ="<<time_on<<"\ttime_off ="<<time_off;
 
 
 	if(-1 == wiringPiSetup())
@@ -103,12 +96,32 @@ int main ()
 //	std::cout <<"gpio init...\n"<<std::endl;
 //	system("gpio readall");
 
-    std::thread tt(receiveTemp);
-    tt.detach();
+    std::thread (receiveTemp, ref(temperature)).detach();
 
+
+
+    this_thread::sleep_for(chrono::milliseconds(3000));
+
+    float temperatureNew;
 	while(1)
 	{
-    delay(60000);
+
+        if (temperatureNew != temperature)
+        {
+            std::cout << "temp=" << temperature <<"\t\t";
+            const auto now = std::chrono::system_clock::now();
+            const auto t_c = std::chrono::system_clock::to_time_t(now);
+            std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+            temperatureNew = temperature;
+        }
+
+        this_thread::sleep_for(chrono::milliseconds(60000));
+
+
+
+
+
+
 //		digitalWrite(gpio_pin_RESERV, HIGH);
 //		printf("PIN_22 ON\n");
 //		delay(1000);
