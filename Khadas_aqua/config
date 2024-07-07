@@ -1,0 +1,3 @@
+[Temperature]
+min_temp = 22.0;
+max_temp = 25.0;

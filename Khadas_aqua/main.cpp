@@ -5,6 +5,9 @@
 #include <thread>
 #include <iomanip>
 #include <chrono>
+#include <QtCore>
+
+using namespace std;
 
 const int gpio_pin_RESERV = 6; 	//PIN22
 const int gpio_pin_COLD = 	7; 	//PIN23
@@ -57,6 +60,22 @@ void receiveTemp()
 
 int main () 
 {
+//    QSettings settings(configPath, QSettings::IniFormat);
+//        settings.beginGroup("/General");
+//        settings.setValue("/InterviewPath", interviewPath);
+//        settings.endGroup();
+//QSettings settings("folderName", "fileName");
+
+    QSettings settings("config", QSettings::IniFormat);
+    settings.beginGroup("Temperature");
+    int min_temp = settings.value( "min_temp").toFloat();
+    int max_temp = settings.value( "max_temp").toFloat();
+    settings.endGroup();
+
+    cout<<"min_temp="<<min_temp<<"\tmax_temp="<<max_temp<<endl;
+
+
+
 	if(-1 == wiringPiSetup())
 	{
 		printf("set up error");

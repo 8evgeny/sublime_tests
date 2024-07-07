@@ -3,3 +3,4 @@ build_end/
 cmake-build-debug/
 .idea/
 CMakeLists.txt.user*
+Release
