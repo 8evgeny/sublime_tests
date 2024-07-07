@@ -3,6 +3,8 @@
 #include <wiringPi.h>
 #include <wiringPiI2C.h>
 #include <thread>
+#include <iomanip>
+#include <chrono>
 
 const int gpio_pin_RESERV = 6; 	//PIN22
 const int gpio_pin_COLD = 	7; 	//PIN23
@@ -21,11 +23,13 @@ const int gpio_pin_FOOD =	15;	//PIN35
 
 void receiveTemp()
 {
+    float temperatureOld;
+    float temperatureNew;
     while(1)
     {
         std::string tmp;
     //    float temp;
-        char *cmd = "./tempread.sh";
+        const char *cmd = "./tempread.sh";
         char buf[BUFSIZ];
         FILE *ptr;
         if ((ptr = popen(cmd, "r")) != NULL)
@@ -36,7 +40,15 @@ void receiveTemp()
             tmp = tmp2;
             (void) pclose(ptr);
         }
-        std::cout << "Temp=" << std::stof(tmp) <<std::endl;
+        temperatureNew = std::stof(tmp);
+        if (temperatureNew != temperatureOld)
+        {
+            std::cout << "new temp=" << temperatureNew <<"\t\t";
+            const auto now = std::chrono::system_clock::now();
+            const auto t_c = std::chrono::system_clock::to_time_t(now);
+            std::cout << std::put_time(std::localtime(&t_c), "%T %d.%b.%y \n");
+            temperatureOld = temperatureNew;
+        }
         delay(60000);
     }
 }
@@ -50,7 +62,7 @@ int main ()
 		printf("set up error");
 		exit(1);
 	}
-    system("gpio readall");	
+//    system("gpio readall");
 	pinMode(gpio_pin_RESERV, OUTPUT);
 	pinMode(gpio_pin_COLD, OUTPUT);
 	pinMode(gpio_pin_LAMP, OUTPUT);
@@ -59,8 +71,8 @@ int main ()
 	pinMode(gpio_pin_AIR, OUTPUT);
 	pinMode(gpio_pin_FOOD, OUTPUT);
 	
-	std::cout <<"gpio init...\n"<<std::endl; 
-	system("gpio readall");
+//	std::cout <<"gpio init...\n"<<std::endl;
+//	system("gpio readall");
 
     std::thread tt(receiveTemp);
     tt.detach();
