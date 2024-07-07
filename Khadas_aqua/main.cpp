@@ -17,68 +17,59 @@ const int gpio_pin_HEAT = 	11;	//PIN30
 const int gpio_pin_PUMP = 	12;	//PIN31
 const int gpio_pin_AIR  = 	13;	//PIN32
 const int gpio_pin_FOOD =	15;	//PIN35
-int min_temp;
-int max_temp;
-QString time_on;
-QString time_off;
+
+float min_temp, max_temp;
+float temperature;
+QString time_on,time_off;
+
 								//PIN37   onewire  измерение температуры
 								//PIN40   GND
 								//PIN1    +5
 								//PIN2    +5
 
-float temperature;
+
 
 
 void receiveTemp(float & temperature)
 {
-    float temperatureOld;
-    float temperatureNew;
     while(1)
     {
         std::string tmp;
-    //    float temp;
         const char *cmd = "./tempread.sh";
         char buf[BUFSIZ];
         FILE *ptr;
         if ((ptr = popen(cmd, "r")) != NULL)
         {
             while(fgets(buf, BUFSIZ, ptr) != NULL);
-    //                (void) printf("%s", buf);
             std::string tmp2{buf};
             tmp = tmp2;
             (void) pclose(ptr);
         }
         temperature = std::stof(tmp);
-        this_thread::sleep_for(chrono::milliseconds(10000));
+        this_thread::sleep_for(chrono::milliseconds(5000));
     }
 }
 
+void receiveSettings(float & min_temp, float & max_temp)
+{
+    while(1)
+    {
+        QSettings settings("config", QSettings::IniFormat);
+        settings.beginGroup("Temperature");
+        min_temp = settings.value( "min_temp").toFloat();
+        max_temp = settings.value( "max_temp").toFloat();
+        settings.endGroup();
+        this_thread::sleep_for(chrono::milliseconds(5000));
+    }
+    //    settings.beginGroup("Light");
+    //    time_on = settings.value( "time_on").toString();
+    //    time_off = settings.value( "time_off").toString();
+    //    settings.endGroup();
+}
 
 
 int main () 
 {
-//    QSettings settings(configPath, QSettings::IniFormat);
-//        settings.beginGroup("/General");
-//        settings.setValue("/InterviewPath", interviewPath);
-//        settings.endGroup();
-//QSettings settings("folderName", "fileName");
-
-    QSettings settings("config", QSettings::IniFormat);
-    settings.beginGroup("Temperature");
-    min_temp = settings.value( "min_temp").toFloat();
-    max_temp = settings.value( "max_temp").toFloat();
-    settings.endGroup();
-
-    settings.beginGroup("Light");
-//    settings.setValue("time", curr);
-    time_on = settings.value( "time_on").toString();
-    time_off = settings.value( "time_off").toString();
-    settings.endGroup();
-
-    qDebug()<<"min_temp ="<<min_temp<<"\tmax_temp ="<<max_temp;
-    qDebug()<<"time_on ="<<time_on<<"\ttime_off ="<<time_off;
-
-
 	if(-1 == wiringPiSetup())
 	{
 		printf("set up error");
@@ -97,25 +88,47 @@ int main ()
 //	system("gpio readall");
 
     std::thread (receiveTemp, ref(temperature)).detach();
-
-
+    std::thread (receiveSettings,
+                 std::ref(min_temp),
+                 std::ref(max_temp)
+                 ).detach();
 
     this_thread::sleep_for(chrono::milliseconds(3000));
 
-    float temperatureNew;
+    float temperatureNew, min_tempNew, max_tempNew;
 	while(1)
 	{
-
         if (temperatureNew != temperature)
         {
-            std::cout << "temp=" << temperature <<"\t\t";
+            std::cout << "temp = " << temperature <<"\t\t";
             const auto now = std::chrono::system_clock::now();
             const auto t_c = std::chrono::system_clock::to_time_t(now);
             std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
             temperatureNew = temperature;
         }
+        if (min_tempNew != min_temp)
+        {
+            std::cout << "min_temp = " << min_temp <<"\t\t";
+            const auto now = std::chrono::system_clock::now();
+            const auto t_c = std::chrono::system_clock::to_time_t(now);
+            std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+            min_tempNew = min_temp;
+        }
+        if (max_tempNew != max_temp)
+        {
+            std::cout << "max_temp = " << max_temp <<"\t\t";
+            const auto now = std::chrono::system_clock::now();
+            const auto t_c = std::chrono::system_clock::to_time_t(now);
+            std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+            max_tempNew = max_temp;
+        }
 
-        this_thread::sleep_for(chrono::milliseconds(60000));
+
+
+
+
+
+        this_thread::sleep_for(chrono::milliseconds(5000));
 
 
 

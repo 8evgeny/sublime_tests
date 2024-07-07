@@ -1,6 +1,6 @@
 [Temperature]
 min_temp = 22.0;
-max_temp = 25.0;
+max_temp = 26.0;
 
 [Light]
 time_on = 06:30:0;
