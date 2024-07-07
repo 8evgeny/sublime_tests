@@ -20,7 +20,7 @@ const int gpio_pin_FOOD =	15;	//PIN35
 
 float min_temp, max_temp;
 float temperature;
-QString time_on,time_off;
+QTime time_on,time_off;
 
 								//PIN37   onewire  измерение температуры
 								//PIN40   GND
@@ -50,7 +50,12 @@ void receiveTemp(float & temperature)
     }
 }
 
-void receiveSettings(float & min_temp, float & max_temp)
+void receiveSettings(
+                    float & min_temp,
+                    float & max_temp,
+                    QTime & time_on,
+                    QTime & time_off
+                    )
 {
     while(1)
     {
@@ -59,12 +64,15 @@ void receiveSettings(float & min_temp, float & max_temp)
         min_temp = settings.value( "min_temp").toFloat();
         max_temp = settings.value( "max_temp").toFloat();
         settings.endGroup();
+
+        settings.beginGroup("Light");
+        time_on = QTime::fromString(settings.value( "time_on").toString());
+        time_off = QTime::fromString(settings.value( "time_off").toString());
+        settings.endGroup();
+
         this_thread::sleep_for(chrono::milliseconds(5000));
     }
-    //    settings.beginGroup("Light");
-    //    time_on = settings.value( "time_on").toString();
-    //    time_off = settings.value( "time_off").toString();
-    //    settings.endGroup();
+
 }
 
 
@@ -90,12 +98,15 @@ int main ()
     std::thread (receiveTemp, ref(temperature)).detach();
     std::thread (receiveSettings,
                  std::ref(min_temp),
-                 std::ref(max_temp)
+                 std::ref(max_temp),
+                 std::ref(time_on),
+                 std::ref(time_off)
                  ).detach();
 
     this_thread::sleep_for(chrono::milliseconds(3000));
 
     float temperatureNew, min_tempNew, max_tempNew;
+    QTime time_onNew, time_offNew;
 	while(1)
 	{
         if (temperatureNew != temperature)
@@ -122,11 +133,22 @@ int main ()
             std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
             max_tempNew = max_temp;
         }
-
-
-
-
-
+        if (time_onNew != time_on)
+        {
+            std::cout << "time_on = " << time_on.toString("hh:mm").toStdString()<<"\t\t";
+            const auto now = std::chrono::system_clock::now();
+            const auto t_c = std::chrono::system_clock::to_time_t(now);
+            std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+            time_onNew = time_on;
+        }
+        if (time_offNew != time_off)
+        {
+            std::cout << "time_off = " << time_off.toString("hh:mm").toStdString()<<"\t";
+            const auto now = std::chrono::system_clock::now();
+            const auto t_c = std::chrono::system_clock::to_time_t(now);
+            std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+            time_offNew = time_off;
+        }
 
         this_thread::sleep_for(chrono::milliseconds(5000));
 
