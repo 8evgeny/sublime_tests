@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <chrono>
 #include <QtCore>
+#include <QDebug>
 
 using namespace std;
 
@@ -16,8 +17,11 @@ const int gpio_pin_HEAT = 	11;	//PIN30
 const int gpio_pin_PUMP = 	12;	//PIN31
 const int gpio_pin_AIR  = 	13;	//PIN32
 const int gpio_pin_FOOD =	15;	//PIN35
+int min_temp;
+int max_temp;
 
-
+QTime time_on;
+QTime time_off;
 								//PIN37   onewire  измерение температуры
 								//PIN40   GND
 								//PIN1    +5
@@ -68,12 +72,19 @@ int main ()
 
     QSettings settings("config", QSettings::IniFormat);
     settings.beginGroup("Temperature");
-    int min_temp = settings.value( "min_temp").toFloat();
-    int max_temp = settings.value( "max_temp").toFloat();
+    min_temp = settings.value( "min_temp").toFloat();
+    max_temp = settings.value( "max_temp").toFloat();
     settings.endGroup();
 
-    cout<<"min_temp="<<min_temp<<"\tmax_temp="<<max_temp<<endl;
+//    QTime curr = QTime::currentTime();
+    settings.beginGroup("Light");
+//    settings.setValue("time", curr);
+    time_on = settings.value( "time_on").toTime();
+    time_off = settings.value( "time_off").toTime();
+    settings.endGroup();
 
+    qDebug()<<"min_temp="<<min_temp<<"\tmax_temp="<<max_temp;
+    qDebug()<<"time_on="<<time_on<<"\ttime_off="<<time_off;
 
 
 	if(-1 == wiringPiSetup())
