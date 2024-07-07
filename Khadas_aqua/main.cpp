@@ -20,8 +20,8 @@ const int gpio_pin_FOOD =	15;	//PIN35
 int min_temp;
 int max_temp;
 
-QTime time_on;
-QTime time_off;
+QString time_on;
+QString time_off;
 								//PIN37   onewire  измерение температуры
 								//PIN40   GND
 								//PIN1    +5
@@ -76,11 +76,10 @@ int main ()
     max_temp = settings.value( "max_temp").toFloat();
     settings.endGroup();
 
-//    QTime curr = QTime::currentTime();
     settings.beginGroup("Light");
 //    settings.setValue("time", curr);
-    time_on = settings.value( "time_on").toTime();
-    time_off = settings.value( "time_off").toTime();
+    time_on = settings.value( "time_on").toString();
+    time_off = settings.value( "time_off").toString();
     settings.endGroup();
 
     qDebug()<<"min_temp="<<min_temp<<"\tmax_temp="<<max_temp;
