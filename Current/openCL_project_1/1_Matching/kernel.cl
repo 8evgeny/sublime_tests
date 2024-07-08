@@ -1,6 +1,6 @@
 typedef struct tag_result{
     int xpos, ypos;
-	float SAD;
+    float SAD;
 }result;
 
 

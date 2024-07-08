@@ -139,11 +139,13 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
     uchar* imageData = new uchar[w*h];
     uchar* templateData = new uchar[t_rows*t_cols];
 
-    time_start_GPU = chrono::high_resolution_clock::now();
-    timeGPU = clock();
 
     loadDataMatToUchar(imageData,tmM.image,1);
     loadDataMatToUchar(templateData,_template,1);
+
+    time_start_GPU = chrono::high_resolution_clock::now();
+    timeGPU = clock();
+
 
     clInputImg=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(unsigned char)*w*h);
     clInputTemp=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(unsigned char)*t_rows*t_cols);
