@@ -101,10 +101,8 @@ int loadAndBuildProgram(std::string programFile)
     return 0;
 }
 
-int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, result & r)
+int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, uchar* imageData, uchar* templateData, result & r)
 {
-
-
 
     // Data
     result res;
@@ -115,14 +113,6 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
     int h = tmM.HEIGHT;
 
     int aux=10000000;
-
-
-    uchar* imageData = new uchar[w*h];
-    uchar* templateData = new uchar[t_rows*t_cols];
-
-
-    loadDataMatToUchar(imageData,tmM.image,1);
-    loadDataMatToUchar(templateData,_template,1);
 
 
     clInputImg=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(unsigned char)*w*h);
@@ -137,8 +127,6 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
 
     if (iclError != 0 )
     {
-        delete[] imageData;
-        delete[] templateData;
         cout<<"iclError"<<endl;
         return -1;
     }
@@ -285,17 +273,27 @@ int matches()
     }
 
 
+
+    uchar* imageData = new uchar[tmM.WIDTH*tmM.HEIGHT];
+    uchar* templateData = new uchar[tmpl.rows*tmpl.cols];
+
+    loadDataMatToUchar(imageData,tmM.image,1);
+    loadDataMatToUchar(templateData, tmpl,1);
+
     time_start_GPU = chrono::high_resolution_clock::now();
 
 for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
 {
-    int retGpu = gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols, r);
+    int retGpu = gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols, imageData, templateData, r);
     if (retGpu != 0)
     {
         cout<<"error gpuProcess "<< retGpu <<endl;
         return -1;
     }
 }
+
+    delete[] imageData;
+    delete[] templateData;
 
     time_end_GPU = chrono::high_resolution_clock::now();
 
