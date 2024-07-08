@@ -19,7 +19,7 @@ inline void calculateNDRange(int size, int groupSize,
     *bGroupSize = groupSize;
     *oSize = size / groupSize;
 }
-
+//GPU not working  without CPU !!!!
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
@@ -98,7 +98,8 @@ int main(int argc, char *argv[])
     eTimer.start();
 
     // Serial edge detector
-    for (int y = 0; y < imageIn.height(); y++) {
+    for (int y = 0; y < imageIn.height(); y++)
+    {
         QRgb *iLine = (QRgb *) imageIn.scanLine(y);
 
         QRgb *iLine_m1 = (y < 1)?
@@ -141,6 +142,7 @@ int main(int argc, char *argv[])
     qDebug() << "serial   " << (float)timeSerial/1000000 << " ms";
 
     imageOut.save("edges-serial.jpg");
+
     imageIn = imageIn.convertToFormat(QImage::Format_RGBA8888);
 
     // Create image buffers
