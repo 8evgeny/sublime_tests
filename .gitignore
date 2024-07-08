@@ -37,3 +37,7 @@ Qt_6_4_Examples/build/
 Notes/Подготовка к собесам/20_04_2024_РДП_Инновация_ДЗ/DPDK/dpdk-main/meson.build.user
 
 *.avi
+
+openCL_examples_2/Release/CMakeCache.txt
+
+openCL_examples_2/Release/CMakeCache.txt.prev

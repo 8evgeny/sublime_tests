@@ -1,4 +1,4 @@
-project(OpenCL_example_1)
+project(OpenCL_examples_2)
 
 find_package( OpenCL REQUIRED )
 include_directories (${OpenCL_INCLUDE_DIRS} )
