@@ -105,15 +105,7 @@ int loadAndBuildProgram(std::string programFile)
 
 int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, result & r)
 {
-    if (initDevice() < 0 )
-    {
-        cout<<"initDevice error"<<endl;
-          return -1;
-    }
-    else
-    {
-//        cout<<"initDevice OK"<<endl;
-    }
+
     // kernel
     if ( loadAndBuildProgram("kernel") < 0)
     {
@@ -142,9 +134,6 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, res
 
     loadDataMatToUchar(imageData,tmM.image,1);
     loadDataMatToUchar(templateData,_template,1);
-
-    time_start_GPU = chrono::high_resolution_clock::now();
-    timeGPU = clock();
 
 
     clInputImg=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(unsigned char)*w*h);
@@ -285,12 +274,26 @@ int matches()
     r = tmM.matchesCPU(tmpl, tmpl.rows, tmpl.cols);
 
     //Time matching GPU
+    if (initDevice() < 0 )
+    {
+        cout<<"initDevice error"<<endl;
+          return -1;
+    }
+    else
+    {
+//        cout<<"initDevice OK"<<endl;
+    }
+
+    time_start_GPU = chrono::high_resolution_clock::now();
+    timeGPU = clock();
+
     int retGpu = gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols, r);
     if (retGpu != 0)
     {
         cout<<"error gpuProcess "<< retGpu <<endl;
         return -1;
     }
+
     time_end_GPU = chrono::high_resolution_clock::now();
     timeGPU = clock() - timeGPU;
 

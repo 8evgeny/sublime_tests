@@ -30,8 +30,8 @@ kernel void matching(global uchar* imageData,
 
     // loop through the template image
 
-    for (int aa = 0; aa< 10000;++aa)
-    {
+//    for (int aa = 0; aa< 10000;++aa)
+//    {
         for ( int y1 = 0; y1 < t_rows; y1++ )
         {
             for ( int x1 = 0; x1 < t_cols; x1++ )
@@ -55,7 +55,7 @@ kernel void matching(global uchar* imageData,
         }
     }
 
-}
+//}
 
      kernel void test2(global uchar* imageData,global uchar* templateData, int x, int y, int w, int h,int t_cols, int t_rows, global int* aux){
         // get index into global data array
