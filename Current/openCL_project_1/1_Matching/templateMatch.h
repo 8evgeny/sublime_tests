@@ -8,7 +8,7 @@
 
 #define BUSY 0
 #define EMPTY 255
-
+#define NUM_ITERATIONS_GPU  100
 struct result
 {
 	int xpos, ypos;

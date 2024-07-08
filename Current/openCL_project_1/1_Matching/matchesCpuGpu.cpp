@@ -41,8 +41,6 @@ cl::Device default_device;
 std::vector<cl::Device> all_devices;
 cl::Platform default_platform;
 std::vector<cl::Platform> all_platforms;
-clock_t timeCPU;
-clock_t timeGPU;
 int aux=0;
 
 int initDevice()
@@ -288,9 +286,8 @@ int matches()
 
 
     time_start_GPU = chrono::high_resolution_clock::now();
-    timeGPU = clock();
 
-for (int i = 0; i < 10000; ++i)
+for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
 {
     int retGpu = gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols, r);
     if (retGpu != 0)
@@ -301,7 +298,6 @@ for (int i = 0; i < 10000; ++i)
 }
 
     time_end_GPU = chrono::high_resolution_clock::now();
-    timeGPU = clock() - timeGPU;
 
     string mm;
     switch (match_method)
@@ -339,8 +335,7 @@ for (int i = 0; i < 10000; ++i)
     printf("\nTime matching OpenCV = \t\t%.2f ms (%s)\n", (float)time_matching_OpenCV.count()/1000, mm.c_str());
 
     auto time_matching_GPU = std::chrono::duration_cast<chrono::microseconds>(time_end_GPU - time_start_GPU);
-    printf("Time matching GPU(chrono) = \t%.2f ms \n", (float)time_matching_GPU.count()/1000);
-    printf("Time matching GPU(time_t) = \t%.2f ms \n", (float)timeGPU/1000);
+    printf("Time matching GPU(chrono) = \t%.2f ms \n", (float)time_matching_GPU.count()/(1000*NUM_ITERATIONS_GPU));
 
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
     cv::rectangle(image,cv::Point(r.xpos, r.ypos), cv::Point(r.xpos+tmpl.cols, r.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
