@@ -29,7 +29,12 @@ bool light = true;
 								//PIN2    +5
 
 
-
+void printTime()
+{
+    const auto now = std::chrono::system_clock::now();
+    const auto t_c = std::chrono::system_clock::to_time_t(now);
+    std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+}
 
 void
 receiveTemp(float & temperature)
@@ -82,11 +87,18 @@ receiveSettings(
 
 void handlerLight(bool & light, QTime & time_on, QTime & time_off)
 {
+    string stateLight = "none";
     while(1)
     {
         if (!light)
         {
             digitalWrite(gpio_pin_LAMP, LOW);
+            if (stateLight != "OFF")
+            {
+                std::cout << "light set OFF" <<"\t\t";
+                printTime();
+                stateLight = "OFF";
+            }
         }
         if (light)
         {
@@ -94,12 +106,29 @@ void handlerLight(bool & light, QTime & time_on, QTime & time_off)
             if ((timeNow > time_on) && (timeNow < time_off))
             {
                 digitalWrite(gpio_pin_LAMP, HIGH);
+                if (stateLight != "ON")
+                {
+                    std::cout << "light set ON"  <<"\t\t";
+                    printTime();
+                    stateLight = "ON";
+                }
             }
-
+            else
+            {
+                digitalWrite(gpio_pin_LAMP, LOW);
+                if (stateLight != "OFF")
+                {
+                    std::cout << "light set OFF"  <<"\t\t";
+                    printTime();
+                    stateLight = "OFF";
+                }
+            }
         }
         this_thread::sleep_for(chrono::milliseconds(5000));
     }
 }
+
+
 
 int main () 
 {
@@ -141,49 +170,37 @@ int main ()
         if (temperatureNew != temperature)
         {
             std::cout << "temp = " << temperature <<"\t\t";
-            const auto now = std::chrono::system_clock::now();
-            const auto t_c = std::chrono::system_clock::to_time_t(now);
-            std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+            printTime();
             temperatureNew = temperature;
         }
         if (min_tempNew != min_temp)
         {
             std::cout << "min_temp = " << min_temp <<"\t\t";
-            const auto now = std::chrono::system_clock::now();
-            const auto t_c = std::chrono::system_clock::to_time_t(now);
-            std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+            printTime();
             min_tempNew = min_temp;
         }
         if (max_tempNew != max_temp)
         {
             std::cout << "max_temp = " << max_temp <<"\t\t";
-            const auto now = std::chrono::system_clock::now();
-            const auto t_c = std::chrono::system_clock::to_time_t(now);
-            std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+            printTime();
             max_tempNew = max_temp;
         }
         if (time_onNew != time_on)
         {
             std::cout << "time_on = " << time_on.toString("hh:mm").toStdString()<<"\t\t";
-            const auto now = std::chrono::system_clock::now();
-            const auto t_c = std::chrono::system_clock::to_time_t(now);
-            std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+            printTime();
             time_onNew = time_on;
         }
         if (time_offNew != time_off)
         {
             std::cout << "time_off = " << time_off.toString("hh:mm").toStdString()<<"\t";
-            const auto now = std::chrono::system_clock::now();
-            const auto t_c = std::chrono::system_clock::to_time_t(now);
-            std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+            printTime();
             time_offNew = time_off;
         }
         if (lightNew != light)
         {
             std::cout << "light = " << boolalpha <<light<<"\t\t";
-            const auto now = std::chrono::system_clock::now();
-            const auto t_c = std::chrono::system_clock::to_time_t(now);
-            std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+            printTime();
             lightNew = light;
         }
         this_thread::sleep_for(chrono::milliseconds(5000));

@@ -5,5 +5,5 @@ max_temp = 26.4;
 [Light]
 light = true;
 time_on = 06:45:0;
-time_off = 18:45:0;
+time_off = 20:45:0;
 
