@@ -112,7 +112,7 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, uch
     int w = tmM.WIDTH;
     int h = tmM.HEIGHT;
 
-    int aux=10000000;
+    int aux=240*240;
 
 
     clInputImg=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(unsigned char)*w*h);
@@ -131,8 +131,8 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, uch
         return -1;
     }
     // Send Data
-    iclError = queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char)*w*h, &imageData[0]);
-    iclError = queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char)*t_rows*t_cols, &templateData[0]);
+    iclError = queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * w * h, &imageData[0]);
+    iclError = queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * t_rows * t_cols, &templateData[0]);
     iclError = queue.enqueueWriteBuffer(clInputVar, CL_TRUE, 0,  sizeof(result), &res);
     iclError = queue.enqueueWriteBuffer(clInputAux, CL_TRUE, 0,  sizeof(int), &aux);
 

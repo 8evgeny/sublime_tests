@@ -32,3 +32,4 @@ add_subdirectory(3_edge)  #  Работают Serial и SerialOpenCV   (Parallel
 #add_subdirectory(4_image_filtering)
 
 add_subdirectory(5_mandelbrot)
+add_subdirectory(6_convertImage)
