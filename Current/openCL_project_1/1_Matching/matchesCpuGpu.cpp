@@ -245,10 +245,9 @@ int matches()
         cv::cvtColor(image,image,cv::COLOR_BGR2GRAY);
 
     TemplateMatch tmM(image);
-    result r;
 
     //Time matching CPU
-    r = tmM.matchesCPU(tmpl, tmpl.rows, tmpl.cols);
+    tmM.matchesCPU(tmpl, tmpl.rows, tmpl.cols);
 
 //Time matching GPU
     if (initDevice() < 0 )
@@ -281,10 +280,10 @@ int matches()
     loadDataMatToUchar(templateData, tmpl,1);
 
     time_start_GPU = chrono::high_resolution_clock::now();
-
+    result r_GPU;
 for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
 {
-    int retGpu = gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols, imageData, templateData, r);
+    int retGpu = gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols, imageData, templateData, r_GPU);
     if (retGpu != 0)
     {
         cout<<"error gpuProcess "<< retGpu <<endl;
@@ -336,13 +335,13 @@ for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
     printf("Time matching GPU(chrono) = \t%.2f ms \n", (float)time_matching_GPU.count()/(1000*NUM_ITERATIONS_GPU));
 
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
-    cv::rectangle(image,cv::Point(r.xpos, r.ypos), cv::Point(r.xpos+tmpl.cols, r.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
+    cv::rectangle(image,cv::Point(r_GPU.xpos, r_GPU.ypos), cv::Point(r_GPU.xpos+tmpl.cols, r_GPU.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
     const char* parallel_window = "Parallel matching";
     namedWindow( parallel_window, WINDOW_AUTOSIZE );
     moveWindow(parallel_window, 900,450);
     imshow(parallel_window, image);
 
-    cout<<"\nPosition"<<", x: "<<r.xpos<<", y: "<<r.ypos<<"\n";
+    cout<<"\nPosition"<<", x: "<<r_GPU.xpos<<", y: "<<r_GPU.ypos<<"\n";
     cv::waitKey(-1);
 
 return 0;
