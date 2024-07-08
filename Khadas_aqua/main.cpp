@@ -19,6 +19,7 @@ const int gpio_pin_AIR  = 	13;	//PIN32
 const int gpio_pin_FOOD =	15;	//PIN35
 
 float min_temp, max_temp;
+bool heater = false;
 float temperature;
 QTime time_on,time_off;
 bool light = true;
@@ -61,6 +62,7 @@ void
 receiveSettings(
         float & min_temp,
         float & max_temp,
+        bool & heater,
         QTime & time_on,
         QTime & time_off,
         bool & light
@@ -72,6 +74,7 @@ receiveSettings(
         settings.beginGroup("Temperature");
         min_temp = settings.value( "min_temp").toFloat();
         max_temp = settings.value( "max_temp").toFloat();
+        heater = settings.value( "heater").toBool();
         settings.endGroup();
 
         settings.beginGroup("Light");
@@ -85,7 +88,8 @@ receiveSettings(
 
 }
 
-void handlerLight(bool & light, QTime & time_on, QTime & time_off)
+void
+handlerLight(bool & light, QTime & time_on, QTime & time_off)
 {
     string stateLight = "none";
     while(1)
@@ -128,7 +132,49 @@ void handlerLight(bool & light, QTime & time_on, QTime & time_off)
     }
 }
 
+void
+handlerHeater(bool & heater, float temperature, float & min_temp, float & max_temp)
+{
+    string stateHeater = "none";
+    while(1)
+    {
+        if (!heater)
+        {
+            digitalWrite(gpio_pin_HEAT, LOW);
+            if (stateHeater != "OFF")
+            {
+                std::cout << "######## heater set OFF ########" <<"\t\t";
+                printTime();
+                stateHeater = "OFF";
+            }
+        }
+        if (heater)
+        {
 
+            if (temperature > max_temp)
+            {
+                digitalWrite(gpio_pin_HEAT, LOW);
+                if (stateHeater != "OFF")
+                {
+                    std::cout << "######## heater set OFF #######"  <<"\t\t";
+                    printTime();
+                    stateHeater = "OFF";
+                }
+            }
+            if (temperature < min_temp)
+            {
+                digitalWrite(gpio_pin_HEAT, HIGH);
+                if (stateHeater != "ON")
+                {
+                    std::cout << "######## heater set ON ########"  <<"\t\t";
+                    printTime();
+                    stateHeater = "ON";
+                }
+            }
+        }
+        this_thread::sleep_for(chrono::milliseconds(5080));
+    }
+}
 
 int main () 
 {
@@ -153,16 +199,19 @@ int main ()
     thread (receiveSettings,
             ref(min_temp),
             ref(max_temp),
+            ref(heater),
             ref(time_on),
             ref(time_off),
             ref(light)
             ).detach();
     thread (handlerLight, ref(light), ref(time_on), ref(time_off)).detach();
-
+    this_thread::sleep_for(chrono::milliseconds(1000));
+    thread (handlerHeater, ref(heater), ref(temperature), ref(min_temp), ref(max_temp)).detach();
 
     this_thread::sleep_for(chrono::milliseconds(3000));
 
     float temperatureNew, min_tempNew, max_tempNew;
+    bool heaterNew = false;
     QTime time_onNew, time_offNew;
     bool lightNew = false;
 	while(1)
@@ -184,6 +233,12 @@ int main ()
             std::cout << "settig_max_temp = " << max_temp <<"\t\t\t";
             printTime();
             max_tempNew = max_temp;
+        }
+        if (heaterNew != heater)
+        {
+            std::cout << "settig_heater = " << boolalpha <<heater<<"\t\t\t";
+            printTime();
+            heaterNew = heater;
         }
         if (time_onNew != time_on)
         {
