@@ -29,28 +29,32 @@ kernel void matching(global uchar* imageData,
     SAD=(float)0;
 
     // loop through the template image
-    for ( int y1 = 0; y1 < t_rows; y1++ )
+
+    for (int aa = 0; aa< 10000;++aa)
     {
-        for ( int x1 = 0; x1 < t_cols; x1++ )
+        for ( int y1 = 0; y1 < t_rows; y1++ )
         {
-            int p_SearchIMG = imageData[(y+y1) * w + (x+x1)];
-            int p_TemplateIMG = templateData[y1 *  t_cols + x1];
-            SAD += abs( p_SearchIMG - p_TemplateIMG );
+            for ( int x1 = 0; x1 < t_cols; x1++ )
+            {
+                int p_SearchIMG = imageData[(y+y1) * w + (x+x1)];
+                int p_TemplateIMG = templateData[y1 *  t_cols + x1];
+                SAD += abs( p_SearchIMG - p_TemplateIMG );
+            }
+        }
+        // save the best found position
+        atomic_min(aux,(int)SAD);
+        barrier(CLK_GLOBAL_MEM_FENCE);
+
+        if ( (*aux) == (int)SAD )
+        {
+            //(*aux)=(int)(*res).SAD;
+            (*res).SAD = SAD;
+            // give me min SAD
+            (*res).xpos = x;
+            (*res).ypos = y;
         }
     }
 
-    // save the best found position
-    atomic_min(aux,(int)SAD);
-    barrier(CLK_GLOBAL_MEM_FENCE);
-
-    if ( (*aux) == (int)SAD )
-    {
-        //(*aux)=(int)(*res).SAD;
-        (*res).SAD = SAD;
-        // give me min SAD
-        (*res).xpos = x;
-        (*res).ypos = y;
-    }
 }
 
      kernel void test2(global uchar* imageData,global uchar* templateData, int x, int y, int w, int h,int t_cols, int t_rows, global int* aux){
