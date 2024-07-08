@@ -95,7 +95,7 @@ void handlerLight(bool & light, QTime & time_on, QTime & time_off)
             digitalWrite(gpio_pin_LAMP, LOW);
             if (stateLight != "OFF")
             {
-                std::cout << "light set OFF" <<"\t\t";
+                std::cout << "######## light set OFF ########" <<"\t\t";
                 printTime();
                 stateLight = "OFF";
             }
@@ -108,7 +108,7 @@ void handlerLight(bool & light, QTime & time_on, QTime & time_off)
                 digitalWrite(gpio_pin_LAMP, HIGH);
                 if (stateLight != "ON")
                 {
-                    std::cout << "light set ON"  <<"\t\t";
+                    std::cout << "######## light set ON ########"  <<"\t\t";
                     printTime();
                     stateLight = "ON";
                 }
@@ -118,7 +118,7 @@ void handlerLight(bool & light, QTime & time_on, QTime & time_off)
                 digitalWrite(gpio_pin_LAMP, LOW);
                 if (stateLight != "OFF")
                 {
-                    std::cout << "light set OFF"  <<"\t\t";
+                    std::cout << "######## light set OFF ########"  <<"\t\t";
                     printTime();
                     stateLight = "OFF";
                 }
@@ -169,37 +169,37 @@ int main ()
 	{
         if (temperatureNew != temperature)
         {
-            std::cout << "temp = " << temperature <<"\t\t";
+            std::cout << "temp = " << temperature <<"\t\t\t\t";
             printTime();
             temperatureNew = temperature;
         }
         if (min_tempNew != min_temp)
         {
-            std::cout << "min_temp = " << min_temp <<"\t\t";
+            std::cout << "settig_min_temp = " << min_temp <<"\t\t\t";
             printTime();
             min_tempNew = min_temp;
         }
         if (max_tempNew != max_temp)
         {
-            std::cout << "max_temp = " << max_temp <<"\t\t";
+            std::cout << "settig_max_temp = " << max_temp <<"\t\t\t";
             printTime();
             max_tempNew = max_temp;
         }
         if (time_onNew != time_on)
         {
-            std::cout << "time_on = " << time_on.toString("hh:mm").toStdString()<<"\t\t";
+            std::cout << "settig_time_on = " << time_on.toString("hh:mm").toStdString()<<"\t\t\t";
             printTime();
             time_onNew = time_on;
         }
         if (time_offNew != time_off)
         {
-            std::cout << "time_off = " << time_off.toString("hh:mm").toStdString()<<"\t";
+            std::cout << "settig_time_off = " << time_off.toString("hh:mm").toStdString()<<"\t\t\t";
             printTime();
             time_offNew = time_off;
         }
         if (lightNew != light)
         {
-            std::cout << "light = " << boolalpha <<light<<"\t\t";
+            std::cout << "settig_light = " << boolalpha <<light<<"\t\t\t";
             printTime();
             lightNew = light;
         }
