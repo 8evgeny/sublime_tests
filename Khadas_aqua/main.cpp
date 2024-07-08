@@ -21,6 +21,7 @@ const int gpio_pin_FOOD =	15;	//PIN35
 float min_temp, max_temp;
 float temperature;
 QTime time_on,time_off;
+bool light = true;
 
 								//PIN37   onewire  измерение температуры
 								//PIN40   GND
@@ -30,7 +31,8 @@ QTime time_on,time_off;
 
 
 
-void receiveTemp(float & temperature)
+void
+receiveTemp(float & temperature)
 {
     while(1)
     {
@@ -50,12 +52,14 @@ void receiveTemp(float & temperature)
     }
 }
 
-void receiveSettings(
-                    float & min_temp,
-                    float & max_temp,
-                    QTime & time_on,
-                    QTime & time_off
-                    )
+void
+receiveSettings(
+        float & min_temp,
+        float & max_temp,
+        QTime & time_on,
+        QTime & time_off,
+        bool & light
+        )
 {
     while(1)
     {
@@ -68,6 +72,7 @@ void receiveSettings(
         settings.beginGroup("Light");
         time_on = QTime::fromString(settings.value( "time_on").toString());
         time_off = QTime::fromString(settings.value( "time_off").toString());
+        light = settings.value( "light").toBool();
         settings.endGroup();
 
         this_thread::sleep_for(chrono::milliseconds(5000));
@@ -75,6 +80,26 @@ void receiveSettings(
 
 }
 
+void handlerLight(bool & light, QTime & time_on, QTime & time_off)
+{
+    while(1)
+    {
+        if (!light)
+        {
+            digitalWrite(gpio_pin_LAMP, LOW);
+        }
+        if (light)
+        {
+            auto timeNow = QTime::currentTime();
+            if ((timeNow > time_on) && (timeNow < time_off))
+            {
+                digitalWrite(gpio_pin_LAMP, HIGH);
+            }
+
+        }
+        this_thread::sleep_for(chrono::milliseconds(5000));
+    }
+}
 
 int main () 
 {
@@ -95,18 +120,22 @@ int main ()
 //	std::cout <<"gpio init...\n"<<std::endl;
 //	system("gpio readall");
 
-    std::thread (receiveTemp, ref(temperature)).detach();
-    std::thread (receiveSettings,
-                 std::ref(min_temp),
-                 std::ref(max_temp),
-                 std::ref(time_on),
-                 std::ref(time_off)
-                 ).detach();
+    thread (receiveTemp, ref(temperature)).detach();
+    thread (receiveSettings,
+            ref(min_temp),
+            ref(max_temp),
+            ref(time_on),
+            ref(time_off),
+            ref(light)
+            ).detach();
+    thread (handlerLight, ref(light), ref(time_on), ref(time_off)).detach();
+
 
     this_thread::sleep_for(chrono::milliseconds(3000));
 
     float temperatureNew, min_tempNew, max_tempNew;
     QTime time_onNew, time_offNew;
+    bool lightNew = false;
 	while(1)
 	{
         if (temperatureNew != temperature)
@@ -149,7 +178,14 @@ int main ()
             std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
             time_offNew = time_off;
         }
-
+        if (lightNew != light)
+        {
+            std::cout << "light = " << boolalpha <<light<<"\t\t";
+            const auto now = std::chrono::system_clock::now();
+            const auto t_c = std::chrono::system_clock::to_time_t(now);
+            std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+            lightNew = light;
+        }
         this_thread::sleep_for(chrono::milliseconds(5000));
 
 
