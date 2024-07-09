@@ -45,7 +45,6 @@ receiveTemp(float & temperature)
     while(1)
     {
         Mut.lock();
-
         std::string tmp;
         const char *cmd = "./tempread.sh";
         char buf[BUFSIZ];
@@ -58,27 +57,17 @@ receiveTemp(float & temperature)
             (void) pclose(ptr);
         }
         temperature = std::stof(tmp);
-
         Mut.unlock();
-
-        this_thread::sleep_for(chrono::milliseconds(5000));
+        this_thread::sleep_for(chrono::milliseconds(60000));
     }
 }
 
 void
-receiveSettings(
-        float & min_temp,
-        float & max_temp,
-        bool & heater,
-        QTime & time_on,
-        QTime & time_off,
-        bool & light
-        )
+receiveSettings(float & min_temp, float & max_temp, bool & heater, QTime & time_on, QTime & time_off, bool & light)
 {
     while(1)
     {
         Mut.lock();
-
         QSettings settings("config", QSettings::IniFormat);
         settings.beginGroup("Temperature");
         min_temp = settings.value( "min_temp").toFloat();
@@ -93,20 +82,18 @@ receiveSettings(
         settings.endGroup();
 
         Mut.unlock();
-
-        this_thread::sleep_for(chrono::milliseconds(5000));
+        this_thread::sleep_for(chrono::milliseconds(1000));
     }
-
 }
 
 void
 handlerLight(bool & light, QTime & time_on, QTime & time_off)
 {
+    this_thread::sleep_for(chrono::milliseconds(5000));
     string stateLight = "none";
     while(1)
     {
         Mut.lock();
-
         if (!light)
         {
             digitalWrite(gpio_pin_LAMP, LOW);
@@ -120,81 +107,61 @@ handlerLight(bool & light, QTime & time_on, QTime & time_off)
         if (light)
         {
             auto timeNow = QTime::currentTime();
-            if ((timeNow > time_on) && (timeNow < time_off))
+            if ((timeNow > time_on) && (timeNow < time_off) && (stateLight != "ON"))
             {
                 digitalWrite(gpio_pin_LAMP, HIGH);
-                if (stateLight != "ON")
-                {
-                    std::cout << "######## light set ON ########"  <<"\t\t";
-                    printTime();
-                    stateLight = "ON";
-                }
+                std::cout << "######## light set ON ########"  <<"\t\t";
+                printTime();
+                stateLight = "ON";
             }
-            else
+            if (!((timeNow > time_on) && (timeNow < time_off)) && (stateLight != "OFF"))
             {
                 digitalWrite(gpio_pin_LAMP, LOW);
-                if (stateLight != "OFF")
-                {
-                    std::cout << "######## light set OFF ########"  <<"\t\t";
-                    printTime();
-                    stateLight = "OFF";
-                }
+                std::cout << "######## light set OFF ########"  <<"\t\t";
+                printTime();
+                stateLight = "OFF";
             }
         }
-
         Mut.unlock();
-
-        this_thread::sleep_for(chrono::milliseconds(5000));
+        this_thread::sleep_for(chrono::milliseconds(1000));
     }
 }
 
 void
 handlerHeater(bool & heater, float & min_temp, float & max_temp)
 {
+    this_thread::sleep_for(chrono::milliseconds(5000));
     string stateHeater = "none";
     while(1)
     {
         Mut.lock();
-
-        if (!heater)
+        if (!heater && stateHeater != "OFF")
         {
             digitalWrite(gpio_pin_HEAT, LOW);
-            if (stateHeater != "OFF")
-            {
-                std::cout << "######## heater set OFF #######" <<"\t\t";
-                printTime();
-                stateHeater = "OFF";
-            }
+            std::cout << "######## heater set OFF #######" <<"\t\t";
+            printTime();
+            stateHeater = "OFF";
         }
         if (heater)
         {
-            if (temperature > max_temp)
+            if (temperature > max_temp && stateHeater != "OFF")
             {
                 digitalWrite(gpio_pin_HEAT, LOW);
-                if (stateHeater != "OFF")
-                {
-                    cout<<temperature<<endl;
-                    std::cout << "######## heater set OFF #######"  <<"\t\t";
-                    printTime();
-                    stateHeater = "OFF";
-                }
+                std::cout << "######## heater set OFF #######"  <<"\t\t";
+                printTime();
+                stateHeater = "OFF";
             }
-            if (temperature < min_temp)
+            if (temperature < min_temp && stateHeater != "ON")
             {
                 digitalWrite(gpio_pin_HEAT, HIGH);
-                if (stateHeater != "ON")
-                {
-                    cout<<temperature<<endl;
-                    std::cout << "######## heater set ON ########"  <<"\t\t";
-                    printTime();
-                    stateHeater = "ON";
-                }
+                cout<<temperature<<endl;
+                std::cout << "######## heater set ON ########"  <<"\t\t";
+                printTime();
+                stateHeater = "ON";
             }
         }
-
         Mut.unlock();
-
-        this_thread::sleep_for(chrono::milliseconds(5080));
+        this_thread::sleep_for(chrono::milliseconds(1080));
     }
 }
 
@@ -263,13 +230,13 @@ int main ()
         }
         if (time_onNew != time_on)
         {
-            std::cout << "settig_time_on = " << time_on.toString("hh:mm").toStdString()<<"\t\t\t";
+            std::cout << "settig_light_on = " << time_on.toString("hh:mm").toStdString()<<"\t\t\t";
             printTime();
             time_onNew = time_on;
         }
         if (time_offNew != time_off)
         {
-            std::cout << "settig_time_off = " << time_off.toString("hh:mm").toStdString()<<"\t\t\t";
+            std::cout << "settig_light_off = " << time_off.toString("hh:mm").toStdString()<<"\t\t";
             printTime();
             time_offNew = time_off;
         }

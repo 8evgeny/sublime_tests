@@ -1,10 +1,10 @@
 [Temperature]
 heater = true;
-min_temp = 23.8;
-max_temp = 25.4;
+min_temp = 22.0;
+max_temp = 26.0;
 
 [Light]
 light = true;
-time_on = 06:45:0;
+time_on = 06:04:0;
 time_off = 21:45:0;
 
