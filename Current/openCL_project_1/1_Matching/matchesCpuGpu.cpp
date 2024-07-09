@@ -16,6 +16,7 @@ chrono::high_resolution_clock::time_point
     time_start_Serial, time_end_Serial,
     time_start_OpenCV, time_end_OpenCV,
     time_start_GPU, time_end_GPU;
+    bool endSerial = false; // При нахождении полного соответствия
 
 int loadKernelFile(std::string program)
 {
@@ -192,10 +193,10 @@ result TemplateMatch::matchesCPU(cv::Mat _template, int t_rows, int t_cols)
     time_start_Serial = chrono::high_resolution_clock::now();
 
 // loop through the search image
-    bool end = false;
+
     for ( int y = 0; y <= HEIGHT - t_rows; y++ )
     {
-        if (end)
+        if (endSerial)
             break;
         for ( int x =0; x <= WIDTH - t_cols; x++ )
         {
@@ -217,14 +218,14 @@ result TemplateMatch::matchesCPU(cv::Mat _template, int t_rows, int t_cols)
             // save the best found position
             if ( SAD == 0)
             {
-                end = true;
+                endSerial = true;
                 res.SAD = SAD;
                 res.xpos = x;
                 res.ypos = y;
                 std::cout<< " x "<< x <<" y "<<y << " SAD "<< SAD << "\n";
             }
 
-            if ( !end && res.SAD > SAD )
+            if ( !endSerial && res.SAD > SAD )
             {
                 res.SAD = SAD;
                 // give me min SAD
@@ -354,14 +355,17 @@ for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
         }
     }
 
-    auto time_matching_CPU = std::chrono::duration_cast<chrono::microseconds>(time_end_Serial - time_start_Serial);
-    printf("\nTime matching CPU = \t\t%.2f ms ", (float)time_matching_CPU.count()/1000);
 
+    auto time_matching_CPU = std::chrono::duration_cast<chrono::microseconds>(time_end_Serial - time_start_Serial);
+    if (endSerial)
+        printf("\nTime matching CPU(full natching)  \t%.2f ms ", (float)time_matching_CPU.count()/1000);
+    if (!endSerial)
+        printf("\nTime matching CPU  \t\t%.2f ms ", (float)time_matching_CPU.count()/1000);
     auto time_matching_OpenCV = std::chrono::duration_cast<chrono::microseconds>(time_end_OpenCV - time_start_OpenCV);
-    printf("\nTime matching OpenCV = \t\t%.2f ms (%s)\n", (float)time_matching_OpenCV.count()/1000, mm.c_str());
+    printf("\nTime matching OpenCV  \t\t\t%.2f ms (%s)\n", (float)time_matching_OpenCV.count()/1000, mm.c_str());
 
     auto time_matching_GPU = std::chrono::duration_cast<chrono::microseconds>(time_end_GPU - time_start_GPU);
-    printf("Time matching GPU = \t\t%.2f ms \n", (float)time_matching_GPU.count()/(1000*NUM_ITERATIONS_GPU));
+    printf("Time matching GPU  \t\t\t%.2f ms \n", (float)time_matching_GPU.count()/(1000*NUM_ITERATIONS_GPU));
 
     cv::cvtColor(imageIn,imageIn,cv::COLOR_GRAY2BGR);
     cv::rectangle(imageIn, cv::Point(r_GPU.xpos, r_GPU.ypos), cv::Point(r_GPU.xpos+tmpl.cols, r_GPU.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
