@@ -4,7 +4,8 @@ typedef struct tag_result
     uint SAD;
 }result;
 
-
+//Передавать image2D
+//__Local
 
 __kernel void matching(__global uchar* imageData,
                      __global uchar* templateData,
