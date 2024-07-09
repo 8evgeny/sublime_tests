@@ -8,7 +8,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include <fstream>
-
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
 #include "PNG.h"
 
 std::string readFile(std::string fileName)
@@ -105,6 +106,12 @@ int main(int arg, char* args[])
     outPng.Save("output.png");
     //free the iamge's resources since we are done with it
     outPng.Free();
+
+    cv::Mat image = cv::imread("output.png");
+    cv::imshow("output.png", image);
+    cv::waitKey(-1);
+    image.release();
+
 
     //free the temp array
     delete[] tmp;
