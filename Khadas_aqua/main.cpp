@@ -263,7 +263,7 @@ int main ()
         }
         if (lightNew != light)
         {
-            std::cout << "settig_light = " << boolalpha <<light<<"\t\t\t";
+            std::cout << "settig_light = " << boolalpha <<light<<"\t\t\t\t";
             out << "settig_light = " << boolalpha <<light<<"\t\t\t";
             printTime();
             lightNew = light;
