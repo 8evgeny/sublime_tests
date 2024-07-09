@@ -367,37 +367,37 @@ int SobelFilter::CreateKernel(const std::string kernelName)
 // Loads an image with free image
 int SobelFilter::LoadImage(const char* fileName)
 {
-	// Read in the image with FreeImage
-	FREE_IMAGE_FORMAT FiFormat = FreeImage_GetFileType(fileName, 0);
-	FIBITMAP* Image = FreeImage_Load(FiFormat, fileName);
+    // Read in the image with FreeImage
+    FREE_IMAGE_FORMAT FiFormat = FreeImage_GetFileType(fileName, 0);
+    FIBITMAP* Image = FreeImage_Load(FiFormat, fileName);
 
-	//Convert to 32-bit image
-	FIBITMAP* Temp = Image;
-	Image = FreeImage_ConvertTo32Bits(Image);
-	FreeImage_Unload(Temp);
+    //Convert to 32-bit image
+    FIBITMAP* Temp = Image;
+    Image = FreeImage_ConvertTo32Bits(Image);
+    FreeImage_Unload(Temp);
 
-	// Get image details
-	this->ImageHeight = FreeImage_GetHeight(Image);
-	this->ImageWidth = FreeImage_GetWidth(Image);
-	// Multiply times 4 because we're going from 8 bit to 32 bit
-	char * Pixels = new char[4 * this->ImageHeight * this->ImageWidth];
+    // Get image details
+    this->ImageHeight = FreeImage_GetHeight(Image);
+    this->ImageWidth = FreeImage_GetWidth(Image);
+    // Multiply times 4 because we're going from 8 bit to 32 bit
+    char * Pixels = new char[4 * this->ImageHeight * this->ImageWidth];
 
-	// Copy the data from the FreeImage bits to our pixel array
-	std::memcpy(Pixels, FreeImage_GetBits(Image), 4 * this->ImageHeight * this->ImageWidth);
+    // Copy the data from the FreeImage bits to our pixel array
+    std::memcpy(Pixels, FreeImage_GetBits(Image), 4 * this->ImageHeight * this->ImageWidth);
 
-	FreeImage_Unload(Image);
+    FreeImage_Unload(Image);
 
-	cl_int ErrNum;
+    cl_int ErrNum;
 
-	cl_channel_order ChannelOrder = CL_RGBA;
-	cl_image_format Format;
-	Format.image_channel_order = ChannelOrder;
-	Format.image_channel_data_type = CL_UNSIGNED_INT8;
+    cl_channel_order ChannelOrder = CL_RGBA;
+    cl_image_format Format;
+    Format.image_channel_order = ChannelOrder;
+    Format.image_channel_data_type = CL_UNSIGNED_INT8;
 
-	cl_mem_flags Flags = CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR;
+    cl_mem_flags Flags = CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR;
 
 	// OpenCL 2.0
-	/*
+    /*
 	cl_image_desc ImageDescription;
 	ImageDescription.image_type = CL_MEM_OBJECT_IMAGE2D;
 	ImageDescription.image_width = this->ImageWidth;
@@ -414,7 +414,7 @@ int SobelFilter::LoadImage(const char* fileName)
 		(void *)Pixels,
 		&ErrNum
 	);
-	*/
+
 
 	this->InputImage = clCreateImage2D(
 		this->Context,

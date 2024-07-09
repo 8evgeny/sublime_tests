@@ -332,7 +332,7 @@ for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
     printf("\nTime matching OpenCV = \t\t%.2f ms (%s)\n", (float)time_matching_OpenCV.count()/1000, mm.c_str());
 
     auto time_matching_GPU = std::chrono::duration_cast<chrono::microseconds>(time_end_GPU - time_start_GPU);
-    printf("Time matching GPU(chrono) = \t%.2f ms \n", (float)time_matching_GPU.count()/(1000*NUM_ITERATIONS_GPU));
+    printf("Time matching GPU = \t\t%.2f ms \n", (float)time_matching_GPU.count()/(1000*NUM_ITERATIONS_GPU));
 
     cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
     cv::rectangle(image,cv::Point(r_GPU.xpos, r_GPU.ypos), cv::Point(r_GPU.xpos+tmpl.cols, r_GPU.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
