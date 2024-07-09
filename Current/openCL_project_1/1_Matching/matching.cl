@@ -5,14 +5,15 @@ typedef struct tag_result
 }result;
 
 
-kernel void matching(global uchar* imageData,
-                     global uchar* templateData,
-                     global result* res,
+
+__kernel void matching(__global uchar* imageData,
+                     __global uchar* templateData,
+                     __global result* res,
                      int w,
                      int h,
                      int t_cols,
                      int t_rows,
-                     global uint* aux
+                     __global uint* aux
                      )
 {
     // get index into global data array
@@ -20,6 +21,8 @@ kernel void matching(global uchar* imageData,
     int y = get_global_id(1);
     int iGID = (y * w + h);
     uint SAD=0;
+
+//    local uchar imadeResult[(w-t_cols+1)*(h-t_rows+1)]
 
     // bound check (equivalent to the limit on a 'for' loop for standard/serial C code
     if ( iGID >= w*h)

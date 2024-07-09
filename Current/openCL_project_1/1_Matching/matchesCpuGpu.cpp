@@ -33,7 +33,7 @@ int loadKernelFile(std::string program)
 }
 
 cl::Kernel clkProcess;
-cl::Buffer clInputImg, clInputTemp, clInputVar, clInputAux;
+cl::Buffer clInputImg, clInputTemp, clInputVar, clInputAux,  clResults;
 cl::CommandQueue queue;
 cl::Context context;
 cl::Program program;
@@ -120,7 +120,7 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, uch
     clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char)*t_rows*t_cols);
     clInputVar=cl::Buffer(context,CL_MEM_WRITE_ONLY,sizeof(result));
     clInputAux=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(int));
-
+//    clResults=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(unsigned char)*(w-t_cols+1)*(h-t_rows+1));
     // Kernels
     int iclError = 0;
 
@@ -137,6 +137,7 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, uch
     iclError = queue.enqueueWriteBuffer(clInputVar, CL_TRUE, 0,  sizeof(result), &res);
     iclError = queue.enqueueWriteBuffer(clInputAux, CL_TRUE, 0,  sizeof(int), &aux);
 
+
     //--- Init Kernel arguments ---------------------------------------------------
     iclError |= clkProcess.setArg(0,clInputImg);
     iclError |= clkProcess.setArg(1,clInputTemp);
@@ -147,7 +148,7 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, uch
     iclError |= clkProcess.setArg(5,(int)t_cols);
     iclError |= clkProcess.setArg(6,(int)t_rows);
     iclError |= clkProcess.setArg(7,clInputAux);
-
+//    iclError |= clkProcess.setArg(8,clResults);
 
     // Image 1D
     //cl::NDRange gRM=cl::NDRange((w-t_cols)*(h-t_rows));
