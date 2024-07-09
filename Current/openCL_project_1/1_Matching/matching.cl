@@ -1,6 +1,7 @@
-typedef struct tag_result{
+typedef struct tag_result
+{
     int xpos, ypos;
-    float SAD;
+    uint SAD;
 }result;
 
 
@@ -11,14 +12,14 @@ kernel void matching(global uchar* imageData,
                      int h,
                      int t_cols,
                      int t_rows,
-                     global int* aux
+                     global uint* aux
                      )
 {
     // get index into global data array
     int x = get_global_id(0);
     int y = get_global_id(1);
     int iGID = (y * w + h);
-    float SAD=0;
+    uint SAD=0;
 
     // bound check (equivalent to the limit on a 'for' loop for standard/serial C code
     if ( iGID >= w*h)
@@ -26,27 +27,24 @@ kernel void matching(global uchar* imageData,
         return;
     }
 
-    SAD=(float)0;
 
     // loop through the template image
         for ( int y1 = 0; y1 < t_rows; y1++ )
         {
             for ( int x1 = 0; x1 < t_cols; x1++ )
             {
-                int p_SearchIMG = imageData[(y+y1) * w + (x+x1)];
-                int p_TemplateIMG = templateData[y1 *  t_cols + x1];
+                uchar p_SearchIMG = imageData[(y+y1) * w + (x+x1)];
+                uchar p_TemplateIMG = templateData[y1 *  t_cols + x1];
                 SAD += abs( p_SearchIMG - p_TemplateIMG );
             }
         }
         // save the best found position
-        atomic_min(aux,(int)SAD);
+        atomic_min(aux, SAD);
         barrier(CLK_GLOBAL_MEM_FENCE);
 
-        if ( (*aux) == (int)SAD )
+        if ( (*aux) == SAD )
         {
-            //(*aux)=(int)(*res).SAD;
             (*res).SAD = SAD;
-            // give me min SAD
             (*res).xpos = x;
             (*res).ypos = y;
         }

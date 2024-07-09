@@ -113,12 +113,12 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, uch
     int w = tmM.WIDTH;
     int h = tmM.HEIGHT;
 
-    int aux=240*240;
+    uint aux = 1000000;
 
 
-    clInputImg=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(unsigned char)*w*h);
-    clInputTemp=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(unsigned char)*t_rows*t_cols);
-    clInputVar=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(result));
+    clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char)*w*h);
+    clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char)*t_rows*t_cols);
+    clInputVar=cl::Buffer(context,CL_MEM_WRITE_ONLY,sizeof(result));
     clInputAux=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(int));
 
     // Kernels

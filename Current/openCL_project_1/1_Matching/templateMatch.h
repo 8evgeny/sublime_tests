@@ -12,7 +12,7 @@
 struct result
 {
 	int xpos, ypos;
-	float SAD;
+    uint SAD;
 };
 
 class TemplateMatch {
