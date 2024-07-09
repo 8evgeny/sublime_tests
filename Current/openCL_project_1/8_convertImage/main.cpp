@@ -11,7 +11,8 @@
 #include <ostream>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
 #include "PNG.h"
 
 std::string readFile(std::string fileName)
@@ -105,8 +106,17 @@ int main(void)
     //copy the data from the temp array to the png
     std::copy(&tmp[0], &tmp[w * h * 4], std::back_inserter(outPng.data));
 
+
+
     //write the image to file
     outPng.Save("output.png");
+
+    cv::Mat image = cv::imread("output.png");
+    cv::imshow("output.png", image);
+    cv::waitKey(-1);
+    image.release();
+
+
     //free the iamge's resources since we are done with it
     outPng.Free();
 
