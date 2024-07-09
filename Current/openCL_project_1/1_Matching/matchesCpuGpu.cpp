@@ -358,7 +358,7 @@ for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
 
     auto time_matching_CPU = std::chrono::duration_cast<chrono::microseconds>(time_end_Serial - time_start_Serial);
     if (endSerial)
-        printf("\nTime matching CPU(full natching)  \t%.2f ms ", (float)time_matching_CPU.count()/1000);
+        printf("\nTime matching CPU(Полное совпадение)  \t%.2f ms ", (float)time_matching_CPU.count()/1000);
     if (!endSerial)
         printf("\nTime matching CPU  \t\t%.2f ms ", (float)time_matching_CPU.count()/1000);
     auto time_matching_OpenCV = std::chrono::duration_cast<chrono::microseconds>(time_end_OpenCV - time_start_OpenCV);
