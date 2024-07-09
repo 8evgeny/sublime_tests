@@ -192,8 +192,11 @@ result TemplateMatch::matchesCPU(cv::Mat _template, int t_rows, int t_cols)
     time_start_Serial = chrono::high_resolution_clock::now();
 
 // loop through the search image
+    bool end = false;
     for ( int y = 0; y <= HEIGHT - t_rows; y++ )
     {
+        if (end)
+            break;
         for ( int x =0; x <= WIDTH - t_cols; x++ )
         {
            float SAD = 0.0;
@@ -212,7 +215,16 @@ result TemplateMatch::matchesCPU(cv::Mat _template, int t_rows, int t_cols)
             outData[y * outW + x] = SAD;
 
             // save the best found position
-            if ( res.SAD > SAD )
+            if ( SAD == 0)
+            {
+                end = true;
+                res.SAD = SAD;
+                res.xpos = x;
+                res.ypos = y;
+                std::cout<< " x "<< x <<" y "<<y << " SAD "<< SAD << "\n";
+            }
+
+            if ( !end && res.SAD > SAD )
             {
                 res.SAD = SAD;
                 // give me min SAD
