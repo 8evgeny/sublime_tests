@@ -21,8 +21,8 @@ public:
 
 
 	TemplateMatch(  cv::Mat img );
-	cv::Mat image;
-
+    cv::Mat imageIn;
+    cv::Mat imageOut;
     result matchesCPU(cv::Mat _template, int t_rows, int t_cols);
 };
 
@@ -61,7 +61,7 @@ TemplateMatch::TemplateMatch( cv::Mat img )
 {
 	WIDTH = img.cols;
 	HEIGHT = img.rows;
-	image = img;
+    imageIn = img;
 }
 
 

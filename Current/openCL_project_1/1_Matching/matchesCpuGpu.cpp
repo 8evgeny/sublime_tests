@@ -171,16 +171,22 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, uch
 result TemplateMatch::matchesCPU(cv::Mat _template, int t_rows, int t_cols)
 {
 
-    uchar* imageData = new uchar[image.cols * image.rows];
+    uchar* imageData = new uchar[imageIn.cols * imageIn.rows];
     uchar* templateData = new uchar[_template.cols * _template.rows];
+
+    int outW = WIDTH - t_cols + 1;
+    int outH = HEIGHT - t_rows + 1;
+
+    cout <<"outW "<<outW<<" outH "<<outW<<endl;
+    uchar* outData = new uchar[outW * outH];
 
     result res;
     res.SAD = 100000000;
-    WIDTH = image.cols;
-    HEIGHT = image.rows;
+    WIDTH = imageIn.cols;
+    HEIGHT = imageIn.rows;
 
 
-    loadDataMatToUchar(imageData,image,1);
+    loadDataMatToUchar(imageData,imageIn,1);
     loadDataMatToUchar(templateData,_template,1);
 
     time_start_Serial = chrono::high_resolution_clock::now();
@@ -203,6 +209,8 @@ result TemplateMatch::matchesCPU(cv::Mat _template, int t_rows, int t_cols)
                 }
             }
 
+            outData[y * outW + x] = SAD;
+
             // save the best found position
             if ( res.SAD > SAD )
             {
@@ -215,8 +223,19 @@ result TemplateMatch::matchesCPU(cv::Mat _template, int t_rows, int t_cols)
         }//END -- for ( int x =0; x <= WIDTH - t_cols; x++ )
     }//END -- for ( int y = 0; y <= HEIGHT - t_rows; y++ )
     time_end_Serial = chrono::high_resolution_clock::now();
+
+    cv::Mat outImg;
+    ucharToMat(outData, outImg);
+
+//    cv::imshow("Serial result", outImg);
+//    cv::waitKey(-1);
+//    outImg.release();
+
+
+
     delete[] imageData;
     delete[] templateData;
+    delete[] outData;
     return res;
 }
 
@@ -229,8 +248,8 @@ int matches()
         return -1;
     }
 
-    cv::Mat image = cv::imread("image");
-    if (image.rows == 0)
+    cv::Mat imageIn = cv::imread("image");
+    if (imageIn.rows == 0)
     {
         std::cout<< "image  error \n";
         return -1;
@@ -239,10 +258,10 @@ int matches()
     if (tmpl.channels() == 3)
         cv::cvtColor(tmpl, tmpl, cv::COLOR_BGR2GRAY);
 
-    if (image.channels() == 3)
-        cv::cvtColor(image,image,cv::COLOR_BGR2GRAY);
+    if (imageIn.channels() == 3)
+        cv::cvtColor(imageIn, imageIn, cv::COLOR_BGR2GRAY);
 
-    TemplateMatch tmM(image);
+    TemplateMatch tmM(imageIn);
 
     //Time matching CPU
     tmM.matchesCPU(tmpl, tmpl.rows, tmpl.cols);
@@ -274,7 +293,7 @@ int matches()
     uchar* imageData = new uchar[tmM.WIDTH*tmM.HEIGHT];
     uchar* templateData = new uchar[tmpl.rows*tmpl.cols];
 
-    loadDataMatToUchar(imageData,tmM.image,1);
+    loadDataMatToUchar(imageData,tmM.imageIn,1);
     loadDataMatToUchar(templateData, tmpl,1);
 
     time_start_GPU = chrono::high_resolution_clock::now();
@@ -332,12 +351,12 @@ for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
     auto time_matching_GPU = std::chrono::duration_cast<chrono::microseconds>(time_end_GPU - time_start_GPU);
     printf("Time matching GPU = \t\t%.2f ms \n", (float)time_matching_GPU.count()/(1000*NUM_ITERATIONS_GPU));
 
-    cv::cvtColor(image,image,cv::COLOR_GRAY2BGR);
-    cv::rectangle(image,cv::Point(r_GPU.xpos, r_GPU.ypos), cv::Point(r_GPU.xpos+tmpl.cols, r_GPU.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
+    cv::cvtColor(imageIn,imageIn,cv::COLOR_GRAY2BGR);
+    cv::rectangle(imageIn, cv::Point(r_GPU.xpos, r_GPU.ypos), cv::Point(r_GPU.xpos+tmpl.cols, r_GPU.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
     const char* parallel_window = "Parallel matching";
     namedWindow( parallel_window, WINDOW_AUTOSIZE );
     moveWindow(parallel_window, 900,450);
-    imshow(parallel_window, image);
+    imshow(parallel_window, imageIn);
 
     cout<<"\nPosition"<<", x: "<<r_GPU.xpos<<", y: "<<r_GPU.ypos<<"\n";
     cv::waitKey(-1);
