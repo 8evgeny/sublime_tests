@@ -39,22 +39,22 @@ kernel void matching(global uchar* imageData,
             }
         }
         // save the best found position
-        if (SAD == 0)
-        {
-            (*res).SAD = SAD;
-            (*res).xpos = x;
-            (*res).ypos = y;
-        }
-
-//        atomic_min(aux, SAD);
-//        barrier(CLK_GLOBAL_MEM_FENCE);
-
-//        if ( (*aux) == SAD )
+//        if (SAD == 0)
 //        {
 //            (*res).SAD = SAD;
 //            (*res).xpos = x;
 //            (*res).ypos = y;
 //        }
+
+        atomic_min(aux, SAD);
+        barrier(CLK_GLOBAL_MEM_FENCE);
+
+        if ( (*aux) == SAD )
+        {
+            (*res).SAD = SAD;
+            (*res).xpos = x;
+            (*res).ypos = y;
+        }
     }
 
 //     kernel void test2(global uchar* imageData,global uchar* templateData, int x, int y, int w, int h,int t_cols, int t_rows, global int* aux){
