@@ -10,7 +10,7 @@ QElapsedTimer eTimer;
 quint64 timeSerial, timeParallel;
 
 using namespace std;
-constexpr int arraySize = 100;
+constexpr int arraySize = 255;
 
 void arraySummSerial(array<float, arraySize> & arr, float & summ)
 {
@@ -101,7 +101,7 @@ int main(){
     queue.enqueueReadBuffer(OutputResult, CL_TRUE, 0, sizeof(float), &resultParallelSumm);
  
     cout << "\nresultSerialSumm = " << resultSerialSumm <<endl;
-    cout << "\resultparallelSumm = " << resultParallelSumm <<endl;
+    cout << "resultparallelSumm = " << resultParallelSumm <<endl;
     cout.precision(3);
     cout << "timeSerial = "<<(float)timeSerial/1000'000<<" ms "<<endl;
     cout<<"timeParallel = "<<(float)timeParallel/1000'000<<" ms "<<endl;
