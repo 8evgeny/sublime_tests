@@ -77,7 +77,6 @@ int main(){
 
     float resultSerialSumm;
     arraySummSerial (arr, resultSerialSumm);
-    cout << "\nresultSerialSumm = " << resultSerialSumm <<endl;
 
 
     float resultParallelSumm;
@@ -101,7 +100,8 @@ int main(){
     //read result from the device
     queue.enqueueReadBuffer(OutputResult, CL_TRUE, 0, sizeof(float), &resultParallelSumm);
  
-
+    cout << "\nresultSerialSumm = " << resultSerialSumm <<endl;
+    cout << "\resultparallelSumm = " << resultParallelSumm <<endl;
     cout.precision(3);
     cout << "timeSerial = "<<(float)timeSerial/1000'000<<" ms "<<endl;
     cout<<"timeParallel = "<<(float)timeParallel/1000'000<<" ms "<<endl;
