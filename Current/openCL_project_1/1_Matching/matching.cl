@@ -6,6 +6,7 @@ typedef struct tag_result
 
 //Передавать image2D
 //__Local
+//Запускать сразу 4  kernel
 
 __kernel void matching(__global uchar* imageData,
                      __global uchar* templateData,
