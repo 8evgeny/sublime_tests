@@ -24,6 +24,7 @@ float min_temp, max_temp;
 bool heater = false;
 float temperature;
 QTime time_light_on, time_light_off;
+QTime food1, food2, food3, long_food;
 bool light = true;
 mutex Mut;
 ofstream out;          // поток для записи
@@ -87,6 +88,7 @@ receiveTemp(float & temperature)
 void
 receiveSettings(float & min_temp, float & max_temp, bool & heater, QTime & time_light_on, QTime & time_light_off, bool & light)
 {
+    QStringList foodTimes;
     while(1)
     {
         Mut.lock();
@@ -101,6 +103,14 @@ receiveSettings(float & min_temp, float & max_temp, bool & heater, QTime & time_
         time_light_on = QTime::fromString(settings.value( "time_light_on").toString());
         time_light_off = QTime::fromString(settings.value( "time_light_off").toString());
         light = settings.value( "light").toBool();
+        settings.endGroup();
+
+        settings.beginGroup("Food");
+        foodTimes = settings.value( "time_Food").toStringList();
+        food1 = QTime::fromString(foodTimes.at(0));
+        food2 = QTime::fromString(foodTimes.at(1));
+        food3 = QTime::fromString(foodTimes.at(2));
+        long_food = QTime::fromString(settings.value( "long_Food").toString());
         settings.endGroup();
 
         Mut.unlock();
