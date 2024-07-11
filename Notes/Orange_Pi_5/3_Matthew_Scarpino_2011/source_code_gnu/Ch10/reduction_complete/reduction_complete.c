@@ -10,16 +10,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
-#ifdef MAC
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
 
 /* Find a GPU or CPU associated with the first available platform */
-cl_device_id create_device() {
-
+cl_device_id create_device()
+{
    cl_platform_id platform;
    cl_device_id dev;
    int err;
@@ -45,8 +40,8 @@ cl_device_id create_device() {
 }
 
 /* Create program from a file and compile it */
-cl_program build_program(cl_context ctx, cl_device_id dev, const char* filename) {
-
+cl_program build_program(cl_context ctx, cl_device_id dev, const char* filename)
+{
    cl_program program;
    FILE *program_handle;
    char *program_buffer, *program_log;
@@ -95,8 +90,8 @@ cl_program build_program(cl_context ctx, cl_device_id dev, const char* filename)
    return program;
 }
 
-int main() {
-
+int main()
+{
    /* OpenCL structures */
    cl_device_id device;
    cl_context context;
@@ -180,40 +175,40 @@ int main() {
    global_size = ARRAY_SIZE/4;
    err = clEnqueueNDRangeKernel(queue, vector_kernel, 1, NULL, &global_size, 
          &local_size, 0, NULL, &start_event);
-   if(err < 0) {
+   if(err < 0)
+   {
       perror("Couldn't enqueue the kernel");
       exit(1);   
    }
    printf("Global size = %zu\n", global_size);
 
    /* Perform successive stages of the reduction */
-   while(global_size/local_size > local_size) {
+   while(global_size/local_size > local_size)
+   {
       global_size = global_size/local_size;
-      err = clEnqueueNDRangeKernel(queue, vector_kernel, 1, NULL, &global_size, 
-            &local_size, 0, NULL, NULL);
+      err = clEnqueueNDRangeKernel(queue, vector_kernel, 1, NULL, &global_size, &local_size, 0, NULL, NULL);
       printf("Global size = %zu\n", global_size);
       if(err < 0) {
          perror("Couldn't enqueue the kernel");
          exit(1);   
       }
    }
+
    global_size = global_size/local_size;
-   err = clEnqueueNDRangeKernel(queue, complete_kernel, 1, NULL, &global_size, 
-         NULL, 0, NULL, &end_event);
+   err = clEnqueueNDRangeKernel(queue, complete_kernel, 1, NULL, &global_size, NULL, 0, NULL, &end_event);
    printf("Global size = %zu\n", global_size);
 
    /* Finish processing the queue and get profiling information */
    clFinish(queue);
-   clGetEventProfilingInfo(start_event, CL_PROFILING_COMMAND_START,
-         sizeof(time_start), &time_start, NULL);
-   clGetEventProfilingInfo(end_event, CL_PROFILING_COMMAND_END,
-         sizeof(time_end), &time_end, NULL);
+
+   clGetEventProfilingInfo(start_event, CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
+   clGetEventProfilingInfo(end_event, CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
    total_time = time_end - time_start;
 
    /* Read the result */
-   err = clEnqueueReadBuffer(queue, sum_buffer, CL_TRUE, 0, 
-      sizeof(float), &sum, 0, NULL, NULL);
-   if(err < 0) {
+   err = clEnqueueReadBuffer(queue, sum_buffer, CL_TRUE, 0, sizeof(float), &sum, 0, NULL, NULL);
+   if(err < 0)
+   {
       perror("Couldn't read the buffer");
       exit(1);   
    }
