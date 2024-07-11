@@ -37,20 +37,20 @@ constexpr long numLinesInLog = 250;
 
 void changePosWriteInLog()
 {
-    while(1)
-    {
-        Mut.lock();
-        out.open("/home/khadas/aqua/logFile", std::ios::app);
-//        out<<" ";
-        if( auto pos = out.tellp() > 250)
-        {
-            out.seekp(pos - numLinesInLog);
-            out<<"********************************************"<<endl;
-        }
-        out.close();
-        Mut.unlock();
-        this_thread::sleep_for(chrono::milliseconds(60000));
-    }
+//    while(1)
+//    {
+//        Mut.lock();
+//        out.open("/home/khadas/aqua/logFile", std::ios::app);
+////        out<<" ";
+//        if( auto pos = out.tellp() > 250)
+//        {
+//            out.seekp(pos - numLinesInLog);
+//            out<<"********************************************"<<endl;
+//        }
+//        out.close();
+//        Mut.unlock();
+//        this_thread::sleep_for(chrono::milliseconds(60000));
+//    }
 }
 
 void printTime()
@@ -215,7 +215,7 @@ int main ()
 //	std::cout <<"gpio init...\n"<<std::endl;
 //	system("gpio readall");
 
-    thread (changePosWriteInLog).detach();
+//    thread (changePosWriteInLog).detach();
     this_thread::sleep_for(chrono::milliseconds(3000));
     thread (receiveTemp, ref(temperature)).detach();
     thread (receiveSettings,
@@ -240,7 +240,7 @@ int main ()
 	{
         Mut.lock();
         out.open("/home/khadas/aqua/logFile", std::ios::app);
-        if (temperatureNew != temperature)
+        if (abs(temperatureNew - temperature) > 0.1)
         {
             std::cout << "temp = " << temperature <<"\t\t\t\t";
             out << "temp = " << temperature <<"\t\t\t\t";

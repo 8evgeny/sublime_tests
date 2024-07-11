@@ -1,21 +1,21 @@
 [Temperature]
 heater = true;
-min_temp = 24.9;
-max_temp = 25.9;
+min_temp = 24.8;
+max_temp = 25.8;
 
 [Light]
 light = true;
-time_light_on = 06:02:00;
+time_light_on = 06:00:00;
 time_light_off = 21:00:00;
 
 [Food]
 Food - true;
-time_Food_1 = 08:00:00;
-long_Food_1 = 05;
-time_Food_2 = 14:00:00;
-long_Food_2 = 05;
-time_Food_3 = 20:00:00;
-long_Food_3 = 05;
+time_Food = 08:00:00, 14:00:00,  20:00:00;
+#long_Food_1 = 05;
+#time_Food_2 = 14:00:00;
+#long_Food_2 = 05;
+#time_Food_3 = 20:00:00;
+#long_Food_3 = 05;
 
 [UF]
 UF = true;
