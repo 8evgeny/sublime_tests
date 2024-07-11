@@ -13,3 +13,12 @@ add_subdirectory(Ch2/kernel_search)
 add_subdirectory(Ch2/platform_ext_test)
 add_subdirectory(Ch2/program_build)
 add_subdirectory(Ch2/queue_kernel)
+
+add_subdirectory(Ch3/buffer_check)
+add_subdirectory(Ch3/buffer_test)
+add_subdirectory(Ch3/map_copy)
+
+add_subdirectory(Ch4/double_test)
+
+
+

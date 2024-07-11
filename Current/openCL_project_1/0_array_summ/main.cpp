@@ -10,16 +10,14 @@ QElapsedTimer eTimer;
 quint64 timeSerial, timeParallel;
 
 using namespace std;
-constexpr int arraySize = 255;
+constexpr int arraySize = 256;
 
-void arraySummSerial(array<float, arraySize> & arr, float & summ)
+void arraySummSerial(const array<float, arraySize> & arr, float & summ)
 {
-    eTimer.restart();
     for(int i = 0; i < arr.size();++i)
     {
         summ += arr[i];
     }
-    timeSerial = eTimer.nsecsElapsed();
 }
 
 int main(){
@@ -56,7 +54,7 @@ int main(){
 
     sources.push_back({kernel_code_from_file.c_str(), kernel_code_from_file.length()});
  
-    cl::Program program(context,sources);
+    cl::Program program(context, sources);
     if(program.build({default_device})!=CL_SUCCESS)
     {
         std::cout<<" Error building: "<<program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(default_device)<<"\n";
@@ -64,8 +62,8 @@ int main(){
     }
  
     // create buffers on the device
-    cl::Buffer InputArray(context,CL_MEM_READ_WRITE,sizeof(int) * arraySize);
-    cl::Buffer OutputResult(context,CL_MEM_READ_WRITE,sizeof(ulong));
+    cl::Buffer InputArray(context,CL_MEM_READ_WRITE, sizeof(float) * arraySize);
+    cl::Buffer OutputResult(context,CL_MEM_READ_WRITE,sizeof(float));
  
     array<float, arraySize > arr;
     std::random_device randD;
@@ -75,31 +73,33 @@ int main(){
 
 //    copy(arr.begin(), arr.end(), ostream_iterator<float>(cout, " "));
 
+    eTimer.restart();
     float resultSerialSumm;
     arraySummSerial (arr, resultSerialSumm);
+    timeSerial = eTimer.nsecsElapsed();
 
-
+    eTimer.restart();
     float resultParallelSumm;
     //create queue to which we will push commands for the device.
     cl::CommandQueue queue(context, default_device);
  
     //write arrays to the device
-    queue.enqueueWriteBuffer(InputArray,CL_TRUE,0,sizeof(float)*arraySize, arr.data());
+    queue.enqueueWriteBuffer(InputArray, CL_TRUE, 0, sizeof(float) * arraySize, arr.data());
 
     //run the kernel
-    cl::Kernel kernel_add=cl::Kernel(program,"reduction");
+    cl::Kernel kernel_add=cl::Kernel(program, "reduction");
     kernel_add.setArg(0, arraySize);
     kernel_add.setArg(1, InputArray);
     kernel_add.setArg(2, OutputResult);
 
-    eTimer.restart();
-    queue.enqueueNDRangeKernel(kernel_add,cl::NullRange,cl::NDRange(arraySize),cl::NullRange);
-    timeParallel = eTimer.nsecsElapsed();
+    queue.enqueueNDRangeKernel(kernel_add, cl::NullRange, cl::NDRange(arraySize), cl::NullRange);
     queue.finish();
 
     //read result from the device
     queue.enqueueReadBuffer(OutputResult, CL_TRUE, 0, sizeof(float), &resultParallelSumm);
  
+    timeParallel = eTimer.nsecsElapsed();
+
     cout << "\nresultSerialSumm = " << resultSerialSumm <<endl;
     cout << "resultparallelSumm = " << resultParallelSumm <<endl;
     cout.precision(3);
