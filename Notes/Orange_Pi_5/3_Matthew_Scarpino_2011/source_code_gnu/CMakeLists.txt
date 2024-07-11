@@ -19,6 +19,6 @@ add_subdirectory(Ch3/buffer_test)
 add_subdirectory(Ch3/map_copy)
 
 add_subdirectory(Ch4/double_test)
-
+add_subdirectory(Ch4/float_config)
 
 
