@@ -5,16 +5,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#ifdef MAC
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
 
 /* Find a GPU or CPU associated with the first available platform */
-cl_device_id create_device() {
-
+cl_device_id create_device()
+{
    cl_platform_id platform;
    cl_device_id dev;
    int err;
@@ -40,8 +35,8 @@ cl_device_id create_device() {
 }
 
 /* Create program from a file and compile it */
-cl_program build_program(cl_context ctx, cl_device_id dev, const char* filename) {
-
+cl_program build_program(cl_context ctx, cl_device_id dev, const char* filename)
+{
    cl_program program;
    FILE *program_handle;
    char *program_buffer, *program_log;
@@ -90,7 +85,8 @@ cl_program build_program(cl_context ctx, cl_device_id dev, const char* filename)
    return program;
 }
 
-int main() {
+int main()
+{
 
    /* OpenCL data structures */
    cl_device_id device;
@@ -150,9 +146,9 @@ int main() {
    }
 
    /* Read and print the result */
-   err = clEnqueueReadBuffer(queue, result_buffer, CL_TRUE, 0, 
-      sizeof(result), &result, 0, NULL, NULL);
-   if(err < 0) {
+   err = clEnqueueReadBuffer(queue, result_buffer, CL_TRUE, 0, sizeof(result), &result, 0, NULL, NULL);
+   if(err < 0)
+   {
       perror("Couldn't read the buffer");
       exit(1);   
    }  

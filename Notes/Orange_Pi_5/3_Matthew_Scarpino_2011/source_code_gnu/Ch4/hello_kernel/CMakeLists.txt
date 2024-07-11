@@ -1,4 +1,4 @@
-add_executable(4_double_test double_test.c)
-target_link_libraries(4_double_test ${OpenCL_LIBRARY} )
-configure_file(double_test.cl ${CMAKE_CURRENT_BINARY_DIR}/double_testcl COPYONLY)
+add_executable(4_hello_kernel hello_kernel.c)
+target_link_libraries(4_hello_kernel ${OpenCL_LIBRARY} )
+configure_file(hello_kernel.cl ${CMAKE_CURRENT_BINARY_DIR}/hello_kernel.cl COPYONLY)
 

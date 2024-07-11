@@ -11,16 +11,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#ifdef MAC
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
+
 
 /* Find a GPU or CPU associated with the first available platform */
-cl_device_id create_device() {
-
+cl_device_id create_device()
+{
    cl_platform_id platform;
    cl_device_id dev;
    int err;
@@ -46,8 +42,8 @@ cl_device_id create_device() {
 }
 
 /* Create program from a file and compile it */
-cl_program build_program(cl_context ctx, cl_device_id dev, const char* filename) {
-
+cl_program build_program(cl_context ctx, cl_device_id dev, const char* filename)
+{
    cl_program program;
    FILE *program_handle;
    char *program_buffer, *program_log;
@@ -96,7 +92,8 @@ cl_program build_program(cl_context ctx, cl_device_id dev, const char* filename)
    return program;
 }
 
-void read_image_data(const char* filename, png_bytep* data, size_t* w, size_t* h) {
+void read_image_data(const char* filename, png_bytep* data, size_t* w, size_t* h)
+{
 
    int i;
 
@@ -127,8 +124,8 @@ void read_image_data(const char* filename, png_bytep* data, size_t* w, size_t* h
    fclose(png_input);
 }
 
-void write_image_data(const char* filename, png_bytep data, size_t w, size_t h) {
-
+void write_image_data(const char* filename, png_bytep data, size_t w, size_t h)
+{
    int i;
 
    /* Open output file */
@@ -146,7 +143,8 @@ void write_image_data(const char* filename, png_bytep data, size_t w, size_t h) 
          PNG_COLOR_TYPE_GRAY, PNG_INTERLACE_NONE,
          PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
    png_write_info(png_ptr, info_ptr);
-   for(i=0; i<h; i++) {
+   for(i=0; i<h; i++)
+   {
       png_write_row(png_ptr, data + i*png_get_rowbytes(png_ptr, info_ptr));
    }
 
