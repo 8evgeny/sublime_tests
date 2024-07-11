@@ -206,6 +206,36 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
     }
 }
 
+void
+handlerFood()
+{
+    string stateFood = "none";
+    while(1)
+    {
+        Mut.lock();
+        out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
+//        if (temperature > max_temp && stateFood != "OFF")
+//        {
+//            digitalWrite(gpio_pin_HEAT, LOW);
+//            std::cout << "######## heater set OFF #######"  <<"\t\t";
+//            out << "######## heater set OFF #######"  <<"\t\t";
+//            printTime();
+//            stateFood = "OFF";
+//        }
+//        if (1)
+//        {
+//            digitalWrite(gpio_pin_HEAT, HIGH);
+//            std::cout << "######## heater set ON ########"  <<"\t\t";
+//            out << "######## heater set ON ########"  <<"\t\t";
+//            printTime();
+//            stateFood = "ON";
+//        }
+        out.close();
+        Mut.unlock();
+        this_thread::sleep_for(chrono::milliseconds(1080));
+    }
+}
+
 int main () 
 {
 	if(-1 == wiringPiSetup())
