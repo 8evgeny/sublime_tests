@@ -1,6 +1,5 @@
-__kernel void reduction_scalar(__global float* data, 
-      __local float* partial_sums, __global float* output) {
-
+__kernel void reduction_scalar(__global float* data, __local float* partial_sums, __global float* output)
+{
    int lid = get_local_id(0);
    int group_size = get_local_size(0);
 
@@ -19,9 +18,8 @@ __kernel void reduction_scalar(__global float* data,
    }
 }
 
-__kernel void reduction_vector(__global float4* data, 
-      __local float4* partial_sums, __global float* output) {
-
+__kernel void reduction_vector(__global float4* data, __local float4* partial_sums, __global float* output)
+{
    int lid = get_local_id(0);
    int group_size = get_local_size(0);
 

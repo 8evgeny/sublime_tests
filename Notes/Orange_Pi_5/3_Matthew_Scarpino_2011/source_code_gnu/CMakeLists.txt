@@ -38,6 +38,6 @@ add_subdirectory(Ch6/simple_image)
 
 
 
-#add_subdirectory(Ch10/reduction)
-#add_subdirectory(Ch10/reduction_complete)
+add_subdirectory(Ch10/reduction)
+add_subdirectory(Ch10/reduction_complete)
 add_subdirectory(Ch10/wg_test)

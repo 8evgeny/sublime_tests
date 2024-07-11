@@ -9,16 +9,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
-#ifdef MAC
-#include <OpenCL/cl.h>
-#else
 #include <CL/cl.h>
-#endif
 
 /* Find a GPU or CPU associated with the first available platform */
-cl_device_id create_device() {
-
+cl_device_id create_device()
+{
    cl_platform_id platform;
    cl_device_id dev;
    int err;
@@ -44,8 +39,8 @@ cl_device_id create_device() {
 }
 
 /* Create program from a file and compile it */
-cl_program build_program(cl_context ctx, cl_device_id dev, const char* filename) {
-
+cl_program build_program(cl_context ctx, cl_device_id dev, const char* filename)
+{
    cl_program program;
    FILE *program_handle;
    char *program_buffer, *program_log;
@@ -94,8 +89,8 @@ cl_program build_program(cl_context ctx, cl_device_id dev, const char* filename)
    return program;
 }
 
-int main() {
-
+int main()
+{
    /* OpenCL structures */
    cl_device_id device;
    cl_context context;
@@ -105,8 +100,7 @@ int main() {
    cl_event prof_event;
    cl_int i, j, err;
    size_t local_size, global_size;
-   char kernel_names[NUM_KERNELS][20] = 
-         {"reduction_scalar", "reduction_vector"};
+   char kernel_names[NUM_KERNELS][20] = {"reduction_scalar", "reduction_vector"};
 
    /* Data and buffers */
    float data[ARRAY_SIZE];
@@ -116,7 +110,8 @@ int main() {
    cl_ulong time_start, time_end, total_time;
 
    /* Initialize data */
-   for(i=0; i<ARRAY_SIZE; i++) {
+   for(i=0; i < ARRAY_SIZE; i++)
+   {
       data[i] = 1.0f*i;
    }
 
@@ -133,10 +128,12 @@ int main() {
    num_groups = ARRAY_SIZE/local_size;
    scalar_sum = (float*) malloc(num_groups * sizeof(float));
    vector_sum = (float*) malloc(num_groups/4 * sizeof(float));
-   for(i=0; i<num_groups; i++) {
+   for(i=0; i < num_groups; i++)
+   {
       scalar_sum[i] = 0.0f;
    }
-   for(i=0; i<num_groups/4; i++) {
+   for(i=0; i < num_groups/4; i++)
+   {
       vector_sum[i] = 0.0f;
    }
 
@@ -163,25 +160,26 @@ int main() {
    };
 
    /* Create a command queue */
-   queue = clCreateCommandQueue(context, device, 
-         CL_QUEUE_PROFILING_ENABLE, &err);
+   queue = clCreateCommandQueue(context, device, CL_QUEUE_PROFILING_ENABLE, &err);
    if(err < 0) {
       perror("Couldn't create a command queue");
       exit(1);   
    };
 
-   for(i=0; i<NUM_KERNELS; i++) {
-
+   for(i=0; i < NUM_KERNELS; i++)
+   {
       /* Create a kernel */
       kernel[i] = clCreateKernel(program, kernel_names[i], &err);
-      if(err < 0) {
+      if(err < 0)
+      {
          perror("Couldn't create a kernel");
          exit(1);
       };
 
       /* Create kernel arguments */
       err = clSetKernelArg(kernel[i], 0, sizeof(cl_mem), &data_buffer);
-      if(i == 0) {
+      if(i == 0)
+      {
          global_size = ARRAY_SIZE;
          err |= clSetKernelArg(kernel[i], 1, local_size * sizeof(float), NULL);
          err |= clSetKernelArg(kernel[i], 2, sizeof(cl_mem), &scalar_sum_buffer);
@@ -197,8 +195,7 @@ int main() {
       }
 
       /* Enqueue kernel */
-      err = clEnqueueNDRangeKernel(queue, kernel[i], 1, NULL, &global_size, 
-            &local_size, 0, NULL, &prof_event); 
+      err = clEnqueueNDRangeKernel(queue, kernel[i], 1, NULL, &global_size, &local_size, 0, NULL, &prof_event);
       if(err < 0) {
          perror("Couldn't enqueue the kernel");
          exit(1);   
@@ -206,14 +203,13 @@ int main() {
 
       /* Finish processing the queue and get profiling information */
       clFinish(queue);
-      clGetEventProfilingInfo(prof_event, CL_PROFILING_COMMAND_START,
-            sizeof(time_start), &time_start, NULL);
-      clGetEventProfilingInfo(prof_event, CL_PROFILING_COMMAND_END,
-            sizeof(time_end), &time_end, NULL);
+      clGetEventProfilingInfo(prof_event, CL_PROFILING_COMMAND_START, sizeof(time_start), &time_start, NULL);
+      clGetEventProfilingInfo(prof_event, CL_PROFILING_COMMAND_END, sizeof(time_end), &time_end, NULL);
       total_time = time_end - time_start;
 
       /* Read the result */
-      if(i == 0) {
+      if(i == 0)
+      {
          err = clEnqueueReadBuffer(queue, scalar_sum_buffer, CL_TRUE, 0, 
             num_groups * sizeof(float), scalar_sum, 0, NULL, NULL);
          if(err < 0) {
@@ -221,11 +217,13 @@ int main() {
             exit(1);   
          }
          sum = 0.0f;
-         for(j=0; j<num_groups; j++) {
+         for(j=0; j<num_groups; j++)
+         {
             sum += scalar_sum[j];
          }
       }
-      else {
+      else
+      {
          err = clEnqueueReadBuffer(queue, vector_sum_buffer, CL_TRUE, 0, 
             num_groups/4 * sizeof(float), vector_sum, 0, NULL, NULL);
          if(err < 0) {
@@ -249,12 +247,13 @@ int main() {
 
       /* Deallocate event */
       clReleaseEvent(prof_event);
-   }
+   }// END -- for(i=0; i < NUM_KERNELS; i++)
 
    /* Deallocate resources */
    free(scalar_sum);
    free(vector_sum);
-   for(i=0; i<NUM_KERNELS; i++) {
+   for(i=0; i<NUM_KERNELS; i++)
+   {
       clReleaseKernel(kernel[i]);
    }
    clReleaseMemObject(scalar_sum_buffer);
