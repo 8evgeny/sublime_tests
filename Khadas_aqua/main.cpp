@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <stdio.h>
 #include <wiringPi.h>
 #include <wiringPiI2C.h>
@@ -26,14 +26,32 @@ float temperature;
 QTime time_light_on, time_light_off;
 bool light = true;
 mutex Mut;
-std::ofstream out;          // поток для записи
-
+ofstream out;          // поток для записи
+constexpr long numLinesInLog = 250;
 
 								//PIN37   onewire  измерение температуры
 								//PIN40   GND
 								//PIN1    +5
 								//PIN2    +5
 
+
+void changePosWriteInLog()
+{
+    while(1)
+    {
+        Mut.lock();
+        out.open("/home/khadas/aqua/logFile", std::ios::app);
+//        out<<" ";
+        if( auto pos = out.tellp() > 250)
+        {
+            out.seekp(pos - numLinesInLog);
+            out<<"********************************************"<<endl;
+        }
+        out.close();
+        Mut.unlock();
+        this_thread::sleep_for(chrono::milliseconds(60000));
+    }
+}
 
 void printTime()
 {
@@ -197,6 +215,8 @@ int main ()
 //	std::cout <<"gpio init...\n"<<std::endl;
 //	system("gpio readall");
 
+    thread (changePosWriteInLog).detach();
+    this_thread::sleep_for(chrono::milliseconds(3000));
     thread (receiveTemp, ref(temperature)).detach();
     thread (receiveSettings,
             ref(min_temp),
@@ -215,6 +235,7 @@ int main ()
     bool heaterNew = false;
     QTime time_light_on_New, time_light_off_New;
     bool lightNew = false;
+
 	while(1)
 	{
         Mut.lock();
