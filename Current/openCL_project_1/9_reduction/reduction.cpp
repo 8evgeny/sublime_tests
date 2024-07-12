@@ -114,23 +114,16 @@ int main()
    char kernel_names[NUM_KERNELS][20] = {"reduction_scalar", "reduction_vector"};
 
    /* Data and buffers */
-
    float sum_from_gpu, serial_sum, *scalar_sum, *vector_sum;
    cl_mem data_buffer, scalar_sum_buffer, vector_sum_buffer;
    cl_int num_groups;
    cl_ulong time_start, time_end, total_time;
 
    /* Initialize data */
-
    std::random_device randD;
    std::mt19937 randMT(randD());
    std::uniform_int_distribution <int> range(0, 1000'000);
    generate(arr.begin(), arr.end(), [&]{return (float)range(randMT)/1000'000;});
-
-
-
-
-
 
    /* Create device and determine local size */
    device = create_device();
@@ -149,6 +142,7 @@ int main()
 
    scalar_sum = (float*) malloc(num_groups * sizeof(float));
    vector_sum = (float*) malloc(num_groups/4 * sizeof(float));
+
    for(i=0; i < num_groups; i++)
    {
       scalar_sum[i] = 0.0f;
@@ -321,7 +315,7 @@ int main()
     printf("time_Scalar  \t\t\t%.0f ns\n", (float)time_Scalar.count());
 
     auto time_Vector = std::chrono::duration_cast<chrono::nanoseconds>(time_end_Vector - time_start_Vector);
-    printf("time_Vector  \t\t\t%.0f ns\n", (float)time_Vector.count());
+    printf("time_Vector  \t\t\t%.0f ns\n\n", (float)time_Vector.count());
 
     return 0;
 }
