@@ -6,7 +6,7 @@ max_temp = 25.8;
 [Light]
 light = true;
 time_light_on = 06:00:00;
-time_light_off = 23:00:00;
+time_light_off = 21:00:00;
 
 [Food]
 Food - true;

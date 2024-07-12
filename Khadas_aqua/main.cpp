@@ -129,7 +129,7 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
         out.open("/home/khadas/aqua/logFile", std::ios::app);
         if (!light)
         {
-            digitalWrite(gpio_pin_LAMP, LOW);
+            digitalWrite(gpio_pin_LAMP, HIGH);
             if (stateLight != "OFF")
             {
                 std::cout << "######## light set OFF #######" <<"\t\t";
@@ -143,7 +143,7 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
             auto timeNow = QTime::currentTime();
             if ((timeNow > time_light_on) && (timeNow < time_light_off) && (stateLight != "ON"))
             {
-                digitalWrite(gpio_pin_LAMP, HIGH);
+                digitalWrite(gpio_pin_LAMP, LOW);
                 std::cout << "######## light set ON ########"  <<"\t\t";
                 out << "######## light set ON ########"  <<"\t\t";
                 printTime();
@@ -151,7 +151,7 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
             }
             if (!((timeNow > time_light_on) && (timeNow < time_light_off)) && (stateLight != "OFF"))
             {
-                digitalWrite(gpio_pin_LAMP, LOW);
+                digitalWrite(gpio_pin_LAMP, HIGH);
                 std::cout << "######## light set OFF ########"  <<"\t\t";
                 out << "######## light set OFF ########"  <<"\t\t";
                 printTime();
@@ -175,7 +175,7 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
         out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
         if (!heater && stateHeater != "OFF")
         {
-            digitalWrite(gpio_pin_HEAT, LOW);
+            digitalWrite(gpio_pin_HEAT, HIGH);
             std::cout << "######## heater set OFF #######" <<"\t\t";
             out << "######## heater set OFF #######" <<"\t\t";
             printTime();
@@ -185,7 +185,7 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
         {
             if (temperature > max_temp && stateHeater != "OFF")
             {
-                digitalWrite(gpio_pin_HEAT, LOW);
+                digitalWrite(gpio_pin_HEAT, HIGH);
                 std::cout << "######## heater set OFF #######"  <<"\t\t";
                 out << "######## heater set OFF #######"  <<"\t\t";
                 printTime();
@@ -193,7 +193,7 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
             }
             if (temperature < min_temp && stateHeater != "ON")
             {
-                digitalWrite(gpio_pin_HEAT, HIGH);
+                digitalWrite(gpio_pin_HEAT, LOW);
                 std::cout << "######## heater set ON ########"  <<"\t\t";
                 out << "######## heater set ON ########"  <<"\t\t";
                 printTime();
@@ -216,7 +216,7 @@ handlerFood()
         out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
 //        if (temperature > max_temp && stateFood != "OFF")
 //        {
-//            digitalWrite(gpio_pin_HEAT, LOW);
+//            digitalWrite(gpio_pin_HEAT, HIGH);
 //            std::cout << "######## heater set OFF #######"  <<"\t\t";
 //            out << "######## heater set OFF #######"  <<"\t\t";
 //            printTime();
@@ -224,7 +224,7 @@ handlerFood()
 //        }
 //        if (1)
 //        {
-//            digitalWrite(gpio_pin_HEAT, HIGH);
+//            digitalWrite(gpio_pin_HEAT, LOW);
 //            std::cout << "######## heater set ON ########"  <<"\t\t";
 //            out << "######## heater set ON ########"  <<"\t\t";
 //            printTime();
@@ -339,47 +339,47 @@ int main ()
 
 
 
-//		digitalWrite(gpio_pin_UF, HIGH);
+//		digitalWrite(gpio_pin_UF, LOW);
 //		printf("PIN_22 ON\n");
 //		delay(1000);
-//		digitalWrite(gpio_pin_COLD, HIGH);
+//		digitalWrite(gpio_pin_COLD, LOW);
 //		printf("PIN_23 ON\n");
 //		delay(1000);
-//		digitalWrite(gpio_pin_LAMP, HIGH);
+//		digitalWrite(gpio_pin_LAMP, LOW);
 //		printf("PIN_29 ON\n");
 //		delay(1000);
-//		digitalWrite(gpio_pin_HEAT, HIGH);
+//		digitalWrite(gpio_pin_HEAT, LOW);
 //		printf("PIN_30 ON\n");
 //		delay(1000);
-//		digitalWrite(gpio_pin_PUMP, HIGH);
+//		digitalWrite(gpio_pin_PUMP, LOW);
 //		printf("PIN_31 ON\n");
 //		delay(1000);
-//		digitalWrite(gpio_pin_LAMP, HIGH);
+//		digitalWrite(gpio_pin_LAMP, LOW);
 //		printf("PIN_32 ON\n");
 //		delay(1000);
-//		digitalWrite(gpio_pin_FOOD, HIGH);
+//		digitalWrite(gpio_pin_FOOD, LOW);
 //		printf("PIN_35 ON\n");
 //		delay(1000);
 
-//		digitalWrite(gpio_pin_UF, LOW);
+//		digitalWrite(gpio_pin_UF, HIGH);
 //		printf("PIN_22 OFF\n");
 //		delay(1000);
-//		digitalWrite(gpio_pin_COLD, LOW);
+//		digitalWrite(gpio_pin_COLD, HIGH);
 //		printf("PIN_23 OFF\n");
 //		delay(1000);
-//		digitalWrite(gpio_pin_LAMP, LOW);
+//		digitalWrite(gpio_pin_LAMP, HIGH);
 //		printf("PIN_29 OFF\n");
 //		delay(1000);
-//		digitalWrite(gpio_pin_HEAT, LOW);
+//		digitalWrite(gpio_pin_HEAT, HIGH);
 //		printf("PIN_30 OFF\n");
 //		delay(1000);
-//		digitalWrite(gpio_pin_PUMP, LOW);
+//		digitalWrite(gpio_pin_PUMP, HIGH);
 //		printf("PIN_31 OFF\n");
 //		delay(1000);
-//		digitalWrite(gpio_pin_LAMP, LOW);
+//		digitalWrite(gpio_pin_LAMP, HIGH);
 //		printf("PIN_32 OFF\n");
 //		delay(1000);
-//		digitalWrite(gpio_pin_FOOD, LOW);
+//		digitalWrite(gpio_pin_FOOD, HIGH);
 //		printf("PIN_35 OFF\n");
 //		delay(1000);
 	}
