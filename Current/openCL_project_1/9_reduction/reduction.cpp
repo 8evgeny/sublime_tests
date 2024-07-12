@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define PROGRAM_FILE "reduction.cl"
 
-#define ARRAY_SIZE 1048576
+#define ARRAY_SIZE 1048576/8
 #define NUM_KERNELS 2
 
 #include <math.h>
@@ -122,13 +122,16 @@ int main()
    device = create_device();
    err = clGetDeviceInfo(device, CL_DEVICE_MAX_WORK_GROUP_SIZE,
          sizeof(local_size), &local_size, NULL);
-   if(err < 0) {
+   if(err < 0)
+   {
       perror("Couldn't obtain device information");
       exit(1);
    }
+   printf("max_work_group_size = %d\n", (int)local_size);
 
    /* Allocate and initialize output arrays */
    num_groups = ARRAY_SIZE/local_size;
+   printf("num_groups = %d\n", (int)num_groups);
    scalar_sum = (float*) malloc(num_groups * sizeof(float));
    vector_sum = (float*) malloc(num_groups/4 * sizeof(float));
    for(i=0; i < num_groups; i++)
