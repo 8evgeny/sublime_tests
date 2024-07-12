@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define PROGRAM_FILE "reduction.cl"
 
-#define ARRAY_SIZE 1048576/8
+#define ARRAY_SIZE 1024*1024
 #define NUM_KERNELS 2
 
 #include <math.h>
@@ -11,8 +11,16 @@
 #include <time.h>
 #include <CL/cl.h>
 #include <chrono>
+#include <array>
+#include <random>
+#include <algorithm>
+#include <iterator>
 using namespace std;
-chrono::high_resolution_clock::time_point time_start_Scalar, time_end_Scalar, time_start_Vector, time_end_Vector;
+
+array<float, ARRAY_SIZE > arr;
+
+chrono::high_resolution_clock::time_point
+time_start_Scalar, time_end_Scalar, time_start_Vector, time_end_Vector, time_start_Serial, time_end_Serial;
 
 /* Find a GPU or CPU associated with the first available platform */
 cl_device_id create_device()
@@ -102,36 +110,43 @@ int main()
    cl_command_queue queue;
    cl_event prof_event;
    cl_int i, j, err;
-   size_t local_size, global_size;
+   size_t max_workgroup_size, global_size;
    char kernel_names[NUM_KERNELS][20] = {"reduction_scalar", "reduction_vector"};
 
    /* Data and buffers */
-   float data[ARRAY_SIZE];
-   float sum, actual_sum, *scalar_sum, *vector_sum;
+
+   float sum_from_gpu, serial_sum, *scalar_sum, *vector_sum;
    cl_mem data_buffer, scalar_sum_buffer, vector_sum_buffer;
    cl_int num_groups;
    cl_ulong time_start, time_end, total_time;
 
    /* Initialize data */
-   for(i=0; i < ARRAY_SIZE; i++)
-   {
-      data[i] = 1.0f*i;
-   }
+
+   std::random_device randD;
+   std::mt19937 randMT(randD());
+   std::uniform_int_distribution <int> range(0, 1000'000);
+   generate(arr.begin(), arr.end(), [&]{return (float)range(randMT)/1000'000;});
+
+
+
+
+
 
    /* Create device and determine local size */
    device = create_device();
    err = clGetDeviceInfo(device, CL_DEVICE_MAX_WORK_GROUP_SIZE,
-         sizeof(local_size), &local_size, NULL);
+         sizeof(max_workgroup_size), &max_workgroup_size, NULL);
    if(err < 0)
    {
       perror("Couldn't obtain device information");
       exit(1);
    }
-   printf("max_work_group_size = %d\n", (int)local_size);
+   printf("max_work_group_size = %d\n", (int)max_workgroup_size);
 
    /* Allocate and initialize output arrays */
-   num_groups = ARRAY_SIZE/local_size;
-   printf("num_groups = %d\n", (int)num_groups);
+   num_groups = ARRAY_SIZE/max_workgroup_size;
+   printf("num_groups = %d\n\n", (int)num_groups);
+
    scalar_sum = (float*) malloc(num_groups * sizeof(float));
    vector_sum = (float*) malloc(num_groups/4 * sizeof(float));
    for(i=0; i < num_groups; i++)
@@ -155,7 +170,7 @@ int main()
 
    /* Create data buffer */
    data_buffer = clCreateBuffer(context, CL_MEM_READ_ONLY |
-         CL_MEM_COPY_HOST_PTR, ARRAY_SIZE * sizeof(float), data, &err);
+         CL_MEM_COPY_HOST_PTR, ARRAY_SIZE * sizeof(float), arr.data(), &err);
    scalar_sum_buffer = clCreateBuffer(context, CL_MEM_READ_WRITE |
          CL_MEM_COPY_HOST_PTR, num_groups * sizeof(float), scalar_sum, &err);
    vector_sum_buffer = clCreateBuffer(context, CL_MEM_READ_WRITE |
@@ -172,13 +187,15 @@ int main()
       exit(1);
    };
 
+   time_start_Serial = chrono::high_resolution_clock::now();
+   for (int i = 0; i< ARRAY_SIZE; ++i)
+   {
+       serial_sum +=arr[i];
+   }
+   time_end_Serial = chrono::high_resolution_clock::now();
+
    for(i=0; i < NUM_KERNELS; i++)
    {
-       if (i == 0)
-           time_start_Scalar = chrono::high_resolution_clock::now();
-       if (i == 1)
-           time_start_Vector = chrono::high_resolution_clock::now();
-
         /* Create a kernel */
         kernel[i] = clCreateKernel(program, kernel_names[i], &err);
         if(err < 0)
@@ -192,13 +209,13 @@ int main()
         if(i == 0)
         {
             global_size = ARRAY_SIZE;
-            err |= clSetKernelArg(kernel[i], 1, local_size * sizeof(float), NULL);
+            err |= clSetKernelArg(kernel[i], 1, max_workgroup_size * sizeof(float), NULL);
             err |= clSetKernelArg(kernel[i], 2, sizeof(cl_mem), &scalar_sum_buffer);
         }
         else
         {
             global_size = ARRAY_SIZE/4;
-            err |= clSetKernelArg(kernel[i], 1, local_size * 4 * sizeof(float), NULL);
+            err |= clSetKernelArg(kernel[i], 1, max_workgroup_size * 4 * sizeof(float), NULL);
             err |= clSetKernelArg(kernel[i], 2, sizeof(cl_mem), &vector_sum_buffer);
         }
         if(err < 0)
@@ -209,7 +226,18 @@ int main()
 
         /* Enqueue kernel */
 
-        err = clEnqueueNDRangeKernel(queue, kernel[i], 1, NULL, &global_size, &local_size, 0, NULL, &prof_event);
+        if (i == 0)
+            time_start_Scalar = chrono::high_resolution_clock::now();
+        if (i == 1)
+            time_start_Vector = chrono::high_resolution_clock::now();
+
+        err = clEnqueueNDRangeKernel(queue, kernel[i], 1, NULL, &global_size, &max_workgroup_size, 0, NULL, &prof_event);
+
+        if (i == 0)
+            time_end_Scalar = chrono::high_resolution_clock::now();
+        if (i == 1)
+            time_end_Vector = chrono::high_resolution_clock::now();
+
 
         if(err < 0)
         {
@@ -234,13 +262,11 @@ int main()
                 perror("Couldn't read the buffer");
                 exit(1);
             }
-            sum = 0.0f;
+            sum_from_gpu = 0.0f;
             for(j=0; j < num_groups; j++)
             {
-                sum += scalar_sum[j];
+                sum_from_gpu += scalar_sum[j];
             }
-
-            time_end_Scalar = chrono::high_resolution_clock::now();
         }
         else
         {
@@ -251,20 +277,18 @@ int main()
                 perror("Couldn't read the buffer");
                 exit(1);
             }
-            sum = 0.0f;
+            sum_from_gpu = 0.0f;
             for(j=0; j < num_groups/4; j++)
             {
-                sum += vector_sum[j];
+                sum_from_gpu += vector_sum[j];
             }
-
-            time_end_Vector = chrono::high_resolution_clock::now();
         }
 
 
         /* Check result */
         printf("%s: ", kernel_names[i]);
-        actual_sum = 1.0f * ARRAY_SIZE/2*(ARRAY_SIZE-1);
-        if(fabs(sum - actual_sum) > 0.01*fabs(sum))
+        if(fabs(sum_from_gpu - serial_sum) > 0.01*fabs(sum_from_gpu
+                                                       ))
             printf("Check failed.\n");
         else
             printf("Check passed.\n");
@@ -283,17 +307,21 @@ int main()
    {
       clReleaseKernel(kernel[i]);
    }
-   clReleaseMemObject(scalar_sum_buffer);
-   clReleaseMemObject(vector_sum_buffer);
-   clReleaseMemObject(data_buffer);
-   clReleaseCommandQueue(queue);
-   clReleaseProgram(program);
-   clReleaseContext(context);
+    clReleaseMemObject(scalar_sum_buffer);
+    clReleaseMemObject(vector_sum_buffer);
+    clReleaseMemObject(data_buffer);
+    clReleaseCommandQueue(queue);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-   auto time_Scalar = std::chrono::duration_cast<chrono::nanoseconds>(time_end_Scalar - time_start_Scalar);
-   printf("time_Scalar  \t\t\t%.0f ns\n", (float)time_Scalar.count());
-   auto time_Vector = std::chrono::duration_cast<chrono::nanoseconds>(time_end_Vector - time_start_Vector);
-   printf("time_Vector  \t\t\t%.0f ns\n", (float)time_Vector.count());
+    auto time_Serial = std::chrono::duration_cast<chrono::nanoseconds>(time_end_Serial - time_start_Serial);
+    printf("time_Serial  \t\t\t%.0f ns\n", (float)time_Serial.count());
 
-   return 0;
+    auto time_Scalar = std::chrono::duration_cast<chrono::nanoseconds>(time_end_Scalar - time_start_Scalar);
+    printf("time_Scalar  \t\t\t%.0f ns\n", (float)time_Scalar.count());
+
+    auto time_Vector = std::chrono::duration_cast<chrono::nanoseconds>(time_end_Vector - time_start_Vector);
+    printf("time_Vector  \t\t\t%.0f ns\n", (float)time_Vector.count());
+
+    return 0;
 }
