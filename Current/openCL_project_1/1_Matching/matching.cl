@@ -4,6 +4,7 @@ typedef struct tag_result
     uint SAD;
 }result;
 
+//wokrItem передает сигнал о завершении (если к примеру SAD < 100)
 //Передавать image2D
 //__Local
 //Запускать сразу 4  kernel

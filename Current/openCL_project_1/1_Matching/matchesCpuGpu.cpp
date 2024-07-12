@@ -69,7 +69,6 @@ int initDevice()
     context=cl::Context(default_device);
 
     queue=cl::CommandQueue(context, default_device);
-
     return 0;
 }
 
@@ -158,8 +157,19 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, uch
     cl::NDRange gRM=cl::NDRange((w-t_cols),(h-t_rows));
     //El work group dejo que lo asigne automaticamente
 
+    cl::Event event;
 
-    iclError |= queue.enqueueNDRangeKernel(clkProcess,cl::NullRange,gRM,cl::NullRange);
+    iclError |= queue.enqueueNDRangeKernel(
+                clkProcess,
+                cl::NullRange,
+                gRM,
+                cl::NullRange,
+                NULL,
+                &event
+                );
+
+    event.wait();
+
     iclError |= queue.finish();
 
     queue.enqueueReadBuffer(clInputAux, CL_TRUE,0, sizeof(int),&aux);
@@ -312,15 +322,16 @@ int matches()
 
     time_start_GPU = chrono::high_resolution_clock::now();
     result r_GPU;
-for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
-{
-    int retGpu = gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols, imageData, templateData, r_GPU);
-    if (retGpu != 0)
+
+    for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
     {
-        cout<<"error gpuProcess "<< retGpu <<endl;
-        return -1;
+        int retGpu = gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols, imageData, templateData, r_GPU);
+        if (retGpu != 0)
+        {
+            cout<<"error gpuProcess "<< retGpu <<endl;
+            return -1;
+        }
     }
-}
 
     delete[] imageData;
     delete[] templateData;
