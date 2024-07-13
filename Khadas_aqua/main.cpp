@@ -12,13 +12,16 @@
 
 using namespace std;
 
-const int gpio_pin_UF = 6; 	//PIN22
-const int gpio_pin_COLD = 	7; 	//PIN23
-const int gpio_pin_LAMP = 	10;	//PIN29
-const int gpio_pin_HEAT = 	11;	//PIN30
-const int gpio_pin_PUMP = 	12;	//PIN31
-const int gpio_pin_AIR  = 	13;	//PIN32
-const int gpio_pin_FOOD =	15;	//PIN35
+const int gpio_pin_UF       = 6;    //PIN22     1_RELE
+const int gpio_pin_PUMP_AIR = 7;    //PIN23     2_RELE
+const int gpio_pin_FOOD     = 10;   //PIN29     3_RELE
+const int gpio_pin_HEAT     = 11;   //PIN30     5_RELE
+const int gpio_pin_LAMP     = 12;   //PIN31     6_RELE
+
+const int gpio_pin_COLD     = 13;   //PIN32
+const int gpio_pin_REZERV   = 15;   //PIN35
+
+
 
 float min_temp, max_temp;
 bool heater = false;
@@ -248,14 +251,10 @@ int main ()
 	pinMode(gpio_pin_COLD, OUTPUT);
 	pinMode(gpio_pin_LAMP, OUTPUT);
 	pinMode(gpio_pin_HEAT, OUTPUT);
-	pinMode(gpio_pin_PUMP, OUTPUT);
-	pinMode(gpio_pin_AIR, OUTPUT);
+    pinMode(gpio_pin_PUMP_AIR, OUTPUT);
 	pinMode(gpio_pin_FOOD, OUTPUT);
+    pinMode(gpio_pin_REZERV, OUTPUT);
 	
-//	std::cout <<"gpio init...\n"<<std::endl;
-//	system("gpio readall");
-
-//    thread (changePosWriteInLog).detach();
     this_thread::sleep_for(chrono::milliseconds(3000));
     thread (receiveTemp, ref(temperature)).detach();
     thread (receiveSettings,
@@ -334,54 +333,6 @@ int main ()
 
         this_thread::sleep_for(chrono::milliseconds(5000));
 
-
-
-
-
-
-//		digitalWrite(gpio_pin_UF, LOW);
-//		printf("PIN_22 ON\n");
-//		delay(1000);
-//		digitalWrite(gpio_pin_COLD, LOW);
-//		printf("PIN_23 ON\n");
-//		delay(1000);
-//		digitalWrite(gpio_pin_LAMP, LOW);
-//		printf("PIN_29 ON\n");
-//		delay(1000);
-//		digitalWrite(gpio_pin_HEAT, LOW);
-//		printf("PIN_30 ON\n");
-//		delay(1000);
-//		digitalWrite(gpio_pin_PUMP, LOW);
-//		printf("PIN_31 ON\n");
-//		delay(1000);
-//		digitalWrite(gpio_pin_LAMP, LOW);
-//		printf("PIN_32 ON\n");
-//		delay(1000);
-//		digitalWrite(gpio_pin_FOOD, LOW);
-//		printf("PIN_35 ON\n");
-//		delay(1000);
-
-//		digitalWrite(gpio_pin_UF, HIGH);
-//		printf("PIN_22 OFF\n");
-//		delay(1000);
-//		digitalWrite(gpio_pin_COLD, HIGH);
-//		printf("PIN_23 OFF\n");
-//		delay(1000);
-//		digitalWrite(gpio_pin_LAMP, HIGH);
-//		printf("PIN_29 OFF\n");
-//		delay(1000);
-//		digitalWrite(gpio_pin_HEAT, HIGH);
-//		printf("PIN_30 OFF\n");
-//		delay(1000);
-//		digitalWrite(gpio_pin_PUMP, HIGH);
-//		printf("PIN_31 OFF\n");
-//		delay(1000);
-//		digitalWrite(gpio_pin_LAMP, HIGH);
-//		printf("PIN_32 OFF\n");
-//		delay(1000);
-//		digitalWrite(gpio_pin_FOOD, HIGH);
-//		printf("PIN_35 OFF\n");
-//		delay(1000);
 	}
     
     
