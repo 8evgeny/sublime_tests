@@ -210,17 +210,34 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
     }
 }
 
+void feed()
+{
+    digitalWrite(gpio_pin_PUMP_AIR, HIGH);
+    this_thread::sleep_for(chrono::milliseconds(1000));
+    digitalWrite(gpio_pin_FOOD, LOW);
+    this_thread::sleep_for(chrono::milliseconds(long_food));
+    digitalWrite(gpio_pin_FOOD, HIGH);
+    cout << "######## FOOD ON ########"  <<"\t\t";
+    out << "######## FOOD ON ########"  <<"\t\t";
+    printTime();
+    this_thread::sleep_for(chrono::milliseconds(180000));
+    digitalWrite(gpio_pin_PUMP_AIR, LOW);
+}
+
+
 void
 handlerFood()
 {
     bool first_food = false;
+    bool second_food = false;
+    bool third_food = false;
     digitalWrite(gpio_pin_FOOD, HIGH);
     digitalWrite(gpio_pin_PUMP_AIR, LOW);
     this_thread::sleep_for(chrono::milliseconds(5000));
     Mut.lock();
     out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
-    cout << "######## PUMP and AIR ON ########"  <<"\t\t";
-    out << "######## PUMP and AIR ON ########"  <<"\t\t";
+    cout << "######## PUMP and AIR ON ########"  <<"\t";
+    out << "######## PUMP and AIR ON ########"  <<"\t";
     printTime();
     out.close();
     Mut.unlock();
@@ -231,20 +248,44 @@ handlerFood()
         out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
         auto timeNow = QTime::currentTime();
 
+        if ((timeNow > food2) && !first_food)
+        {
+            first_food = true;
+        }
+        if ((timeNow > food3) && !second_food)
+        {
+            first_food = true;
+            second_food = true;
+        }
+        if ((timeNow > time_light_off) && !third_food)
+        {
+            first_food = true;
+            second_food = true;
+            third_food =true;
+        }
+
         if ((timeNow > food1) && !first_food)
         {
             first_food = true;
-            digitalWrite(gpio_pin_PUMP_AIR, HIGH);
-            this_thread::sleep_for(chrono::milliseconds(1000));
-            digitalWrite(gpio_pin_FOOD, LOW);
-            this_thread::sleep_for(chrono::milliseconds(long_food));
-            digitalWrite(gpio_pin_FOOD, HIGH);
-            cout << "######## FOOD ON ########"  <<"\t\t";
-            out << "######## FOOD ON ########"  <<"\t\t";
-            printTime();
-//            string stateFood = "PUMP OFF";
-            this_thread::sleep_for(chrono::milliseconds(60000));
-            digitalWrite(gpio_pin_PUMP_AIR, LOW);
+            feed();
+        }
+
+        if ((timeNow > food2) && !second_food)
+        {
+            second_food = true;
+            feed();
+        }
+        if ((timeNow > food3) && !third_food)
+        {
+            third_food = true;
+            feed();
+        }
+
+        if (timeNow < QTime::fromString("00:01:00"))
+        {
+            first_food = false;
+            second_food = false;
+            third_food = false;
         }
 
         out.close();
