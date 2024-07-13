@@ -1,7 +1,7 @@
 [Temperature]
 heater = true;
 min_temp = 24.8;
-max_temp = 25.8;
+max_temp = 26.8;
 
 [Light]
 light = true;
@@ -18,21 +18,3 @@ long_Food = 4300;
 UF = true;
 time_UF_on = 05:00:00;
 time_UF_off = 07:00:00;
-
-[Air]
-Air = true;
-time_Air_off_1 = 07:59:00;
-time_Air_on_1 = 08:05:00;
-time_Air_off_2 = 13:59:00;
-time_Air_on_2 = 14:05:00;
-time_Air_off_2 = 19:59:00;
-time_Air_on_2 = 20:05:00;
-
-[Pump]
-Pump = true;
-time_Pump_off_1 = 07:59:00;
-time_Pump_on_1 = 08:05:00;
-time_Pump_off_2 = 13:59:00;
-time_Pump_on_2 = 14:05:00;
-time_Pump_off_2 = 19:59:00;
-time_Pump_on_2 = 20:05:00;
