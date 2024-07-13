@@ -27,7 +27,8 @@ float min_temp, max_temp;
 bool heater = false;
 float temperature;
 QTime time_light_on, time_light_off;
-QTime food1, food2, food3, long_food;
+QTime food1, food2, food3;
+int long_food = 0;
 bool light = true;
 mutex Mut;
 ofstream out;          // поток для записи
@@ -113,7 +114,7 @@ receiveSettings(float & min_temp, float & max_temp, bool & heater, QTime & time_
         food1 = QTime::fromString(foodTimes.at(0));
         food2 = QTime::fromString(foodTimes.at(1));
         food3 = QTime::fromString(foodTimes.at(2));
-        long_food = QTime::fromString(settings.value( "long_Food").toString());
+        long_food = settings.value( "long_Food").toInt();
         settings.endGroup();
 
         Mut.unlock();
@@ -212,27 +213,40 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
 void
 handlerFood()
 {
-    string stateFood = "none";
+    bool first_food = false;
+    digitalWrite(gpio_pin_FOOD, HIGH);
+    digitalWrite(gpio_pin_PUMP_AIR, LOW);
+    this_thread::sleep_for(chrono::milliseconds(5000));
+    Mut.lock();
+    out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
+    cout << "######## PUMP and AIR ON ########"  <<"\t\t";
+    out << "######## PUMP and AIR ON ########"  <<"\t\t";
+    printTime();
+    out.close();
+    Mut.unlock();
+
     while(1)
     {
         Mut.lock();
         out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
-//        if (temperature > max_temp && stateFood != "OFF")
-//        {
-//            digitalWrite(gpio_pin_HEAT, HIGH);
-//            std::cout << "######## heater set OFF #######"  <<"\t\t";
-//            out << "######## heater set OFF #######"  <<"\t\t";
-//            printTime();
-//            stateFood = "OFF";
-//        }
-//        if (1)
-//        {
-//            digitalWrite(gpio_pin_HEAT, LOW);
-//            std::cout << "######## heater set ON ########"  <<"\t\t";
-//            out << "######## heater set ON ########"  <<"\t\t";
-//            printTime();
-//            stateFood = "ON";
-//        }
+        auto timeNow = QTime::currentTime();
+
+        if ((timeNow > food1) && !first_food)
+        {
+            first_food = true;
+            digitalWrite(gpio_pin_PUMP_AIR, HIGH);
+            this_thread::sleep_for(chrono::milliseconds(1000));
+            digitalWrite(gpio_pin_FOOD, LOW);
+            this_thread::sleep_for(chrono::milliseconds(long_food));
+            digitalWrite(gpio_pin_FOOD, HIGH);
+            cout << "######## FOOD ON ########"  <<"\t\t";
+            out << "######## FOOD ON ########"  <<"\t\t";
+            printTime();
+//            string stateFood = "PUMP OFF";
+            this_thread::sleep_for(chrono::milliseconds(60000));
+            digitalWrite(gpio_pin_PUMP_AIR, LOW);
+        }
+
         out.close();
         Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(1080));
@@ -269,6 +283,8 @@ int main ()
     thread (handlerHeater, ref(heater), ref(min_temp), ref(max_temp)).detach();
 
     this_thread::sleep_for(chrono::milliseconds(3000));
+
+    thread (handlerFood).detach();
 
     float temperatureNew, min_tempNew, max_tempNew;
     bool heaterNew = false;
