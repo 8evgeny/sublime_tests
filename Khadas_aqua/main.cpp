@@ -333,7 +333,7 @@ int main ()
 
     this_thread::sleep_for(chrono::milliseconds(3000));
 
-    thread (handlerFood).detach();
+//    thread (handlerFood).detach();
 
     float temperatureNew, min_tempNew, max_tempNew;
     bool heaterNew = false;
