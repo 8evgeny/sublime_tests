@@ -9,11 +9,11 @@ time_light_on = 06:00:00;
 time_light_off = 20:00:00;
 
 [Food]
-Food - true;
+Food = true;
 time_Food = 06:30:00, 18:30:00;
 long_Food = 4300;
 
 [UF]
 UF = true;
-time_UF_on = 07:00:00;
-time_UF_off = 12:00:00;
+time_UF_on = 15:40:00;
+time_UF_off = 20:40:00;

@@ -26,10 +26,11 @@ const int gpio_pin_REZERV   = 15;   //PIN35
 float min_temp, max_temp;
 bool heater = false;
 float temperature;
-QTime time_light_on, time_light_off;
+QTime time_light_on, time_light_off, time_UF_on, time_UF_off;
 vector<QTime> food;
 int long_food = 0;
 bool light = true;
+bool UF = false;
 mutex Mut;
 ofstream out;          // поток для записи
 constexpr long numLinesInLog = 250;
@@ -72,7 +73,9 @@ receiveTemp(float & temperature)
 }
 
 void
-receiveSettings(float & min_temp, float & max_temp, bool & heater, QTime & time_light_on, QTime & time_light_off, bool & light)
+receiveSettings(float & min_temp, float & max_temp, bool & heater,
+                 QTime & time_light_on, QTime & time_light_off, bool & light,
+                QTime & time_UF_on, QTime & time_UF_off, bool & UF)
 {
     QStringList foodTimes;
     while(1)
@@ -89,6 +92,12 @@ receiveSettings(float & min_temp, float & max_temp, bool & heater, QTime & time_
         time_light_on = QTime::fromString(settings.value( "time_light_on").toString());
         time_light_off = QTime::fromString(settings.value( "time_light_off").toString());
         light = settings.value( "light").toBool();
+        settings.endGroup();
+
+        settings.beginGroup("UF");
+        time_UF_on = QTime::fromString(settings.value( "time_UF_on").toString());
+        time_UF_off = QTime::fromString(settings.value( "time_UF_off").toString());
+        UF = settings.value( "UF").toBool();
         settings.endGroup();
 
         settings.beginGroup("Food");
@@ -143,6 +152,52 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
                 out << "######## light set OFF ########"  <<"\t\t";
                 printTime();
                 stateLight = "OFF";
+            }
+        }
+        out.close();
+        Mut.unlock();
+        this_thread::sleep_for(chrono::milliseconds(1000));
+    }
+}
+
+void
+handlerUF(bool & UF, QTime & time_UF_on, QTime & time_UF_off)
+{
+    this_thread::sleep_for(chrono::milliseconds(5000));
+    string stateUF = "none";
+    while(1)
+    {
+        Mut.lock();
+        out.open("/home/khadas/aqua/logFile", std::ios::app);
+        if (!UF)
+        {
+            digitalWrite(gpio_pin_UF, HIGH);
+            if (stateUF != "OFF")
+            {
+                std::cout << "######## UF set OFF #######" <<"\t\t";
+                out << "######## UF set OFF #######" <<"\t\t";
+                printTime();
+                stateUF = "OFF";
+            }
+        }
+        if (UF)
+        {
+            auto timeNow = QTime::currentTime();
+            if ((timeNow > time_UF_on) && (timeNow < time_UF_off) && (stateUF != "ON"))
+            {
+                digitalWrite(gpio_pin_UF, LOW);
+                std::cout << "######## UF set ON ########"  <<"\t\t";
+                out << "######## UF set ON ########"  <<"\t\t";
+                printTime();
+                stateUF = "ON";
+            }
+            if (!((timeNow > time_UF_on) && (timeNow < time_UF_off)) && (stateUF != "OFF"))
+            {
+                digitalWrite(gpio_pin_UF, HIGH);
+                std::cout << "######## UF set OFF ########"  <<"\t\t";
+                out << "######## UF set OFF ########"  <<"\t\t";
+                printTime();
+                stateUF = "OFF";
             }
         }
         out.close();
@@ -267,9 +322,13 @@ int main ()
             ref(heater),
             ref(time_light_on),
             ref(time_light_off),
-            ref(light)
+            ref(light),
+            ref(time_UF_on),
+            ref(time_UF_off),
+            ref(UF)
             ).detach();
     thread (handlerLight, ref(light), ref(time_light_on), ref(time_light_off)).detach();
+    thread (handlerUF, ref(UF), ref(time_UF_on), ref(time_UF_off)).detach();
     thread (handlerHeater, ref(heater), ref(min_temp), ref(max_temp)).detach();
 
     this_thread::sleep_for(chrono::milliseconds(3000));
@@ -280,6 +339,8 @@ int main ()
     bool heaterNew = false;
     QTime time_light_on_New, time_light_off_New;
     bool lightNew = false;
+    QTime time_UF_on_New, time_UF_off_New;
+    bool UFNew = false;
 
 	while(1)
 	{
@@ -313,6 +374,7 @@ int main ()
             printTime();
             heaterNew = heater;
         }
+
         if (time_light_on_New != time_light_on)
         {
             std::cout << "settig_light_on = " << time_light_on.toString("hh:mm").toStdString()<<"\t\t\t";
@@ -334,6 +396,29 @@ int main ()
             printTime();
             lightNew = light;
         }
+
+        if (time_UF_on_New != time_UF_on)
+        {
+            std::cout << "settig_UF_on = " << time_UF_on.toString("hh:mm").toStdString()<<"\t\t\t";
+            out << "settig_UF_on = " << time_UF_on.toString("hh:mm").toStdString()<<"\t\t\t";
+            printTime();
+            time_UF_on_New = time_UF_on;
+        }
+        if (time_UF_off_New != time_UF_off)
+        {
+            std::cout << "settig_UF_off = " << time_UF_off.toString("hh:mm").toStdString()<<"\t\t";
+            out << "settig_UF_off = " << time_UF_off.toString("hh:mm").toStdString()<<"\t\t\t";
+            printTime();
+            time_UF_off_New = time_UF_off;
+        }
+        if (UFNew != UF)
+        {
+            std::cout << "settig_UF = " << boolalpha <<UF<<"\t\t\t\t";
+            out << "settig_UF = " << boolalpha <<UF<<"\t\t\t";
+            printTime();
+            UFNew = UF;
+        }
+
         out.close();
         Mut.unlock();
 
