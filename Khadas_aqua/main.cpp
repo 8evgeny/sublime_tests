@@ -213,14 +213,14 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
 void feed()
 {
     digitalWrite(gpio_pin_PUMP_AIR, HIGH);
-    this_thread::sleep_for(chrono::milliseconds(1000));
+    this_thread::sleep_for(chrono::milliseconds(20000));
     digitalWrite(gpio_pin_FOOD, LOW);
     this_thread::sleep_for(chrono::milliseconds(long_food));
     digitalWrite(gpio_pin_FOOD, HIGH);
     cout << "######## FOOD ON ########"  <<"\t\t";
     out << "######## FOOD ON ########"  <<"\t\t";
     printTime();
-    this_thread::sleep_for(chrono::milliseconds(180000));
+    this_thread::sleep_for(chrono::milliseconds(300000));
     digitalWrite(gpio_pin_PUMP_AIR, LOW);
 }
 
@@ -228,9 +228,6 @@ void feed()
 void
 handlerFood()
 {
-    bool first_food = false;
-    bool second_food = false;
-    bool third_food = false;
     digitalWrite(gpio_pin_FOOD, HIGH);
     digitalWrite(gpio_pin_PUMP_AIR, LOW);
     this_thread::sleep_for(chrono::milliseconds(5000));
@@ -244,53 +241,29 @@ handlerFood()
 
     while(1)
     {
+
         Mut.lock();
         out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
+        QTime food1_end = food1;
+        QTime food2_end = food2;
+        QTime food3_end = food3;
+        food1_end = food1_end.addSecs(60);
+        food2_end = food2_end.addSecs(60);
+        food3_end = food3_end.addSecs(60);
+
         auto timeNow = QTime::currentTime();
 
-        if ((timeNow > food2) && !first_food)
-        {
-            first_food = true;
-        }
-        if ((timeNow > food3) && !second_food)
-        {
-            first_food = true;
-            second_food = true;
-        }
-        if ((timeNow > time_light_off) && !third_food)
-        {
-            first_food = true;
-            second_food = true;
-            third_food =true;
-        }
 
-        if ((timeNow > food1) && !first_food)
+        if ((timeNow > food1) && (timeNow < food1_end) ||
+            (timeNow > food2) && (timeNow < food2_end) ||
+            (timeNow > food3) && (timeNow < food3_end))
         {
-            first_food = true;
             feed();
-        }
-
-        if ((timeNow > food2) && !second_food)
-        {
-            second_food = true;
-            feed();
-        }
-        if ((timeNow > food3) && !third_food)
-        {
-            third_food = true;
-            feed();
-        }
-
-        if (timeNow < QTime::fromString("00:01:00"))
-        {
-            first_food = false;
-            second_food = false;
-            third_food = false;
         }
 
         out.close();
         Mut.unlock();
-        this_thread::sleep_for(chrono::milliseconds(1080));
+        this_thread::sleep_for(chrono::milliseconds(1000));
     }
 }
 
