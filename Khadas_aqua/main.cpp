@@ -280,20 +280,20 @@ handlerFood()
     while(1)
     {
 
-        Mut.lock();
-        out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
+//        Mut.lock();
+//        out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
 
-        auto timeNow = QTime::currentTime();
-        for (auto &i: food)
-        {
-            QTime food_end = i;
-            food_end = food_end.addSecs(60);
-            if ((timeNow > i) && (timeNow < food_end))
-                feed();
-        }
+//        auto timeNow = QTime::currentTime();
+//        for (auto &i: food)
+//        {
+//            QTime food_end = i;
+//            food_end = food_end.addSecs(60);
+//            if ((timeNow > i) && (timeNow < food_end))
+//                feed();
+//        }
 
-        out.close();
-        Mut.unlock();
+//        out.close();
+//        Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(1000));
     }
 }
@@ -333,7 +333,7 @@ int main ()
 
     this_thread::sleep_for(chrono::milliseconds(3000));
 
-//    thread (handlerFood).detach();
+    thread (handlerFood).detach();
 
     float temperatureNew, min_tempNew, max_tempNew;
     bool heaterNew = false;
