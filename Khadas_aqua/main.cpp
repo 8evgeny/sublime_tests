@@ -27,7 +27,7 @@ float min_temp, max_temp;
 bool heater = false;
 float temperature;
 QTime time_light_on, time_light_off, time_UF_on, time_UF_off;
-vector<QTime> food;
+vector<QTime> food(0);
 int long_food = 0;
 bool light = true;
 bool UF = false;
@@ -102,6 +102,8 @@ receiveSettings(float & min_temp, float & max_temp, bool & heater,
 
         settings.beginGroup("Food");
         foodTimes = settings.value( "time_Food").toStringList();
+//        qDebug() << "foodTimes.size()"<<foodTimes.size();
+        food.clear();
         for (int i = 0; i<foodTimes.size(); ++i)
         {
             food.push_back(QTime::fromString(foodTimes.at(i)));
@@ -283,18 +285,22 @@ handlerFood()
 //        Mut.lock();
 //        out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
 
-//        auto timeNow = QTime::currentTime();
-//        for (auto &i: food)
-//        {
-//            QTime food_end = i;
-//            food_end = food_end.addSecs(60);
+        auto timeNow = QTime::currentTime();
+        for (int i = 0; i< food.size();++i)
+        {
+            qDebug()<<i;
+            QTime food_end = food[i];
+            food_end = food_end.addSecs(60);
+//            qDebug()<<"food_start"<<food[i];
+//            qDebug()<<"food_end"<<food_end;
+//            qDebug()<<"time_now"<<timeNow;
 //            if ((timeNow > i) && (timeNow < food_end))
 //                feed();
-//        }
+        }
 
 //        out.close();
 //        Mut.unlock();
-        this_thread::sleep_for(chrono::milliseconds(1000));
+        this_thread::sleep_for(chrono::milliseconds(5000));
     }
 }
 
