@@ -260,7 +260,7 @@ void feed()
     cout << "######## FOOD ON ########"  <<"\t\t";
     out << "######## FOOD ON ########"  <<"\t\t";
     printTime();
-    this_thread::sleep_for(chrono::milliseconds(300000));
+    this_thread::sleep_for(chrono::milliseconds(60000));
     digitalWrite(gpio_pin_PUMP_AIR, LOW);
 }
 
@@ -282,8 +282,8 @@ handlerFood()
     while(1)
     {
 
-//        Mut.lock();
-//        out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
+        Mut.lock();
+        out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
 
         auto timeNow = QTime::currentTime();
         for (int i = 0; i< food.size();++i)
@@ -291,15 +291,15 @@ handlerFood()
             qDebug()<<i;
             QTime food_end = food[i];
             food_end = food_end.addSecs(60);
-//            qDebug()<<"food_start"<<food[i];
-//            qDebug()<<"food_end"<<food_end;
-//            qDebug()<<"time_now"<<timeNow;
-//            if ((timeNow > i) && (timeNow < food_end))
-//                feed();
+            qDebug()<<"food_start"<<food[i];
+            qDebug()<<"food_end"<<food_end;
+            qDebug()<<"time_now"<<timeNow;
+            if ((timeNow > food[i]) && (timeNow < food_end))
+                feed();
         }
 
-//        out.close();
-//        Mut.unlock();
+        out.close();
+        Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(5000));
     }
 }
