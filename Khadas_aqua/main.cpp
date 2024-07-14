@@ -27,7 +27,7 @@ float min_temp, max_temp;
 bool heater = false;
 float temperature;
 QTime time_light_on, time_light_off;
-QTime food1, food2, food3;
+vector<QTime> food;
 int long_food = 0;
 bool light = true;
 mutex Mut;
@@ -39,24 +39,6 @@ constexpr long numLinesInLog = 250;
 								//PIN1    +5
 								//PIN2    +5
 
-
-void changePosWriteInLog()
-{
-//    while(1)
-//    {
-//        Mut.lock();
-//        out.open("/home/khadas/aqua/logFile", std::ios::app);
-////        out<<" ";
-//        if( auto pos = out.tellp() > 250)
-//        {
-//            out.seekp(pos - numLinesInLog);
-//            out<<"********************************************"<<endl;
-//        }
-//        out.close();
-//        Mut.unlock();
-//        this_thread::sleep_for(chrono::milliseconds(60000));
-//    }
-}
 
 void printTime()
 {
@@ -111,9 +93,10 @@ receiveSettings(float & min_temp, float & max_temp, bool & heater, QTime & time_
 
         settings.beginGroup("Food");
         foodTimes = settings.value( "time_Food").toStringList();
-        food1 = QTime::fromString(foodTimes.at(0));
-        food2 = QTime::fromString(foodTimes.at(1));
-        food3 = QTime::fromString(foodTimes.at(2));
+        for (int i = 0; i<foodTimes.size(); ++i)
+        {
+            food.push_back(QTime::fromString(foodTimes.at(i)));
+        }
         long_food = settings.value( "long_Food").toInt();
         settings.endGroup();
 
@@ -244,21 +227,14 @@ handlerFood()
 
         Mut.lock();
         out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
-        QTime food1_end = food1;
-        QTime food2_end = food2;
-        QTime food3_end = food3;
-        food1_end = food1_end.addSecs(60);
-        food2_end = food2_end.addSecs(60);
-        food3_end = food3_end.addSecs(60);
 
         auto timeNow = QTime::currentTime();
-
-
-        if ((timeNow > food1) && (timeNow < food1_end) ||
-            (timeNow > food2) && (timeNow < food2_end) ||
-            (timeNow > food3) && (timeNow < food3_end))
+        for (auto &i: food)
         {
-            feed();
+            QTime food_end = i;
+            food_end = food_end.addSecs(60);
+            if ((timeNow > i) && (timeNow < food_end))
+                feed();
         }
 
         out.close();
