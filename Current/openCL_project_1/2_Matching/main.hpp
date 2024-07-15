@@ -7,7 +7,7 @@
 #include "opencv2/imgproc.hpp"
 
 #define WORKGROUPSIZE 16
-#define NUM_ITERATIONS_GPU  100
+//#define NUM_ITERATIONS_GPU  100
 
 struct result
 {

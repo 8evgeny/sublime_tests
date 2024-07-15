@@ -53,8 +53,8 @@ int matchesGPU()
     uint aux = 1000000;
 
     time_start_GPU = chrono::high_resolution_clock::now();
-    for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
-    {
+//    for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
+//    {
         clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * imageIn.cols * imageIn.rows);
         clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * tmpl.rows * tmpl.cols);
         clInputVar=cl::Buffer(context,CL_MEM_WRITE_ONLY,sizeof(result));
@@ -62,7 +62,6 @@ int matchesGPU()
 
         // Kernels
         int iclError = 0;
-
         clkProcess=cl::Kernel(program,"matching", &iclError );
 
         if (iclError != 0 )
@@ -71,40 +70,39 @@ int matchesGPU()
             return -1;
         }
         // Send Data
-        iclError = queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * imageIn.cols * imageIn.rows, &imageData[0]);
-        iclError = queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * tmpl.rows * tmpl.cols, &templateData[0]);
-        iclError = queue.enqueueWriteBuffer(clInputVar, CL_TRUE, 0,  sizeof(result), &res);
-        iclError = queue.enqueueWriteBuffer(clInputAux, CL_TRUE, 0,  sizeof(int), &aux);
+        queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * imageIn.cols * imageIn.rows, &imageData[0]);
+        queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * tmpl.rows * tmpl.cols, &templateData[0]);
+        queue.enqueueWriteBuffer(clInputVar, CL_TRUE, 0,  sizeof(result), &res);
+        queue.enqueueWriteBuffer(clInputAux, CL_TRUE, 0,  sizeof(int), &aux);
 
 
         //--- Init Kernel arguments ---------------------------------------------------
-        iclError |= clkProcess.setArg(0,clInputImg);
-        iclError |= clkProcess.setArg(1,clInputTemp);
-        iclError |= clkProcess.setArg(2,clInputVar);
+        clkProcess.setArg(0,clInputImg);
+        clkProcess.setArg(1,clInputTemp);
+        clkProcess.setArg(2,clInputVar);
 
-        iclError |= clkProcess.setArg(3,(int)imageIn.cols);
-        iclError |= clkProcess.setArg(4,(int)imageIn.rows);
-        iclError |= clkProcess.setArg(5,(int)tmpl.cols);
-        iclError |= clkProcess.setArg(6,(int)tmpl.rows);
-        iclError |= clkProcess.setArg(7,clInputAux);
+        clkProcess.setArg(3,(int)imageIn.cols);
+        clkProcess.setArg(4,(int)imageIn.rows);
+        clkProcess.setArg(5,(int)tmpl.cols);
+        clkProcess.setArg(6,(int)tmpl.rows);
+        clkProcess.setArg(7,clInputAux);
 
         // Image 2D
         cl::NDRange gRM=cl::NDRange((imageIn.cols - tmpl.cols), (imageIn.rows - tmpl.rows));
 
-        iclError |= queue.enqueueNDRangeKernel(
+        queue.enqueueNDRangeKernel(
                     clkProcess,
                     cl::NullRange,
                     gRM,
                     cl::NullRange
                     );
 
-
-        iclError |= queue.finish();
+        queue.finish();
 
         queue.enqueueReadBuffer(clInputAux, CL_TRUE,0, sizeof(int),&aux);
         queue.enqueueReadBuffer(clInputVar, CL_TRUE,0, sizeof(result),&res);
 
-    }
+//    }//End -- for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
     time_end_GPU = chrono::high_resolution_clock::now();
 
     delete[] imageData;
@@ -144,7 +142,7 @@ int matchesGPU()
     printf("\nTime matching OpenCV  \t\t\t%.2f ms (%s)\n", (float)time_matching_OpenCV.count()/1000, mm.c_str());
 
     auto time_matching_GPU = std::chrono::duration_cast<chrono::microseconds>(time_end_GPU - time_start_GPU);
-    printf("Time matching GPU  \t\t\t%.2f ms \n", (float)time_matching_GPU.count()/(1000*NUM_ITERATIONS_GPU));
+    printf("Time matching GPU  \t\t\t%.2f ms \n", (float)time_matching_GPU.count()/(1000 /** NUM_ITERATIONS_GPU*/));
 
     cv::cvtColor(imageIn,imageIn,cv::COLOR_GRAY2BGR);
     cv::rectangle(imageIn, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+tmpl.cols, res.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
