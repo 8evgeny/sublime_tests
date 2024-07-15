@@ -45,14 +45,14 @@ __kernel void matching(__global uchar* imageData,
             }
         }
         // save the best found position
-//        if (SAD == 0)
-//        {
-//            (*res).SAD = SAD;
-//            (*res).xpos = x;
-//            (*res).ypos = y;
-//        }
+        if (SAD < 100)
+        {
+            (*res).SAD = SAD;
+            (*res).xpos = x;
+            (*res).ypos = y;
+        }
 
-        atomic_min(aux, SAD);
+//        atomic_min(aux, SAD);
         barrier(CLK_GLOBAL_MEM_FENCE);
 
         if ( (*aux) == SAD )

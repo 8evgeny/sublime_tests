@@ -16,7 +16,7 @@ std::string kernel_source;
 chrono::high_resolution_clock::time_point time_start_GPU, time_end_GPU;
 extern chrono::high_resolution_clock::time_point time_start_OpenCV, time_end_OpenCV;
 cl::Kernel clkProcess;
-cl::Buffer InputImg, InputTemp, Result, Aux;
+cl::Buffer InputImg, InputTemp, Result, Aux, min_SAD_in_group;
 cl::CommandQueue queue;
 cl::Context context;
 cl::Program program;
@@ -26,7 +26,7 @@ std::vector<cl::Device> all_devices;
 cl::Platform default_platform;
 std::vector<cl::Platform> all_platforms;
 int aux=0;
-size_t max_workgroup_size, global_size;
+cl_uint global_size, local_size;
 
 
 int matchesGPU()
@@ -41,12 +41,14 @@ int matchesGPU()
 
     initDevice();
 
+    global_size = (imageIn.rows - tmpl.rows)*(imageIn.cols - tmpl.cols);
+    local_size = WORKGROUPSIZE_MAX;
 
     loadAndBuildProgram("kernel");
 
     uchar* imageData = new uchar[imageIn.cols * imageIn.rows];
     uchar* templateData = new uchar[tmpl.rows*tmpl.cols];
-
+    uchar* min_SAD_in_groupData = new uchar[global_size / local_size];
     loadDataMatToUchar(imageData, imageIn, 1);
     loadDataMatToUchar(templateData, tmpl, 1);
 
@@ -63,6 +65,7 @@ int matchesGPU()
         InputTemp=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * tmpl.rows * tmpl.cols);
         Result=cl::Buffer(context,CL_MEM_WRITE_ONLY,sizeof(result));
         Aux=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(int));
+        min_SAD_in_group=cl::Buffer(context,CL_MEM_WRITE_ONLY,sizeof(uchar) * (global_size / local_size));
 
         // Kernels
         int iclError = 0;
@@ -78,7 +81,7 @@ int matchesGPU()
         queue.enqueueWriteBuffer(InputTemp, CL_TRUE, 0,  sizeof(unsigned char) * tmpl.rows * tmpl.cols, &templateData[0]);
         queue.enqueueWriteBuffer(Result, CL_TRUE, 0,  sizeof(result), &res);
         queue.enqueueWriteBuffer(Aux, CL_TRUE, 0,  sizeof(int), &aux);
-
+        queue.enqueueWriteBuffer(min_SAD_in_group, CL_TRUE, 0,  sizeof(uchar)* (global_size / local_size), &min_SAD_in_groupData[0]);
 
         //--- Init Kernel arguments ---------------------------------------------------
         clkProcess.setArg(0,InputImg);
@@ -90,6 +93,7 @@ int matchesGPU()
         clkProcess.setArg(5,(int)tmpl.cols);
         clkProcess.setArg(6,(int)tmpl.rows);
         clkProcess.setArg(7,Aux);
+        clkProcess.setArg(8,min_SAD_in_group);
 
         // Image 2D
         cl::NDRange gRM=cl::NDRange((imageIn.cols - tmpl.cols), (imageIn.rows - tmpl.rows));
@@ -111,6 +115,7 @@ int matchesGPU()
 
     delete[] imageData;
     delete[] templateData;
+    delete[] min_SAD_in_groupData;
 
     string mm;
     switch (match_method)

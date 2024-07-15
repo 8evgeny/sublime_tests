@@ -6,7 +6,7 @@
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
 
-#define WORKGROUPSIZE 1024
+#define WORKGROUPSIZE_MAX 1024
 //#define NUM_ITERATIONS_GPU  100
 
 enum matchMetod
