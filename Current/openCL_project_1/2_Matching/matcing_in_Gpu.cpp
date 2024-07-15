@@ -56,7 +56,7 @@ int matchesGPU()
     res.ypos=0;
     uint aux = 1000000;
 
-    time_start_GPU = chrono::high_resolution_clock::now();
+
 //    for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
 //    {
         clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * imageIn.cols * imageIn.rows);
@@ -93,7 +93,7 @@ int matchesGPU()
 
         // Image 2D
         cl::NDRange gRM=cl::NDRange((imageIn.cols - tmpl.cols), (imageIn.rows - tmpl.rows));
-
+time_start_GPU = chrono::high_resolution_clock::now();
         queue.enqueueNDRangeKernel(
                     clkProcess,
                     cl::NullRange,
@@ -105,9 +105,9 @@ int matchesGPU()
 
         queue.enqueueReadBuffer(clInputAux, CL_TRUE,0, sizeof(int),&aux);
         queue.enqueueReadBuffer(clInputVar, CL_TRUE,0, sizeof(result),&res);
-
+time_end_GPU = chrono::high_resolution_clock::now();
 //    }//End -- for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
-    time_end_GPU = chrono::high_resolution_clock::now();
+
 
     delete[] imageData;
     delete[] templateData;
