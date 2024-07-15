@@ -5,8 +5,7 @@
 #include <fstream>
 #include <iostream>
 
-extern int const match_method;
-extern bool enable_Serial_stop_after_find_zero;
+extern int match_method;
 using namespace std;
 using namespace cv;
 
@@ -14,9 +13,10 @@ int initDevice();
 int loadAndBuildProgram(std::string programFile);
 
 std::string kernel_source;
-chrono::high_resolution_clock::time_point time_start_OpenCV, time_end_OpenCV, time_start_GPU, time_end_GPU;
+chrono::high_resolution_clock::time_point time_start_GPU, time_end_GPU;
+extern chrono::high_resolution_clock::time_point time_start_OpenCV, time_end_OpenCV;
 cl::Kernel clkProcess;
-cl::Buffer clInputImg, clInputTemp, clInputVar, clInputAux,  clResults;
+cl::Buffer InputImg, InputTemp, Result, Aux;
 cl::CommandQueue queue;
 cl::Context context;
 cl::Program program;
@@ -59,10 +59,10 @@ int matchesGPU()
     time_start_GPU = chrono::high_resolution_clock::now();
 //    for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
 //    {
-        clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * imageIn.cols * imageIn.rows);
-        clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * tmpl.rows * tmpl.cols);
-        clInputVar=cl::Buffer(context,CL_MEM_WRITE_ONLY,sizeof(result));
-        clInputAux=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(int));
+        InputImg=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * imageIn.cols * imageIn.rows);
+        InputTemp=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * tmpl.rows * tmpl.cols);
+        Result=cl::Buffer(context,CL_MEM_WRITE_ONLY,sizeof(result));
+        Aux=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(int));
 
         // Kernels
         int iclError = 0;
@@ -74,22 +74,22 @@ int matchesGPU()
             return -1;
         }
         // Send Data
-        queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * imageIn.cols * imageIn.rows, &imageData[0]);
-        queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * tmpl.rows * tmpl.cols, &templateData[0]);
-        queue.enqueueWriteBuffer(clInputVar, CL_TRUE, 0,  sizeof(result), &res);
-        queue.enqueueWriteBuffer(clInputAux, CL_TRUE, 0,  sizeof(int), &aux);
+        queue.enqueueWriteBuffer(InputImg, CL_TRUE, 0,  sizeof(unsigned char) * imageIn.cols * imageIn.rows, &imageData[0]);
+        queue.enqueueWriteBuffer(InputTemp, CL_TRUE, 0,  sizeof(unsigned char) * tmpl.rows * tmpl.cols, &templateData[0]);
+        queue.enqueueWriteBuffer(Result, CL_TRUE, 0,  sizeof(result), &res);
+        queue.enqueueWriteBuffer(Aux, CL_TRUE, 0,  sizeof(int), &aux);
 
 
         //--- Init Kernel arguments ---------------------------------------------------
-        clkProcess.setArg(0,clInputImg);
-        clkProcess.setArg(1,clInputTemp);
-        clkProcess.setArg(2,clInputVar);
+        clkProcess.setArg(0,InputImg);
+        clkProcess.setArg(1,InputTemp);
+        clkProcess.setArg(2,Result);
 
         clkProcess.setArg(3,(int)imageIn.cols);
         clkProcess.setArg(4,(int)imageIn.rows);
         clkProcess.setArg(5,(int)tmpl.cols);
         clkProcess.setArg(6,(int)tmpl.rows);
-        clkProcess.setArg(7,clInputAux);
+        clkProcess.setArg(7,Aux);
 
         // Image 2D
         cl::NDRange gRM=cl::NDRange((imageIn.cols - tmpl.cols), (imageIn.rows - tmpl.rows));
@@ -103,8 +103,8 @@ int matchesGPU()
 
         queue.finish();
 
-        queue.enqueueReadBuffer(clInputAux, CL_TRUE,0, sizeof(int),&aux);
-        queue.enqueueReadBuffer(clInputVar, CL_TRUE,0, sizeof(result),&res);
+        queue.enqueueReadBuffer(Aux, CL_TRUE,0, sizeof(int),&aux);
+        queue.enqueueReadBuffer(Result, CL_TRUE,0, sizeof(result),&res);
 
 //    }//End -- for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
     time_end_GPU = chrono::high_resolution_clock::now();

@@ -9,12 +9,11 @@
 using namespace std;
 using namespace cv;
 
-extern quint64 timeOpenCV;
-extern chrono::high_resolution_clock::time_point
-    time_start_OpenCV, time_end_OpenCV;
+chrono::high_resolution_clock::time_point time_start_OpenCV, time_end_OpenCV;
 Mat img; Mat templ; Mat result;
 
-extern int match_method;
+int match_method = matchMetod::TM_CCOEFF_NORMED;
+
 
 int max_Trackbar = 5;
 
