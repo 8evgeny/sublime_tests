@@ -260,7 +260,7 @@ void feed()
     cout << "######## FOOD ON ########"  <<"\t\t";
     out << "######## FOOD ON ########"  <<"\t\t";
     printTime();
-    this_thread::sleep_for(chrono::milliseconds(60000));
+    this_thread::sleep_for(chrono::milliseconds(300000));
     digitalWrite(gpio_pin_PUMP_AIR, LOW);
 }
 

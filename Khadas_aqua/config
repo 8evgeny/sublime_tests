@@ -10,7 +10,7 @@ time_light_off = 21:00:00;
 
 [Food]
 Food = true;
-time_Food = 07:30:00, 19:30:00;
+time_Food = 07:30:00, 14:00:00, 20:45:00;
 long_Food = 4300;
 
 [UF]
