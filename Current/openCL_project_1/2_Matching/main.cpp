@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 
     matchesOpenCV();
 
-    matches();
+    matchesGPU();
 
     return 0;
 }

@@ -180,90 +180,90 @@ int gpuProcess(TemplateMatch tmM, cv::Mat _template, int t_rows, int t_cols, uch
     return 0;
 }
 
-result TemplateMatch::matchesCPU(cv::Mat _template, int t_rows, int t_cols)
-{
+//result TemplateMatch::matchesCPU(cv::Mat _template, int t_rows, int t_cols)
+//{
 
-    uchar* imageData = new uchar[imageIn.cols * imageIn.rows];
-    uchar* templateData = new uchar[_template.cols * _template.rows];
+//    uchar* imageData = new uchar[imageIn.cols * imageIn.rows];
+//    uchar* templateData = new uchar[_template.cols * _template.rows];
 
-    int outW = WIDTH - t_cols + 1;
-    int outH = HEIGHT - t_rows + 1;
+//    int outW = WIDTH - t_cols + 1;
+//    int outH = HEIGHT - t_rows + 1;
 
-    cout <<"outW "<<outW<<" outH "<<outW<<endl;
-    uchar* outData = new uchar[outW * outH];
+//    cout <<"outW "<<outW<<" outH "<<outW<<endl;
+//    uchar* outData = new uchar[outW * outH];
 
-    result res;
-    res.SAD = 100000000;
-    WIDTH = imageIn.cols;
-    HEIGHT = imageIn.rows;
-
-
-    loadDataMatToUchar(imageData,imageIn,1);
-    loadDataMatToUchar(templateData,_template,1);
-
-    time_start_Serial = chrono::high_resolution_clock::now();
-
-// loop through the search image
-
-    for ( int y = 0; y <= HEIGHT - t_rows; y++ )
-    {
-        if (endSerial)
-            break;
-        for ( int x =0; x <= WIDTH - t_cols; x++ )
-        {
-           float SAD = 0.0;
-
-        // loop through the template image
-            for ( int y1 = 0; y1 < t_rows; y1++ )
-            {
-                for ( int x1 = 0; x1 < t_cols; x1++ )
-                {
-                    int p_SearchIMG = imageData[(y+y1) * WIDTH + (x+x1)];
-                    int p_TemplateIMG = templateData[y1 *  t_cols + x1];
-                    SAD += abs( p_SearchIMG - p_TemplateIMG );
-                }
-            }
-
-            outData[y * outW + x] = SAD;
-
-            // save the best found position
-            if ( SAD == 0 && enable_Serial_stop_after_find_zero)
-            {
-                endSerial = true;
-                res.SAD = SAD;
-                res.xpos = x;
-                res.ypos = y;
-                std::cout<< " x "<< x <<" y "<<y << " SAD "<< SAD << "\n";
-            }
-
-            if ( !endSerial && res.SAD > SAD )
-            {
-                res.SAD = SAD;
-                // give me min SAD
-                res.xpos = x;
-                res.ypos = y;
-                std::cout<< " x "<< x <<" y "<<y << " SAD "<< SAD << "\n";
-            }
-        }//END -- for ( int x =0; x <= WIDTH - t_cols; x++ )
-    }//END -- for ( int y = 0; y <= HEIGHT - t_rows; y++ )
-    time_end_Serial = chrono::high_resolution_clock::now();
-
-    cv::Mat outImg;
-    ucharToMat(outData, outImg);
-
-//    cv::imshow("Serial result", outImg);
-//    cv::waitKey(-1);
-//    outImg.release();
+//    result res;
+//    res.SAD = 100000000;
+//    WIDTH = imageIn.cols;
+//    HEIGHT = imageIn.rows;
 
 
+//    loadDataMatToUchar(imageData,imageIn,1);
+//    loadDataMatToUchar(templateData,_template,1);
 
-    delete[] imageData;
-    delete[] templateData;
-    delete[] outData;
-    return res;
-}
+//    time_start_Serial = chrono::high_resolution_clock::now();
 
-int matches()
+//// loop through the search image
+
+//    for ( int y = 0; y <= HEIGHT - t_rows; y++ )
+//    {
+//        if (endSerial)
+//            break;
+//        for ( int x =0; x <= WIDTH - t_cols; x++ )
+//        {
+//           float SAD = 0.0;
+
+//        // loop through the template image
+//            for ( int y1 = 0; y1 < t_rows; y1++ )
+//            {
+//                for ( int x1 = 0; x1 < t_cols; x1++ )
+//                {
+//                    int p_SearchIMG = imageData[(y+y1) * WIDTH + (x+x1)];
+//                    int p_TemplateIMG = templateData[y1 *  t_cols + x1];
+//                    SAD += abs( p_SearchIMG - p_TemplateIMG );
+//                }
+//            }
+
+//            outData[y * outW + x] = SAD;
+
+//            // save the best found position
+//            if ( SAD == 0 && enable_Serial_stop_after_find_zero)
+//            {
+//                endSerial = true;
+//                res.SAD = SAD;
+//                res.xpos = x;
+//                res.ypos = y;
+//                std::cout<< " x "<< x <<" y "<<y << " SAD "<< SAD << "\n";
+//            }
+
+//            if ( !endSerial && res.SAD > SAD )
+//            {
+//                res.SAD = SAD;
+//                // give me min SAD
+//                res.xpos = x;
+//                res.ypos = y;
+//                std::cout<< " x "<< x <<" y "<<y << " SAD "<< SAD << "\n";
+//            }
+//        }//END -- for ( int x =0; x <= WIDTH - t_cols; x++ )
+//    }//END -- for ( int y = 0; y <= HEIGHT - t_rows; y++ )
+//    time_end_Serial = chrono::high_resolution_clock::now();
+
+//    cv::Mat outImg;
+//    ucharToMat(outData, outImg);
+
+////    cv::imshow("Serial result", outImg);
+////    cv::waitKey(-1);
+////    outImg.release();
+
+
+
+//    delete[] imageData;
+//    delete[] templateData;
+//    delete[] outData;
+//    return res;
+//}
+
+int matchesGPU()
 {
     cv::Mat tmpl = cv::imread("template");
     if (tmpl.rows == 0)
@@ -286,9 +286,6 @@ int matches()
         cv::cvtColor(imageIn, imageIn, cv::COLOR_BGR2GRAY);
 
     TemplateMatch tmM(imageIn);
-
-    //Time matching CPU
-    tmM.matchesCPU(tmpl, tmpl.rows, tmpl.cols);
 
 //Time matching GPU
     if (initDevice() < 0 )
@@ -368,11 +365,6 @@ int matches()
     }
 
 
-    auto time_matching_CPU = std::chrono::duration_cast<chrono::microseconds>(time_end_Serial - time_start_Serial);
-    if (endSerial)
-        printf("\nTime matching CPU(Полное совпадение)  \t%.2f ms ", (float)time_matching_CPU.count()/1000);
-    if (!endSerial)
-        printf("\nTime matching CPU  \t\t\t%.2f ms ", (float)time_matching_CPU.count()/1000);
     auto time_matching_OpenCV = std::chrono::duration_cast<chrono::microseconds>(time_end_OpenCV - time_start_OpenCV);
     printf("\nTime matching OpenCV  \t\t\t%.2f ms (%s)\n", (float)time_matching_OpenCV.count()/1000, mm.c_str());
 

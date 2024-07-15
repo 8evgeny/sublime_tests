@@ -1,7 +1,7 @@
 file(GLOB src
     main.cpp
-    matchesOpenCv.cpp
-    matchesCpuGpu.cpp
+    matcing_in_OpenCv.cpp
+    matcing_in_Gpu.cpp
     )
 
 add_executable(2_matching ${src})
