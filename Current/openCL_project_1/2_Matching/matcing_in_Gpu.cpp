@@ -114,18 +114,18 @@ int matchesGPU()
     if (imageIn.channels() == 3)
         cv::cvtColor(imageIn, imageIn, cv::COLOR_BGR2GRAY);
 
-    TemplateMatch tmM(imageIn);
+
 
     initDevice();
 
     // kernel
     loadAndBuildProgram("kernel");
 
-    uchar* imageData = new uchar[tmM.WIDTH*tmM.HEIGHT];
+    uchar* imageData = new uchar[imageIn.cols * imageIn.rows];
     uchar* templateData = new uchar[tmpl.rows*tmpl.cols];
 
-    loadDataMatToUchar(imageData,tmM.imageIn,1);
-    loadDataMatToUchar(templateData, tmpl,1);
+    loadDataMatToUchar(imageData, imageIn, 1);
+    loadDataMatToUchar(templateData, tmpl, 1);
 
 
     // Data
@@ -133,14 +133,12 @@ int matchesGPU()
     res.SAD = 100000000;
     res.xpos=0;
     res.ypos=0;
-    int w = tmM.WIDTH;
-    int h = tmM.HEIGHT;
     uint aux = 1000000;
 
     time_start_GPU = chrono::high_resolution_clock::now();
     for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
     {
-        clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * w * h);
+        clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * imageIn.cols * imageIn.rows);
         clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * tmpl.rows * tmpl.cols);
         clInputVar=cl::Buffer(context,CL_MEM_WRITE_ONLY,sizeof(result));
         clInputAux=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(int));
@@ -156,7 +154,7 @@ int matchesGPU()
             return -1;
         }
         // Send Data
-        iclError = queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * w * h, &imageData[0]);
+        iclError = queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * imageIn.cols * imageIn.rows, &imageData[0]);
         iclError = queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * tmpl.rows * tmpl.cols, &templateData[0]);
         iclError = queue.enqueueWriteBuffer(clInputVar, CL_TRUE, 0,  sizeof(result), &res);
         iclError = queue.enqueueWriteBuffer(clInputAux, CL_TRUE, 0,  sizeof(int), &aux);
@@ -167,8 +165,8 @@ int matchesGPU()
         iclError |= clkProcess.setArg(1,clInputTemp);
         iclError |= clkProcess.setArg(2,clInputVar);
 
-        iclError |= clkProcess.setArg(3,(int)w);
-        iclError |= clkProcess.setArg(4,(int)h);
+        iclError |= clkProcess.setArg(3,(int)imageIn.cols);
+        iclError |= clkProcess.setArg(4,(int)imageIn.rows);
         iclError |= clkProcess.setArg(5,(int)tmpl.cols);
         iclError |= clkProcess.setArg(6,(int)tmpl.rows);
         iclError |= clkProcess.setArg(7,clInputAux);
@@ -179,7 +177,7 @@ int matchesGPU()
         //cl::NDRange lRW=cl::NDRange(localWGrp);
 
         // Image 2D
-        cl::NDRange gRM=cl::NDRange((w-tmpl.cols),(h-tmpl.rows));
+        cl::NDRange gRM=cl::NDRange((imageIn.cols - tmpl.cols),(imageIn.rows - tmpl.rows));
         //El work group dejo que lo asigne automaticamente
 
 
