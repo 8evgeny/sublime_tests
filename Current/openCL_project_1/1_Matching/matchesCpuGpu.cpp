@@ -320,9 +320,9 @@ int matches()
     loadDataMatToUchar(imageData,tmM.imageIn,1);
     loadDataMatToUchar(templateData, tmpl,1);
 
-    time_start_GPU = chrono::high_resolution_clock::now();
     result r_GPU;
 
+    time_start_GPU = chrono::high_resolution_clock::now();
     for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
     {
         int retGpu = gpuProcess(tmM, tmpl, tmpl.rows, tmpl.cols, imageData, templateData, r_GPU);
@@ -332,11 +332,11 @@ int matches()
             return -1;
         }
     }
+    time_end_GPU = chrono::high_resolution_clock::now();
 
     delete[] imageData;
     delete[] templateData;
 
-    time_end_GPU = chrono::high_resolution_clock::now();
 
     string mm;
     switch (match_method)
