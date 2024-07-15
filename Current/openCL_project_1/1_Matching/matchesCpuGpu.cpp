@@ -6,7 +6,7 @@
 #include "templateMatch.h"
 
 extern int const match_method;
-
+extern bool enable_Serial_stop_after_find_zero;
 using namespace std;
 using namespace cv;
 
@@ -227,7 +227,7 @@ result TemplateMatch::matchesCPU(cv::Mat _template, int t_rows, int t_cols)
             outData[y * outW + x] = SAD;
 
             // save the best found position
-            if ( SAD == 0)
+            if ( SAD == 0 && enable_Serial_stop_after_find_zero)
             {
                 endSerial = true;
                 res.SAD = SAD;
@@ -372,7 +372,7 @@ int matches()
     if (endSerial)
         printf("\nTime matching CPU(Полное совпадение)  \t%.2f ms ", (float)time_matching_CPU.count()/1000);
     if (!endSerial)
-        printf("\nTime matching CPU  \t\t%.2f ms ", (float)time_matching_CPU.count()/1000);
+        printf("\nTime matching CPU  \t\t\t%.2f ms ", (float)time_matching_CPU.count()/1000);
     auto time_matching_OpenCV = std::chrono::duration_cast<chrono::microseconds>(time_end_OpenCV - time_start_OpenCV);
     printf("\nTime matching OpenCV  \t\t\t%.2f ms (%s)\n", (float)time_matching_OpenCV.count()/1000, mm.c_str());
 

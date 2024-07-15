@@ -11,6 +11,7 @@ using namespace std;
 using namespace cv;
 
 int match_method = matchMetod::TM_SQDIFF;
+bool enable_Serial_stop_after_find_zero = false;
 
 int main(int argc, char *argv[])
 {
