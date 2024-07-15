@@ -26,6 +26,7 @@ add_subdirectory(0_add_vectors)
 add_subdirectory(0_array_summ)
 add_subdirectory(1_Matching)
 add_subdirectory(2_Matching)
+add_subdirectory(3_Matching)
 add_subdirectory(3_edge)  #  Работают Serial и SerialOpenCV   (Parallel edge не работает  !!!!! )
 #add_subdirectory(3_edge2) //Нужно разбираться с FreeImage
 #add_subdirectory(4_image_filtering)
