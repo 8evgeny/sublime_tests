@@ -3,7 +3,7 @@
 #include <CL/cl.hpp>
 #include "main.hpp"
 #include <fstream>
-#include "templateMatch.h"
+#include <iostream>
 
 extern int const match_method;
 extern bool enable_Serial_stop_after_find_zero;
@@ -114,8 +114,6 @@ int matchesGPU()
     if (imageIn.channels() == 3)
         cv::cvtColor(imageIn, imageIn, cv::COLOR_BGR2GRAY);
 
-
-
     initDevice();
 
     // kernel
@@ -126,7 +124,6 @@ int matchesGPU()
 
     loadDataMatToUchar(imageData, imageIn, 1);
     loadDataMatToUchar(templateData, tmpl, 1);
-
 
     // Data
     result res;

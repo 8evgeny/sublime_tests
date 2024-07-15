@@ -25,6 +25,35 @@ int main(int argc, char *argv[])
     return 0;
 }
 
+void loadDataMatToUchar(uchar *data, cv::Mat &image, int nchannels)
+{
+    int width = image.cols;
+    int height = image.rows;
+    for (int y=0; y<height;y++)
+    {
+        for (int x = 0 ; x<width ; x++)
+        {
+            data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 0] = image.at<uchar>(y,x);
+            if (nchannels==3)
+            {
+                data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 1] = image.at<uchar>(y,x);
+                data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 2] = image.at<uchar>(y,x);
+            }
+        }
+    }
+}
+
+void ucharToMat(uchar *data,cv::Mat &image)
+{
+    for (int y=0; y<image.rows;y++)
+    {
+        for (int x = 0 ; x<image.cols ; x++)
+        {
+            image.at<uchar>(y,x) = data[(long)y * (long)image.cols + x] ;
+        }
+    }
+}
+
 void qimage_to_mat(const QImage& image, cv::OutputArray out) {
 
     switch(image.format()) {

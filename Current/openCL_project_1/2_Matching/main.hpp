@@ -7,6 +7,13 @@
 #include "opencv2/imgproc.hpp"
 
 #define WORKGROUPSIZE 16
+#define NUM_ITERATIONS_GPU  100
+
+struct result
+{
+    int xpos, ypos;
+    uint SAD;
+};
 
 void matchesOpenCV();
 void MatchingMethod( int, void* );
@@ -18,7 +25,9 @@ void convertToGrey(QImage &imageIn);
 
 void qimage_to_mat(const QImage& image, cv::OutputArray out);
 void mat_to_qimage(cv::InputArray image, QImage& out);
-void print_results();
+void loadDataMatToUchar(uchar *data, cv::Mat &image, int nchannels);
+void ucharToMat(uchar *data,cv::Mat &image);
+
 enum matchMetod
 {
     TM_SQDIFF = 0,
