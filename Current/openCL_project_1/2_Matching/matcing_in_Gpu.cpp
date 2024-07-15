@@ -127,22 +127,19 @@ int matchesGPU()
     loadDataMatToUchar(imageData,tmM.imageIn,1);
     loadDataMatToUchar(templateData, tmpl,1);
 
-    result r_GPU;
+
+    // Data
+    result res;
+    res.SAD = 100000000;
+    res.xpos=0;
+    res.ypos=0;
+    int w = tmM.WIDTH;
+    int h = tmM.HEIGHT;
+    uint aux = 1000000;
 
     time_start_GPU = chrono::high_resolution_clock::now();
     for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
     {
-
-        // Data
-        result res;
-        res.SAD = 100000000;
-        res.xpos=0;
-        res.ypos=0;
-        int w = tmM.WIDTH;
-        int h = tmM.HEIGHT;
-
-        uint aux = 1000000;
-
         clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * w * h);
         clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * tmpl.rows * tmpl.cols);
         clInputVar=cl::Buffer(context,CL_MEM_WRITE_ONLY,sizeof(result));
@@ -185,18 +182,14 @@ int matchesGPU()
         cl::NDRange gRM=cl::NDRange((w-tmpl.cols),(h-tmpl.rows));
         //El work group dejo que lo asigne automaticamente
 
-        cl::Event event;
 
         iclError |= queue.enqueueNDRangeKernel(
                     clkProcess,
                     cl::NullRange,
                     gRM,
-                    cl::NullRange,
-                    NULL,
-                    &event
+                    cl::NullRange
                     );
 
-        event.wait();
 
         iclError |= queue.finish();
 
@@ -248,13 +241,13 @@ int matchesGPU()
     printf("Time matching GPU  \t\t\t%.2f ms \n", (float)time_matching_GPU.count()/(1000*NUM_ITERATIONS_GPU));
 
     cv::cvtColor(imageIn,imageIn,cv::COLOR_GRAY2BGR);
-    cv::rectangle(imageIn, cv::Point(r_GPU.xpos, r_GPU.ypos), cv::Point(r_GPU.xpos+tmpl.cols, r_GPU.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
+    cv::rectangle(imageIn, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+tmpl.cols, res.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
     const char* parallel_window = "Parallel matching";
     namedWindow( parallel_window, WINDOW_AUTOSIZE );
     moveWindow(parallel_window, 900,450);
     imshow(parallel_window, imageIn);
 
-    cout<<"\nPosition"<<", x: "<<r_GPU.xpos<<", y: "<<r_GPU.ypos<<"\n";
+    cout<<"\nPosition"<<", x: "<<res.xpos<<", y: "<<res.ypos<<"\n";
     cv::waitKey(-1);
 
 return 0;
