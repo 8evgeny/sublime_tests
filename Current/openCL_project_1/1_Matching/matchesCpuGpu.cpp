@@ -355,15 +355,15 @@ int matches()
         }
         case matchMetod::TM_CCORR_NORMED:
         {
-            mm = "TM_CCOEFF";break;
+            mm = "TM_CCORR_NORMED";break;
         }
         case matchMetod::TM_SQDIFF:
         {
-            mm = "TM_CCOEFF_NORMED";break;
+            mm = "TM_SQDIFF";break;
         }
         case matchMetod::TM_SQDIFF_NORMED:
         {
-            mm = "TM_CCORR";break;
+            mm = "TM_SQDIFF_NORMED";break;
         }
     }
 

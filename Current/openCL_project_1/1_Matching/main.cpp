@@ -10,7 +10,7 @@
 using namespace std;
 using namespace cv;
 
-int match_method = matchMetod::TM_CCOEFF_NORMED;
+int match_method = matchMetod::TM_SQDIFF;
 
 int main(int argc, char *argv[])
 {
