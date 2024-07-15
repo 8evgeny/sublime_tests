@@ -18,7 +18,7 @@ void convertToGrey(QImage &imageIn);
 
 void qimage_to_mat(const QImage& image, cv::OutputArray out);
 void mat_to_qimage(cv::InputArray image, QImage& out);
-
+void print_results();
 enum matchMetod
 {
     TM_SQDIFF = 0,
