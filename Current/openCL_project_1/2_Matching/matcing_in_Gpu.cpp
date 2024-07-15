@@ -10,28 +10,11 @@ extern bool enable_Serial_stop_after_find_zero;
 using namespace std;
 using namespace cv;
 
+int initDevice();
+int loadAndBuildProgram(std::string programFile);
 
 std::string kernel_source;
-chrono::high_resolution_clock::time_point
-    time_start_Serial, time_end_Serial,
-    time_start_OpenCV, time_end_OpenCV,
-    time_start_GPU, time_end_GPU;
-    bool endSerial = false; // При нахождении полного соответствия
-
-int loadKernelFile(std::string program)
-{
-    QFile kernelFile(program.c_str());
-    if (!kernelFile.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        cout <<"error kernel file"<<endl;
-        return -1;
-    }
-    kernel_source = kernelFile.readAll().toStdString();
-    kernelFile.close();
-
-    return 0;
-}
-
+chrono::high_resolution_clock::time_point time_start_OpenCV, time_end_OpenCV, time_start_GPU, time_end_GPU;
 cl::Kernel clkProcess;
 cl::Buffer clInputImg, clInputTemp, clInputVar, clInputAux,  clResults;
 cl::CommandQueue queue;
@@ -44,79 +27,17 @@ cl::Platform default_platform;
 std::vector<cl::Platform> all_platforms;
 int aux=0;
 
-int initDevice()
-{
-    //get all platforms (drivers)
-
-    cl::Platform::get(&all_platforms);
-    if(all_platforms.size()==0){
-        std::cout<<" No platforms found. Check OpenCL installation!\n";
-        return -1;
-    }
-    default_platform=cl::Platform(all_platforms[0]);
-    std::cout << "Using platform: "<<default_platform.getInfo<CL_PLATFORM_NAME>()<<"\n";
-
-    //get default device of the default platform
-
-    default_platform.getDevices(CL_DEVICE_TYPE_ALL, &all_devices);
-    if(all_devices.size()==0){
-        std::cout<<" No devices found. Check OpenCL installation!\n";
-        return -1;
-    }
-    default_device=cl::Device(all_devices[0]);
-    std::cout<< "Using device: "<<default_device.getInfo<CL_DEVICE_NAME>()<<"\n";
-
-    context=cl::Context(default_device);
-
-    queue=cl::CommandQueue(context, default_device);
-    return 0;
-}
-
-int loadAndBuildProgram(std::string programFile)
-{
-    if ( loadKernelFile(programFile) != 0)
-    {
-        cout<<"loadKernelFile error"<<endl;
-          return -1;
-    }
-    else
-    {
-//        cout<<"loadKernelFile OK"<<endl;
-    }
-
-    std::pair<const char*, ::size_t> src(kernel_source.c_str(), kernel_source.length());
-    sources.push_back(src);
-
-
-    program=cl::Program(context, sources);
-    VECTOR_CLASS<cl::Device> devices;
-    devices.push_back(default_device);
-
-    if(program.build(devices)!=CL_SUCCESS)
-    {
-        std::cout<<" Error building: "<<program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(default_device)<<"\n";
-        return -1;
-    }
-
-    return 0;
-}
-
-
 int matchesGPU()
 {
     cv::Mat tmpl = cv::imread("template");
-
     cv::Mat imageIn = cv::imread("image");
 
     if (tmpl.channels() == 3)
         cv::cvtColor(tmpl, tmpl, cv::COLOR_BGR2GRAY);
-
     if (imageIn.channels() == 3)
         cv::cvtColor(imageIn, imageIn, cv::COLOR_BGR2GRAY);
 
     initDevice();
-
-    // kernel
     loadAndBuildProgram("kernel");
 
     uchar* imageData = new uchar[imageIn.cols * imageIn.rows];
@@ -125,7 +46,6 @@ int matchesGPU()
     loadDataMatToUchar(imageData, imageIn, 1);
     loadDataMatToUchar(templateData, tmpl, 1);
 
-    // Data
     result res;
     res.SAD = 100000000;
     res.xpos=0;
@@ -167,16 +87,9 @@ int matchesGPU()
         iclError |= clkProcess.setArg(5,(int)tmpl.cols);
         iclError |= clkProcess.setArg(6,(int)tmpl.rows);
         iclError |= clkProcess.setArg(7,clInputAux);
-    //    iclError |= clkProcess.setArg(8,clResults);
-
-        // Image 1D
-        //cl::NDRange gRM=cl::NDRange((w-t_cols)*(h-t_rows));
-        //cl::NDRange lRW=cl::NDRange(localWGrp);
 
         // Image 2D
-        cl::NDRange gRM=cl::NDRange((imageIn.cols - tmpl.cols),(imageIn.rows - tmpl.rows));
-        //El work group dejo que lo asigne automaticamente
-
+        cl::NDRange gRM=cl::NDRange((imageIn.cols - tmpl.cols), (imageIn.rows - tmpl.rows));
 
         iclError |= queue.enqueueNDRangeKernel(
                     clkProcess,
@@ -196,8 +109,6 @@ int matchesGPU()
 
     delete[] imageData;
     delete[] templateData;
-
-//    print_results();
 
     string mm;
     switch (match_method)
@@ -248,4 +159,64 @@ int matchesGPU()
 return 0;
 }
 
+int loadKernelFile(std::string program)
+{
+    QFile kernelFile(program.c_str());
+    if (!kernelFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        cout <<"error kernel file"<<endl;
+        return -1;
+    }
+    kernel_source = kernelFile.readAll().toStdString();
+    kernelFile.close();
 
+    return 0;
+}
+
+int initDevice()
+{
+    //get all platforms (drivers)
+
+    cl::Platform::get(&all_platforms);
+    if(all_platforms.size()==0){
+        std::cout<<" No platforms found. Check OpenCL installation!\n";
+        return -1;
+    }
+    default_platform=cl::Platform(all_platforms[0]);
+    std::cout << "Using platform: "<<default_platform.getInfo<CL_PLATFORM_NAME>()<<"\n";
+
+    //get default device of the default platform
+
+    default_platform.getDevices(CL_DEVICE_TYPE_ALL, &all_devices);
+    if(all_devices.size()==0){
+        std::cout<<" No devices found. Check OpenCL installation!\n";
+        return -1;
+    }
+    default_device=cl::Device(all_devices[0]);
+    std::cout<< "Using device: "<<default_device.getInfo<CL_DEVICE_NAME>()<<"\n";
+
+    context=cl::Context(default_device);
+
+    queue=cl::CommandQueue(context, default_device);
+    return 0;
+}
+
+int loadAndBuildProgram(std::string programFile)
+{
+    loadKernelFile(programFile);
+
+    std::pair<const char*, ::size_t> src(kernel_source.c_str(), kernel_source.length());
+    sources.push_back(src);
+
+    program=cl::Program(context, sources);
+    VECTOR_CLASS<cl::Device> devices;
+    devices.push_back(default_device);
+
+    if(program.build(devices)!=CL_SUCCESS)
+    {
+        std::cout<<" Error building: "<<program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(default_device)<<"\n";
+        return -1;
+    }
+
+    return 0;
+}
