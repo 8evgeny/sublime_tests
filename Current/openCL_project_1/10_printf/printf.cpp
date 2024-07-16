@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <CL/cl.h>
+#include <CL/cl_ext.h>
 
 using namespace std;
 
@@ -87,6 +88,13 @@ cl_program build_program(cl_context ctx, cl_device_id dev, const char* filename)
    return program;
 }
 
+/* Define a printf callback function. */
+void printf_callback( const char *buffer, size_t len, size_t complete, void *user_data )
+{
+    printf( "%.*s", len, buffer );
+}
+
+
 int main()
 {
    /* OpenCL structures */
@@ -98,13 +106,22 @@ int main()
    cl_event prof_event;
    cl_int i, j, err;
    size_t max_workgroup_size, global_size;
-   char kernel_names[NUM_KERNELS][20] = {"printf"};
+   char kernel_names[NUM_KERNELS][20] = {"_printf_"};
 
    /* Data and buffers */
    float sum_from_gpu, serial_sum, *scalar_sum, *vector_sum;
    cl_mem data_buffer, scalar_sum_buffer, vector_sum_buffer;
    cl_int num_groups;
    cl_ulong time_start, time_end, total_time;
+
+
+   cl_platform_id *platforms;
+   cl_uint num_platforms;
+   clGetPlatformIDs(1, NULL, &num_platforms);
+   platforms = (cl_platform_id*)
+      malloc(sizeof(cl_platform_id) * num_platforms);
+   clGetPlatformIDs(num_platforms, platforms, NULL);
+
 
    /* Create device and determine local size */
    device = create_device();
@@ -118,11 +135,32 @@ int main()
    printf("max_work_group_size = %d\n", (int)max_workgroup_size);
 
    /* Create a context */
-   context = clCreateContext(NULL, 1, &device, NULL, NULL, &err);
+   /* Create a cl_context with a printf_callback and user specified buffer size. */
+   cl_context_properties properties[] =
+   {
+       /* Enable a printf callback function for this context. */
+       CL_PRINTF_CALLBACK_ARM,   (cl_context_properties) printf_callback,
+
+       /* Request a minimum printf buffer size of 4MiB for devices in the
+          context that support this extension. */
+       CL_PRINTF_BUFFERSIZE_ARM, (cl_context_properties) 0x100000,
+
+       CL_CONTEXT_PLATFORM,      (cl_context_properties) platforms, 0
+   };
+
+
+
+   context = clCreateContext( properties, 1, &device, NULL, NULL, &err );
+//   context = clCreateContext(NULL, 1, &device, NULL, NULL, &err);
    if(err < 0) {
       perror("Couldn't create a context");
       exit(1);
    }
+
+
+
+
+
 
    /* Build program */
    program = build_program(context, device, PROGRAM_FILE);
@@ -146,7 +184,7 @@ int main()
         }
 
 
-        err = clEnqueueNDRangeKernel(queue, kernel[i], 1, NULL, &global_size, &max_workgroup_size, 0, NULL, &prof_event);
+        err = clEnqueueNDRangeKernel(queue, kernel[i], 1, NULL, NULL, NULL, 0, NULL, &prof_event);
 
 
         if(err < 0)
