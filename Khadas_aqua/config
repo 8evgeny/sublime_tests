@@ -4,14 +4,14 @@ min_temp = 22.0;
 max_temp = 24.0;
 
 [Light]
-light = false;
+light = true;
 time_light_on = 07:00:00;
 time_light_off = 21:00:00;
 
 [Food]
 Food = true;
 time_Food = 07:30:00, 20:45:00;
-long_Food = 4500;
+long_Food = 4700;
 
 [UF]
 UF = true;
