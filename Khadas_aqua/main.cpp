@@ -139,7 +139,10 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
         if (light)
         {
             auto timeNow = QTime::currentTime();
-            if ((timeNow > time_light_on) && (timeNow < time_light_off) && (stateLight != "ON"))
+            if ((timeNow > time_light_on) &&
+                (timeNow < time_light_off) &&
+                (stateLight != "ON") &&
+                (temperature < 27.5))
             {
                 digitalWrite(gpio_pin_LAMP, LOW);
                 std::cout << "######## light set ON ########"  <<"\t\t";
@@ -147,7 +150,10 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
                 printTime();
                 stateLight = "ON";
             }
-            if (!((timeNow > time_light_on) && (timeNow < time_light_off)) && (stateLight != "OFF"))
+            if (!((timeNow > time_light_on) &&
+                (timeNow < time_light_off)) &&
+                (stateLight != "OFF") &&
+                (temperature > 27.5))
             {
                 digitalWrite(gpio_pin_LAMP, HIGH);
                 std::cout << "######## light set OFF ########"  <<"\t\t";
