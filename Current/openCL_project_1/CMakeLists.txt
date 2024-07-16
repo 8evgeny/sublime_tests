@@ -36,4 +36,4 @@ add_subdirectory(6_convertImage)
 add_subdirectory(7_copyImage)
 add_subdirectory(8_convertImage)
 add_subdirectory(9_reduction)
-add_subdirectory(10_printf)
+add_subdirectory(10_printf) # Пока не работает
