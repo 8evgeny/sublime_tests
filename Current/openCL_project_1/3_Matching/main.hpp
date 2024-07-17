@@ -21,8 +21,8 @@ enum matchMetod
 
 struct result
 {
-    int xpos, ypos;
-    uint SAD;
+    cl_uint xpos, ypos;
+    cl_uint SAD;
 };
 
 void matchesOpenCV();
