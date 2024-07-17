@@ -59,10 +59,19 @@ cl_program build_program(cl_context ctx, cl_device_id dev)
     size_t src_length = src.size();
     cl_program program = clCreateProgramWithSource(ctx, 1, &src_text, &src_length, &err);
     err |= clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
-
-    if (err != 0) cout <<"error build"<<endl;
-    // тут желательно получить лог компиляции через clGetProgramBuildInfo
-    if (err) throw;
+    char *program_log;
+    size_t log_size;
+    if(err != CL_SUCCESS) {
+        // If there's an error whilst building the program, dump the log
+        clGetProgramBuildInfo(program, dev, CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
+        program_log = (char*) malloc(log_size+1);
+        program_log[log_size] = '\0';
+        clGetProgramBuildInfo(program, dev, CL_PROGRAM_BUILD_LOG,
+                              log_size+1, program_log, NULL);
+        printf("\n=== ERROR ===\n\n%s\n=============\n", program_log);
+        free(program_log);
+        exit(1);
+    }
 
     return program;
 }
@@ -206,7 +215,6 @@ int matchesGPU()
 
     cout<<"\nPosition"<<", x: "<<res.xpos<<", y: "<<res.ypos<<"\n";
     cv::waitKey(-1);
-
 
 
     return 0;
