@@ -53,14 +53,16 @@ std::string get_program_text()
 cl_program build_program(cl_context ctx, cl_device_id dev)
 {
     int err;
+    char *program_log;
+    size_t log_size;
+    const char options[] = "";
 
     std::string src = get_program_text();
     const char* src_text = src.data();
     size_t src_length = src.size();
     cl_program program = clCreateProgramWithSource(ctx, 1, &src_text, &src_length, &err);
-    err |= clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
-    char *program_log;
-    size_t log_size;
+    err |= clBuildProgram(program, 1, &dev, options, NULL, NULL);
+
     if(err != CL_SUCCESS) {
         // If there's an error whilst building the program, dump the log
         clGetProgramBuildInfo(program, dev, CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
