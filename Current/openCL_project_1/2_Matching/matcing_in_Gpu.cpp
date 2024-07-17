@@ -57,12 +57,12 @@ int matchesGPU()
     uint aux = 1000000;
 
 
-//    for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
-//    {
-        clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * imageIn.cols * imageIn.rows);
-        clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY,sizeof(unsigned char) * tmpl.rows * tmpl.cols);
-        clInputVar=cl::Buffer(context,CL_MEM_WRITE_ONLY,sizeof(result));
-        clInputAux=cl::Buffer(context,CL_MEM_READ_WRITE,sizeof(int));
+    for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
+    {
+        clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * imageIn.cols * imageIn.rows);
+        clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * tmpl.rows * tmpl.cols);
+        clInputVar=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(result));
+        clInputAux=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(int));
 
         // Kernels
         int iclError = 0;
@@ -106,7 +106,7 @@ time_start_GPU = chrono::high_resolution_clock::now();
         queue.enqueueReadBuffer(clInputAux, CL_TRUE,0, sizeof(int),&aux);
         queue.enqueueReadBuffer(clInputVar, CL_TRUE,0, sizeof(result),&res);
 time_end_GPU = chrono::high_resolution_clock::now();
-//    }//End -- for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
+    }//End -- for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
 
 
     delete[] imageData;
