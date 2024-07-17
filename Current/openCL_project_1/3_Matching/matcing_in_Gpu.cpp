@@ -92,8 +92,8 @@ int matchesGPU()
     if (imageIn.channels() == 3)
         cv::cvtColor(imageIn, imageIn, cv::COLOR_BGR2GRAY);
 
-    uchar* imageData = new uchar[imageIn.cols * imageIn.rows];
-    uchar* templateData = new uchar[tmpl.rows*tmpl.cols];
+    cl_uchar* imageData = new cl_uchar[imageIn.cols * imageIn.rows];
+    cl_uchar* templateData = new cl_uchar[tmpl.rows*tmpl.cols];
 
     loadDataMatToUchar(imageData, imageIn, 1);
     loadDataMatToUchar(templateData, tmpl, 1);
@@ -112,13 +112,13 @@ int matchesGPU()
 
     imageBuff = clCreateBuffer(context,
                                 CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
-                                sizeof(int) * imageIn.cols * imageIn.rows,
+                                sizeof(cl_uint) * imageIn.cols * imageIn.rows,
                                 imageData,
                                 &err);
 
     templateBuff = clCreateBuffer(context,
                                 CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
-                                sizeof(int) * tmpl.cols * tmpl.rows,
+                                sizeof(cl_uint) * tmpl.cols * tmpl.rows,
                                 templateData,
                                 &err);
 
@@ -134,6 +134,10 @@ int matchesGPU()
                                 &aux,
                                 &err);
 
+    if (err != 0)
+        cout <<"error buffers"<<endl;
+
+
     err |= clSetKernelArg(kernel, 0, sizeof(cl_mem), (void*)&imageBuff);
     err |= clSetKernelArg(kernel, 1, sizeof(cl_mem), (void*)&templateBuff);
     err |= clSetKernelArg(kernel, 2, sizeof(cl_mem), (void*)&resultBuff);
@@ -143,6 +147,12 @@ int matchesGPU()
     err |= clSetKernelArg(kernel, 6, sizeof(int), (void*)&tmpl.rows);
     err |= clSetKernelArg(kernel, 7, sizeof(cl_mem), (void*)&auxBuff);
 
+    if (err != 0)
+    {
+        cout <<"error args"<<endl;
+        exit(-1);
+    }
+
     size_t local_size[2] = { 256, 1 };
     size_t global_size[2] = { align(imageIn.cols, local_size[0]), align(imageIn.rows, local_size[1]) };
 
@@ -150,15 +160,27 @@ int matchesGPU()
     // запускаем двумерную задачу
     err |= clEnqueueNDRangeKernel(queue, kernel, 2, NULL, global_size, local_size, 0, NULL, NULL);
 
+    if (err != 0)
+    {
+        cout <<"error runtime"<<endl;
+        exit(-1);
+    }
+
     // читаем результат
     err |= clEnqueueReadBuffer(queue, resultBuff, CL_TRUE, 0, sizeof(result), &res, 0, NULL, NULL);
     err |= clEnqueueReadBuffer(queue, auxBuff, CL_TRUE, 0, sizeof(int), &aux, 0, NULL, NULL);
+
+    if (err != 0)
+    {
+        cout <<"error result"<<endl;
+        exit(-1);
+    }
 
     // ждём завершения всех операций
     clFinish(queue);
     time_end_GPU = chrono::high_resolution_clock::now();
 
-    if (err != 0) cout <<"error..."<<endl;
+
 
     /* Deallocate resources */
     clReleaseKernel(kernel);
