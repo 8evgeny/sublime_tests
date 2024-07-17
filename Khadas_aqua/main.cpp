@@ -153,7 +153,7 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
             if (!((timeNow > time_light_on) &&
                 (timeNow < time_light_off)) &&
                 (stateLight != "OFF") &&
-                (temperature > 27.5))
+                (temperature > 27.7))
             {
                 digitalWrite(gpio_pin_LAMP, HIGH);
                 std::cout << "######## light set OFF ########"  <<"\t\t";
