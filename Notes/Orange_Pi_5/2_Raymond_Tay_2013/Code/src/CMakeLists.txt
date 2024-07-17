@@ -51,7 +51,7 @@ add_subdirectory(Ch2/simple_2D_readwrite)
 
 
 add_subdirectory(Ch3/byte_ordering)
-#add_subdirectory(Ch3/vectorization) # Не работает только на Orange Pi 5
+add_subdirectory(Ch3/vectorization) # Не работает только на Orange Pi 5
 add_subdirectory(Ch3/double_support)
 
 add_subdirectory(Ch4/simple_vector_load)

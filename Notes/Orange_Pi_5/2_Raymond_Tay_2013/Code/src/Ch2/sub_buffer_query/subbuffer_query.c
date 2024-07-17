@@ -9,8 +9,10 @@
 #define DATA_SIZE 8388608 
 
 // test for valid values
-int valuesOK(UserData* to, UserData* from) {
-    for(int i = 0; i < DATA_SIZE; ++i) {
+int valuesOK(UserData* to, UserData* from)
+{
+    for(int i = 0; i < DATA_SIZE; ++i)
+    {
         if ( to[i].w != from[i].w ) return 0;
     }
   return 1;
@@ -19,11 +21,14 @@ int valuesOK(UserData* to, UserData* from) {
 void loadProgramSource(const char** files,
                        size_t length,
                        char** buffer,
-                       size_t* sizes) {
+                       size_t* sizes)
+{
 	   /* Read each source file (*.cl) and store the contents into a temporary datastore */
-	   for(size_t i=0; i < length; i++) {
+       for(size_t i=0; i < length; i++)
+       {
 	      FILE* file = fopen(files[i], "r");
-	      if(file == NULL) {
+          if(file == NULL)
+          {
 	         perror("Couldn't read the program file");
 	         exit(1);   
 	      }
@@ -155,7 +160,8 @@ int main(int argc, char** argv) {
         char *program_log;
         size_t log_size;
         error = clBuildProgram(program, 1, &device, NULL, NULL, NULL);		
-	    if(error != CL_SUCCESS) {
+        if(error != CL_SUCCESS)
+        {
 	      // If there's an error whilst building the program, dump the log
 	      clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
 	      program_log = (char*) malloc(log_size+1);
@@ -170,13 +176,15 @@ int main(int argc, char** argv) {
         /* Query the program as to how many kernels were detected */
         cl_uint numOfKernels;
         error = clCreateKernelsInProgram(program, 0, NULL, &numOfKernels);
-        if (error != CL_SUCCESS) {
+        if (error != CL_SUCCESS)
+        {
             perror("Unable to retrieve kernel count from program");
             exit(1);
         }
         cl_kernel* kernels = (cl_kernel*) alloca(sizeof(cl_kernel) * numOfKernels);
         error = clCreateKernelsInProgram(program, numOfKernels, kernels, NULL);
-        for(cl_uint i = 0; i < numOfKernels; i++) {
+        for(cl_uint i = 0; i < numOfKernels; i++)
+        {
             char kernelName[32];
             cl_uint argCnt;
             clGetKernelInfo(kernels[i], CL_KERNEL_FUNCTION_NAME, sizeof(kernelName), kernelName, NULL);

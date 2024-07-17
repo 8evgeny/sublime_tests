@@ -67,7 +67,7 @@ int main() {
       CL_MEM_COPY_HOST_PTR, CL_BUFFER_CREATE_TYPE_REGION, &region, &err);
    if(err < 0) {
       perror("Couldn't create a sub-buffer");
-      exit(1);   
+      exit(1);
    }
 
    /* Obtain size information about the buffers */
