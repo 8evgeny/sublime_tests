@@ -12,12 +12,16 @@
 
 #define PROGRAM_NAME "matching.cl"
 #define KERNEL_NAME "matching"
+using namespace cv;
+using namespace std;
 
+chrono::high_resolution_clock::time_point time_start_GPU, time_end_GPU;
+extern chrono::high_resolution_clock::time_point time_start_OpenCV, time_end_OpenCV;
+extern int const match_method;
 result res;
 cl_uint aux = 1000000;
 
-using namespace cv;
-using namespace std;
+
 
 size_t align(int x, int y)
 {
@@ -129,9 +133,9 @@ int matchesGPU()
     err |= clSetKernelArg(kernel, 7, sizeof(cl_mem), (void*)&auxBuff);
 
     size_t local_size[2] = { 256, 1 };
-
     size_t global_size[2] = { align(imageIn.cols, local_size[0]), align(imageIn.rows, local_size[1]) };
 
+    time_start_GPU = chrono::high_resolution_clock::now();
     // запускаем двумерную задачу
     err |= clEnqueueNDRangeKernel(queue, kernel, 2, NULL, global_size, local_size, 0, NULL, NULL);
 
@@ -141,11 +145,9 @@ int matchesGPU()
 
     // ждём завершения всех операций
     clFinish(queue);
+    time_end_GPU = chrono::high_resolution_clock::now();
 
     if (err != 0) cout <<"error..."<<endl;
-    cout<<"\nPosition"<<", x: "<<res.xpos<<", y: "<<res.ypos<<"\n";
-
-    waitKey(0);
 
     /* Deallocate resources */
     clReleaseKernel(kernel);
@@ -158,6 +160,53 @@ int matchesGPU()
     clReleaseMemObject(auxBuff);
     delete[] imageData;
     delete[] templateData;
+
+    string mm;
+    switch (match_method)
+    {
+        case matchMetod::TM_CCOEFF:
+        {
+            mm = "TM_CCOEFF";break;
+        }
+        case matchMetod::TM_CCOEFF_NORMED:
+        {
+            mm = "TM_CCOEFF_NORMED";break;
+        }
+        case matchMetod::TM_CCORR:
+        {
+            mm = "TM_CCORR";break;
+        }
+        case matchMetod::TM_CCORR_NORMED:
+        {
+            mm = "TM_CCORR_NORMED";break;
+        }
+        case matchMetod::TM_SQDIFF:
+        {
+            mm = "TM_SQDIFF";break;
+        }
+        case matchMetod::TM_SQDIFF_NORMED:
+        {
+            mm = "TM_SQDIFF_NORMED";break;
+        }
+    }
+
+
+    auto time_matching_OpenCV = std::chrono::duration_cast<chrono::microseconds>(time_end_OpenCV - time_start_OpenCV);
+    printf("\nTime matching OpenCV  \t\t\t%.2f ms (%s)\n", (float)time_matching_OpenCV.count()/1000, mm.c_str());
+
+    auto time_matching_GPU = std::chrono::duration_cast<chrono::microseconds>(time_end_GPU - time_start_GPU);
+    printf("Time matching GPU  \t\t\t%.2f ms \n", (float)time_matching_GPU.count()/(1000 /** NUM_ITERATIONS_GPU*/));
+
+    cv::cvtColor(imageIn,imageIn,cv::COLOR_GRAY2BGR);
+    cv::rectangle(imageIn, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+tmpl.cols, res.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
+    const char* parallel_window = "Parallel matching";
+    namedWindow( parallel_window, WINDOW_AUTOSIZE );
+    moveWindow(parallel_window, 900,450);
+    imshow(parallel_window, imageIn);
+
+    cout<<"\nPosition"<<", x: "<<res.xpos<<", y: "<<res.ypos<<"\n";
+    cv::waitKey(-1);
+
 
 
     return 0;
