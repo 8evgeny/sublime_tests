@@ -111,31 +111,34 @@ int matchesGPU()
     cl_command_queue queue = clCreateCommandQueue(context, device, 0, &err);
 
     imageBuff = clCreateBuffer(context,
-                                CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+                                CL_MEM_READ_ONLY | CL_MEM_USE_HOST_PTR,
                                 sizeof(cl_uint) * imageIn.cols * imageIn.rows,
                                 imageData,
                                 &err);
 
     templateBuff = clCreateBuffer(context,
-                                CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+                                CL_MEM_READ_ONLY | CL_MEM_USE_HOST_PTR,
                                 sizeof(cl_uint) * tmpl.cols * tmpl.rows,
                                 templateData,
                                 &err);
 
     cl_mem resultBuff = clCreateBuffer(context,
-                                CL_MEM_WRITE_ONLY | CL_MEM_COPY_HOST_PTR,
+                                CL_MEM_WRITE_ONLY | CL_MEM_USE_HOST_PTR,
                                 sizeof(result),
                                 &res,
                                 &err);
 
     cl_mem auxBuff = clCreateBuffer(context,
-                                CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+                                CL_MEM_READ_WRITE | CL_MEM_USE_HOST_PTR,
                                 sizeof(cl_uint),
                                 &aux,
                                 &err);
 
     if (err != 0)
+    {
         cout <<"error buffers"<<endl;
+        exit(-1);
+    }
 
 
     err |= clSetKernelArg(kernel, 0, sizeof(cl_mem), (void*)&imageBuff);
