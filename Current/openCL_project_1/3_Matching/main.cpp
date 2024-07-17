@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-void loadDataMatToUchar(uchar *data, cv::Mat &image, int nchannels)
+void loadDataMatToUchar(cl_uchar *data, cv::Mat &image, int nchannels)
 {
     int width = image.cols;
     int height = image.rows;
@@ -30,11 +30,11 @@ void loadDataMatToUchar(uchar *data, cv::Mat &image, int nchannels)
     {
         for (int x = 0 ; x<width ; x++)
         {
-            data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 0] = image.at<uchar>(y,x);
+            data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 0] = image.at<cl_uchar>(y,x);
             if (nchannels==3)
             {
-                data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 1] = image.at<uchar>(y,x);
-                data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 2] = image.at<uchar>(y,x);
+                data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 1] = image.at<cl_uchar>(y,x);
+                data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 2] = image.at<cl_uchar>(y,x);
             }
         }
     }

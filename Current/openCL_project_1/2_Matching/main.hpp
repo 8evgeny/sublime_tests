@@ -12,7 +12,7 @@
 struct result
 {
     int xpos, ypos;
-    uint SAD;
+    cl_short SAD;
 };
 
 void matchesOpenCV();
