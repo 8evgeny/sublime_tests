@@ -35,12 +35,14 @@ __kernel void matching(__global uchar* imageData,
 
 
     // loop through the template image
-        for ( int y1 = 0; y1 < t_rows; y1++ )
+        uchar p_SearchIMG;
+        uchar p_TemplateIMG;
+        for ( int y1 = 0; y1 < t_rows; y1 +=2 )
         {
-            for ( int x1 = 0; x1 < t_cols; x1++ )
+            for ( int x1 = 0; x1 < t_cols; x1 +=2 )
             {
-                uchar p_SearchIMG = imageData[(y+y1) * w + (x+x1)];
-                uchar p_TemplateIMG = templateData[y1 *  t_cols + x1];
+                p_SearchIMG = imageData[(y+y1) * w + (x+x1)];
+                p_TemplateIMG = templateData[y1 *  t_cols + x1];
                 SAD += abs( p_SearchIMG - p_TemplateIMG );
             }
         }
