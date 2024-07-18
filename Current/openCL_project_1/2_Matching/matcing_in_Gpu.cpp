@@ -145,9 +145,9 @@ int matchesGPU()
             mm = "TM_SQDIFF_NORMED";break;
         }
     }
-
+    cout<<endl<<mm<<endl;
     auto time_matching_OpenCV = std::chrono::duration_cast<chrono::microseconds>(time_end_OpenCV - time_start_OpenCV);
-    printf("\nTime matching OpenCV  \t\t\t%.2f ms (%s)\n", (float)time_matching_OpenCV.count()/1000, mm.c_str());
+    printf("Time matching OpenCV  \t\t\t%.2f ms \n", (float)time_matching_OpenCV.count()/1000);
 
     auto time_matching_GPU = std::chrono::duration_cast<chrono::microseconds>(time_end_GPU - time_start_GPU);
     printf("Time matching GPU  \t\t\t%.2f ms \n", (float)time_matching_GPU.count()/(1000 * NUM_ITERATIONS_GPU));
