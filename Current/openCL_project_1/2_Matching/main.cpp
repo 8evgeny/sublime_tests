@@ -10,8 +10,8 @@
 using namespace std;
 using namespace cv;
 
-int match_method = matchMetod::TM_SQDIFF;
-//int match_method = matchMetod::TM_SQDIFF_NORMED;
+//int match_method = matchMetod::TM_SQDIFF;
+int match_method = matchMetod::TM_SQDIFF_NORMED;
 //int match_method = matchMetod::TM_CCOEFF_NORMED;
 //int match_method = matchMetod::TM_COMBINED;
 
