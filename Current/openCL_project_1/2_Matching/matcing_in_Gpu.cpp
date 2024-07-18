@@ -16,7 +16,7 @@ int loadAndBuildProgram(std::string programFile);
 std::string kernel_source;
 chrono::high_resolution_clock::time_point time_start_OpenCV, time_end_OpenCV, time_start_GPU, time_end_GPU;
 cl::Kernel clkProcess;
-cl::Buffer clInputImg, clInputTemp, clInputVar, clInputAux,  clResults, clMatchMethod;
+cl::Buffer clInputImg, clInputTemp, clInputRes, clInputVar,  clResults, clMatchMethod;
 cl::CommandQueue queue;
 cl::Context context;
 cl::Program program;
@@ -25,7 +25,7 @@ cl::Device default_device;
 std::vector<cl::Device> all_devices;
 cl::Platform default_platform;
 std::vector<cl::Platform> all_platforms;
-int aux=0;
+int var = 0;
 size_t max_workgroup_size, global_size;
 
 
@@ -51,7 +51,7 @@ int matchesGPU()
     loadDataMatToUchar(templateData, tmpl, 1);
 
     result res;
-    res.SAD = 10000;
+    res.tm_result = 10000;
     res.xpos=0;
     res.ypos=0;
     cl_short aux = 10000;
@@ -62,8 +62,8 @@ int matchesGPU()
     {
         clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * imageIn.cols * imageIn.rows);
         clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * tmpl.rows * tmpl.cols);
-        clInputVar=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(result));
-        clInputAux=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_short));
+        clInputRes=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(result));
+        clInputVar=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_short));
         clMatchMethod=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(int));
 
 
@@ -79,21 +79,21 @@ int matchesGPU()
         // Send Data
         queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * imageIn.cols * imageIn.rows, &imageData[0]);
         queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * tmpl.rows * tmpl.cols, &templateData[0]);
-        queue.enqueueWriteBuffer(clInputVar, CL_TRUE, 0,  sizeof(result), &res);
-        queue.enqueueWriteBuffer(clInputAux, CL_TRUE, 0,  sizeof(cl_short), &aux);
+        queue.enqueueWriteBuffer(clInputRes, CL_TRUE, 0,  sizeof(result), &res);
+        queue.enqueueWriteBuffer(clInputVar, CL_TRUE, 0,  sizeof(cl_short), &var);
         queue.enqueueWriteBuffer(clMatchMethod, CL_TRUE, 0,  sizeof(int), &match_method);
 
 
         //--- Init Kernel arguments ---------------------------------------------------
         clkProcess.setArg(0,clInputImg);
         clkProcess.setArg(1,clInputTemp);
-        clkProcess.setArg(2,clInputVar);
+        clkProcess.setArg(2,clInputRes);
 
         clkProcess.setArg(3, (int)imageIn.cols);
         clkProcess.setArg(4, (int)imageIn.rows);
         clkProcess.setArg(5, (int)tmpl.cols);
         clkProcess.setArg(6, (int)tmpl.rows);
-        clkProcess.setArg(7, clInputAux);
+        clkProcess.setArg(7, clInputVar);
         clkProcess.setArg(8, match_method);
 
         // Image 2D
@@ -106,8 +106,8 @@ int matchesGPU()
                     cl::NullRange
                     );
         queue.finish();
-        queue.enqueueReadBuffer(clInputAux, CL_TRUE,0, sizeof(cl_short),&aux);
-        queue.enqueueReadBuffer(clInputVar, CL_TRUE,0, sizeof(result),&res);
+        queue.enqueueReadBuffer(clInputVar, CL_TRUE,0, sizeof(cl_short),&var);
+        queue.enqueueReadBuffer(clInputRes, CL_TRUE,0, sizeof(result),&res);
 
 
     }//End -- for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)

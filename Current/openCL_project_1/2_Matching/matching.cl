@@ -1,7 +1,7 @@
 typedef struct tag_result
 {
     int xpos, ypos;
-    uint SAD;
+    uint tm_result;
 }result;
 
 enum matchMetod
@@ -25,7 +25,7 @@ __kernel void matching(__global uchar* imageData,
                      int IMG_HEIGHT,
                      int TEMPLATE_WIDTH,
                      int TEMPLATE_HEIGHT,
-                     __global uint* aux,
+                     __global uint* var,
                      int method
                      )
 {
@@ -33,7 +33,7 @@ __kernel void matching(__global uchar* imageData,
     int work_item_X = get_global_id(0);
     int work_item_Y = get_global_id(1);
     int iGID = (work_item_Y * IMG_WIDTH + IMG_HEIGHT);
-    uint SAD=0;
+    uint tm_result = 0;
     uint step_y = IMG_HEIGHT / 8;
     uint step_x = IMG_WIDTH / 8;
     if ( iGID >= IMG_WIDTH * IMG_HEIGHT)
@@ -51,7 +51,7 @@ __kernel void matching(__global uchar* imageData,
             {
                 searchIMG = imageData[ ( work_item_Y + Y ) * IMG_WIDTH + ( work_item_X + X ) ];
                 templateIMG = templateData[ Y * TEMPLATE_WIDTH + X ];
-                SAD += ( searchIMG - templateIMG ) * ( searchIMG - templateIMG );
+                tm_result += ( searchIMG - templateIMG ) * ( searchIMG - templateIMG );
             }
         }
     }
@@ -64,17 +64,17 @@ __kernel void matching(__global uchar* imageData,
             {
                 searchIMG = imageData[ ( work_item_Y + Y ) * IMG_WIDTH + ( work_item_X + X ) ];
                 templateIMG = templateData[ Y * TEMPLATE_WIDTH + X ];
-                SAD += ( searchIMG - templateIMG ) * ( searchIMG - templateIMG );
+                tm_result += ( searchIMG - templateIMG ) * ( searchIMG - templateIMG );
             }
         }
     }
 
 
-    atomic_min(aux, SAD);
+    atomic_min(var, tm_result);
     barrier(CLK_GLOBAL_MEM_FENCE);
-    if ( (*aux) == SAD )
+    if ( (*var) == tm_result )
     {
-        (*res).SAD = SAD;
+        (*res).tm_result = tm_result;
         (*res).xpos = work_item_X;
         (*res).ypos = work_item_Y;
     }
