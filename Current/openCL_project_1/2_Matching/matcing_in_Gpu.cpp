@@ -56,6 +56,7 @@ int matchesGPU()
     res.ypos=0;
     cl_short aux = 10000;
 
+    time_start_GPU = chrono::high_resolution_clock::now();
 
     for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
     {
@@ -93,21 +94,21 @@ int matchesGPU()
 
         // Image 2D
         cl::NDRange gRM=cl::NDRange((imageIn.cols - tmpl.cols), (imageIn.rows - tmpl.rows));
-time_start_GPU = chrono::high_resolution_clock::now();
+
         queue.enqueueNDRangeKernel(
                     clkProcess,
                     cl::NullRange,
                     gRM,
                     cl::NullRange
                     );
-
         queue.finish();
-
         queue.enqueueReadBuffer(clInputAux, CL_TRUE,0, sizeof(cl_short),&aux);
         queue.enqueueReadBuffer(clInputVar, CL_TRUE,0, sizeof(result),&res);
-time_end_GPU = chrono::high_resolution_clock::now();
+
+
     }//End -- for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
 
+    time_end_GPU = chrono::high_resolution_clock::now();
 
     delete[] imageData;
     delete[] templateData;
@@ -145,7 +146,7 @@ time_end_GPU = chrono::high_resolution_clock::now();
     printf("\nTime matching OpenCV  \t\t\t%.2f ms (%s)\n", (float)time_matching_OpenCV.count()/1000, mm.c_str());
 
     auto time_matching_GPU = std::chrono::duration_cast<chrono::microseconds>(time_end_GPU - time_start_GPU);
-    printf("Time matching GPU  \t\t\t%.2f ms \n", (float)time_matching_GPU.count()/(1000 /** NUM_ITERATIONS_GPU*/));
+    printf("Time matching GPU  \t\t\t%.2f ms \n", (float)time_matching_GPU.count()/(1000 * NUM_ITERATIONS_GPU));
 
     cv::cvtColor(imageIn,imageIn,cv::COLOR_GRAY2BGR);
     cv::rectangle(imageIn, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+tmpl.cols, res.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
