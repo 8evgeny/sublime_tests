@@ -5,8 +5,8 @@
 #include <fstream>
 #include <iostream>
 
-extern int const match_method;
 extern bool enable_Serial_stop_after_find_zero;
+extern int match_method;
 using namespace std;
 using namespace cv;
 
@@ -16,7 +16,7 @@ int loadAndBuildProgram(std::string programFile);
 std::string kernel_source;
 chrono::high_resolution_clock::time_point time_start_OpenCV, time_end_OpenCV, time_start_GPU, time_end_GPU;
 cl::Kernel clkProcess;
-cl::Buffer clInputImg, clInputTemp, clInputVar, clInputAux,  clResults;
+cl::Buffer clInputImg, clInputTemp, clInputVar, clInputAux,  clResults, clMatchMethod;
 cl::CommandQueue queue;
 cl::Context context;
 cl::Program program;
@@ -64,6 +64,8 @@ int matchesGPU()
         clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * tmpl.rows * tmpl.cols);
         clInputVar=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(result));
         clInputAux=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_short));
+        clMatchMethod=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(int));
+
 
         // Kernels
         int iclError = 0;
@@ -79,6 +81,7 @@ int matchesGPU()
         queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * tmpl.rows * tmpl.cols, &templateData[0]);
         queue.enqueueWriteBuffer(clInputVar, CL_TRUE, 0,  sizeof(result), &res);
         queue.enqueueWriteBuffer(clInputAux, CL_TRUE, 0,  sizeof(cl_short), &aux);
+        queue.enqueueWriteBuffer(clMatchMethod, CL_TRUE, 0,  sizeof(int), &match_method);
 
 
         //--- Init Kernel arguments ---------------------------------------------------
@@ -86,11 +89,12 @@ int matchesGPU()
         clkProcess.setArg(1,clInputTemp);
         clkProcess.setArg(2,clInputVar);
 
-        clkProcess.setArg(3,(int)imageIn.cols);
-        clkProcess.setArg(4,(int)imageIn.rows);
-        clkProcess.setArg(5,(int)tmpl.cols);
-        clkProcess.setArg(6,(int)tmpl.rows);
-        clkProcess.setArg(7,clInputAux);
+        clkProcess.setArg(3, (int)imageIn.cols);
+        clkProcess.setArg(4, (int)imageIn.rows);
+        clkProcess.setArg(5, (int)tmpl.cols);
+        clkProcess.setArg(6, (int)tmpl.rows);
+        clkProcess.setArg(7, clInputAux);
+        clkProcess.setArg(8, match_method);
 
         // Image 2D
         cl::NDRange gRM=cl::NDRange((imageIn.cols - tmpl.cols), (imageIn.rows - tmpl.rows));

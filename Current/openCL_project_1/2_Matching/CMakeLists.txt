@@ -12,6 +12,8 @@ target_link_libraries(2_matching
     Qt${QT_VERSION_MAJOR}::Gui
     ${OpenCV_LIBS}
     )
+
+#add_definitions(-DSQDIFF)
 configure_file(matching.cl ${CMAKE_CURRENT_BINARY_DIR}/matching.cl COPYONLY)
 
 configure_file(tank_90.png ${CMAKE_CURRENT_BINARY_DIR}/image COPYONLY)

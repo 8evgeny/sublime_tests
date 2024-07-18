@@ -4,6 +4,17 @@ typedef struct tag_result
     uint SAD;
 }result;
 
+enum matchMetod
+{
+    TM_SQDIFF = 0,
+    TM_SQDIFF_NORMED,
+    TM_CCORR,
+    TM_CCORR_NORMED,
+    TM_CCOEFF,
+    TM_CCOEFF_NORMED
+};
+
+
 //wokrItem передает сигнал о завершении (если к примеру SAD < 100)
 //Передавать image2D
 //__Local
@@ -16,7 +27,8 @@ __kernel void matching(__global uchar* imageData,
                      int h,
                      int t_cols,
                      int t_rows,
-                     __global uint* aux
+                     __global uint* aux,
+                     int method
                      )
 {
     // get index into global data array
@@ -24,8 +36,8 @@ __kernel void matching(__global uchar* imageData,
     int y = get_global_id(1);
     int iGID = (y * w + h);
     uint SAD=0;
-    uint step_y = h/8;
-    uint step_x = w/8;
+    uint step_y = h / 8;
+    uint step_x = w / 8;
 
 //    local uchar imadeResult[(w-t_cols+1)*(h-t_rows+1)]
 
@@ -35,98 +47,47 @@ __kernel void matching(__global uchar* imageData,
         return;
     }
 
-
-    // loop through the template image
-        uchar p_SearchIMG;
-        uchar p_TemplateIMG;
-        for ( int y1 = 0; y1 < t_rows; y1 +=step_y )
+    uchar searchIMG;
+    uchar templateIMG;
+    for ( int y1 = 0; y1 < t_rows; y1 +=step_y )
+    {
+        for ( int x1 = 0; x1 < t_cols; x1 +=step_x )
         {
-            for ( int x1 = 0; x1 < t_cols; x1 +=step_x )
-            {
-                p_SearchIMG = imageData[(y+y1) * w + (x+x1)];
-                p_TemplateIMG = templateData[y1 *  t_cols + x1];
-                SAD += abs( p_SearchIMG - p_TemplateIMG );
-            }
-        }
-        // save the best found position
-//        if (SAD == 0)
-//        {
-//            (*res).SAD = SAD;
-//            (*res).xpos = x;
-//            (*res).ypos = y;
-//        }
-
-        atomic_min(aux, SAD);
-        barrier(CLK_GLOBAL_MEM_FENCE);
-
-        if ( (*aux) == SAD )
-        {
-            (*res).SAD = SAD;
-            (*res).xpos = x;
-            (*res).ypos = y;
+            searchIMG = imageData[(y+y1) * w + (x+x1)];
+            templateIMG = templateData[y1 *  t_cols + x1];
+            SAD += abs( searchIMG - templateIMG );
         }
     }
-
-//     kernel void test2(global uchar* imageData,global uchar* templateData, int x, int y, int w, int h,int t_cols, int t_rows, global int* aux){
-//        // get index into global data array
-//        int x1 = get_global_id(0);
-//		int y1 = get_global_id(1);
-//		int iGID = (y1 * t_cols + x1);
-
-
-//        // bound check (equivalent to the limit on a 'for' loop for standard/serial C code
-
-
-//        int p_SearchIMG = imageData[(y+y1) * w + (x+x1)];
-//        int p_TemplateIMG = templateData[y1 *  t_cols + x1];
-//        (*aux) += abs( p_SearchIMG - p_TemplateIMG );
+    atomic_min(aux, SAD);
+    barrier(CLK_GLOBAL_MEM_FENCE);
+    if ( (*aux) == SAD )
+    {
+        (*res).SAD = SAD;
+        (*res).xpos = x;
+        (*res).ypos = y;
+    }
+}
 
 
-
-//     }
-
-
-
-    // OpenCL Kernel Function for element by element
-// kernel void pattern(global uchar* imageData,global uchar* templateData, global float*aux, int t_cols, int t_rows, int w, int h, global result* res)
+//#ifdef SQDIFF_NORMED
+//__global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu, float * dev_result_array_bright)
 //{
-
-//        // get index into global data array
-//        int iGIDX = get_global_id(0);
-//		int iGIDY = get_global_id(1);
-//		int iGID = (iGIDY * w + iGIDX);
-
-//		int x = iGIDX;
-//		int y = iGIDY;
-
-//        res->xpos=0;
-//        res->ypos=0;
-
-//        float SAD = 0;
-
-//	// loop through the template image
-
-//		for ( int y1 = 0; y1 < t_rows; y1++ )
-//            for ( int x1 = 0; x1 < t_cols; x1++ )
-//			{
-
-//				int p_SearchIMG = imageData[(y+y1) * w + (x+x1)];
-//                int p_TemplateIMG = templateData[y1 *  t_cols + x1];
-
-//                SAD += abs( p_SearchIMG - p_TemplateIMG );
-//            }
-
-//        // save the best found position
-//        if ( (*res).SAD > SAD )
-//		{
-//            (*res).SAD = SAD;
-//            // give me min SAD
-//			(*res).xpos = x;
-//            (*res).ypos = y;
-
-//        }
-
-//        (*res).SAD= 3450;
-//        *aux=(float)4;
-
-//    }
+//    int id = blockIdx.x * blockDim.x + threadIdx.x;
+//    int sum_roi_temp = 0;
+//    int diff_roi_temp = 0;
+//    int y = id / RESULT_WIDTH;
+//    int x = id % RESULT_WIDTH;
+//    for(int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; ++tmp_y)
+//    {
+//        for(int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; ++tmp_x)
+//        {
+//            int i = tmp_y * TEMPLATE_WIDTH + tmp_x;
+//            unsigned char temp = const_img_temp_array[i];
+//            unsigned char roi = img_work_gpu(tmp_y + y, tmp_x + x);
+//            diff_roi_temp += abs(roi - temp);
+//            sum_roi_temp += (roi + temp);
+//        } // for(int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; ++tmp_x)
+//    } // for(int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; ++tmp_y)
+//    dev_result_array_bright[id] = 1.f - (float)diff_roi_temp / ((float)sum_roi_temp);
+//}  // END void match_temp
+//#endif // END #ifdef SQDIFF_NORMED

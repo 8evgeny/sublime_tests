@@ -10,8 +10,7 @@ using namespace std;
 using namespace cv;
 
 extern quint64 timeOpenCV;
-extern chrono::high_resolution_clock::time_point
-    time_start_OpenCV, time_end_OpenCV;
+extern chrono::high_resolution_clock::time_point time_start_OpenCV, time_end_OpenCV;
 Mat img; Mat templ; Mat result;
 
 extern int match_method;
