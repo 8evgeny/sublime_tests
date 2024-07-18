@@ -49,15 +49,23 @@ __kernel void matching(__global uchar* imageData,
 
     uchar searchIMG;
     uchar templateIMG;
-    for ( int y1 = 0; y1 < t_rows; y1 +=step_y )
+
+
+    if (method == TM_SQDIFF)
     {
-        for ( int x1 = 0; x1 < t_cols; x1 +=step_x )
+        for ( int y1 = 0; y1 < t_rows; y1 +=step_y )
         {
-            searchIMG = imageData[(y+y1) * w + (x+x1)];
-            templateIMG = templateData[y1 *  t_cols + x1];
-            SAD += abs( searchIMG - templateIMG );
+            for ( int x1 = 0; x1 < t_cols; x1 +=step_x )
+            {
+                searchIMG = imageData[(y+y1) * w + (x+x1)];
+                templateIMG = templateData[y1 *  t_cols + x1];
+//                SAD += abs( searchIMG - templateIMG );
+                SAD += ( searchIMG - templateIMG ) * ( searchIMG - templateIMG );
+            }
         }
     }
+
+
     atomic_min(aux, SAD);
     barrier(CLK_GLOBAL_MEM_FENCE);
     if ( (*aux) == SAD )
