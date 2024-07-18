@@ -18,8 +18,8 @@ enum matchMetod
 //__Local
 //Запускать сразу 4  kernel
 
-__kernel void matching(__global uchar* imageData,
-                     __global uchar* templateData,
+__kernel void matching(__global uchar* imData,
+                     __global uchar* tmData,
                      __global result* res,
                      int IMG_WIDTH,
                      int IMG_HEIGHT,
@@ -40,8 +40,8 @@ __kernel void matching(__global uchar* imageData,
     {
         return;
     }
-    uchar searchIMG;
-    uchar templateIMG;
+    uchar I;
+    uchar T;
 
     if (method == TM_SQDIFF)
     {
@@ -49,24 +49,16 @@ __kernel void matching(__global uchar* imageData,
         {
             for ( int X = 0; X < TEMPLATE_WIDTH; X +=step_x )
             {
-                searchIMG = imageData[ ( work_item_Y + Y ) * IMG_WIDTH + ( work_item_X + X ) ];
-                templateIMG = templateData[ Y * TEMPLATE_WIDTH + X ];
-                tm_result += ( searchIMG - templateIMG ) * ( searchIMG - templateIMG );
+                I = imData[ ( work_item_Y + Y ) * IMG_WIDTH + ( work_item_X + X ) ];
+                T = tmData[ Y * TEMPLATE_WIDTH + X ];
+                tm_result += ( I - T ) * ( I - T );
             }
         }
     }
 
     if (method == TM_SQDIFF_NORMED)
     {
-        for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y +=step_y )
-        {
-            for ( int X = 0; X < TEMPLATE_WIDTH; X +=step_x )
-            {
-                searchIMG = imageData[ ( work_item_Y + Y ) * IMG_WIDTH + ( work_item_X + X ) ];
-                templateIMG = templateData[ Y * TEMPLATE_WIDTH + X ];
-                tm_result += ( searchIMG - templateIMG ) * ( searchIMG - templateIMG );
-            }
-        }
+
     }
 
 
