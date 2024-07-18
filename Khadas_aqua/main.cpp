@@ -32,7 +32,10 @@ int long_food = 0;
 bool light = true;
 bool UF = false;
 mutex Mut;
-ofstream out;          // поток для записи
+ofstream logFile;          // поток для записи
+ofstream webFile;
+
+
 constexpr long numLinesInLog = 250;
 
 								//PIN37   onewire  измерение температуры
@@ -41,12 +44,11 @@ constexpr long numLinesInLog = 250;
 								//PIN2    +5
 
 
-void printTime()
+void printTime(ofstream & file)
 {
     const auto now = std::chrono::system_clock::now();
     const auto t_c = std::chrono::system_clock::to_time_t(now);
-    std::cout << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
-    out << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+    file << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
 }
 
 void
@@ -124,15 +126,14 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
     while(1)
     {
         Mut.lock();
-        out.open("/home/khadas/aqua/logFile", std::ios::app);
+        logFile.open("/home/khadas/aqua/logFile", std::ios::app);
         if (!light)
         {
             digitalWrite(gpio_pin_LAMP, HIGH);
             if (stateLight != "OFF")
             {
-                std::cout << "######## light set OFF #######" <<"\t\t";
-                out << "######## light set OFF #######" <<"\t\t";
-                printTime();
+                logFile << "######## light set OFF #######" <<"\t\t";
+                printTime(logFile);
                 stateLight = "OFF";
             }
         }
@@ -143,22 +144,20 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
                     && (stateLight != "ON") )
             {
                 digitalWrite(gpio_pin_LAMP, LOW);
-                std::cout << "######## light set ON ########"  <<"\t\t";
-                out << "######## light set ON ########"  <<"\t\t";
-                printTime();
+                logFile << "######## light set ON ########"  <<"\t\t";
+                printTime(logFile);
                 stateLight = "ON";
             }
             if ( (!((timeNow > time_light_on) &&  (timeNow < time_light_off)) || (temperature > 27.7))
                  && (stateLight != "OFF") )
             {
                 digitalWrite(gpio_pin_LAMP, HIGH);
-                std::cout << "######## light set OFF ########"  <<"\t\t";
-                out << "######## light set OFF ########"  <<"\t\t";
-                printTime();
+                logFile << "######## light set OFF ########"  <<"\t\t";
+                printTime(logFile);
                 stateLight = "OFF";
             }
         }
-        out.close();
+        logFile.close();
         Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(1000));
     }
@@ -172,15 +171,14 @@ handlerUF(bool & UF, QTime & time_UF_on, QTime & time_UF_off)
     while(1)
     {
         Mut.lock();
-        out.open("/home/khadas/aqua/logFile", std::ios::app);
+        logFile.open("/home/khadas/aqua/logFile", std::ios::app);
         if (!UF)
         {
             digitalWrite(gpio_pin_UF, HIGH);
             if (stateUF != "OFF")
             {
-                std::cout << "######## UF set OFF #######" <<"\t\t";
-                out << "######## UF set OFF #######" <<"\t\t";
-                printTime();
+                logFile << "######## UF set OFF #######" <<"\t\t";
+                printTime(logFile);
                 stateUF = "OFF";
             }
         }
@@ -190,21 +188,19 @@ handlerUF(bool & UF, QTime & time_UF_on, QTime & time_UF_off)
             if ((timeNow > time_UF_on) && (timeNow < time_UF_off) && (stateUF != "ON"))
             {
                 digitalWrite(gpio_pin_UF, LOW);
-                std::cout << "######## UF set ON ########"  <<"\t\t";
-                out << "######## UF set ON ########"  <<"\t\t";
-                printTime();
+                logFile << "######## UF set ON ########"  <<"\t\t";
+                printTime(logFile);
                 stateUF = "ON";
             }
             if (!((timeNow > time_UF_on) && (timeNow < time_UF_off)) && (stateUF != "OFF"))
             {
                 digitalWrite(gpio_pin_UF, HIGH);
-                std::cout << "######## UF set OFF ########"  <<"\t\t";
-                out << "######## UF set OFF ########"  <<"\t\t";
-                printTime();
+                logFile << "######## UF set OFF ########"  <<"\t\t";
+                printTime(logFile);
                 stateUF = "OFF";
             }
         }
-        out.close();
+        logFile.close();
         Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(1000));
     }
@@ -218,13 +214,12 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
     while(1)
     {
         Mut.lock();
-        out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
+        logFile.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
         if (!heater && stateHeater != "OFF")
         {
             digitalWrite(gpio_pin_HEAT, HIGH);
-            std::cout << "######## heater set OFF #######" <<"\t\t";
-            out << "######## heater set OFF #######" <<"\t\t";
-            printTime();
+            logFile << "######## heater set OFF #######" <<"\t\t";
+            printTime(logFile);
             stateHeater = "OFF";
         }
         if (heater)
@@ -232,21 +227,19 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
             if (temperature > max_temp && stateHeater != "OFF")
             {
                 digitalWrite(gpio_pin_HEAT, HIGH);
-                std::cout << "######## heater set OFF #######"  <<"\t\t";
-                out << "######## heater set OFF #######"  <<"\t\t";
-                printTime();
+                logFile << "######## heater set OFF #######"  <<"\t\t";
+                printTime(logFile);
                 stateHeater = "OFF";
             }
             if (temperature < min_temp && stateHeater != "ON")
             {
                 digitalWrite(gpio_pin_HEAT, LOW);
-                std::cout << "######## heater set ON ########"  <<"\t\t";
-                out << "######## heater set ON ########"  <<"\t\t";
-                printTime();
+                logFile << "######## heater set ON ########"  <<"\t\t";
+                printTime(logFile);
                 stateHeater = "ON";
             }
         }
-        out.close();
+        logFile.close();
         Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(1080));
     }
@@ -259,9 +252,8 @@ void feed()
     digitalWrite(gpio_pin_FOOD, LOW);
     this_thread::sleep_for(chrono::milliseconds(long_food));
     digitalWrite(gpio_pin_FOOD, HIGH);
-    cout << "######## FOOD ON ########"  <<"\t\t";
-    out << "######## FOOD ON ########"  <<"\t\t";
-    printTime();
+    logFile << "######## FOOD ON ########"  <<"\t\t";
+    printTime(logFile);
     this_thread::sleep_for(chrono::milliseconds(300000));
     digitalWrite(gpio_pin_PUMP_AIR, LOW);
 }
@@ -274,18 +266,17 @@ handlerFood()
     digitalWrite(gpio_pin_PUMP_AIR, LOW);
     this_thread::sleep_for(chrono::milliseconds(5000));
     Mut.lock();
-    out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
-    cout << "######## PUMP and AIR ON ########"  <<"\t";
-    out << "######## PUMP and AIR ON ########"  <<"\t";
-    printTime();
-    out.close();
+    logFile.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
+    logFile << "######## PUMP and AIR ON ########"  <<"\t";
+    printTime(logFile);
+    logFile.close();
     Mut.unlock();
 
     while(1)
     {
 
         Mut.lock();
-        out.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
+        logFile.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
 
         auto timeNow = QTime::currentTime();
         for (int i = 0; i< food.size();++i)
@@ -300,7 +291,7 @@ handlerFood()
                 feed();
         }
 
-        out.close();
+        logFile.close();
         Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(5000));
     }
@@ -343,7 +334,7 @@ int main ()
 
     thread (handlerFood).detach();
 
-    float temperatureNew, min_tempNew, max_tempNew;
+    float temperatureForLog, temperatureForWeb, min_tempNew, max_tempNew;
     bool heaterNew = false;
     QTime time_light_on_New, time_light_off_New;
     bool lightNew = false;
@@ -353,81 +344,80 @@ int main ()
 	while(1)
 	{
         Mut.lock();
-        out.open("/home/khadas/aqua/logFile", std::ios::app);
-        if (abs(temperatureNew - temperature) > 0.1)
+        logFile.open("/home/khadas/aqua/logFile", std::ios::app);
+
+        if (abs(temperatureForLog - temperature) > 0.1)
         {
-            std::cout << "temp = " << temperature <<"\t\t\t\t";
-            out << "temp = " << temperature <<"\t\t\t\t";
-            printTime();
-            temperatureNew = temperature;
+            logFile << "temp = " << temperature <<"\t\t\t\t";
+            printTime(logFile);
+            temperatureForLog = temperature;
+        }
+        if (temperatureForWeb != temperature)
+        {
+            webFile.open("/home/khadas/aqua/for_web/temperature", std::ios::out);
+            webFile <<  temperature /*<<"\t\t\t\t"*/;
+//            printTime(webFile);
+            temperatureForWeb = temperature;
+            webFile.close();
         }
         if (min_tempNew != min_temp)
         {
-            std::cout << "settig_min_temp = " << min_temp <<"\t\t\t";
-            out << "settig_min_temp = " << min_temp <<"\t\t\t";
-            printTime();
+            logFile << "settig_min_temp = " << min_temp <<"\t\t\t";
+            printTime(logFile);
             min_tempNew = min_temp;
         }
         if (max_tempNew != max_temp)
         {
-            std::cout << "settig_max_temp = " << max_temp <<"\t\t\t";
-            out << "settig_max_temp = " << max_temp <<"\t\t\t";
-            printTime();
+            logFile << "settig_max_temp = " << max_temp <<"\t\t\t";
+            printTime(logFile);
             max_tempNew = max_temp;
         }
         if (heaterNew != heater)
         {
-            std::cout << "settig_heater = " << boolalpha <<heater<<"\t\t\t";
-            out << "settig_heater = " << boolalpha <<heater<<"\t\t\t";
-            printTime();
+            logFile << "settig_heater = " << boolalpha <<heater<<"\t\t\t";
+            printTime(logFile);
             heaterNew = heater;
         }
 
         if (time_light_on_New != time_light_on)
         {
-            std::cout << "settig_light_on = " << time_light_on.toString("hh:mm").toStdString()<<"\t\t\t";
-            out << "settig_light_on = " << time_light_on.toString("hh:mm").toStdString()<<"\t\t\t";
-            printTime();
+            logFile << "settig_light_on = " << time_light_on.toString("hh:mm").toStdString()<<"\t\t\t";
+            printTime(logFile);
             time_light_on_New = time_light_on;
         }
         if (time_light_off_New != time_light_off)
         {
-            std::cout << "settig_light_off = " << time_light_off.toString("hh:mm").toStdString()<<"\t\t";
-            out << "settig_light_off = " << time_light_off.toString("hh:mm").toStdString()<<"\t\t";
-            printTime();
+            logFile << "settig_light_off = " << time_light_off.toString("hh:mm").toStdString()<<"\t\t";
+            printTime(logFile);
             time_light_off_New = time_light_off;
         }
         if (lightNew != light)
         {
-            std::cout << "settig_light = " << boolalpha <<light<<"\t\t\t\t";
-            out << "settig_light = " << boolalpha <<light<<"\t\t\t";
-            printTime();
+            logFile << "settig_light = " << boolalpha <<light<<"\t\t\t";
+            printTime(logFile);
             lightNew = light;
         }
 
         if (time_UF_on_New != time_UF_on)
         {
-            std::cout << "settig_UF_on = " << time_UF_on.toString("hh:mm").toStdString()<<"\t\t\t";
-            out << "settig_UF_on = " << time_UF_on.toString("hh:mm").toStdString()<<"\t\t\t";
-            printTime();
+            logFile << "settig_UF_on = " << time_UF_on.toString("hh:mm").toStdString()<<"\t\t\t";
+            printTime(logFile);
             time_UF_on_New = time_UF_on;
         }
         if (time_UF_off_New != time_UF_off)
         {
-            std::cout << "settig_UF_off = " << time_UF_off.toString("hh:mm").toStdString()<<"\t\t";
-            out << "settig_UF_off = " << time_UF_off.toString("hh:mm").toStdString()<<"\t\t\t";
-            printTime();
+            logFile << "settig_UF_off = " << time_UF_off.toString("hh:mm").toStdString()<<"\t\t\t";
+            printTime(logFile);
             time_UF_off_New = time_UF_off;
         }
         if (UFNew != UF)
         {
-            std::cout << "settig_UF = " << boolalpha <<UF<<"\t\t\t\t";
-            out << "settig_UF = " << boolalpha <<UF<<"\t\t\t";
-            printTime();
+            logFile << "settig_UF = " << boolalpha <<UF<<"\t\t\t";
+            printTime(logFile);
             UFNew = UF;
         }
 
-        out.close();
+        logFile.close();
         Mut.unlock();
 
         this_thread::sleep_for(chrono::milliseconds(5000));
