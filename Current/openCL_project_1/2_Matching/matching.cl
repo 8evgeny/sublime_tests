@@ -24,6 +24,8 @@ __kernel void matching(__global uchar* imageData,
     int y = get_global_id(1);
     int iGID = (y * w + h);
     uint SAD=0;
+    uint step_y = h/8;
+    uint step_x = w/8;
 
 //    local uchar imadeResult[(w-t_cols+1)*(h-t_rows+1)]
 
@@ -37,9 +39,9 @@ __kernel void matching(__global uchar* imageData,
     // loop through the template image
         uchar p_SearchIMG;
         uchar p_TemplateIMG;
-        for ( int y1 = 0; y1 < t_rows; y1 +=2 )
+        for ( int y1 = 0; y1 < t_rows; y1 +=step_y )
         {
-            for ( int x1 = 0; x1 < t_cols; x1 +=2 )
+            for ( int x1 = 0; x1 < t_cols; x1 +=step_x )
             {
                 p_SearchIMG = imageData[(y+y1) * w + (x+x1)];
                 p_TemplateIMG = templateData[y1 *  t_cols + x1];
