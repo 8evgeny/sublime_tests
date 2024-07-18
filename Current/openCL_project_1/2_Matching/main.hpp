@@ -36,7 +36,7 @@ enum matchMetod
     TM_SQDIFF_NORMED,
 //    TM_CCORR,
 //    TM_CCORR_NORMED,
-//    TM_CCOEFF,
+    TM_CCOEFF,
     TM_CCOEFF_NORMED,
     TM_COMBINED
 };

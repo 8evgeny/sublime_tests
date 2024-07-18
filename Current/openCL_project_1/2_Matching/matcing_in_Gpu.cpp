@@ -128,6 +128,10 @@ int matchesGPU()
         {
             mm = "TM_SQDIFF_NORMED";break;
         }
+        case matchMetod::TM_CCOEFF:
+        {
+            mm = "TM_CCOEFF";break;
+        }
         case matchMetod::TM_CCOEFF_NORMED:
         {
             mm = "TM_CCOEFF_NORMED";break;

@@ -8,7 +8,7 @@ enum matchMetod
 {
     TM_SQDIFF = 0,
     TM_SQDIFF_NORMED,
-    TM_CCOEFF_NORMED,
+    TM_CCOEFF,
     TM_COMBINED
 };
 
@@ -34,8 +34,8 @@ __kernel void matching(__global uchar* imData,
     int work_item_Y = get_global_id(1);
     int iGID = (work_item_Y * IMG_WIDTH + IMG_HEIGHT);
     uint tm_result = 0;
-    uint step_y = IMG_HEIGHT / 8;
-    uint step_x = IMG_WIDTH / 8;
+    uint step_y = 8;
+    uint step_x = 8;
     if ( iGID >= IMG_WIDTH * IMG_HEIGHT)
     {
         return;
@@ -54,11 +54,19 @@ __kernel void matching(__global uchar* imData,
                 tm_result += ( I - T ) * ( I - T );
             }
         }
+
+        atomic_min(var, tm_result);
+        barrier(CLK_GLOBAL_MEM_FENCE);
+        if ( (*var) == tm_result )
+        {
+            (*res).tm_result = tm_result;
+            (*res).xpos = work_item_X;
+            (*res).ypos = work_item_Y;
+        }
     }
 
 
-
-    if (method == TM_SQDIFF_NORMED)
+    if (method == TM_CCOEFF)
     {
         for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y +=step_y )
         {
@@ -66,21 +74,21 @@ __kernel void matching(__global uchar* imData,
             {
                 I = imData[ ( work_item_Y + Y ) * IMG_WIDTH + ( work_item_X + X ) ];
                 T = tmData[ Y * TEMPLATE_WIDTH + X ];
-                tm_result += ( I - T ) * ( I - T );
+                tm_result += I * T;
             }
+        }
+        atomic_max(var, tm_result);
+        barrier(CLK_GLOBAL_MEM_FENCE);
+        if ( (*var) == tm_result )
+        {
+            (*res).tm_result = tm_result;
+            (*res).xpos = work_item_X;
+            (*res).ypos = work_item_Y;
         }
     }
 
 
 
-    atomic_min(var, tm_result);
-    barrier(CLK_GLOBAL_MEM_FENCE);
-    if ( (*var) == tm_result )
-    {
-        (*res).tm_result = tm_result;
-        (*res).xpos = work_item_X;
-        (*res).ypos = work_item_Y;
-    }
 }
 
 
