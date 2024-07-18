@@ -120,22 +120,6 @@ int matchesGPU()
     string mm;
     switch (match_method)
     {
-        case matchMetod::TM_CCOEFF:
-        {
-            mm = "TM_CCOEFF";break;
-        }
-        case matchMetod::TM_CCOEFF_NORMED:
-        {
-            mm = "TM_CCOEFF_NORMED";break;
-        }
-        case matchMetod::TM_CCORR:
-        {
-            mm = "TM_CCORR";break;
-        }
-        case matchMetod::TM_CCORR_NORMED:
-        {
-            mm = "TM_CCORR_NORMED";break;
-        }
         case matchMetod::TM_SQDIFF:
         {
             mm = "TM_SQDIFF";break;
@@ -143,6 +127,14 @@ int matchesGPU()
         case matchMetod::TM_SQDIFF_NORMED:
         {
             mm = "TM_SQDIFF_NORMED";break;
+        }
+        case matchMetod::TM_CCOEFF_NORMED:
+        {
+            mm = "TM_CCOEFF_NORMED";break;
+        }
+        case matchMetod::TM_COMBINED:
+        {
+            mm = "TM_COMBINED";break;
         }
     }
     cout<<endl<<mm<<endl;
