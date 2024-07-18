@@ -68,14 +68,14 @@ void MatchingMethod( int, void* )
   rectangle( img_display, matchLoc, Point( matchLoc.x + templ.cols , matchLoc.y + templ.rows ), Scalar::all(0), 2, 8, 0 );
   rectangle( result, matchLoc, Point( matchLoc.x + templ.cols , matchLoc.y + templ.rows ), Scalar::all(0), 2, 8, 0 );
 
-  const char* image_window = "matches openCV";
+  const char* image_window = "openCV matching";
   const char* result_window = "result matches openCV";
   namedWindow( image_window, WINDOW_AUTOSIZE );
-  namedWindow( result_window, WINDOW_AUTOSIZE );
+//  namedWindow( result_window, WINDOW_AUTOSIZE );
   moveWindow(image_window, 900,100);
-  moveWindow(result_window, 1300, 140);
+//  moveWindow(result_window, 1300, 140);
   imshow( image_window, img_display );
-  imshow( result_window, result );
+//  imshow( result_window, result );
 
   return;
 }

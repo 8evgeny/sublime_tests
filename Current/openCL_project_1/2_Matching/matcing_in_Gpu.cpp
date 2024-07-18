@@ -154,9 +154,9 @@ int matchesGPU()
 
     cv::cvtColor(imageIn,imageIn,cv::COLOR_GRAY2BGR);
     cv::rectangle(imageIn, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+tmpl.cols, res.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
-    const char* parallel_window = "Parallel matching";
+    const char* parallel_window = "GPU matching";
     namedWindow( parallel_window, WINDOW_AUTOSIZE );
-    moveWindow(parallel_window, 900,450);
+    moveWindow(parallel_window, 1300,100);
     imshow(parallel_window, imageIn);
 
     cout<<"\nPosition"<<", x: "<<res.xpos<<", y: "<<res.ypos<<"\n";
