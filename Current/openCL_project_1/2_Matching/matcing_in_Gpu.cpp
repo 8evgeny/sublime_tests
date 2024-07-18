@@ -42,7 +42,7 @@ int matchesGPU()
     initDevice();
 
 
-    loadAndBuildProgram("kernel");
+    loadAndBuildProgram(KERNEL_FILE);
 
     cl_uchar* imageData = new cl_uchar[imageIn.cols * imageIn.rows];
     cl_uchar* templateData = new cl_uchar[tmpl.rows*tmpl.cols];
@@ -66,7 +66,7 @@ int matchesGPU()
 
         // Kernels
         int iclError = 0;
-        clkProcess=cl::Kernel(program,"matching", &iclError );
+        clkProcess=cl::Kernel(program, KERNEL_NAME, &iclError );
 
         if (iclError != 0 )
         {

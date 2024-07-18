@@ -8,6 +8,8 @@
 
 #define WORKGROUPSIZE 16
 #define NUM_ITERATIONS_GPU  100
+#define KERNEL_FILE "matching.cl"
+#define KERNEL_NAME "matching"
 
 struct result
 {
