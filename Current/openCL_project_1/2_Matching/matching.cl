@@ -95,6 +95,8 @@ __kernel void matching(__global uchar* imData,
 
     if (method == TM_CCOEFF)
     {
+        long long I2 = 0;
+        long long T2 = 0;
         for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y +=step_y )
         {
             for ( int X = 0; X < TEMPLATE_WIDTH; X +=step_x )
@@ -102,8 +104,12 @@ __kernel void matching(__global uchar* imData,
                 I = imData[ ( work_item_Y + Y ) * IMG_WIDTH + ( work_item_X + X ) ];
                 T = tmData[ Y * TEMPLATE_WIDTH + X ];
                 tm_result += I * T;
+                I2 += I*I;
+                T2 += T*T;
             }
         }
+        tm_result = tm_result /sqrt((float)(I2*T2));
+
         atomic_max(var, tm_result);
         barrier(CLK_GLOBAL_MEM_FENCE);
         if ( (*var) == tm_result )
