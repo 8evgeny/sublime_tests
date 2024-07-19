@@ -354,7 +354,7 @@ int main ()
         }
         if (temperatureForWeb != temperature)
         {
-            webFile.open("/var/www/html/temperature", std::ios::out);
+            webFile.open("/home/khadas/aqua/for_web/temperature", std::ios::out);
             webFile <<  temperature /*<<"\t\t\t\t"*/;
 //            printTime(webFile);
             temperatureForWeb = temperature;
