@@ -6,6 +6,7 @@ using namespace cv;
 extern int match_method;
 extern Mat img_work, img_temp;
 extern int iter_num;
+extern Mat img_result_CL;
 std::string kernel_source;
 chrono::high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
 cl::Kernel clkProcess;
@@ -98,8 +99,8 @@ int matchingOpenCL()
                                 sizeof(unsigned char) * (img_work.cols-img_temp.cols+1) * (img_work.rows-img_temp.rows+1) ,&mData[0]);
 
     }//End -- for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
-
     time_end_OpenCL = chrono::high_resolution_clock::now();
+    ucharToMat(mData, img_result_CL);
 
     delete[] imageData;
     delete[] templateData;
