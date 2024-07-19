@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to aqua!</title>
+<html lang='ru'>
+  <head> 
+  <meta charset='utf-8'>
+<title>Аквариум</title>
 <style>
     body {
         width: 35em;
@@ -11,8 +12,37 @@
 </style>
 </head>
 <body>
-<h2>Aquarium program!</h2>
+<h2>Прграмма управления аквариумом</h2>
+  <form onsubmit='return false;' id='frm1' style='visibility:hidden'>
+    <label for='temper'>Температура:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
+    <input type='text' id='temper' name='temper' value='' style='width: 50px;'>
+  </form>
 
 
+<script>
+  function sleep(milliseconds) 
+  {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+  };
+  sleep(100);
+  let request1 = new XMLHttpRequest();
+  request1.open('GET', '/temperature');
+  request1.send();
+  sleep(100);
+request1.onreadystatechange = function() 
+  {
+    document.getElementById('frm1').elements[0].value=request1.responseText.toString().substring(0, 15);
+    document.getElementById('frm1').style.visibility = 'visible';
+  };
+
+
+
+
+
+</script>
 </body>
 </html>
