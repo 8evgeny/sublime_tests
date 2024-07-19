@@ -23,7 +23,6 @@ size_t max_workgroup_size, global_size;
 
 int matchesOpenCL()
 {
-
     initDevice();
     loadAndBuildProgram(KERNEL_FILE);
 
@@ -97,8 +96,8 @@ int matchesOpenCL()
     delete[] imageData;
     delete[] templateData;
 
-    auto time_matching_GPU = std::chrono::duration_cast<chrono::microseconds>(time_end_OpenCL - time_start_OpenCL);
-    printf("Duration OpenCL =  \t%.2f ms \n", (float)time_matching_GPU.count()/(1000 * iter_num));
+    auto time_matching_GPU = std::chrono::duration_cast<chrono::milliseconds>(time_end_OpenCL - time_start_OpenCL);
+    printf("Duration OpenCL =  \t%.2f ms \n", (float)time_matching_GPU.count()/iter_num );
 
     cv::cvtColor(img_work,img_work,cv::COLOR_GRAY2BGR);
     cv::rectangle(img_work, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+img_temp.cols, res.ypos+img_temp.rows),cv::Scalar(0,0,255),3);

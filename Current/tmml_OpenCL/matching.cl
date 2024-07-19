@@ -37,8 +37,8 @@ __kernel void matching(__global uchar* imData,
     int work_item_Y = get_global_id(1);
     int iGID = (work_item_Y * IMG_WIDTH + IMG_HEIGHT);
     uint tm_result = 0;
-    uint step_y = 1;
-    uint step_x = 1;
+    uint step_y = 3;
+    uint step_x = 3;
     if ( iGID >= IMG_WIDTH * IMG_HEIGHT)
     {
         return;

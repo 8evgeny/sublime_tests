@@ -91,7 +91,7 @@ int main()
 //OpenCL
     matchesOpenCL();
 
-
+//Results
     tm->fill_result_array();
     double sum_diff = 0;
     for(int id = 0; id < RESULT_AREA; id++)
