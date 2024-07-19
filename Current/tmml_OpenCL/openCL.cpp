@@ -29,7 +29,7 @@ int matchingOpenCL()
 
     cl_uchar* imageData = new cl_uchar[img_work.cols * img_work.rows];
     cl_uchar* templateData = new cl_uchar[img_temp.cols * img_temp.rows];
-    cl_uchar* mData = new cl_uchar[(img_work.cols-img_temp.cols+1) * (img_work.rows-img_temp.rows+1)];
+    cl_uint* mData = new cl_uint[(img_work.cols-img_temp.cols+1) * (img_work.rows-img_temp.rows+1)];
 
     loadDataMatToUchar(imageData, img_work, 1);
     loadDataMatToUchar(templateData, img_temp, 1);
@@ -49,7 +49,7 @@ int matchingOpenCL()
         clInputRes=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(result));
         clInputVar=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_short));
         clMatchMethod=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(int));
-        clmData=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * (img_work.cols-img_temp.cols+1) * (img_work.rows-img_temp.rows+1));
+        clmData=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_uint) * (img_work.cols-img_temp.cols+1) * (img_work.rows-img_temp.rows+1));
 
         // Kernels
         int iclError = 0;
@@ -69,6 +69,7 @@ int matchingOpenCL()
         queue.enqueueWriteBuffer(clInputRes, CL_TRUE, 0,  sizeof(result), &res);
         queue.enqueueWriteBuffer(clInputVar, CL_TRUE, 0,  sizeof(cl_short), &var);
         queue.enqueueWriteBuffer(clMatchMethod, CL_TRUE, 0,  sizeof(int), &match_method);
+        queue.enqueueWriteBuffer(clmData, CL_TRUE, 0,  sizeof(cl_uint) * (img_work.cols-img_temp.cols+1) * (img_work.rows-img_temp.rows+1), &mData[0]);
 
         //--- Init Kernel arguments ---------------------------------------------------
         clkProcess.setArg(0,clInputImg);
@@ -96,11 +97,11 @@ int matchingOpenCL()
         queue.enqueueReadBuffer(clInputVar, CL_TRUE, 0, sizeof(cl_short),&var);
         queue.enqueueReadBuffer(clInputRes, CL_TRUE, 0, sizeof(result),&res);
         queue.enqueueReadBuffer(clmData, CL_TRUE, 0,
-                                sizeof(unsigned char) * (img_work.cols-img_temp.cols+1) * (img_work.rows-img_temp.rows+1) ,&mData[0]);
+                                sizeof(cl_uint) * (img_work.cols-img_temp.cols+1) * (img_work.rows-img_temp.rows+1) ,&mData[0]);
 
     }//End -- for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
     time_end_OpenCL = chrono::high_resolution_clock::now();
-    ucharToMat(mData, img_result_CL);
+    uintToMat(mData, img_result_CL);
 
     delete[] imageData;
     delete[] templateData;
@@ -212,7 +213,16 @@ void ucharToMat(uchar *data,cv::Mat &image)
     }
 }
 
-
+void uintToMat(uint *data,cv::Mat &image)
+{
+    for (int y=0; y<image.rows;y++)
+    {
+        for (int x = 0 ; x<image.cols ; x++)
+        {
+            image.at<uint>(y,x) = data[(long)y * (long)image.cols + x] ;
+        }
+    }
+}
 
 
 

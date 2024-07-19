@@ -30,13 +30,13 @@ __kernel void matching(__global uchar* imData,
                      int TEMPLATE_HEIGHT,
                      __global uint* var,
                      int method,
-                     __global uchar* matchData
+                     __global uint* matchData
                      )
 {
     // get index into global data array
     int work_item_X = get_global_id(0);
     int work_item_Y = get_global_id(1);
-    int iGID = (work_item_Y * IMG_WIDTH + IMG_HEIGHT);
+    int iGID = (work_item_Y * IMG_WIDTH + work_item_X);
     uint tm_result = 0;
     uint step_y = 3;
     uint step_x = 3;
@@ -58,6 +58,10 @@ __kernel void matching(__global uchar* imData,
                 tm_result += ( I - T ) * ( I - T );
             }
         }
+
+        matchData[ iGID ] = tm_result ;
+        barrier(CLK_GLOBAL_MEM_FENCE);
+
 
         atomic_min(var, tm_result);
         barrier(CLK_GLOBAL_MEM_FENCE);
@@ -84,7 +88,11 @@ __kernel void matching(__global uchar* imData,
                 tm_result += ( I - T ) * ( I - T );
             }
         }
-        tm_result = tm_result * 1000 /sqrt((float)(I2*T2));
+//        tm_result = tm_result *100 /sqrt((float)(I2*T2));
+
+        matchData[ iGID ] = tm_result * 5000;
+        barrier(CLK_GLOBAL_MEM_FENCE);
+
 
         atomic_min(var, tm_result);
         barrier(CLK_GLOBAL_MEM_FENCE);
@@ -133,7 +141,8 @@ __kernel void matching(__global uchar* imData,
             }
         }
         tm_result = tm_result /sqrt((float)(I2*T2));
-
+        matchData[ iGID ] = tm_result * 100000;
+        barrier(CLK_GLOBAL_MEM_FENCE);
         atomic_max(var, tm_result);
         barrier(CLK_GLOBAL_MEM_FENCE);
         if ( (*var) == tm_result )
