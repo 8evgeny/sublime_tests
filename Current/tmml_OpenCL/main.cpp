@@ -1,4 +1,5 @@
 #include "tmml.hpp"
+#include "openCL.hpp"
 
 using namespace std;
 using namespace cv;
@@ -10,13 +11,23 @@ constexpr int temp_center_y = 165;
 constexpr int temp_left = temp_center_x - 0.5 * TEMPLATE_WIDTH;
 constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_HEIGHT;
 float min_max_Val = 0.99999;
+Mat img_work, img_temp;
+
+#ifdef SQDIFF_NORMED
+int match_method = matchMetod::TM_SQDIFF_NORMED;
+#endif
+#ifdef CCOEFF_NORMED
+int match_method = matchMetod::TM_CCOEFF_NORMED;
+#endif
+#ifdef COMBINED
+int match_method = matchMetod::TM_COMBINED;
+#endif
 
 int main()
 {
-
     Rect temp_rect{temp_left, temp_top, TEMPLATE_WIDTH, TEMPLATE_HEIGHT};
     Mat img_source = imread("image_source", CV_8UC1);
-    Mat img_work, img_temp;
+
     Mat img_result_cpu(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
     Mat img_result_cuda(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
     Rect work_rect(Point(0, 0), Point(WORK_WIDTH, WORK_HEIGHT));
@@ -36,7 +47,7 @@ int main()
     time_start = system_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
     {
-        matchTemplate(img_work, img_temp, img_result_cpu, TM_CCOEFF_NORMED);  // TM_CCOEFF_NORMED ;  TM_CCORR_NORMED ;TM_CCOEFF
+        matchTemplate(img_work, img_temp, img_result_cpu, match_method);
         minMaxLoc(img_result_cpu, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
         if(maxLoc.x != temp_left || maxLoc.y != temp_top){cout << "CPU iter=" << iter << " !!!" << endl; break;}
     }  // END for(int iter = 0; iter < iter_num; ++iter)
@@ -58,16 +69,19 @@ int main()
     cout << "Duration CUDA =\t\t" << 1e3 * duration_matching.count()/iter_num  << " ms" << endl;
     cout << "cuda xy =\t\t[" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl;
 
-//OpenCL  (инициализация в конструкторе)
-    time_start = system_clock::now();
-    for(int iter = 0; iter < iter_num; ++iter)
-    {
-        tm->work_cuda(img_work, img_temp, tm->max_pix);
-        if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "GPU iter=" << iter << " !!!" << endl; break;}
-    }  // END for(int iter = 0; iter < iter_num; ++iter)
-    time_end = system_clock::now();
-    duration_matching = time_end - time_start;
-    cout << "Duration CUDA =\t\t" << 1e3 * duration_matching.count()/iter_num  << " ms" << endl;
+//OpenCL
+
+    matchesOpenCL();
+
+//    time_start = system_clock::now();
+//    for(int iter = 0; iter < iter_num; ++iter)
+//    {
+//        tm->work_cuda(img_work, img_temp, tm->max_pix);
+//        if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "GPU iter=" << iter << " !!!" << endl; break;}
+//    }  // END for(int iter = 0; iter < iter_num; ++iter)
+//    time_end = system_clock::now();
+//    duration_matching = time_end - time_start;
+//    cout << "Duration CUDA =\t\t" << 1e3 * duration_matching.count()/iter_num  << " ms" << endl;
 
 
 

@@ -1,20 +1,16 @@
-#include <QtCore>
-#include <QImage>
-#include <CL/cl.hpp>
-#include "main.hpp"
-#include <fstream>
-#include <iostream>
+#include "openCL.hpp"
 
-extern bool enable_Serial_stop_after_find_zero;
-extern int match_method;
 using namespace std;
 using namespace cv;
+
+extern int match_method;
+extern Mat img_work, img_temp;
 
 int initDevice();
 int loadAndBuildProgram(std::string programFile);
 
 std::string kernel_source;
-chrono::high_resolution_clock::time_point time_start_OpenCV, time_end_OpenCV, time_start_GPU, time_end_GPU;
+chrono::high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
 cl::Kernel clkProcess;
 cl::Buffer clInputImg, clInputTemp, clInputRes, clInputVar,  clResults, clMatchMethod;
 cl::CommandQueue queue;
@@ -28,27 +24,23 @@ std::vector<cl::Platform> all_platforms;
 int var = 0;
 size_t max_workgroup_size, global_size;
 
-
-int matchesGPU()
+int matchesOpenCL()
 {
-    cv::Mat tmpl = cv::imread("template");
-    cv::Mat imageIn = cv::imread("image");
 
-    if (tmpl.channels() == 3)
-        cv::cvtColor(tmpl, tmpl, cv::COLOR_BGR2GRAY);
-    if (imageIn.channels() == 3)
-        cv::cvtColor(imageIn, imageIn, cv::COLOR_BGR2GRAY);
+//    if (img_temp.channels() == 3)
+//        cv::cvtColor(img_temp, img_temp, cv::COLOR_BGR2GRAY);
+//    if (img_work.channels() == 3)
+//        cv::cvtColor(img_work, img_work, cv::COLOR_BGR2GRAY);
 
     initDevice();
 
-
     loadAndBuildProgram(KERNEL_FILE);
 
-    cl_uchar* imageData = new cl_uchar[imageIn.cols * imageIn.rows];
-    cl_uchar* templateData = new cl_uchar[tmpl.rows*tmpl.cols];
+    cl_uchar* imageData = new cl_uchar[img_work.cols * img_work.rows];
+    cl_uchar* templateData = new cl_uchar[img_temp.rows*img_temp.cols];
 
-    loadDataMatToUchar(imageData, imageIn, 1);
-    loadDataMatToUchar(templateData, tmpl, 1);
+    loadDataMatToUchar(imageData, img_work, 1);
+    loadDataMatToUchar(templateData, img_temp, 1);
 
     result res;
     res.tm_result = 10000;
@@ -56,12 +48,12 @@ int matchesGPU()
     res.ypos=0;
     cl_short aux = 10000;
 
-    time_start_GPU = chrono::high_resolution_clock::now();
+    time_start_OpenCL = chrono::high_resolution_clock::now();
 
     for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
     {
-        clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * imageIn.cols * imageIn.rows);
-        clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * tmpl.rows * tmpl.cols);
+        clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_work.cols * img_work.rows);
+        clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_temp.rows * img_temp.cols);
         clInputRes=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(result));
         clInputVar=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_short));
         clMatchMethod=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(int));
@@ -77,8 +69,8 @@ int matchesGPU()
             return -1;
         }
         // Send Data
-        queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * imageIn.cols * imageIn.rows, &imageData[0]);
-        queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * tmpl.rows * tmpl.cols, &templateData[0]);
+        queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * img_work.cols * img_work.rows, &imageData[0]);
+        queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * img_temp.rows * img_temp.cols, &templateData[0]);
         queue.enqueueWriteBuffer(clInputRes, CL_TRUE, 0,  sizeof(result), &res);
         queue.enqueueWriteBuffer(clInputVar, CL_TRUE, 0,  sizeof(cl_short), &var);
         queue.enqueueWriteBuffer(clMatchMethod, CL_TRUE, 0,  sizeof(int), &match_method);
@@ -89,15 +81,15 @@ int matchesGPU()
         clkProcess.setArg(1,clInputTemp);
         clkProcess.setArg(2,clInputRes);
 
-        clkProcess.setArg(3, (int)imageIn.cols);
-        clkProcess.setArg(4, (int)imageIn.rows);
-        clkProcess.setArg(5, (int)tmpl.cols);
-        clkProcess.setArg(6, (int)tmpl.rows);
+        clkProcess.setArg(3, (int)img_work.cols);
+        clkProcess.setArg(4, (int)img_work.rows);
+        clkProcess.setArg(5, (int)img_temp.cols);
+        clkProcess.setArg(6, (int)img_temp.rows);
         clkProcess.setArg(7, clInputVar);
         clkProcess.setArg(8, match_method);
 
         // Image 2D
-        cl::NDRange gRM=cl::NDRange((imageIn.cols - tmpl.cols), (imageIn.rows - tmpl.rows));
+        cl::NDRange gRM=cl::NDRange((img_work.cols - img_temp.cols), (img_work.rows - img_temp.rows));
 
         queue.enqueueNDRangeKernel(
                     clkProcess,
@@ -112,7 +104,7 @@ int matchesGPU()
 
     }//End -- for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
 
-    time_end_GPU = chrono::high_resolution_clock::now();
+    time_end_OpenCL = chrono::high_resolution_clock::now();
 
     delete[] imageData;
     delete[] templateData;
@@ -142,21 +134,18 @@ int matchesGPU()
         }
     }
     cout<<endl<<mm<<endl;
-    auto time_matching_OpenCV = std::chrono::duration_cast<chrono::microseconds>(time_end_OpenCV - time_start_OpenCV);
-    printf("Time matching OpenCV  \t\t\t%.2f ms \n", (float)time_matching_OpenCV.count()/1000);
 
-    auto time_matching_GPU = std::chrono::duration_cast<chrono::microseconds>(time_end_GPU - time_start_GPU);
-    printf("Time matching GPU  \t\t\t%.2f ms \n", (float)time_matching_GPU.count()/(1000 * NUM_ITERATIONS_GPU));
+    auto time_matching_GPU = std::chrono::duration_cast<chrono::microseconds>(time_end_OpenCL - time_start_OpenCL);
+    printf("Duration OpenCL =  \t%.2f ms \n", (float)time_matching_GPU.count()/(1000 * NUM_ITERATIONS_GPU));
 
-    cv::cvtColor(imageIn,imageIn,cv::COLOR_GRAY2BGR);
-    cv::rectangle(imageIn, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+tmpl.cols, res.ypos+tmpl.rows),cv::Scalar(0,0,255),3);
-    const char* parallel_window = "GPU matching";
-    namedWindow( parallel_window, WINDOW_AUTOSIZE );
-    moveWindow(parallel_window, 1300,100);
-    imshow(parallel_window, imageIn);
+    cv::cvtColor(img_work,img_work,cv::COLOR_GRAY2BGR);
+    cv::rectangle(img_work, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+img_temp.cols, res.ypos+img_temp.rows),cv::Scalar(0,0,255),3);
+    const char* OpenCL = "OpenCL";
+    namedWindow( OpenCL, WINDOW_AUTOSIZE );
+    moveWindow(OpenCL, 1300,400);
+    imshow(OpenCL, img_work);
 
-    cout<<"\nPosition"<<", x: "<<res.xpos<<", y: "<<res.ypos<<"\n";
-    cv::waitKey(-1);
+    cout << "openCL xy =\t\t[" << res.xpos << ", " << res.ypos << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl;
 
 return 0;
 }
@@ -185,7 +174,7 @@ int initDevice()
         return -1;
     }
     default_platform=cl::Platform(all_platforms[0]);
-    std::cout << "Using platform: "<<default_platform.getInfo<CL_PLATFORM_NAME>()<<"\n";
+//    std::cout << "Using platform: "<<default_platform.getInfo<CL_PLATFORM_NAME>()<<"\n";
 
     //get default device of the default platform
 
@@ -195,7 +184,7 @@ int initDevice()
         return -1;
     }
     default_device=cl::Device(all_devices[0]);
-    std::cout<< "Using device: "<<default_device.getInfo<CL_DEVICE_NAME>()<<"\n";
+//    std::cout<< "Using device: "<<default_device.getInfo<CL_DEVICE_NAME>()<<"\n";
 
     context=cl::Context(default_device);
 
@@ -222,3 +211,38 @@ int loadAndBuildProgram(std::string programFile)
 
     return 0;
 }
+
+
+void loadDataMatToUchar(uchar *data, cv::Mat &image, int nchannels)
+{
+    int width = image.cols;
+    int height = image.rows;
+    for (int y=0; y<height;y++)
+    {
+        for (int x = 0 ; x<width ; x++)
+        {
+            data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 0] = image.at<uchar>(y,x);
+            if (nchannels==3)
+            {
+                data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 1] = image.at<uchar>(y,x);
+                data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 2] = image.at<uchar>(y,x);
+            }
+        }
+    }
+}
+void ucharToMat(uchar *data,cv::Mat &image)
+{
+    for (int y=0; y<image.rows;y++)
+    {
+        for (int x = 0 ; x<image.cols ; x++)
+        {
+            image.at<uchar>(y,x) = data[(long)y * (long)image.cols + x] ;
+        }
+    }
+}
+
+
+
+
+
+

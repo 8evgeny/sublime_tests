@@ -6,7 +6,7 @@ project(tmml_OpenCL)
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)
 # CORR_TYPE = 6 : CCOEFF_NORMED  (Кросскорреляция модифицированная)
 # CORR_TYPE = 8 ; COMBINED (объединение прямой и модифицированной кросскорреляции)
-set(CORR_TYPE 8)
+set(CORR_TYPE 6)
 
 set(TEMPLATE_WIDTH 48)
 set(TEMPLATE_HEIGHT 48)
@@ -17,6 +17,11 @@ set(CMAKE_MAKE_PROGRAM "make -j${nproc}")
 
 find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
 include_directories(${OpenCV_DIR})
+
+find_package( OpenCL REQUIRED )
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Gui Widgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets REQUIRED)
+include_directories (${OpenCL_INCLUDE_DIRS} )
 
 set(CMAKE_CUDA_COMPILER /usr/local/cuda/bin/nvcc)
 option(USE_CUDA "Use CUDA" ON)
@@ -64,9 +69,6 @@ endif()
 if(${CORR_TYPE} EQUAL 2)
     add_definitions(-DSQDIFF_NORMED)
 endif()
-if(${CORR_TYPE} EQUAL 3)
-    add_definitions(-DCCORR)
-endif()
 if(${CORR_TYPE} EQUAL 6)
     add_definitions(-DCCOEFF_NORMED)
 endif()
@@ -79,8 +81,16 @@ add_executable(tmml_openCL
     tmml.cpp
     tmml.hpp
     tmml.cu
+    openCL.cpp
+    openCL.hpp
     )
 set_target_properties(tmml_openCL PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
-target_link_libraries(tmml_openCL ${OpenCV_LIBS})
-configure_file(OpenCL/matching.cl ${CMAKE_CURRENT_BINARY_DIR}/matching.cl COPYONLY)
+target_link_libraries(tmml_openCL
+    ${OpenCV_LIBS}
+    ${OpenCL_LIBRARY}
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Gui
+    )
+configure_file(matching.cl ${CMAKE_CURRENT_BINARY_DIR}/matching.cl COPYONLY)
 configure_file(tank_2.png ${CMAKE_CURRENT_BINARY_DIR}/image_source COPYONLY)
