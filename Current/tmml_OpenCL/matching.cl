@@ -29,7 +29,8 @@ __kernel void matching(__global uchar* imData,
                      int TEMPLATE_WIDTH,
                      int TEMPLATE_HEIGHT,
                      __global uint* var,
-                     int method
+                     int method,
+                     __global uchar* matchData
                      )
 {
     // get index into global data array

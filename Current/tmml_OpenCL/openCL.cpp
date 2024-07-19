@@ -9,7 +9,7 @@ extern int iter_num;
 std::string kernel_source;
 chrono::high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
 cl::Kernel clkProcess;
-cl::Buffer clInputImg, clInputTemp, clInputRes, clInputVar,  clResults, clMatchMethod;
+cl::Buffer clInputImg, clInputTemp, clInputRes, clInputVar,  clResults, clMatchMethod, clmData;
 cl::CommandQueue queue;
 cl::Context context;
 cl::Program program;
@@ -27,7 +27,8 @@ int matchingOpenCL()
     loadAndBuildProgram(KERNEL_FILE);
 
     cl_uchar* imageData = new cl_uchar[img_work.cols * img_work.rows];
-    cl_uchar* templateData = new cl_uchar[img_temp.rows*img_temp.cols];
+    cl_uchar* templateData = new cl_uchar[img_temp.cols * img_temp.rows];
+    cl_uchar* mData = new cl_uchar[(img_work.cols-img_temp.cols+1) * (img_work.rows-img_temp.rows+1)];
 
     loadDataMatToUchar(imageData, img_work, 1);
     loadDataMatToUchar(templateData, img_temp, 1);
@@ -47,6 +48,7 @@ int matchingOpenCL()
         clInputRes=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(result));
         clInputVar=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_short));
         clMatchMethod=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(int));
+        clmData=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * (img_work.cols-img_temp.cols+1) * (img_work.rows-img_temp.rows+1));
 
         // Kernels
         int iclError = 0;
@@ -55,6 +57,9 @@ int matchingOpenCL()
         if (iclError != 0 )
         {
             cout<<"iclError"<<endl;
+            delete[] imageData;
+            delete[] templateData;
+            delete[] mData;
             return -1;
         }
         // Send Data
@@ -75,6 +80,7 @@ int matchingOpenCL()
         clkProcess.setArg(6, (int)img_temp.rows);
         clkProcess.setArg(7, clInputVar);
         clkProcess.setArg(8, match_method);
+        clkProcess.setArg(9, clmData);
 
         // Image 2D
         cl::NDRange gRM=cl::NDRange((img_work.cols - img_temp.cols), (img_work.rows - img_temp.rows));
@@ -86,8 +92,10 @@ int matchingOpenCL()
                     cl::NullRange
                     );
         queue.finish();
-        queue.enqueueReadBuffer(clInputVar, CL_TRUE,0, sizeof(cl_short),&var);
-        queue.enqueueReadBuffer(clInputRes, CL_TRUE,0, sizeof(result),&res);
+        queue.enqueueReadBuffer(clInputVar, CL_TRUE, 0, sizeof(cl_short),&var);
+        queue.enqueueReadBuffer(clInputRes, CL_TRUE, 0, sizeof(result),&res);
+        queue.enqueueReadBuffer(clmData, CL_TRUE, 0,
+                                sizeof(unsigned char) * (img_work.cols-img_temp.cols+1) * (img_work.rows-img_temp.rows+1) ,&mData[0]);
 
     }//End -- for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
 
@@ -95,6 +103,7 @@ int matchingOpenCL()
 
     delete[] imageData;
     delete[] templateData;
+    delete[] mData;
 
     auto time_matching_GPU = std::chrono::duration_cast<chrono::milliseconds>(time_end_OpenCL - time_start_OpenCL);
     printf("Duration OpenCL =  \t%.2f ms \n", (float)time_matching_GPU.count()/iter_num );
