@@ -236,7 +236,7 @@ __global__ void max_pixel2(const Pix * max_K1, Pix * max_K2)
     max_K2[id].bright = max_pix_bright;
 } // END max_pixel2
 
-void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
+void tmml::work_cuda(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 {
     img_work_gpu.upload(img_work);
     int id = 0;
@@ -268,4 +268,4 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 
     cudaMemcpy(result_array_bright, dev_result_array_bright, sizeof(float) * RESULT_AREA, cudaMemcpyDeviceToHost);
 
-} // END work_tmml
+} // END work_cuda

@@ -1,8 +1,5 @@
 #pragma once
-#ifndef NO_GPU
-    #include <opencv2/core/cuda.hpp>
-#endif // END ifndef NO_GPU
-
+#include <opencv2/core/cuda.hpp>
 #define _USE_MATH_DEFINES
 #include <opencv2/core/utility.hpp>
 #include "opencv2/imgproc.hpp"
@@ -46,7 +43,6 @@ const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
     const int K2 = 12;
 #endif  // END ifdef GPU_XAVIER_NX
 
-#ifndef NO_GPU
     const float threads_match_temp_1 = 1.f / threads_match_temp;
 
     // Число нитей CUDA в итерации:
@@ -55,7 +51,6 @@ const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
     const int blocks_match_temp = RESULT_AREA * threads_match_temp_1;
     const int batch_size = TEMPLATE_AREA;
     const int blocks_maxloc = N1 / threads_maxloc;
-#endif // END ifndef NO_GPU
 
     struct Pix
     {
@@ -71,7 +66,8 @@ class tmml
     ~tmml();
 
     const Pix max_pix0;
-    void work_tmml(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
+    void work_cuda(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
+    void work_cl(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
     Pix max_pix = max_pix0;
     double maxVal = 0;
     cv::Mat img_result = cv::Mat(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));
@@ -89,7 +85,6 @@ class tmml
     double minVal, min_max_Val;
     cv::Point minLoc, maxLoc;        
 
-#ifndef NO_GPU
     void cuda_Malloc();
     void cuda_Free();
     void init_matchers();
@@ -104,8 +99,4 @@ class tmml
     unsigned char  img_temp_arr[TEMPLATE_AREA];
     float error_Val = 0.f, min_max_Val2 = 0.f;
 
-
-
-
-#endif // END ifndef NO_GPU
 }; // END class tmml
