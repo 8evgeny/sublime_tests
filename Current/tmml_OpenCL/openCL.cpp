@@ -58,7 +58,6 @@ int matchesOpenCL()
         clInputVar=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_short));
         clMatchMethod=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(int));
 
-
         // Kernels
         int iclError = 0;
         clkProcess=cl::Kernel(program, KERNEL_NAME, &iclError );
@@ -74,7 +73,6 @@ int matchesOpenCL()
         queue.enqueueWriteBuffer(clInputRes, CL_TRUE, 0,  sizeof(result), &res);
         queue.enqueueWriteBuffer(clInputVar, CL_TRUE, 0,  sizeof(cl_short), &var);
         queue.enqueueWriteBuffer(clMatchMethod, CL_TRUE, 0,  sizeof(int), &match_method);
-
 
         //--- Init Kernel arguments ---------------------------------------------------
         clkProcess.setArg(0,clInputImg);
@@ -100,7 +98,6 @@ int matchesOpenCL()
         queue.finish();
         queue.enqueueReadBuffer(clInputVar, CL_TRUE,0, sizeof(cl_short),&var);
         queue.enqueueReadBuffer(clInputRes, CL_TRUE,0, sizeof(result),&res);
-
 
     }//End -- for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
 
