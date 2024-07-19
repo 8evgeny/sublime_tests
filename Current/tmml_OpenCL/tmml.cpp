@@ -6,16 +6,15 @@ using namespace cv;
 tmml::tmml(bool &ok, float& min_max_Val0)
 {
     min_max_Val = min_max_Val0;
-#ifndef NO_GPU
     //error_Val = 1 - min_max_Val0;
     min_max_Val2 = min_max_Val0 * min_max_Val0;
     cuda_Malloc();
     fill_result_array();
     //fill_template_array();
     fill1level();
-#endif // END ifndef NO_GPU
     ok = true;
-    cout << "Constructor tmml, ok= " << ok << endl;
+//    cout << "Constructor tmml, ok= " << ok << endl;
+
 } // END tmml
 
 
