@@ -33,8 +33,11 @@ bool light = true;
 bool UF = false;
 mutex Mut;
 ofstream logFile;          // поток для записи
-ofstream webFile;
-
+ofstream fileTemperature;
+ofstream fileLight_on;
+ofstream fileLight_off;
+ofstream fileHeat_on;
+ofstream fileHeat_off;
 
 constexpr long numLinesInLog = 250;
 
@@ -354,23 +357,29 @@ int main ()
         }
         if (temperatureForWeb != temperature)
         {
-            webFile.open("/home/khadas/aqua/for_web/temperature", std::ios::out);
-            webFile <<  temperature /*<<"\t\t\t\t"*/;
-//            printTime(webFile);
+            fileTemperature.open("/home/khadas/aqua/for_web/temperature", std::ios::out);
+            fileTemperature <<  temperature <<" °C    ";
+            printTime(fileTemperature);
             temperatureForWeb = temperature;
-            webFile.close();
+            fileTemperature.close();
         }
         if (min_tempNew != min_temp)
         {
             logFile << "settig_min_temp = " << min_temp <<"\t\t\t";
             printTime(logFile);
             min_tempNew = min_temp;
+            fileHeat_on.open("/home/khadas/aqua/for_web/heat_on", std::ios::out);
+            fileHeat_on<<min_tempNew<<" °C";
+            fileHeat_on.close();
         }
         if (max_tempNew != max_temp)
         {
             logFile << "settig_max_temp = " << max_temp <<"\t\t\t";
             printTime(logFile);
             max_tempNew = max_temp;
+            fileHeat_off.open("/home/khadas/aqua/for_web/heat_off", std::ios::out);
+            fileHeat_off<<max_tempNew<<" °C";
+            fileHeat_off.close();
         }
         if (heaterNew != heater)
         {
@@ -384,12 +393,18 @@ int main ()
             logFile << "settig_light_on = " << time_light_on.toString("hh:mm").toStdString()<<"\t\t\t";
             printTime(logFile);
             time_light_on_New = time_light_on;
+            fileLight_on.open("/home/khadas/aqua/for_web/light_on", std::ios::out);
+            fileLight_on<<time_light_on_New.toString().toStdString();
+            fileLight_on.close();
         }
         if (time_light_off_New != time_light_off)
         {
             logFile << "settig_light_off = " << time_light_off.toString("hh:mm").toStdString()<<"\t\t";
             printTime(logFile);
             time_light_off_New = time_light_off;
+            fileLight_off.open("/home/khadas/aqua/for_web/light_off", std::ios::out);
+            fileLight_off<<time_light_off_New.toString().toStdString();
+            fileLight_off.close();
         }
         if (lightNew != light)
         {

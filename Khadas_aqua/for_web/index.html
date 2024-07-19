@@ -13,12 +13,35 @@
 </head>
 <body>
 <h2>Прграмма управления аквариумом</h2>
+<table>
   <form onsubmit='return false;' id='frm1' style='visibility:hidden'>
-    <label for='temper'>Температура:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
-    <input type='text' id='temper' name='temper' value='' style='width: 50px;'>
+    <tr><td><label for='temper'>Температура: </label></td><td>
+    <input type='text' id='temper' name='temper' value='' style='width: 190px;'>
+    </td></tr>
+  </form>
+  <form onsubmit='return false;' id='frm2' style='visibility:hidden'>
+    <tr><td><label for='light_on'>Свет включается:</label></td><td>
+        <input type='text' id='light_on' name='light_on' value='' style='width: 60px;'>
+    </td></tr>
+  </form>
+  <form onsubmit='return false;' id='frm3' style='visibility:hidden'>
+    <tr><td><label for='light_off'>Свет выключается:</label></td><td>
+        <input type='text' id='light_off' name='light_off' value='' style='width: 60px;'>
+    </td></tr>
   </form>
 
 
+  <form onsubmit='return false;' id='frm4' style='visibility:hidden'>
+    <tr><td><label for='heat_on'>Подогрев включается:</label></td><td>
+    <input type='text' id='heat_on' name='heat_on' value='' style='width: 60px;'>
+    </td></tr>
+  </form>
+  <form onsubmit='return false;' id='frm5' style='visibility:hidden'>
+    <tr><td><label for='heat_off'>Подогрев выключается: </label></td><td>
+    <input type='text' id='heat_off' name='heat_off' value='' style='width: 60px;'>
+    </td></tr>
+  </form>
+</table>
 <script>
   function sleep(milliseconds) 
   {
@@ -35,13 +58,49 @@
   sleep(100);
 request1.onreadystatechange = function() 
   {
-    document.getElementById('frm1').elements[0].value=request1.responseText.toString().substring(0, 15);
+    document.getElementById('frm1').elements[0].value=request1.responseText.toString().substring(0, 40);
     document.getElementById('frm1').style.visibility = 'visible';
   };
-
-
-
-
+  sleep(100);
+  let request2 = new XMLHttpRequest();
+  request2.open('GET', '/light_on');
+  request2.send();
+  sleep(100);
+  request2.onreadystatechange = function() 
+  {
+    document.getElementById('frm2').elements[0].value=request2.responseText.toString().substring(0, 10);
+    document.getElementById('frm2').style.visibility = 'visible';
+  };
+  sleep(100);
+  let request3 = new XMLHttpRequest();
+  request3.open('GET', '/light_off');
+  request3.send();
+  sleep(100);
+  request3.onreadystatechange = function() 
+  {
+    document.getElementById('frm3').elements[0].value=request3.responseText.toString().substring(0, 10);
+    document.getElementById('frm3').style.visibility = 'visible';
+  };
+  sleep(100);
+  let request4 = new XMLHttpRequest();
+  request4.open('GET', '/heat_on');
+  request4.send();
+  sleep(100);
+  request4.onreadystatechange = function()
+  {
+    document.getElementById('frm4').elements[0].value=request4.responseText.toString().substring(0, 10);
+    document.getElementById('frm4').style.visibility = 'visible';
+  };
+  sleep(100);
+  let request5 = new XMLHttpRequest();
+  request5.open('GET', '/heat_off');
+  request5.send();
+  sleep(100);
+  request5.onreadystatechange = function()
+  {
+    document.getElementById('frm5').elements[0].value=request5.responseText.toString().substring(0, 10);
+    document.getElementById('frm5').style.visibility = 'visible';
+  };
 
 </script>
 </body>
