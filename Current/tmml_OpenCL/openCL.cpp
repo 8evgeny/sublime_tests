@@ -5,10 +5,7 @@ using namespace cv;
 
 extern int match_method;
 extern Mat img_work, img_temp;
-
-int initDevice();
-int loadAndBuildProgram(std::string programFile);
-
+extern int iter_num;
 std::string kernel_source;
 chrono::high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
 cl::Kernel clkProcess;
@@ -27,13 +24,7 @@ size_t max_workgroup_size, global_size;
 int matchesOpenCL()
 {
 
-//    if (img_temp.channels() == 3)
-//        cv::cvtColor(img_temp, img_temp, cv::COLOR_BGR2GRAY);
-//    if (img_work.channels() == 3)
-//        cv::cvtColor(img_work, img_work, cv::COLOR_BGR2GRAY);
-
     initDevice();
-
     loadAndBuildProgram(KERNEL_FILE);
 
     cl_uchar* imageData = new cl_uchar[img_work.cols * img_work.rows];
@@ -50,7 +41,7 @@ int matchesOpenCL()
 
     time_start_OpenCL = chrono::high_resolution_clock::now();
 
-    for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
+    for (int i = 0; i < iter_num; ++i)
     {
         clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_work.cols * img_work.rows);
         clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_temp.rows * img_temp.cols);
@@ -106,34 +97,8 @@ int matchesOpenCL()
     delete[] imageData;
     delete[] templateData;
 
-    string mm;
-    switch (match_method)
-    {
-        case matchMetod::TM_SQDIFF:
-        {
-            mm = "TM_SQDIFF";break;
-        }
-        case matchMetod::TM_SQDIFF_NORMED:
-        {
-            mm = "TM_SQDIFF_NORMED";break;
-        }
-        case matchMetod::TM_CCOEFF:
-        {
-            mm = "TM_CCOEFF";break;
-        }
-        case matchMetod::TM_CCOEFF_NORMED:
-        {
-            mm = "TM_CCOEFF_NORMED";break;
-        }
-        case matchMetod::TM_COMBINED:
-        {
-            mm = "TM_COMBINED";break;
-        }
-    }
-    cout<<endl<<mm<<endl;
-
     auto time_matching_GPU = std::chrono::duration_cast<chrono::microseconds>(time_end_OpenCL - time_start_OpenCL);
-    printf("Duration OpenCL =  \t%.2f ms \n", (float)time_matching_GPU.count()/(1000 * NUM_ITERATIONS_GPU));
+    printf("Duration OpenCL =  \t%.2f ms \n", (float)time_matching_GPU.count()/(1000 * iter_num));
 
     cv::cvtColor(img_work,img_work,cv::COLOR_GRAY2BGR);
     cv::rectangle(img_work, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+img_temp.cols, res.ypos+img_temp.rows),cv::Scalar(0,0,255),3);

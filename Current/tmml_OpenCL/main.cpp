@@ -5,7 +5,7 @@ using namespace std;
 using namespace cv;
 using namespace chrono;
 
-constexpr int iter_num = 1000;
+int iter_num = 1000;
 constexpr int temp_center_x = 150;
 constexpr int temp_center_y = 165;
 constexpr int temp_left = temp_center_x - 0.5 * TEMPLATE_WIDTH;
@@ -25,6 +25,25 @@ int match_method = matchMetod::TM_COMBINED;
 
 int main()
 {
+    string mm;
+    switch (match_method)
+    {
+        case matchMetod::TM_SQDIFF_NORMED:
+        {
+            mm = "TM_SQDIFF_NORMED";break;
+        }
+        case matchMetod::TM_CCOEFF_NORMED:
+        {
+            mm = "TM_CCOEFF_NORMED";break;
+        }
+        case matchMetod::TM_COMBINED:
+        {
+            mm = "TM_COMBINED";break;
+        }
+    }
+    cout<<"match metod: "<<mm<<endl;
+    cout<<"iterations: "<<iter_num<<endl<<endl;
+
     Rect temp_rect{temp_left, temp_top, TEMPLATE_WIDTH, TEMPLATE_HEIGHT};
     Mat img_source = imread("image_source", CV_8UC1);
 
@@ -70,23 +89,7 @@ int main()
     cout << "cuda xy =\t\t[" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl;
 
 //OpenCL
-
     matchesOpenCL();
-
-//    time_start = system_clock::now();
-//    for(int iter = 0; iter < iter_num; ++iter)
-//    {
-//        tm->work_cuda(img_work, img_temp, tm->max_pix);
-//        if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "GPU iter=" << iter << " !!!" << endl; break;}
-//    }  // END for(int iter = 0; iter < iter_num; ++iter)
-//    time_end = system_clock::now();
-//    duration_matching = time_end - time_start;
-//    cout << "Duration CUDA =\t\t" << 1e3 * duration_matching.count()/iter_num  << " ms" << endl;
-
-
-
-
-
 
 
     tm->fill_result_array();
@@ -119,8 +122,6 @@ int main()
     imshow(CUDA_window, img_result_cuda);
 
     unsigned char key = waitKey(0);
-
     tm.reset();
-    cout << "END MAIN!" << endl;
     return 0;
 } // END main

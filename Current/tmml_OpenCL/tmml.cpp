@@ -13,10 +13,10 @@ tmml::tmml(bool &ok, float& min_max_Val0)
     //fill_template_array();
     fill1level();
     ok = true;
-    if (ok)
-        cout << "ctor cuda OK " << endl;
-    else
-        cout << "ctor cuda ERROR " << endl;
+//    if (ok)
+//        cout << "ctor cuda OK " << endl;
+//    else
+//        cout << "ctor cuda ERROR " << endl;
 
 
 
@@ -27,9 +27,7 @@ tmml::tmml(bool &ok, float& min_max_Val0)
 
 tmml::~tmml()
 {
-#ifndef NO_GPU
     cuda_Free();
-#endif // END ifndef NO_GPU
-    cout << "Destructor tmml" << endl;
+//    cout << "Destructor tmml" << endl;
 } // END ~tmml
 

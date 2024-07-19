@@ -7,8 +7,6 @@
 #include <iostream>
 #include <QtCore>
 
-//#define WORKGROUPSIZE 16
-#define NUM_ITERATIONS_GPU  100
 #define KERNEL_FILE "matching.cl"
 #define KERNEL_NAME "matching"
 
@@ -18,6 +16,8 @@ struct result
     cl_uint tm_result;
 };
 
+int initDevice();
+int loadAndBuildProgram(std::string programFile);
 int matchesOpenCL();
 inline void calculateNDRange(int size, int groupSize, int *bSize, int *bGroupSize, int *oSize);
 void loadDataMatToUchar(uchar *data, cv::Mat &image, int nchannels);
