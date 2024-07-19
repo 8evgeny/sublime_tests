@@ -13,7 +13,13 @@ tmml::tmml(bool &ok, float& min_max_Val0)
     //fill_template_array();
     fill1level();
     ok = true;
-//    cout << "Constructor tmml, ok= " << ok << endl;
+    if (ok)
+        cout << "ctor cuda OK " << endl;
+    else
+        cout << "ctor cuda ERROR " << endl;
+
+
+
 
 } // END tmml
 
@@ -27,13 +33,3 @@ tmml::~tmml()
     cout << "Destructor tmml" << endl;
 } // END ~tmml
 
-
-#ifdef NO_GPU
-   void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
-   {
-       matchTemplate(img_work, img_temp, img_result, TM_CCORR);  // TM_CCOEFF_NORMED ; TM_CCOEFF
-       minMaxLoc(img_result, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
-       max_pix.x = maxLoc.x;
-       max_pix.y = maxLoc.y;
-   }   // END void work_tmml
-#endif // END ifdef NO_GPU

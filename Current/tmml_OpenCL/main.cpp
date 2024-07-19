@@ -31,9 +31,8 @@ int main()
     Point minLoc, maxLoc;   
 
 
-
-cout << "origin xy =\t\t[" << temp_left << ", " << temp_top << "] "<<endl;
 //OpenCV
+    cout << "origin xy =\t\t[" << temp_left << ", " << temp_top << "] "<<endl;
     time_start = system_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
     {
@@ -46,17 +45,35 @@ cout << "origin xy =\t\t[" << temp_left << ", " << temp_top << "] "<<endl;
     cout.precision(2);
     std::cout.setf(std::ios::fixed);
     cout << "Duration OpenCV =\t" << 1e3 * duration_matching.count()/iter_num << " ms" << endl;
+
 //CUDA
     time_start = system_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
     {
-        tm->work_tmml(img_work, img_temp, tm->max_pix);
+        tm->work_cuda(img_work, img_temp, tm->max_pix);
         if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "GPU iter=" << iter << " !!!" << endl; break;}
     }  // END for(int iter = 0; iter < iter_num; ++iter)
     time_end = system_clock::now();
     duration_matching = time_end - time_start;
     cout << "Duration CUDA =\t\t" << 1e3 * duration_matching.count()/iter_num  << " ms" << endl;
     cout << "cuda xy =\t\t[" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl;
+
+//OpenCL  (инициализация в конструкторе)
+    time_start = system_clock::now();
+    for(int iter = 0; iter < iter_num; ++iter)
+    {
+        tm->work_cuda(img_work, img_temp, tm->max_pix);
+        if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "GPU iter=" << iter << " !!!" << endl; break;}
+    }  // END for(int iter = 0; iter < iter_num; ++iter)
+    time_end = system_clock::now();
+    duration_matching = time_end - time_start;
+    cout << "Duration CUDA =\t\t" << 1e3 * duration_matching.count()/iter_num  << " ms" << endl;
+
+
+
+
+
+
 
     tm->fill_result_array();
     double sum_diff = 0;
