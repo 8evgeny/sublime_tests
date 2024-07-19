@@ -18,7 +18,7 @@ struct result
 
 int initDevice();
 int loadAndBuildProgram(std::string programFile);
-int matchesOpenCL();
+int matchingOpenCL();
 inline void calculateNDRange(int size, int groupSize, int *bSize, int *bGroupSize, int *oSize);
 void loadDataMatToUchar(uchar *data, cv::Mat &image, int nchannels);
 void ucharToMat(uchar *data,cv::Mat &image);

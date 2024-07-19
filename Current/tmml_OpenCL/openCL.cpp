@@ -21,7 +21,7 @@ std::vector<cl::Platform> all_platforms;
 int var = 0;
 size_t max_workgroup_size, global_size;
 
-int matchesOpenCL()
+int matchingOpenCL()
 {
     initDevice();
     loadAndBuildProgram(KERNEL_FILE);
@@ -101,7 +101,7 @@ int matchesOpenCL()
 
     cv::cvtColor(img_work,img_work,cv::COLOR_GRAY2BGR);
     cv::rectangle(img_work, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+img_temp.cols, res.ypos+img_temp.rows),cv::Scalar(0,0,255),3);
-    const char* OpenCL = "OpenCL";
+    const char* OpenCL = "matchingOpenCL";
     namedWindow( OpenCL, WINDOW_AUTOSIZE );
     moveWindow(OpenCL, 1300,400);
     imshow(OpenCL, img_work);

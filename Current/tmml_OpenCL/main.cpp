@@ -49,6 +49,7 @@ int main()
 
     Mat img_result_cpu(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
     Mat img_result_cuda(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
+    Mat img_result_CL(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
     Rect work_rect(Point(0, 0), Point(WORK_WIDTH, WORK_HEIGHT));
     img_work = img_source(work_rect);
     img_temp = img_source(temp_rect);
@@ -89,7 +90,7 @@ int main()
     cout << "cuda xy =\t\t[" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl;
 
 //OpenCL
-    matchesOpenCL();
+    matchingOpenCL();
 
 //Results
     tm->fill_result_array();
@@ -120,6 +121,13 @@ int main()
     namedWindow( CUDA_window, WINDOW_AUTOSIZE );
     moveWindow(CUDA_window, 1300,100);
     imshow(CUDA_window, img_result_cuda);
+
+    normalize(img_result_CL, img_result_CL, 0, 255, NORM_MINMAX);
+    img_result_CL.convertTo(img_result_CL, CV_8UC1);
+    const char* CL_window = "OpenCL";
+    namedWindow( CL_window, WINDOW_AUTOSIZE );
+    moveWindow(CL_window, 900,400);
+    imshow(CL_window, img_result_CL);
 
     unsigned char key = waitKey(0);
     tm.reset();
