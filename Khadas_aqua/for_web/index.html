@@ -29,18 +29,37 @@
         <input type='text' id='light_off' name='light_off' value='' style='width: 60px;'>
     </td></tr>
   </form>
-
-
+  
   <form onsubmit='return false;' id='frm4' style='visibility:hidden'>
     <tr><td><label for='heat_on'>Подогрев включается:</label></td><td>
     <input type='text' id='heat_on' name='heat_on' value='' style='width: 60px;'>
     </td></tr>
   </form>
+  
   <form onsubmit='return false;' id='frm5' style='visibility:hidden'>
     <tr><td><label for='heat_off'>Подогрев выключается: </label></td><td>
     <input type='text' id='heat_off' name='heat_off' value='' style='width: 60px;'>
     </td></tr>
   </form>
+  
+<form onsubmit='return false;' id='frm6' style='visibility:hidden'>
+	<tr><td><label for='state_light'></label></td><td>
+	<input type='text' id='state_light' name='state_light' value='' style='width: 220px;'>
+	</td></tr>
+</form>
+
+<form onsubmit='return false;' id='frm7' style='visibility:hidden'>
+	<tr><td><label for='state_heat'></label></td><td>
+	<input type='text' id='state_heat' name='state_heat' value='' style='width: 220px;'>
+	</td></tr>
+</form>
+
+<form onsubmit='return false;' id='frm8' style='visibility:hidden'>
+	<tr><td><label for='state_uf'></label></td><td>
+	<input type='text' id='state_uf' name='state_uf' value='' style='width: 220px;'>
+	</td></tr>
+</form>
+  
 </table>
 <script>
   function sleep(milliseconds) 
@@ -101,7 +120,37 @@ request1.onreadystatechange = function()
     document.getElementById('frm5').elements[0].value=request5.responseText.toString().substring(0, 10);
     document.getElementById('frm5').style.visibility = 'visible';
   };
-
+  sleep(100);
+  let request6 = new XMLHttpRequest();
+  request6.open('GET', '/state_light');
+  request6.send();
+  sleep(100);
+  request6.onreadystatechange = function()
+  {
+    document.getElementById('frm6').elements[0].value=request6.responseText.toString().substring(0, 40);
+    document.getElementById('frm6').style.visibility = 'visible';
+  };
+  sleep(100);
+  let request7 = new XMLHttpRequest();
+  request7.open('GET', '/state_heat');
+  request7.send();
+  sleep(100);
+  request7.onreadystatechange = function()
+  {
+    document.getElementById('frm7').elements[0].value=request7.responseText.toString().substring(0, 40);
+    document.getElementById('frm7').style.visibility = 'visible';
+  };
+  sleep(100);
+  let request8 = new XMLHttpRequest();
+  request8.open('GET', '/state_uf');
+  request8.send();
+  sleep(100);
+  request8.onreadystatechange = function()
+  {
+    document.getElementById('frm8').elements[0].value=request8.responseText.toString().substring(0, 40);
+    document.getElementById('frm8').style.visibility = 'visible';
+  };
+  
 </script>
 </body>
 </html>
