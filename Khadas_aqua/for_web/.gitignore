@@ -1,1 +1,8 @@
 temperature
+heat_on
+heat_off
+light_on
+light_off
+state_heat
+state_light
+syate_uf
