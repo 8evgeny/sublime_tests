@@ -38,6 +38,10 @@ ofstream fileLight_on;
 ofstream fileLight_off;
 ofstream fileHeat_on;
 ofstream fileHeat_off;
+ofstream fileStateLight;
+ofstream fileStateUF;
+ofstream fileStateHeat;
+
 
 constexpr long numLinesInLog = 250;
 
@@ -138,6 +142,10 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
                 logFile << "######## light set OFF #######" <<"\t\t";
                 printTime(logFile);
                 stateLight = "OFF";
+                fileStateLight.open("/home/khadas/aqua/for_web/state_light", std::ios::app);
+                fileStateLight <<"Свет выключен     ";
+                printTime(fileStateLight);
+                fileStateLight.close();
             }
         }
         if (light)
@@ -150,6 +158,10 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
                 logFile << "######## light set ON ########"  <<"\t\t";
                 printTime(logFile);
                 stateLight = "ON";
+                fileStateLight.open("/home/khadas/aqua/for_web/state_light", std::ios::app);
+                fileStateLight <<"Свет включен     ";
+                printTime(fileStateLight);
+                fileStateLight.close();
             }
             if ( (!((timeNow > time_light_on) &&  (timeNow < time_light_off)) || (temperature > 27.7))
                  && (stateLight != "OFF") )
@@ -158,6 +170,10 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
                 logFile << "######## light set OFF ########"  <<"\t\t";
                 printTime(logFile);
                 stateLight = "OFF";
+                fileStateLight.open("/home/khadas/aqua/for_web/state_light", std::ios::app);
+                fileStateLight <<"Свет выключен     ";
+                printTime(fileStateLight);
+                fileStateLight.close();
             }
         }
         logFile.close();
@@ -183,6 +199,10 @@ handlerUF(bool & UF, QTime & time_UF_on, QTime & time_UF_off)
                 logFile << "######## UF set OFF #######" <<"\t\t";
                 printTime(logFile);
                 stateUF = "OFF";
+                fileStateUF.open("/home/khadas/aqua/for_web/state_uf", std::ios::app);
+                fileStateUF <<"UF выключен     ";
+                printTime(fileStateUF);
+                fileStateUF.close();
             }
         }
         if (UF)
@@ -194,6 +214,10 @@ handlerUF(bool & UF, QTime & time_UF_on, QTime & time_UF_off)
                 logFile << "######## UF set ON ########"  <<"\t\t";
                 printTime(logFile);
                 stateUF = "ON";
+                fileStateUF.open("/home/khadas/aqua/for_web/state_uf", std::ios::app);
+                fileStateUF <<"UF включен     ";
+                printTime(fileStateUF);
+                fileStateUF.close();
             }
             if (!((timeNow > time_UF_on) && (timeNow < time_UF_off)) && (stateUF != "OFF"))
             {
@@ -201,6 +225,10 @@ handlerUF(bool & UF, QTime & time_UF_on, QTime & time_UF_off)
                 logFile << "######## UF set OFF ########"  <<"\t\t";
                 printTime(logFile);
                 stateUF = "OFF";
+                fileStateUF.open("/home/khadas/aqua/for_web/state_uf", std::ios::app);
+                fileStateUF <<"UF выключен     ";
+                printTime(fileStateUF);
+                fileStateUF.close();
             }
         }
         logFile.close();
@@ -224,6 +252,10 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
             logFile << "######## heater set OFF #######" <<"\t\t";
             printTime(logFile);
             stateHeater = "OFF";
+            fileStateHeat.open("/home/khadas/aqua/for_web/state_heat", std::ios::app);
+            fileStateHeat <<"Нагреватель выключен     ";
+            printTime(fileStateHeat);
+            fileStateHeat.close();
         }
         if (heater)
         {
@@ -233,6 +265,10 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
                 logFile << "######## heater set OFF #######"  <<"\t\t";
                 printTime(logFile);
                 stateHeater = "OFF";
+                fileStateHeat.open("/home/khadas/aqua/for_web/state_heat", std::ios::app);
+                fileStateHeat <<"Нагреватель выключен     ";
+                printTime(fileStateHeat);
+                fileStateHeat.close();
             }
             if (temperature < min_temp && stateHeater != "ON")
             {
@@ -240,6 +276,10 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
                 logFile << "######## heater set ON ########"  <<"\t\t";
                 printTime(logFile);
                 stateHeater = "ON";
+                fileStateHeat.open("/home/khadas/aqua/for_web/state_heat", std::ios::app);
+                fileStateHeat <<"Нагреватель включен     ";
+                printTime(fileStateHeat);
+                fileStateHeat.close();
             }
         }
         logFile.close();
