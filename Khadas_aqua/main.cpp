@@ -41,7 +41,8 @@ ofstream fileHeat_off;
 ofstream fileStateLight;
 ofstream fileStateUF;
 ofstream fileStateHeat;
-
+ofstream fileFood;
+ofstream fileStateFeed;
 
 constexpr long numLinesInLog = 250;
 
