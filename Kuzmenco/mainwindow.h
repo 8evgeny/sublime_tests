@@ -81,6 +81,8 @@ void paintEvent(QPaintEvent *event);
     void calculateLetters();
     std::string calculateLetter(float r, float l);
 
+    void on_pushButton_3_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString name_field;
