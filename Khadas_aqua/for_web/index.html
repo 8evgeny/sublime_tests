@@ -12,7 +12,7 @@
 </style>
 </head>
 <body>
-<h3>Программа управления аквариумом</h3>
+<h3>Программа aqua (version 1 from 07.2024)</h3>
 <table>
   <form onsubmit='return false;' id='frm1' style='visibility:hidden'>
     <tr><td><label for='temper'>Температура: </label></td><td>
@@ -38,6 +38,16 @@
 	<input type='text' id='state_uf' name='state_uf' value='' style='width: 190px;'>
 	</td></tr>
 </form>
+
+<form onsubmit='return false;' id='frm9' style='visibility:hidden'>
+	<tr><td><label for='state_food'>Состояние кормления:</label></td><td>
+	<input type='text' id='state_food' name='state_food' value='' style='width: 190px;'>
+	</td></tr>
+</form>
+  
+ 	<tr><td><label '></label></td><td></td></tr> 
+ 	<tr><td><label '></label></td><td></td></tr> 
+  
   
   <form onsubmit='return false;' id='frm2' style='visibility:hidden'>
     <tr><td><label for='light_on'>Свет включается:</label></td><td>
@@ -59,6 +69,12 @@
   <form onsubmit='return false;' id='frm5' style='visibility:hidden'>
     <tr><td><label for='heat_off'>Подогрев выключается: </label></td><td>
     <input type='text' id='heat_off' name='heat_off' value='' style='width: 60px;'>
+    </td></tr>
+  </form> 
+  
+  <form onsubmit='return false;' id='frm10' style='visibility:hidden'>
+    <tr><td><label for='food_time'>Время кормления: </label></td><td>
+    <input type='text' id='food_time' name='food_time' value='' style='width: 190px;'>
     </td></tr>
   </form> 
   
@@ -152,7 +168,26 @@ request1.onreadystatechange = function()
     document.getElementById('frm8').elements[0].value=request8.responseText.toString().substring(0, 40);
     document.getElementById('frm8').style.visibility = 'visible';
   };
-  
+  sleep(100);
+  let request9 = new XMLHttpRequest();
+  request9.open('GET', '/state_food');
+  request9.send();
+  sleep(100);
+  request9.onreadystatechange = function()
+  {
+    document.getElementById('frm9').elements[0].value=request9.responseText.toString().substring(0, 40);
+    document.getElementById('frm9').style.visibility = 'visible';
+  };
+    sleep(100);
+  let request10 = new XMLHttpRequest();
+  request10.open('GET', '/food_time');
+  request10.send();
+  sleep(100);
+  request10.onreadystatechange = function()
+  {
+    document.getElementById('frm10').elements[0].value=request10.responseText.toString().substring(0, 40);
+    document.getElementById('frm10').style.visibility = 'visible';
+  };
 </script>
 </body>
 </html>

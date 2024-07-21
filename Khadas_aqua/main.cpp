@@ -28,6 +28,7 @@ bool heater = false;
 float temperature;
 QTime time_light_on, time_light_off, time_UF_on, time_UF_off;
 vector<QTime> food(0);
+QString food_time;
 int long_food = 0;
 bool light = true;
 bool UF = false;
@@ -58,6 +59,13 @@ void printTime(ofstream & file)
     const auto t_c = std::chrono::system_clock::to_time_t(now);
     file << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
 }
+void printOnylTime(ofstream & file)
+{
+    const auto now = std::chrono::system_clock::now();
+    const auto t_c = std::chrono::system_clock::to_time_t(now);
+    file << std::put_time(std::localtime(&t_c), "%T\n");
+}
+
 
 void
 receiveTemp(float & temperature)
@@ -112,11 +120,13 @@ receiveSettings(float & min_temp, float & max_temp, bool & heater,
 
         settings.beginGroup("Food");
         foodTimes = settings.value( "time_Food").toStringList();
-//        qDebug() << "foodTimes.size()"<<foodTimes.size();
         food.clear();
+        food_time.clear();
         for (int i = 0; i<foodTimes.size(); ++i)
         {
             food.push_back(QTime::fromString(foodTimes.at(i)));
+            food_time.push_back(foodTimes.at(i));
+            food_time.push_back("    ");
         }
         long_food = settings.value( "long_Food").toInt();
         settings.endGroup();
@@ -325,14 +335,25 @@ handlerFood()
         auto timeNow = QTime::currentTime();
         for (int i = 0; i< food.size();++i)
         {
-            qDebug()<<i;
             QTime food_end = food[i];
             food_end = food_end.addSecs(60);
-            qDebug()<<"food_start"<<food[i];
-            qDebug()<<"food_end"<<food_end;
-            qDebug()<<"time_now"<<timeNow;
             if ((timeNow > food[i]) && (timeNow < food_end))
+            {
                 feed();
+                if (i == 0)
+                {
+                    fileStateFeed.open("/home/khadas/aqua/for_web/state_food", std::ios::out);
+                    printOnylTime(fileStateFeed);
+                    fileStateFeed <<"   ";
+                }
+                else
+                {
+                    fileStateFeed.open("/home/khadas/aqua/for_web/state_food", std::ios::app);
+                    printOnylTime(fileStateFeed);
+                    fileStateFeed <<"   ";
+                }
+                fileStateFeed.close();
+            }
         }
 
         logFile.close();
@@ -384,6 +405,7 @@ int main ()
     bool lightNew = false;
     QTime time_UF_on_New, time_UF_off_New;
     bool UFNew = false;
+    QString food_timeNew;
 
 	while(1)
 	{
@@ -471,6 +493,16 @@ int main ()
             logFile << "settig_UF = " << boolalpha <<UF<<"\t\t\t";
             printTime(logFile);
             UFNew = UF;
+        }
+
+        if (food_timeNew != food_time)
+        {
+            logFile << "settig_food_time = " << food_time.toStdString()<<"\t\t\t";
+            printTime(logFile);
+            food_timeNew = food_time;
+            fileFood.open("/home/khadas/aqua/for_web/food_time", std::ios::out);
+            fileFood<<food_time.toStdString();
+            fileFood.close();
         }
 
         logFile.close();
