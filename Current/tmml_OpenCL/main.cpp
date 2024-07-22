@@ -144,7 +144,7 @@ int main()
     const char* OpenCL = "matchingOpenCL";
     namedWindow( OpenCL, WINDOW_AUTOSIZE );
     moveWindow(OpenCL, 1300,600);
-    resize(img_result_cpu, img_result_cpu, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
+    resize(img_work, img_work, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
     imshow(OpenCL, img_work);
 
     unsigned char key = waitKey(0);
