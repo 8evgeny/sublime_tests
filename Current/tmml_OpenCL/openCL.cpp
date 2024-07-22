@@ -113,15 +113,15 @@ int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp)
     time_end_OpenCL = chrono::high_resolution_clock::now();
     uintToMat(mData, img_result_CL);
 
-//    cout<<endl;
-//    for (int i = res.xpos  + res.ypos * (img_work.cols - img_temp.cols + 1);
-//         i < res.xpos + res.ypos * (img_work.cols - img_temp.cols + 1) + 10; ++i)
-//    {
-//        cout<<mData[i]<<"  ";
-//    }
-//    cout<<endl;
-//    cout << "minVal = " <<minVal<<endl;
-//    cout << "maxVal = " <<maxVal<<endl;
+    cout<<"CL"<<endl;
+    for (int i = res.xpos  + res.ypos * (img_work.cols - img_temp.cols + 1);
+         i < res.xpos + res.ypos * (img_work.cols - img_temp.cols + 1) + 10; ++i)
+    {
+        cout<<mData[i]<<"  ";
+    }
+    cout<<endl;
+    cout << "minVal = " <<minVal<<endl;
+    cout << "maxVal = " <<maxVal<<endl;
 
 
     delete[] imageData;
@@ -130,17 +130,6 @@ int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp)
 
     auto time_matching_GPU = std::chrono::duration_cast<chrono::milliseconds>(time_end_OpenCL - time_start_OpenCL);
     printf("Duration OpenCL =  \t%.2f ms \n", (float)time_matching_GPU.count()/iter_num );
-
-//    cv::cvtColor(img_work,img_work,cv::COLOR_GRAY2BGR);
-//    cv::rectangle(img_work, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+img_temp.cols, res.ypos+img_temp.rows),cv::Scalar(0,0,255),3);
-//    const char* OpenCL = "matchingOpenCL";
-//    namedWindow( OpenCL, WINDOW_AUTOSIZE );
-//    moveWindow(OpenCL, 1300,600);
-//    int k = 2;
-//    resize(img_result_cpu, img_result_cpu, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
-//    imshow(OpenCL, img_work);
-
-
 
     cout << "openCL xy =\t\t[" << res.xpos << ", " << res.ypos << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl;
 

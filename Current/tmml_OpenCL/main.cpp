@@ -124,6 +124,15 @@ int main()
     imshow(OpenCV_window, img_result_cpu);
 
     normalize(img_result_cuda, img_result_cuda, 0, 255, NORM_MINMAX);
+
+    cout<<"CUDA"<<endl;
+    for (int i = res.xpos  + res.ypos * (img_result_cuda.cols - img_temp.cols + 1);
+         i < res.xpos + res.ypos * (img_result_cuda.cols - img_temp.cols + 1) + 10; ++i)
+    {
+        cout<<img_result_cuda.at<uint>(i)<<"  ";
+    }
+    cout<<endl;
+
     img_result_cuda.convertTo(img_result_cuda, CV_8UC1);
     resize(img_result_cuda, img_result_cuda, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
     const char* CUDA_window = "CUDA";

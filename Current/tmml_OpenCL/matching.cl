@@ -38,7 +38,8 @@ __kernel void matching(__global uchar* imData,
     int work_item_X = get_global_id(0);
     int work_item_Y = get_global_id(1);
     int iGID = (work_item_Y * (IMG_HEIGHT - TEMPLATE_HEIGHT + 1)  + work_item_X);
-    uint tm_result = 0;
+    uint sum_roi_temp = 0;
+    uint sum_temp_temp = 0;
     uint step_y = 1;
     uint step_x = 1;
     uchar I;
@@ -52,23 +53,23 @@ __kernel void matching(__global uchar* imData,
             {
                 I = imData[ ( work_item_Y + Y ) * IMG_WIDTH + ( work_item_X + X ) ];
                 T = tmData[ Y * TEMPLATE_WIDTH + X ];
-                tm_result += ( I - T ) * ( I - T );
+                sum_roi_temp += ( I - T ) * ( I - T );
             }
         }
 
-        atomic_max(maxVal, tm_result);
+        atomic_max(maxVal, sum_roi_temp);
         barrier(CLK_GLOBAL_MEM_FENCE);
 
-        atomic_min(minVal, tm_result);
+        atomic_min(minVal, sum_roi_temp);
         barrier(CLK_GLOBAL_MEM_FENCE);
 
-        matchData[ iGID ] = tm_result ;
+        matchData[ iGID ] = sum_roi_temp ;
         barrier(CLK_GLOBAL_MEM_FENCE);
 
 
-        if ( (*minVal) == tm_result )
+        if ( (*minVal) == sum_roi_temp )
         {
-            (*res).tm_result = tm_result;
+            (*res).tm_result = sum_roi_temp;
             (*res).xpos = work_item_X;
             (*res).ypos = work_item_Y;
         }
@@ -77,29 +78,34 @@ __kernel void matching(__global uchar* imData,
 
     if (method == TM_CCOEFF_NORMED)
     {
+        float I2 = 0, T2 = 0;
         for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y +=step_y )
         {
             for ( int X = 0; X < TEMPLATE_WIDTH; X +=step_x )
             {
                 I = imData[ ( work_item_Y + Y ) * IMG_WIDTH + ( work_item_X + X ) ];
                 T = tmData[ Y * TEMPLATE_WIDTH + X ];
-                tm_result += I * T;
+                sum_roi_temp += I * T;
+                I2 += I * I;
+                T2 += T * T;
+
             }
         }
 
-        atomic_max(maxVal, tm_result);
+//        sum_roi_temp /= sqrt (I2 * T2);
+
+        atomic_max(maxVal, sum_roi_temp);
         barrier(CLK_GLOBAL_MEM_FENCE);
 
-//        float tmp = tm_result / *maxVal;
+//        float tmp = (float) sum_roi_temp / *maxVal;
+//        matchData[ iGID ] = tmp * 255 ;
 
-        matchData[ iGID ] = tm_result ;
-//        matchData[ iGID ] = tmp * 1000000 ;
+        matchData[ iGID ] = sum_roi_temp ;
+
         barrier(CLK_GLOBAL_MEM_FENCE);
-
-
-        if ( (*maxVal) == tm_result )
+        if ( (*maxVal) == sum_roi_temp )
         {
-            (*res).tm_result = tm_result;
+            (*res).tm_result = sum_roi_temp;
             (*res).xpos = work_item_X;
             (*res).ypos = work_item_Y;
         }
