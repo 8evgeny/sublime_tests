@@ -5,7 +5,7 @@ using namespace std;
 using namespace cv;
 using namespace chrono;
 
-int iter_num = 1;
+int iter_num = 1000;
 constexpr int temp_center_x = 150;
 constexpr int temp_center_y = 165;
 constexpr int temp_left = temp_center_x - 0.5 * TEMPLATE_WIDTH;
@@ -50,8 +50,8 @@ int main()
 
     Mat img_result_cpu(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
     Mat img_result_cuda(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
-//    Rect work_rect(Point(0, 0), Point(WORK_WIDTH + 1, WORK_HEIGHT + 1));
-    img_work = img_source/*(work_rect)*/;
+    Rect work_rect(Point(0, 0), Point(WORK_WIDTH, WORK_HEIGHT ));
+    img_work = img_source(work_rect);
     img_temp = img_source(temp_rect);
 
  cout<<"img_work:"<<img_work.cols<<"x"<<img_work.rows<<endl;

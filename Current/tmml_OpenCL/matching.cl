@@ -130,33 +130,32 @@ __kernel void matching(__global uchar* imData,
 //        }
 //    }
 
-//    if (method == TM_CCOEFF_NORMED)
-//    {
-//        long long I2 = 0;
-//        long long T2 = 0;
-//        for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y +=step_y )
-//        {
-//            for ( int X = 0; X < TEMPLATE_WIDTH; X +=step_x )
-//            {
-//                I = imData[ ( work_item_Y + Y ) * IMG_WIDTH + ( work_item_X + X ) ];
-//                T = tmData[ Y * TEMPLATE_WIDTH + X ];
-//                tm_result += I * T;
-//                I2 += I*I;
-//                T2 += T*T;
-//            }
-//        }
-//        tm_result = tm_result /sqrt((float)(I2*T2));
-//        matchData[ iGID ] = tm_result * 100000;
-//        barrier(CLK_GLOBAL_MEM_FENCE);
-//        atomic_max(var, tm_result);
-//        barrier(CLK_GLOBAL_MEM_FENCE);
-//        if ( (*var) == tm_result )
-//        {
-//            (*res).tm_result = tm_result;
-//            (*res).xpos = work_item_X;
-//            (*res).ypos = work_item_Y;
-//        }
-//    }
+    if (method == TM_CCOEFF_NORMED)
+    {
+        for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y +=step_y )
+        {
+            for ( int X = 0; X < TEMPLATE_WIDTH; X +=step_x )
+            {
+                I = imData[ ( work_item_Y + Y ) * IMG_WIDTH + ( work_item_X + X ) ];
+                T = tmData[ Y * TEMPLATE_WIDTH + X ];
+                tm_result += I * T;
+            }
+        }
+
+        atomic_max(maxVal, tm_result);
+        barrier(CLK_GLOBAL_MEM_FENCE);
+
+        matchData[ iGID ] = tm_result ;
+        barrier(CLK_GLOBAL_MEM_FENCE);
+
+
+        if ( (*maxVal) == tm_result )
+        {
+            (*res).tm_result = tm_result;
+            (*res).xpos = work_item_X;
+            (*res).ypos = work_item_Y;
+        }
+    }
 
 }
 

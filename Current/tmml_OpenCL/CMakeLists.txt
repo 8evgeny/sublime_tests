@@ -6,7 +6,7 @@ project(tmml_OpenCL)
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)
 # CORR_TYPE = 6 : CCOEFF_NORMED  (Кросскорреляция модифицированная)
 # CORR_TYPE = 8 ; COMBINED (объединение прямой и модифицированной кросскорреляции)
-set(CORR_TYPE 2)
+set(CORR_TYPE 6)
 
 set(TEMPLATE_WIDTH 48)
 set(TEMPLATE_HEIGHT 48)
