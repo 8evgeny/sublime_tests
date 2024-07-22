@@ -11,9 +11,8 @@ constexpr int temp_center_y = 165;
 constexpr int temp_left = temp_center_x - 0.5 * TEMPLATE_WIDTH;
 constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_HEIGHT;
 float min_max_Val = 0.99999;
-Mat img_work, img_temp;
+extern result res;
 Mat img_result_CL(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));
-result res;
 #ifdef SQDIFF_NORMED
 int match_method = matchMetod::TM_SQDIFF_NORMED;
 #endif
@@ -26,6 +25,7 @@ int match_method = matchMetod::TM_COMBINED;
 
 int main()
 {
+    Mat img_work, img_temp;
     string mm;
     switch (match_method)
     {
@@ -95,7 +95,7 @@ int main()
     cout << "cuda xy =\t\t[" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl;
 
 //OpenCL
-    matchingOpenCL();
+    matchingOpenCL(img_work, img_temp);
 
 //Results
     tm->fill_result_array();
