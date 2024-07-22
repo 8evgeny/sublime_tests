@@ -12,7 +12,7 @@ constexpr int temp_left = temp_center_x - 0.5 * TEMPLATE_WIDTH;
 constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_HEIGHT;
 float min_max_Val = 0.99999;
 Mat img_work, img_temp;
-Mat img_result_CL(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
+Mat img_result_CL(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));
 
 #ifdef SQDIFF_NORMED
 int match_method = matchMetod::TM_SQDIFF_NORMED;
