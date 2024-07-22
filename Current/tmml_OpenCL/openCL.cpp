@@ -7,6 +7,7 @@ extern int match_method;
 extern Mat img_work, img_temp;
 extern int iter_num;
 extern Mat img_result_CL;
+extern result res;
 std::string kernel_source;
 chrono::high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
 cl::Kernel clkProcess;
@@ -41,7 +42,6 @@ int matchingOpenCL()
     loadDataMatToUchar(imageData, img_work, 1);
     loadDataMatToUchar(templateData, img_temp, 1);
 
-    result res;
     res.tm_result = 10000;
     res.xpos=0;
     res.ypos=0;
@@ -132,12 +132,14 @@ int matchingOpenCL()
     auto time_matching_GPU = std::chrono::duration_cast<chrono::milliseconds>(time_end_OpenCL - time_start_OpenCL);
     printf("Duration OpenCL =  \t%.2f ms \n", (float)time_matching_GPU.count()/iter_num );
 
-    cv::cvtColor(img_work,img_work,cv::COLOR_GRAY2BGR);
-    cv::rectangle(img_work, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+img_temp.cols, res.ypos+img_temp.rows),cv::Scalar(0,0,255),3);
-    const char* OpenCL = "matchingOpenCL";
-    namedWindow( OpenCL, WINDOW_AUTOSIZE );
-    moveWindow(OpenCL, 1300,400);
-    imshow(OpenCL, img_work);
+//    cv::cvtColor(img_work,img_work,cv::COLOR_GRAY2BGR);
+//    cv::rectangle(img_work, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+img_temp.cols, res.ypos+img_temp.rows),cv::Scalar(0,0,255),3);
+//    const char* OpenCL = "matchingOpenCL";
+//    namedWindow( OpenCL, WINDOW_AUTOSIZE );
+//    moveWindow(OpenCL, 1300,600);
+//    int k = 2;
+//    resize(img_result_cpu, img_result_cpu, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
+//    imshow(OpenCL, img_work);
 
 
 

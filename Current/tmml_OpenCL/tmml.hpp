@@ -67,7 +67,6 @@ class tmml
 
     const Pix max_pix0;
     void work_cuda(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
-    void work_cl(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
     Pix max_pix = max_pix0;
     double maxVal = 0;
     cv::Mat img_result = cv::Mat(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));

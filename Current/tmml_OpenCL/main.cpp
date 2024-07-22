@@ -13,7 +13,7 @@ constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_HEIGHT;
 float min_max_Val = 0.99999;
 Mat img_work, img_temp;
 Mat img_result_CL(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));
-
+result res;
 #ifdef SQDIFF_NORMED
 int match_method = matchMetod::TM_SQDIFF_NORMED;
 #endif
@@ -71,7 +71,7 @@ int main()
     time_start = system_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
     {
-        matchTemplate(img_work, img_temp, img_result_cpu, match_method);
+        matchTemplate(img_work, img_temp, img_result_cpu, match_method);//TM_CCOEFF_NORMED
         minMaxLoc(img_result_cpu, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
         if(maxLoc.x != temp_left || maxLoc.y != temp_top){cout << "CPU iter=" << iter << " !!!" << endl; break;}
     }  // END for(int iter = 0; iter < iter_num; ++iter)
@@ -83,6 +83,7 @@ int main()
 
 //CUDA
     time_start = system_clock::now();
+
     for(int iter = 0; iter < iter_num; ++iter)
     {
         tm->work_cuda(img_work, img_temp, tm->max_pix);
@@ -112,15 +113,19 @@ int main()
     } // END for(int id = 0; id < RESULT_AREA; id++)
 //    cout << "sum_diff = " << sum_diff << "; RESULT_AREA = " << RESULT_AREA << "; raitio = " << sum_diff/RESULT_AREA << endl;
 
+
     normalize(img_result_cpu, img_result_cpu, 0, 255, NORM_MINMAX);
     img_result_cpu.convertTo(img_result_cpu, CV_8UC1);
+    int k = 2;
+    resize(img_result_cpu, img_result_cpu, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
     const char* OpenCV_window = "OpenCV";
     namedWindow( OpenCV_window, WINDOW_AUTOSIZE );
     moveWindow(OpenCV_window, 900,100);
-    imshow(OpenCV_window, img_result_cuda);
+    imshow(OpenCV_window, img_result_cpu);
 
     normalize(img_result_cuda, img_result_cuda, 0, 255, NORM_MINMAX);
     img_result_cuda.convertTo(img_result_cuda, CV_8UC1);
+    resize(img_result_cuda, img_result_cuda, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
     const char* CUDA_window = "CUDA";
     namedWindow( CUDA_window, WINDOW_AUTOSIZE );
     moveWindow(CUDA_window, 1300,100);
@@ -128,10 +133,19 @@ int main()
 
     normalize(img_result_CL, img_result_CL, 0, 255, NORM_MINMAX);
     img_result_CL.convertTo(img_result_CL, CV_8UC1);
+    resize(img_result_CL, img_result_CL, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
     const char* CL_window = "OpenCL";
     namedWindow( CL_window, WINDOW_AUTOSIZE );
-    moveWindow(CL_window, 900,400);
+    moveWindow(CL_window, 900,600);
     imshow(CL_window, img_result_CL);
+
+    cv::cvtColor(img_work,img_work,cv::COLOR_GRAY2BGR);
+    cv::rectangle(img_work, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+img_temp.cols, res.ypos+img_temp.rows),cv::Scalar(0,0,255),3);
+    const char* OpenCL = "matchingOpenCL";
+    namedWindow( OpenCL, WINDOW_AUTOSIZE );
+    moveWindow(OpenCL, 1300,600);
+    resize(img_result_cpu, img_result_cpu, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
+    imshow(OpenCL, img_work);
 
     unsigned char key = waitKey(0);
     tm.reset();
