@@ -10,7 +10,7 @@ extern Mat img_result_CL;
 std::string kernel_source;
 chrono::high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
 cl::Kernel clkProcess;
-cl::Buffer clInputImg, clInputTemp, clInputRes, clInputMinVal,  clResults, clMatchMethod, clmData;
+cl::Buffer clInputImg, clInputTemp, clInputRes, clInputMinVal, clInputMaxVal, clResults, clMatchMethod, clmData;
 cl::CommandQueue queue;
 cl::Context context;
 cl::Program program;
@@ -20,6 +20,7 @@ std::vector<cl::Device> all_devices;
 cl::Platform default_platform;
 std::vector<cl::Platform> all_platforms;
 int minVal = 0;
+int maxVal = 0;
 size_t max_workgroup_size, global_size;
 
 int matchingOpenCL()
@@ -54,6 +55,7 @@ int matchingOpenCL()
         clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_temp.rows * img_temp.cols);
         clInputRes=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(result));
         clInputMinVal=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_int));
+        clInputMaxVal=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_int));
         clMatchMethod=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(int));
         clmData=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1));
 
@@ -74,6 +76,7 @@ int matchingOpenCL()
         queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * img_temp.rows * img_temp.cols, &templateData[0]);
         queue.enqueueWriteBuffer(clInputRes, CL_TRUE, 0,  sizeof(result), &res);
         queue.enqueueWriteBuffer(clInputMinVal, CL_TRUE, 0,  sizeof(cl_int), &minVal);
+        queue.enqueueWriteBuffer(clInputMaxVal, CL_TRUE, 0,  sizeof(cl_int), &maxVal);
         queue.enqueueWriteBuffer(clMatchMethod, CL_TRUE, 0,  sizeof(int), &match_method);
         queue.enqueueWriteBuffer(clmData, CL_TRUE, 0,  sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1), &mData[0]);
 
@@ -87,8 +90,9 @@ int matchingOpenCL()
         clkProcess.setArg(5, (int)img_temp.cols);
         clkProcess.setArg(6, (int)img_temp.rows);
         clkProcess.setArg(7, clInputMinVal);
-        clkProcess.setArg(8, match_method);
-        clkProcess.setArg(9, clmData);
+        clkProcess.setArg(8, clInputMaxVal);
+        clkProcess.setArg(9, match_method);
+        clkProcess.setArg(10, clmData);
 
         // Image 2D
         cl::NDRange gRM=cl::NDRange((img_work.cols - img_temp.cols + 1), (img_work.rows - img_temp.rows + 1));
@@ -101,6 +105,7 @@ int matchingOpenCL()
                     );
         queue.finish();
         queue.enqueueReadBuffer(clInputMinVal, CL_TRUE, 0, sizeof(cl_int),&minVal);
+        queue.enqueueReadBuffer(clInputMaxVal, CL_TRUE, 0, sizeof(cl_int),&maxVal);
         queue.enqueueReadBuffer(clInputRes, CL_TRUE, 0, sizeof(result),&res);
         queue.enqueueReadBuffer(clmData, CL_TRUE, 0,
                                 sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1) ,&mData[0]);
@@ -118,7 +123,7 @@ int matchingOpenCL()
     }
     cout<<endl;
     cout << "minVal = " <<minVal<<endl;
-
+    cout << "maxVal = " <<maxVal<<endl;
 
 
     delete[] imageData;
