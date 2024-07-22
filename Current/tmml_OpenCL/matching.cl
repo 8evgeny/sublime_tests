@@ -28,7 +28,8 @@ __kernel void matching(__global uchar* imData,
                      int IMG_HEIGHT,
                      int TEMPLATE_WIDTH,
                      int TEMPLATE_HEIGHT,
-                     __global uint* var,
+                     __global uint* minVal,
+//                     __global uint* maxVal,
                      int method,
                      __global uint* matchData
                      )
@@ -58,9 +59,9 @@ __kernel void matching(__global uchar* imData,
         matchData[ iGID ] = tm_result ;
         barrier(CLK_GLOBAL_MEM_FENCE);
 
-        atomic_min(var, tm_result);
+        atomic_min(minVal, tm_result);
         barrier(CLK_GLOBAL_MEM_FENCE);
-        if ( (*var) == tm_result )
+        if ( (*minVal) == tm_result )
         {
             (*res).tm_result = tm_result;
             (*res).xpos = work_item_X;
@@ -81,9 +82,9 @@ __kernel void matching(__global uchar* imData,
 //            }
 //        }
 
-//        atomic_min(var, tm_result);
+//        atomic_min(minVal, tm_result);
 //        barrier(CLK_GLOBAL_MEM_FENCE);
-//        if ( (*var) == tm_result )
+//        if ( (*minVal) == tm_result )
 //        {
 //            (*res).tm_result = tm_result;
 //            (*res).xpos = work_item_X;
