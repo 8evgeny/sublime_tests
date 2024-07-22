@@ -102,34 +102,6 @@ __kernel void matching(__global uchar* imData,
 
     }
 
-//    if (method == TM_CCOEFF)
-//    {
-//        for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y +=step_y )
-//        {
-//            for ( int X = 0; X < TEMPLATE_WIDTH; X +=step_x )
-//            {
-//                I = imData[ ( work_item_Y + Y ) * IMG_WIDTH + ( work_item_X + X ) ];
-//                T = tmData[ Y * TEMPLATE_WIDTH + X ];
-//                tm_result += I * T;
-//            }
-//        }
-
-//        if (work_item_X < (IMG_WIDTH - TEMPLATE_WIDTH) && work_item_Y < (IMG_HEIGHT - TEMPLATE_HEIGHT))
-//        {
-//             matchData[ work_item_Y * 193 + work_item_X ] = tm_result ;
-//        }
-//        barrier(CLK_GLOBAL_MEM_FENCE);
-
-//        atomic_max(var, tm_result);
-//        barrier(CLK_GLOBAL_MEM_FENCE);
-//        if ( (*var) == tm_result )
-//        {
-//            (*res).tm_result = tm_result;
-//            (*res).xpos = work_item_X;
-//            (*res).ypos = work_item_Y;
-//        }
-//    }
-
     if (method == TM_CCOEFF_NORMED)
     {
         for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y +=step_y )
