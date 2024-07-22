@@ -39,8 +39,8 @@ __kernel void matching(__global uchar* imData,
     int work_item_Y = get_global_id(1);
     int iGID = (work_item_Y * (IMG_HEIGHT - TEMPLATE_HEIGHT + 1)  + work_item_X);
     uint tm_result = 0;
-    uint step_y = 1;
-    uint step_x = 1;
+    uint step_y = 4;
+    uint step_x = 4;
     uchar I;
     uchar T;
 

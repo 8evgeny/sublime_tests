@@ -114,16 +114,15 @@ int matchingOpenCL()
     time_end_OpenCL = chrono::high_resolution_clock::now();
     uintToMat(mData, img_result_CL);
 
-    cout<<endl;
-    for (int i = res.xpos  + res.ypos * (img_work.cols - img_temp.cols + 1);
-         i < res.xpos + res.ypos * (img_work.cols - img_temp.cols + 1) + 10; ++i)
-//    for (int i = 0; i < (img_work.cols - img_temp.cols + 1)*(img_work.rows - img_temp.rows + 1); ++i)
-    {
-        cout<<mData[i]<<"  ";
-    }
-    cout<<endl;
-    cout << "minVal = " <<minVal<<endl;
-    cout << "maxVal = " <<maxVal<<endl;
+//    cout<<endl;
+//    for (int i = res.xpos  + res.ypos * (img_work.cols - img_temp.cols + 1);
+//         i < res.xpos + res.ypos * (img_work.cols - img_temp.cols + 1) + 10; ++i)
+//    {
+//        cout<<mData[i]<<"  ";
+//    }
+//    cout<<endl;
+//    cout << "minVal = " <<minVal<<endl;
+//    cout << "maxVal = " <<maxVal<<endl;
 
 
     delete[] imageData;
