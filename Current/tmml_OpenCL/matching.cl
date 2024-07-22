@@ -36,14 +36,10 @@ __kernel void matching(__global uchar* imData,
     // get index into global data array
     int work_item_X = get_global_id(0);
     int work_item_Y = get_global_id(1);
-    int iGID = (work_item_Y * IMG_WIDTH + work_item_X);
+    int iGID = (work_item_Y * (IMG_HEIGHT - TEMPLATE_HEIGHT + 1)  + work_item_X);
     uint tm_result = 0;
     uint step_y = 1;
     uint step_x = 1;
-    if ( iGID >= IMG_WIDTH * IMG_HEIGHT)
-    {
-        return;
-    }
     uchar I;
     uchar T;
 
@@ -59,10 +55,7 @@ __kernel void matching(__global uchar* imData,
             }
         }
 
-        if (work_item_X < (IMG_WIDTH - TEMPLATE_WIDTH) && work_item_Y < (IMG_HEIGHT - TEMPLATE_HEIGHT))
-        {
-             matchData[ work_item_Y * 193 + work_item_X ] = tm_result ;
-        }
+        matchData[ iGID ] = tm_result ;
         barrier(CLK_GLOBAL_MEM_FENCE);
 
         atomic_min(var, tm_result);
@@ -77,24 +70,16 @@ __kernel void matching(__global uchar* imData,
 
 //    if (method == TM_SQDIFF_NORMED)
 //    {
-//        long long I2 = 0;
-//        long long T2 = 0;
 //        for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y +=step_y )
 //        {
 //            for ( int X = 0; X < TEMPLATE_WIDTH; X +=step_x )
 //            {
 //                I = imData[ ( work_item_Y + Y ) * IMG_WIDTH + ( work_item_X + X ) ];
 //                T = tmData[ Y * TEMPLATE_WIDTH + X ];
-//                I2 += I*I;
-//                T2 += T*T;
 //                tm_result += ( I - T ) * ( I - T );
+
 //            }
 //        }
-////        tm_result = tm_result *100 /sqrt((float)(I2*T2));
-
-//        matchData[ iGID ] = tm_result * 5000;
-//        barrier(CLK_GLOBAL_MEM_FENCE);
-
 
 //        atomic_min(var, tm_result);
 //        barrier(CLK_GLOBAL_MEM_FENCE);
