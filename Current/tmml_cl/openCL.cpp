@@ -4,7 +4,6 @@ using namespace std;
 using namespace cv;
 using namespace chrono;
 
-
 tmml_cl::tmml_cl(int temp_left, int temp_top)
 {
     temp_leftOK = temp_left;
@@ -18,7 +17,6 @@ tmml_cl::~tmml_cl()
 
 int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num )
 {
-
     high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
     int minVal = 0;
     int maxVal = 0;

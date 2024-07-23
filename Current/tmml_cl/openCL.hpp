@@ -9,7 +9,6 @@
 
 using namespace std;
 
-
 #define KERNEL_FILE "matching.cl"
 #define KERNEL_NAME "matchingCL"
 
@@ -23,6 +22,17 @@ class tmml_cl
     {
         int xpos, ypos;
         cl_uint tm_result;
+    };
+
+    enum matchMetod
+    {
+        TM_SQDIFF = 0,
+        TM_SQDIFF_NORMED,
+        TM_CCORR,
+        TM_CCORR_NORMED,
+        TM_CCOEFF,
+        TM_CCOEFF_NORMED,
+        TM_COMBINED
     };
 
     int initDevice();
@@ -52,15 +62,3 @@ class tmml_cl
 
 
 
-
-
-enum matchMetod
-{
-    TM_SQDIFF = 0,
-    TM_SQDIFF_NORMED,
-    TM_CCORR,
-    TM_CCORR_NORMED,
-    TM_CCOEFF,
-    TM_CCOEFF_NORMED,
-    TM_COMBINED
-};

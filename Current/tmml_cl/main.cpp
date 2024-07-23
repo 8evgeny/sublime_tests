@@ -1,6 +1,5 @@
 #include "tmml.hpp"
 #include "openCL.hpp"
-
 using namespace std;
 using namespace cv;
 using namespace chrono;
@@ -15,42 +14,37 @@ int main()
 {
     int iter_num = NUM_ITERATIONS;
 #ifdef SQDIFF_NORMED
-    int match_method = matchMetod::TM_SQDIFF_NORMED;
+    int match_method = tmml_cl::matchMetod::TM_SQDIFF_NORMED;
 #elif CCOEFF_NORMED
-    int match_method = matchMetod::TM_CCOEFF_NORMED;
+    int match_method = tmml_cl::matchMetod::TM_CCOEFF_NORMED;
 #elif COMBINED
-    int match_method = matchMetod::TM_COMBINED;
+    int match_method = tmml_cl::matchMetod::TM_COMBINED;
 #endif
 
-    Mat img_work, img_temp;
     string mm;
     switch (match_method)
     {
-        case matchMetod::TM_SQDIFF_NORMED:
+        case tmml_cl::matchMetod::TM_SQDIFF_NORMED:
         {
             mm = "TM_SQDIFF_NORMED"; break;
         }
-        case matchMetod::TM_CCOEFF_NORMED:
+        case tmml_cl::matchMetod::TM_CCOEFF_NORMED:
         {
             mm = "TM_CCOEFF_NORMED"; break;
         }
-        case matchMetod::TM_COMBINED:
+        case tmml_cl::matchMetod::TM_COMBINED:
         {
             mm = "TM_COMBINED"; break;
         }
     }
-    cout<<"match metod: "<<mm<<endl;
-    cout<<"iterations: "<<iter_num<<endl<<endl;
-
+    cout<<"match metod: "<< mm << endl;
+    cout<<"iterations: "<< iter_num << endl << endl;
     Rect temp_rect{temp_left, temp_top, TEMPLATE_WIDTH, TEMPLATE_HEIGHT};
+    Mat img_work, img_temp;
     Mat img_source = imread("image_source", CV_8UC1);
-
-    Mat img_result_cpu(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
-    Mat img_result_cuda(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
     Rect work_rect(Point(0, 0), Point(WORK_WIDTH, WORK_HEIGHT ));
     img_work = img_source(work_rect);
     img_temp = img_source(temp_rect);
-
     duration<double> duration_matching;
     high_resolution_clock::time_point time_start, time_end;
     bool tm_ok = 0;
@@ -60,6 +54,7 @@ int main()
     Point minLoc, maxLoc;   
 
 //OpenCV
+    Mat img_result_cpu(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
     time_start = high_resolution_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
     {
@@ -90,6 +85,7 @@ int main()
     cout << "cuda xy =\t\t[" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl<<endl;
     tm->fill_result_array();
     double sum_diff = 0;
+    Mat img_result_cuda(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
     for(int id = 0; id < RESULT_AREA; id++)
     {
         int x = tm->result_array_x[id];
