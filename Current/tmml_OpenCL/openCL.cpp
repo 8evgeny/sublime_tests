@@ -5,7 +5,7 @@ using namespace cv;
 
 extern int match_method;
 extern int iter_num;
-extern Mat img_result_CL;
+
 result res;
 std::string kernel_source;
 chrono::high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
@@ -19,12 +19,12 @@ cl::Device default_device;
 std::vector<cl::Device> all_devices;
 cl::Platform default_platform;
 std::vector<cl::Platform> all_platforms;
-int minVal = 0;
-int maxVal = 0;
-size_t max_workgroup_size, global_size;
 
-int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp)
+
+int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL)
 {
+    int minVal = 0;
+    int maxVal = 0;
     initDevice();
     loadAndBuildProgram(KERNEL_FILE);
 
@@ -227,7 +227,7 @@ void ucharToMat(uchar *data,cv::Mat &image)
     }
 }
 
-void uintToMat(uint *data,cv::Mat &image)
+void uintToMat(uint *data, cv::Mat &image)
 {
     for (int y=0; y<image.rows;y++)
     {

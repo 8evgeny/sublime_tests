@@ -12,7 +12,7 @@ constexpr int temp_left = temp_center_x - 0.5 * TEMPLATE_WIDTH;
 constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_HEIGHT;
 float min_max_Val = 0.99999;
 extern result res;
-Mat img_result_CL(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));
+
 #ifdef SQDIFF_NORMED
 int match_method = matchMetod::TM_SQDIFF_NORMED;
 #endif
@@ -53,9 +53,6 @@ int main()
     Rect work_rect(Point(0, 0), Point(WORK_WIDTH, WORK_HEIGHT ));
     img_work = img_source(work_rect);
     img_temp = img_source(temp_rect);
-
-//    cout<<"img_work:"<<img_work.cols<<"x"<<img_work.rows<<endl;
-//    cout<<"img_temp:"<<img_temp.cols<<"x"<<img_temp.rows<<endl;
 
     std::chrono::duration<double> duration_matching;
     std::chrono::system_clock::time_point time_start, time_end;
@@ -118,7 +115,8 @@ int main()
 
 
 //OpenCL
-    matchingOpenCL(img_work, img_temp);
+    Mat img_result_CL(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));
+    matchingOpenCL(img_work, img_temp, img_result_CL);
     normalize(img_result_CL, img_result_CL, 0, 255, NORM_MINMAX);
     img_result_CL.convertTo(img_result_CL, CV_8UC1);
     resize(img_result_CL, img_result_CL, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
@@ -143,6 +141,7 @@ int main()
     moveWindow(OpenCL, 1300,600);
     resize(img_work, img_work, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
     imshow(OpenCL, img_work);
+
     unsigned char key = waitKey(0);
     tm.reset();
     return 0;
