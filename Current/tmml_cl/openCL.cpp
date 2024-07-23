@@ -23,18 +23,17 @@ int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work
     initDevice();
     loadAndBuildProgram(KERNEL_FILE);
 
-    cl_uchar* imageData = new cl_uchar[img_work.cols * img_work.rows];
-
-    cl_uchar* templateData = new cl_uchar[img_temp.cols * img_temp.rows];
-    cl_uint* mData = new cl_uint[(img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1)];
+    auto imageData = make_unique<cl_uchar[]>(img_work.cols * img_work.rows);
+    auto templateData = make_unique<cl_uchar[]>(img_temp.cols * img_temp.rows);
+    auto mData = make_unique<cl_uint[]>((img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1));
 
     for (int i = 0; i < (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1);++i)
     {
         mData[i]=0;
     }
 
-    loadDataMatToUchar(imageData, img_work, 1);
-    loadDataMatToUchar(templateData, img_temp, 1);
+    loadDataMatToUchar(imageData.get(), img_work, 1);
+    loadDataMatToUchar(templateData.get(), img_temp, 1);
 
     res.tm_result = 10000;
     res.xpos=0;
@@ -59,14 +58,11 @@ int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work
         if (iclError != 0 )
         {
             cout<<"iclError"<<endl;
-            delete[] imageData;
-            delete[] templateData;
-            delete[] mData;
             return -1;
         }
         // Send Data
-        queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * img_work.cols * img_work.rows, &imageData[0]);
-        queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * img_temp.rows * img_temp.cols, &templateData[0]);
+        queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * img_work.cols * img_work.rows, &imageData.get()[0]);
+        queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * img_temp.rows * img_temp.cols, &templateData.get()[0]);
         queue.enqueueWriteBuffer(clInputRes, CL_TRUE, 0,  sizeof(result), &res);
         queue.enqueueWriteBuffer(clInputMinVal, CL_TRUE, 0,  sizeof(cl_int), &minVal);
         queue.enqueueWriteBuffer(clInputMaxVal, CL_TRUE, 0,  sizeof(cl_int), &maxVal);
@@ -102,11 +98,7 @@ int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work
     }//-- END -- for (int i = 0; i < iter_num; ++i)
     time_end_OpenCL = high_resolution_clock::now();
 
-    uintToMat(mData, img_result_CL);
-
-    delete[] imageData;
-    delete[] templateData;
-    delete[] mData;
+    uintToMat(mData.get(), img_result_CL);
 
     auto time_matching_CL = std::chrono::duration_cast<chrono::microseconds>(time_end_OpenCL - time_start_OpenCL);
     printf("Duration OpenCL =  \t%.2f mks \n", (float)time_matching_CL.count() / iter_num );
