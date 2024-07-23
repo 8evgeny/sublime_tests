@@ -60,6 +60,9 @@ class tmml_cl
     unique_ptr<cl_uchar[]> imageData;
     unique_ptr<cl_uchar[]> templateData;
     unique_ptr<cl_uint[]> mData;
+    int minVal = 0;
+    int maxVal = 0;
+
 
 }; // END tmml_cl
 

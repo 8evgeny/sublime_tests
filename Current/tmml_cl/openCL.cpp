@@ -22,18 +22,6 @@ int tmml_cl::initOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const 
     imageData = make_unique<cl_uchar[]>(img_work.cols * img_work.rows);
     templateData = make_unique<cl_uchar[]>(img_temp.cols * img_temp.rows);
     mData = make_unique<cl_uint[]>((img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1));
-
-    return 0;
-}
-
-int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const Mat& img_temp, Mat& img_result_CL, int match_method, int iter_num )
-{
-    high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
-
-
-
-
-
     for (int i = 0; i < (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1);++i)
     {
         mData[i]=0;
@@ -41,16 +29,17 @@ int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, co
 
     loadDataMatToUchar(imageData.get(), img_work, 1);
     loadDataMatToUchar(templateData.get(), img_temp, 1);
-
     res.tm_result = 10000;
     res.xpos=0;
     res.ypos=0;
-    cl_short aux = 10000;
+    return 0;
+}
 
-    int minVal = 0;
-    int maxVal = 0;
-
+int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const Mat& img_temp, Mat& img_result_CL, int match_method, int iter_num )
+{
+    high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
     time_start_OpenCL = high_resolution_clock::now();
+
 //    for (int iter = 0; iter < iter_num ; ++iter)
 //    {
         clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_work.cols * img_work.rows);
