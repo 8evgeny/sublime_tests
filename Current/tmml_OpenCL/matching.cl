@@ -96,25 +96,15 @@ __kernel void matching(__global uchar* imData,
                 sum_temp += temp;
             }
         }
-
-        dev_result_array_bright = sum_roi_temp;
-/*!< \f[R(x,y)= \frac{ \sum_{x',y'} (T'(x',y') \cdot I'(x+x',y+y')) }{\sqrt{\sum_{x',y'}T'(x',y')^2 \cdot \sum_{x',y'} I'(x+x',y+y')^2}}\f] */
-
-
-
-
-//        const long long ch  = (long long)TEMPLATE_AREA * sum_roi_temp - (long long)sum_roi * sum_temp;
-//        const long long zn1 = (long long)TEMPLATE_AREA * sum_temp_temp - (long long)sum_temp * sum_temp;
-//        const long long zn2 = (long long)TEMPLATE_AREA * sum_roi_roi - (long long)sum_roi * sum_roi;
-//        const double sq1 = sqrt((double)zn1);
-//        const double sq2 = sqrt((double)zn2);
-//        dev_result_array_bright = (double)ch / (sq1 * sq2);
-
-
-
-
+        const long long ch  = (long long)TEMPLATE_AREA * sum_roi_temp - (long long)sum_roi * sum_temp;
+        const long long zn1 = (long long)TEMPLATE_AREA * sum_temp_temp - (long long)sum_temp * sum_temp;
+        const long long zn2 = (long long)TEMPLATE_AREA * sum_roi_roi - (long long)sum_roi * sum_roi;
+        const double sq1 = sqrt((double)zn1);
+        const double sq2 = sqrt((double)zn2);
+        dev_result_array_bright = 10000 * (double)ch / (sq1 * sq2);
 
         matchData[ iGID ] = dev_result_array_bright;
+
         atomic_max(maxVal, dev_result_array_bright);
         barrier(CLK_GLOBAL_MEM_FENCE);
         if ( (*maxVal) == dev_result_array_bright )
