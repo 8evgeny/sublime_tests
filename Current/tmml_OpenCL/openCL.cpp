@@ -15,7 +15,7 @@ std::vector<cl::Device> all_devices;
 cl::Platform default_platform;
 std::vector<cl::Platform> all_platforms;
 
-int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, result & res )
+int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, PixCL & pixOK, result & res )
 {
     chrono::high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
     int minVal = 0;
@@ -42,7 +42,7 @@ int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& im
     cl_short aux = 10000;
 
     time_start_OpenCL = chrono::high_resolution_clock::now();
-    for (int i = 0; i < iter_num; ++i)
+    for (int iter = 0; iter < iter_num ; ++iter)
     {
         clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_work.cols * img_work.rows);
         clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_temp.rows * img_temp.cols);
@@ -96,6 +96,9 @@ int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& im
         queue.enqueueReadBuffer(clInputMaxVal, CL_TRUE, 0, sizeof(cl_int),&maxVal);
         queue.enqueueReadBuffer(clInputRes, CL_TRUE, 0, sizeof(result),&res);
         queue.enqueueReadBuffer(clmData, CL_TRUE, 0, sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1) ,&mData[0]);
+
+        if ((res.xpos != pixOK.x) || (res.ypos != pixOK.y)) { cout << "CL iter " << iter << " error !!!" << endl; break; }
+
     }//-- END -- for (int i = 0; i < iter_num; ++i)
     time_end_OpenCL = chrono::high_resolution_clock::now();
 
@@ -105,8 +108,8 @@ int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& im
     delete[] templateData;
     delete[] mData;
 
-    auto time_matching_GPU = std::chrono::duration_cast<chrono::milliseconds>(time_end_OpenCL - time_start_OpenCL);
-    printf("Duration OpenCL =  \t%.2f ms \n", (float)time_matching_GPU.count()/iter_num );
+    auto time_matching_CL = std::chrono::duration_cast<chrono::milliseconds>(time_end_OpenCL - time_start_OpenCL);
+    printf("Duration OpenCL =  \t%.2f ms \n", (float)time_matching_CL.count() / iter_num );
     cout << "openCL xy =\t\t[" << res.xpos << ", " << res.ypos << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl;
 
     return 0;

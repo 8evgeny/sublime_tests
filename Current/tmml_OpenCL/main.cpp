@@ -85,7 +85,7 @@ int main()
     for(int iter = 0; iter < iter_num; ++iter)
     {
         tm->work_cuda(img_work, img_temp, tm->max_pix);
-        if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "GPU iter=" << iter << " !!!" << endl; break;}
+        if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "CUDA iter " << iter << " error !!!" << endl; break;}
     }  // END for(int iter = 0; iter < iter_num; ++iter)
     time_end = system_clock::now();
     duration_matching = time_end - time_start;
@@ -112,9 +112,10 @@ int main()
 
 
 //OpenCL
+    PixCL pixOK(temp_left, temp_top);
     result res;
     Mat img_result_CL(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));
-    matchingOpenCL(img_work, img_temp, img_result_CL, match_method, iter_num, res);
+    matchingOpenCL(img_work, img_temp, img_result_CL, match_method, iter_num, pixOK, res);
     normalize(img_result_CL, img_result_CL, 0, 255, NORM_MINMAX);
     img_result_CL.convertTo(img_result_CL, CV_8UC1);
     resize(img_result_CL, img_result_CL, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
