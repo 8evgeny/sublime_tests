@@ -112,9 +112,9 @@ int main()
 
 
     PixCL pixOK(temp_left, temp_top);
-    result res;
+//    result res;
     Mat img_result_CL(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));
-    tm_cl->matchingOpenCL(tm_cl, img_work, img_temp, img_result_CL, match_method, iter_num, pixOK, res);
+    tm_cl->matchingOpenCL(tm_cl, img_work, img_temp, img_result_CL, match_method, iter_num, pixOK);
     normalize(img_result_CL, img_result_CL, 0, 255, NORM_MINMAX);
     img_result_CL.convertTo(img_result_CL, CV_8UC1);
     resize(img_result_CL, img_result_CL, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
@@ -123,7 +123,7 @@ int main()
     moveWindow(CL_window, 900,600);
     imshow(CL_window, img_result_CL);
     cv::cvtColor(img_work,img_work,cv::COLOR_GRAY2BGR);
-    cv::rectangle(img_work, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+img_temp.cols, res.ypos+img_temp.rows),cv::Scalar(0,0,255),3);
+    cv::rectangle(img_work, cv::Point(tm_cl->res.xpos, tm_cl->res.ypos), cv::Point(tm_cl->res.xpos+img_temp.cols, tm_cl->res.ypos+img_temp.rows),cv::Scalar(0,0,255),3);
     const char* OpenCL = "matchingOpenCL";
 
     namedWindow( OpenCV_window, WINDOW_AUTOSIZE );

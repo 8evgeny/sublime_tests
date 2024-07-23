@@ -17,13 +17,14 @@ vector<cl::Platform> all_platforms;
 
 tmml_cl::tmml_cl()
 {
+    result res;
 }
 
 tmml_cl::~tmml_cl()
 {
 }
 
-int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, PixCL & pixOK, result & res )
+int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, PixCL & pixOK )
 {
 
     high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
