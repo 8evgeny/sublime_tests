@@ -3,12 +3,7 @@
 using namespace std;
 using namespace cv;
 
-extern int match_method;
-extern int iter_num;
-
-result res;
 std::string kernel_source;
-chrono::high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
 cl::Kernel clkProcess;
 cl::Buffer clInputImg, clInputTemp, clInputRes, clInputMinVal, clInputMaxVal, clResults, clMatchMethod, clmData;
 cl::CommandQueue queue;
@@ -20,9 +15,9 @@ std::vector<cl::Device> all_devices;
 cl::Platform default_platform;
 std::vector<cl::Platform> all_platforms;
 
-
-int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL)
+int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, result & res )
 {
+    chrono::high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
     int minVal = 0;
     int maxVal = 0;
     initDevice();
@@ -47,7 +42,6 @@ int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& im
     cl_short aux = 10000;
 
     time_start_OpenCL = chrono::high_resolution_clock::now();
-
     for (int i = 0; i < iter_num; ++i)
     {
         clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_work.cols * img_work.rows);
@@ -79,7 +73,7 @@ int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& im
         queue.enqueueWriteBuffer(clMatchMethod, CL_TRUE, 0,  sizeof(int), &match_method);
         queue.enqueueWriteBuffer(clmData, CL_TRUE, 0,  sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1), &mData[0]);
 
-        //--- Init Kernel arguments ---------------------------------------------------
+        // Init Kernel arguments
         clkProcess.setArg(0,clInputImg);
         clkProcess.setArg(1,clInputTemp);
         clkProcess.setArg(2,clInputRes);
@@ -96,33 +90,16 @@ int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& im
         // Image 2D
         cl::NDRange gRM=cl::NDRange((img_work.cols - img_temp.cols + 1), (img_work.rows - img_temp.rows + 1));
 
-        queue.enqueueNDRangeKernel(
-                    clkProcess,
-                    cl::NullRange,
-                    gRM,
-                    cl::NullRange
-                    );
+        queue.enqueueNDRangeKernel(clkProcess, cl::NullRange, gRM, cl::NullRange );
         queue.finish();
         queue.enqueueReadBuffer(clInputMinVal, CL_TRUE, 0, sizeof(cl_int),&minVal);
         queue.enqueueReadBuffer(clInputMaxVal, CL_TRUE, 0, sizeof(cl_int),&maxVal);
         queue.enqueueReadBuffer(clInputRes, CL_TRUE, 0, sizeof(result),&res);
-        queue.enqueueReadBuffer(clmData, CL_TRUE, 0,
-                                sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1) ,&mData[0]);
-
-    }//End -- for (int i = 0; i < NUM_ITERATIONS_GPU; ++i)
+        queue.enqueueReadBuffer(clmData, CL_TRUE, 0, sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1) ,&mData[0]);
+    }//-- END -- for (int i = 0; i < iter_num; ++i)
     time_end_OpenCL = chrono::high_resolution_clock::now();
+
     uintToMat(mData, img_result_CL);
-
-//    cout<<"CL"<<endl;
-//    for (int i = res.xpos  + res.ypos * (img_work.cols - img_temp.cols + 1);
-//         i < res.xpos + res.ypos * (img_work.cols - img_temp.cols + 1) + 10; ++i)
-//    {
-//        cout<<mData[i]<<"  ";
-//    }
-//    cout<<endl;
-//    cout << "minVal = " <<minVal<<endl;
-//    cout << "maxVal = " <<maxVal<<endl;
-
 
     delete[] imageData;
     delete[] templateData;
@@ -130,11 +107,10 @@ int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& im
 
     auto time_matching_GPU = std::chrono::duration_cast<chrono::milliseconds>(time_end_OpenCL - time_start_OpenCL);
     printf("Duration OpenCL =  \t%.2f ms \n", (float)time_matching_GPU.count()/iter_num );
-
     cout << "openCL xy =\t\t[" << res.xpos << ", " << res.ypos << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl;
 
-return 0;
-}
+    return 0;
+}//--END-- int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, result & res )
 
 int loadKernelFile(std::string program)
 {
@@ -148,47 +124,37 @@ int loadKernelFile(std::string program)
     kernelFile.close();
 
     return 0;
-}
+}//--END-- int loadKernelFile(std::string program)
 
 int initDevice()
 {
-    //get all platforms (drivers)
-
     cl::Platform::get(&all_platforms);
     if(all_platforms.size()==0){
         std::cout<<" No platforms found. Check OpenCL installation!\n";
         return -1;
     }
     default_platform=cl::Platform(all_platforms[0]);
-//    std::cout << "Using platform: "<<default_platform.getInfo<CL_PLATFORM_NAME>()<<"\n";
-
-    //get default device of the default platform
-
+    //std::cout << "Using platform: "<<default_platform.getInfo<CL_PLATFORM_NAME>()<<"\n";
     default_platform.getDevices(CL_DEVICE_TYPE_ALL, &all_devices);
     if(all_devices.size()==0){
         std::cout<<" No devices found. Check OpenCL installation!\n";
         return -1;
     }
     default_device=cl::Device(all_devices[0]);
-//    std::cout<< "Using device: "<<default_device.getInfo<CL_DEVICE_NAME>()<<"\n";
-
+    //std::cout<< "Using device: "<<default_device.getInfo<CL_DEVICE_NAME>()<<"\n";
     context=cl::Context(default_device);
-
     queue=cl::CommandQueue(context, default_device);
     return 0;
-}
+}//--END-- int initDevice()
 
 int loadAndBuildProgram(std::string programFile)
 {
     loadKernelFile(programFile);
-
     std::pair<const char*, ::size_t> src(kernel_source.c_str(), kernel_source.length());
     sources.push_back(src);
-
     program=cl::Program(context, sources);
     VECTOR_CLASS<cl::Device> devices;
     devices.push_back(default_device);
-
     if(program.build(devices)!=CL_SUCCESS)
     {
         std::cout<<" Error building: "<<program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(default_device)<<"\n";
@@ -196,8 +162,7 @@ int loadAndBuildProgram(std::string programFile)
     }
 
     return 0;
-}
-
+}//--END-- int loadAndBuildProgram(std::string programFile)
 
 void loadDataMatToUchar(uchar *data, const cv::Mat &image, int nchannels)
 {
@@ -215,7 +180,8 @@ void loadDataMatToUchar(uchar *data, const cv::Mat &image, int nchannels)
             }
         }
     }
-}
+}//--END-- void loadDataMatToUchar(uchar *data, const cv::Mat &image, int nchannels)
+
 void ucharToMat(uchar *data,cv::Mat &image)
 {
     for (int y=0; y<image.rows;y++)
@@ -225,7 +191,7 @@ void ucharToMat(uchar *data,cv::Mat &image)
             image.at<uchar>(y,x) = data[(long)y * (long)image.cols + x] ;
         }
     }
-}
+}//--END-- void ucharToMat(uchar *data,cv::Mat &image)
 
 void uintToMat(uint *data, cv::Mat &image)
 {
@@ -236,7 +202,7 @@ void uintToMat(uint *data, cv::Mat &image)
             image.at<uint>(y,x) = data[(long)y * (long)image.cols + x] ;
         }
     }
-}
+}//--END-- void uintToMat(uint *data, cv::Mat &image)
 
 
 

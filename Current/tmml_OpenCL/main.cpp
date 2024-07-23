@@ -5,26 +5,23 @@ using namespace std;
 using namespace cv;
 using namespace chrono;
 
-int iter_num = 1000;
 constexpr int temp_center_x = 150;
 constexpr int temp_center_y = 165;
 constexpr int temp_left = temp_center_x - 0.5 * TEMPLATE_WIDTH;
 constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_HEIGHT;
 float min_max_Val = 0.99999;
-extern result res;
-
-#ifdef SQDIFF_NORMED
-int match_method = matchMetod::TM_SQDIFF_NORMED;
-#endif
-#ifdef CCOEFF_NORMED
-int match_method = matchMetod::TM_CCOEFF_NORMED;
-#endif
-#ifdef COMBINED
-int match_method = matchMetod::TM_COMBINED;
-#endif
 
 int main()
 {
+    int iter_num = NUM_ITERATIONS;
+#ifdef SQDIFF_NORMED
+    int match_method = matchMetod::TM_SQDIFF_NORMED;
+#elif CCOEFF_NORMED
+    int match_method = matchMetod::TM_CCOEFF_NORMED;
+#elif COMBINED
+    int match_method = matchMetod::TM_COMBINED;
+#endif
+
     Mat img_work, img_temp;
     string mm;
     switch (match_method)
@@ -115,8 +112,9 @@ int main()
 
 
 //OpenCL
+    result res;
     Mat img_result_CL(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));
-    matchingOpenCL(img_work, img_temp, img_result_CL);
+    matchingOpenCL(img_work, img_temp, img_result_CL, match_method, iter_num, res);
     normalize(img_result_CL, img_result_CL, 0, 255, NORM_MINMAX);
     img_result_CL.convertTo(img_result_CL, CV_8UC1);
     resize(img_result_CL, img_result_CL, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));

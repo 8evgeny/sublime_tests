@@ -21,7 +21,7 @@ enum matchMetod
 //__Local
 //Запускать сразу 4  kernel
 
-__kernel void matching(__global uchar* imData,
+__kernel void matchingCL(__global uchar* imData,
                      __global uchar* tmData,
                      __global result* res,
                      int IMG_WIDTH,
