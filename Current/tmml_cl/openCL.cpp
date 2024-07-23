@@ -15,17 +15,24 @@ tmml_cl::~tmml_cl()
 {
 }
 
+int tmml_cl::initOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const Mat& img_temp, Mat& img_result_CL, int match_method, int iter_num )
+{
+    initDevice();
+    loadAndBuildProgram(KERNEL_FILE);
+    imageData = make_unique<cl_uchar[]>(img_work.cols * img_work.rows);
+    templateData = make_unique<cl_uchar[]>(img_temp.cols * img_temp.rows);
+    mData = make_unique<cl_uint[]>((img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1));
+
+    return 0;
+}
+
 int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const Mat& img_temp, Mat& img_result_CL, int match_method, int iter_num )
 {
     high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
-    int minVal = 0;
-    int maxVal = 0;
-    initDevice();
-    loadAndBuildProgram(KERNEL_FILE);
 
-    auto imageData = make_unique<cl_uchar[]>(img_work.cols * img_work.rows);
-    auto templateData = make_unique<cl_uchar[]>(img_temp.cols * img_temp.rows);
-    auto mData = make_unique<cl_uint[]>((img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1));
+
+
+
 
     for (int i = 0; i < (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1);++i)
     {
@@ -40,9 +47,12 @@ int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, co
     res.ypos=0;
     cl_short aux = 10000;
 
+    int minVal = 0;
+    int maxVal = 0;
+
     time_start_OpenCL = high_resolution_clock::now();
-    for (int iter = 0; iter < iter_num ; ++iter)
-    {
+//    for (int iter = 0; iter < iter_num ; ++iter)
+//    {
         clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_work.cols * img_work.rows);
         clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_temp.rows * img_temp.cols);
         clInputRes=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(result));
@@ -93,9 +103,9 @@ int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, co
         queue.enqueueReadBuffer(clInputRes, CL_TRUE, 0, sizeof(result),&res);
         queue.enqueueReadBuffer(clmData, CL_TRUE, 0, sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1) ,&mData[0]);
 
-        if ((res.xpos != temp_leftOK) || (res.ypos != temp_topOK)) { cout << "CL iter " << iter << " error !!!" << endl; break; }
+//        if ((res.xpos != temp_leftOK) || (res.ypos != temp_topOK)) { cout << "CL iter " << iter << " error !!!" << endl; break; }
 
-    }//-- END -- for (int i = 0; i < iter_num; ++i)
+//    }//-- END -- for (int i = 0; i < iter_num; ++i)
     time_end_OpenCL = high_resolution_clock::now();
 
     uintToMat(mData.get(), img_result_CL);
