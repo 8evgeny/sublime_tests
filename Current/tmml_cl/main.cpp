@@ -108,10 +108,13 @@ int main()
     const char* CUDA_window = "CUDA";
 
 //OpenCL
+    unique_ptr<tmml_cl> tm_cl = make_unique<tmml_cl>();
+
+
     PixCL pixOK(temp_left, temp_top);
     result res;
     Mat img_result_CL(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));
-    matchingOpenCL(img_work, img_temp, img_result_CL, match_method, iter_num, pixOK, res);
+    matchingOpenCL(tm_cl, img_work, img_temp, img_result_CL, match_method, iter_num, pixOK, res);
     normalize(img_result_CL, img_result_CL, 0, 255, NORM_MINMAX);
     img_result_CL.convertTo(img_result_CL, CV_8UC1);
     resize(img_result_CL, img_result_CL, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));

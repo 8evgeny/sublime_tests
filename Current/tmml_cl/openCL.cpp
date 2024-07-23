@@ -15,13 +15,22 @@ std::vector<cl::Device> all_devices;
 cl::Platform default_platform;
 vector<cl::Platform> all_platforms;
 
-int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, PixCL & pixOK, result & res )
+tmml_cl::tmml_cl()
 {
+}
+
+tmml_cl::~tmml_cl()
+{
+}
+
+int matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, PixCL & pixOK, result & res )
+{
+
     high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
     int minVal = 0;
     int maxVal = 0;
-    initDevice();
-    loadAndBuildProgram(KERNEL_FILE);
+    tm_cl->initDevice();
+    tm_cl->loadAndBuildProgram(KERNEL_FILE);
 
     cl_uchar* imageData = new cl_uchar[img_work.cols * img_work.rows];
 
@@ -121,7 +130,7 @@ string loadKernelFile(string program)
     return std::string((istreambuf_iterator<char>(t)), istreambuf_iterator<char>());
 }//--END-- string loadKernelFile(string program)
 
-int initDevice()
+int tmml_cl::initDevice()
 {
     cl::Platform::get(&all_platforms);
     if(all_platforms.size()==0)
@@ -144,7 +153,7 @@ int initDevice()
     return 0;
 }//--END-- int initDevice()
 
-int loadAndBuildProgram(std::string programFile)
+int tmml_cl::loadAndBuildProgram(std::string programFile)
 {
     cl::Program::Sources sources;
     string kernel_source = loadKernelFile(programFile);
