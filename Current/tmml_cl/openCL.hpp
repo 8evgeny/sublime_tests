@@ -9,6 +9,7 @@
 
 using namespace std;
 
+
 #define KERNEL_FILE "matching.cl"
 #define KERNEL_NAME "matchingCL"
 
@@ -35,7 +36,16 @@ class tmml_cl
   private:
     int temp_leftOK;
     int temp_topOK;
-
+    string kernel_source;
+    cl::Kernel clkProcess;
+    cl::Buffer clInputImg, clInputTemp, clInputRes, clInputMinVal, clInputMaxVal, clResults, clMatchMethod, clmData;
+    cl::CommandQueue queue;
+    cl::Context context;
+    cl::Program program;
+    cl::Device default_device;
+    std::vector<cl::Device> all_devices;
+    cl::Platform default_platform;
+    vector<cl::Platform> all_platforms;
 
 }; // END tmml_cl
 

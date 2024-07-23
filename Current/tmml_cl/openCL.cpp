@@ -4,16 +4,6 @@ using namespace std;
 using namespace cv;
 using namespace chrono;
 
-string kernel_source;
-cl::Kernel clkProcess;
-cl::Buffer clInputImg, clInputTemp, clInputRes, clInputMinVal, clInputMaxVal, clResults, clMatchMethod, clmData;
-cl::CommandQueue queue;
-cl::Context context;
-cl::Program program;
-cl::Device default_device;
-std::vector<cl::Device> all_devices;
-cl::Platform default_platform;
-vector<cl::Platform> all_platforms;
 
 tmml_cl::tmml_cl(int temp_left, int temp_top)
 {
