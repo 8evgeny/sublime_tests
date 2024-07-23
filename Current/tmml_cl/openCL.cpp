@@ -23,7 +23,7 @@ tmml_cl::~tmml_cl()
 {
 }
 
-int matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, PixCL & pixOK, result & res )
+int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, PixCL & pixOK, result & res )
 {
 
     high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
@@ -42,8 +42,8 @@ int matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const c
         mData[i]=0;
     }
 
-    loadDataMatToUchar(imageData, img_work, 1);
-    loadDataMatToUchar(templateData, img_temp, 1);
+    tm_cl->loadDataMatToUchar(imageData, img_work, 1);
+    tm_cl->loadDataMatToUchar(templateData, img_temp, 1);
 
     res.tm_result = 10000;
     res.xpos=0;
@@ -111,7 +111,7 @@ int matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const c
     }//-- END -- for (int i = 0; i < iter_num; ++i)
     time_end_OpenCL = high_resolution_clock::now();
 
-    uintToMat(mData, img_result_CL);
+    tm_cl->uintToMat(mData, img_result_CL);
 
     delete[] imageData;
     delete[] templateData;
@@ -124,7 +124,7 @@ int matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const c
     return 0;
 }//--END-- int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, result & res )
 
-string loadKernelFile(string program)
+string tmml_cl::loadKernelFile(string program)
 {
     std::ifstream t(program);
     return std::string((istreambuf_iterator<char>(t)), istreambuf_iterator<char>());
@@ -171,7 +171,7 @@ int tmml_cl::loadAndBuildProgram(std::string programFile)
     return 0;
 }//--END-- int loadAndBuildProgram(std::string programFile)
 
-void loadDataMatToUchar(uchar *data, const cv::Mat &image, int nchannels)
+void tmml_cl::loadDataMatToUchar(uchar *data, const cv::Mat &image, int nchannels)
 {
     int width = image.cols;
     int height = image.rows;
@@ -190,19 +190,7 @@ void loadDataMatToUchar(uchar *data, const cv::Mat &image, int nchannels)
     }//--END-- for (int y=0; y < height; y++)
 }//--END-- void loadDataMatToUchar(uchar *data, const cv::Mat &image, int nchannels)
 
-void ucharToMat(uchar *data, cv::Mat &image)
-{
-    for (int y=0; y < image.rows; y++)
-    {
-        auto posY = (long)y * (long)image.cols;
-        for (int x = 0 ; x < image.cols ; x++)
-        {
-            image.at<uchar>(y,x) = data[posY + x] ;
-        }//--END-- for (int y=0; y < image.rows; y++)
-    }//--END-- for (int y=0; y < image.rows; y++)
-}//--END-- void ucharToMat(uchar *data,cv::Mat &image)
-
-void uintToMat(uint *data, cv::Mat &image)
+void tmml_cl::uintToMat(uint *data, cv::Mat &image)
 {
     for (int y=0; y<image.rows;y++)
     {
