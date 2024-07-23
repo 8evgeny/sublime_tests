@@ -54,8 +54,8 @@ int main()
     img_work = img_source(work_rect);
     img_temp = img_source(temp_rect);
 
- cout<<"img_work:"<<img_work.cols<<"x"<<img_work.rows<<endl;
- cout<<"img_temp:"<<img_temp.cols<<"x"<<img_temp.rows<<endl;
+//    cout<<"img_work:"<<img_work.cols<<"x"<<img_work.rows<<endl;
+//    cout<<"img_temp:"<<img_temp.cols<<"x"<<img_temp.rows<<endl;
 
     std::chrono::duration<double> duration_matching;
     std::chrono::system_clock::time_point time_start, time_end;
@@ -64,7 +64,6 @@ int main()
     tm->max_pix = tm->max_pix0;
     double minVal, maxVal;
     Point minLoc, maxLoc;   
-
 
 //OpenCV
     cout << "origin xy =\t\t[" << temp_left << ", " << temp_top << "] "<<endl;
@@ -80,10 +79,15 @@ int main()
     cout.precision(2);
     std::cout.setf(std::ios::fixed);
     cout << "Duration OpenCV =\t" << 1e3 * duration_matching.count()/iter_num << " ms" << endl;
+    normalize(img_result_cpu, img_result_cpu, 0, 255, NORM_MINMAX);
+    img_result_cpu.convertTo(img_result_cpu, CV_8UC1);
+    int k = 2;
+    resize(img_result_cpu, img_result_cpu, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
+    const char* OpenCV_window = "OpenCV";
+
 
 //CUDA
     time_start = system_clock::now();
-
     for(int iter = 0; iter < iter_num; ++iter)
     {
         tm->work_cuda(img_work, img_temp, tm->max_pix);
@@ -93,11 +97,6 @@ int main()
     duration_matching = time_end - time_start;
     cout << "Duration CUDA =\t\t" << 1e3 * duration_matching.count()/iter_num  << " ms" << endl;
     cout << "cuda xy =\t\t[" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl;
-
-//OpenCL
-    matchingOpenCL(img_work, img_temp);
-
-//Results
     tm->fill_result_array();
     double sum_diff = 0;
     for(int id = 0; id < RESULT_AREA; id++)
@@ -111,35 +110,15 @@ int main()
         //cout << id << "; x = " << x << "; y = " << y << "; cpu = " << bright_cpu << "; gpu = " << bright_gpu << endl;
         sum_diff += diff;
     } // END for(int id = 0; id < RESULT_AREA; id++)
-//    cout << "sum_diff = " << sum_diff << "; RESULT_AREA = " << RESULT_AREA << "; raitio = " << sum_diff/RESULT_AREA << endl;
-
-
-    normalize(img_result_cpu, img_result_cpu, 0, 255, NORM_MINMAX);
-    img_result_cpu.convertTo(img_result_cpu, CV_8UC1);
-    int k = 2;
-    resize(img_result_cpu, img_result_cpu, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
-    const char* OpenCV_window = "OpenCV";
-    namedWindow( OpenCV_window, WINDOW_AUTOSIZE );
-    moveWindow(OpenCV_window, 900,100);
-    imshow(OpenCV_window, img_result_cpu);
-
+    //    cout << "sum_diff = " << sum_diff << "; RESULT_AREA = " << RESULT_AREA << "; raitio = " << sum_diff/RESULT_AREA << endl;
     normalize(img_result_cuda, img_result_cuda, 0, 255, NORM_MINMAX);
-
-//    cout<<"CUDA"<<endl;
-//    for (int i = res.xpos  + res.ypos * (img_result_cuda.cols - img_temp.cols + 1);
-//         i < res.xpos + res.ypos * (img_result_cuda.cols - img_temp.cols + 1) + 10; ++i)
-//    {
-//        cout<<img_result_cuda.at<uint>(i)<<"  ";
-//    }
-//    cout<<endl;
-
     img_result_cuda.convertTo(img_result_cuda, CV_8UC1);
     resize(img_result_cuda, img_result_cuda, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
     const char* CUDA_window = "CUDA";
-    namedWindow( CUDA_window, WINDOW_AUTOSIZE );
-    moveWindow(CUDA_window, 1300,100);
-    imshow(CUDA_window, img_result_cuda);
 
+
+//OpenCL
+    matchingOpenCL(img_work, img_temp);
     normalize(img_result_CL, img_result_CL, 0, 255, NORM_MINMAX);
     img_result_CL.convertTo(img_result_CL, CV_8UC1);
     resize(img_result_CL, img_result_CL, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
@@ -147,15 +126,23 @@ int main()
     namedWindow( CL_window, WINDOW_AUTOSIZE );
     moveWindow(CL_window, 900,600);
     imshow(CL_window, img_result_CL);
-
     cv::cvtColor(img_work,img_work,cv::COLOR_GRAY2BGR);
     cv::rectangle(img_work, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+img_temp.cols, res.ypos+img_temp.rows),cv::Scalar(0,0,255),3);
     const char* OpenCL = "matchingOpenCL";
+
+
+    namedWindow( OpenCV_window, WINDOW_AUTOSIZE );
+    moveWindow(OpenCV_window, 900,100);
+    imshow(OpenCV_window, img_result_cpu);
+
+    namedWindow( CUDA_window, WINDOW_AUTOSIZE );
+    moveWindow(CUDA_window, 1300,100);
+    imshow(CUDA_window, img_result_cuda);
+
     namedWindow( OpenCL, WINDOW_AUTOSIZE );
     moveWindow(OpenCL, 1300,600);
     resize(img_work, img_work, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
     imshow(OpenCL, img_work);
-
     unsigned char key = waitKey(0);
     tm.reset();
     return 0;
