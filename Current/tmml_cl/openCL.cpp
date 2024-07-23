@@ -15,8 +15,10 @@ std::vector<cl::Device> all_devices;
 cl::Platform default_platform;
 vector<cl::Platform> all_platforms;
 
-tmml_cl::tmml_cl()
+tmml_cl::tmml_cl(int temp_left, int temp_top)
 {
+    temp_leftOK = temp_left;
+    temp_topOK = temp_top;
     result res;
 }
 
@@ -24,14 +26,14 @@ tmml_cl::~tmml_cl()
 {
 }
 
-int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, PixCL & pixOK )
+int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num )
 {
 
     high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
     int minVal = 0;
     int maxVal = 0;
-    tm_cl->initDevice();
-    tm_cl->loadAndBuildProgram(KERNEL_FILE);
+    initDevice();
+    loadAndBuildProgram(KERNEL_FILE);
 
     cl_uchar* imageData = new cl_uchar[img_work.cols * img_work.rows];
 
@@ -43,8 +45,8 @@ int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work
         mData[i]=0;
     }
 
-    tm_cl->loadDataMatToUchar(imageData, img_work, 1);
-    tm_cl->loadDataMatToUchar(templateData, img_temp, 1);
+    loadDataMatToUchar(imageData, img_work, 1);
+    loadDataMatToUchar(templateData, img_temp, 1);
 
     res.tm_result = 10000;
     res.xpos=0;
@@ -107,12 +109,12 @@ int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work
         queue.enqueueReadBuffer(clInputRes, CL_TRUE, 0, sizeof(result),&res);
         queue.enqueueReadBuffer(clmData, CL_TRUE, 0, sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1) ,&mData[0]);
 
-        if ((res.xpos != pixOK.x) || (res.ypos != pixOK.y)) { cout << "CL iter " << iter << " error !!!" << endl; break; }
+        if ((res.xpos != temp_leftOK) || (res.ypos != temp_topOK)) { cout << "CL iter " << iter << " error !!!" << endl; break; }
 
     }//-- END -- for (int i = 0; i < iter_num; ++i)
     time_end_OpenCL = high_resolution_clock::now();
 
-    tm_cl->uintToMat(mData, img_result_CL);
+    uintToMat(mData, img_result_CL);
 
     delete[] imageData;
     delete[] templateData;

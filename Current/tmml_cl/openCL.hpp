@@ -12,21 +12,10 @@ using namespace std;
 #define KERNEL_FILE "matching.cl"
 #define KERNEL_NAME "matchingCL"
 
-struct PixCL
-{
-    int x = 0;
-    int y = 0;
-    PixCL(int left, int top)
-    {
-        x = left;
-        y = top;
-    }
-};
-
 class tmml_cl
 {
   public:
-    tmml_cl();
+    tmml_cl(int temp_leftOK, int temp_topOK);
     ~tmml_cl();
 
     struct result
@@ -35,17 +24,17 @@ class tmml_cl
         cl_uint tm_result;
     };
 
-
     int initDevice();
     int loadAndBuildProgram(std::string programFile);
     void loadDataMatToUchar(uchar *data, const cv::Mat &image, int nchannels);
     void uintToMat(uint *data,cv::Mat &image);
     string loadKernelFile(string program);
-    int matchingOpenCL(std::unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, PixCL & pixOK );
+    int matchingOpenCL(std::unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num );
     result res;
 
   private:
-
+    int temp_leftOK;
+    int temp_topOK;
 
 
 }; // END tmml_cl
