@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 set(CMAKE_CXX_STANDARD 17)
-project(tmml_OpenCL)
+project(tmml_cl)
 
 # Тип корреляции при template matching
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)

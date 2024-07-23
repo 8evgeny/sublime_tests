@@ -51,8 +51,8 @@ int main()
     img_work = img_source(work_rect);
     img_temp = img_source(temp_rect);
 
-    std::chrono::duration<double> duration_matching;
-    std::chrono::high_resolution_clock::time_point time_start, time_end;
+    duration<double> duration_matching;
+    high_resolution_clock::time_point time_start, time_end;
     bool tm_ok = 0;
     shared_ptr<tmml> tm = make_shared<tmml>(tm_ok, min_max_Val);
     tm->max_pix = tm->max_pix0;
