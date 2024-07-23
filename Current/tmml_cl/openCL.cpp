@@ -2,8 +2,9 @@
 
 using namespace std;
 using namespace cv;
+using namespace chrono;
 
-std::string kernel_source;
+string kernel_source;
 cl::Kernel clkProcess;
 cl::Buffer clInputImg, clInputTemp, clInputRes, clInputMinVal, clInputMaxVal, clResults, clMatchMethod, clmData;
 cl::CommandQueue queue;
@@ -13,11 +14,11 @@ cl::Program::Sources sources;
 cl::Device default_device;
 std::vector<cl::Device> all_devices;
 cl::Platform default_platform;
-std::vector<cl::Platform> all_platforms;
+vector<cl::Platform> all_platforms;
 
 int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, PixCL & pixOK, result & res )
 {
-    chrono::high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
+    high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
     int minVal = 0;
     int maxVal = 0;
     initDevice();
@@ -100,7 +101,7 @@ int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& im
         if ((res.xpos != pixOK.x) || (res.ypos != pixOK.y)) { cout << "CL iter " << iter << " error !!!" << endl; break; }
 
     }//-- END -- for (int i = 0; i < iter_num; ++i)
-    time_end_OpenCL = chrono::high_resolution_clock::now();
+    time_end_OpenCL = high_resolution_clock::now();
 
     uintToMat(mData, img_result_CL);
 
@@ -132,17 +133,19 @@ int loadKernelFile(std::string program)
 int initDevice()
 {
     cl::Platform::get(&all_platforms);
-    if(all_platforms.size()==0){
-        std::cout<<" No platforms found. Check OpenCL installation!\n";
+    if(all_platforms.size()==0)
+    {
+        cout<<" No platforms found. Check OpenCL installation!\n";
         return -1;
-    }
+    }//--END-- if(all_platforms.size()==0)
     default_platform=cl::Platform(all_platforms[0]);
-    //std::cout << "Using platform: "<<default_platform.getInfo<CL_PLATFORM_NAME>()<<"\n";
+    //cout << "Using platform: "<<default_platform.getInfo<CL_PLATFORM_NAME>()<<"\n";
     default_platform.getDevices(CL_DEVICE_TYPE_ALL, &all_devices);
-    if(all_devices.size()==0){
-        std::cout<<" No devices found. Check OpenCL installation!\n";
+    if (all_devices.size() == 0)
+    {
+        cout<<" No devices found. Check OpenCL installation!\n";
         return -1;
-    }
+    }//--END-- if (all_devices.size() == 0)
     default_device=cl::Device(all_devices[0]);
     //std::cout<< "Using device: "<<default_device.getInfo<CL_DEVICE_NAME>()<<"\n";
     context=cl::Context(default_device);
@@ -153,16 +156,16 @@ int initDevice()
 int loadAndBuildProgram(std::string programFile)
 {
     loadKernelFile(programFile);
-    std::pair<const char*, ::size_t> src(kernel_source.c_str(), kernel_source.length());
+    pair<const char*, ::size_t> src(kernel_source.c_str(), kernel_source.length());
     sources.push_back(src);
     program=cl::Program(context, sources);
     VECTOR_CLASS<cl::Device> devices;
     devices.push_back(default_device);
     if(program.build(devices)!=CL_SUCCESS)
     {
-        std::cout<<" Error building: "<<program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(default_device)<<"\n";
+        cout<<" Error building: "<<program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(default_device)<<"\n";
         return -1;
-    }
+    }//--END-- if(program.build(devices)!=CL_SUCCESS)
 
     return 0;
 }//--END-- int loadAndBuildProgram(std::string programFile)
@@ -171,40 +174,43 @@ void loadDataMatToUchar(uchar *data, const cv::Mat &image, int nchannels)
 {
     int width = image.cols;
     int height = image.rows;
-    for (int y=0; y<height;y++)
+    for (int y=0; y < height; y++)
     {
-        for (int x = 0 ; x<width ; x++)
+        auto posY = (long)y * (long)width * (long)nchannels;
+        for (int x = 0 ; x < width ; x++)
         {
-            data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 0] = image.at<uchar>(y,x);
-            if (nchannels==3)
+            data[posY + (long)x * nchannels + 0] = image.at<uchar>(y,x);
+            if (nchannels == 3)
             {
-                data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 1] = image.at<uchar>(y,x);
-                data[(long)y * (long)width * (long)nchannels + (long)x*nchannels + 2] = image.at<uchar>(y,x);
-            }
-        }
-    }
+                data[posY + (long)x * nchannels + 1] = image.at<uchar>(y,x);
+                data[posY + (long)x * nchannels + 2] = image.at<uchar>(y,x);
+            }//--END-- if (nchannels==3)
+        }//--END-- for (int x = 0 ; x < width ; x++)
+    }//--END-- for (int y=0; y < height; y++)
 }//--END-- void loadDataMatToUchar(uchar *data, const cv::Mat &image, int nchannels)
 
-void ucharToMat(uchar *data,cv::Mat &image)
+void ucharToMat(uchar *data, cv::Mat &image)
 {
-    for (int y=0; y<image.rows;y++)
+    for (int y=0; y < image.rows; y++)
     {
-        for (int x = 0 ; x<image.cols ; x++)
+        auto posY = (long)y * (long)image.cols;
+        for (int x = 0 ; x < image.cols ; x++)
         {
-            image.at<uchar>(y,x) = data[(long)y * (long)image.cols + x] ;
-        }
-    }
+            image.at<uchar>(y,x) = data[posY + x] ;
+        }//--END-- for (int y=0; y < image.rows; y++)
+    }//--END-- for (int y=0; y < image.rows; y++)
 }//--END-- void ucharToMat(uchar *data,cv::Mat &image)
 
 void uintToMat(uint *data, cv::Mat &image)
 {
     for (int y=0; y<image.rows;y++)
     {
+        auto posY = (long)y * (long)image.cols;
         for (int x = 0 ; x<image.cols ; x++)
         {
-            image.at<uint>(y,x) = data[(long)y * (long)image.cols + x] ;
+            image.at<uint>(y,x) = data[posY + x] ;
         }
-    }
+    }//--END-- void uintToMat(uint *data, cv::Mat &image)
 }//--END-- void uintToMat(uint *data, cv::Mat &image)
 
 
