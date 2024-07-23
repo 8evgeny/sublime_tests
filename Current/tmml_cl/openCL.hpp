@@ -5,7 +5,7 @@
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
 #include <iostream>
-#include <QtCore>
+#include <fstream>
 
 #define KERNEL_FILE "matching.cl"
 #define KERNEL_NAME "matchingCL"

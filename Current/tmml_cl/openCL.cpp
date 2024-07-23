@@ -10,7 +10,6 @@ cl::Buffer clInputImg, clInputTemp, clInputRes, clInputMinVal, clInputMaxVal, cl
 cl::CommandQueue queue;
 cl::Context context;
 cl::Program program;
-cl::Program::Sources sources;
 cl::Device default_device;
 std::vector<cl::Device> all_devices;
 cl::Platform default_platform;
@@ -116,19 +115,11 @@ int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& im
     return 0;
 }//--END-- int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, result & res )
 
-int loadKernelFile(std::string program)
+string loadKernelFile(string program)
 {
-    QFile kernelFile(program.c_str());
-    if (!kernelFile.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        cout <<"error kernel file"<<endl;
-        return -1;
-    }
-    kernel_source = kernelFile.readAll().toStdString();
-    kernelFile.close();
-
-    return 0;
-}//--END-- int loadKernelFile(std::string program)
+    std::ifstream t(program);
+    return std::string((istreambuf_iterator<char>(t)), istreambuf_iterator<char>());
+}//--END-- string loadKernelFile(string program)
 
 int initDevice()
 {
@@ -155,7 +146,8 @@ int initDevice()
 
 int loadAndBuildProgram(std::string programFile)
 {
-    loadKernelFile(programFile);
+    cl::Program::Sources sources;
+    string kernel_source = loadKernelFile(programFile);
     pair<const char*, ::size_t> src(kernel_source.c_str(), kernel_source.length());
     sources.push_back(src);
     program=cl::Program(context, sources);
