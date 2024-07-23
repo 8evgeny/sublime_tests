@@ -108,9 +108,9 @@ int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& im
     delete[] templateData;
     delete[] mData;
 
-    auto time_matching_CL = std::chrono::duration_cast<chrono::milliseconds>(time_end_OpenCL - time_start_OpenCL);
-    printf("Duration OpenCL =  \t%.2f ms \n", (float)time_matching_CL.count() / iter_num );
-    cout << "openCL xy =\t\t[" << res.xpos << ", " << res.ypos << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl;
+    auto time_matching_CL = std::chrono::duration_cast<chrono::microseconds>(time_end_OpenCL - time_start_OpenCL);
+    printf("Duration OpenCL =  \t%.2f mks \n", (float)time_matching_CL.count() / iter_num );
+    cout << "openCL xy =\t\t[" << res.xpos << ", " << res.ypos << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl<<endl;
 
     return 0;
 }//--END-- int matchingOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num, result & res )

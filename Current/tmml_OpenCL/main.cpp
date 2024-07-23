@@ -28,15 +28,15 @@ int main()
     {
         case matchMetod::TM_SQDIFF_NORMED:
         {
-            mm = "TM_SQDIFF_NORMED";break;
+            mm = "TM_SQDIFF_NORMED"; break;
         }
         case matchMetod::TM_CCOEFF_NORMED:
         {
-            mm = "TM_CCOEFF_NORMED";break;
+            mm = "TM_CCOEFF_NORMED"; break;
         }
         case matchMetod::TM_COMBINED:
         {
-            mm = "TM_COMBINED";break;
+            mm = "TM_COMBINED"; break;
         }
     }
     cout<<"match metod: "<<mm<<endl;
@@ -52,7 +52,7 @@ int main()
     img_temp = img_source(temp_rect);
 
     std::chrono::duration<double> duration_matching;
-    std::chrono::system_clock::time_point time_start, time_end;
+    std::chrono::high_resolution_clock::time_point time_start, time_end;
     bool tm_ok = 0;
     shared_ptr<tmml> tm = make_shared<tmml>(tm_ok, min_max_Val);
     tm->max_pix = tm->max_pix0;
@@ -60,37 +60,34 @@ int main()
     Point minLoc, maxLoc;   
 
 //OpenCV
-    cout << "origin xy =\t\t[" << temp_left << ", " << temp_top << "] "<<endl;
-    time_start = system_clock::now();
+    time_start = high_resolution_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
     {
         matchTemplate(img_work, img_temp, img_result_cpu, match_method);//TM_CCOEFF_NORMED
         minMaxLoc(img_result_cpu, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
         if(maxLoc.x != temp_left || maxLoc.y != temp_top){cout << "CPU iter=" << iter << " !!!" << endl; break;}
     }  // END for(int iter = 0; iter < iter_num; ++iter)
-    time_end = system_clock::now();
-    duration_matching = time_end - time_start;
-    cout.precision(2);
-    std::cout.setf(std::ios::fixed);
-    cout << "Duration OpenCV =\t" << 1e3 * duration_matching.count()/iter_num << " ms" << endl;
+    time_end = high_resolution_clock::now();
+    auto time_matching_CPU = std::chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+    printf("Duration OpenCV =  \t%.2f mks \n", (float)time_matching_CPU.count() / iter_num );
+    cout << "OpenCV xy =\t\t[" << temp_left << ", " << temp_top << "] "<<endl<<endl;
     normalize(img_result_cpu, img_result_cpu, 0, 255, NORM_MINMAX);
     img_result_cpu.convertTo(img_result_cpu, CV_8UC1);
     int k = 2;
     resize(img_result_cpu, img_result_cpu, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
     const char* OpenCV_window = "OpenCV";
 
-
 //CUDA
-    time_start = system_clock::now();
+    time_start = high_resolution_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
     {
         tm->work_cuda(img_work, img_temp, tm->max_pix);
         if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "CUDA iter " << iter << " error !!!" << endl; break;}
     }  // END for(int iter = 0; iter < iter_num; ++iter)
-    time_end = system_clock::now();
-    duration_matching = time_end - time_start;
-    cout << "Duration CUDA =\t\t" << 1e3 * duration_matching.count()/iter_num  << " ms" << endl;
-    cout << "cuda xy =\t\t[" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl;
+    time_end = high_resolution_clock::now();
+    auto time_matching_CUDA = std::chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+    printf("Duration OpenCV =  \t%.2f mks \n", (float)time_matching_CUDA.count() / iter_num );
+    cout << "cuda xy =\t\t[" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl<<endl;
     tm->fill_result_array();
     double sum_diff = 0;
     for(int id = 0; id < RESULT_AREA; id++)
@@ -110,7 +107,6 @@ int main()
     resize(img_result_cuda, img_result_cuda, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
     const char* CUDA_window = "CUDA";
 
-
 //OpenCL
     PixCL pixOK(temp_left, temp_top);
     result res;
@@ -126,7 +122,6 @@ int main()
     cv::cvtColor(img_work,img_work,cv::COLOR_GRAY2BGR);
     cv::rectangle(img_work, cv::Point(res.xpos, res.ypos), cv::Point(res.xpos+img_temp.cols, res.ypos+img_temp.rows),cv::Scalar(0,0,255),3);
     const char* OpenCL = "matchingOpenCL";
-
 
     namedWindow( OpenCV_window, WINDOW_AUTOSIZE );
     moveWindow(OpenCV_window, 900,100);
