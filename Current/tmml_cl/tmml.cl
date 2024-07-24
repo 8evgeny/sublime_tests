@@ -21,7 +21,7 @@ enum matchMetod
 //__Local
 //Запускать сразу 4  kernel
 
-__kernel void matchingCL(__global unsigned char * imData,
+__kernel void tmml_cl(__global unsigned char * imData,
                      __global unsigned char * tmData,
                      __global result* res,
                      int IMG_WIDTH,

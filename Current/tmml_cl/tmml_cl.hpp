@@ -1,6 +1,5 @@
 #pragma once
 #include <CL/cl.hpp>
-#include "openCL.hpp"
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
@@ -27,8 +26,8 @@ constexpr int temp_center_y = 165;
 constexpr int temp_left = temp_center_x - 0.5 * TEMPLATE_WIDTH;
 constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_HEIGHT;
 
-#define KERNEL_FILE "matching.cl"
-#define KERNEL_NAME "matchingCL"
+#define KERNEL_FILE "tmml.cl"
+#define KERNEL_NAME "tmml_cl"
 
 class tmml_cl
 {

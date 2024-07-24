@@ -1,4 +1,4 @@
-#include "openCL.hpp"
+#include "tmml_cl.hpp"
 
 using namespace std;
 using namespace cv;
