@@ -40,8 +40,8 @@ class tmml_cl
     void loadDataMatToUchar(uchar *data, const cv::Mat &image, int nchannels);
     void uintToMat(uint *data,cv::Mat &image);
     string loadKernelFile(string program);
-    int initOpenCL(std::unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, int match_method );
-    int matchingCL(std::unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp );
+    int initOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, int match_method );
+    int matchingCL(const cv::Mat& img_work, const cv::Mat& img_temp );
     result res;
     unique_ptr<cl_uint[]> mData;
     int temp_leftOK;
