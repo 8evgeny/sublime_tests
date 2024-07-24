@@ -9,6 +9,19 @@
 
 using namespace std;
 
+
+const int SOURCE_WIDTH = EXT_VAL * TEMPLATE_WIDTH;
+const int SOURCE_HEIGHT = EXT_VAL * TEMPLATE_HEIGHT;
+const int WORK_WIDTH = SOURCE_WIDTH - 1;
+const int WORK_HEIGHT = SOURCE_HEIGHT - 1;
+const int RESULT_WIDTH = WORK_WIDTH - TEMPLATE_WIDTH + 1; // 192
+const int RESULT_HEIGHT = WORK_HEIGHT - TEMPLATE_HEIGHT + 1; // 192
+const int RESULT_AREA = RESULT_WIDTH * RESULT_HEIGHT;
+const int TEMPLATE_AREA = TEMPLATE_WIDTH * TEMPLATE_HEIGHT;
+const float RESULT_AREA_1 = 1.f / RESULT_AREA;
+const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
+
+
 #define KERNEL_FILE "matching.cl"
 #define KERNEL_NAME "matchingCL"
 

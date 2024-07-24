@@ -1,4 +1,4 @@
-#include "tmml.hpp"
+//#include "tmml.hpp"
 #include "openCL.hpp"
 using namespace std;
 using namespace cv;
@@ -48,12 +48,10 @@ int main()
     duration<double> duration_matching;
     high_resolution_clock::time_point time_start, time_end;
     bool tm_ok = 0;
-    shared_ptr<tmml> tm = make_shared<tmml>(tm_ok, min_max_Val);
-    tm->max_pix = tm->max_pix0;
-    double minVal, maxVal;
-    Point minLoc, maxLoc;   
 
 //OpenCV
+    double minVal, maxVal;
+    Point minLoc, maxLoc;
     Mat img_result_cpu(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
 
     time_start = high_resolution_clock::now();
@@ -74,37 +72,37 @@ int main()
     resize(img_result_cpu, img_result_cpu, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
     const char* OpenCV_window = "result_CPU";
 
-//CUDA
-    time_start = high_resolution_clock::now();
-    for(int iter = 0; iter < iter_num; ++iter)
-    {
-        tm->work_cuda(img_work, img_temp, tm->max_pix);
-        if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "CUDA iter " << iter << " error !!!" << endl; break;}
-    }  // END for(int iter = 0; iter < iter_num; ++iter)
-    time_end = high_resolution_clock::now();
+////CUDA
+//    time_start = high_resolution_clock::now();
+//    for(int iter = 0; iter < iter_num; ++iter)
+//    {
+//        tm->work_cuda(img_work, img_temp, tm->max_pix);
+//        if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "CUDA iter " << iter << " error !!!" << endl; break;}
+//    }  // END for(int iter = 0; iter < iter_num; ++iter)
+//    time_end = high_resolution_clock::now();
 
-    auto time_matching_CUDA = std::chrono::duration_cast<chrono::microseconds>(time_end - time_start);
-    printf("Duration CUDA =  \t%.2f mks \n", (float)time_matching_CUDA.count() / iter_num );
-    cout << "cuda xy =\t\t[" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl<<endl;
-    tm->fill_result_array();
-    double sum_diff = 0;
-    Mat img_result_cuda(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
-    for(int id = 0; id < RESULT_AREA; id++)
-    {
-        int x = tm->result_array_x[id];
-        int y = tm->result_array_y[id];
-        float bright_gpu = tm->result_array_bright[id];
-        float bright_cpu = img_result_cpu.at<float>(y, x);
-        img_result_cuda.at<float>(y, x) = bright_gpu;
-        double diff = abs(bright_cpu - bright_gpu);
-        //cout << id << "; x = " << x << "; y = " << y << "; cpu = " << bright_cpu << "; gpu = " << bright_gpu << endl;
-        sum_diff += diff;
-    } // END for(int id = 0; id < RESULT_AREA; id++)
-    //    cout << "sum_diff = " << sum_diff << "; RESULT_AREA = " << RESULT_AREA << "; raitio = " << sum_diff/RESULT_AREA << endl;
-    normalize(img_result_cuda, img_result_cuda, 0, 255, NORM_MINMAX);
-    img_result_cuda.convertTo(img_result_cuda, CV_8UC1);
-    resize(img_result_cuda, img_result_cuda, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
-    const char* CUDA_window = "result_CUDA";
+//    auto time_matching_CUDA = std::chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+//    printf("Duration CUDA =  \t%.2f mks \n", (float)time_matching_CUDA.count() / iter_num );
+//    cout << "cuda xy =\t\t[" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl<<endl;
+//    tm->fill_result_array();
+//    double sum_diff = 0;
+//    Mat img_result_cuda(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
+//    for(int id = 0; id < RESULT_AREA; id++)
+//    {
+//        int x = tm->result_array_x[id];
+//        int y = tm->result_array_y[id];
+//        float bright_gpu = tm->result_array_bright[id];
+//        float bright_cpu = img_result_cpu.at<float>(y, x);
+//        img_result_cuda.at<float>(y, x) = bright_gpu;
+//        double diff = abs(bright_cpu - bright_gpu);
+//        //cout << id << "; x = " << x << "; y = " << y << "; cpu = " << bright_cpu << "; gpu = " << bright_gpu << endl;
+//        sum_diff += diff;
+//    } // END for(int id = 0; id < RESULT_AREA; id++)
+//    //    cout << "sum_diff = " << sum_diff << "; RESULT_AREA = " << RESULT_AREA << "; raitio = " << sum_diff/RESULT_AREA << endl;
+//    normalize(img_result_cuda, img_result_cuda, 0, 255, NORM_MINMAX);
+//    img_result_cuda.convertTo(img_result_cuda, CV_8UC1);
+//    resize(img_result_cuda, img_result_cuda, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
+//    const char* CUDA_window = "result_CUDA";
 
 //OpenCL
     unique_ptr<tmml_cl> tm_cl = make_unique<tmml_cl>(temp_left, temp_top);
@@ -140,9 +138,9 @@ int main()
     moveWindow(OpenCV_window, 900,100);
     imshow(OpenCV_window, img_result_cpu);
 
-    namedWindow( CUDA_window, WINDOW_AUTOSIZE );
-    moveWindow(CUDA_window, 1300,100);
-    imshow(CUDA_window, img_result_cuda);
+//    namedWindow( CUDA_window, WINDOW_AUTOSIZE );
+//    moveWindow(CUDA_window, 1300,100);
+//    imshow(CUDA_window, img_result_cuda);
 
     namedWindow( OpenCL, WINDOW_AUTOSIZE );
     moveWindow(OpenCL, 1300,600);
@@ -150,6 +148,6 @@ int main()
     imshow(OpenCL, img_work);
 
     unsigned char key = waitKey(0);
-    tm.reset();
+//    tm.reset();
     return 0;
 } // END main
