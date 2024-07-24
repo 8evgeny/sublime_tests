@@ -55,6 +55,7 @@ int main()
 
 //OpenCV
     Mat img_result_cpu(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
+
     time_start = high_resolution_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
     {
@@ -63,6 +64,7 @@ int main()
         if(maxLoc.x != temp_left || maxLoc.y != temp_top){cout << "CPU iter=" << iter << " !!!" << endl; break;}
     }  // END for(int iter = 0; iter < iter_num; ++iter)
     time_end = high_resolution_clock::now();
+
     auto time_matching_CPU = std::chrono::duration_cast<chrono::microseconds>(time_end - time_start);
     printf("Duration OpenCV =  \t%.2f mks \n", (float)time_matching_CPU.count() / iter_num );
     cout << "OpenCV xy =\t\t[" << temp_left << ", " << temp_top << "] "<<endl<<endl;
@@ -80,8 +82,9 @@ int main()
         if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "CUDA iter " << iter << " error !!!" << endl; break;}
     }  // END for(int iter = 0; iter < iter_num; ++iter)
     time_end = high_resolution_clock::now();
+
     auto time_matching_CUDA = std::chrono::duration_cast<chrono::microseconds>(time_end - time_start);
-    printf("Duration OpenCV =  \t%.2f mks \n", (float)time_matching_CUDA.count() / iter_num );
+    printf("Duration CUDA =  \t%.2f mks \n", (float)time_matching_CUDA.count() / iter_num );
     cout << "cuda xy =\t\t[" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl<<endl;
     tm->fill_result_array();
     double sum_diff = 0;
@@ -106,9 +109,21 @@ int main()
 //OpenCL
     unique_ptr<tmml_cl> tm_cl = make_unique<tmml_cl>(temp_left, temp_top);
     Mat img_result_CL(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));
+
     tm_cl->initOpenCL(tm_cl, img_work, img_temp, img_result_CL, match_method, iter_num);
 
-    tm_cl->matchingOpenCL(tm_cl, img_work, img_temp, img_result_CL, match_method, iter_num);
+    time_start = high_resolution_clock::now();
+    for(int iter = 0; iter < iter_num; ++iter)
+    {
+        tm_cl->matchingOpenCL(tm_cl, img_work, img_temp, img_result_CL, match_method, iter_num);
+    }//-- END -- for(int iter = 0; iter < iter_num; ++iter)
+    time_end = high_resolution_clock::now();
+
+    auto time_matching_CL = std::chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+    printf("Duration CL =  \t\t%.2f mks \n", (float)time_matching_CL.count() / iter_num );
+    cout << "openCL xy =\t\t[" << tm_cl->res.xpos << ", " << tm_cl->res.ypos <<  "] " <<endl<<endl;
+
+    tm_cl->uintToMat(tm_cl->mData.get(), img_result_CL);
     normalize(img_result_CL, img_result_CL, 0, 255, NORM_MINMAX);
     img_result_CL.convertTo(img_result_CL, CV_8UC1);
     resize(img_result_CL, img_result_CL, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));

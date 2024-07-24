@@ -37,71 +37,55 @@ int tmml_cl::initOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const 
 
 int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const Mat& img_temp, Mat& img_result_CL, int match_method, int iter_num )
 {
-    high_resolution_clock::time_point time_start_OpenCL, time_end_OpenCL;
-    time_start_OpenCL = high_resolution_clock::now();
+    clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_work.cols * img_work.rows);
+    clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_temp.rows * img_temp.cols);
+    clInputRes=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(result));
+    clInputMinVal=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_int));
+    clInputMaxVal=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_int));
+    clMatchMethod=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(int));
+    clmData=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1));
 
-//    for (int iter = 0; iter < iter_num ; ++iter)
-//    {
-        clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_work.cols * img_work.rows);
-        clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_temp.rows * img_temp.cols);
-        clInputRes=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(result));
-        clInputMinVal=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_int));
-        clInputMaxVal=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_int));
-        clMatchMethod=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(int));
-        clmData=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1));
+    // Kernels
+    int iclError = 0;
+    clkProcess=cl::Kernel(program, KERNEL_NAME, &iclError );
 
-        // Kernels
-        int iclError = 0;
-        clkProcess=cl::Kernel(program, KERNEL_NAME, &iclError );
+    if (iclError != 0 )
+    {
+        cout<<"iclError"<<endl;
+        return -1;
+    }
+    // Send Data
+    queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * img_work.cols * img_work.rows, &imageData.get()[0]);
+    queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * img_temp.rows * img_temp.cols, &templateData.get()[0]);
+    queue.enqueueWriteBuffer(clInputRes, CL_TRUE, 0,  sizeof(result), &res);
+    queue.enqueueWriteBuffer(clInputMinVal, CL_TRUE, 0,  sizeof(cl_int), &minVal);
+    queue.enqueueWriteBuffer(clInputMaxVal, CL_TRUE, 0,  sizeof(cl_int), &maxVal);
+    queue.enqueueWriteBuffer(clMatchMethod, CL_TRUE, 0,  sizeof(int), &match_method);
+    queue.enqueueWriteBuffer(clmData, CL_TRUE, 0,  sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1), &mData[0]);
 
-        if (iclError != 0 )
-        {
-            cout<<"iclError"<<endl;
-            return -1;
-        }
-        // Send Data
-        queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * img_work.cols * img_work.rows, &imageData.get()[0]);
-        queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * img_temp.rows * img_temp.cols, &templateData.get()[0]);
-        queue.enqueueWriteBuffer(clInputRes, CL_TRUE, 0,  sizeof(result), &res);
-        queue.enqueueWriteBuffer(clInputMinVal, CL_TRUE, 0,  sizeof(cl_int), &minVal);
-        queue.enqueueWriteBuffer(clInputMaxVal, CL_TRUE, 0,  sizeof(cl_int), &maxVal);
-        queue.enqueueWriteBuffer(clMatchMethod, CL_TRUE, 0,  sizeof(int), &match_method);
-        queue.enqueueWriteBuffer(clmData, CL_TRUE, 0,  sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1), &mData[0]);
+    // Init Kernel arguments
+    clkProcess.setArg(0,clInputImg);
+    clkProcess.setArg(1,clInputTemp);
+    clkProcess.setArg(2,clInputRes);
 
-        // Init Kernel arguments
-        clkProcess.setArg(0,clInputImg);
-        clkProcess.setArg(1,clInputTemp);
-        clkProcess.setArg(2,clInputRes);
+    clkProcess.setArg(3, (int)img_work.cols);
+    clkProcess.setArg(4, (int)img_work.rows);
+    clkProcess.setArg(5, (int)img_temp.cols);
+    clkProcess.setArg(6, (int)img_temp.rows);
+    clkProcess.setArg(7, clInputMinVal);
+    clkProcess.setArg(8, clInputMaxVal);
+    clkProcess.setArg(9, match_method);
+    clkProcess.setArg(10, clmData);
 
-        clkProcess.setArg(3, (int)img_work.cols);
-        clkProcess.setArg(4, (int)img_work.rows);
-        clkProcess.setArg(5, (int)img_temp.cols);
-        clkProcess.setArg(6, (int)img_temp.rows);
-        clkProcess.setArg(7, clInputMinVal);
-        clkProcess.setArg(8, clInputMaxVal);
-        clkProcess.setArg(9, match_method);
-        clkProcess.setArg(10, clmData);
+    // Image 2D
+    cl::NDRange gRM=cl::NDRange((img_work.cols - img_temp.cols + 1), (img_work.rows - img_temp.rows + 1));
 
-        // Image 2D
-        cl::NDRange gRM=cl::NDRange((img_work.cols - img_temp.cols + 1), (img_work.rows - img_temp.rows + 1));
-
-        queue.enqueueNDRangeKernel(clkProcess, cl::NullRange, gRM, cl::NullRange );
-        queue.finish();
-        queue.enqueueReadBuffer(clInputMinVal, CL_TRUE, 0, sizeof(cl_int),&minVal);
-        queue.enqueueReadBuffer(clInputMaxVal, CL_TRUE, 0, sizeof(cl_int),&maxVal);
-        queue.enqueueReadBuffer(clInputRes, CL_TRUE, 0, sizeof(result),&res);
-        queue.enqueueReadBuffer(clmData, CL_TRUE, 0, sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1) ,&mData[0]);
-
-//        if ((res.xpos != temp_leftOK) || (res.ypos != temp_topOK)) { cout << "CL iter " << iter << " error !!!" << endl; break; }
-
-//    }//-- END -- for (int i = 0; i < iter_num; ++i)
-    time_end_OpenCL = high_resolution_clock::now();
-
-    uintToMat(mData.get(), img_result_CL);
-
-    auto time_matching_CL = duration_cast<microseconds>(time_end_OpenCL - time_start_OpenCL);
-    printf("Duration OpenCL =  \t%.2f mks \n", (float)time_matching_CL.count() / iter_num );
-    cout << "openCL xy =\t\t[" << res.xpos << ", " << res.ypos << "] " /*<<"   bright= " << tm->max_pix.bright*/ << endl<<endl;
+    queue.enqueueNDRangeKernel(clkProcess, cl::NullRange, gRM, cl::NullRange );
+    queue.finish();
+    queue.enqueueReadBuffer(clInputMinVal, CL_TRUE, 0, sizeof(cl_int),&minVal);
+    queue.enqueueReadBuffer(clInputMaxVal, CL_TRUE, 0, sizeof(cl_int),&maxVal);
+    queue.enqueueReadBuffer(clInputRes, CL_TRUE, 0, sizeof(result),&res);
+    queue.enqueueReadBuffer(clmData, CL_TRUE, 0, sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1) ,&mData[0]);
 
     return 0;
 }//--END-- int matchingOpenCL(const Mat& img_work, const Mat& img_temp, Mat& img_result_CL, int match_method, int iter_num, result & res )

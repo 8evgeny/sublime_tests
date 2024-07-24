@@ -43,6 +43,7 @@ class tmml_cl
     int initOpenCL(std::unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num );
     int matchingOpenCL(std::unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num );
     result res;
+    unique_ptr<cl_uint[]> mData;
 
   private:
     int temp_leftOK;
@@ -59,7 +60,7 @@ class tmml_cl
     vector<cl::Platform> all_platforms;
     unique_ptr<cl_uchar[]> imageData;
     unique_ptr<cl_uchar[]> templateData;
-    unique_ptr<cl_uint[]> mData;
+
     int minVal = 0;
     int maxVal = 0;
 
