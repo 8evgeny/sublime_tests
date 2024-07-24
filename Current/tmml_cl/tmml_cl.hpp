@@ -6,10 +6,6 @@
 #include <iostream>
 #include <fstream>
 
-using namespace std;
-using namespace cl;
-using namespace cv;
-
 const int SOURCE_WIDTH = EXT_VAL * TEMPLATE_WIDTH;
 const int SOURCE_HEIGHT = EXT_VAL * TEMPLATE_HEIGHT;
 const int WORK_WIDTH = SOURCE_WIDTH - 1;
@@ -32,7 +28,7 @@ constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_HEIGHT;
 class tmml_cl
 {
   public:
-    tmml_cl(int temp_left, int temp_top, Mat & img_work, Mat & img_temp, int match_method);
+    tmml_cl(bool & init_OK, const int temp_left, const int temp_top, const cv::Mat & img_work, const cv::Mat & img_temp );
     ~tmml_cl();
 
     struct result
@@ -41,42 +37,31 @@ class tmml_cl
         cl_uint tm_result;
     };
 
-    enum matchMetod
-    {
-        TM_SQDIFF = 0,
-        TM_SQDIFF_NORMED,
-        TM_CCORR,
-        TM_CCORR_NORMED,
-        TM_CCOEFF,
-        TM_CCOEFF_NORMED,
-        TM_COMBINED
-    };
-
-    int initDevice();
-    int loadAndBuildProgram(std::string programFile);
-    void loadDataMatToUchar(unsigned char *data, const Mat &image, int nchannels);
-    void uintToMat(uint *data, Mat &image);
-    string loadKernelFile(string program);
-    int initOpenCL(const Mat& img_work, const Mat& img_temp, int match_method );
-    int matchingCL(const Mat& img_work, const Mat& img_temp );
+    const int k_float_to_int = K_FLOAT_TO_INT;
+    void initDevice(bool & init_OK);
+    void loadAndBuildProgram(bool & init_OK, const std::string & programFile);
+    void loadDataMatToUchar(unsigned char *data, const cv::Mat &image, const int nchannels);
+    void uintToMat(const unsigned int *data, cv::Mat &image);
+    std::string loadKernelFile(const std::string program);
+    int matchingCL(const cv::Mat& img_work, const cv::Mat& img_temp );
     result res;
-    unique_ptr<cl_uint[]> mData;
+    std::unique_ptr<cl_uint[]> mData;
     int temp_leftOK;
     int temp_topOK;
 
   private:
-    string kernel_source;
-    Kernel clkProcess;
-    Buffer clInputImg, clInputTemp, clInputRes, clInputMinVal, clInputMaxVal, clResults, clMatchMethod, clmData;
-    CommandQueue queue;
-    Context context;
-    Program program;
-    Device default_device;
-    vector<Device> all_devices;
-    Platform default_platform;
-    vector<Platform> all_platforms;
-    unique_ptr<cl_uchar[]> imageData;
-    unique_ptr<cl_uchar[]> templateData;
+    std::string kernel_source;
+    cl::Kernel clkProcess;
+    cl::Buffer clInputImg, clInputTemp, clInputRes, clInputK_FLOAT_TO_INT, clInputMaxVal, clResults, clMatchMethod, clmData;
+    cl::CommandQueue queue;
+    cl::Context context;
+    cl::Program program;
+    cl::Device default_device;
+    std::vector<cl::Device> all_devices;
+    cl::Platform default_platform;
+    std::vector<cl::Platform> all_platforms;
+    std::unique_ptr<cl_uchar[]> imageData;
+    std::unique_ptr<cl_uchar[]> templateData;
 
     int minVal = 0;
     int maxVal = 0;
