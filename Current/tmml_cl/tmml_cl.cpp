@@ -84,7 +84,7 @@ string tmml_cl::loadKernelFile(const string program)
 void tmml_cl::initDevice(bool & init_OK)
 {
     Platform::get(&all_platforms);
-    if(all_platforms.size() == 0)
+    if(!all_platforms.size())
     {
         cout<<" No platforms found. Check OpenCL installation!\n";
         init_OK = false;
@@ -142,10 +142,10 @@ void tmml_cl::uintToMat(const unsigned int *data, Mat &image)
 {
     int width = image.cols;
     int height = image.rows;
-    for (int y = 0; y < image.rows; ++y)
+    for (int y = 0; y < height; ++y)
     {
         int posY = y * width;
-        for (int x = 0 ; x < height ; ++x)
+        for (int x = 0 ; x < width ; ++x)
         {
             image.at<uint>(y,x) = data[posY + x];
         }
