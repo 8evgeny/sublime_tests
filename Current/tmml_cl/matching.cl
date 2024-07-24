@@ -96,13 +96,24 @@ __kernel void matchingCL(__global unsigned char * imData,
             }//-- END -- for ( int X = 0; X < TEMPLATE_WIDTH; X +=step_x )
         }//-- END -- for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y +=step_y )
 
-        const long long ch  = (long long)TEMPLATE_AREA * sum_roi_temp - (long long)sum_roi * sum_temp;
-        const long long zn1 = (long long)TEMPLATE_AREA * sum_temp_temp - (long long)sum_temp * sum_temp;
-        const long long zn2 = (long long)TEMPLATE_AREA * sum_roi_roi - (long long)sum_roi * sum_roi;
-        const double sq1 = sqrt((double)zn1);
-        const double sq2 = sqrt((double)zn2);
+        const float TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
+        const float sum_roi_temp1 = TEMPLATE_AREA_1 * sum_roi_temp;
+        const float sum_roi1 = TEMPLATE_AREA_1 * sum_roi;
+        const float sum_temp1 = TEMPLATE_AREA_1 * sum_temp;
+        const float sum_roi_roi1 = TEMPLATE_AREA_1 * sum_roi_roi;
+        const float sum_temp_temp1 = TEMPLATE_AREA_1 * sum_temp_temp;
+        const float ch  = sum_roi_temp1 - sum_roi1 * sum_temp1;
+        const float zn1 = sum_temp_temp1 - sum_temp1 * sum_temp1;
+        const float zn2 = sum_roi_roi1 - sum_roi1 * sum_roi1;
+        dev_result_array_bright = 10000 * ch / sqrt(zn1 * zn2);
 
-        dev_result_array_bright = 10000 * (double)ch / (sq1 * sq2);
+//        const long long ch  = (long long)TEMPLATE_AREA * sum_roi_temp - (long long)sum_roi * sum_temp;
+//        const long long zn1 = (long long)TEMPLATE_AREA * sum_temp_temp - (long long)sum_temp * sum_temp;
+//        const long long zn2 = (long long)TEMPLATE_AREA * sum_roi_roi - (long long)sum_roi * sum_roi;
+//        const double sq1 = sqrt((double)zn1);
+//        const double sq2 = sqrt((double)zn2);
+//        dev_result_array_bright = 10000 * (double)ch / (sq1 * sq2);
+
         matchData[ iGID ] = dev_result_array_bright;
         atomic_max(maxVal, dev_result_array_bright);
         barrier(CLK_GLOBAL_MEM_FENCE);
