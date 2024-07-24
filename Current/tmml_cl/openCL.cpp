@@ -3,6 +3,7 @@
 using namespace std;
 using namespace cv;
 using namespace chrono;
+using namespace cl;
 
 tmml_cl::tmml_cl(int temp_left, int temp_top)
 {
@@ -33,17 +34,17 @@ int tmml_cl::initOpenCL(const Mat& img_work, const Mat& img_temp, int match_meth
     res.xpos=0;
     res.ypos=0;
 
-    clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_work.cols * img_work.rows);
-    clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_temp.rows * img_temp.cols);
-    clInputRes=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(result));
-    clInputMinVal=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_int));
-    clInputMaxVal=cl::Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_int));
-    clMatchMethod=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(int));
-    clmData=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1));
+    clInputImg=Buffer(context,CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_work.cols * img_work.rows);
+    clInputTemp=Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_temp.rows * img_temp.cols);
+    clInputRes=Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(result));
+    clInputMinVal=Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_int));
+    clInputMaxVal=Buffer(context,CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_int));
+    clMatchMethod=Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(int));
+    clmData=Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1));
 
     // Kernels
     int iclError = 0;
-    clkProcess=cl::Kernel(program, KERNEL_NAME, &iclError );
+    clkProcess=Kernel(program, KERNEL_NAME, &iclError );
     if (iclError != 0 )
     {
         cout<<"iclError"<<endl;
@@ -79,9 +80,9 @@ int tmml_cl::initOpenCL(const Mat& img_work, const Mat& img_temp, int match_meth
 int tmml_cl::matchingCL(const Mat& img_work, const Mat& img_temp )
 {
     // Image 2D
-    cl::NDRange gRM=cl::NDRange((img_work.cols - img_temp.cols + 1), (img_work.rows - img_temp.rows + 1));
+    NDRange gRM=NDRange((img_work.cols - img_temp.cols + 1), (img_work.rows - img_temp.rows + 1));
 
-    queue.enqueueNDRangeKernel(clkProcess, cl::NullRange, gRM, cl::NullRange );
+    queue.enqueueNDRangeKernel(clkProcess, NullRange, gRM, NullRange );
     queue.finish();
     queue.enqueueReadBuffer(clInputMinVal, CL_TRUE, 0, sizeof(cl_int),&minVal);
     queue.enqueueReadBuffer(clInputMaxVal, CL_TRUE, 0, sizeof(cl_int),&maxVal);
@@ -98,13 +99,13 @@ string tmml_cl::loadKernelFile(string program)
 
 int tmml_cl::initDevice()
 {
-    cl::Platform::get(&all_platforms);
+    Platform::get(&all_platforms);
     if(all_platforms.size()==0)
     {
         cout<<" No platforms found. Check OpenCL installation!\n";
         return -1;
     }//--END-- if(all_platforms.size()==0)
-    default_platform=cl::Platform(all_platforms[0]);
+    default_platform=Platform(all_platforms[0]);
     //cout << "Using platform: "<<default_platform.getInfo<CL_PLATFORM_NAME>()<<"\n";
     default_platform.getDevices(CL_DEVICE_TYPE_ALL, &all_devices);
     if (all_devices.size() == 0)
@@ -112,21 +113,21 @@ int tmml_cl::initDevice()
         cout<<" No devices found. Check OpenCL installation!\n";
         return -1;
     }//--END-- if (all_devices.size() == 0)
-    default_device=cl::Device(all_devices[0]);
+    default_device=Device(all_devices[0]);
     //cout<< "Using device: "<<default_device.getInfo<CL_DEVICE_NAME>()<<"\n";
-    context=cl::Context(default_device);
-    queue=cl::CommandQueue(context, default_device);
+    context=Context(default_device);
+    queue=CommandQueue(context, default_device);
     return 0;
 }//--END-- int initDevice()
 
 int tmml_cl::loadAndBuildProgram(string programFile)
 {
-    cl::Program::Sources sources;
+    Program::Sources sources;
     string kernel_source = loadKernelFile(programFile);
     pair<const char*, ::size_t> src(kernel_source.c_str(), kernel_source.length());
     sources.push_back(src);
-    program=cl::Program(context, sources);
-    VECTOR_CLASS<cl::Device> devices;
+    program=Program(context, sources);
+    vector<Device> devices;
     devices.push_back(default_device);
     if(program.build(devices)!=CL_SUCCESS)
     {

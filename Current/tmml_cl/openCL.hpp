@@ -8,7 +8,7 @@
 #include <fstream>
 
 using namespace std;
-
+using namespace cl;
 
 const int SOURCE_WIDTH = EXT_VAL * TEMPLATE_WIDTH;
 const int SOURCE_HEIGHT = EXT_VAL * TEMPLATE_HEIGHT;
@@ -20,7 +20,6 @@ const int RESULT_AREA = RESULT_WIDTH * RESULT_HEIGHT;
 const int TEMPLATE_AREA = TEMPLATE_WIDTH * TEMPLATE_HEIGHT;
 const float RESULT_AREA_1 = 1.f / RESULT_AREA;
 const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
-
 
 #define KERNEL_FILE "matching.cl"
 #define KERNEL_NAME "matchingCL"
@@ -62,21 +61,20 @@ class tmml_cl
 
   private:
     string kernel_source;
-    cl::Kernel clkProcess;
-    cl::Buffer clInputImg, clInputTemp, clInputRes, clInputMinVal, clInputMaxVal, clResults, clMatchMethod, clmData;
-    cl::CommandQueue queue;
-    cl::Context context;
-    cl::Program program;
-    cl::Device default_device;
-    std::vector<cl::Device> all_devices;
-    cl::Platform default_platform;
-    vector<cl::Platform> all_platforms;
+    Kernel clkProcess;
+    Buffer clInputImg, clInputTemp, clInputRes, clInputMinVal, clInputMaxVal, clResults, clMatchMethod, clmData;
+    CommandQueue queue;
+    Context context;
+    Program program;
+    Device default_device;
+    vector<Device> all_devices;
+    Platform default_platform;
+    vector<Platform> all_platforms;
     unique_ptr<cl_uchar[]> imageData;
     unique_ptr<cl_uchar[]> templateData;
 
     int minVal = 0;
     int maxVal = 0;
-
 
 }; // END tmml_cl
 
