@@ -19,7 +19,7 @@ set(CMAKE_MAKE_PROGRAM "make -j${nproc}")
 
 find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
 include_directories(${OpenCV_DIR})
-
+include_directories($CMAKE_SOURCE_DIR})
 find_package( OpenCL REQUIRED )
 include_directories (${OpenCL_INCLUDE_DIRS} )
 
