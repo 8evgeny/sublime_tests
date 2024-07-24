@@ -21,8 +21,8 @@ enum matchMetod
 //__Local
 //Запускать сразу 4  kernel
 
-__kernel void matchingCL(__global uchar* imData,
-                     __global uchar* tmData,
+__kernel void matchingCL(__global unsigned char * imData,
+                     __global unsigned char * tmData,
                      __global result* res,
                      int IMG_WIDTH,
                      int IMG_HEIGHT,
@@ -60,7 +60,7 @@ __kernel void matchingCL(__global uchar* imData,
                 temp = tmData[ Y * TEMPLATE_WIDTH + X ];
                 diff_roi_temp += ( roi - temp ) * ( roi - temp );
             }
-        }
+        }//-- END -- for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y +=step_y )
 
         atomic_max(maxVal, diff_roi_temp);
         barrier(CLK_GLOBAL_MEM_FENCE);
@@ -71,15 +71,14 @@ __kernel void matchingCL(__global uchar* imData,
         matchData[ iGID ] = diff_roi_temp ;
         barrier(CLK_GLOBAL_MEM_FENCE);
 
-
         if ( (*minVal) == diff_roi_temp )
         {
             (*res).tm_result = diff_roi_temp;
             (*res).xpos = work_item_X;
             (*res).ypos = work_item_Y;
-        }
+        }//-- END -- if ( (*minVal) == diff_roi_temp )
 
-    }
+    }//-- END -- if (method == TM_SQDIFF_NORMED)
 
     if (method == TM_CCOEFF_NORMED)
     {
@@ -94,17 +93,17 @@ __kernel void matchingCL(__global uchar* imData,
                 sum_roi_roi += roi * roi;
                 sum_roi += roi;
                 sum_temp += temp;
-            }
-        }
+            }//-- END -- for ( int X = 0; X < TEMPLATE_WIDTH; X +=step_x )
+        }//-- END -- for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y +=step_y )
+
         const long long ch  = (long long)TEMPLATE_AREA * sum_roi_temp - (long long)sum_roi * sum_temp;
         const long long zn1 = (long long)TEMPLATE_AREA * sum_temp_temp - (long long)sum_temp * sum_temp;
         const long long zn2 = (long long)TEMPLATE_AREA * sum_roi_roi - (long long)sum_roi * sum_roi;
         const double sq1 = sqrt((double)zn1);
         const double sq2 = sqrt((double)zn2);
+
         dev_result_array_bright = 10000 * (double)ch / (sq1 * sq2);
-
         matchData[ iGID ] = dev_result_array_bright;
-
         atomic_max(maxVal, dev_result_array_bright);
         barrier(CLK_GLOBAL_MEM_FENCE);
         if ( (*maxVal) == dev_result_array_bright )
@@ -112,8 +111,8 @@ __kernel void matchingCL(__global uchar* imData,
             (*res).tm_result = dev_result_array_bright;
             (*res).xpos = work_item_X;
             (*res).ypos = work_item_Y;
-        }
-    }
+        }//-- END -- if ( (*maxVal) == dev_result_array_bright )
+    }//-- END -- if (method == TM_CCOEFF_NORMED)
 
 }
 
