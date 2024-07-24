@@ -3,12 +3,6 @@ using namespace std;
 using namespace cv;
 using namespace chrono;
 
-constexpr int temp_center_x = 150;
-constexpr int temp_center_y = 165;
-constexpr int temp_left = temp_center_x - 0.5 * TEMPLATE_WIDTH;
-constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_HEIGHT;
-float min_max_Val = 0.99999;
-
 int main()
 {
     int iter_num = NUM_ITERATIONS;
@@ -51,7 +45,7 @@ int main()
 //OpenCV
     double minVal, maxVal;
     Point minLoc, maxLoc;
-    Mat img_result_cpu(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, cv::Scalar(0));
+    Mat img_result_cpu(Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, Scalar(0));
 
     time_start = high_resolution_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
@@ -62,7 +56,7 @@ int main()
     }  // END for(int iter = 0; iter < iter_num; ++iter)
     time_end = high_resolution_clock::now();
 
-    auto time_matching_CPU = std::chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+    auto time_matching_CPU = duration_cast<microseconds>(time_end - time_start);
     printf("Duration OpenCV =  \t%.2f mks \n", (float)time_matching_CPU.count() / iter_num );
     cout << "OpenCV xy =\t\t[" << temp_left << ", " << temp_top << "] "<<endl<<endl;
     normalize(img_result_cpu, img_result_cpu, 0, 255, NORM_MINMAX);
@@ -72,10 +66,8 @@ int main()
     const char* OpenCV_window = "result_CPU";
 
 //OpenCL
-    unique_ptr<tmml_cl> tm_cl = make_unique<tmml_cl>(temp_left, temp_top);
-    Mat img_result_CL(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));
-
-    tm_cl->initOpenCL(img_work, img_temp, match_method );
+    unique_ptr<tmml_cl> tm_cl = make_unique<tmml_cl>(temp_left, temp_top, img_work, img_temp, match_method);
+    Mat img_result_CL(Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, Scalar(0));
 
     time_start = high_resolution_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
@@ -85,7 +77,7 @@ int main()
     }//-- END -- for(int iter = 0; iter < iter_num; ++iter)
     time_end = high_resolution_clock::now();
 
-    auto time_matching_CL = std::chrono::duration_cast<chrono::microseconds>(time_end - time_start);
+    auto time_matching_CL = duration_cast<microseconds>(time_end - time_start);
     printf("Duration CL =  \t\t%.2f mks \n", (float)time_matching_CL.count() / iter_num );
     cout << "openCL xy =\t\t[" << tm_cl->res.xpos << ", " << tm_cl->res.ypos <<  "] " <<endl<<endl;
 
@@ -97,8 +89,8 @@ int main()
     namedWindow( CL_window, WINDOW_AUTOSIZE );
     moveWindow(CL_window, 900,600);
     imshow(CL_window, img_result_CL);
-    cv::cvtColor(img_work,img_work,cv::COLOR_GRAY2BGR);
-    cv::rectangle(img_work, cv::Point(tm_cl->res.xpos, tm_cl->res.ypos), cv::Point(tm_cl->res.xpos+img_temp.cols, tm_cl->res.ypos+img_temp.rows),cv::Scalar(0,0,255),3);
+    cvtColor(img_work,img_work, COLOR_GRAY2BGR);
+    rectangle(img_work, Point(tm_cl->res.xpos, tm_cl->res.ypos), Point(tm_cl->res.xpos+img_temp.cols, tm_cl->res.ypos+img_temp.rows),Scalar(0,0,255),3);
     const char* OpenCL = "matchingCL";
 
     namedWindow( OpenCV_window, WINDOW_AUTOSIZE );

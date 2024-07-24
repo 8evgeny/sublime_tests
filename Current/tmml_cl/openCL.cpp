@@ -5,19 +5,12 @@ using namespace cv;
 using namespace chrono;
 using namespace cl;
 
-tmml_cl::tmml_cl(int temp_left, int temp_top)
+tmml_cl::tmml_cl(int temp_left, int temp_top, Mat & img_work, Mat & img_temp, int match_method)
 {
     temp_leftOK = temp_left;
     temp_topOK = temp_top;
     result res;
-}
 
-tmml_cl::~tmml_cl()
-{
-}
-
-int tmml_cl::initOpenCL(const Mat& img_work, const Mat& img_temp, int match_method )
-{
     initDevice();
     loadAndBuildProgram(KERNEL_FILE);
     imageData = make_unique<cl_uchar[]>(img_work.cols * img_work.rows);
@@ -48,7 +41,6 @@ int tmml_cl::initOpenCL(const Mat& img_work, const Mat& img_temp, int match_meth
     if (iclError != 0 )
     {
         cout<<"iclError"<<endl;
-        return -1;
     }
 
     // Send Data
@@ -74,7 +66,10 @@ int tmml_cl::initOpenCL(const Mat& img_work, const Mat& img_temp, int match_meth
     clkProcess.setArg(9, match_method);
     clkProcess.setArg(10, clmData);
 
-    return 0;
+}
+
+tmml_cl::~tmml_cl()
+{
 }
 
 int tmml_cl::matchingCL(const Mat& img_work, const Mat& img_temp )
@@ -138,7 +133,7 @@ int tmml_cl::loadAndBuildProgram(string programFile)
     return 0;
 }//--END-- int loadAndBuildProgram(string programFile)
 
-void tmml_cl::loadDataMatToUchar(uchar *data, const Mat &image, int nchannels)
+void tmml_cl::loadDataMatToUchar(unsigned char *data, const Mat &image, int nchannels)
 {
     int width = image.cols;
     int height = image.rows;
@@ -147,15 +142,15 @@ void tmml_cl::loadDataMatToUchar(uchar *data, const Mat &image, int nchannels)
         auto posY = (long)y * (long)width * (long)nchannels;
         for (int x = 0 ; x < width ; x++)
         {
-            data[posY + (long)x * nchannels + 0] = image.at<uchar>(y,x);
+            data[posY + (long)x * nchannels + 0] = image.at<unsigned char>(y,x);
             if (nchannels == 3)
             {
-                data[posY + (long)x * nchannels + 1] = image.at<uchar>(y,x);
-                data[posY + (long)x * nchannels + 2] = image.at<uchar>(y,x);
+                data[posY + (long)x * nchannels + 1] = image.at<unsigned char>(y,x);
+                data[posY + (long)x * nchannels + 2] = image.at<unsigned char>(y,x);
             }//--END-- if (nchannels==3)
         }//--END-- for (int x = 0 ; x < width ; x++)
     }//--END-- for (int y=0; y < height; y++)
-}//--END-- void loadDataMatToUchar(uchar *data, const Mat &image, int nchannels)
+}//--END-- void loadDataMatToUchar(unsigned char *data, const Mat &image, int nchannels)
 
 void tmml_cl::uintToMat(uint *data, Mat &image)
 {

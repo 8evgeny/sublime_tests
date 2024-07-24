@@ -9,6 +9,7 @@
 
 using namespace std;
 using namespace cl;
+using namespace cv;
 
 const int SOURCE_WIDTH = EXT_VAL * TEMPLATE_WIDTH;
 const int SOURCE_HEIGHT = EXT_VAL * TEMPLATE_HEIGHT;
@@ -21,13 +22,18 @@ const int TEMPLATE_AREA = TEMPLATE_WIDTH * TEMPLATE_HEIGHT;
 const float RESULT_AREA_1 = 1.f / RESULT_AREA;
 const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 
+constexpr int temp_center_x = 150;
+constexpr int temp_center_y = 165;
+constexpr int temp_left = temp_center_x - 0.5 * TEMPLATE_WIDTH;
+constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_HEIGHT;
+
 #define KERNEL_FILE "matching.cl"
 #define KERNEL_NAME "matchingCL"
 
 class tmml_cl
 {
   public:
-    tmml_cl(int temp_leftOK, int temp_topOK);
+    tmml_cl(int temp_left, int temp_top, Mat & img_work, Mat & img_temp, int match_method);
     ~tmml_cl();
 
     struct result
@@ -49,11 +55,11 @@ class tmml_cl
 
     int initDevice();
     int loadAndBuildProgram(std::string programFile);
-    void loadDataMatToUchar(uchar *data, const cv::Mat &image, int nchannels);
-    void uintToMat(uint *data,cv::Mat &image);
+    void loadDataMatToUchar(unsigned char *data, const Mat &image, int nchannels);
+    void uintToMat(uint *data, Mat &image);
     string loadKernelFile(string program);
-    int initOpenCL(const cv::Mat& img_work, const cv::Mat& img_temp, int match_method );
-    int matchingCL(const cv::Mat& img_work, const cv::Mat& img_temp );
+    int initOpenCL(const Mat& img_work, const Mat& img_temp, int match_method );
+    int matchingCL(const Mat& img_work, const Mat& img_temp );
     result res;
     unique_ptr<cl_uint[]> mData;
     int temp_leftOK;
