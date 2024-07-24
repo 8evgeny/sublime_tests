@@ -72,7 +72,7 @@ int main()
     img_result_cpu.convertTo(img_result_cpu, CV_8UC1);
     int k = 2;
     resize(img_result_cpu, img_result_cpu, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
-    const char* OpenCV_window = "OpenCV";
+    const char* OpenCV_window = "result_CPU";
 
 //CUDA
     time_start = high_resolution_clock::now();
@@ -104,7 +104,7 @@ int main()
     normalize(img_result_cuda, img_result_cuda, 0, 255, NORM_MINMAX);
     img_result_cuda.convertTo(img_result_cuda, CV_8UC1);
     resize(img_result_cuda, img_result_cuda, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
-    const char* CUDA_window = "CUDA";
+    const char* CUDA_window = "result_CUDA";
 
 //OpenCL
     unique_ptr<tmml_cl> tm_cl = make_unique<tmml_cl>(temp_left, temp_top);
@@ -115,7 +115,8 @@ int main()
     time_start = high_resolution_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
     {
-        tm_cl->matchingOpenCL(tm_cl, img_work, img_temp, img_result_CL, match_method, iter_num);
+        tm_cl->matchingCL(tm_cl, img_work, img_temp, img_result_CL, match_method, iter_num);
+        if(tm_cl->temp_leftOK != temp_left || tm_cl->temp_topOK != temp_top){cout << "CL iter " << iter << " error !!!" << endl; break;}
     }//-- END -- for(int iter = 0; iter < iter_num; ++iter)
     time_end = high_resolution_clock::now();
 
@@ -127,13 +128,13 @@ int main()
     normalize(img_result_CL, img_result_CL, 0, 255, NORM_MINMAX);
     img_result_CL.convertTo(img_result_CL, CV_8UC1);
     resize(img_result_CL, img_result_CL, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
-    const char* CL_window = "OpenCL";
+    const char* CL_window = "result_cl";
     namedWindow( CL_window, WINDOW_AUTOSIZE );
     moveWindow(CL_window, 900,600);
     imshow(CL_window, img_result_CL);
     cv::cvtColor(img_work,img_work,cv::COLOR_GRAY2BGR);
     cv::rectangle(img_work, cv::Point(tm_cl->res.xpos, tm_cl->res.ypos), cv::Point(tm_cl->res.xpos+img_temp.cols, tm_cl->res.ypos+img_temp.rows),cv::Scalar(0,0,255),3);
-    const char* OpenCL = "matchingOpenCL";
+    const char* OpenCL = "matchingCL";
 
     namedWindow( OpenCV_window, WINDOW_AUTOSIZE );
     moveWindow(OpenCV_window, 900,100);

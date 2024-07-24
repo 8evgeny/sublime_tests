@@ -41,13 +41,13 @@ class tmml_cl
     void uintToMat(uint *data,cv::Mat &image);
     string loadKernelFile(string program);
     int initOpenCL(std::unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num );
-    int matchingOpenCL(std::unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num );
+    int matchingCL(std::unique_ptr<tmml_cl> & tm_cl, const cv::Mat& img_work, const cv::Mat& img_temp, cv::Mat& img_result_CL, int match_method, int iter_num );
     result res;
     unique_ptr<cl_uint[]> mData;
-
-  private:
     int temp_leftOK;
     int temp_topOK;
+
+  private:
     string kernel_source;
     cl::Kernel clkProcess;
     cl::Buffer clInputImg, clInputTemp, clInputRes, clInputMinVal, clInputMaxVal, clResults, clMatchMethod, clmData;

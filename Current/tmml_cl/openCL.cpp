@@ -32,11 +32,7 @@ int tmml_cl::initOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const 
     res.tm_result = 10000;
     res.xpos=0;
     res.ypos=0;
-    return 0;
-}
 
-int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const Mat& img_temp, Mat& img_result_CL, int match_method, int iter_num )
-{
     clInputImg=cl::Buffer(context,CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_work.cols * img_work.rows);
     clInputTemp=cl::Buffer(context,CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(unsigned char) * img_temp.rows * img_temp.cols);
     clInputRes=cl::Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(result));
@@ -48,12 +44,12 @@ int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, co
     // Kernels
     int iclError = 0;
     clkProcess=cl::Kernel(program, KERNEL_NAME, &iclError );
-
     if (iclError != 0 )
     {
         cout<<"iclError"<<endl;
         return -1;
     }
+
     // Send Data
     queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * img_work.cols * img_work.rows, &imageData.get()[0]);
     queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * img_temp.rows * img_temp.cols, &templateData.get()[0]);
@@ -77,6 +73,11 @@ int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, co
     clkProcess.setArg(9, match_method);
     clkProcess.setArg(10, clmData);
 
+    return 0;
+}
+
+int tmml_cl::matchingCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const Mat& img_temp, Mat& img_result_CL, int match_method, int iter_num )
+{
     // Image 2D
     cl::NDRange gRM=cl::NDRange((img_work.cols - img_temp.cols + 1), (img_work.rows - img_temp.rows + 1));
 
@@ -86,9 +87,8 @@ int tmml_cl::matchingOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, co
     queue.enqueueReadBuffer(clInputMaxVal, CL_TRUE, 0, sizeof(cl_int),&maxVal);
     queue.enqueueReadBuffer(clInputRes, CL_TRUE, 0, sizeof(result),&res);
     queue.enqueueReadBuffer(clmData, CL_TRUE, 0, sizeof(cl_uint) * (img_work.cols-img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1) ,&mData[0]);
-
     return 0;
-}//--END-- int matchingOpenCL(const Mat& img_work, const Mat& img_temp, Mat& img_result_CL, int match_method, int iter_num, result & res )
+}//--END-- int matchingCL(const Mat& img_work, const Mat& img_temp, Mat& img_result_CL, int match_method, int iter_num, result & res )
 
 string tmml_cl::loadKernelFile(string program)
 {
