@@ -1,6 +1,7 @@
 typedef struct tag_result
 {
-    int xpos, ypos;
+    int xpos;
+    int ypos;
     unsigned int tm_result;
 }result;
 
@@ -9,7 +10,7 @@ typedef struct tag_result
 // - Запускать сразу несколько kernel
 // - перейти на short
 
-// метод  CCOEFF_NORMED
+// метод  COMBINED
 __kernel void tmml_cl(__global unsigned char * imData,
                      __global unsigned char * tmData,
                      __global result* res,
@@ -19,7 +20,7 @@ __kernel void tmml_cl(__global unsigned char * imData,
                      int TEMPLATE_HEIGHT,
                      __global int* k_float_to_int,
                      __global int* maxVal,
-                     __global int* matchData)
+                     __global int* matchData )
 {
     int work_item_X = get_global_id(0);
     int work_item_Y = get_global_id(1);
@@ -30,10 +31,12 @@ __kernel void tmml_cl(__global unsigned char * imData,
     int sum_roi_roi = 0;
     int sum_roi = 0;
     int sum_temp = 0;
-    int dev_result_array_bright;
-    unsigned char roi;
-    unsigned char temp;
-    int TEMPLATE_AREA = TEMPLATE_WIDTH * TEMPLATE_HEIGHT;
+    int sum_roi_temp_2 = 0;
+    int dev_result_array_bright = 0;
+    unsigned char roi = 0;
+    unsigned char temp = 0;
+    const int TEMPLATE_AREA = TEMPLATE_WIDTH * TEMPLATE_HEIGHT;
+    const float TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
 
     for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y += 1 )
     {
@@ -48,10 +51,11 @@ __kernel void tmml_cl(__global unsigned char * imData,
             sum_roi_roi += roi * roi;
             sum_roi += roi;
             sum_temp += temp;
+            diff_roi_temp += abs(roi - temp);
+            sum_roi_temp_2 += (roi + temp);
         }// END for ( int X = 0; X < TEMPLATE_WIDTH; X +=1 )
     }// END for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y += 1 )
 
-    const float TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
     const float sum_roi_temp1 = TEMPLATE_AREA_1 * sum_roi_temp;
     const float sum_roi1 = TEMPLATE_AREA_1 * sum_roi;
     const float sum_temp1 = TEMPLATE_AREA_1 * sum_temp;
@@ -60,14 +64,7 @@ __kernel void tmml_cl(__global unsigned char * imData,
     const float ch  = sum_roi_temp1 - sum_roi1 * sum_temp1;
     const float zn1 = sum_temp_temp1 - sum_temp1 * sum_temp1;
     const float zn2 = sum_roi_roi1 - sum_roi1 * sum_roi1;
-    dev_result_array_bright = *k_float_to_int * ch / sqrt(zn1 * zn2);
-
-//        const long long ch  = (long long)TEMPLATE_AREA * sum_roi_temp - (long long)sum_roi * sum_temp;
-//        const long long zn1 = (long long)TEMPLATE_AREA * sum_temp_temp - (long long)sum_temp * sum_temp;
-//        const long long zn2 = (long long)TEMPLATE_AREA * sum_roi_roi - (long long)sum_roi * sum_roi;
-//        const double sq1 = sqrt((double)zn1);
-//        const double sq2 = sqrt((double)zn2);
-//        dev_result_array_bright = *k_float_to_int * (double)ch / (sq1 * sq2);
+    dev_result_array_bright = *k_float_to_int * (ch / sqrt(zn1 * zn2) - (float)diff_roi_temp / sum_roi_temp_2);
 
     matchData[ iGID ] = dev_result_array_bright;
     atomic_max(maxVal, dev_result_array_bright);

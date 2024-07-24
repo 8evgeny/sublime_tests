@@ -64,7 +64,7 @@ int main()
         printf("Duration CL =  \t\t%.2f mks \n", (float)time_matching_CL.count() / iter_num );
         cout << "openCL xy =\t\t[" << cl->res.xpos << ", " << cl->res.ypos <<  "] " <<endl<<endl;
 
-        cl->uintToMat(cl->mData.get(), img_result_CL);
+        cl->uintToMat(cl->mData_ptr.get(), img_result_CL);
         normalize(img_result_CL, img_result_CL, 0, 255, NORM_MINMAX);
         img_result_CL.convertTo(img_result_CL, CV_8UC1);
         resize(img_result_CL, img_result_CL, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
