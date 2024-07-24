@@ -110,12 +110,12 @@ int main()
     unique_ptr<tmml_cl> tm_cl = make_unique<tmml_cl>(temp_left, temp_top);
     Mat img_result_CL(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));
 
-    tm_cl->initOpenCL(tm_cl, img_work, img_temp, img_result_CL, match_method, iter_num);
+    tm_cl->initOpenCL(tm_cl, img_work, img_temp, match_method );
 
     time_start = high_resolution_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
     {
-        tm_cl->matchingCL(tm_cl, img_work, img_temp, img_result_CL, match_method, iter_num);
+        tm_cl->matchingCL(tm_cl, img_work, img_temp );
         if(tm_cl->temp_leftOK != temp_left || tm_cl->temp_topOK != temp_top){cout << "CL iter " << iter << " error !!!" << endl; break;}
     }//-- END -- for(int iter = 0; iter < iter_num; ++iter)
     time_end = high_resolution_clock::now();

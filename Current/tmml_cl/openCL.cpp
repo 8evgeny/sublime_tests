@@ -15,7 +15,7 @@ tmml_cl::~tmml_cl()
 {
 }
 
-int tmml_cl::initOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const Mat& img_temp, Mat& img_result_CL, int match_method, int iter_num )
+int tmml_cl::initOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const Mat& img_temp, int match_method )
 {
     initDevice();
     loadAndBuildProgram(KERNEL_FILE);
@@ -76,7 +76,7 @@ int tmml_cl::initOpenCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const 
     return 0;
 }
 
-int tmml_cl::matchingCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const Mat& img_temp, Mat& img_result_CL, int match_method, int iter_num )
+int tmml_cl::matchingCL(unique_ptr<tmml_cl> & tm_cl, const Mat& img_work, const Mat& img_temp )
 {
     // Image 2D
     cl::NDRange gRM=cl::NDRange((img_work.cols - img_temp.cols + 1), (img_work.rows - img_temp.rows + 1));
