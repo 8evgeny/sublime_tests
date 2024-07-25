@@ -47,7 +47,7 @@ int main()
 
 //OpenCL
     bool init_ok = true;
-    unique_ptr<tmml_cl> cl = make_unique<tmml_cl>(init_ok, temp_left, temp_top, img_work, img_temp);
+    unique_ptr<tmml_cl> tm = make_unique<tmml_cl>(init_ok, img_work, img_temp);
     if (init_ok)
     {
         Mat img_result_CL(Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, Scalar(0));
@@ -55,16 +55,16 @@ int main()
         time_start = high_resolution_clock::now();
         for(int iter = 0; iter < iter_num; ++iter)
         {
-            cl->matchingCL(img_work, img_temp );
-            if(cl->temp_leftOK != temp_left || cl->temp_topOK != temp_top){cout << "CL iter " << iter << " error !!!" << endl; break;}
+            tm->work_tmml(img_work, img_temp, tm->max_pix );
+            if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "CL iter " << iter << " error !!!" << endl; break;}
         }//-- END -- for(int iter = 0; iter < iter_num; ++iter)
         time_end = high_resolution_clock::now();
 
         auto time_matching_CL = duration_cast<microseconds>(time_end - time_start);
         printf("Duration CL =  \t\t%.2f mks \n", (float)time_matching_CL.count() / iter_num );
-        cout << "openCL xy =\t\t[" << cl->res.xpos << ", " << cl->res.ypos <<  "] " <<endl<<endl;
+        cout << "openCL xy =\t\t[" << tm->res.xpos << ", " << tm->res.ypos <<  "] " <<endl<<endl;
 
-        cl->uintToMat(cl->mData_ptr.get(), img_result_CL);
+        tm->uintToMat(tm->mData_ptr.get(), img_result_CL);
         normalize(img_result_CL, img_result_CL, 0, 255, NORM_MINMAX);
         img_result_CL.convertTo(img_result_CL, CV_8UC1);
         resize(img_result_CL, img_result_CL, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
@@ -73,7 +73,7 @@ int main()
         moveWindow(CL_window, 900,600);
         imshow(CL_window, img_result_CL);
         cvtColor(img_work,img_work, COLOR_GRAY2BGR);
-        rectangle(img_work, Point(cl->res.xpos, cl->res.ypos), Point(cl->res.xpos+img_temp.cols, cl->res.ypos+img_temp.rows),Scalar(0,0,255),3);
+        rectangle(img_work, Point(tm->res.xpos, tm->res.ypos), Point(tm->res.xpos+img_temp.cols, tm->res.ypos+img_temp.rows),Scalar(0,0,255),3);
         const char* OpenCL = "matchingCL";
 
         namedWindow( OpenCV_window, WINDOW_AUTOSIZE );

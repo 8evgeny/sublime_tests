@@ -4,10 +4,8 @@ using namespace std;
 using namespace cv;
 using namespace cl;
 
-tmml_cl::tmml_cl(bool & init_OK, const int temp_left, const int temp_top, const Mat & img_work, const Mat & img_temp)
+tmml_cl::tmml_cl(bool & init_OK, const Mat & img_work, const Mat & img_temp)
 {
-    temp_leftOK = temp_left;
-    temp_topOK = temp_top;
     result res;
 
     initDevice(init_OK);
@@ -62,7 +60,7 @@ tmml_cl::~tmml_cl()
     cout <<"Destructor tmml_cl\n";
 }
 
-int tmml_cl::matchingCL(const Mat& img_work, const Mat& img_temp )
+int tmml_cl::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix )
 {
     // Image 2D
     NDRange gRM=NDRange((img_work.cols - img_temp.cols + 1), (img_work.rows - img_temp.rows + 1));
@@ -72,8 +70,11 @@ int tmml_cl::matchingCL(const Mat& img_work, const Mat& img_temp )
     queue.enqueueReadBuffer(clInputMaxVal, CL_TRUE, 0, sizeof(cl_int),&maxVal);
     queue.enqueueReadBuffer(clInputRes, CL_TRUE, 0, sizeof(result),&res);
     queue.enqueueReadBuffer(clmData, CL_TRUE, 0, sizeof(cl_uint) * (img_work.cols - img_temp.cols + 1) * (img_work.rows-img_temp.rows + 1), &mData_ptr[0]);
+    max_pix.x = res.xpos;
+    max_pix.y = res.ypos;
+    max_pix.bright = (float)res.tm_result;
     return 0;
-}// END int matchingCL
+}// END work_tmml
 
 string tmml_cl::loadKernelFile(const string program)
 {

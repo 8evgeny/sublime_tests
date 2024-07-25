@@ -25,10 +25,18 @@ constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_HEIGHT;
 #define KERNEL_FILE "tmml.cl"
 #define KERNEL_NAME "tmml_cl"
 
+
+struct Pix
+{
+    unsigned char x = 0;
+    unsigned char y = 0;
+    float bright = 0;
+};
+
 class tmml_cl
 {
   public:
-    tmml_cl(bool & init_OK, const int temp_left, const int temp_top, const cv::Mat & img_work, const cv::Mat & img_temp );
+    tmml_cl(bool & init_OK, const cv::Mat & img_work, const cv::Mat & img_temp );
     ~tmml_cl();
 
     struct result
@@ -37,17 +45,17 @@ class tmml_cl
         cl_uint tm_result = 0;
     };
 
+    Pix max_pix{0, 0, 0.0f};
+
     const int k_float_to_int = K_FLOAT_TO_INT;
     void initDevice(bool & init_OK);
     void loadAndBuildProgram(bool & init_OK, const std::string & programFile);
     void loadDataMatToUchar(unsigned char *data, const cv::Mat &image, const int nchannels);
     void uintToMat(const unsigned int *data, cv::Mat &image);
     std::string loadKernelFile(const std::string program);
-    int matchingCL(const cv::Mat& img_work, const cv::Mat& img_temp );
+    int work_tmml(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
     result res;
     std::unique_ptr<cl_uint[]> mData_ptr = nullptr;
-    int temp_leftOK = 0;
-    int temp_topOK = 0;
 
   private:
     std::string kernel_source{""};

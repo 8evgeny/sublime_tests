@@ -6,7 +6,7 @@ project(tmml_cl)
 # CORR_TYPE = 16 : CCOEFF_NORMED  (Кросскорреляция модифицированная)
 # CORR_TYPE = 18 ; COMBINED (объединение прямой и модифицированной кросскорреляции)
 
-set(CORR_TYPE 18)
+set(CORR_TYPE 16)
 
 set(NUM_ITERATIONS 1000)
 set(TEMPLATE_WIDTH 48)
