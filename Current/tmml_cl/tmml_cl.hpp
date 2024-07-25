@@ -1,5 +1,5 @@
 #pragma once
-#include <CL/cl.hpp>
+#include "CL/cl.hpp"
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
@@ -23,7 +23,7 @@ constexpr int temp_left = temp_center_x - 0.5 * TEMPLATE_WIDTH;
 constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_HEIGHT;
 
 #define KERNEL_FILE "tmml.cl"
-#define KERNEL_NAME "tmml_cl"
+#define KERNEL_NAME "work_cl"
 
 
 struct Pix
@@ -36,7 +36,7 @@ struct Pix
 class tmml_cl
 {
   public:
-    tmml_cl(bool & init_OK, const cv::Mat & img_work, const cv::Mat & img_temp );
+    tmml_cl(bool& ok, float& min_max_Val0);
     ~tmml_cl();
 
     struct result
@@ -50,7 +50,7 @@ class tmml_cl
     const int k_float_to_int = K_FLOAT_TO_INT;
     void initDevice(bool & init_OK);
     void loadAndBuildProgram(bool & init_OK, const std::string & programFile);
-    void loadDataMatToUchar(unsigned char *data, const cv::Mat &image, const int nchannels);
+    void loadDataMatToUchar(unsigned char *data, const cv::Mat &image);
     void uintToMat(const unsigned int *data, cv::Mat &image);
     std::string loadKernelFile(const std::string program);
     int work_tmml(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
@@ -60,7 +60,10 @@ class tmml_cl
   private:
     std::string kernel_source{""};
     cl::Kernel clkProcess;
-    cl::Buffer clInputImg, clInputTemp, clInputRes, clInputK_FLOAT_TO_INT, clInputMaxVal, clResults, clMatchMethod, clmData;
+    cl::Buffer clInputImg, clInputTemp, clInputRes, clInputK_FLOAT_TO_INT, clInputMaxVal;
+#ifdef find_diff_result
+    cl::Buffer clmData;
+#endif
     cl::CommandQueue queue;
     cl::Context context;
     cl::Program program;
