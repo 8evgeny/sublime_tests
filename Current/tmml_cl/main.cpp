@@ -54,7 +54,7 @@ int main()
 #endif
 
 //OpenCL
-    bool ok = true;
+    bool ok = false;
     unique_ptr<tmml_cl> tm = make_unique<tmml_cl>(ok, min_max_Val);
     if (ok)
     {
@@ -92,7 +92,7 @@ int main()
     #endif // #ifdef find_diff_result
 
     }// END if (!init_ok)
-    else { cout << "error init OpenCL !!!\n"; return -1; }
+    else { cout << "error init OpenCL !!!\n"; return 1; }
 
 #ifdef find_diff_result
     namedWindow( OpenCV_window, WINDOW_AUTOSIZE );

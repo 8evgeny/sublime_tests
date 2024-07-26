@@ -6,11 +6,12 @@ using namespace cl;
 
 tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
 {
+    cout <<"START Construktor tmml_cl\n";
     result res;
-
     initDevice(ok);
+    if(!ok){cout<< "error initDevice!!!\n"; return;}
     loadAndBuildProgram(ok, string(KERNEL_FILE));
-
+    if(!ok){cout<< "error loadAndBuildProgram!!!\n"; return;}
     imageData_ptr = make_unique<cl_uchar[]>(WORK_AREA);
     templateData_ptr = make_unique<cl_uchar[]>(TEMPLATE_AREA);
     mData_ptr = make_unique<cl_uint[]>(RESULT_AREA);
@@ -25,12 +26,12 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
     // Kernels
     int clError = 0;
     clkProcess=Kernel(program, KERNEL_NAME, &clError );
-    if (clError != 0 )
+    if(clError != 0 )
     {
         cout<<"clError"<<endl;
         ok = false;
+        return;
     }// END if (clError != 0 )
-
 #ifdef find_diff_result
     queue.enqueueWriteBuffer(clmData, CL_TRUE, 0,  sizeof(cl_uint) * RESULT_AREA, &mData_ptr[0]);
 #endif
@@ -43,6 +44,8 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
 #ifdef find_diff_result
     clkProcess.setArg(4, clmData);
 #endif
+    ok = true;
+    cout <<"Constructor tmml_cl ok=" << ok << endl;
 }// END tmml_cl::tmml_cl
 
 tmml_cl::~tmml_cl()
@@ -98,6 +101,7 @@ void tmml_cl::initDevice(bool & init_OK)
     cout<< "Using CL device: \t"<<default_device.getInfo<CL_DEVICE_NAME>()<<"\n";
     context=Context(default_device);
     queue=CommandQueue(context, default_device);
+    init_OK = true;
 }// END initDevice
 
 void tmml_cl::loadAndBuildProgram(bool & init_OK, const string & programFile)
