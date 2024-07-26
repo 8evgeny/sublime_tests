@@ -310,6 +310,7 @@ void feed()
     printTime(logFile);
     this_thread::sleep_for(chrono::milliseconds(300000));
     digitalWrite(gpio_pin_PUMP_AIR, LOW);
+    this_thread::sleep_for(chrono::milliseconds(3000));
 }
 
 
