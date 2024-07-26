@@ -3,22 +3,22 @@
 // - Запускать сразу несколько kernel
 // - перейти на short
 
-const int TEMPLATE_WIDTH = 48;
-const int TEMPLATE_HEIGHT = 48;
-const int EXT_VAL = 5;
-const int SOURCE_WIDTH = EXT_VAL * TEMPLATE_WIDTH;
-const int SOURCE_HEIGHT = EXT_VAL * TEMPLATE_HEIGHT;
-const int WORK_WIDTH = SOURCE_WIDTH - 1;
-const int WORK_HEIGHT = SOURCE_HEIGHT - 1;
-const int RESULT_WIDTH = WORK_WIDTH - TEMPLATE_WIDTH + 1;
-const int RESULT_HEIGHT = WORK_HEIGHT - TEMPLATE_HEIGHT + 1;
-const int RESULT_AREA = RESULT_WIDTH * RESULT_HEIGHT;
-const int TEMPLATE_AREA = TEMPLATE_WIDTH * TEMPLATE_HEIGHT;
-const float RESULT_AREA_1 = 1.f / RESULT_AREA;
-const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
-const float TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
+__constant int TEMPLATE_WIDTH = 48;
+__constant int TEMPLATE_HEIGHT = 48;
+__constant int EXT_VAL = 5;
+__constant int SOURCE_WIDTH = EXT_VAL * TEMPLATE_WIDTH;
+__constant int SOURCE_HEIGHT = EXT_VAL * TEMPLATE_HEIGHT;
+__constant int WORK_WIDTH = SOURCE_WIDTH - 1;
+__constant int WORK_HEIGHT = SOURCE_HEIGHT - 1;
+__constant int RESULT_WIDTH = WORK_WIDTH - TEMPLATE_WIDTH + 1;
+__constant int RESULT_HEIGHT = WORK_HEIGHT - TEMPLATE_HEIGHT + 1;
+__constant int RESULT_AREA = RESULT_WIDTH * RESULT_HEIGHT;
+__constant int TEMPLATE_AREA = TEMPLATE_WIDTH * TEMPLATE_HEIGHT;
+__constant float RESULT_AREA_1 = 1.f / RESULT_AREA;
+__constant float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
+__constant float TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
 
-const int k_float_to_int = 10000;
+__constant int k_float_to_int = 10000;
 
 typedef struct tag_result
 {
@@ -31,7 +31,7 @@ __kernel void work_cl_6(__global unsigned char * imData, __global unsigned char 
 {
     int work_item_X = get_global_id(0);
     int work_item_Y = get_global_id(1);
-    int iGID = (work_item_Y * (WORK_HEIGHT - TEMPLATE_HEIGHT + 1)  + work_item_X);
+    int iGID = (work_item_Y * RESULT_HEIGHT  + work_item_X);
     int sum_roi_temp = 0;
     int sum_temp_temp = 0;
     int diff_roi_temp = 0;
@@ -134,7 +134,7 @@ __kernel void work_cl_8(__global unsigned char * imData, __global unsigned char 
 {
     int work_item_X = get_global_id(0);
     int work_item_Y = get_global_id(1);
-    int iGID = (work_item_Y * (WORK_HEIGHT - TEMPLATE_HEIGHT + 1)  + work_item_X);
+    int iGID = (work_item_Y * RESULT_HEIGHT  + work_item_X);
     int sum_roi_temp = 0;
     int sum_roi_temp_2 = 0;
     int sum_temp_temp = 0;
