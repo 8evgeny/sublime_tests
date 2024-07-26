@@ -9,6 +9,7 @@ const int SOURCE_WIDTH = EXT_VAL * TEMPLATE_WIDTH;
 const int SOURCE_HEIGHT = EXT_VAL * TEMPLATE_HEIGHT;
 const int WORK_WIDTH = SOURCE_WIDTH - 1;
 const int WORK_HEIGHT = SOURCE_HEIGHT - 1;
+const int WORK_AREA = WORK_WIDTH * WORK_HEIGHT;
 const int RESULT_WIDTH = WORK_WIDTH - TEMPLATE_WIDTH + 1;
 const int RESULT_HEIGHT = WORK_HEIGHT - TEMPLATE_HEIGHT + 1;
 const int RESULT_AREA = RESULT_WIDTH * RESULT_HEIGHT;
@@ -16,21 +17,31 @@ const int TEMPLATE_AREA = TEMPLATE_WIDTH * TEMPLATE_HEIGHT;
 const float RESULT_AREA_1 = 1.f / RESULT_AREA;
 const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 
-constexpr int temp_center_x = 150;
-constexpr int temp_center_y = 165;
-constexpr int temp_left = temp_center_x - 0.5 * TEMPLATE_WIDTH;
-constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_HEIGHT;
-
 #define KERNEL_FILE "tmml.cl"
-#define KERNEL_NAME "work_cl"
 
+#ifdef find_diff_result
+    #ifdef CCOEFF_NORMED
+        #define KERNEL_NAME "work_cl_6"
+    #endif
+    #ifdef COMBINED
+        #define KERNEL_NAME "work_cl_8"
+    #endif
+#endif
+#ifndef find_diff_result
+    #ifdef CCOEFF_NORMED
+        #define KERNEL_NAME "work_cl_6_no_img"
+    #endif
+    #ifdef COMBINED
+        #define KERNEL_NAME "work_cl_8_no_img"
+    #endif
+#endif
 
 struct Pix
 {
     unsigned char x = 0;
     unsigned char y = 0;
     float bright = 0;
-};
+}; // END Pix
 
 class tmml_cl
 {
@@ -40,13 +51,14 @@ class tmml_cl
 
     struct result
     {
-        int xpos = 0, ypos = 0;
+        int xpos = 0;
+        int ypos = 0;
         cl_uint tm_result = 0;
-    };
+    }; // END result
 
-    Pix max_pix{0, 0, 0.0f};
+    const Pix max_pix0;
+    Pix max_pix = max_pix0;
 
-    const int k_float_to_int = K_FLOAT_TO_INT;
     void initDevice(bool & init_OK);
     void loadAndBuildProgram(bool & init_OK, const std::string & programFile);
     void loadDataMatToUchar(unsigned char *data, const cv::Mat &image);
@@ -59,7 +71,7 @@ class tmml_cl
   private:
     std::string kernel_source{""};
     cl::Kernel clkProcess;
-    cl::Buffer clInputImg, clInputTemp, clInputRes, clInputK_FLOAT_TO_INT, clInputMaxVal;
+    cl::Buffer clInputImg, clInputTemp, clInputRes, clInputMaxVal;
 #ifdef find_diff_result
     cl::Buffer clmData;
 #endif
