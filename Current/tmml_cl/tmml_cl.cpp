@@ -25,10 +25,10 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
 #endif
     // Kernels
     int clError = 0;
-    clkProcess=Kernel(program, KERNEL_NAME, &clError );
+    clkProcess = Kernel(program, KERNEL_NAME, &clError );
     if(clError != 0 )
     {
-        cout<<"clError"<<endl;
+        cout << "clError!!!" << endl;
         ok = false;
         return;
     }// END if (clError != 0 )
