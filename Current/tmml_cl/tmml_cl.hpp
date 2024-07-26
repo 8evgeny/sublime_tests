@@ -5,7 +5,6 @@
 #include "opencv2/imgproc.hpp"
 #include <iostream>
 #include <fstream>
-
 const int SOURCE_WIDTH = EXT_VAL * TEMPLATE_WIDTH;
 const int SOURCE_HEIGHT = EXT_VAL * TEMPLATE_HEIGHT;
 const int WORK_WIDTH = SOURCE_WIDTH - 1;
@@ -78,7 +77,6 @@ class tmml_cl
     int maxVal = 0;
 
 }; // END tmml_cl
-
 
 
 

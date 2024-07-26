@@ -48,6 +48,8 @@ int main()
     const char* OpenCV_window = "result_CPU";
 #endif
 
+#ifdef OPEN_CL
+
 //OpenCL
     bool ok = true;
     unique_ptr<tmml_cl> tm = make_unique<tmml_cl>(ok, min_max_Val);
@@ -67,7 +69,7 @@ int main()
         printf("Duration CL =  \t\t%.2f mks \n", (float)time_matching_CL.count() / iter_num );
         cout << "openCL xy =\t\t[" << tm->res.xpos << ", " << tm->res.ypos <<  "] " <<endl<<endl;
 
- #ifdef find_diff_result
+#ifdef find_diff_result
         tm->uintToMat(tm->mData_ptr.get(), img_result_CL);
         normalize(img_result_CL, img_result_CL, 0, 255, NORM_MINMAX);
         img_result_CL.convertTo(img_result_CL, CV_8UC1);
@@ -80,20 +82,23 @@ int main()
         cvtColor(img_work,img_work, COLOR_GRAY2BGR);
         rectangle(img_work, Point(tm->res.xpos, tm->res.ypos), Point(tm->res.xpos+img_temp.cols, tm->res.ypos+img_temp.rows),Scalar(0,0,255),3);
         const char* OpenCL = "matchingCL";
+#endif // #ifdef find_diff_result
+#endif // #ifdef OPEN_CL
 
         namedWindow( OpenCV_window, WINDOW_AUTOSIZE );
         moveWindow(OpenCV_window, 900,100);
         imshow(OpenCV_window, img_result_cpu);
 
+#ifdef OPEN_CL
         namedWindow( OpenCL, WINDOW_AUTOSIZE );
         moveWindow(OpenCL, 1300,600);
         resize(img_work, img_work, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
         imshow(OpenCL, img_work);
-        unsigned char key = waitKey(0);
-#endif
 
     }// END if (!init_ok)
     else { cout << "error init OpenCL !!!\n"; return -1; }
+#endif // #ifdef OPEN_CL
 
+    unsigned char key = waitKey(0);
     return 0;
 } // END main

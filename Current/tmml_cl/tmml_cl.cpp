@@ -149,5 +149,3 @@ void tmml_cl::uintToMat(const unsigned int *data, Mat &image)
 }// END uintToMat
 
 
-
-
