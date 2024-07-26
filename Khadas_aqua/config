@@ -5,12 +5,12 @@ max_temp = 24.15;
 
 [Light]
 light = true;
-time_light_on = 07:00:00;
-time_light_off = 20:00:00;
+time_light_on = 07:30:00;
+time_light_off = 19:30:00;
 
 [Food]
 Food = true;
-time_Food = 07:30:00, 13:30:00, 19:30:00;
+time_Food = 07:45:00, 13:30:00, 19:15:00;
 long_Food = 1000;
 
 [UF]
