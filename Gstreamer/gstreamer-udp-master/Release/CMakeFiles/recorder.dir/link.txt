@@ -1,0 +1,1 @@
+/usr/bin/g++ -O3 -DNDEBUG CMakeFiles/recorder.dir/stream.cpp.o -o recorder  -lgstreamer-1.0 -lgobject-2.0 -lglib-2.0 

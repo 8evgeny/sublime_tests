@@ -1,0 +1,3 @@
+/home/user/SOFT/Github/Sublime_tests/Gstreamer/gstreamer-udp-master/Release/CMakeFiles/recorder.dir
+/home/user/SOFT/Github/Sublime_tests/Gstreamer/gstreamer-udp-master/Release/CMakeFiles/edit_cache.dir
+/home/user/SOFT/Github/Sublime_tests/Gstreamer/gstreamer-udp-master/Release/CMakeFiles/rebuild_cache.dir
