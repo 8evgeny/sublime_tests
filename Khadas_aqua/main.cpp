@@ -380,7 +380,7 @@ int main ()
     pinMode(gpio_pin_REZERV, OUTPUT);
 	
     this_thread::sleep_for(chrono::milliseconds(3000));
-    thread (receiveTemp, ref(temperature)).detach();
+//    thread (receiveTemp, ref(temperature)).detach();
     thread (receiveSettings,
             ref(min_temp),
             ref(max_temp),
