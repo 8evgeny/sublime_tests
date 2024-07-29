@@ -16,6 +16,7 @@ set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda)
 set(find_diff_result 0)
 
 ###############################################################
+set(testCL 1)
 
 set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda)
 set(CMAKE_MAKE_PROGRAM "make -j${nproc}")
@@ -43,6 +44,9 @@ if(${CORR_TYPE} EQUAL 8)
 endif()
 if(${find_diff_result} EQUAL 1)
     add_definitions(-Dfind_diff_result)
+endif()
+if(${testCL} EQUAL 1)
+    add_definitions(-DtestCL)
 endif()
 add_executable(tmml_cl main.cpp tmml_cl.cpp tmml_cl.hpp tmml.cl )
 configure_file(tmml.cl ${CMAKE_CURRENT_BINARY_DIR}/tmml.cl COPYONLY)

@@ -18,22 +18,26 @@ const float RESULT_AREA_1 = 1.f / RESULT_AREA;
 const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 
 #define KERNEL_FILE "tmml.cl"
-
-#ifdef find_diff_result
-    #ifdef CCOEFF_NORMED
-        #define KERNEL_NAME "work_cl_6"
+#ifndef testCL
+    #ifdef find_diff_result
+        #ifdef CCOEFF_NORMED
+            #define KERNEL_NAME "work_cl_6"
+        #endif
+        #ifdef COMBINED
+            #define KERNEL_NAME "work_cl_8"
+        #endif
     #endif
-    #ifdef COMBINED
-        #define KERNEL_NAME "work_cl_8"
+    #ifndef find_diff_result
+        #ifdef CCOEFF_NORMED
+            #define KERNEL_NAME "work_cl_6_no_img"
+        #endif
+        #ifdef COMBINED
+            #define KERNEL_NAME "work_cl_8_no_img"
+        #endif
     #endif
 #endif
-#ifndef find_diff_result
-    #ifdef CCOEFF_NORMED
-        #define KERNEL_NAME "work_cl_6_no_img"
-    #endif
-    #ifdef COMBINED
-        #define KERNEL_NAME "work_cl_8_no_img"
-    #endif
+#ifdef testCL
+    #define KERNEL_NAME "work_cl_test"
 #endif
 
 struct Pix
