@@ -29,6 +29,7 @@ const int RESULT_AREA = RESULT_WIDTH * RESULT_HEIGHT;
 const int TEMPLATE_AREA = TEMPLATE_WIDTH * TEMPLATE_HEIGHT;
 const float RESULT_AREA_1 = 1.f / RESULT_AREA;
 const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
+const float TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
 
 #ifdef GPU_AMPERE
     const int threads_match_temp = 128; // 256

@@ -4,7 +4,6 @@ using namespace std;
 using namespace cv;
 using namespace chrono;
 
-
 bool trac_tmml::get_cmd_result(const string& get_disk_id, const vector<string>& v_disc_id)
 {
     array<char, 128> buffer;
@@ -29,8 +28,18 @@ trac_tmml::trac_tmml(const std::string& config_path, bool& ok)
    ok = get_ini_params(config_path);
    if(!ok){return;}
 
+#if defined OPEN_CL
+   tm = make_unique<tmml_cl>(ok, min_max_Val);
+   tm->max_pix = tm->max_pix0;
+   cout<<"OPEN_CL tm: "<<ok<<endl;
+#endif // END #if defined OPEN_CL
+#if !defined OPEN_CL
    tm = make_unique<tmml>(ok, min_max_Val);
    tm->max_pix = tm->max_pix0;
+   cout<<"CUDA tm: "<<ok<<endl;
+#endif // END !defined OPEN_CL
+
+
 
  // -------------------------- FIND DISC_ID -----------------------------------------------
  #ifdef FIND_DISC_ID
@@ -73,8 +82,13 @@ trac_tmml::trac_tmml(const std::string& config_path, bool& ok)
 } // -- END trac_tmml
 
 trac_tmml::~trac_tmml()
-{
-    tm->~tmml();
+{    
+#if defined OPEN_CL
+   tm->~tmml_cl();
+#endif // END #if defined OPEN_CL
+#if !defined OPEN_CL
+   tm->~tmml();
+#endif // END !defined OPEN_CL
     cout << "Деструктор trac_tmml" << endl;
     ts.release();
 } // END ~trac_tmml()

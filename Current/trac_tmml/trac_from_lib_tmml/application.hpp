@@ -46,13 +46,29 @@
 #endif // USE_IMX477_SQUARE_CAMERA_MIPI
 
 #ifdef USE_SHARED_MEMORY
-//   #include "devices/SharedMemory/sharedmemory.hpp"
-#include "devices/SharedMemory/shared_memory_factory.hpp"
+   #include "devices/SharedMemory/sharedmemory.hpp"
 #endif // USE_SHARED_MEMORY
 
 #ifdef USE_HIKVISION
    #include "devices/EthCameraRtsp/rtsp_h265_device_factory.hpp"
 #endif // USE_HIKVISION
+
+#ifdef USE_CORSAIR_400_RAW
+	#include "devices/Corsair400raw/corsair400raw_factory.hpp"
+#endif // USE_CORSAIR_400_RAW
+
+#ifdef USE_ETH_VTRACK_SEND
+#include "modules/vtrack_data_sender/vtrack_data_sender_factory.hpp"
+#include "modules/eth_controller_toolbox/command_processing/commands_zoo/cmd400/eth_cmd_400_init.hpp"
+#include "modules/eth_controller_toolbox/command_processing/commands_zoo/cmd400/eth_cmd_400_deinit.hpp"
+#include "modules/cmd400/cmd400_keeper_factory.hpp"
+#endif // USE_ETH_VTRACK_SEND
+
+#ifdef DBG_VIDEO_SENDER
+#include "modules/fenix2meta/fenix2meta_struct.hpp"
+#include "video_eth_controllers/gstc/rtp_server_x264/rtp_server.hpp"
+#include "video_eth_controllers/gstc/rtp_server_x264/rtp_server_settings.hpp"
+#endif // DBG_VIDEO_SENDER
 
 #ifdef USE_LOGGER
 #include "logger/factory.h"
@@ -93,10 +109,16 @@ private:
         IMX219_CAMERA_MIPI = 6,
         RTSP_H265 = 7,
         SHARED_MEMORY = 8,
-        HVGS_GRAY_USB_CAMERA = 9
+        HVGS_GRAY_USB_CAMERA = 9,
+        CORSAIR_400_RAW = 10
     }; // -- END enum Devices
 
     cv::Mat frame_process_0; // двойная буфферизация
+
+    int frame_w = 1920;
+    int frame_h = 1080;
+    float frame_w_1 = 1.f / frame_w;
+    float frame_h_1 = 1.f / frame_h;
 
 	std::atomic<bool> _execute = false;     // флаг нахождения программы в процессе выполнения
 	std::atomic<bool> _exec_complete_success = false; // флаг успешного завершения метода exec(), исполняемого в отдельном потоке 
@@ -116,7 +138,7 @@ private:
 	cv::Mat frame_show;                 // кадр для показа на экране
 	
 	std::atomic<int> process_frame_id = 0; // номер (0,1) текущего обрабатываемого фрейма в главном цикле программы
-
+    float handle_flag = 1;
 	// флаг готовности кадра для обработки трекером
 
     bool isTracShatsFirstInitedFlag = false;           // флаг инициации трекера
@@ -161,6 +183,14 @@ private:
     // results demonstration
     int frame_show_width = 640;         // ширина отображаемого кадра
     int demonstration_mode = 0;         // признак режима показа
+    int video_on = 0;
+    int rec_on = 0;
+    int video_num = 1;
+    std::string path4frames = "";
+    int save_frames_skip = 0;
+    int save_frames_prefix = 10000000;
+    int max_frames = 0;
+    std::vector<std::string> fileList;
 
 	// устройство считвания кадров
 	std::shared_ptr<Device> device = nullptr;				// источник видеопотока
@@ -203,6 +233,32 @@ private:
     void keyHandler();
  #endif //GUI_OK
 
+    int max_objects = 10;
+    bool flag_zahvat = 0;
+
+#ifdef DBG_VIDEO_SENDER
+    std::shared_ptr<rtp::RtpServer> fenix2frame_sender_ptr = nullptr;
+    rtp::server::SettingsPtr settings_srv_ptr = nullptr;
+    std::string rtp_server_section = "gstc_rtp_server_h264";
+    int frame_send_w = 1920;
+    int frame_send_h = 1080;
+    Fenix2Meta fenix2meta_data2send;
+
+#endif // DBG_VIDEO_SENDER
+
+#ifdef USE_ETH_VTRACK_SEND
+    std::shared_ptr<track_pos_sender::vtrackDataSender> sender_ptr = nullptr;
+    track_pos_sender::vtrackDataStruct track_pos_data2send;
+     track_pos_sender::trackPos tr_pos;
+
+    bool ethHandler(cv::Rect2f & object_rect);
+    cv::Rect rect_init_eth = {-1,-1,-1,-1};
+
+    ///cmd400_keeper
+    std::shared_ptr<cmd400_keeper::Cmd400Keeper> cmd_keeper_ptr = nullptr;
+    cmd400_keeper::Cmd400_list cmd_list2keep;
+    cmd400_keeper::Settings settings_keeper;
+#endif // USE_ETH_VTRACK_SEND
     // загрузка рамки цели из файла
     bool loadRectFromFile(std::string);
 	// подготовка изображения для tracShats
@@ -211,6 +267,7 @@ private:
 	// обработчик события поступления кадра при приёме от устройства
 	void handleDeviceFrame(uint8_t * f, int w, int h, int num, int id);	
 	bool FileIsExist(const std::string& filePath);
+    bool DirContent(std::string& path, std::vector<std::string>& fileList);
     void work_TKDNN();
 }; // -- END class Application
 #endif // APPLICATION_H

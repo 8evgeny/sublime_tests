@@ -93,7 +93,7 @@ public:
 
     virtual int getId() {return frame_id;}
 
-//protected:
+protected:
 #ifdef USE_ETHERNET_CONNECTION
     std::string dev = "eno1";
     std::string src_mac  = "ff-ff-ff-ff-ff-ff";

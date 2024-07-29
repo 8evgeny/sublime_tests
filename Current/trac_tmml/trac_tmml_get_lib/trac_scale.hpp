@@ -31,14 +31,15 @@
 #include <future>
 #include <dirent.h>
 #include "INIReader.h"
-#include "tmml.hpp"
+
+#if defined OPEN_CL
+   #include "tmml_cl.hpp"
+#endif // END #if defined OPEN_CL
+#if !defined OPEN_CL
+   #include "tmml.hpp"
+#endif // END !defined OPEN_CL
 
 #include TRACK_API
-
-using namespace std;
-using namespace cv;
-using namespace chrono;
-
 
 class trac_tmml
 {
@@ -50,10 +51,17 @@ class trac_tmml
     void deinit();
 
     std::unique_ptr<trac_struct> ts = nullptr; // Структура трекинга.
+
+ #if defined OPEN_CL
+    std::unique_ptr<tmml_cl> tm = nullptr;
+ #endif // END #if defined OPEN_CL
+ #if !defined OPEN_CL
     std::unique_ptr<tmml> tm = nullptr;
+ #endif // END !defined OPEN_CL
+
     int fr_w0, fr_h0; // Ширина и высота оригинального кадра.
-    Mat img_orig, img_orig_roi; // Матрицы для оригинального кадра и для ROI из оригинального кадра.
-    Rect2f rct_local_orig; // Рект для ROI на оригинальном кадре.
+    cv::Mat img_orig, img_orig_roi; // Матрицы для оригинального кадра и для ROI из оригинального кадра.
+    cv::Rect2f rct_local_orig; // Рект для ROI на оригинальном кадре.
     double maxVal = 0;
 
  private:    
@@ -64,7 +72,7 @@ class trac_tmml
     bool not_ok_match = 0;
     bool first_img = 1;
     int img_orig_type = CV_8UC1;
-    list<Mat> list_et;
+    std::list<cv::Mat> list_et;
 
     int validate_ext = -50; // Значение валидации, ниже которой происходит расширение рамки поиска.
     const float object_relative_max = 0.49; // Максимальное значение безразмерной координаты объекта при захвате.
@@ -72,7 +80,7 @@ class trac_tmml
     bool shift_ok = 0;
     int num_frame_ok = 0;
     int rotate_frame_180 = 1;
-    Mat img_et, et, img_local_work;
+    cv::Mat img_et, et, img_local_work;
     int scaling = 0; // Включить, или нет масштабирование.
     int list_et_sz = 16; // Максимальное число сохраняемых эталонов.
     int k_renew_ok = 5; // Число кадров, пропускаемых перед сохранением эталона.
@@ -80,22 +88,22 @@ class trac_tmml
 
     const float w_2_et = 24; // Полуширина стороны квадрата для эталона на рабочем фрейме.
     const float w_et = 2.f*w_2_et; // Ширина стороны квадрата для эталона на рабочем фрейме.
-    Point2f wh_2_0 = Point2f(w_2_et, w_2_et);
-    Point2f wh_et_2 = wh_2_0;
+    cv::Point2f wh_2_0 = cv::Point2f(w_2_et, w_2_et);
+    cv::Point2f wh_et_2 = wh_2_0;
     cv::Size wh_et = cv::Size(2*wh_et_2.x, 2*wh_et_2.y);
 
     float orig_work, work_orig, work_orig_2, min_max_Val, min_max_Val2, fr_w0_1, fr_h0_1;
     int fr_h_work, num_fr_0, num_fr_1, fr_w_work;
-    Point2f aim_center, aim_center_prev;
-    Point2f p__  = Point2f(-1000, -1000);
-    Point2f center = p__, center_prev = p__, wh_sm_2, center_sm, local_center_tmp, center_kalman;
+    cv::Point2f aim_center, aim_center_prev;
+    cv::Point2f p__  = cv::Point2f(-1000, -1000);
+    cv::Point2f center = p__, center_prev = p__, wh_sm_2, center_sm, local_center_tmp, center_kalman;
 
     const float ext_wh0 = 10; // Расширение рамки локального захвата по умолчанию.
     //float ext_wh = ext_wh0; // Расширение рамки локального захвата.
     const int d_ext_wh = 20; // Максимальное количество увеличений синей рамки, при превышении которого вызывается deinit().
     const int ext_wh1 = ext_wh0 + d_ext_wh; // Максимальное коэффициент увеличения синей рамки, при превышении которого вызывается deinit().
-    Rect2f rct_result, rct_result_orig, rct_result_sm;
-    Rect rct_local_result;
+    cv::Rect2f rct_result, rct_result_orig, rct_result_sm;
+    cv::Rect rct_local_result;
     string way2init_rect;
     float d02, d020;
     int left_padd, i_fr;
@@ -111,7 +119,7 @@ class trac_tmml
     //Point2f wh_local = wh_local0;
     const int win_x = 10; // Отступ окна слева
     const int win_y = 10; // Отступ окна сверху
-    Point2f center_orig, wh_et_2_orig, wh_local_orig, lt_local_work;
+    cv::Point2f center_orig, wh_et_2_orig, wh_local_orig, lt_local_work;
 
     // -- Для Калмана:
     const float noise_proc = 1e-4; // Шум процесса.
@@ -121,11 +129,11 @@ class trac_tmml
     const float dt_tr_1 = 1.f/dt_tr;
     cv::KalmanFilter KF_tr = cv::KalmanFilter(4, 2, 0);
     cv::Mat_<float> measurement_tr = cv::Mat_<float>(2, 1);
-    Mat est, pred;
+    cv::Mat est, pred;
 
     double minVal, minVal_sm, maxVal_sm;
-    Point minLoc, maxLoc, minLoc_sm, maxLoc_sm;
-    Point2f matchLoc, matchLoc_sm;
+    cv::Point minLoc, maxLoc, minLoc_sm, maxLoc_sm;
+    cv::Point2f matchLoc, matchLoc_sm;
 
     float shift2 = 0.004; // Максимальный относительный квадрат смещения текущей рамки от предыдущей
 
@@ -134,25 +142,25 @@ class trac_tmml
     bool first_match = 1; // Признак первого кадра для LK.
     int N_LK_2 = 32; // Число точек на окружности.
     int N_LK = 2*N_LK_2; // Полное число точек на обеих окружностях.
-    vector<Point2f> v_angl, v_LK_points; // Вектор косинусов-синусов и вектор точек для LK.
+    std::vector<cv::Point2f> v_angl, v_LK_points; // Вектор косинусов-синусов и вектор точек для LK.
     float rad1 = 0.8; // Относительный радиус первой окружности.
     float rad2 = 0.6; // Относительный радиус второй окружности.
-    Point a_2_now; // Полуширина квадрата для текущего кадра.
+    cv::Point a_2_now; // Полуширина квадрата для текущего кадра.
     int a_2_now_min = 20; // Минимальная полуширина квадрата.
-    Mat img4LK_now, img4LK_prev, img_now, img_prev; // Матрицы для LK и для подготовки матриц для LK.
+    cv::Mat img4LK_now, img4LK_prev, img_now, img_prev; // Матрицы для LK и для подготовки матриц для LK.
     const cv::Size wsz = cv::Size(7, 7); // Окно сглаживания оптического потока (обратно-пропорционально скорости работы).
     const float dt1_LK = 11.f; // Тёмный параметр, прямо-пропорционален скорости работы.
     const float dt2_LK = 0.001; // Тёмный параметр, обратно-пропорционален скорости работы.
 
     int smooth_on = 0; // Включение сглаживания.
     struct smoth_trac{float x = 0.5; float y = 0.5; size_t work_number = 0;};
-    deque<smoth_trac> deq_st;
+    std::deque<smoth_trac> deq_st;
     int deq_sz_min = 10; // Минимальное число точек на траектории (не меньше 2).
     int Polinom_size  = 2; // Степень полинома интерполяции.
     cv::Mat A, A_inv;
 
-    duration<double> duration1, duration_delay, not_ok_match_duration; // Продолжительность времени между кадрами.
-    system_clock::time_point time_point1_old, time_point0, time_point1, not_ok_match_start, not_ok_match_stop; // Временные точки для нахождения времени обработки кадра.
+    std::chrono::duration<double> duration1, duration_delay, not_ok_match_duration; // Продолжительность времени между кадрами.
+    std::chrono::system_clock::time_point time_point1_old, time_point0, time_point1, not_ok_match_start, not_ok_match_stop; // Временные точки для нахождения времени обработки кадра.
     float duration_delay_fps = 0, max_fps = 0;    
 
     bool match_img();
@@ -167,7 +175,7 @@ class trac_tmml
     void get_vec_angl();
     void get_vec_LK_points(float a_2);
     bool get_obj_xy_smooth(float obj_xy_x, float obj_xy_y);
-    bool get_abc(const vector<Point2d>& vec, vector<float>& B);
+    bool get_abc(const std::vector<cv::Point2d>& vec, std::vector<float>& B);
     bool get_smooth_xy(cv::Point2f& extr_xy);
 }; // END -- trac_tmml
 #endif

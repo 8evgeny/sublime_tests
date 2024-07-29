@@ -18,16 +18,37 @@ Application::Application(const string & pathToConfig,
     ok = get_ini_params(config_path);
     if(!ok){cout << "Not ok get_ini_params!" << endl; return;}
 
-    #ifdef USE_LOGGER
-        bool create_logger_status; 
-        logger_artem::create(config_path, create_logger_status);
-        if(!create_logger_status)
-        {
-            ok = false;
-            quit();
-            return;
-        }
-    #endif //USE_LOGGER
+#ifdef USE_LOGGER
+    bool create_logger_status;
+    logger_artem::create(config_path, create_logger_status);
+    if(!create_logger_status)
+    {
+        ok = false;
+        quit();
+        return;
+    }
+#endif //USE_LOGGER
+
+#ifdef USE_ETH_VTRACK_SEND
+    string section = "vtrack_data_sender";
+    sender_ptr = track_pos_sender::create(config_path, section);
+    if(sender_ptr == nullptr)
+    {
+        std::cout << "ERROR: create vtrack_data_sender failed" << std::endl;
+        ok = false;
+        return;
+    }
+    track_pos_data2send.v_track.reserve(max_objects);
+
+    cmd_keeper_ptr = cmd400_keeper::create(config_path, "cmd400_keeper");
+    if(!cmd_keeper_ptr->setup())
+    {
+        cout << "Application::ERROR start cmd_keeper_ptr!" << endl;
+        ok = false;
+        quit(); //?
+        return;
+    } // END if(!cmd_keeper_ptr->setup())
+#endif // USE_ETH_VTRACK_SEND
 
     switch(device_id)
     {
@@ -59,10 +80,8 @@ Application::Application(const string & pathToConfig,
 #endif // END USE_WEB_CAMERA
 #ifdef USE_SHARED_MEMORY
     case SHARED_MEMORY:
-//        device = make_shared<SharedMemory>(config_path, ok);
-//        if(!ok){return;}
-        device = devices::shared_memory::create(config_path);
-
+        device = make_shared<SharedMemory>(config_path, ok);
+        if(!ok){return;}
         device->setup();
         break;
 #endif // END USE_SHARED_MEMORY
@@ -92,6 +111,19 @@ Application::Application(const string & pathToConfig,
         break;
 
 #endif // USE_HIKVISION
+
+#ifdef USE_CORSAIR_400_RAW
+    case CORSAIR_400_RAW:
+        device = devices::corsair_400_raw::create(config_path, "corsair_400_raw");
+        if(device == nullptr)
+        {
+            std::cout << "ERROR: create CORSAIR_400_RAW device failed" << std::endl;
+            ok = false;
+            return;
+        }
+        break;
+#endif // USE_CORSAIR_400_RAW
+
     default:
         break;
     } // -- END switch
@@ -113,9 +145,9 @@ Application::Application(const string & pathToConfig,
     }
     else
     {
-        #ifdef USE_LOGGER
-            LoggerArtem::inst().log("Device doesn't exist: choose correct device in configuration file or rebuild application with current device");
-        #endif //USE_LOGGER
+#ifdef USE_LOGGER
+        LoggerArtem::inst().log("Device doesn't exist: choose correct device in configuration file or rebuild application with current device");
+#endif //USE_LOGGER
         quit();
     } // END if(device == nullptr)
     for(int key = 0; key < 256; key++){wh_2_ext[key] = Point(0, 0);}
@@ -129,9 +161,51 @@ Application::Application(const string & pathToConfig,
     wh_2_ext['3'] = Point(-1, 1);
     wh_2_ext['2'] = Point(0, -1);
     wh_2_ext['1'] = Point(-1, -1);
- #ifdef GUI_OK
+#ifdef GUI_OK
     namedWindow(app_win_name, WINDOW_NORMAL);
- #endif //GUI_OK
+#endif //GUI_OK
+
+#ifdef DBG_VIDEO_SENDER
+    cout << " ------ BEGIN create fenix2frame_sender_ptr" << endl;
+    settings_srv_ptr = std::make_shared<rtp::server::Settings>();
+    ok = rtp::server::getIniSettings(config_path, rtp_server_section, *settings_srv_ptr);
+    if (!ok)
+    {
+        cout << "ERROR: Application::rtp::server::getIniSettings!" << endl;
+        return;
+    } // END if (!ok)
+    fenix2frame_sender_ptr = make_shared<rtp::RtpServer>(settings_srv_ptr);
+
+    if (!fenix2frame_sender_ptr->setup())
+    {
+        cout << "Application::ERROR setup fenix2frame_sender_ptr!" << endl;
+        ok = false;
+        return;
+    } // END if (!fenix2frame_sender_ptr->setup())
+
+    if(!fenix2frame_sender_ptr->start())
+    {
+        cout << "Applicatin::ERROR start fenix2frame_sender_ptr!" << endl;
+    } // END if(!fenix2frame_sender_ptr->start())
+    cout << " ------ END create fenix2frame_sender_ptr" << endl;
+
+#endif // DBG_VIDEO_SENDER
+
+    if(video_on)
+    {
+        if(DirContent(path4frames, fileList))
+        {
+            if(fileList.size())
+            {
+                string last_file = fileList[fileList.size() - 1];
+                string last_file1 = last_file.substr(0, last_file.length() - 4);
+                int last_num = stoi(last_file1) - save_frames_prefix;
+                video_num = last_num + 2;
+            }
+            else{video_num = 1;}
+        }
+        else{video_on = 0;}
+    } // END if(video_on)
 } // -- END Application
 
 bool Application::FileIsExist(const string& filePath)
@@ -143,6 +217,32 @@ bool Application::FileIsExist(const string& filePath)
     return isExist;
 } // -- END FileIsExist
 
+bool Application::DirContent(string& path, vector<string>& fileList)
+{
+    fileList.clear();
+    DIR *dir;
+    struct dirent *ent;
+    if((dir = opendir(path.c_str())) != NULL)
+    {
+        while((ent = readdir(dir)) != NULL)
+        {
+            string filename = string(ent->d_name);
+            // -- typ = 4 (folder), typ = 8 (file).
+            if(ent->d_type == 8 && filename != "." && filename != "..")
+            {
+                fileList.emplace_back(filename);
+            }
+        } // -- END while((ent = readdir (dir)) != NULL)
+        closedir(dir);
+        if(fileList.size() > 1){sort(fileList.begin(), fileList.end());}
+        cout << "Dir " << path << " open success." << endl;
+        return 1;
+    } // -- END if((dir = opendir(way)) != NULL)
+    cout << "Dir " << path << " can't open!" << endl;
+    return 0;
+} // -- END DirContent
+
+
 void Application::quit()
 {
     if(quit_was_called.load())
@@ -152,21 +252,21 @@ void Application::quit()
     quit_was_called.store(true);
 
     _execute.store(false, memory_order_release);
-        
+
     cout << " --- BEGIN Application::quit" << endl;
-    #ifdef USE_LOGGER
-        cout << "\t --- BEGIN logger::quit()" << endl;
-        bool logger_quit_report = LoggerArtem::inst().quit();
-        if(logger_quit_report)
-        {
-            cout << "\tlogger quit success" << endl;
-        }
-        else
-        {
-            cout << "\t logger quit failed" << endl;
-        }
-        cout << " \t --- END logger::quit()" << endl;
-    #endif //USE_LOGGER
+#ifdef USE_LOGGER
+    cout << "\t --- BEGIN logger::quit()" << endl;
+    bool logger_quit_report = LoggerArtem::inst().quit();
+    if(logger_quit_report)
+    {
+        cout << "\tlogger quit success" << endl;
+    }
+    else
+    {
+        cout << "\t logger quit failed" << endl;
+    }
+    cout << " \t --- END logger::quit()" << endl;
+#endif //USE_LOGGER
 
     if(device != nullptr)
     {
@@ -180,6 +280,29 @@ void Application::quit()
 #ifdef GUI_OK
     destroyAllWindows();
 #endif
+
+#ifdef USE_ETH_VTRACK_SEND
+    cmd_keeper_ptr->quit();
+    // sender_ptr->quit();
+#endif //USE_ETH_VTRACK_SEND
+
+
+#ifdef DBG_VIDEO_SENDER
+    if (fenix2frame_sender_ptr != nullptr)
+    {
+        bool ok_quit = fenix2frame_sender_ptr->stop();
+        if (ok_quit)
+        {
+            cout << "fenix2frame_sender_ptr->stop()" << endl;
+        } // END if (ok_quit)
+        else
+        {
+            cout << "error::fenix2frame_sender_ptr->stop()" << endl;
+        } // END else
+    } // END if (fenix2frame_sender_ptr != nullptr)
+
+#endif // DBG_VIDEO_SENDER
+
     cout << " --- END Application::quit" << endl;
 } // -- END quit
 
@@ -203,11 +326,11 @@ bool Application::quit_async()
     _execute.store(false);
     // Максимально допустимое время ожидания закрытия основного цикла приложения
     // При превышении приложение закрывается не дожидаясь закрытия потока функции exec()ж
-    const int watchdog_close_exec_time_ms = 3000;  
+    const int watchdog_close_exec_time_ms = 3000;
     // Общее количество отсчетов, которое выполняется
     const int subdivisions_total = 100;
     // Временной интервал проверки состояния потока метода exec() за предмет завершенности (закрытости)
-    int check_interval_ms = 1; 
+    int check_interval_ms = 1;
     
     // Проверки безопасности введенных пользовательских значений watchdog_close_exec_time_ms и subdivisions_total
     if(subdivisions_total > 0){check_interval_ms = watchdog_close_exec_time_ms / subdivisions_total;}
@@ -239,37 +362,37 @@ void Application::start()
 {
     device->start();
     _execute.store(true, memory_order_release);
-    exec();    
+    exec();
 } // -- END start
 
 
 void Application::work_TKDNN()
 {
     bool flag = tracShats->update(frame_process_tracshats, aimRectShats);
-    tracShats->getSearchRect(searchRect);
- #if defined(GUI_OK)
-//    Rect2f searchRect_show(frame_show_width * searchRect.x, frame_show_height * searchRect.y,
-//                           frame_show_width * searchRect.width, frame_show_height * searchRect.height);
-//    rectangle(frame_show, searchRect_show, color::white, 1);
+    //    tracShats->getSearchRect(searchRect);
+#if defined(GUI_OK)
+    //    Rect2f searchRect_show(frame_show_width * searchRect.x, frame_show_height * searchRect.y,
+    //                           frame_show_width * searchRect.width, frame_show_height * searchRect.height);
+    //    rectangle(frame_show, searchRect_show, color::white, 1);
     if(tracShats->find_)
     {
-       int num = 0;
-       for(vector<trac_data>::iterator trac = tracShats->trac_str.vtrac_data.begin(); trac != tracShats->trac_str.vtrac_data.end(); trac++)
-       {
-          // приведение рамки цели к абсолютным координатам
-          Point lt(trac->x * frame_show_width - trac->w * frame_show_width, trac->y * frame_show_height - trac->h * frame_show_height);
-          Point br(trac->x * frame_show_width + trac->w * frame_show_width, trac->y * frame_show_height + trac->h * frame_show_height);
-          Rect rectShats(lt, br);
-          // отрисовка рамки цели
-          rectangle(frame_show, rectShats, color::white, 2);
-          // отрисовка центра объекта
-          Point2f center_show = 0.5*(lt + br);
-          circle(frame_show, center_show, 2, color::white, -1);
-          putText(frame_show, to_string(num), br, FONT_HERSHEY_SIMPLEX, 0.7, color::white, 2);
-          num++;
-       } // END for(vector<trac_data>::iterator trac = vtrac->begin(); trac != vtrac->end(); trac++)
+        int num = 0;
+        for(vector<trac_data>::iterator trac = tracShats->trac_str.vtrac_data.begin(); trac != tracShats->trac_str.vtrac_data.end(); trac++)
+        {
+            // приведение рамки цели к абсолютным координатам
+            Point lt(trac->x * frame_show_width - trac->w * frame_show_width, trac->y * frame_show_height - trac->h * frame_show_height);
+            Point br(trac->x * frame_show_width + trac->w * frame_show_width, trac->y * frame_show_height + trac->h * frame_show_height);
+            Rect rectShats(lt, br);
+            // отрисовка рамки цели
+            rectangle(frame_show, rectShats, color::white, 2);
+            // отрисовка центра объекта
+            Point2f center_show = 0.5*(lt + br);
+            circle(frame_show, center_show, 2, color::white, -1);
+            putText(frame_show, to_string(num), br, FONT_HERSHEY_SIMPLEX, 0.7, color::white, 2);
+            num++;
+        } // END for(vector<trac_data>::iterator trac = vtrac->begin(); trac != vtrac->end(); trac++)
     } // END if(tracShats->find_)
- #endif // END #if defined(GUI_OK)
+#endif // END #if defined(GUI_OK)
 } // END work_TKDNN()
 
 
@@ -290,8 +413,11 @@ void Application::exec()
         frameReady.store(true);
     } // END if(!parallel)
 
-    int frame_w = frame_process_0.cols;
-    int frame_h = frame_process_0.rows;
+    frame_w = frame_process_0.cols;
+    frame_h = frame_process_0.rows;
+    frame_w_1 = 1.f / (float)frame_w;
+    frame_h_1 = 1.f / (float)frame_h;
+
     cout << "exec:: frame size : frame_w = " << frame_w << "; frame_h = " << frame_h << endl;
     tracShats = make_shared<TracShats>(config_path, frame_process_0, ok);
     if(!ok)
@@ -310,36 +436,36 @@ void Application::exec()
     frame_show_height_2 = 0.5 * frame_show_height;
     frame_show_w_1 = 1.f / frame_show_width;
     frame_show_h_1 = 1.f / frame_show_height;
-    rct_center.height = round(frame_h_w*rct_center.width);    
- #if defined(TKDNN)
+    rct_center.height = round(frame_h_w * rct_center.width);
+#if defined(TKDNN)
     isTracShatsFirstInitedFlag = true;
     isTracShatsInitedFlag = true;
     tracShats->trac_str.new_frame = 1;
- #endif // END #if defined(TKDNN)    
+#endif // END #if defined(TKDNN)
 
     // основной цикл выполнения пиложения
     while(_execute.load(memory_order_acquire))
     {
         if(!parallel)
         {
-  #ifdef USE_LOGGER
+#ifdef USE_LOGGER
             time_point_device0 = high_resolution_clock::now();
-  #endif // END USE_LOGGER
+#endif // END USE_LOGGER
 
-  #ifdef USE_ROI_TMP
+#ifdef USE_ROI_TMP
             device->getFrame(frame_receive0);
             resize(frame_receive0(rct_center), frame_receive, Size(frame_w, frame_h));
-  #endif // END USE_ROI_TMP
-  #ifndef USE_ROI_TMP
+#endif // END USE_ROI_TMP
+#ifndef USE_ROI_TMP
             device->getFrame(frame_receive);
-  #endif // END NOT USE_ROI_TMP
+#endif // END NOT USE_ROI_TMP
 
-  #ifdef USE_LOGGER
+#ifdef USE_LOGGER
             time_point_device1 = high_resolution_clock::now();
             LoggerArtem::inst().logTimedBasedFPS(
-                "Device FPS = ",
-                duration<double>(time_point_device1 - time_point_device0).count());
-  #endif // END USE_LOGGER
+                        "Device FPS = ",
+                        duration<double>(time_point_device1 - time_point_device0).count());
+#endif // END USE_LOGGER
             frameReady.store(true);
         } // END if(!parallel)
 
@@ -348,86 +474,165 @@ void Application::exec()
             if(parallel) // TODO: паттерн "стратегия" с назначением lambda
             {
                 /*
-                Обособленный mutex'ом фрагмент не осуществляет клонирования frame, 
-                реализуется оптимальная передача по ссылке, 
-                но дополнительная потокобезопасность обеспечивается 
+                Обособленный mutex'ом фрагмент не осуществляет клонирования frame,
+                реализуется оптимальная передача по ссылке,
+                но дополнительная потокобезопасность обеспечивается
                 frame_proc_(0/1)_mutex без существенных накладных расходов
                 */
                 switch(process_frame_id) // id буффера на предыдущем шаге
                 {
-                    case 0:
-                    {
-                        frame_proc_1_mutex.lock();
-                        process_frame_id = 1;
-                        frame_receive = frame_process_1;
-                        frame_proc_1_mutex.unlock();
-                    }
+                case 0:
+                {
+                    frame_proc_1_mutex.lock();
+                    process_frame_id = 1;
+                    frame_receive = frame_process_1;
+                    frame_proc_1_mutex.unlock();
+                }
                     break;
 
-                    case 1:
-                    {
-                        frame_proc_0_mutex.lock();
-                        process_frame_id = 0;
-                        frame_receive = frame_process_0;
-                        frame_proc_0_mutex.unlock();
-                    }
+                case 1:
+                {
+                    frame_proc_0_mutex.lock();
+                    process_frame_id = 0;
+                    frame_receive = frame_process_0;
+                    frame_proc_0_mutex.unlock();
+                }
                     break;
 
-                    default:
-                    {
-                        throw runtime_error("Error: incorrect process_frame_id");
-                    }
+                default:
+                {
+                    throw runtime_error("Error: incorrect process_frame_id");
+                }
                     break;
                 }
             } // -- END if(parallel)
 
             frameReady.store(false);
+
+            if(video_on && (rec_on || tracShats->find_))
+            {
+                if(video_num <= max_frames)
+                {
+                    string path = path4frames + "/" + to_string(save_frames_prefix + video_num) + ".jpg";
+                    imwrite(path, frame_receive);
+                    video_num++;
+                }
+                else{video_on = 0;}                
+            } // END if(video_on && (rec_on || tracShats->find_))
+
             prepareFrameForTracShats();
 
-   #ifdef GUI_OK
+#ifdef GUI_OK
             resize(frame_receive, frame_show, Size(frame_show_width, frame_receive.rows * show2originImgRatio));
             if(cross_on)
             {
                 line(frame_show, Point(0, frame_show_height_2), Point(frame_show_width, frame_show_height_2), cross_on_color, 2);
                 line(frame_show, Point(frame_show_width_2, 0), Point(frame_show_width_2, frame_show_height), cross_on_color, 2);
             } // END cross_on
-   #endif //GUI_OK
+#endif //GUI_OK
 
-   #ifdef USE_LOGGER
+#ifdef USE_LOGGER
             time_point_tracker0 = system_clock::now();
-   #endif // END USE_LOGGER
+#endif // END USE_LOGGER
 
- #if !defined(TKDNN)
-           workflowShats();
- #endif // END #if !defined(TKDNN)  
- #if defined(TKDNN)
-           work_TKDNN();
- #endif // END #if defined(TKDNN)
+#if !defined(TKDNN)
+            workflowShats();
+#endif // END #if !defined(TKDNN)
+#if defined(TKDNN)
+            work_TKDNN();
+#endif // END #if defined(TKDNN)
 
-   #ifdef USE_LOGGER
-           time_point_tracker1 = system_clock::now();
-           if(tracShats->isInited())
-           {
-               LoggerArtem::inst().logTimedBasedFPS("TrackShats FPS = ",
-                           duration<double>(time_point_tracker1 - time_point_tracker0).count());
+#ifdef USE_ETH_VTRACK_SEND
+            // "Заправляем" найденные рамки в структуру
+            track_pos_data2send.v_track.resize(0);
+#if defined(TKDNN)
+            vector<trac_data>& vtd = tracShats->trac_str.vtrac_data;
+            for(int i = 0; i < vtd.size(); i++)
+            {
+                trac_data& td = vtd[i];
+                tr_pos.x = td.x;
+                tr_pos.y = td.y;
+                tr_pos.w = td.w;
+                tr_pos.h = td.h;
+                track_pos_data2send.v_track.emplace_back(tr_pos);
+            } // END for(int i = 0; i < MIN(v_track_size_real, v_track_size_udp); i++)
+#endif // END #if defined(TKDNN)
+#if !defined(TKDNN)
+            if(flag_zahvat)
+            {
+                trac_struct& tstr = tracShats->trac_str;
+                tr_pos.x = tstr.obj_xy_x;
+                tr_pos.y = tstr.obj_xy_y;
+                tr_pos.w = tstr.obj_wh_2_w;
+                tr_pos.h = tstr.obj_wh_2_h;
+                track_pos_data2send.v_track.emplace_back(tr_pos);
+            } // END if(flag_zahvat)
+#endif // END #if !defined(TKDNN)
+            sender_ptr->send(track_pos_data2send);
+#endif // USE_ETH_VTRACK_SEND
+#ifdef USE_LOGGER
+            time_point_tracker1 = system_clock::now();
+            if(tracShats->isInited())
+            {
+                LoggerArtem::inst().logTimedBasedFPS("TrackShats FPS = ",
+                                                     duration<double>(time_point_tracker1 - time_point_tracker0).count());
+#if defined(TKDNN)
+                LoggerArtem::inst().logTimedBasedFPS("Scan FPS = ", tracShats->trac_str.scan_exec_time);
+                LoggerArtem::inst().logTimedBasedFPS("YOLO FPS = ", tracShats->trac_str.yolo_exec_time);
+#endif // END #if defined(TKDNN)
+            } // END if(tracShats->isInited())
+#endif // USE_LOGGER
 
-               #if defined(TKDNN)
-                  LoggerArtem::inst().logTimedBasedFPS("Scan FPS = ", tracShats->trac_str.scan_exec_time);
-                  LoggerArtem::inst().logTimedBasedFPS("YOLO FPS = ", tracShats->trac_str.yolo_exec_time);
-               #endif // END #if defined(TKDNN)
-           } // END if(tracShats->isInited())
-   #endif // USE_LOGGER
-
-   #if defined(GUI_OK)
+#if defined(USE_ETH_VTRACK_SEND) && !defined (TKDNN)
+#ifdef GUI_OK
             if(tracShats->trac_str.work_in_round)
             {
-               circle(frame_show, Point(frame_show_width_2, frame_show_height_2), frame_show_height_2, color::white, 1);
+                circle(frame_show, Point(frame_show_width_2, frame_show_height_2), frame_show_height_2, color::white, 1);
+            } // END if(tracShats->trac_str.work_in_round)
+#endif // GUI_OK
+            if(ethHandler(rectm))
+            {
+                rectm = Rect2f(rectm.x * frame_w_1,
+                               rectm.y * frame_h_1,
+                               rectm.width * frame_w_1,
+                               rectm.height * frame_h_1);
+                bool initFlag = false;
+                cout << "Is inited = " << tracShats->isInited() << endl;
+                if(!tracShats->isInited())
+                {
+                    if(roi_mode)
+                    {
+                        initFlag = tracShats->init(rectm, roi);
+                        tracShats->setWorkNumber(device->getFrameCounter());
+                        if(initFlag)
+                        {
+                            isRoiSetted = true;
+                        } // END if(initFlag)
+                    }
+                    else
+                    {
+                        initFlag = tracShats->init(rectm);
+                        tracShats->setWorkNumber(device->getFrameCounter());
+                    } // END else
+                    if(initFlag)
+                    {
+                        if(!isTracShatsFirstInitedFlag){isTracShatsFirstInitedFlag = true;}
+                        isTracShatsInitedFlag = true;
+                    } // -- END if(initFlag)
+                } // -- END if(!tracShats->isInited())
+
+            } // -- END if(EthHandler(frame_show, rect))
+#endif // USE_ETH_CONTROLLER && !TKDNN
+#ifdef GUI_OK
+            if(tracShats->trac_str.work_in_round)
+            {
+                circle(frame_show, Point(frame_show_width_2, frame_show_height_2), frame_show_height_2, color::white, 1);
             } // END if(tracShats->trac_str.work_in_round)
             if(mouseHandler(frame_show, rectm))
             {
                 // инициализация трекера, если указана новая рамка цели
                 rectm = Rect2f(rectm.x * frame_show_w_1, rectm.y * frame_show_h_1,
-                                rectm.width * frame_show_w_1, rectm.height * frame_show_h_1);
+                               rectm.width * frame_show_w_1, rectm.height * frame_show_h_1);
                 bool initFlag = false;
                 if(!tracShats->isInited())
                 {
@@ -438,13 +643,13 @@ void Application::exec()
                         if(initFlag)
                         {
                             isRoiSetted = true;
-                        }
-                    }
+                        } // END if(initFlag)
+                    } // END if(roi_mode)
                     else
                     {
                         initFlag = tracShats->init(rectm);
                         tracShats->setWorkNumber(device->getFrameCounter());
-                    }
+                    } // END if(!roi_mode)
                     if(initFlag)
                     {
                         if(!isTracShatsFirstInitedFlag){isTracShatsFirstInitedFlag = true;}
@@ -452,33 +657,43 @@ void Application::exec()
                     } // -- END if(initFlag)
                 } // -- END if(!tracShats->isInited())
             } // -- END if(mouseHandler(frame_show, rect))
+
+
+#ifdef DBG_VIDEO_SENDER
+            fenix2frame_sender_ptr->setMeta(fenix2meta_data2send);
+            cv::Mat frame_send = frame_receive;
+            // resize(frame_receive, frame_send, Size(frame_send_w, frame_send_h));
+            fenix2frame_sender_ptr->newFrame(frame_send.data,
+                                             frame_send.cols * frame_send.rows * frame_send.channels());
+#endif // DBG_VIDEO_SENDER
+
             if(need_quit)
             {
                 cout << "need quit" << endl;
                 quit();
                 break;
             } // END if(need_quit)
-   #endif // END #if defined(GUI_OK)
+#endif // END #if defined(GUI_OK)
         } // END if(frameReady.load())
         else
         {
             bool ws_ok1 = false;
             bool need_brake_quit = false;
-            tracShats->trac_str.new_frame = 0;        
+            tracShats->trac_str.new_frame = 0;
             while(!frameReady.load())
             {
                 if(parallel)
                 {
-                    #if !defined(TKDNN)
-                     this_thread::sleep_for(milliseconds(5));
-                    #endif // END #if !defined(TKDNN)
-                    #if defined(TKDNN)
-                     work_TKDNN();
-                    #endif // END #if defined(TKDNN)
+#if !defined(TKDNN)
+                    this_thread::sleep_for(milliseconds(5));
+#endif // END #if !defined(TKDNN)
+#if defined(TKDNN)
+                    work_TKDNN();
+#endif // END #if defined(TKDNN)
                 } // -- END if(!parallel)
                 else
-                {                    
-                   break;
+                {
+                    break;
                 } // END if(!parallel)
             } // -- END while(!frameReady.load())
             tracShats->trac_str.new_frame = 1;
@@ -557,6 +772,19 @@ bool Application::get_ini_params(const string &config)
         return false;
     }
 
+#ifdef USE_ETH_VTRACK_SEND
+    int handle_flag_buf = reader.GetInteger("main_settings", "handle_flag", -1);
+    if(!handle_flag_buf) {handle_flag = 0;}
+    else
+    {
+        handle_flag = 1;
+    }
+
+#elif
+    handle_flag = 1;
+#endif // USE_ETH_VTRACK_SEND
+    cout << "handle_flag = " << handle_flag << endl;
+
     scale = reader.GetInteger("tracking", "scaling", -1);
     if(scale == -1)
     {
@@ -602,6 +830,13 @@ bool Application::get_ini_params(const string &config)
         return false;
     }
 
+    max_objects = reader.GetInteger("copter1", "max_objects", -1);
+    if(max_objects == -1)
+    {
+        cout << "Not found max_objects in Application::getMainSettings!\n";
+        return false;
+    }
+
     if(!get_rect_manual && device_id == FOLDER)
     {
         string way2init_rect = reader.Get("folder", "way2init_rect", "oops");
@@ -615,6 +850,43 @@ bool Application::get_ini_params(const string &config)
             loadRectFromFile(way2init_rect);
         } // END if(way2init_rect != "oops")
     }  // -- END if(!get_rect_manual and device_id == FOLDER)
+
+    video_on = reader.GetInteger("recorder", "video_on", -1);
+    if(video_on == -1)
+    {
+        cout << "Not found video_on in Application::getMainSettings!\n";
+        return false;
+    }
+    else if(video_on == 1)
+    {
+        path4frames = reader.Get("recorder", "path4frames", "oops");
+        if(path4frames == "oops")
+        {
+            cout << "Not found path4frames in Application::getMainSettings!\n";
+            return false;
+        }
+
+        save_frames_skip = reader.GetInteger("recorder", "save_frames_skip", -1);
+        if(save_frames_skip == -1)
+        {
+            cout << "Not found save_frames_skip in Application::getMainSettings!\n";
+            return false;
+        }
+
+        save_frames_prefix = reader.GetInteger("recorder", "save_frames_prefix", -1);
+        if(save_frames_prefix == -1)
+        {
+            cout << "Not found save_frames_prefix in Application::getMainSettings!\n";
+            return false;
+        }
+
+        max_frames = reader.GetInteger("recorder", "max_frames", -1);
+        if(max_frames == -1)
+        {
+            cout << "Not found max_frames in Application::getMainSettings!\n";
+            return false;
+        }
+    } // END else if(video_on == 1)
 
     cout << "END get_ini_params Application" << endl;
     return 1;
@@ -638,35 +910,34 @@ void Application::workflowShats()
     //cout << "isTracShatsFirstInitedFlag=" << isTracShatsFirstInitedFlag << endl;
     if(isTracShatsFirstInitedFlag)
     {
- #ifdef GUI_OK
+#ifdef GUI_OK
         if(demonstration_mode > 2 && tracShats->isInited())
         {
- #ifdef USE_CUDA
-          frame_show(Rect(Point(80, 90) - Point(7, 7), Point(80, 90) + Point(7, 7))) = color::black;
-          frame_show(Rect(Point(80, 90) - Point(3, 3), Point(80, 90) + Point(3, 3))) = color::white;
- #endif // END ifdef USE_CUDA
- #ifndef USE_CUDA
-          circle(frame_show, Point(80, 90), 14, color::black, -1);
-          circle(frame_show, Point(80, 90), 6, color::white, -1);
- #endif // END ifndef USE_CUDA
-        } // -- END if(demonstration_mode > 2 && tracShats->isInited()) 
- #endif // END GUI_OK
+#ifdef USE_CUDA
+            frame_show(Rect(Point(80, 90) - Point(7, 7), Point(80, 90) + Point(7, 7))) = color::black;
+            frame_show(Rect(Point(80, 90) - Point(3, 3), Point(80, 90) + Point(3, 3))) = color::white;
+#endif // END ifdef USE_CUDA
+#ifndef USE_CUDA
+            circle(frame_show, Point(80, 90), 14, color::black, -1);
+            circle(frame_show, Point(80, 90), 6, color::white, -1);
+#endif // END ifndef USE_CUDA
+        } // -- END if(demonstration_mode > 2 && tracShats->isInited())
+#endif // END GUI_OK
         
-        bool flag = processShats();// обработка кадра
-
+        flag_zahvat = processShats(); // обработка кадра
         //cout << "processShats flag=" << flag << endl;
-        if(flag)
-        {              
- #ifdef GUI_OK
+        if(flag_zahvat)
+        {
+#ifdef GUI_OK
             // приведение рамки цели к абсолютным координатам
             Rect2f rectShats(aimRectShats.x * frame_show_width, aimRectShats.y * frame_show_height,
                              aimRectShats.width * frame_show_width, aimRectShats.height * frame_show_height);
             // отрисовка рамки цели
             rectangle(frame_show, rectShats, color::white, 1);
             // отрисовка центра объекта
-            Point2f center0 = tracShats->getTargetCenter();
-            Point2f center = Point2f(center0.x * frame_show_width, center0.y * frame_show_height);
-            circle(frame_show, center, 2, color::white, -1);
+            Point2f dimless_cent(tracShats->trac_str.obj_xy_x, tracShats->trac_str.obj_xy_y);
+            Point2f center_show = Point2f(dimless_cent.x * frame_show_width, dimless_cent.y * frame_show_height);
+            circle(frame_show, center_show, 2, color::white, -1);
 
             // добавление метки размера объекта на кадр
             if(demonstration_mode > 1)
@@ -683,12 +954,12 @@ void Application::workflowShats()
                     putText(frame_show, txt, Point(100, 100), FONT_ITALIC, 1, color::Green::lime, 2);
                 } // -- END if(demonstration_mode > 3)
             } // -- END if(demonstration_mode > 1)
- #endif // END GUI_OK
-        } // END if(flag)
+#endif // END GUI_OK
+        } // END if(flag_zahvat)
         else
         {
-            if(!tracShats->isInited()){isTracShatsInitedFlag = false;} 
-        } // END if(!flag)
+            if(!tracShats->isInited()){isTracShatsInitedFlag = false;}
+        } // END if(!flag_zahvat)
     } // -- END if(isTracShatsFirstInitedFlag)
     else if(tracShatsInitReqFlag)
     {      // инициализация трекера при поступлении запроса
@@ -731,94 +1002,144 @@ void Application::aimFrameCallback(int event, int x, int y, int flags, void *par
     p_mouse = Point(x, y);
     switch(event)
     {
-       case EVENT_LBUTTONDOWN:
-           click_down = 1;
-           break;
-       case EVENT_LBUTTONUP:
-           if(click_down){click_up = 1;}
-           break;
+    case EVENT_LBUTTONDOWN:
+        click_down = 1;
+        break;
+    case EVENT_LBUTTONUP:
+        if(click_down){click_up = 1;}
+        break;
     } // -- END switch(event)
 } // -- END aimFrameCallback
 #endif // END GUI_OK
 
+
+#if defined(USE_ETH_VTRACK_SEND) && !defined (TKDNN)
+bool Application::ethHandler(cv::Rect2f & rect_obj)
+{
+    cmd_keeper_ptr->get(cmd_list2keep);
+    if(cmd_list2keep.init_f)
+    {
+        cout << "dbg:: NEED INIT!" << endl;
+        if(tracShats->isInited())
+        {
+            tracShats->deinit();
+            workflowShats();
+            cout << "tracShats->isInited(): " << tracShats->isInited() << endl;
+        } // END if(tracShats->isInited())
+
+        rect_obj = Rect(cmd_list2keep.init_cmd.x,
+                        cmd_list2keep.init_cmd.y,
+                        cmd_list2keep.init_cmd.w,
+                        cmd_list2keep.init_cmd.h);
+        cmd_list2keep.init_f = 0;
+        cout << "dbg:: Need init in " << rect_obj << endl;
+        return 1;
+    } // END if(cmd_list2keep.init_f)
+    if(cmd_list2keep.deinit_f)
+    {
+        cout << "dbg:: NEED DEINIT!" << endl;
+        if(tracShats->isInited()) {tracShats->deinit();}
+        cmd_list2keep.deinit_f = 0;
+        return 0;
+    } // END if(cmd_list2keep.deinit_f)
+    //    imshow(app_win_name, frame_show);
+    //    waitKey(1);
+
+    return 0;
+} // -- END ethHandler
+#endif // END USE_ETH_VTRACK_SEND && !TKDNN
+
+
 #ifdef GUI_OK
 bool Application::mouseHandler(Mat& img, Rect2f& object_rect)
-{    
- #if !defined(TKDNN)
-    if(!isTracShatsInitedFlag)
+{
+    if(handle_flag)
     {
-        if(click_down)
-        {
-            if(zahvat_size)
-            {
-               if(first_click_down)
-               {
-                   first_click_down = 0;
-                   p_down = p_mouse;
-               } // -- END if(first_click_down)
-               Rect rct(p_mouse - wh_2_zahvat, p_mouse + wh_2_zahvat);
-               rectangle(img, rct, color::white, 1);
-            }
-            else
-            {
-                if(first_click_down)
-                {
-                    first_click_down = 0;
-                    p_down = p_mouse;
-                } // -- END if(first_click_down)
-                int left  = MIN(p_mouse.x, p_down.x);
-                int right = MAX(p_mouse.x, p_down.x);
-                int top   = MIN(p_mouse.y, p_down.y);
-                int down  = MAX(p_mouse.y, p_down.y);
-                Rect rct(Point(left, top), Point(right, down));
-                rectangle(img, rct, color::white, 1);
-            } // END if(!zahvat_size)
-        } //--END if(click_down)
-    } // -- END if(!isTracShatsInitedFlag)
- #endif // END #if !defined(TKDNN)
 
+#if !defined(TKDNN)
+        if(!isTracShatsInitedFlag)
+        {
+            if(click_down)
+            {
+                if(zahvat_size)
+                {
+                    if(first_click_down)
+                    {
+                        first_click_down = 0;
+                        p_down = p_mouse;
+                    } // -- END if(first_click_down)
+                    Rect rct(p_mouse - wh_2_zahvat, p_mouse + wh_2_zahvat);
+                    rectangle(img, rct, color::white, 1);
+                }
+                else
+                {
+                    if(first_click_down)
+                    {
+                        first_click_down = 0;
+                        p_down = p_mouse;
+                    } // -- END if(first_click_down)
+                    int left  = MIN(p_mouse.x, p_down.x);
+                    int right = MAX(p_mouse.x, p_down.x);
+                    int top   = MIN(p_mouse.y, p_down.y);
+                    int down  = MAX(p_mouse.y, p_down.y);
+                    Rect rct(Point(left, top), Point(right, down));
+                    rectangle(img, rct, color::white, 1);
+                } // END if(!zahvat_size)
+            } //--END if(click_down)
+        } // -- END if(!isTracShatsInitedFlag)
+#endif // END #if !defined(TKDNN)
+    } // END if(handle_flag)
+    if(rec_on){circle(img, Point(30, 60), 10, color::white, -1);}
     imshow(app_win_name, img);
     //moveWindow(win_name, 10, 10);
     key = waitKey(1);
-    keyHandler();
-    device->keyHandler(key);
-    if(key == '`'){need_quit = 1; return 0;}
-
- #if !defined(TKDNN)
-    wh_2_zahvat += wh_2_ext[key];
-    if(!isTracShatsInitedFlag)
+    if(key == 's')
     {
-        setMouseCallback(app_win_name, aimFrameCallback, &p_mouse);
-        if(click_up)
+        if(rec_on){rec_on = 0;}
+        else if(video_on){rec_on = 1;}
+    } // END if(key == 's')
+    if(handle_flag)
+    {
+        keyHandler();
+        device->keyHandler(key);
+        if(key == '`'){need_quit = 1; return 0;}
+
+#if !defined(TKDNN)
+        wh_2_zahvat += wh_2_ext[key];
+        if(!isTracShatsInitedFlag)
         {
-            if(zahvat_size)
+            setMouseCallback(app_win_name, aimFrameCallback, &p_mouse);
+            if(click_up)
             {
-                click_up = 0;
-                click_down = 0;
-                first_click_down = 1;
-                object_rect = Rect(p_mouse - wh_2_zahvat, p_mouse + wh_2_zahvat);
-                return true;
-            }
-            else
-            {
-               click_up = 0;
-               int left  = MIN(p_mouse.x, p_down.x);
-               int right = MAX(p_mouse.x, p_down.x);
-               int top   = MIN(p_mouse.y, p_down.y);
-               int down  = MAX(p_mouse.y, p_down.y);
-               Rect rct(Point(left, top), Point(right, down));
-               if(rct.area() > 0)
-               {
-                   click_down = 0;
-                   first_click_down = 1;
-                   object_rect = rct;
-                   return true;
-               } // -- END if(rct.area()>0)
-            } // END if(!zahvat_size)
-        } //--END if(click_up)
-    } // -- END if(!isTracShatsInitedFlag)
- #endif // END  #if !defined(TKDNN)
-  return false;
+                if(zahvat_size)
+                {
+                    click_up = 0;
+                    click_down = 0;
+                    first_click_down = 1;
+                    object_rect = Rect(p_mouse - wh_2_zahvat, p_mouse + wh_2_zahvat);
+                    return true;
+                }
+                else
+                {
+                    click_up = 0;
+                    int left  = MIN(p_mouse.x, p_down.x);
+                    int right = MAX(p_mouse.x, p_down.x);
+                    int top   = MIN(p_mouse.y, p_down.y);
+                    int down  = MAX(p_mouse.y, p_down.y);
+                    Rect rct(Point(left, top), Point(right, down));
+                    if(rct.area() > 0)
+                    {
+                        click_down = 0;
+                        first_click_down = 1;
+                        object_rect = rct;
+                        return true;
+                    } // -- END if(rct.area()>0)
+                } // END if(!zahvat_size)
+            } //--END if(click_up)
+        } // -- END if(!isTracShatsInitedFlag)
+#endif // END  #if !defined(TKDNN)
+    }
+    return false;
 } // -- END mouseHandler
 #endif // GUI_OK
 
@@ -828,18 +1149,18 @@ void Application::keyHandler()
     switch(key)
     {
 #if !defined(TKDNN)
-       case 27: // деинциализация трекера по клавише ESC
-           if(tracShats->isInited())
-           {
-               tracShats->deinit();
-           }
-           break;
+    case 27: // деинциализация трекера по клавише ESC
+        if(tracShats->isInited())
+        {
+            tracShats->deinit();
+        }
+        break;
 #endif // END !defined(TKDNN)
-       case '`':       // выход из программы по клавише '`'.
-           cout << "Exit on keypress" << endl;
-           break;
-       default:
-           break;
+    case '`':       // выход из программы по клавише '`'.
+        cout << "Exit on keypress" << endl;
+        break;
+    default:
+        break;
     }  // -- END switch(key)
 } // -- END keyHandler
 #endif // END GUI_OK
@@ -880,7 +1201,7 @@ void Application::prepareFrameForTracShats()
     {
         // расчет абсолютных координат ROI
         Rect realSizedROI(roi.x * frame_receive.cols, roi.y * frame_receive.rows,
-                              roi.width * frame_receive.cols, roi.height * frame_receive.rows);
+                          roi.width * frame_receive.cols, roi.height * frame_receive.rows);
         frame_process_tracshats = frame_receive(realSizedROI).clone();
         //                        // отрисовка ROI
         //                        rectangle(frame_color, realSizedROI, color::blue, 2);
@@ -897,11 +1218,11 @@ void Application::handleDeviceFrame(uint8_t *f, int w, int h, int num, int id)
     static auto prevFrameReceiveTime = high_resolution_clock::now();
     auto receiveTime = high_resolution_clock::now();
 
-    #ifdef USE_LOGGER
-        LoggerArtem::inst().logTimedBasedFPS(
-                    "Device FPS = ",
-                    duration<double>(receiveTime - prevFrameReceiveTime).count());
-    #endif //USE_LOGGER
+#ifdef USE_LOGGER
+    LoggerArtem::inst().logTimedBasedFPS(
+                "Device FPS = ",
+                duration<double>(receiveTime - prevFrameReceiveTime).count());
+#endif //USE_LOGGER
 
     prevFrameReceiveTime = receiveTime;
     
@@ -918,7 +1239,7 @@ void Application::handleDeviceFrame(uint8_t *f, int w, int h, int num, int id)
 #endif
         frame_proc_0_mutex.lock();
         frame_process_0 = Mat(Size(w,h), cvmat_type);
-        device->getFormatedImage(f, w, h, id, frame_process_0);        
+        device->getFormatedImage(f, w, h, id, frame_process_0);
         frame_proc_0_mutex.unlock();
 
         frame_proc_1_mutex.lock();
@@ -930,22 +1251,22 @@ void Application::handleDeviceFrame(uint8_t *f, int w, int h, int num, int id)
     }
     else if(!frameReady.load()) // -- END if(first_frame)
     {
-        switch(process_frame_id) // двойная буфферизация 
+        switch(process_frame_id) // двойная буфферизация
         {
-            case 0:
-                frame_proc_1_mutex.lock();
-                device->getFormatedImage(f, w, h, id, frame_process_1); 
-                frame_proc_1_mutex.unlock();
+        case 0:
+            frame_proc_1_mutex.lock();
+            device->getFormatedImage(f, w, h, id, frame_process_1);
+            frame_proc_1_mutex.unlock();
             break;
 
-            case 1:
-                frame_proc_0_mutex.lock();
-                device->getFormatedImage(f, w, h, id, frame_process_0);
-                frame_proc_0_mutex.unlock();
+        case 1:
+            frame_proc_0_mutex.lock();
+            device->getFormatedImage(f, w, h, id, frame_process_0);
+            frame_proc_0_mutex.unlock();
             break;
 
-            default:
-                throw runtime_error("Error: incorrect process_frame_id");
+        default:
+            throw runtime_error("Error: incorrect process_frame_id");
             break;
         } // END switch(process_frame_id)
         frameReady.store(true);

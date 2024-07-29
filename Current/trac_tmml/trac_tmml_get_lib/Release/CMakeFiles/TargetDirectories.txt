@@ -1,0 +1,3 @@
+/home/user/WORK/Github/sublime_tests/Current/trac_tmml/trac_tmml_get_lib/Release/CMakeFiles/_trac_tmml_16.dir
+/home/user/WORK/Github/sublime_tests/Current/trac_tmml/trac_tmml_get_lib/Release/CMakeFiles/edit_cache.dir
+/home/user/WORK/Github/sublime_tests/Current/trac_tmml/trac_tmml_get_lib/Release/CMakeFiles/rebuild_cache.dir

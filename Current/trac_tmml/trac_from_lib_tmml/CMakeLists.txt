@@ -11,12 +11,16 @@ message(STATUS "-------------------------------- CMAKE BEGINING for project trac
 # CORR_TYPE = 6 : CCOEFF_NORMED  (Кросскорреляция модифицированная)
 # CORR_TYPE = 8 ; COMBINED (объединение прямой и модифицированной кросскорреляции)
 # CORR_TYPE = 10 : TKDNN
-set(USE_CORR_TYPE 10)
-
+set(USE_CORR_TYPE 16)
+ add_definitions(-DOPEN_CL)
 # Использование в режиме GUI show_ok=0 -- удобство GUI при средней скорости.
 set(USE_SHOW_OK0 0)
 # Использовавть внешние колонки
 set(USE_SPEAKER 1)
+set(DBG_VIDEO_SENDER 0) # включение отправки видео и командного обмена с эмулятором шара (QtProg/poes400/corsair_terminal_emulator)
+# Используем программу в паре с терминалкой 400-го, раздел ini-файла [vtrack_data_sender], подключаем библиотеку vtrack_data_sender
+set(USE_ETH_VTRACK_SEND 1) # подключение модуля отправки вектора рамок целей
+set(USE_DBG_SEND_VTRACK 0) # дополнителоное логирование отладочной информации в процессе отправки рамок целей
 
 # Работа в режиме GUI (медленно), или без GUI (быстро):
 set(USE_GUI 1)
@@ -26,20 +30,20 @@ set(USE_LOGGER 1)
 set(USE_COLOR_CHANNEL_MODE 8UC1) # (8UC3 -- BGR, 8UC1 -- GRAY8, 8UC4 -- RGBA)
 
 set(USE_ROI_TMP 0) # Работа в ROI и с центральным шаблоном.
+# Use Devices:
+set(USE_FOLDER_READER 1) # 0
+set(USE_VIDEO_READER 0) # 1
+set(USE_WEB_CAMERA 0) # 2
+set(USE_COLIBRI_TV 0) # 3
+set(USE_RASPBERRY_HQ_CAMERA 0) # 4
+set(USE_IMX477_SQUARE_CAMERA_MIPI 0) # 5
+set(USE_IMX219_CAMERA_MIPI 0) # 6
+set(USE_HIKVISION 0) # 7
+set(USE_SHARED_MEMORY 0) # 8
+set(USE_HVGS_GRAY_USB_CAMERA 0) # 9
+set(USE_CORSAIR_400_RAW 1) # 10 (Шар ОЭЦН400, сырой UDP видеопоток напрямую)
 
-# Use Devices
-set(USE_FOLDER_READER 1)
-set(USE_VIDEO_READER 0)
-set(USE_WEB_CAMERA 0)
-set(USE_COLIBRI_TV 0)
-set(USE_RASPBERRY_HQ_CAMERA 0)
-set(USE_IMX477_SQUARE_CAMERA_MIPI 0)
-set(USE_IMX219_CAMERA_MIPI 0)
-set(USE_HIKVISION 0)
-set(USE_SHARED_MEMORY 0)
-set(USE_HVGS_GRAY_USB_CAMERA 0) # GLOBAL SHUTTER USB CAMERA
-
-set(USE_ETHERNET_CONNECTION 1)
+set(USE_ETHERNET_CONNECTION 0)
 set(USE_PCAP 0)
 
 set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda)
@@ -51,30 +55,38 @@ set(SYSTEM_ENDIANNESS LITTLE) # системный порядок байтов L
 set(USE_YOLO_VERSION trt)
 
 # Использование GPU (1):
-set(USE_GPU 1)
-
-set(YOLO_LIB_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../darknet4)
-set(TKDNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../tkDNN)
-#################################################################################################
+set(USE_GPU 2)
 
 if(${USE_GPU} EQUAL 1)
-   set(GPU_PREFIX gpu)
-   add_definitions(-DUSE_GPU)
-   message(STATUS "--------------------------- USE_GPU")
-else()
-   set(GPU_PREFIX cpu)
-   message(STATUS "--------------------------- USE_CPU")
-endif()
+   set(YOLO_LIB_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../darknet4)
+   set(TKDNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../tkDNN)
+endif() # END if(${USE_GPU} EQUAL 1)
+#################################################################################################
+include_directories($CMAKE_SOURCE_DIR})
 
-if(${USE_YOLO_VERSION} STREQUAL v3 OR ${USE_YOLO_VERSION} STREQUAL v4)
-    set(YOLO_LIB -ldarknet_${GPU_PREFIX}_${USE_YOLO_VERSION})
-elseif(${USE_YOLO_VERSION} STREQUAL trt)
-    set(YOLO_LIB -ltkdnn_yolo)
-endif()
+if(${USE_GPU} EQUAL 0)
+    set(GPU_PREFIX cpu)
+    message(STATUS "--------------------------- USE_CPU")
+else()
+    set(GPU_PREFIX gpu)
+    add_definitions(-DUSE_GPU)
+    message(STATUS "--------------------------- USE_GPU")
+    find_package( OpenCL REQUIRED )
+    include_directories (${OpenCL_INCLUDE_DIRS} )
+
+ if(${USE_GPU} EQUAL 1)
+    if(${USE_YOLO_VERSION} STREQUAL v3 OR ${USE_YOLO_VERSION} STREQUAL v4)
+        set(YOLO_LIB -ldarknet_${GPU_PREFIX}_${USE_YOLO_VERSION})
+    elseif(${USE_YOLO_VERSION} STREQUAL trt)
+        set(YOLO_LIB -ltkdnn_yolo)
+    endif() # END
+  endif() # END if(${USE_GPU} EQUAL 1)
+endif() # END if(!${USE_GPU} EQUAL 0)
 
 set(CMAKE_MAKE_PROGRAM "make -j${nproc}") # Число потоков компиляции.
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/run) # директория сборки проекта
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib_modules)
 link_directories(${TKDNN_DIRECTORY})
 link_directories(${YOLO_LIB_DIRECTORY})
 add_definitions(-DYOLO_${USE_YOLO_VERSION})
@@ -117,7 +129,6 @@ else()
     message(STATUS "--------------------------- USE_GUI=0")
 endif()
 
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR})
 link_directories(${CMAKE_CURRENT_LIST_DIR})
 
 find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
@@ -286,26 +297,20 @@ endif() # END if(${USE_HIKVISION} EQUAL 1)
 if(${USE_SHARED_MEMORY} EQUAL 1) # 8
     add_definitions(-DUSE_SHARED_MEMORY)
     target_sources(trac_from_lib_tmml PRIVATE
-        devices/SharedMemory/shared_memory.cpp
-        devices/SharedMemory/shared_memory.hpp
-        devices/SharedMemory/shared_memory_factory.cpp
-        devices/SharedMemory/shared_memory_factory.hpp
-        devices/SharedMemory/shared_memory_settings.hpp
+        devices/SharedMemory/sharedmemory.cpp
+        devices/SharedMemory/sharedmemory.hpp
+        devices/SharedMemory/ipc/shared_memory.cpp
+        devices/SharedMemory/ipc/shared_memory.h
 
-#        devices/SharedMemory/sharedmemory.cpp
-#        devices/SharedMemory/sharedmemory.hpp
-#        devices/SharedMemory/ipc/shared_memory.cpp
-#        devices/SharedMemory/ipc/shared_memory.h
+        devices/SharedMemory/eth/sharedmemory_ethernetcontroller.cpp
+        devices/SharedMemory/eth/sharedmemory_ethernetcontroller.h
+        devices/SharedMemory/eth/sharedmemoryclient.cpp
+        devices/SharedMemory/eth/sharedmemoryclient.hpp
+        devices/SharedMemory/eth/sharedmemoryserver.cpp
+        devices/SharedMemory/eth/sharedmemoryserver.hpp
 
-#        devices/SharedMemory/eth/sharedmemory_ethernetcontroller.cpp
-#        devices/SharedMemory/eth/sharedmemory_ethernetcontroller.h
-#        devices/SharedMemory/eth/sharedmemoryclient.cpp
-#        devices/SharedMemory/eth/sharedmemoryclient.hpp
-#        devices/SharedMemory/eth/sharedmemoryserver.cpp
-#        devices/SharedMemory/eth/sharedmemoryserver.hpp
-
-#        devices/SharedMemory/cmd/sharedmemory_cmdmanager.cpp
-#        devices/SharedMemory/cmd/sharedmemory_cmdmanager.hpp
+        devices/SharedMemory/cmd/sharedmemory_cmdmanager.cpp
+        devices/SharedMemory/cmd/sharedmemory_cmdmanager.hpp
     )
     target_link_libraries(trac_from_lib_tmml -lrt)
 endif() # END if(${USE_SHARED_MEMORY} EQUAL 1)
@@ -326,6 +331,58 @@ if(${USE_HVGS_GRAY_USB_CAMERA} EQUAL 1) # 9
         IMPORTED_LOCATION "/usr/lib/libMVSDK.so")
     target_link_libraries(devices lib_hvgs_camera)
 endif() # END if(${USE_HVGS_GRAY_USB_CAMERA} EQUAL 1)
+
+if(${USE_CORSAIR_400_RAW} EQUAL 1) # 10
+    add_definitions(-DUSE_CORSAIR_400_RAW)
+    set(cors400_device_dir_path "${CMAKE_CURRENT_LIST_DIR}/devices/Corsair400raw/")
+    set(cors400_src_dir_path "${cors400_device_dir_path}/eth/")
+    target_sources(trac_from_lib_tmml PRIVATE
+        ### device ###
+        ${cors400_device_dir_path}/corsair400raw.hpp
+        ${cors400_device_dir_path}/corsair400raw.cpp
+        ${cors400_device_dir_path}/corsair400raw_factory.cpp
+        ${cors400_device_dir_path}/corsair400raw_factory.hpp
+        ${cors400_device_dir_path}/corsair400raw_settings.hpp
+
+        ### corsair 400 eth platform ###
+        
+        #### base ####
+        ${cors400_src_dir_path}/base/BaseThread.hpp
+        ${cors400_src_dir_path}/base/BaseThread.cpp
+        ${cors400_src_dir_path}/base/Socket.hpp
+        ${cors400_src_dir_path}/base/Socket.cpp
+        ${cors400_src_dir_path}/base/SocketAddress.hpp
+        ${cors400_src_dir_path}/base/SocketAddress.cpp
+        ${cors400_src_dir_path}/base/TripleBuffer.hpp
+        ${cors400_src_dir_path}/base/TripleBuffer.cpp
+
+        #### protocols ####
+        ##### udp #####
+        ${cors400_src_dir_path}/protocols/udp/UDPClient.hpp
+        ${cors400_src_dir_path}/protocols/udp/UDPClient.cpp
+        ${cors400_src_dir_path}/protocols/udp/UDPServer.hpp
+        ${cors400_src_dir_path}/protocols/udp/UDPServer.cpp
+        ${cors400_src_dir_path}/protocols/udp/UDPSocket.hpp
+        ${cors400_src_dir_path}/protocols/udp/UDPSocket.cpp
+
+        #### global ####
+        ${cors400_src_dir_path}/EthGlobal.hpp
+
+        #### servers ####
+        ${cors400_src_dir_path}/servers/RAWVideoServer.hpp
+        ${cors400_src_dir_path}/servers/RAWVideoServer.cpp
+        ${cors400_src_dir_path}/servers/DataServer.hpp
+        ${cors400_src_dir_path}/servers/DataServer.cpp
+    ) # END target_sources(trac_from_lib_tmml PRIVATE
+
+    include_directories(
+        ${cors400_device_dir_path}/
+        ${cors400_src_dir_path}/
+        ${cors400_src_dir_path}/base/
+        ${cors400_src_dir_path}/protocols/udp/
+    )
+
+endif() # END if(${USE_CORSAIR_400_RAW} EQUAL 1)
 
 ############################################ END DEVICES
 
@@ -376,6 +433,41 @@ if(${USE_ETHERNET_CONNECTION} EQUAL 1)
 
 endif()
 
+if(${USE_ETH_VTRACK_SEND} EQUAL 1)
+    add_definitions(-DUSE_ETH_VTRACK_SEND)
+    if(${USE_DBG_SEND_VTRACK} EQUAL 1)
+        add_definitions(-DUSE_DBG_SEND_VTRACK)
+    endif()
+    add_library(vtrack_data_sender SHARED
+        modules/vtrack_data_sender/vtrack_data_struct.hpp
+        modules/vtrack_data_sender/vtrack_data_sender.hpp
+        modules/vtrack_data_sender/vtrack_data_sender.cpp
+        modules/vtrack_data_sender/vtrack_data_sender_factory.hpp
+        modules/vtrack_data_sender/vtrack_data_sender_factory.cpp
+        )
+    target_link_libraries(trac_from_lib_tmml vtrack_data_sender)
+
+    add_subdirectory(modules/eth_controller_toolbox)
+    include_directories(modules/eth_controller_toolbox/)
+
+    add_library(cmd400_keeper SHARED
+        modules/cmd400/cmd400_struct.hpp
+        modules/cmd400/cmd400_keeper.hpp
+        modules/cmd400/cmd400_keeper.cpp
+        modules/cmd400/cmd400_keeper_factory.hpp
+        modules/cmd400/cmd400_keeper_factory.cpp
+        )
+
+    target_link_libraries(trac_from_lib_tmml vtrack_data_sender cmd400_keeper eth_controller_toolbox_lib)
+
+endif()
+
+if(${DBG_VIDEO_SENDER} EQUAL 1)
+    add_definitions(-DDBG_VIDEO_SENDER)
+endif()
+
+add_executable(vertelka vertelka.cpp)
+target_link_libraries(vertelka ${OpenCV_LIBS})
 if(${USE_GUI} EQUAL 0)
     set(GUI_RUN_PSTFX "notgui")
 elseif(${USE_GUI} EQUAL 1)
@@ -390,7 +482,7 @@ set(run_name run_${GUI_RUN_PSTFX}_${USE_COLOR_CHANNEL_MODE}_${USE_CORR_TYPE})
 #target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} -lrt ${trac_lib_name} -lpthread)
 #set_target_properties(trac_from_lib_tmml PROPERTIES OUTPUT_NAME ${run_name})
 
-target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} ${YOLO_LIB} ${trac_lib_name} -lrt -lpthread)
-target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} ${YOLO_LIB} ${trac_lib_name} -lrt -lpthread)
+target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} ${YOLO_LIB} ${OpenCL_LIBRARY} ${trac_lib_name} -lrt -lpthread)
+target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} ${YOLO_LIB} ${OpenCL_LIBRARY} ${trac_lib_name} -lrt -lpthread)
 set_target_properties(trac_from_lib_tmml PROPERTIES OUTPUT_NAME ${run_name})
 

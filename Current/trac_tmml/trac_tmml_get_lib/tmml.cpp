@@ -5,6 +5,7 @@ using namespace cv;
 
 tmml::tmml(bool &ok, float& min_max_Val0)
 {
+    cout <<"START Constructor tmml\n";
     min_max_Val = min_max_Val0;
 #ifndef NO_GPU
     //error_Val = 1 - min_max_Val0;

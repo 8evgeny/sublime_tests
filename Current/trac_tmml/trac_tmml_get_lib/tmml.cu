@@ -130,12 +130,15 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu, fl
             sum_temp += temp;
         } // for(int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; ++tmp_x)
     } // for(int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; ++tmp_y)
-    const long long ch  = (long long)TEMPLATE_AREA * sum_roi_temp - (long long)sum_roi * sum_temp;
-    const long long zn1 = (long long)TEMPLATE_AREA * sum_temp_temp - (long long)sum_temp * sum_temp;
-    const long long zn2 = (long long)TEMPLATE_AREA * sum_roi_roi - (long long)sum_roi * sum_roi;
-    const double sq1 = sqrt((double)zn1);
-    const double sq2 = sqrt((double)zn2);
-    dev_result_array_bright[id] = (double)ch / (sq1 * sq2);
+    const float sum_roi_temp1 = TEMPLATE_AREA_1 * sum_roi_temp;
+    const float sum_roi1 = TEMPLATE_AREA_1 * sum_roi;
+    const float sum_temp1 = TEMPLATE_AREA_1 * sum_temp;
+    const float sum_roi_roi1 = TEMPLATE_AREA_1 * sum_roi_roi;
+    const float sum_temp_temp1 = TEMPLATE_AREA_1 * sum_temp_temp;
+    const float ch  = sum_roi_temp1 - sum_roi1 * sum_temp1;
+    const float zn1 = sum_temp_temp1 - sum_temp1 * sum_temp1;
+    const float zn2 = sum_roi_roi1 - sum_roi1 * sum_roi1;
+    dev_result_array_bright[id] = ch / sqrt(zn1 * zn2);
 }  // END void match_temp
 #endif // END #ifdef CCOEFF_NORMED
 
@@ -168,12 +171,15 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu, fl
             sum_roi_temp_2 += (roi + temp);
         } // for(int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; ++tmp_x)
     } // for(int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; ++tmp_y)
-    const long long ch  = (long long)TEMPLATE_AREA * sum_roi_temp - (long long)sum_roi * sum_temp;
-    const long long zn1 = (long long)TEMPLATE_AREA * sum_temp_temp - (long long)sum_temp * sum_temp;
-    const long long zn2 = (long long)TEMPLATE_AREA * sum_roi_roi - (long long)sum_roi * sum_roi;
-    const double sq1 = sqrt((double)zn1);
-    const double sq2 = sqrt((double)zn2);
-    dev_result_array_bright[id] = (double)ch/ (sq1 * sq2) - (double)diff_roi_temp / ((double)sum_roi_temp);
+    const float sum_roi_temp1 = TEMPLATE_AREA_1 * sum_roi_temp;
+    const float sum_roi1 = TEMPLATE_AREA_1 * sum_roi;
+    const float sum_temp1 = TEMPLATE_AREA_1 * sum_temp;
+    const float sum_roi_roi1 = TEMPLATE_AREA_1 * sum_roi_roi;
+    const float sum_temp_temp1 = TEMPLATE_AREA_1 * sum_temp_temp;
+    const float ch  = sum_roi_temp1 - sum_roi1 * sum_temp1;
+    const float zn1 = sum_temp_temp1 - sum_temp1 * sum_temp1;
+    const float zn2 = sum_roi_roi1 - sum_roi1 * sum_roi1;
+    dev_result_array_bright[id] = ch / sqrt(zn1 * zn2) - (float)diff_roi_temp / sum_roi_temp_2;
 }  // END void match_temp
 #endif // END ifdef COMBINED
 

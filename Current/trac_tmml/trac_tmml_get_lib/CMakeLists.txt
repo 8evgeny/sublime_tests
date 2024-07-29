@@ -7,23 +7,40 @@ set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../trac_from_lib_tmml)
 #set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../../fenix2/fenix2_from_lib)
 
 # Тип корреляции при template matching
-# CORR_TYPE = 0 : Работа на CPU: OpenCV CCOEFF_NORMED (NO_GPU)
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)
 # CORR_TYPE = 6 : CCOEFF_NORMED  (Кросскорреляция модифицированная)
 # CORR_TYPE = 8 ; COMBINED (объединение прямой и модифицированной кросскорреляции)
-set(CORR_TYPE 8)
+set(CORR_TYPE 6)
 
 set(TEMPLATE_WIDTH 48)
 set(TEMPLATE_HEIGHT 48)
 set(EXT_VAL 5)
 
+set(USE_GPU 2) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
+
 set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda_static)
+include_directories($CMAKE_SOURCE_DIR})
 
 set(COUT_OK 0) # Вывод в терминал.
 set(MAX_FPS_OK 0) # Включение/выключение задержки.
 set(FIND_DISC_ID 0) # Привязка к железу вычислителя.
 #######################################################################
-set(lib_name _trac_tmml_${CORR_TYPE})
+if(${USE_GPU} EQUAL 0)
+    add_definitions(-DNO_GPU)
+    message(STATUS "--------------------------- NO_GPU")
+    set(lib_name _trac_tmml_0)
+endif() # END if(${USE_GPU} EQUAL 0)
+if(${USE_GPU} EQUAL 1)
+ add_definitions(-DCUDA_ON)
+ set(lib_name _trac_tmml_${CORR_TYPE})
+endif() # END if(${USE_GPU} EQUAL 1)
+if(${USE_GPU} EQUAL 2)
+ add_definitions(-DOPEN_CL)
+ set(lib_name _trac_tmml_1${CORR_TYPE})
+ find_package( OpenCL REQUIRED )
+ include_directories (${OpenCL_INCLUDE_DIRS} )
+endif() # END if(${USE_GPU} EQUAL 2)
+
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${FROM_LIB}/lib)
 include(${CMAKE_CURRENT_LIST_DIR}/opencv_static.cmake)
 
@@ -33,28 +50,22 @@ include_directories(${OpenCV_DIR})
 set(threads_num $(nproc))
 set(CMAKE_MAKE_PROGRAM "${CMAKE_MAKE_PROGRAM} -j${threads_num}")
 
-if(${CORR_TYPE} EQUAL 0)
-    add_definitions(-DNO_GPU)
-    message(STATUS "--------------------------- NO_GPU")
-endif()
+if(${USE_GPU} GREATER 0)
+   if(${CORR_TYPE} EQUAL 2)
+       add_definitions(-DSQDIFF_NORMED)
+   endif() # END if(${CORR_TYPE} EQUAL 2)
+   if(${CORR_TYPE} EQUAL 3)
+       add_definitions(-DCCORR)
+   endif() # END if(${CORR_TYPE} EQUAL 3)
+   if(${CORR_TYPE} EQUAL 6)
+       add_definitions(-DCCOEFF_NORMED)
+   endif() # END if(${CORR_TYPE} EQUAL 6)
+   if(${CORR_TYPE} EQUAL 8)
+       add_definitions(-DCOMBINED)
+   endif() # END if(${CORR_TYPE} EQUAL 8)
+endif() # END if(${USE_GPU} GREATER 0)
 
-if(${CORR_TYPE} EQUAL 2)
-    add_definitions(-DSQDIFF_NORMED)
-endif()
-if(${CORR_TYPE} EQUAL 3)
-    add_definitions(-DCCORR)
-endif()
-if(${CORR_TYPE} EQUAL 6)
-    add_definitions(-DCCOEFF_NORMED)
-endif()
-if(${CORR_TYPE} EQUAL 8)
-    add_definitions(-DCOMBINED)
-endif()
-
-if(${CORR_TYPE} EQUAL 0)
-    add_definitions(-DNO_GPU)
-    message(STATUS "--------------------------- NO_GPU")
-else()
+if(${USE_GPU} EQUAL 1)
     set(CMAKE_CUDA_COMPILER /usr/local/cuda/bin/nvcc)
     option(USE_CUDA "Use CUDA" ON)
     enable_language("CUDA")
@@ -88,20 +99,20 @@ else()
     else()
         add_definitions(-DGPU_AMPERE)
         message(STATUS "GPU автоматически не определилось - установлено GPU_AMPERE")
-    endif()
-endif() # END if(${CORR_TYPE} GREATER 0)
+    endif() # END if(!${ccc_major} STREQUAL "8")
+endif() # END if(${USE_GPU} EQUAL 1)
 
 if(${TEMPLATE_WIDTH})
     add_definitions(-DTEMPLATE_WIDTH=${TEMPLATE_WIDTH})
-endif()
+endif() # END if(${TEMPLATE_WIDTH})
 
 if(${TEMPLATE_HEIGHT})
     add_definitions(-DTEMPLATE_HEIGHT=${TEMPLATE_HEIGHT})
-endif()
+endif() # END if(${TEMPLATE_HEIGHT})
 
 if(${EXT_VAL})
     add_definitions(-DEXT_VAL=${EXT_VAL})
-endif()
+endif() # END if(${EXT_VAL})
 
 if(${FIND_DISC_ID} EQUAL 1)
   add_definitions(-DFIND_DISC_ID)
@@ -118,7 +129,18 @@ add_definitions(-DTRACK_API="${FROM_LIB}/tracshats/trac_api.hpp")
 link_directories(${CMAKE_CURRENT_LIST_DIR})
 
 # Алгоритм средней скорости _lib_trac_tmml (генерация LIB):
-if(${CORR_TYPE} GREATER 0)
+if(${USE_GPU} EQUAL 0)
+    add_library(${lib_name} SHARED
+        trac_scale.hpp
+        trac_scale.cpp
+        ${FROM_LIB}/tracshats/trac_api.hpp
+        ${FROM_LIB}/tracshats/trac_struct.hpp
+        tmml.cpp
+        tmml.hpp
+        )
+endif() # END if(${USE_GPU} EQUAL 0)
+
+if(${USE_GPU} EQUAL 1)
     add_library(${lib_name} SHARED
         trac_scale.hpp
         trac_scale.cpp
@@ -129,15 +151,22 @@ if(${CORR_TYPE} GREATER 0)
         tmml.hpp
         )
     set_target_properties(${lib_name} PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
-else()
+endif() # END if(${USE_GPU} EQUAL 1)
+
+if(${USE_GPU} EQUAL 2)
     add_library(${lib_name} SHARED
         trac_scale.hpp
         trac_scale.cpp
         ${FROM_LIB}/tracshats/trac_api.hpp
         ${FROM_LIB}/tracshats/trac_struct.hpp
-        tmml.cpp
-        tmml.hpp
+        tmml_cl.cpp
+        tmml.cl
+        tmml_cl.hpp
         )
-endif()
+
+    target_link_libraries(${lib_name} ${OpenCL_LIBRARY})
+endif() # END if(${USE_OPEN_CL} EQUAL 2)
+
 target_link_libraries(${lib_name} PRIVATE)
+
 
