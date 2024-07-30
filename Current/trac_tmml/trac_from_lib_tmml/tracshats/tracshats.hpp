@@ -14,9 +14,9 @@
 #include <opencv2/core/core.hpp>
 
 #ifdef GUI_OK
-#include <opencv2/highgui/highgui.hpp>
-#include "opencv2/highgui.hpp"
-#endif //GUI_OK
+   #include <opencv2/highgui/highgui.hpp>
+   #include "opencv2/highgui.hpp"
+#endif // END ifdef GUI_OK
 #include "tools/INIReader.h"
 #include "trac_api.hpp"
 

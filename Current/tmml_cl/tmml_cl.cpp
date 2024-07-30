@@ -108,6 +108,7 @@ void tmml_cl::loadAndBuildProgram(bool & init_OK, const string & programFile)
 {
     Program::Sources sources;
     string kernel_source = loadKernelFile(programFile);
+//    cout<<"kernel_source = "<<kernel_source<<endl;
     pair<const char*, ::size_t> src(kernel_source.c_str(), kernel_source.length());
     sources.push_back(src);
     program=Program(context, sources);

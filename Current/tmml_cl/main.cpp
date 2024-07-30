@@ -36,7 +36,12 @@ int main()
     time_start = high_resolution_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
     {
-        matchTemplate(img_work, img_temp, img_result_cpu, TM_CCOEFF_NORMED);
+        #ifndef SQDIFF_NORMED
+            matchTemplate(img_work, img_temp, img_result_cpu, TM_CCOEFF_NORMED);
+        #endif
+        #ifdef SQDIFF_NORMED
+            matchTemplate(img_work, img_temp, img_result_cpu, TM_SQDIFF_NORMED);
+        #endif
         minMaxLoc(img_result_cpu, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
         if(maxLoc.x != temp_left || maxLoc.y != temp_top){cout << "CPU iter=" << iter << " !!!" << endl; break;}
     }  // END for(int iter = 0; iter < iter_num; ++iter)

@@ -5,14 +5,16 @@ project(trac_from_lib_tmml)
 message(STATUS "")
 message(STATUS "-------------------------------- CMAKE BEGINING for project trac_from_lib_tmml")
 
+# Использование GPU:
+set(USE_GPU 2) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
+
 # Тип корреляции при template matching для USE_CORR_TYPE:
-# CORR_TYPE = 0 : Работа на CPU: OpenCV CCOEFF_NORMED (NO_GPU)
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)
 # CORR_TYPE = 6 : CCOEFF_NORMED  (Кросскорреляция модифицированная)
 # CORR_TYPE = 8 ; COMBINED (объединение прямой и модифицированной кросскорреляции)
 # CORR_TYPE = 10 : TKDNN
-set(USE_CORR_TYPE 16)
- add_definitions(-DOPEN_CL)
+set(USE_CORR_TYPE 6)
+
 # Использование в режиме GUI show_ok=0 -- удобство GUI при средней скорости.
 set(USE_SHOW_OK0 0)
 # Использовавть внешние колонки
@@ -41,8 +43,7 @@ set(USE_IMX219_CAMERA_MIPI 0) # 6
 set(USE_HIKVISION 0) # 7
 set(USE_SHARED_MEMORY 0) # 8
 set(USE_HVGS_GRAY_USB_CAMERA 0) # 9
-set(USE_CORSAIR_400_RAW 1) # 10 (Шар ОЭЦН400, сырой UDP видеопоток напрямую)
-
+set(USE_CORSAIR_400_RAW 0) # 10 (Шар ОЭЦН400, сырой UDP видеопоток напрямую)
 set(USE_ETHERNET_CONNECTION 0)
 set(USE_PCAP 0)
 
@@ -53,44 +54,42 @@ set(SYSTEM_ENDIANNESS LITTLE) # системный порядок байтов L
 
 # Использование версии Yolo v3, v4 или trt:
 set(USE_YOLO_VERSION trt)
-
-# Использование GPU (1):
-set(USE_GPU 2)
-
-if(${USE_GPU} EQUAL 1)
-   set(YOLO_LIB_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../darknet4)
-   set(TKDNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../tkDNN)
-endif() # END if(${USE_GPU} EQUAL 1)
+set(GPU_LIB_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../darknet4)
+set(TKDNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../tkDNN)
 #################################################################################################
-include_directories($CMAKE_SOURCE_DIR})
 
 if(${USE_GPU} EQUAL 0)
-    set(GPU_PREFIX cpu)
-    message(STATUS "--------------------------- USE_CPU")
-else()
-    set(GPU_PREFIX gpu)
-    add_definitions(-DUSE_GPU)
-    message(STATUS "--------------------------- USE_GPU")
-    find_package( OpenCL REQUIRED )
-    include_directories (${OpenCL_INCLUDE_DIRS} )
+   set(GPU_PREFIX cpu)
+   message(STATUS "--------------------------- USE_CPU")
+endif() # END if(${USE_GPU} EQUAL 0)
 
- if(${USE_GPU} EQUAL 1)
-    if(${USE_YOLO_VERSION} STREQUAL v3 OR ${USE_YOLO_VERSION} STREQUAL v4)
-        set(YOLO_LIB -ldarknet_${GPU_PREFIX}_${USE_YOLO_VERSION})
-    elseif(${USE_YOLO_VERSION} STREQUAL trt)
-        set(YOLO_LIB -ltkdnn_yolo)
-    endif() # END
-  endif() # END if(${USE_GPU} EQUAL 1)
-endif() # END if(!${USE_GPU} EQUAL 0)
+if(${USE_GPU} EQUAL 1)
+   if(${USE_CORR_TYPE} EQUAL 10)
+      set(GPU_PREFIX gpu)
+      if(${USE_YOLO_VERSION} STREQUAL v3 OR ${USE_YOLO_VERSION} STREQUAL v4)
+          set(GPU_LIB -ldarknet_${GPU_PREFIX}_${USE_YOLO_VERSION})
+      elseif(${USE_YOLO_VERSION} STREQUAL trt)
+          set(GPU_LIB -ltkdnn_yolo)
+      endif() # END elseif(${USE_YOLO_VERSION} STREQUAL trt)
+
+      link_directories(${TKDNN_DIRECTORY})
+      link_directories(${GPU_LIB_DIRECTORY})
+      add_definitions(-DYOLO_${USE_YOLO_VERSION})
+      message(STATUS "--------------------------- USE_YOLO_${USE_YOLO_VERSION}")
+   endif() # END if(${USE_CORR_TYPE} EQUAL 10)
+endif() # END if(${USE_GPU} EQUAL 1)
+
+if(${USE_GPU} EQUAL 2)
+    include_directories($CMAKE_SOURCE_DIR})
+    find_package(OpenCL REQUIRED)
+    include_directories (${OpenCL_INCLUDE_DIRS})
+    set(GPU_LIB ${OpenCL_LIBRARY})
+endif() # END if(${USE_GPU} EQUAL 2)
 
 set(CMAKE_MAKE_PROGRAM "make -j${nproc}") # Число потоков компиляции.
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/run) # директория сборки проекта
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib_modules)
-link_directories(${TKDNN_DIRECTORY})
-link_directories(${YOLO_LIB_DIRECTORY})
-add_definitions(-DYOLO_${USE_YOLO_VERSION})
-message(STATUS "--------------------------- USE_YOLO_${USE_YOLO_VERSION}")
 
 set(LIST_VALID_COLOR_CHANNEL_MODES 8UC1 8UC2 8UC3 8UC4)
 
@@ -102,20 +101,34 @@ else()
     add_definitions(-DCCM_${USE_COLOR_CHANNEL_MODE})
 endif()
 
-if(${USE_CORR_TYPE})
-    set(trac_lib_name -l_trac_tmml_${USE_CORR_TYPE}) # Название подключаемой библиотеки CUDA
-    add_definitions(-DUSE_CUDA)
+if(${USE_GPU} EQUAL 0)
+    set(trac_lib_name -l_trac_tmml_${USE_CORR_TYPE}_CPU) # Название подключаемой библиотеки CPU
+    add_definitions(-DUSE_CPU)
     message(STATUS "--------------------------- USE_CORR_TYPE=${USE_CORR_TYPE}")
-    message(STATUS "--------------------------- USE_CUDA=1")    
+    message(STATUS "--------------------------- USE_CPU")
+endif() # END if(${USE_GPU} EQUAL 0)
+
+if(${USE_GPU} EQUAL 1)
+    if(NOT ${USE_CORR_TYPE} EQUAL 10)
+       set(trac_lib_name -l_trac_tmml_${USE_CORR_TYPE}_CUDA) # Название подключаемой библиотеки CUDA
+    endif()
     if(${USE_CORR_TYPE} EQUAL 10)
+        set(trac_lib_name -l_trac_tmml_TKDNN) # Название подключаемой библиотеки CUDA
         add_definitions(-DTKDNN)
+        message(STATUS "--------------------------- USE_CORR_TYPE=${USE_CORR_TYPE}")
         message(STATUS "--------------------------- USE_TKDNN")
     endif()
-else()
-    set(trac_lib_name -l_trac_tmml_${USE_CORR_TYPE}) # Название подключаемой библиотеки CPU
+    add_definitions(-DUSE_CUDA)
     message(STATUS "--------------------------- USE_CORR_TYPE=${USE_CORR_TYPE}")
-    message(STATUS "--------------------------- USE_CUDA=0")
-endif()
+    message(STATUS "--------------------------- USE_CUDA")
+endif() # END if(${USE_GPU} EQUAL 1)
+
+if(${USE_GPU} EQUAL 2)
+    set(trac_lib_name -l_trac_tmml_${USE_CORR_TYPE}_CL) # Название подключаемой библиотеки CUDA
+    add_definitions(-DUSE_CL)
+    message(STATUS "--------------------------- USE_CORR_TYPE=${USE_CORR_TYPE}")
+    message(STATUS "--------------------------- USE_CL")
+endif() # END if(${USE_GPU} EQUAL 2)
 
 if(${USE_ROI_TMP} EQUAL 1)
     add_definitions(-DUSE_ROI_TMP)
@@ -146,9 +159,8 @@ add_executable(trac_from_lib_tmml
     main.cpp
     application.cpp
     application.hpp
-    
     ##############  Trackers ###################################################
-    ${TracShatsFiles}    
+    ${TracShatsFiles}
     ##############  Tools  ####################################################
     tools/INIReader.h
     tools/ExtendINIReader.hpp
@@ -156,25 +168,21 @@ add_executable(trac_from_lib_tmml
     tools/colors.h
     tools/toolbox_common_utils/toolbox_common_utils.cpp
     tools/toolbox_common_utils/toolbox_common_utils.hpp
-
     tools/recorder/recorder.hpp
     tools/recorder/recorder.cpp
-    
     tools/time_keeper/time_keeper.cpp
     tools/time_keeper/time_keeper.hpp
-
     tools/temperature_monitor/temperature_monitor.cpp
     tools/temperature_monitor/temperature_monitor.hpp
-
     tools/custom_filesystem/custom_filesystem.hpp # переименовать path_utils или files_os_tools/utils
     tools/custom_filesystem/custom_filesystem.cpp
-
     ################### Devices ################
     devices/device.cpp
     devices/device.hpp
     devices/iframehandler.cpp
     devices/iframehandler.h
-    devices/icommandhandler.h)
+    devices/icommandhandler.h
+    )
 
 if(${USE_LOGGER} EQUAL 1)
     add_definitions(-DUSE_LOGGER)
@@ -268,7 +276,7 @@ if(${USE_IMX219_CAMERA_MIPI} EQUAL 1) # 6
     )
     if(${USE_CUDA_RESIZE_DEVICE_IMX219} EQUAL 1)
         add_definitions(-DUSE_CUDA_RESIZE_DEVICE_IMX219)
-    endif()
+    endif() # END if(${USE_CUDA_RESIZE_DEVICE_IMX219} EQUAL 1)
 endif() # END if(${USE_IMX219_CAMERA_MIPI} EQUAL 1)
 
 if(${USE_HIKVISION} EQUAL 1) # 7
@@ -301,14 +309,12 @@ if(${USE_SHARED_MEMORY} EQUAL 1) # 8
         devices/SharedMemory/sharedmemory.hpp
         devices/SharedMemory/ipc/shared_memory.cpp
         devices/SharedMemory/ipc/shared_memory.h
-
         devices/SharedMemory/eth/sharedmemory_ethernetcontroller.cpp
         devices/SharedMemory/eth/sharedmemory_ethernetcontroller.h
         devices/SharedMemory/eth/sharedmemoryclient.cpp
         devices/SharedMemory/eth/sharedmemoryclient.hpp
         devices/SharedMemory/eth/sharedmemoryserver.cpp
         devices/SharedMemory/eth/sharedmemoryserver.hpp
-
         devices/SharedMemory/cmd/sharedmemory_cmdmanager.cpp
         devices/SharedMemory/cmd/sharedmemory_cmdmanager.hpp
     )
@@ -323,7 +329,6 @@ if(${USE_HVGS_GRAY_USB_CAMERA} EQUAL 1) # 9
         devices/HVGS_GRAY_USB_Camera/hvgs_gray_usb_camera_factory.hpp
         devices/HVGS_GRAY_USB_Camera/hvgs_gray_usb_camera_factory.cpp
         devices/HVGS_GRAY_USB_Camera/hvgs_gray_usb_camera_settings.hpp
-
         tools/ExtendINIReader.hpp
         )
     add_library(lib_hvgs_camera SHARED IMPORTED)
@@ -343,9 +348,7 @@ if(${USE_CORSAIR_400_RAW} EQUAL 1) # 10
         ${cors400_device_dir_path}/corsair400raw_factory.cpp
         ${cors400_device_dir_path}/corsair400raw_factory.hpp
         ${cors400_device_dir_path}/corsair400raw_settings.hpp
-
         ### corsair 400 eth platform ###
-        
         #### base ####
         ${cors400_src_dir_path}/base/BaseThread.hpp
         ${cors400_src_dir_path}/base/BaseThread.cpp
@@ -355,7 +358,6 @@ if(${USE_CORSAIR_400_RAW} EQUAL 1) # 10
         ${cors400_src_dir_path}/base/SocketAddress.cpp
         ${cors400_src_dir_path}/base/TripleBuffer.hpp
         ${cors400_src_dir_path}/base/TripleBuffer.cpp
-
         #### protocols ####
         ##### udp #####
         ${cors400_src_dir_path}/protocols/udp/UDPClient.hpp
@@ -364,24 +366,20 @@ if(${USE_CORSAIR_400_RAW} EQUAL 1) # 10
         ${cors400_src_dir_path}/protocols/udp/UDPServer.cpp
         ${cors400_src_dir_path}/protocols/udp/UDPSocket.hpp
         ${cors400_src_dir_path}/protocols/udp/UDPSocket.cpp
-
         #### global ####
         ${cors400_src_dir_path}/EthGlobal.hpp
-
         #### servers ####
         ${cors400_src_dir_path}/servers/RAWVideoServer.hpp
         ${cors400_src_dir_path}/servers/RAWVideoServer.cpp
         ${cors400_src_dir_path}/servers/DataServer.hpp
         ${cors400_src_dir_path}/servers/DataServer.cpp
     ) # END target_sources(trac_from_lib_tmml PRIVATE
-
     include_directories(
         ${cors400_device_dir_path}/
         ${cors400_src_dir_path}/
         ${cors400_src_dir_path}/base/
         ${cors400_src_dir_path}/protocols/udp/
     )
-
 endif() # END if(${USE_CORSAIR_400_RAW} EQUAL 1)
 
 ############################################ END DEVICES
@@ -395,7 +393,6 @@ if(${USE_ETHERNET_CONNECTION} EQUAL 1)
         eth/server.h
         eth/client.cpp
         eth/client.h
-
         eth/socket/tcpclient.cpp
         eth/socket/tcpsocket.h
         eth/socket/udpsocket.cpp
@@ -412,11 +409,9 @@ if(${USE_ETHERNET_CONNECTION} EQUAL 1)
         eth/socket/socket.h
         eth/socket/tcpsocket.cpp
         eth/socket/udpserver.h
-
         cmd/cmdmanager.cpp
         cmd/cmdmanager.h
     )
-
     if(${USE_PCAP} EQUAL 1)
         add_definitions(-DPCAP)
         target_sources(trac_from_lib_tmml PRIVATE
@@ -428,16 +423,14 @@ if(${USE_ETHERNET_CONNECTION} EQUAL 1)
             eth/socket/pcapsocket.cpp
         )
         target_link_libraries(trac_from_lib_tmml -lpcap)
-    endif()
-
-
-endif()
+    endif() # END if(${USE_PCAP} EQUAL 1)
+endif() # END if(${USE_ETHERNET_CONNECTION} EQUAL 1)
 
 if(${USE_ETH_VTRACK_SEND} EQUAL 1)
     add_definitions(-DUSE_ETH_VTRACK_SEND)
     if(${USE_DBG_SEND_VTRACK} EQUAL 1)
         add_definitions(-DUSE_DBG_SEND_VTRACK)
-    endif()
+    endif() # END if(${USE_DBG_SEND_VTRACK} EQUAL 1)
     add_library(vtrack_data_sender SHARED
         modules/vtrack_data_sender/vtrack_data_struct.hpp
         modules/vtrack_data_sender/vtrack_data_sender.hpp
@@ -457,14 +450,12 @@ if(${USE_ETH_VTRACK_SEND} EQUAL 1)
         modules/cmd400/cmd400_keeper_factory.hpp
         modules/cmd400/cmd400_keeper_factory.cpp
         )
-
     target_link_libraries(trac_from_lib_tmml vtrack_data_sender cmd400_keeper eth_controller_toolbox_lib)
-
-endif()
+endif() # END if(${USE_ETH_VTRACK_SEND} EQUAL 1)
 
 if(${DBG_VIDEO_SENDER} EQUAL 1)
     add_definitions(-DDBG_VIDEO_SENDER)
-endif()
+endif() # END if(${DBG_VIDEO_SENDER} EQUAL 1)
 
 add_executable(vertelka vertelka.cpp)
 target_link_libraries(vertelka ${OpenCV_LIBS})
@@ -474,15 +465,25 @@ elseif(${USE_GUI} EQUAL 1)
     set(GUI_RUN_PSTFX "gui")
 else()
     message(FATAL_ERROR "Error: incorrect \"USE_GUI\" parameter = \"#{USE_GUI}\"")
-endif()
+endif() # END if(NOT ${USE_GUI} EQUAL 0)
 
-#                     gui/notgui    8UC1/8UC2/8UC3/16FC1 etc..
-set(run_name run_${GUI_RUN_PSTFX}_${USE_COLOR_CHANNEL_MODE}_${USE_CORR_TYPE})
+if(${USE_GPU} EQUAL 0)
+  set(run_name run_${GUI_RUN_PSTFX}_${USE_COLOR_CHANNEL_MODE}_${USE_CORR_TYPE}_CPU)
+endif() # END if(${USE_GPU} EQUAL 0)
 
-#target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} -lrt ${trac_lib_name} -lpthread)
-#set_target_properties(trac_from_lib_tmml PROPERTIES OUTPUT_NAME ${run_name})
+if(${USE_GPU} EQUAL 1)
+  if(${USE_CORR_TYPE} EQUAL 10)
+     set(run_name run_${GUI_RUN_PSTFX}_${USE_COLOR_CHANNEL_MODE}_TKDNN)
+  endif() # END if(${USE_CORR_TYPE} EQUAL 10)
+  if(NOT ${USE_CORR_TYPE} EQUAL 10)
+     set(run_name run_${GUI_RUN_PSTFX}_${USE_COLOR_CHANNEL_MODE}_${USE_CORR_TYPE}_CUDA)
+  endif() # END if(NOT ${USE_CORR_TYPE} EQUAL 10)
+endif() # END if(${USE_GPU} EQUAL 1)
 
-target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} ${YOLO_LIB} ${OpenCL_LIBRARY} ${trac_lib_name} -lrt -lpthread)
-target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} ${YOLO_LIB} ${OpenCL_LIBRARY} ${trac_lib_name} -lrt -lpthread)
+if(${USE_GPU} EQUAL 2)
+  set(run_name run_${GUI_RUN_PSTFX}_${USE_COLOR_CHANNEL_MODE}_${USE_CORR_TYPE}_CL)
+endif() # END if(${USE_GPU} EQUAL 2)
+
+target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} ${GPU_LIB} ${trac_lib_name} -lrt -lpthread)
+target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} ${GPU_LIB} ${trac_lib_name} -lrt -lpthread)
 set_target_properties(trac_from_lib_tmml PROPERTIES OUTPUT_NAME ${run_name})
-

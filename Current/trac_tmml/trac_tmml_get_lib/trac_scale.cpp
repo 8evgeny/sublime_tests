@@ -31,12 +31,10 @@ trac_tmml::trac_tmml(const std::string& config_path, bool& ok)
 #if defined OPEN_CL
    tm = make_unique<tmml_cl>(ok, min_max_Val);
    tm->max_pix = tm->max_pix0;
-   cout<<"OPEN_CL tm: "<<ok<<endl;
 #endif // END #if defined OPEN_CL
 #if !defined OPEN_CL
    tm = make_unique<tmml>(ok, min_max_Val);
    tm->max_pix = tm->max_pix0;
-   cout<<"CUDA tm: "<<ok<<endl;
 #endif // END !defined OPEN_CL
 
 

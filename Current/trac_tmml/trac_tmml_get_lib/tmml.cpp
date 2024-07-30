@@ -33,7 +33,7 @@ tmml::~tmml()
 #ifdef NO_GPU
    void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
    {
-       matchTemplate(img_work, img_temp, img_result, TM_CCORR);  // TM_CCOEFF_NORMED ; TM_CCOEFF
+       matchTemplate(img_work, img_temp, img_result, CORR_TYPE);  // TM_CCOEFF_NORMED ; TM_CCOEFF
        minMaxLoc(img_result, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
        max_pix.x = maxLoc.x;
        max_pix.y = maxLoc.y;

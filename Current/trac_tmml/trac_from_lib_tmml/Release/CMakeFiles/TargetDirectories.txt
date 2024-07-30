@@ -1,9 +1,0 @@
-/home/user/WORK/Github/sublime_tests/Current/trac_tmml/trac_from_lib_tmml/Release/CMakeFiles/trac_from_lib_tmml.dir
-/home/user/WORK/Github/sublime_tests/Current/trac_tmml/trac_from_lib_tmml/Release/CMakeFiles/vtrack_data_sender.dir
-/home/user/WORK/Github/sublime_tests/Current/trac_tmml/trac_from_lib_tmml/Release/CMakeFiles/cmd400_keeper.dir
-/home/user/WORK/Github/sublime_tests/Current/trac_tmml/trac_from_lib_tmml/Release/CMakeFiles/vertelka.dir
-/home/user/WORK/Github/sublime_tests/Current/trac_tmml/trac_from_lib_tmml/Release/CMakeFiles/edit_cache.dir
-/home/user/WORK/Github/sublime_tests/Current/trac_tmml/trac_from_lib_tmml/Release/CMakeFiles/rebuild_cache.dir
-/home/user/WORK/Github/sublime_tests/Current/trac_tmml/trac_from_lib_tmml/Release/modules/eth_controller_toolbox/CMakeFiles/eth_controller_toolbox_lib.dir
-/home/user/WORK/Github/sublime_tests/Current/trac_tmml/trac_from_lib_tmml/Release/modules/eth_controller_toolbox/CMakeFiles/edit_cache.dir
-/home/user/WORK/Github/sublime_tests/Current/trac_tmml/trac_from_lib_tmml/Release/modules/eth_controller_toolbox/CMakeFiles/rebuild_cache.dir

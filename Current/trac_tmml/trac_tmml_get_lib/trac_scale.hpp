@@ -35,9 +35,9 @@
 #if defined OPEN_CL
    #include "tmml_cl.hpp"
 #endif // END #if defined OPEN_CL
-#if !defined OPEN_CL
+#if defined USE_CUDA || defined NO_GPU
    #include "tmml.hpp"
-#endif // END !defined OPEN_CL
+#endif // END defined USE_CUDA
 
 #include TRACK_API
 

@@ -20,6 +20,9 @@ const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 #define KERNEL_FILE "tmml.cl"
 #ifndef testCL
     #ifdef find_diff_result
+        #ifdef SQDIFF_NORMED
+            #define KERNEL_NAME "work_cl_2"
+        #endif
         #ifdef CCOEFF_NORMED
             #define KERNEL_NAME "work_cl_6"
         #endif
@@ -28,6 +31,9 @@ const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
         #endif
     #endif
     #ifndef find_diff_result
+        #ifdef SQDIFF_NORMED
+            #define KERNEL_NAME "work_cl_2_no_img"
+        #endif
         #ifdef CCOEFF_NORMED
             #define KERNEL_NAME "work_cl_6_no_img"
         #endif

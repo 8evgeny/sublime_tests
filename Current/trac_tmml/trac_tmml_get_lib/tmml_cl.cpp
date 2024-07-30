@@ -118,7 +118,6 @@ void tmml_cl::loadAndBuildProgram(bool & init_OK, const string & programFile)
         cout<<" Error building: "<<program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(default_device)<<"\n";
         init_OK = false;
     }// END if(program.build(devices)!=CL_SUCCESS)
-    cout<<"building_CL OK\n";
 }// END loadAndBuildProgram
 
 void tmml_cl::loadDataMatToUchar(unsigned char *data, const Mat &image)
