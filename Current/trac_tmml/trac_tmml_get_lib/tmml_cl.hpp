@@ -18,27 +18,14 @@ const float RESULT_AREA_1 = 1.f / RESULT_AREA;
 const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 
 #define KERNEL_FILE "tmml.cl"
-#ifdef find_diff_result
-    #ifdef SQDIFF_NORMED
-        #define KERNEL_NAME "work_cl_2"
-    #endif
-    #ifdef CCOEFF_NORMED
-        #define KERNEL_NAME "work_cl_6"
-    #endif
-    #ifdef COMBINED
-        #define KERNEL_NAME "work_cl_8"
-    #endif
+#ifdef SQDIFF_NORMED
+    #define KERNEL_NAME "work_cl_2"
 #endif
-#ifndef find_diff_result
-    #ifdef SQDIFF_NORMED
-        #define KERNEL_NAME "work_cl_2_no_img"
-    #endif
-    #ifdef CCOEFF_NORMED
-        #define KERNEL_NAME "work_cl_6_no_img"
-    #endif
-    #ifdef COMBINED
-        #define KERNEL_NAME "work_cl_8_no_img"
-    #endif
+#ifdef CCOEFF_NORMED
+    #define KERNEL_NAME "work_cl_6"
+#endif
+#ifdef COMBINED
+    #define KERNEL_NAME "work_cl_8"
 #endif
 
 struct Pix
@@ -54,13 +41,6 @@ class tmml_cl
     tmml_cl(bool& ok, float& min_max_Val0);
     ~tmml_cl();
 
-    struct result
-    {
-        int xpos = 0;
-        int ypos = 0;
-        cl_uint tm_result = 0;
-    }; // END result
-
     const Pix max_pix0;
     Pix max_pix = max_pix0;
 
@@ -70,16 +50,12 @@ class tmml_cl
     void uintToMat(const unsigned int *data, cv::Mat &image);
     std::string loadKernelFile(const std::string program);
     int work_tmml(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
-    result res;
-    std::unique_ptr<cl_uint[]> mData_ptr = nullptr;
+    std::unique_ptr<cl_float[]> mData_ptr = nullptr;
 
   private:
     std::string kernel_source{""};
     cl::Kernel clkProcess;
-    cl::Buffer clInputImg, clInputTemp, clInputRes, clInputMaxVal;
-#ifdef find_diff_result
-    cl::Buffer clmData;
-#endif
+    cl::Buffer clInputImg, clInputTemp, clInputMaxVal, clmData;
     cl::CommandQueue queue;
     cl::Context context;
     cl::Program program;
@@ -90,8 +66,8 @@ class tmml_cl
     std::unique_ptr<cl_uchar[]> imageData_ptr = nullptr;
     std::unique_ptr<cl_uchar[]> templateData_ptr = nullptr;
 
-    int minVal = 0;
-    int maxVal = 0;
+    double minVal, maxVal;
+    cv::Point minLoc, maxLoc;
 
 }; // END tmml_cl
 
