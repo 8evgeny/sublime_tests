@@ -69,13 +69,22 @@ int main()
     if (ok)
     {
     #ifdef find_diff_result
-        Mat img_result_CL(Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, Scalar(0));
+        #ifndef floatFromCL
+            Mat img_result_CL(Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, Scalar(0));
+        #endif
     #endif
         time_start = high_resolution_clock::now();
         for(int iter = 0; iter < iter_num; ++iter)
         {
             tm->work_tmml(img_work, img_temp, tm->max_pix );
-            if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "CL iter " << iter << " error !!!" << endl; break;}
+            #ifdef floatFromCL
+                cv::Mat img_result_cpu(RESULT_WIDTH, RESULT_HEIGHT, CV_32F, tm->mData_ptr.get());
+                minMaxLoc(img_result_cpu, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
+                if(maxLoc.x != temp_left || maxLoc.y != temp_top){cout << "CL iter " << iter << " error !!!" << endl; break;}
+            #endif
+            #ifndef floatFromCL
+                if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "CL iter " << iter << " error !!!" << endl; break;}
+            #endif
         }//-- END -- for(int iter = 0; iter < iter_num; ++iter)
         time_end = high_resolution_clock::now();
         auto time_matching_CL = duration_cast<microseconds>(time_end - time_start);
@@ -84,7 +93,15 @@ int main()
 
 //Results
     #ifdef find_diff_result
-        tm->uintToMat(tm->mData_ptr.get(), img_result_CL);
+        #ifndef floatFromCL
+            tm->uintToMat(tm->mData_ptr.get(), img_result_CL);
+        #endif
+        #ifdef floatFromCL
+           cv::Mat img_result_CL(RESULT_WIDTH, RESULT_HEIGHT, CV_32F, tm->mData_ptr.get());
+        #endif
+
+//        for (int i = 0; i < 100; ++i) { cout <<tm->mData_ptr.get()[i]<<" ";}cout <<"\n ";
+
         normalize(img_result_CL, img_result_CL, 0, 255, NORM_MINMAX);
         img_result_CL.convertTo(img_result_CL, CV_8UC1);
         resize(img_result_CL, img_result_CL, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
@@ -93,7 +110,12 @@ int main()
         moveWindow(CL_window, 900,600);
         imshow(CL_window, img_result_CL);
         cvtColor(img_work,img_work, COLOR_GRAY2BGR);
-        rectangle(img_work, Point(tm->res.xpos, tm->res.ypos), Point(tm->res.xpos+img_temp.cols, tm->res.ypos+img_temp.rows),Scalar(0,0,255),3);
+        #ifndef floatFromCL
+            rectangle(img_work, Point(tm->res.xpos, tm->res.ypos), Point(tm->res.xpos+img_temp.cols, tm->res.ypos+img_temp.rows),Scalar(0,0,255),3);
+        #endif
+        #ifdef floatFromCL
+            rectangle(img_work, Point(maxLoc.x, maxLoc.y), Point(maxLoc.x + img_temp.cols, maxLoc.y + img_temp.rows),Scalar(0,0,255),3);
+        #endif
         const char* OpenCL = "matchingCL";
         namedWindow( OpenCL, WINDOW_AUTOSIZE );
         moveWindow(OpenCL, 1300,600);

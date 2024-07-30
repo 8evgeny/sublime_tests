@@ -14,14 +14,24 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
     if(!ok){cout<< "error loadAndBuildProgram!!!\n"; return;}
     imageData_ptr = make_unique<cl_uchar[]>(WORK_AREA);
     templateData_ptr = make_unique<cl_uchar[]>(TEMPLATE_AREA);
-    mData_ptr = make_unique<cl_uint[]>(RESULT_AREA);
-
+    #ifndef floatFromCL
+        mData_ptr = make_unique<cl_uint[]>(RESULT_AREA);
+    #endif
+    #ifdef floatFromCL
+        mData_ptr = make_unique<cl_float[]>(RESULT_AREA);
+    #endif
     clInputImg = Buffer(context, CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * WORK_AREA);
     clInputTemp = Buffer(context, CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * TEMPLATE_AREA);
     clInputRes = Buffer(context, CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR, sizeof(result));
     clInputMaxVal = Buffer(context, CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_int));
 #ifdef find_diff_result
-    clmData = Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_uint) * RESULT_AREA);
+    #ifndef floatFromCL
+        clmData = Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_uint) * RESULT_AREA);
+    #endif
+    #ifdef floatFromCL
+        clmData = Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_float) * RESULT_AREA);
+    #endif
+
 #endif
     // Kernels
     int clError = 0;
@@ -33,7 +43,13 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
         return;
     }// END if (clError != 0 )
 #ifdef find_diff_result
-    queue.enqueueWriteBuffer(clmData, CL_TRUE, 0,  sizeof(cl_uint) * RESULT_AREA, &mData_ptr[0]);
+    #ifndef floatFromCL
+        queue.enqueueWriteBuffer(clmData, CL_TRUE, 0,  sizeof(cl_uint) * RESULT_AREA, &mData_ptr[0]);
+    #endif
+    #ifdef floatFromCL
+        queue.enqueueWriteBuffer(clmData, CL_TRUE, 0,  sizeof(cl_float) * RESULT_AREA, &mData_ptr[0]);
+    #endif
+
 #endif
 
     // Init Kernel arguments
@@ -67,7 +83,12 @@ int tmml_cl::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix )
     queue.finish();
     queue.enqueueReadBuffer(clInputRes, CL_TRUE, 0, sizeof(result),&res);
 #ifdef find_diff_result
-    queue.enqueueReadBuffer(clmData, CL_TRUE, 0, sizeof(cl_uint) * RESULT_AREA, &mData_ptr[0]);
+    #ifndef floatFromCL
+        queue.enqueueReadBuffer(clmData, CL_TRUE, 0, sizeof(cl_uint) * RESULT_AREA, &mData_ptr[0]);
+    #endif
+    #ifdef floatFromCL
+        queue.enqueueReadBuffer(clmData, CL_TRUE, 0, sizeof(cl_float) * RESULT_AREA, &mData_ptr[0]);
+    #endif
 #endif
     max_pix.x = res.xpos;
     max_pix.y = res.ypos;
@@ -149,5 +170,4 @@ void tmml_cl::uintToMat(const unsigned int *data, Mat &image)
         }// END for (int x = 0 ; x < width ; ++x)
     }// END for (int y = 0; y < height; ++y)
 }// END uintToMat
-
 

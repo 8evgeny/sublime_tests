@@ -18,7 +18,7 @@ const float RESULT_AREA_1 = 1.f / RESULT_AREA;
 const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 
 #define KERNEL_FILE "tmml.cl"
-#ifndef testCL
+#ifndef floatFromCL
     #ifdef find_diff_result
         #ifdef SQDIFF_NORMED
             #define KERNEL_NAME "work_cl_2"
@@ -42,8 +42,8 @@ const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
         #endif
     #endif
 #endif
-#ifdef testCL
-    #define KERNEL_NAME "work_cl_test"
+#ifdef floatFromCL
+    #define KERNEL_NAME "work_cl_return_float"
 #endif
 
 struct Pix
@@ -76,8 +76,12 @@ class tmml_cl
     std::string loadKernelFile(const std::string program);
     int work_tmml(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
     result res;
-    std::unique_ptr<cl_uint[]> mData_ptr = nullptr;
-
+    #ifndef floatFromCL
+        std::unique_ptr<cl_uint[]> mData_ptr = nullptr;
+    #endif
+    #ifdef floatFromCL
+        std::unique_ptr<cl_float[]> mData_ptr = nullptr;
+    #endif
   private:
     std::string kernel_source{""};
     cl::Kernel clkProcess;
