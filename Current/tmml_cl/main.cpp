@@ -42,8 +42,13 @@ int main()
         #ifdef SQDIFF_NORMED
             matchTemplate(img_work, img_temp, img_result_cpu, TM_SQDIFF_NORMED);
         #endif
-        minMaxLoc(img_result_cpu, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
-        if(maxLoc.x != temp_left || maxLoc.y != temp_top){cout << "CPU iter=" << iter << " !!!" << endl; break;}
+            minMaxLoc(img_result_cpu, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
+        #ifndef SQDIFF_NORMED
+            if(maxLoc.x != temp_left || maxLoc.y != temp_top){cout << "CPU iter=" << iter << " !!!" << endl; break;}
+        #endif
+        #ifdef SQDIFF_NORMED
+            if(minLoc.x != temp_left || minLoc.y != temp_top){cout << "CPU iter=" << iter << " !!!" << endl; break;}
+        #endif
     }  // END for(int iter = 0; iter < iter_num; ++iter)
     time_end = high_resolution_clock::now();
     auto time_matching_CPU = duration_cast<microseconds>(time_end - time_start);

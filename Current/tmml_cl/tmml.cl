@@ -66,7 +66,7 @@ __kernel void work_cl_2(__global unsigned char * imData, __global unsigned char 
     }// END if ( (*maxVal) == dev_result_array_bright )
 }// END void work_cl_6
 
-__kernel void work_cl_2_no_img(__global unsigned char * imData, __global unsigned char * tmData, __global result* res, __global int* maxVal, __global int* matchData )
+__kernel void work_cl_2_no_img(__global unsigned char * imData, __global unsigned char * tmData, __global result* res, __global int* maxVal)
 {
     int work_item_X = get_global_id(0);
     int work_item_Y = get_global_id(1);
