@@ -325,7 +325,6 @@ __kernel void work_cl_return_float(__global unsigned char * imData, __global uns
     int sum_roi_roi = 0;
     int sum_roi = 0;
     int sum_temp = 0;
-    float dev_result_array_bright = 0;
     unsigned char roi = 0;
     unsigned char temp = 0;
     for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y += 1 )
@@ -354,17 +353,6 @@ __kernel void work_cl_return_float(__global unsigned char * imData, __global uns
     const float ch  = sum_roi_temp1 - sum_roi1 * sum_temp1;
     const float zn1 = sum_temp_temp1 - sum_temp1 * sum_temp1;
     const float zn2 = sum_roi_roi1 - sum_roi1 * sum_roi1;
-    dev_result_array_bright = /*k_float_to_int **/ (ch / sqrt(zn1 * zn2) - (float)diff_roi_temp / sum_roi_temp_2);
-
-    matchData[ iGID ] = dev_result_array_bright;
-
-//    atomic_max(maxVal, dev_result_array_bright);
-//    barrier(CLK_GLOBAL_MEM_FENCE);
-//    if ( (*maxVal) == dev_result_array_bright )
-//    {
-//        (*res).tm_result = dev_result_array_bright;
-//        (*res).xpos = work_item_X;
-//        (*res).ypos = work_item_Y;
-//    }// END if ( (*maxVal) == dev_result_array_bright )
+    matchData[ iGID ] = ch / sqrt(zn1 * zn2) - (float)diff_roi_temp / sum_roi_temp_2;
 }// END work_cl_6_no_img
 

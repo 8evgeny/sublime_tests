@@ -89,8 +89,12 @@ int main()
         time_end = high_resolution_clock::now();
         auto time_matching_CL = duration_cast<microseconds>(time_end - time_start);
         printf("Duration CL =  \t\t%.2f mks \n", (float)time_matching_CL.count() / iter_num );
-        cout << "openCL xy =\t\t[" << tm->res.xpos << ", " << tm->res.ypos <<  "] " <<endl<<endl;
-
+        #ifndef floatFromCL
+            cout << "openCL xy =\t\t[" << tm->res.xpos << ", " << tm->res.ypos <<  "] " <<endl<<endl;
+        #endif
+        #ifdef floatFromCL
+            cout << "openCL xy =\t\t[" << maxLoc.x << ", " << maxLoc.y <<  "] " <<endl<<endl;
+        #endif
 //Results
     #ifdef find_diff_result
         #ifndef floatFromCL
