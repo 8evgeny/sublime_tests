@@ -1,3 +1,0 @@
-/home/user/QtProg/trac_tmml/trac_tmml_get_lib/Release/CMakeFiles/_trac_tmml_8_CL.dir
-/home/user/QtProg/trac_tmml/trac_tmml_get_lib/Release/CMakeFiles/edit_cache.dir
-/home/user/QtProg/trac_tmml/trac_tmml_get_lib/Release/CMakeFiles/rebuild_cache.dir
