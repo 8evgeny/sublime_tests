@@ -20,8 +20,9 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
     clInputTemp = Buffer(context, CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * TEMPLATE_AREA);
     clInputRes = Buffer(context, CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR, sizeof(result));
     clInputMaxVal = Buffer(context, CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_int));
+#ifdef find_diff_result
     clmData = Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_uint) * RESULT_AREA);
-
+#endif
     // Kernels
     int clError = 0;
     clkProcess = Kernel(program, KERNEL_NAME, &clError );
@@ -31,15 +32,18 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
         ok = false;
         return;
     }// END if (clError != 0 )
+#ifdef find_diff_result
     queue.enqueueWriteBuffer(clmData, CL_TRUE, 0,  sizeof(cl_uint) * RESULT_AREA, &mData_ptr[0]);
-
+#endif
 
     // Init Kernel arguments
     clkProcess.setArg(0, clInputImg);
     clkProcess.setArg(1, clInputTemp);
     clkProcess.setArg(2, clInputRes);
     clkProcess.setArg(3, clInputMaxVal);
+#ifdef find_diff_result
     clkProcess.setArg(4, clmData);
+#endif
     ok = true;
     cout <<"Constructor tmml_cl ok=" << ok << endl;
 }// END tmml_cl::tmml_cl
@@ -62,7 +66,9 @@ int tmml_cl::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix )
     queue.enqueueNDRangeKernel(clkProcess, NullRange, gRM, NullRange );
     queue.finish();
     queue.enqueueReadBuffer(clInputRes, CL_TRUE, 0, sizeof(result),&res);
+#ifdef find_diff_result
     queue.enqueueReadBuffer(clmData, CL_TRUE, 0, sizeof(cl_uint) * RESULT_AREA, &mData_ptr[0]);
+#endif
     max_pix.x = res.xpos;
     max_pix.y = res.ypos;
     max_pix.bright = (float)res.tm_result;

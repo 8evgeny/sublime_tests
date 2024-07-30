@@ -18,16 +18,28 @@ const float RESULT_AREA_1 = 1.f / RESULT_AREA;
 const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 
 #define KERNEL_FILE "tmml.cl"
-#ifdef SQDIFF_NORMED
-    #define KERNEL_NAME "work_cl_2"
+#ifdef find_diff_result
+    #ifdef SQDIFF_NORMED
+        #define KERNEL_NAME "work_cl_2"
+    #endif
+    #ifdef CCOEFF_NORMED
+        #define KERNEL_NAME "work_cl_6"
+    #endif
+    #ifdef COMBINED
+        #define KERNEL_NAME "work_cl_8"
+    #endif
 #endif
-#ifdef CCOEFF_NORMED
-    #define KERNEL_NAME "work_cl_6"
+#ifndef find_diff_result
+    #ifdef SQDIFF_NORMED
+        #define KERNEL_NAME "work_cl_2_no_img"
+    #endif
+    #ifdef CCOEFF_NORMED
+        #define KERNEL_NAME "work_cl_6_no_img"
+    #endif
+    #ifdef COMBINED
+        #define KERNEL_NAME "work_cl_8_no_img"
+    #endif
 #endif
-#ifdef COMBINED
-    #define KERNEL_NAME "work_cl_8"
-#endif
-
 
 struct Pix
 {
@@ -65,7 +77,9 @@ class tmml_cl
     std::string kernel_source{""};
     cl::Kernel clkProcess;
     cl::Buffer clInputImg, clInputTemp, clInputRes, clInputMaxVal;
+#ifdef find_diff_result
     cl::Buffer clmData;
+#endif
     cl::CommandQueue queue;
     cl::Context context;
     cl::Program program;
