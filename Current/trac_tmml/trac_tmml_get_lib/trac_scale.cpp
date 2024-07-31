@@ -353,8 +353,7 @@ bool trac_tmml::match_img()
       if(tm->maxVal > min_max_Val)
       {
   #else
-//      if(tm->max_pix.bright > min_max_Val2)
-      if(1)
+      if(tm->max_pix.bright > min_max_Val2)
       {
   #endif
           //cout << " Match ok" << endl;

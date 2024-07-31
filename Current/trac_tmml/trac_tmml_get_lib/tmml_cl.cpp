@@ -62,6 +62,7 @@ void tmml_cl::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix )
     max_pix.x = maxLoc.x;
     max_pix.y = maxLoc.y;
     max_pix.bright = mData_ptr.get()[maxLoc.y * RESULT_HEIGHT + maxLoc.x];
+
 }// END work_tmml
 
 string tmml_cl::loadKernelFile(const string program)
