@@ -21,7 +21,7 @@ set(USE_SHOW_OK0 0)
 set(USE_SPEAKER 1)
 set(DBG_VIDEO_SENDER 0) # включение отправки видео и командного обмена с эмулятором шара (QtProg/poes400/corsair_terminal_emulator)
 # Используем программу в паре с терминалкой 400-го, раздел ini-файла [vtrack_data_sender], подключаем библиотеку vtrack_data_sender
-set(USE_ETH_VTRACK_SEND 1) # подключение модуля отправки вектора рамок целей
+set(USE_ETH_VTRACK_SEND 0) # подключение модуля отправки вектора рамок целей
 set(USE_DBG_SEND_VTRACK 0) # дополнителоное логирование отладочной информации в процессе отправки рамок целей
 
 # Работа в режиме GUI (медленно), или без GUI (быстро):

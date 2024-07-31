@@ -779,10 +779,10 @@ bool Application::get_ini_params(const string &config)
     {
         handle_flag = 1;
     }
-
-#elif
-    handle_flag = 1;
 #endif // USE_ETH_VTRACK_SEND
+#ifndef USE_ETH_VTRACK_SEND
+    handle_flag = 1;
+#endif
     cout << "handle_flag = " << handle_flag << endl;
 
     scale = reader.GetInteger("tracking", "scaling", -1);
