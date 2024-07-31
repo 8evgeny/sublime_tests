@@ -83,9 +83,9 @@ __kernel void work_cl_6(__global unsigned char * imData, __global unsigned char 
 
 __kernel void work_cl_8(__global unsigned char * imData, __global unsigned char * tmData, __global float* matchData )
 {
-    int work_item_X = get_global_id(0);
-    int work_item_Y = get_global_id(1);
-    int iGID = (work_item_Y * RESULT_HEIGHT  + work_item_X);
+    int work_X = get_global_id(0);
+    int work_Y = get_global_id(1);
+    int iGID = (work_Y * RESULT_HEIGHT  + work_X);
     int sum_roi_temp = 0;
     int sum_roi_temp_2 = 0;
     int sum_temp_temp = 0;
@@ -95,14 +95,14 @@ __kernel void work_cl_8(__global unsigned char * imData, __global unsigned char 
     int sum_temp = 0;
     unsigned char roi = 0;
     unsigned char temp = 0;
-    for ( int Y = 0; Y < TEMPLATE_HEIGHT; Y += 1 )
+    for ( int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; ++tmp_y )
     {
-        int tmp1 = (work_item_Y + Y) * WORK_WIDTH + work_item_X ;
-        int tmp2 = Y * TEMPLATE_WIDTH;
-        for ( int X = 0; X < TEMPLATE_WIDTH; X += 1 )
+        int row_in_roi = (work_Y + tmp_y) * WORK_WIDTH + work_X ;
+        int row_in_templ = tmp_y * TEMPLATE_WIDTH;
+        for ( int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; ++tmp_x )
         {
-            roi = imData[ tmp1 + X  ];
-            temp = tmData[ tmp2 + X ];
+            roi = imData[ row_in_roi + tmp_x  ];
+            temp = tmData[ row_in_templ + tmp_x ];
             sum_roi_temp += roi * temp;
             sum_temp_temp += temp * temp;
             sum_roi_roi += roi * roi;
