@@ -17,7 +17,6 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
 
     clInputImg = Buffer(context, CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * WORK_AREA);
     clInputTemp = Buffer(context, CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * TEMPLATE_AREA);
-    clInputMaxVal = Buffer(context, CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_int));
     clmData = Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_uint) * RESULT_AREA);
 
     // Kernels
@@ -34,8 +33,7 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
     // Init Kernel arguments
     clkProcess.setArg(0, clInputImg);
     clkProcess.setArg(1, clInputTemp);
-    clkProcess.setArg(2, clInputMaxVal);
-    clkProcess.setArg(3, clmData);
+    clkProcess.setArg(2, clmData);
     ok = true;
     cout <<"Constructor tmml_cl ok=" << ok << endl;
 }// END tmml_cl::tmml_cl
@@ -45,7 +43,7 @@ tmml_cl::~tmml_cl()
     cout <<"Destructor tmml_cl\n";
 }// END tmml_cl::~tmml_cl
 
-int tmml_cl::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix )
+void tmml_cl::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix )
 {
     loadDataMatToUchar(imageData_ptr.get(), img_work);
     loadDataMatToUchar(templateData_ptr.get(), img_temp);
@@ -64,7 +62,6 @@ int tmml_cl::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix )
     max_pix.x = maxLoc.x;
     max_pix.y = maxLoc.y;
     max_pix.bright = mData_ptr.get()[maxLoc.y * RESULT_HEIGHT + maxLoc.x];
-    return 0;
 }// END work_tmml
 
 string tmml_cl::loadKernelFile(const string program)

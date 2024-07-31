@@ -49,7 +49,7 @@ class tmml_cl
     void loadDataMatToUchar(unsigned char *data, const cv::Mat &image);
     void uintToMat(const unsigned int *data, cv::Mat &image);
     std::string loadKernelFile(const std::string program);
-    int work_tmml(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
+    void work_tmml(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
     std::unique_ptr<cl_float[]> mData_ptr = nullptr;
 
   private:

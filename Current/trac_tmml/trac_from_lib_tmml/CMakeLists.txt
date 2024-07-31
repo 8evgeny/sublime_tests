@@ -13,7 +13,7 @@ set(USE_GPU 2) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
 # CORR_TYPE = 6 : CCOEFF_NORMED  (Кросскорреляция модифицированная)
 # CORR_TYPE = 8 ; COMBINED (объединение прямой и модифицированной кросскорреляции)
 # CORR_TYPE = 10 : TKDNN
-set(USE_CORR_TYPE 8)
+set(USE_CORR_TYPE 6)
 
 # Использование в режиме GUI show_ok=0 -- удобство GUI при средней скорости.
 set(USE_SHOW_OK0 0)

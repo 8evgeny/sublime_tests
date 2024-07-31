@@ -18,7 +18,7 @@ __constant float RESULT_AREA_1 = 1.f / RESULT_AREA;
 __constant float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 __constant float TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
 
-__kernel void work_cl_2(__global unsigned char * imData, __global unsigned char * tmData, __global int* maxVal, __global float* matchData )
+__kernel void work_cl_2(__global unsigned char * imData, __global unsigned char * tmData, __global float* matchData )
 {
     int work_item_X = get_global_id(0);
     int work_item_Y = get_global_id(1);
@@ -42,7 +42,7 @@ __kernel void work_cl_2(__global unsigned char * imData, __global unsigned char 
     matchData[ iGID ] = (float) diff_roi_temp / sum_roi_temp_2;
 }// END work_cl_2_no_img
 
-__kernel void work_cl_6(__global unsigned char * imData, __global unsigned char * tmData, __global int* maxVal, __global float* matchData )
+__kernel void work_cl_6(__global unsigned char * imData, __global unsigned char * tmData, __global float* matchData )
 {
     int work_item_X = get_global_id(0);
     int work_item_Y = get_global_id(1);
@@ -81,7 +81,7 @@ __kernel void work_cl_6(__global unsigned char * imData, __global unsigned char 
     matchData[ iGID ] = ch / sqrt(zn1 * zn2);;
 }// END void work_cl_6
 
-__kernel void work_cl_8(__global unsigned char * imData, __global unsigned char * tmData, __global int* maxVal, __global float* matchData )
+__kernel void work_cl_8(__global unsigned char * imData, __global unsigned char * tmData, __global float* matchData )
 {
     int work_item_X = get_global_id(0);
     int work_item_Y = get_global_id(1);
