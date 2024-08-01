@@ -133,7 +133,7 @@ void tmml_cl::loadAndBuildProgram(bool & init_OK, const string & programFile)
         string kernel_source = loadKernelFile(programFile);
     #endif
     #ifndef KernelFromFile
-        string kernel_source = programm_CL;
+        string kernel_source = tmml_cl::programm_CL;
     #endif
 
 //    cout<<"kernel_source = "<<kernel_source<<endl;

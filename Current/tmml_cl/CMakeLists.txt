@@ -55,12 +55,10 @@ endif()
 
 if(${KernelFromFile} EQUAL 1)
     add_definitions(-DKernelFromFile)
-    add_executable(tmml_cl main.cpp tmml_cl.cpp tmml_cl.hpp tmml.cl kernel.cpp)
+    configure_file(tmml.cl ${CMAKE_CURRENT_BINARY_DIR}/tmml.cl COPYONLY)
 endif()
-if(${KernelFromFile} EQUAL 0)
-    add_executable(tmml_cl main.cpp tmml_cl.cpp tmml_cl.hpp tmml.cl)
-endif()
-configure_file(tmml.cl ${CMAKE_CURRENT_BINARY_DIR}/tmml.cl COPYONLY)
+
+add_executable(tmml_cl main.cpp tmml_cl.cpp tmml_cl.hpp tmml.cl)
 
 target_link_libraries(tmml_cl ${OpenCV_LIBS} ${OpenCL_LIBRARY} )
 configure_file(tank_2.png ${CMAKE_CURRENT_BINARY_DIR}/image_source COPYONLY )
