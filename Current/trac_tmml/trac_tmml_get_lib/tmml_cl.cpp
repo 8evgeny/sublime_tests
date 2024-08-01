@@ -112,7 +112,7 @@ void tmml_cl::loadAndBuildProgram(bool & init_OK, const string & programFile)
         string kernel_source = loadKernelFile(programFile);
     #endif
     #ifndef KernelFromFile
-        string kernel_source = programm_CL;
+        string kernel_source = programm_CL_float;
     #endif
 
     pair<const char*, ::size_t> src(kernel_source.c_str(), kernel_source.length());
