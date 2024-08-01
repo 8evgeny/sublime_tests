@@ -347,7 +347,9 @@ bool trac_tmml::match_img()
       tm->max_pix = tm->max_pix0;
 
       tm->work_tmml(img_local_work, et, tm->max_pix);
-      cout<<"max_pix =="<<tm->max_pix.bright<<"\n";
+
+cout<<"max_pix = "<<tm->max_pix.bright<<"\n";
+
       //cout << "maxVal=" << maxVal << "; k=" << k << "/" << list_et.size() << endl;  
   #ifdef NO_GPU
       if(tm->maxVal > min_max_Val)

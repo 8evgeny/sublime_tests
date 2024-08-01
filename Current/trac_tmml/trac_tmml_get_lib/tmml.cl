@@ -78,7 +78,7 @@ __kernel void work_cl_6(__global unsigned char * imData, __global unsigned char 
     const float ch  = sum_roi_temp1 - sum_roi1 * sum_temp1;
     const float zn1 = sum_temp_temp1 - sum_temp1 * sum_temp1;
     const float zn2 = sum_roi_roi1 - sum_roi1 * sum_roi1;
-    matchData[ iGID ] = ch / sqrt(zn1 * zn2);;
+    matchData[ iGID ] = ch / sqrt(zn1 * zn2);
 }// END void work_cl_6
 
 __kernel void work_cl_8(__global unsigned char * img_work, __global unsigned char * img_temp, __global float* matchData )
@@ -107,7 +107,6 @@ __kernel void work_cl_8(__global unsigned char * img_work, __global unsigned cha
             int roi_x = result_x + tmp_x;
             int roi_id = roi_y * WORK_WIDTH + roi_x;
             roi = img_work[roi_id];
-
             sum_roi_temp += roi * temp;
             sum_temp_temp += temp * temp;
             sum_roi_roi += roi * roi;

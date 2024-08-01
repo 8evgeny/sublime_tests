@@ -25,7 +25,7 @@ set(COUT_OK 0) # Вывод в терминал.
 set(MAX_FPS_OK 0) # Включение/выключение задержки.
 set(FIND_DISC_ID 0) # Привязка к железу вычислителя.
 #######################################################################
-set(KernelFromFile 0)
+set(KernelFromFile 1)
 
 if(${USE_GPU} EQUAL 0)
     add_definitions(-DNO_GPU)

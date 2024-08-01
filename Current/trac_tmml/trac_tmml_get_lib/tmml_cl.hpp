@@ -51,7 +51,7 @@ class tmml_cl
     std::string loadKernelFile(const std::string program);
     void work_tmml(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
     std::unique_ptr<cl_float[]> mData_ptr = nullptr;
-
+    void heat_gpu();
   private:
     std::string kernel_source{""};
     cl::Kernel clkProcess;
