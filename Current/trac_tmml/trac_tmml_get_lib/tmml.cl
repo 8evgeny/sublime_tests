@@ -94,7 +94,7 @@ __kernel void work_cl_8(__global unsigned char * img_work, __global unsigned cha
     int sum_roi_roi = 0;
     int sum_roi = 0;
     int sum_temp = 0;
-    double dev_result_array_bright0 = 0;
+    float dev_result_array_bright0 = 0;
     unsigned char roi = 0;
     unsigned char temp = 0;
     for ( int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; tmp_y+=4 )
@@ -117,13 +117,13 @@ __kernel void work_cl_8(__global unsigned char * img_work, __global unsigned cha
         }// END for ( int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; ++tmp_x )
     }// END for ( int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; ++tmp_y )
 
-    const double sum_roi_temp1 = TEMPLATE_AREA_1 * sum_roi_temp;
-    const double sum_roi1 = TEMPLATE_AREA_1 * sum_roi;
-    const double sum_temp1 = TEMPLATE_AREA_1 * sum_temp;
-    const double sum_roi_roi1 = TEMPLATE_AREA_1 * sum_roi_roi;
-    const double sum_temp_temp1 = TEMPLATE_AREA_1 * sum_temp_temp;
-    const double ch  = sum_roi_temp1 - sum_roi1 * sum_temp1;
-    const double zn1 = sum_temp_temp1 - sum_temp1 * sum_temp1;
-    const double zn2 = sum_roi_roi1 - sum_roi1 * sum_roi1;
+    const float sum_roi_temp1 = TEMPLATE_AREA_1 * sum_roi_temp;
+    const float sum_roi1 = TEMPLATE_AREA_1 * sum_roi;
+    const float sum_temp1 = TEMPLATE_AREA_1 * sum_temp;
+    const float sum_roi_roi1 = TEMPLATE_AREA_1 * sum_roi_roi;
+    const float sum_temp_temp1 = TEMPLATE_AREA_1 * sum_temp_temp;
+    const float ch  = sum_roi_temp1 - sum_roi1 * sum_temp1;
+    const float zn1 = sum_temp_temp1 - sum_temp1 * sum_temp1;
+    const float zn2 = sum_roi_roi1 - sum_roi1 * sum_roi1;
     matchData[ iGID ] = ch / sqrt(zn1 * zn2) - (float)diff_roi_temp / sum_roi_temp_2;
 }// END tmml_cl_8
