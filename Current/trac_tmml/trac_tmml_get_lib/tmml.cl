@@ -97,10 +97,10 @@ __kernel void work_cl_8(__global unsigned char * img_work, __global unsigned cha
     double dev_result_array_bright0 = 0;
     unsigned char roi = 0;
     unsigned char temp = 0;
-    for ( int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; ++tmp_y )
+    for ( int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; tmp_y+=4 )
     {
         int roi_y = result_y + tmp_y;
-        for ( int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; ++tmp_x )
+        for ( int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; tmp_x+=4 )
         {
             int tmp_id = tmp_y * TEMPLATE_WIDTH + tmp_x;
             temp = img_temp[tmp_id];
