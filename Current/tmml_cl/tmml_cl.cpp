@@ -22,9 +22,11 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
     #endif
     clInputImg = Buffer(context, CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * WORK_AREA);
     clInputTemp = Buffer(context, CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * TEMPLATE_AREA);
+    #ifndef floatFromCL
     clInputRes = Buffer(context, CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR, sizeof(result));
     clInputMaxVal = Buffer(context, CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_int));
-#ifdef find_diff_result
+    #endif
+    #ifdef find_diff_result
     #ifndef floatFromCL
         clmData = Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_uint) * RESULT_AREA);
     #endif
@@ -55,10 +57,15 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
     // Init Kernel arguments
     clkProcess.setArg(0, clInputImg);
     clkProcess.setArg(1, clInputTemp);
+#ifndef floatFromCL
     clkProcess.setArg(2, clInputRes);
     clkProcess.setArg(3, clInputMaxVal);
-#ifdef find_diff_result
-    clkProcess.setArg(4, clmData);
+    #ifdef find_diff_result
+        clkProcess.setArg(4, clmData);
+    #endif
+#endif
+#ifdef floatFromCL
+    clkProcess.setArg(2, clmData);
 #endif
     ok = true;
     cout <<"Constructor tmml_cl ok=" << ok << endl;

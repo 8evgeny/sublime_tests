@@ -313,7 +313,7 @@ __kernel void work_cl_8_no_img(__global unsigned char * imData, __global unsigne
     }// END if ( (*maxVal) == dev_result_array_bright )
 }// END work_cl_8_no_img
 
-__kernel void work_cl_return_float(__global unsigned char * imData, __global unsigned char * tmData, __global result* res, __global int* maxVal, __global float* matchData  )
+__kernel void work_cl_return_float(__global unsigned char * imData, __global unsigned char * tmData, __global float* matchData  )
 {
     int work_item_X = get_global_id(0);
     int work_item_Y = get_global_id(1);

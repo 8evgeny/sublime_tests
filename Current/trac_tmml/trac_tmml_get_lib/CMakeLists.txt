@@ -161,24 +161,14 @@ if(${USE_GPU} EQUAL 2)
     if(${KernelFromFile} EQUAL 1)
         add_definitions(-DKernelFromFile)
         configure_file(tmml.cl ${FROM_LIB}/run/tmml.cl)
-        add_library(${lib_name} SHARED
-            trac_scale.hpp
-            trac_scale.cpp
-            ${FROM_LIB}/tracshats/trac_api.hpp
-            ${FROM_LIB}/tracshats/trac_struct.hpp
-            tmml_cl.cpp
-            tmml_cl.hpp)
     endif()
-    if(${KernelFromFile} EQUAL 0)
-        add_library(${lib_name} SHARED
-            trac_scale.hpp
-            trac_scale.cpp
-            ${FROM_LIB}/tracshats/trac_api.hpp
-            ${FROM_LIB}/tracshats/trac_struct.hpp
-            tmml_cl.cpp
-            tmml_cl.hpp
-            kernel.cpp)
-    endif()
+    add_library(${lib_name} SHARED
+        trac_scale.hpp
+        trac_scale.cpp
+        ${FROM_LIB}/tracshats/trac_api.hpp
+        ${FROM_LIB}/tracshats/trac_struct.hpp
+        tmml_cl.cpp
+        tmml_cl.hpp)
     target_link_libraries(${lib_name} ${OpenCL_LIBRARY})
 endif() # END if(${USE_OPEN_CL} EQUAL 2)
 
