@@ -17,7 +17,7 @@ set(find_diff_result 1)
 
 ###############################################################
 set(floatFromCL 1)
-set(KernelFromFile 1)
+set(KernelFromFile 0)
 
 set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda)
 set(CMAKE_MAKE_PROGRAM "make -j${nproc}")
