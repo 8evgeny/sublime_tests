@@ -98,11 +98,11 @@ class tmml_cl
     std::vector<cl::Platform> all_platforms;
     std::unique_ptr<cl_uchar[]> imageData_ptr = nullptr;
     std::unique_ptr<cl_uchar[]> templateData_ptr = nullptr;
-
+    #ifndef KernelFromFile
+        static std::string programm_CL;
+    #endif
     int minVal = 0;
     int maxVal = 0;
 
 }; // END tmml_cl
-
-
 

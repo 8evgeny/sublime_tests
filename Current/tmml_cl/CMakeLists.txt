@@ -17,6 +17,7 @@ set(find_diff_result 1)
 
 ###############################################################
 set(floatFromCL 1)
+set(KernelFromFile 0)
 
 set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda)
 set(CMAKE_MAKE_PROGRAM "make -j${nproc}")
@@ -51,7 +52,10 @@ endif()
 if(${floatFromCL} EQUAL 1)
     add_definitions(-DfloatFromCL)
 endif()
-add_executable(tmml_cl main.cpp tmml_cl.cpp tmml_cl.hpp tmml.cl )
+if(${KernelFromFile} EQUAL 1)
+    add_definitions(-DKernelFromFile)
+endif()
+add_executable(tmml_cl main.cpp tmml_cl.cpp tmml_cl.hpp tmml.cl kernel.cpp)
 configure_file(tmml.cl ${CMAKE_CURRENT_BINARY_DIR}/tmml.cl COPYONLY)
 
 target_link_libraries(tmml_cl ${OpenCV_LIBS} ${OpenCL_LIBRARY} )
