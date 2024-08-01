@@ -25,6 +25,7 @@ set(COUT_OK 0) # Вывод в терминал.
 set(MAX_FPS_OK 0) # Включение/выключение задержки.
 set(FIND_DISC_ID 0) # Привязка к железу вычислителя.
 #######################################################################
+set(KernelFromFile 0)
 
 if(${USE_GPU} EQUAL 0)
     add_definitions(-DNO_GPU)
@@ -63,6 +64,10 @@ endif() # END if(${CORR_TYPE} EQUAL 6)
 if(${CORR_TYPE} EQUAL 8)
     add_definitions(-DCOMBINED)
 endif() # END if(${CORR_TYPE} EQUAL 8)
+
+if(${KernelFromFile} EQUAL 1)
+    add_definitions(-DKernelFromFile)
+endif()
 
 if(${USE_GPU} EQUAL 1)
     set(CMAKE_CUDA_COMPILER /usr/local/cuda/bin/nvcc)
@@ -153,16 +158,27 @@ if(${USE_GPU} EQUAL 1)
 endif() # END if(${USE_GPU} EQUAL 1)
 
 if(${USE_GPU} EQUAL 2)
-    configure_file(tmml.cl ${FROM_LIB}/run/tmml.cl)
-    add_library(${lib_name} SHARED
-        trac_scale.hpp
-        trac_scale.cpp
-        ${FROM_LIB}/tracshats/trac_api.hpp
-        ${FROM_LIB}/tracshats/trac_struct.hpp
-        tmml_cl.cpp
-        tmml.cl
-        tmml_cl.hpp
-    )
+    if(${KernelFromFile} EQUAL 1)
+        add_definitions(-DKernelFromFile)
+        configure_file(tmml.cl ${FROM_LIB}/run/tmml.cl)
+        add_library(${lib_name} SHARED
+            trac_scale.hpp
+            trac_scale.cpp
+            ${FROM_LIB}/tracshats/trac_api.hpp
+            ${FROM_LIB}/tracshats/trac_struct.hpp
+            tmml_cl.cpp
+            tmml_cl.hpp)
+    endif()
+    if(${KernelFromFile} EQUAL 0)
+        add_library(${lib_name} SHARED
+            trac_scale.hpp
+            trac_scale.cpp
+            ${FROM_LIB}/tracshats/trac_api.hpp
+            ${FROM_LIB}/tracshats/trac_struct.hpp
+            tmml_cl.cpp
+            tmml_cl.hpp
+            kernel.cpp)
+    endif()
     target_link_libraries(${lib_name} ${OpenCL_LIBRARY})
 endif() # END if(${USE_OPEN_CL} EQUAL 2)
 

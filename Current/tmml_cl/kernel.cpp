@@ -1,6 +1,6 @@
 #include "tmml_cl.hpp"
 #ifndef KernelFromFile
-std::string tmml_cl::programm_CL
+std::string tmml_cl::programm_CL //  \n ->  \\n"\n"
 {
     "__constant int TEMPLATE_WIDTH = 48;\n"
     "__constant int TEMPLATE_HEIGHT = 48;\n"

@@ -65,11 +65,13 @@ void tmml_cl::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix )
 
 }// END work_tmml
 
+#ifdef KernelFromFile
 string tmml_cl::loadKernelFile(const string program)
 {
     ifstream f(program);
     return string((istreambuf_iterator<char>(f)), istreambuf_iterator<char>());
 }// END tmml_cl::loadKernelFile
+#endif
 
 void tmml_cl::initDevice(bool & init_OK)
 {
@@ -97,7 +99,14 @@ void tmml_cl::initDevice(bool & init_OK)
 void tmml_cl::loadAndBuildProgram(bool & init_OK, const string & programFile)
 {
     Program::Sources sources;
-    string kernel_source = loadKernelFile(programFile);
+
+    #ifdef KernelFromFile
+        string kernel_source = loadKernelFile(programFile);
+    #endif
+    #ifndef KernelFromFile
+        string kernel_source = programm_CL;
+    #endif
+
     pair<const char*, ::size_t> src(kernel_source.c_str(), kernel_source.length());
     sources.push_back(src);
     program=Program(context, sources);

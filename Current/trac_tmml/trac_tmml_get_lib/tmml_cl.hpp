@@ -68,7 +68,9 @@ class tmml_cl
 
     double minVal, maxVal;
     cv::Point minLoc, maxLoc;
-
+    #ifndef KernelFromFile
+        static std::string programm_CL;
+    #endif
 }; // END tmml_cl
 
 
