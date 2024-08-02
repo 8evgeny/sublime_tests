@@ -294,15 +294,16 @@ __kernel void work_cl_return_float(__global unsigned char * img_work, __global u
     int sum_temp_temp = 0;
     int diff_roi_temp = 0;
     int sum_roi_roi = 0;
+
     int sum_roi = 0;
     int sum_temp = 0;
     double dev_result_array_bright0 = 0;
     unsigned char roi = 0;
     unsigned char temp = 0;
-    for ( int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; tmp_y+=4 )
+    for ( int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; tmp_y+=1 )
     {
         int roi_y = result_y + tmp_y;
-        for ( int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; tmp_x+=4 )
+        for ( int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; tmp_x+=1 )
         {
             int tmp_id = tmp_y * TEMPLATE_WIDTH + tmp_x;
             temp = img_temp[tmp_id];
