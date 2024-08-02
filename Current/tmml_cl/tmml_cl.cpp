@@ -49,8 +49,8 @@ void tmml_cl::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix )
     queue.enqueueWriteBuffer(img_work_buff, CL_TRUE, 0,  sizeof(unsigned char) * WORK_AREA, &imageData_ptr.get()[0]);
     queue.enqueueWriteBuffer(img_temp_buff, CL_TRUE, 0,  sizeof(unsigned char) * TEMPLATE_AREA, &templateData_ptr.get()[0]);
 
-    // Image 2D
-    NDRange gRM = NDRange(RESULT_WIDTH, RESULT_HEIGHT);
+    // Image 1D
+    NDRange gRM = NDRange(RESULT_WIDTH * RESULT_HEIGHT);
     queue.enqueueNDRangeKernel(tmml_cl_kernel, NullRange, gRM, NullRange );
     queue.finish();
     queue.enqueueReadBuffer(img_result_buff, CL_TRUE, 0, sizeof(cl_float) * RESULT_AREA, &mData_ptr[0]);
