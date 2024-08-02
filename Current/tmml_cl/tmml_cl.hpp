@@ -18,8 +18,16 @@ const float RESULT_AREA_1 = 1.f / RESULT_AREA;
 const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 
 #define KERNEL_FILE "tmml.cl"
-#define KERNEL_NAME "work_cl_8"
 
+#ifdef SQDIFF_NORMED
+    #define KERNEL_NAME "work_cl_2"
+#endif
+#ifdef CCOEFF_NORMED
+    #define KERNEL_NAME "work_cl_6"
+#endif
+#ifdef COMBINED
+    #define KERNEL_NAME "work_cl_8"
+#endif
 
 struct Pix
 {
@@ -34,15 +42,13 @@ class tmml_cl
     tmml_cl(bool& ok, float& min_max_Val0);
     ~tmml_cl();
 
+    cv::Mat img_result;
+    void work_tmml(const cv::Mat & img_work, const cv::Mat & img_temp, Pix & max_pix);
     const Pix max_pix0;
     Pix max_pix = max_pix0;
 
-    void initDevice(bool & init_OK);
-    void loadAndBuildProgram(bool & init_OK, const std::string & programFile);
     void loadDataMatToUchar(unsigned char *data, const cv::Mat &image);
     void uintToMat(const unsigned int *data, cv::Mat &image);
-    std::string loadKernelFile(const std::string program);
-    void work_tmml(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
     std::unique_ptr<cl_float[]> mData_ptr = nullptr;
 
 
@@ -63,6 +69,10 @@ class tmml_cl
 
     double minVal, maxVal;
     cv::Point minLoc, maxLoc;
+
+    void initDevice(bool & init_OK);
+    void loadAndBuildProgram(bool & init_OK, const std::string & programFile);
+    std::string loadKernelFile(const std::string & program);
 
 #ifndef KernelFromFile
     const std::string programm_CL //  \n ->  \\n"\n"
@@ -399,5 +409,6 @@ class tmml_cl
         "}// END void work_cl_return_float\n"
     };
 #endif
+
 }; // END tmml_cl
 

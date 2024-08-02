@@ -62,7 +62,7 @@ void tmml_cl::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix )
 }// END work_tmml
 
 #ifdef KernelFromFile
-string tmml_cl::loadKernelFile(const string program)
+string tmml_cl::loadKernelFile(const string & program)
 {
     ifstream f(program);
     return string((istreambuf_iterator<char>(f)), istreambuf_iterator<char>());
