@@ -51,12 +51,12 @@ class tmml_cl
     void uintToMat(const unsigned int *data, cv::Mat &image);
     std::unique_ptr<cl_float[]> mData_ptr = nullptr;
 
-
   private:
+    unsigned char img_temp_arr[TEMPLATE_AREA];
+    unsigned char img_work_arr[WORK_AREA];
     std::string kernel_source{""};
-    cl::Kernel clkProcess;
-    cl::Buffer clInputImg, clInputTemp, clInputRes, clInputMaxVal;
-    cl::Buffer clmData;
+    cl::Kernel tmml_cl_kernel;
+    cl::Buffer img_work_buff, img_temp_buff, img_result_buff;
     cl::CommandQueue queue;
     cl::Context context;
     cl::Program program;

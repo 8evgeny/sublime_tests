@@ -14,24 +14,24 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
     imageData_ptr = make_unique<cl_uchar[]>(WORK_AREA);
     templateData_ptr = make_unique<cl_uchar[]>(TEMPLATE_AREA);
     mData_ptr = make_unique<cl_float[]>(RESULT_AREA);
-    clInputImg = Buffer(context, CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * WORK_AREA);
-    clInputTemp = Buffer(context, CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * TEMPLATE_AREA);
-    clmData = Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_float) * RESULT_AREA);
+    img_work_buff = Buffer(context, CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * WORK_AREA);
+    img_temp_buff = Buffer(context, CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * TEMPLATE_AREA);
+    img_result_buff = Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_float) * RESULT_AREA);
     // Kernels
     int clError = 0;
-    clkProcess = Kernel(program, KERNEL_NAME, &clError );
+    tmml_cl_kernel = Kernel(program, KERNEL_NAME, &clError );
     if(clError != 0 )
     {
         cout << "clError!!!" << endl;
         ok = false;
         return;
     }// END if (clError != 0 )
-    queue.enqueueWriteBuffer(clmData, CL_TRUE, 0,  sizeof(cl_float) * RESULT_AREA, &mData_ptr[0]);
+    queue.enqueueWriteBuffer(img_result_buff, CL_TRUE, 0,  sizeof(cl_float) * RESULT_AREA, &mData_ptr[0]);
 
     // Init Kernel arguments
-    clkProcess.setArg(0, clInputImg);
-    clkProcess.setArg(1, clInputTemp);
-    clkProcess.setArg(2, clmData);
+    tmml_cl_kernel.setArg(0, img_work_buff);
+    tmml_cl_kernel.setArg(1, img_temp_buff);
+    tmml_cl_kernel.setArg(2, img_result_buff);
     ok = true;
     cout <<"Constructor tmml_cl ok=" << ok << endl;
 }// END tmml_cl::tmml_cl
@@ -46,14 +46,14 @@ void tmml_cl::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix )
     loadDataMatToUchar(imageData_ptr.get(), img_work);
     loadDataMatToUchar(templateData_ptr.get(), img_temp);
     // Send Data
-    queue.enqueueWriteBuffer(clInputImg, CL_TRUE, 0,  sizeof(unsigned char) * WORK_AREA, &imageData_ptr.get()[0]);
-    queue.enqueueWriteBuffer(clInputTemp, CL_TRUE, 0,  sizeof(unsigned char) * TEMPLATE_AREA, &templateData_ptr.get()[0]);
+    queue.enqueueWriteBuffer(img_work_buff, CL_TRUE, 0,  sizeof(unsigned char) * WORK_AREA, &imageData_ptr.get()[0]);
+    queue.enqueueWriteBuffer(img_temp_buff, CL_TRUE, 0,  sizeof(unsigned char) * TEMPLATE_AREA, &templateData_ptr.get()[0]);
 
     // Image 2D
     NDRange gRM = NDRange(RESULT_WIDTH, RESULT_HEIGHT);
-    queue.enqueueNDRangeKernel(clkProcess, NullRange, gRM, NullRange );
+    queue.enqueueNDRangeKernel(tmml_cl_kernel, NullRange, gRM, NullRange );
     queue.finish();
-    queue.enqueueReadBuffer(clmData, CL_TRUE, 0, sizeof(cl_float) * RESULT_AREA, &mData_ptr[0]);
+    queue.enqueueReadBuffer(img_result_buff, CL_TRUE, 0, sizeof(cl_float) * RESULT_AREA, &mData_ptr[0]);
     Mat img_result_cpu(RESULT_WIDTH, RESULT_HEIGHT, CV_32F, mData_ptr.get());
     minMaxLoc(img_result_cpu, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
     max_pix.x = maxLoc.x;
