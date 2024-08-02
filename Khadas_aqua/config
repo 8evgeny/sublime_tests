@@ -1,7 +1,7 @@
 [Temperature]
 heater = true;
-min_temp = 22.15;
-max_temp = 24.15;
+min_temp = 23.5;
+max_temp = 24.1;
 
 [Light]
 light = true;
