@@ -5,7 +5,7 @@ using namespace cv;
 using namespace chrono;
 float min_max_Val = 0.99999;
 const int iter_num = 1000;
-
+int k = 2;
 constexpr int temp_center_x = 150;
 constexpr int temp_center_y = 165;
 constexpr int temp_left = temp_center_x - 0.5 * TEMPLATE_WIDTH;
@@ -55,54 +55,34 @@ int main()
     printf("Duration OpenCV =  \t%.2f mks \n", (float)time_matching_CPU.count() / iter_num );
     cout << "OpenCV xy =\t\t[" << temp_left << ", " << temp_top << "] "<<endl<<endl;
 
-#ifdef find_diff_result
     normalize(img_result_cpu, img_result_cpu, 0, 255, NORM_MINMAX);
     img_result_cpu.convertTo(img_result_cpu, CV_8UC1);
     int k = 2;
     resize(img_result_cpu, img_result_cpu, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
     const char* OpenCV_window = "result_CPU";
-#endif
+
 
 //OpenCL
     bool ok = false;
     unique_ptr<tmml_cl> tm = make_unique<tmml_cl>(ok, min_max_Val);
     if (ok)
     {
-    #ifdef find_diff_result
-        #ifndef floatFromCL
-            Mat img_result_CL(Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, Scalar(0));
-        #endif
-    #endif
+//        Mat img_result_CL(Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, Scalar(0));
         time_start = high_resolution_clock::now();
         for(int iter = 0; iter < iter_num; ++iter)
         {
             tm->work_tmml(img_work, img_temp, tm->max_pix );
-            #ifdef floatFromCL
-                cv::Mat img_result_cpu(RESULT_WIDTH, RESULT_HEIGHT, CV_32F, tm->mData_ptr.get());
-                minMaxLoc(img_result_cpu, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
-                if(maxLoc.x != temp_left || maxLoc.y != temp_top){cout << "CL iter " << iter << " error !!!" << endl; break;}
-            #endif
-            #ifndef floatFromCL
-                if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "CL iter " << iter << " error !!!" << endl; break;}
-            #endif
+            cv::Mat img_result_cpu(RESULT_WIDTH, RESULT_HEIGHT, CV_32F, tm->mData_ptr.get());
+            minMaxLoc(img_result_cpu, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
+            if(maxLoc.x != temp_left || maxLoc.y != temp_top){cout << "CL iter " << iter << " error !!!" << endl; break;}
         }//-- END -- for(int iter = 0; iter < iter_num; ++iter)
         time_end = high_resolution_clock::now();
         auto time_matching_CL = duration_cast<microseconds>(time_end - time_start);
         printf("Duration CL =  \t\t%.2f mks \n", (float)time_matching_CL.count() / iter_num );
-        #ifndef floatFromCL
-            cout << "openCL xy =\t\t[" << tm->res.xpos << ", " << tm->res.ypos <<  "] " <<endl<<endl;
-        #endif
-        #ifdef floatFromCL
-            cout << "openCL xy =\t\t[" << maxLoc.x << ", " << maxLoc.y <<  "] " <<endl<<endl;
-        #endif
+        cout << "openCL xy =\t\t[" << maxLoc.x << ", " << maxLoc.y <<  "] " <<endl<<endl;
+
 //Results
-    #ifdef find_diff_result
-        #ifndef floatFromCL
-            tm->uintToMat(tm->mData_ptr.get(), img_result_CL);
-        #endif
-        #ifdef floatFromCL
            cv::Mat img_result_CL(RESULT_WIDTH, RESULT_HEIGHT, CV_32F, tm->mData_ptr.get());
-        #endif
 
 //        for (int i = 0; i < 100; ++i) { cout <<tm->mData_ptr.get()[i]<<" ";}cout <<"\n ";
 
@@ -114,27 +94,21 @@ int main()
         moveWindow(CL_window, 900,600);
         imshow(CL_window, img_result_CL);
         cvtColor(img_work,img_work, COLOR_GRAY2BGR);
-        #ifndef floatFromCL
-            rectangle(img_work, Point(tm->res.xpos, tm->res.ypos), Point(tm->res.xpos+img_temp.cols, tm->res.ypos+img_temp.rows),Scalar(0,0,255),3);
-        #endif
-        #ifdef floatFromCL
-            rectangle(img_work, Point(maxLoc.x, maxLoc.y), Point(maxLoc.x + img_temp.cols, maxLoc.y + img_temp.rows),Scalar(0,0,255),3);
-        #endif
+        rectangle(img_work, Point(maxLoc.x, maxLoc.y), Point(maxLoc.x + img_temp.cols, maxLoc.y + img_temp.rows),Scalar(0,0,255),3);
+
         const char* OpenCL = "matchingCL";
         namedWindow( OpenCL, WINDOW_AUTOSIZE );
         moveWindow(OpenCL, 1300,600);
         resize(img_work, img_work, Size(k*RESULT_WIDTH, k*RESULT_HEIGHT));
         imshow(OpenCL, img_work);
-    #endif // #ifdef find_diff_result
 
     }// END if (!init_ok)
     else { cout << "error init OpenCL !!!\n"; return 1; }
 
-#ifdef find_diff_result
     namedWindow( OpenCV_window, WINDOW_AUTOSIZE );
     moveWindow(OpenCV_window, 900,100);
     imshow(OpenCV_window, img_result_cpu);
-#endif
+
     unsigned char key = waitKey(0);
     tm.reset();
     cout << "END MAIN!" << endl;
