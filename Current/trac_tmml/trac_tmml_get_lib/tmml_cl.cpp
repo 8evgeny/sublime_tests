@@ -8,7 +8,7 @@ using namespace cl;
 tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
 {
     cout <<"START Construktor tmml_cl\n";
-    heat_gpu();
+//    heat_gpu();
 
     initDevice(ok);
     if(!ok){cout<< "error initDevice!!!\n"; return;}
