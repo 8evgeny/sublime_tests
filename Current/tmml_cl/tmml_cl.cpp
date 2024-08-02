@@ -7,27 +7,25 @@ using namespace cl;
 tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
 {
     cout <<"START Construktor tmml_cl\n";
+    img_result = Mat(Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, Scalar(0));
+    min_max_Val = min_max_Val0;
+    min_max_Val2 = min_max_Val0 * min_max_Val0;
     initDevice(ok);
     if(!ok){cout<< "error initDevice!!!\n"; return;}
     loadAndBuildProgram(ok, string(KERNEL_FILE));
     if(!ok){cout<< "error loadAndBuildProgram!!!\n"; return;}
-    imageData_ptr = make_unique<cl_uchar[]>(WORK_AREA);
-    templateData_ptr = make_unique<cl_uchar[]>(TEMPLATE_AREA);
-    mData_ptr = make_unique<cl_float[]>(RESULT_AREA);
-    img_work_buff = Buffer(context, CL_MEM_READ_ONLY  | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * WORK_AREA);
-    img_temp_buff = Buffer(context, CL_MEM_READ_ONLY | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * TEMPLATE_AREA);
-    img_result_buff = Buffer(context,CL_MEM_WRITE_ONLY | CL_MEM_ALLOC_HOST_PTR,sizeof(cl_float) * RESULT_AREA);
+    img_work_buff = Buffer(context, CL_MEM_READ_WRITE  | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * WORK_AREA);
+    img_temp_buff = Buffer(context, CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * TEMPLATE_AREA);
+    img_result_buff = Buffer(context, CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR, sizeof(float) * RESULT_AREA);
     // Kernels
     int clError = 0;
-    tmml_cl_kernel = Kernel(program, KERNEL_NAME, &clError );
-    if(clError != 0 )
+    tmml_cl_kernel = Kernel(program, KERNEL_NAME, &clError);
+    if(clError != 0)
     {
-        cout << "clError!!!" << endl;
+        cout << "clError=" << clError << "; KERNEL_tmml_cl_NAME1=" << KERNEL_NAME << " =============== !!!" << endl;
         ok = false;
         return;
-    }// END if (clError != 0 )
-    queue.enqueueWriteBuffer(img_result_buff, CL_TRUE, 0,  sizeof(cl_float) * RESULT_AREA, &mData_ptr[0]);
-
+    } // END if(clError != 0)
     // Init Kernel arguments
     tmml_cl_kernel.setArg(0, img_work_buff);
     tmml_cl_kernel.setArg(1, img_temp_buff);
@@ -43,22 +41,38 @@ tmml_cl::~tmml_cl()
 
 void tmml_cl::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix )
 {
-    loadDataMatToUchar(imageData_ptr.get(), img_work);
-    loadDataMatToUchar(templateData_ptr.get(), img_temp);
-    // Send Data
-    queue.enqueueWriteBuffer(img_work_buff, CL_TRUE, 0,  sizeof(unsigned char) * WORK_AREA, &imageData_ptr.get()[0]);
-    queue.enqueueWriteBuffer(img_temp_buff, CL_TRUE, 0,  sizeof(unsigned char) * TEMPLATE_AREA, &templateData_ptr.get()[0]);
+    int temp_id = 0;
+    for(int y = 0; y < TEMPLATE_HEIGHT; ++y)
+    {
+        for(int x = 0; x < TEMPLATE_WIDTH; ++x)
+        {
+            img_temp_arr[temp_id] = img_temp.at<unsigned char>(y, x);
+            temp_id++;
+        } // END for(int x = 0; x < TEMPLATE_WIDTH; x++)
+    } // END for(int y = 0; y < TEMPLATE_HEIGHT; y++)
+
+    int work_id = 0;
+    for(int y = 0; y < WORK_HEIGHT; ++y)
+    {
+        for(int x = 0; x < WORK_WIDTH; ++x)
+        {
+            img_work_arr[work_id] = img_work.at<unsigned char>(y, x);
+            work_id++;
+        } // END for(int x = 0; x < TEMPLATE_WIDTH; x++)
+    } // END for(int y = 0; y < TEMPLATE_HEIGHT; y++)
+
+    queue.enqueueWriteBuffer(img_work_buff, CL_TRUE, 0, sizeof(unsigned char) * WORK_AREA, &img_work_arr[0]);
+    queue.enqueueWriteBuffer(img_temp_buff, CL_TRUE, 0, sizeof(unsigned char) * TEMPLATE_AREA, &img_temp_arr[0]);
 
     // Image 1D
     NDRange gRM = NDRange(RESULT_WIDTH * RESULT_HEIGHT);
     queue.enqueueNDRangeKernel(tmml_cl_kernel, NullRange, gRM, NullRange );
     queue.finish();
-    queue.enqueueReadBuffer(img_result_buff, CL_TRUE, 0, sizeof(cl_float) * RESULT_AREA, &mData_ptr[0]);
-    Mat img_result_cpu(RESULT_WIDTH, RESULT_HEIGHT, CV_32F, mData_ptr.get());
-    minMaxLoc(img_result_cpu, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
+    queue.enqueueReadBuffer(img_result_buff, CL_TRUE, 0, sizeof(float) * RESULT_AREA, &img_result.data[0]);
+    minMaxLoc(img_result, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
     max_pix.x = maxLoc.x;
     max_pix.y = maxLoc.y;
-    max_pix.bright = mData_ptr.get()[maxLoc.y * RESULT_HEIGHT + maxLoc.x];
+    max_pix.bright = maxVal;
 }// END work_tmml
 
 #ifdef KernelFromFile
@@ -101,7 +115,6 @@ void tmml_cl::loadAndBuildProgram(bool & init_OK, const string & programFile)
         string kernel_source = tmml_cl::programm_CL;
     #endif
 
-//    cout<<"kernel_source = "<<kernel_source<<endl;
     pair<const char*, ::size_t> src(kernel_source.c_str(), kernel_source.length());
     sources.push_back(src);
     program=Program(context, sources);
@@ -114,32 +127,3 @@ void tmml_cl::loadAndBuildProgram(bool & init_OK, const string & programFile)
     }// END if(program.build(devices)!=CL_SUCCESS)
     cout<<"building_CL OK\n";
 }// END loadAndBuildProgram
-
-void tmml_cl::loadDataMatToUchar(unsigned char *data, const Mat &image)
-{
-    int width = image.cols;
-    int height = image.rows;
-    for (int y = 0; y < height; ++y)
-    {
-        int posY = y * width;
-        for (int x = 0 ; x < width ; ++x)
-        {
-            data[posY + x ] = image.at<unsigned char>(y, x);
-        }// END for (int x = 0 ; x < width ; x++)
-    }// END for (int y=0; y < height; y++)
-}// END loadDataMatToUchar
-
-void tmml_cl::uintToMat(const unsigned int *data, Mat &image)
-{
-    int width = image.cols;
-    int height = image.rows;
-    for (int y = 0; y < height; ++y)
-    {
-        int posY = y * width;
-        for (int x = 0 ; x < width ; ++x)
-        {
-            image.at<uint>(y,x) = data[posY + x];
-        }// END for (int x = 0 ; x < width ; ++x)
-    }// END for (int y = 0; y < height; ++y)
-}// END uintToMat
-
