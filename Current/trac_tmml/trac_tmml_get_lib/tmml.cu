@@ -12,9 +12,9 @@ void tmml::cuda_Malloc()
     cudaMalloc((void**)&dev_result_array_x, sizeof(unsigned char) * RESULT_AREA);
     cudaMalloc((void**)&dev_result_array_y, sizeof(unsigned char) * RESULT_AREA);
     cudaMalloc((void**)&dev_result_array_bright, sizeof(float) * RESULT_AREA);
-    Mat img_work(Size(WORK_WIDTH, WORK_HEIGHT), CV_8UC1, Scalar(0));
+    Mat img_work(Size(WORK_WIDTH, WORK_WIDTH), CV_8UC1, Scalar(0));
     img_work_gpu.upload(img_work);
-    Mat img_temp(Size(TEMPLATE_WIDTH, TEMPLATE_HEIGHT), CV_8UC1, Scalar(0));
+    Mat img_temp(Size(TEMPLATE_WIDTH, TEMPLATE_WIDTH), CV_8UC1, Scalar(0));
     img_temp_gpu.upload(img_temp);
     cudaMalloc((void**)&dev_max_K1, sizeof(Pix) * N1);
     cudaMalloc((void**)&dev_max_K2, sizeof(Pix) * N2);
@@ -37,7 +37,7 @@ void tmml::cuda_Free()
 void tmml::fill_result_array()
 {
     int id = 0;
-    for(int y = 0; y < RESULT_HEIGHT; ++y)
+    for(int y = 0; y < RESULT_WIDTH; ++y)
     {
         for(int x = 0; x < RESULT_WIDTH; ++x)
         {
@@ -45,7 +45,7 @@ void tmml::fill_result_array()
             result_array_y[id] = (unsigned char)y;
             id++;
         } // END for(int x = 0; x < RESULT_WIDTH; ++x)
-    } // END for(int y = 0; y < RESULT_HEIGHT; ++y)
+    } // END for(int y = 0; y < RESULT_WIDTH; ++y)
     cudaMemcpy(dev_result_array_x, result_array_x, sizeof(unsigned char) * RESULT_AREA, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_result_array_y, result_array_y, sizeof(unsigned char) * RESULT_AREA, cudaMemcpyHostToDevice);
 } // END fill_result_array
@@ -53,7 +53,7 @@ void tmml::fill_result_array()
 void tmml::fill_template_array()
 {
     int id = 0;
-    for(int y = 0; y < TEMPLATE_HEIGHT; ++y)
+    for(int y = 0; y < TEMPLATE_WIDTH; ++y)
     {
         for(int x = 0; x < TEMPLATE_WIDTH; ++x)
         {
@@ -61,15 +61,15 @@ void tmml::fill_template_array()
             template_array_y[id] = (unsigned char)y;
             id++;
         }  // END for(int x = 0; x < TEMPLATE_WIDTH; ++x)
-    }  // END for(int y = 0; y < TEMPLATE_HEIGHT; ++y)
+    }  // END for(int y = 0; y < TEMPLATE_WIDTH; ++y)
     cudaMemcpy(dev_template_array_x, template_array_x, sizeof(unsigned char) * TEMPLATE_AREA, cudaMemcpyHostToDevice);
     cudaMemcpy(dev_template_array_y, template_array_y, sizeof(unsigned char) * TEMPLATE_AREA, cudaMemcpyHostToDevice);
 } // END fill_template_array
 
 void tmml::fill1level()
-{       
+{
     int id = 0;
-    for(int y = 0; y < RESULT_HEIGHT; ++y)
+    for(int y = 0; y < RESULT_WIDTH; ++y)
     {
         for(int x = 0; x < RESULT_WIDTH; x += K1)
         {
@@ -85,51 +85,53 @@ void tmml::fill1level()
 #ifdef SQDIFF_NORMED
 __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu, float * dev_result_array_bright)
 {
-    int id = blockIdx.x * blockDim.x + threadIdx.x;
-    int sum_roi_temp = 0;
+    const int result_id = blockIdx.x * blockDim.x + threadIdx.x;
+    int sum_roi_temp_2 = 0;
     int diff_roi_temp = 0;
-    int y = id / RESULT_WIDTH;
-    int x = id % RESULT_WIDTH;
-    for(int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; ++tmp_y)
+    const int result_y = result_id / RESULT_WIDTH;
+    const int result_x = result_id % RESULT_WIDTH;
+    for(int temp_y = 0; temp_y < TEMPLATE_WIDTH; ++temp_y)
     {
-        for(int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; ++tmp_x)
+        const int work_y = temp_y + result_y;
+        const int temp_id0 = temp_y * TEMPLATE_WIDTH;
+        for(int temp_x = 0; temp_x < TEMPLATE_WIDTH; ++temp_x)
         {
-            int i = tmp_y * TEMPLATE_WIDTH + tmp_x;
-            unsigned char temp = const_img_temp_array[i];
-            unsigned char roi = img_work_gpu(tmp_y + y, tmp_x + x);
+            const int temp = const_img_temp_array[temp_id0 + temp_x];
+            const int roi = img_work_gpu(work_y, temp_x + result_x);
             diff_roi_temp += abs(roi - temp);
-            sum_roi_temp += (roi + temp);
+            sum_roi_temp_2 += (roi + temp);
         } // for(int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; ++tmp_x)
-    } // for(int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; ++tmp_y)
-    dev_result_array_bright[id] = 1.f - (float)diff_roi_temp / ((float)sum_roi_temp);
+    } // for(int tmp_y = 0; tmp_y < TEMPLATE_WIDTH; ++tmp_y)
+    dev_result_array_bright[result_id] = 1.f - (float)diff_roi_temp / ((float)sum_roi_temp_2);
 }  // END void match_temp
 #endif // END #ifdef SQDIFF_NORMED
 
 #ifdef CCOEFF_NORMED
 __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu, float * dev_result_array_bright)
 {
-    int id = blockIdx.x * blockDim.x + threadIdx.x;
+    const int result_id = blockIdx.x * blockDim.x + threadIdx.x;
     int sum_roi_temp = 0;
     int sum_temp_temp = 0;
     int sum_roi_roi = 0;
     int sum_roi = 0;
     int sum_temp = 0;
-    int y = id / RESULT_WIDTH;
-    int x = id % RESULT_WIDTH;
-    for(int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; ++tmp_y)
+    const int result_y = result_id / RESULT_WIDTH;
+    const int result_x = result_id % RESULT_WIDTH;
+    for(int temp_y = 0; temp_y < TEMPLATE_WIDTH; ++temp_y)
     {
-        for(int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; ++tmp_x)
+        const int work_y = temp_y + result_y;
+        const int temp_id0 = temp_y * TEMPLATE_WIDTH;
+        for(int temp_x = 0; temp_x < TEMPLATE_WIDTH; ++temp_x)
         {
-            int i = tmp_y * TEMPLATE_WIDTH + tmp_x;
-            unsigned char temp = const_img_temp_array[i];
-            unsigned char roi = img_work_gpu(tmp_y + y, tmp_x + x);
+            const int temp = const_img_temp_array[temp_id0 + temp_x];
+            const int roi = img_work_gpu(work_y, temp_x + result_x);
             sum_roi_temp += roi * temp;
             sum_temp_temp += temp * temp;
             sum_roi_roi += roi * roi;
             sum_roi += roi;
             sum_temp += temp;
         } // for(int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; ++tmp_x)
-    } // for(int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; ++tmp_y)
+    } // for(int tmp_y = 0; tmp_y < TEMPLATE_WIDTH; ++tmp_y)
     const float sum_roi_temp1 = TEMPLATE_AREA_1 * sum_roi_temp;
     const float sum_roi1 = TEMPLATE_AREA_1 * sum_roi;
     const float sum_temp1 = TEMPLATE_AREA_1 * sum_temp;
@@ -138,14 +140,14 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu, fl
     const float ch  = sum_roi_temp1 - sum_roi1 * sum_temp1;
     const float zn1 = sum_temp_temp1 - sum_temp1 * sum_temp1;
     const float zn2 = sum_roi_roi1 - sum_roi1 * sum_roi1;
-    dev_result_array_bright[id] = ch / sqrt(zn1 * zn2);
+    dev_result_array_bright[result_id] = ch / sqrt(zn1 * zn2);
 }  // END void match_temp
 #endif // END #ifdef CCOEFF_NORMED
 
 #ifdef COMBINED
 __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu, float * dev_result_array_bright)
 {
-    int id = blockIdx.x * blockDim.x + threadIdx.x;
+    const int result_id = blockIdx.x * blockDim.x + threadIdx.x;
     int sum_roi_temp = 0;
     int sum_temp_temp = 0;
     int sum_roi_roi = 0;
@@ -153,15 +155,16 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu, fl
     int sum_temp = 0;
     int sum_roi_temp_2 = 0;
     int diff_roi_temp = 0;
-    int y = id / RESULT_WIDTH;
-    int x = id % RESULT_WIDTH;
-    for(int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; ++tmp_y)
+    const int result_y = result_id / RESULT_WIDTH;
+    const int result_x = result_id % RESULT_WIDTH;
+    for(int temp_y = 0; temp_y < TEMPLATE_WIDTH; ++temp_y)
     {
-        for(int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; ++tmp_x)
+        const int work_y = temp_y + result_y;
+        const int temp_id0 = temp_y * TEMPLATE_WIDTH;
+        for(int temp_x = 0; temp_x < TEMPLATE_WIDTH; ++temp_x)
         {
-            int i = tmp_y * TEMPLATE_WIDTH + tmp_x;
-            unsigned char temp = const_img_temp_array[i];
-            unsigned char roi = img_work_gpu(tmp_y + y, tmp_x + x);
+            const int temp = const_img_temp_array[temp_id0 + temp_x];
+            const int roi = img_work_gpu(work_y, temp_x + result_x);
             sum_roi_temp += roi * temp;
             sum_temp_temp += temp * temp;
             sum_roi_roi += roi * roi;
@@ -170,7 +173,7 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu, fl
             diff_roi_temp += abs(roi - temp);
             sum_roi_temp_2 += (roi + temp);
         } // for(int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; ++tmp_x)
-    } // for(int tmp_y = 0; tmp_y < TEMPLATE_HEIGHT; ++tmp_y)
+    } // for(int tmp_y = 0; tmp_y < TEMPLATE_WIDTH; ++tmp_y)
     const float sum_roi_temp1 = TEMPLATE_AREA_1 * sum_roi_temp;
     const float sum_roi1 = TEMPLATE_AREA_1 * sum_roi;
     const float sum_temp1 = TEMPLATE_AREA_1 * sum_temp;
@@ -179,7 +182,7 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu, fl
     const float ch  = sum_roi_temp1 - sum_roi1 * sum_temp1;
     const float zn1 = sum_temp_temp1 - sum_temp1 * sum_temp1;
     const float zn2 = sum_roi_roi1 - sum_roi1 * sum_roi1;
-    dev_result_array_bright[id] = ch / sqrt(zn1 * zn2) - (float)diff_roi_temp / sum_roi_temp_2;
+    dev_result_array_bright[result_id] = ch / sqrt(zn1 * zn2) - (float)diff_roi_temp / sum_roi_temp_2;
 }  // END void match_temp
 #endif // END ifdef COMBINED
 
@@ -245,19 +248,7 @@ __global__ void max_pixel2(const Pix * max_K1, Pix * max_K2)
 void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 {
     img_work_gpu.upload(img_work);
-    int id = 0;
-    for(int y = 0; y < TEMPLATE_HEIGHT; y++)
-    {
-        for(int x = 0; x < TEMPLATE_WIDTH; x++)
-        {
-            img_temp_arr[id] = img_temp.at<unsigned char>(y, x);
-            id++;
-        } // END for(int x = 0; x < TEMPLATE_WIDTH; x++)
-    } // END for(int y = 0; y < TEMPLATE_HEIGHT; y++)
-
-    cudaMemcpyToSymbol(const_img_temp_array, img_temp_arr, sizeof(unsigned char) * TEMPLATE_AREA);
-
-
+    cudaMemcpyToSymbol(const_img_temp_array, img_temp.data, sizeof(unsigned char) * TEMPLATE_AREA);
     match_temp<<<blocks_match_temp, threads_match_temp>>>(img_work_gpu, dev_result_array_bright);
 
 // =========================================================

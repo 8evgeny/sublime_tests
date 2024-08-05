@@ -20,13 +20,10 @@
 #include <iomanip>
 
 const int SOURCE_WIDTH = EXT_VAL * TEMPLATE_WIDTH;
-const int SOURCE_HEIGHT = EXT_VAL * TEMPLATE_HEIGHT;
 const int WORK_WIDTH = SOURCE_WIDTH - 1;
-const int WORK_HEIGHT = SOURCE_HEIGHT - 1;
 const int RESULT_WIDTH = WORK_WIDTH - TEMPLATE_WIDTH + 1; // 192
-const int RESULT_HEIGHT = WORK_HEIGHT - TEMPLATE_HEIGHT + 1; // 192
-const int RESULT_AREA = RESULT_WIDTH * RESULT_HEIGHT;
-const int TEMPLATE_AREA = TEMPLATE_WIDTH * TEMPLATE_HEIGHT;
+const int RESULT_AREA = RESULT_WIDTH * RESULT_WIDTH;
+const int TEMPLATE_AREA = TEMPLATE_WIDTH * TEMPLATE_WIDTH;
 const float RESULT_AREA_1 = 1.f / RESULT_AREA;
 const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 const float TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
@@ -51,7 +48,7 @@ const float TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
     const float threads_match_temp_1 = 1.f / threads_match_temp;
 
     // Число нитей CUDA в итерации:
-    const int N1 = RESULT_WIDTH * RESULT_HEIGHT / K1; // 6144;
+    const int N1 = RESULT_WIDTH * RESULT_WIDTH / K1; // 6144;
     const int N2 = N1 / K2; // 1024;
     const int blocks_match_temp = RESULT_AREA * threads_match_temp_1;
     const int batch_size = TEMPLATE_AREA;
@@ -75,7 +72,7 @@ class tmml
     void work_tmml(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
     Pix max_pix = max_pix0;
     double maxVal = 0;
-    cv::Mat img_result = cv::Mat(cv::Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32SC1, cv::Scalar(0));
+    cv::Mat img_result = cv::Mat(cv::Size(RESULT_WIDTH, RESULT_WIDTH), CV_32SC1, cv::Scalar(0));
     float * dev_result_array_bright;
     float result_array_bright[RESULT_AREA];
 
@@ -88,16 +85,16 @@ class tmml
 
   private:
     double minVal, min_max_Val;
-    cv::Point minLoc, maxLoc;        
+    cv::Point minLoc, maxLoc;
 
 #ifndef NO_GPU
     void cuda_Malloc();
     void cuda_Free();
     void init_matchers();
     void fill_template_array();
-    void fill1level();    
+    void fill1level();
 
-    cv::cuda::GpuMat img_work_gpu, img_temp_gpu;    
+    cv::cuda::GpuMat img_work_gpu, img_temp_gpu;
     unsigned char first_level_x[N1], first_level_y[N1];
     Pix *dev_max_K1, *dev_max_K2;
     Pix max_K1[N1], max_K2[N2];

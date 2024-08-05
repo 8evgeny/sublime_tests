@@ -86,37 +86,32 @@ class trac_tmml
     int k_renew_ok = 5; // Число кадров, пропускаемых перед сохранением эталона.
     int k_renew = k_renew_ok;
 
-    const float w_2_et = 24; // Полуширина стороны квадрата для эталона на рабочем фрейме.
-    const float w_et = 2.f*w_2_et; // Ширина стороны квадрата для эталона на рабочем фрейме.
-    cv::Point2f wh_2_0 = cv::Point2f(w_2_et, w_2_et);
-    cv::Point2f wh_et_2 = wh_2_0;
-    cv::Size wh_et = cv::Size(2*wh_et_2.x, 2*wh_et_2.y);
+    const int w_et = TEMPLATE_WIDTH; // Ширина стороны квадрата для эталона на рабочем фрейме.
+    const int w_2_et = round(0.5 * TEMPLATE_WIDTH); // Полуширина стороны квадрата для эталона на рабочем фрейме.
+    const cv::Point wh_et_2 = cv::Point(w_2_et, w_2_et);
+    const cv::Point2f wh_et_2f = cv::Point2f(w_2_et, w_2_et);
+    const cv::Size wh_et = cv::Size(TEMPLATE_WIDTH, TEMPLATE_WIDTH);
+    const cv::Size wh_local0 = cv::Size(WORK_WIDTH, WORK_WIDTH);
+    cv::Rect rct_local_result = cv::Rect(0, 0, TEMPLATE_WIDTH, TEMPLATE_WIDTH);
 
     float orig_work, work_orig, work_orig_2, min_max_Val, min_max_Val2, fr_w0_1, fr_h0_1;
     int fr_h_work, num_fr_0, num_fr_1, fr_w_work;
     cv::Point2f aim_center, aim_center_prev;
     cv::Point2f p__  = cv::Point2f(-1000, -1000);
     cv::Point2f center = p__, center_prev = p__, wh_sm_2, center_sm, local_center_tmp, center_kalman;
-
-    const float ext_wh0 = 10; // Расширение рамки локального захвата по умолчанию.
-    //float ext_wh = ext_wh0; // Расширение рамки локального захвата.
-    const int d_ext_wh = 20; // Максимальное количество увеличений синей рамки, при превышении которого вызывается deinit().
-    const int ext_wh1 = ext_wh0 + d_ext_wh; // Максимальное коэффициент увеличения синей рамки, при превышении которого вызывается deinit().
     cv::Rect2f rct_result, rct_result_orig, rct_result_sm;
-    cv::Rect rct_local_result;
+
     string way2init_rect;
     float d02, d020;
     int left_padd, i_fr;
-    cv::Size sz_et = cv::Size(48, 48);
-    cv::Mat et_prev, result, et_gray, et_prev_gray, flow, img_et_sm, result_sm;
 
+    cv::Mat et_prev, result, et_gray, et_prev_gray, flow, img_et_sm, result_sm;
     const float koef_f_midl = 0.1; // Переменная для оптического потока (пока не используется)
     const int wh_sm__2_min = 6; // Размер внутреннего шаблона (маленького)
     const float koef_wh_sm = 0.1; // Для вычисления размеров внутреннего шаблона (маленького) из размеров внешнего шаблона.
-    const float min_max_Val_sm = 0.77; // Трешхолд для матчинга шаблона по умолчанию.
-    cv::Size wh_local0 = cv::Size(round(ext_wh0*wh_2_0.x) -1, round(ext_wh0*wh_2_0.y) -1);
+    const float min_max_Val_sm = 0.76; // Трешхолд для матчинга шаблона по умолчанию.
     int wh_sm__2 = wh_sm__2_min;
-    //Point2f wh_local = wh_local0;
+    //Point wh_local = wh_local0;
     const int win_x = 10; // Отступ окна слева
     const int win_y = 10; // Отступ окна сверху
     cv::Point2f center_orig, wh_et_2_orig, wh_local_orig, lt_local_work;
@@ -136,7 +131,6 @@ class trac_tmml
     cv::Point2f matchLoc, matchLoc_sm;
 
     float shift2 = 0.004; // Максимальный относительный квадрат смещения текущей рамки от предыдущей
-
     // Для LK-алгоритма:
     float koef_LK = 1.f; // Отладочный коэффициэнт эффекта масштабирования.
     bool first_match = 1; // Признак первого кадра для LK.

@@ -129,8 +129,6 @@ void trac_tmml::deinit()
     first_img = 1;
     k_renew = k_renew_ok;
     (*ts).ok_match = 0;
-    //ext_wh = ext_wh0;
-    //wh_local = wh_local0;
     d02 = d020;
     (*ts).validate = (*ts).validate_min;
     (*ts).rect_ok = 0;
@@ -343,24 +341,13 @@ bool trac_tmml::match_img()
       // ------------------------------ Нахождение et на изображении img_work_local
       et = (*it).clone();
       it++;
-
-      tm->max_pix = tm->max_pix0;
-
       tm->work_tmml(img_local_work, et, tm->max_pix);
-
-cout<<"max_pix = "<<tm->max_pix.bright<<"\n";
-
       //cout << "maxVal=" << maxVal << "; k=" << k << "/" << list_et.size() << endl;  
-  #ifdef NO_GPU
-      if(tm->maxVal > min_max_Val)
-      {
-  #else
       if(tm->max_pix.bright > min_max_Val)
       {
-  #endif
           //cout << " Match ok" << endl;
-          local_center_tmp = Point2f(tm->max_pix.x + 0.5*et.cols, tm->max_pix.y + 0.5*et.rows);
-          rct_local_result = Rect(local_center_tmp - wh_et_2, local_center_tmp + wh_et_2);
+          local_center_tmp = Point2f(tm->max_pix.x + w_2_et, tm->max_pix.y + w_2_et);
+          rct_local_result = Rect(tm->max_pix.x, tm->max_pix.y, w_et, w_et);
           //cout << "rct_local_result.tl=" << rct_local_result.tl() << "; br=" << rct_local_result.br() << "; img_local_work.size()=" << img_local_work.size() << endl;
           if(!verify_rect(img_local_work.size(), rct_local_result)){k++; continue;}
           Mat img_et_tmp = img_local_work(rct_local_result);
@@ -374,7 +361,7 @@ cout<<"max_pix = "<<tm->max_pix.bright<<"\n";
           if(maxVal_sm < min_max_Val){k++; continue;}
 
           local_center_tmp = Point2f(rct_local_result.x + maxLoc_sm.x + wh_sm__2, rct_local_result.y + maxLoc_sm.y + wh_sm__2);
-          rct_local_result = Rect(local_center_tmp - wh_et_2, local_center_tmp + wh_et_2);
+          rct_local_result = Rect(local_center_tmp.x - w_2_et, local_center_tmp.y - w_2_et, w_et, w_et);
 
           const Point2f& lt1 = rct_local_result.tl();
           const Point2f& rd1 = rct_local_result.br();
@@ -393,7 +380,7 @@ cout<<"max_pix = "<<tm->max_pix.bright<<"\n";
              if(!shift_ok){k++; continue;}
           } // -- END if(!first_img)
 
-          rct_result = Rect2f(center - wh_et_2, center + wh_et_2);
+          rct_result = Rect2f(center - wh_et_2f, center + wh_et_2f);
           rct_result_orig = Rect2f(orig_work*rct_result.tl(), orig_work*rct_result.br());
 
           est = KF_tr.correct(measurement_tr); // Обновление
@@ -414,7 +401,7 @@ cout<<"max_pix = "<<tm->max_pix.bright<<"\n";
           num_frame_ok = (*ts).work_number;
           d02 = d020;
           return 1;
-      } // -- END if(tm->maxVal > min_max_Val)
+      } // -- END if(tm->max_pix.bright > min_max_Val)
       //cout << " NO match" << endl;
       k++;
    } // -- END for(auto it = list_et.begin(); it != list_et.end(); it++)
@@ -428,7 +415,7 @@ cout<<"max_pix = "<<tm->max_pix.bright<<"\n";
    center_prev = center;
    center_kalman = pk; // -- Калман.
    center = center_kalman;
-   rct_result = Rect2f(center - wh_et_2, center + wh_et_2);
+   rct_result = Rect2f(center - wh_et_2f, center + wh_et_2f);
    rct_result_orig = Rect2f(orig_work*rct_result.tl(), orig_work*rct_result.br());
    //shift_ok = shift_verify(center);
 
@@ -589,8 +576,8 @@ int trac_tmml::work()
            work_orig = 1.f/orig_work;
            fr_w_work = round(work_orig*fr_w0);
            fr_h_work = round(work_orig*fr_h0);
-           wh_et_2 = Point2f((*ts).obj_wh_2_w*fr_w_work, (*ts).obj_wh_2_h*fr_h_work);
-           wh_et = cv::Size(2*wh_et_2.x, 2*wh_et_2.y);
+           //wh_et_2 = Point(round((*ts).obj_wh_2_w*fr_w_work), round((*ts).obj_wh_2_h*fr_h_work));
+           //wh_et = cv::Size(2*wh_et_2.x, 2*wh_et_2.y);
            d020 = shift2*(wh_et.width*wh_et.width + wh_et.height*wh_et.height);
            d02 = d020;
            //cout << "first_img: num_fr_0=" << num_fr_0 << "; obj_xy=[" << (*ts).obj_xy_x << ", " << (*ts).obj_xy_y << "]; obj_wh_2=[" << (*ts).obj_wh_2_w << ", " << (*ts).obj_wh_2_h << "]; fr_w_work=" << fr_w_work << "; fr_h_work=" << fr_h_work << endl;
@@ -621,7 +608,7 @@ int trac_tmml::work()
            wh_sm__2 = MAX(wh_sm__2_min, round(koef_wh_sm*wh_et_2.x));
            result_sm.create(Size(wh_et.width - wh_sm__2 + 1, wh_et.height - wh_sm__2 + 1), CV_32FC1);
            wh_sm_2 = Point2f(wh_sm__2, wh_sm__2);
-           rct_result_sm = Rect2f(wh_et_2 - wh_sm_2, wh_et_2 + wh_sm_2);
+           rct_result_sm = Rect2f(wh_et_2f - wh_sm_2, wh_et_2f + wh_sm_2);
            if(!verify_rect(img_et.size(), rct_result_sm)){deinit(); return 0;}
 
            init_work();
@@ -640,8 +627,8 @@ int trac_tmml::work()
            work_orig = 1.f/orig_work;
            fr_w_work = round(work_orig*fr_w0);
            fr_h_work = round(work_orig*fr_h0);
-           wh_et_2 = Point2f((*ts).obj_wh_2_w*fr_w_work, (*ts).obj_wh_2_h*fr_h_work);
-           wh_et = cv::Size(2*wh_et_2.x, 2*wh_et_2.y);
+           //wh_et_2 = Point(round((*ts).obj_wh_2_w*fr_w_work), ((*ts).obj_wh_2_h*fr_h_work));
+           //wh_et = Size(2*wh_et_2.x, 2*wh_et_2.y);
            center = Point2f((*ts).obj_xy_x*fr_w_work, (*ts).obj_xy_y*fr_h_work);
        } // -- END if(!first_img && scaling)
 

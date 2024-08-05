@@ -37,5 +37,6 @@ tmml::~tmml()
        minMaxLoc(img_result, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
        max_pix.x = maxLoc.x;
        max_pix.y = maxLoc.y;
+       max_pix.bright = maxVal;
    }   // END void work_tmml
 #endif // END ifdef NO_GPU

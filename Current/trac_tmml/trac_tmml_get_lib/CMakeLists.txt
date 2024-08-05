@@ -12,10 +12,9 @@ set(USE_GPU 2) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)
 # CORR_TYPE = 6 : CCOEFF_NORMED  (Кросскорреляция модифицированная)
 # CORR_TYPE = 8 ; COMBINED (объединение прямой и модифицированной кросскорреляции)
-set(CORR_TYPE 6)
+set(CORR_TYPE 8)
 
 set(TEMPLATE_WIDTH 48)
-set(TEMPLATE_HEIGHT 48)
 set(EXT_VAL 5)
 
 set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda_static)
@@ -24,8 +23,8 @@ include_directories($CMAKE_SOURCE_DIR})
 set(COUT_OK 0) # Вывод в терминал.
 set(MAX_FPS_OK 0) # Включение/выключение задержки.
 set(FIND_DISC_ID 0) # Привязка к железу вычислителя.
+
 #######################################################################
-set(KernelFromFile 0)
 
 if(${USE_GPU} EQUAL 0)
     add_definitions(-DNO_GPU)
@@ -64,10 +63,6 @@ endif() # END if(${CORR_TYPE} EQUAL 6)
 if(${CORR_TYPE} EQUAL 8)
     add_definitions(-DCOMBINED)
 endif() # END if(${CORR_TYPE} EQUAL 8)
-
-if(${KernelFromFile} EQUAL 1)
-    add_definitions(-DKernelFromFile)
-endif()
 
 if(${USE_GPU} EQUAL 1)
     set(CMAKE_CUDA_COMPILER /usr/local/cuda/bin/nvcc)
@@ -109,10 +104,6 @@ endif() # END if(${USE_GPU} EQUAL 1)
 if(${TEMPLATE_WIDTH})
     add_definitions(-DTEMPLATE_WIDTH=${TEMPLATE_WIDTH})
 endif() # END if(${TEMPLATE_WIDTH})
-
-if(${TEMPLATE_HEIGHT})
-    add_definitions(-DTEMPLATE_HEIGHT=${TEMPLATE_HEIGHT})
-endif() # END if(${TEMPLATE_HEIGHT})
 
 if(${EXT_VAL})
     add_definitions(-DEXT_VAL=${EXT_VAL})
@@ -158,17 +149,16 @@ if(${USE_GPU} EQUAL 1)
 endif() # END if(${USE_GPU} EQUAL 1)
 
 if(${USE_GPU} EQUAL 2)
-    if(${KernelFromFile} EQUAL 1)
-        add_definitions(-DKernelFromFile)
-        configure_file(tmml.cl ${FROM_LIB}/run/tmml.cl)
-    endif()
+    configure_file(tmml.cl ${FROM_LIB}/run/tmml.cl)
     add_library(${lib_name} SHARED
         trac_scale.hpp
         trac_scale.cpp
         ${FROM_LIB}/tracshats/trac_api.hpp
         ${FROM_LIB}/tracshats/trac_struct.hpp
         tmml_cl.cpp
-        tmml_cl.hpp)
+        tmml.cl
+        tmml_cl.hpp
+    )
     target_link_libraries(${lib_name} ${OpenCL_LIBRARY})
 endif() # END if(${USE_OPEN_CL} EQUAL 2)
 
