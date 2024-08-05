@@ -10,7 +10,7 @@ const int koef_resize = 2;
 constexpr int temp_center_x = 150;
 constexpr int temp_center_y = 165;
 constexpr int temp_left = temp_center_x - 0.5 * TEMPLATE_WIDTH;
-constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_HEIGHT;
+constexpr int temp_top = temp_center_y - 0.5 * TEMPLATE_WIDTH;
 
 int main()
 {
@@ -21,9 +21,9 @@ int main()
     cout<<"match metod: COMBINED" << endl;
 #endif // END #ifdef COMBINED
     cout<<"iterations: "<< iter_num << endl << endl;
-    Rect temp_rect{temp_left, temp_top, TEMPLATE_WIDTH, TEMPLATE_HEIGHT};
+    Rect temp_rect{temp_left, temp_top, TEMPLATE_WIDTH, TEMPLATE_WIDTH};
     Mat img_source = imread("image_source", CV_8UC1);
-    Rect work_rect(Point(0, 0), Point(WORK_WIDTH, WORK_HEIGHT));
+    Rect work_rect(Point(0, 0), Point(WORK_WIDTH, WORK_WIDTH));
     Mat img_work = img_source(work_rect).clone();
     Mat img_temp = img_source(temp_rect).clone();
     duration<double> duration_matching;
@@ -33,7 +33,7 @@ int main()
 //OpenCV
     double minVal, maxVal;
     Point minLoc, maxLoc;
-    Mat img_result_cpu(Size(RESULT_WIDTH, RESULT_HEIGHT), CV_32FC1, Scalar(0));
+    Mat img_result_cpu(Size(RESULT_WIDTH, RESULT_WIDTH), CV_32FC1, Scalar(0));
 
     time_start = high_resolution_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
@@ -51,7 +51,7 @@ int main()
     Mat img_result_show, img_result_cpu_show;
     normalize(img_result_cpu, img_result_cpu_show, 0, 255, NORM_MINMAX);
     img_result_cpu_show.convertTo(img_result_cpu_show, CV_8UC1);
-    resize(img_result_cpu_show, img_result_cpu_show, Size(koef_resize*RESULT_WIDTH, koef_resize*RESULT_HEIGHT));
+    resize(img_result_cpu_show, img_result_cpu_show, Size(koef_resize*RESULT_WIDTH, koef_resize*RESULT_WIDTH));
     const char* OpenCV_window = "result_CPU";
 #endif
 
@@ -75,7 +75,7 @@ int main()
     #ifdef find_diff_result
         normalize(tm->img_result, img_result_show, 0, 255, NORM_MINMAX);
         img_result_show.convertTo(img_result_show, CV_8UC1);
-        resize(img_result_show, img_result_show, Size(koef_resize*RESULT_WIDTH, koef_resize*RESULT_HEIGHT));
+        resize(img_result_show, img_result_show, Size(koef_resize*RESULT_WIDTH, koef_resize*RESULT_WIDTH));
         const char* CL_window = "result_cl";
         namedWindow( CL_window, WINDOW_AUTOSIZE );
         moveWindow(CL_window, 900,600);
@@ -85,7 +85,7 @@ int main()
         const char* OpenCL = "matchingCL";
         namedWindow( OpenCL, WINDOW_AUTOSIZE );
         moveWindow(OpenCL, 1300, 600);
-        resize(img_work1, img_work1, Size(koef_resize*WORK_WIDTH, koef_resize*WORK_HEIGHT));
+        resize(img_work1, img_work1, Size(koef_resize*WORK_WIDTH, koef_resize*WORK_WIDTH));
         imshow(OpenCL, img_work1);
     #endif // #ifdef find_diff_result
 
