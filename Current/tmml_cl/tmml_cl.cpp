@@ -15,7 +15,6 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
     loadAndBuildProgram(ok, string(KERNEL_FILE));
     if(!ok){cout << "error loadAndBuildProgram!!!\n"; return;}
 
-    // ================================================= work_cl_1:
     img_work_buff = Buffer(context, CL_MEM_READ_WRITE  | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * WORK_AREA);
     img_temp_buff = Buffer(context, CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * TEMPLATE_AREA);
     img_result_buff = Buffer(context, CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR, sizeof(float) * RESULT_AREA);
@@ -35,20 +34,6 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
     tmml_cl_kernel1.setArg(3, maxVal_int_buff);
     tmml_cl_kernel1.setArg(4, max_pix_buff);
 
-    // ================================================= work_cl_max:
-//    img_result_bright_buff = Buffer(context, CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR, sizeof(float) * RESULT_WIDTH);
-//    img_result_x_buff = Buffer(context, CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * RESULT_WIDTH);
-//    int clError2 = 0;
-//        tmml_cl_kernel2 = Kernel(program, KERNEL_tmml_cl_NAME2, &clError2);
-//        if(clError2 != 0)
-//        {
-//            cout << "clError2=" << clError2 << "; KERNEL_tmml_cl_NAME2=" << KERNEL_tmml_cl_NAME2 << " =============== !!!" << endl;
-//            ok = false;
-//            return;
-//        } // END if(clError2 != 0)
-//    tmml_cl_kernel2.setArg(0, img_result_buff);
-//    tmml_cl_kernel2.setArg(1, img_result_bright_buff);
-//    tmml_cl_kernel2.setArg(2, img_result_x_buff);
     ok = true;
     cout << "Constructor tmml_cl ok=" << ok << endl;
 } // END tmml_cl
@@ -61,33 +46,6 @@ tmml_cl::~tmml_cl()
 
 void tmml_cl::work_tmml(const Mat & img_work, const Mat & img_temp, Pix & max_pix)
 {
-    // ================================================= work_cl_1:
-//    int temp_id = 0;
-//    for(int y = 0; y < TEMPLATE_WIDTH; ++y)
-//    {
-//        for(int x = 0; x < TEMPLATE_WIDTH; ++x)
-//        {
-//            //const uchar * data = img_temp.ptr<uchar>(0);
-//            //uchar px = data[y*img_temp.cols + x];
-//            if(TEMPLATE_WIDTH != img_temp.cols){cout << "img_temp.cols=" << img_temp.cols << "; img_temp.rows=" << img_temp.rows << "!!!\n";}
-//            img_temp_arr[temp_id] = img_temp.data[y*img_temp.cols + x];// img_temp.at<unsigned char>(y, x);
-//            temp_id++;
-//        } // END for(int x = 0; x < TEMPLATE_WIDTH; x++)
-//    } // END for(int y = 0; y < TEMPLATE_WIDTH; y++)
-
-//    int work_id = 0;
-//    for(int y = 0; y < WORK_WIDTH; ++y)
-//    {
-//        for(int x = 0; x < WORK_WIDTH; ++x)
-//        {
-//            //const uchar * data = img_work.ptr<uchar>(0);
-//            //uchar px = data[y*img_work.cols + x];
-//            if(WORK_WIDTH != img_work.cols){cout << "WORK_WIDTH=" << WORK_WIDTH << "; img_work.cols=" << img_work.cols << "!!!\n";}
-//            img_work_arr[work_id] = img_work.data[y*WORK_WIDTH + x];// img_work.at<unsigned char>(y, x);
-//            work_id++;
-//        } // END for(int x = 0; x < TEMPLATE_WIDTH; x++)
-//    } // END for(int y = 0; y < TEMPLATE_WIDTH; y++)
-
     qu.enqueueWriteBuffer(maxVal_int_buff, CL_TRUE, 0, sizeof(int), &maxVal_int);
     qu.enqueueWriteBuffer(img_work_buff, CL_TRUE, 0, sizeof(unsigned char) * WORK_AREA, &img_work.data[0]);
     qu.enqueueWriteBuffer(img_temp_buff, CL_TRUE, 0, sizeof(unsigned char) * TEMPLATE_AREA, &img_temp.data[0]);
@@ -97,28 +55,6 @@ void tmml_cl::work_tmml(const Mat & img_work, const Mat & img_temp, Pix & max_pi
 #if defined(find_diff_result)
     qu.enqueueReadBuffer(img_result_buff, CL_TRUE, 0, sizeof(float) * RESULT_AREA, &img_result.data[0]);
 #endif // END #if defined(find_diff_result)
-
-// =====================
-//    minMaxLoc(img_result, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
-//    max_pix.x = maxLoc.x;
-//    max_pix.y = maxLoc.y;
-//    max_pix.bright = maxVal;
-// =======================
-// ================================================= work_cl_max:
-//    qu.enqueueNDRangeKernel(tmml_cl_kernel2, NullRange, NDRange(RESULT_WIDTH), NullRange);
-//    qu.finish();
-//    qu.enqueueReadBuffer(img_result_bright_buff, CL_TRUE, 0, sizeof(float) * RESULT_WIDTH, &img_result_bright[0]);
-//    qu.enqueueReadBuffer(img_result_x_buff, CL_TRUE, 0, sizeof(unsigned char) * RESULT_WIDTH, &img_result_x[0]);
-//    max_pix = max_pix0;
-//    for(int y = 0; y < RESULT_WIDTH; ++y)
-//    {
-//        if(img_result_bright[y] > max_pix.bright)
-//        {
-//            max_pix.x = img_result_x[y];
-//            max_pix.y = y;
-//            max_pix.bright = img_result_bright[y];
-//        } // END if(img_result_bright[y] > max_pix.bright)
-//    } // END for(int y = 0; y < RESULT_WIDTH; ++y)
 } // END work_tmml
 
 string tmml_cl::loadKernelFile(const string & program)

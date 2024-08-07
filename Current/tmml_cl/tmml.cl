@@ -1,16 +1,3 @@
-
-__constant int4 MAGIC_INT = (int4)(48, 239, 192, 0);
-__constant float4 MAGIC_FLOAT = (float4)(0.000434028f, 0,0,0);
-//MAGIC_INT.x = 48;  //TEMPLATE_WIDTH
-//MAGIC_INT.y = 239; //WORK_WIDTH  5 * 48-1
-//MAGIC_INT.z = 192; //RESULT_WIDTH  239 - 48 + 1
-//MAGIC_INT.w = 0;
-
-//MAGIC_FLOAT.x = 0.000434028f // TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
-//MAGIC_FLOAT.2 = 0.f
-//MAGIC_FLOAT.3 = 0.f
-//MAGIC_FLOAT.4 = 0.f
-
 //__constant int TEMPLATE_WIDTH = 48;
 //__constant int EXT_VAL = 5;
 //__constant int SOURCE_WIDTH = EXT_VAL * TEMPLATE_WIDTH;
@@ -18,8 +5,18 @@ __constant float4 MAGIC_FLOAT = (float4)(0.000434028f, 0,0,0);
 //__constant int RESULT_WIDTH = WORK_WIDTH - TEMPLATE_WIDTH + 1;
 //__constant int RESULT_AREA = RESULT_WIDTH * RESULT_WIDTH;
 //__constant int TEMPLATE_AREA = TEMPLATE_WIDTH * TEMPLATE_WIDTH;
-//__constant float RESULT_AREA_1 = 1.f / RESULT_AREA;
 //__constant float TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
+
+//MAGIC_INT.x = 48;  //TEMPLATE_WIDTH
+//MAGIC_INT.y = 239; //WORK_WIDTH  5 * 48-1
+//MAGIC_INT.z = 192; //RESULT_WIDTH  239 - 48 + 1
+//MAGIC_INT.w = 0;
+//MAGIC_FLOAT.x = 0.000434028f // TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
+//MAGIC_FLOAT.y = 0.f
+//MAGIC_FLOAT.z = 0.f
+//MAGIC_FLOAT.w = 0.f
+__constant int4 MAGIC_INT = (int4)(48, 239, 192, 0);
+__constant float4 MAGIC_FLOAT = (float4)(0.000434028f, 0, 0, 0);
 
 struct Pix
 {
@@ -99,8 +96,8 @@ __kernel void work_cl_6(__global unsigned char * img_work,
 } // END void work_cl_6
 
 
-__kernel void work_cl_8(__global unsigned char * img_work,
-                        __global unsigned char * img_temp,
+__kernel void work_cl_8(__global uchar * img_work,
+                        __global uchar * img_temp,
                         __global float * img_result,
                         __global int * maxVal_int,
                         __global struct Pix * pix_max)
