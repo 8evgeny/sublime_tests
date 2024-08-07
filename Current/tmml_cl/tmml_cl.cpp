@@ -46,7 +46,7 @@ tmml_cl::~tmml_cl()
 
 void tmml_cl::work_tmml(const Mat & img_work, const Mat & img_temp, Pix & max_pix)
 {
-    qu.enqueueWriteBuffer(maxVal_int_buff, CL_TRUE, 0, sizeof(int), &maxVal_int);
+//    qu.enqueueWriteBuffer(maxVal_int_buff, CL_TRUE, 0, sizeof(int), &maxVal_int);
     qu.enqueueWriteBuffer(img_work_buff, CL_TRUE, 0, sizeof(unsigned char) * WORK_AREA, &img_work.data[0]);
     qu.enqueueWriteBuffer(img_temp_buff, CL_TRUE, 0, sizeof(unsigned char) * TEMPLATE_AREA, &img_temp.data[0]);
     qu.enqueueNDRangeKernel(tmml_cl_kernel1, NullRange, NDRange(RESULT_AREA), NullRange);

@@ -35,6 +35,17 @@ struct Pix
     float bright = 0;
 }; // END Pix
 
+struct Templ
+{
+    unsigned char templ_arr[18][128]; //2304
+}; // END Templ
+
+//struct Work
+//{
+//    unsigned char result_arr[288][128]; //36864
+//}; // END Templ
+
+
 class tmml_cl
 {
   public:
