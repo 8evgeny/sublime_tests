@@ -111,22 +111,22 @@ __kernel void work_cl_8(__global  uchar * img_work,
                         __global  int * maxVal_int,
                         __global  struct Pix * pix_max)
 {
-    int4 result = (int4)(get_global_id(0) % MAGIC_INT.z, get_global_id(0) / MAGIC_INT.z, get_global_id(0), 0);
-    int4 sum_roi_temp = 0;
-    int4 sum_roi_temp_2 = 0;
-    int4 sum_temp_temp = 0;
-    int4 diff_roi_temp = 0;
-    int4 sum_roi_roi = 0;
-    int4 sum_roi = 0;
-    int4 sum_temp = 0;
-    int temp_id = 0;
+    int4 result __attribute__((aligned(128))) = (int4)(get_global_id(0) % MAGIC_INT.z, get_global_id(0) / MAGIC_INT.z, get_global_id(0), 0);
+    int4 sum_roi_temp __attribute__((aligned(128))) = 0;
+    int4 sum_roi_temp_2 __attribute__((aligned(128))) = 0;
+    int4 sum_temp_temp __attribute__((aligned(128))) = 0;
+    int4 diff_roi_temp __attribute__((aligned(128))) = 0;
+    int4 sum_roi_roi __attribute__((aligned(128))) = 0;
+    int4 sum_roi __attribute__((aligned(128))) = 0;
+    int4 sum_temp __attribute__((aligned(128))) = 0;
+    int temp_id __attribute__((aligned(128))) = 0;
     for(int tmp_y = 0; tmp_y < MAGIC_INT.x; ++tmp_y)
     {
-        int roi_id0 = (result.y + tmp_y) * MAGIC_INT.y + result.x;
-        for(int tmp_x = 0; tmp_x < MAGIC_INT.x; tmp_x += 4, temp_id += 4)
+        int roi_id0 __attribute__((aligned(128))) = (result.y + tmp_y) * MAGIC_INT.y + result.x;
+        for(int tmp_x __attribute__((aligned(128))) = 0; tmp_x < MAGIC_INT.x; tmp_x += 4, temp_id += 4)
         {
-            int4 temp = (int4)(img_temp[temp_id], img_temp[temp_id + 1], img_temp[temp_id + 2], img_temp[temp_id + 3]);
-            int4 roi = (int4)(img_work[roi_id0 + tmp_x], img_work[roi_id0 + tmp_x + 1], img_work[roi_id0 + tmp_x + 2], img_work[roi_id0 + tmp_x + 3]);
+            int4 temp __attribute__((aligned(128))) = (int4)(img_temp[temp_id], img_temp[temp_id + 1], img_temp[temp_id + 2], img_temp[temp_id + 3]);
+            int4 roi __attribute__((aligned(128))) = (int4)(img_work[roi_id0 + tmp_x], img_work[roi_id0 + tmp_x + 1], img_work[roi_id0 + tmp_x + 2], img_work[roi_id0 + tmp_x + 3]);
 
             sum_roi_temp.x += roi.x * temp.x;
             sum_roi_temp.y += roi.y * temp.y;
@@ -165,17 +165,17 @@ __kernel void work_cl_8(__global  uchar * img_work,
 
         } // END for(int tmp_x = 0; tmp_x < MAGIC_INT.x; ++tmp_x)
     } // END for(int tmp_y = 0; tmp_y < MAGIC_INT.x; ++tmp_y)
-    const float sum_roi_temp1 = MAGIC_FLOAT.x * (sum_roi_temp.x + sum_roi_temp.y + sum_roi_temp.z + sum_roi_temp.w);
-    const float sum_roi1 = MAGIC_FLOAT.x * (sum_roi.x + sum_roi.y + sum_roi.z + sum_roi.w);
-    const float sum_temp1 = MAGIC_FLOAT.x * (sum_temp.x + sum_temp.y + sum_temp.z + sum_temp.w);
-    const float sum_roi_roi1 = MAGIC_FLOAT.x * (sum_roi_roi.x + sum_roi_roi.y + sum_roi_roi.z + sum_roi_roi.w);
-    const float sum_temp_temp1 = MAGIC_FLOAT.x * (sum_temp_temp.x + sum_temp_temp.y + sum_temp_temp.z + sum_temp_temp.w);
-    const float ch  = sum_roi_temp1 - sum_roi1 * sum_temp1;
-    const float zn1 = sum_temp_temp1 - sum_temp1 * sum_temp1;
-    const float zn2 = sum_roi_roi1 - sum_roi1 * sum_roi1;
-    const float img_result_float = ch / sqrt(zn1 * zn2) - (float)(diff_roi_temp.x + diff_roi_temp.y + diff_roi_temp.z + diff_roi_temp.w)
+    const float sum_roi_temp1 __attribute__((aligned(128))) = MAGIC_FLOAT.x * (sum_roi_temp.x + sum_roi_temp.y + sum_roi_temp.z + sum_roi_temp.w);
+    const float sum_roi1 __attribute__((aligned(128))) = MAGIC_FLOAT.x * (sum_roi.x + sum_roi.y + sum_roi.z + sum_roi.w);
+    const float sum_temp1 __attribute__((aligned(128))) = MAGIC_FLOAT.x * (sum_temp.x + sum_temp.y + sum_temp.z + sum_temp.w);
+    const float sum_roi_roi1 __attribute__((aligned(128))) = MAGIC_FLOAT.x * (sum_roi_roi.x + sum_roi_roi.y + sum_roi_roi.z + sum_roi_roi.w);
+    const float sum_temp_temp1 __attribute__((aligned(128))) = MAGIC_FLOAT.x * (sum_temp_temp.x + sum_temp_temp.y + sum_temp_temp.z + sum_temp_temp.w);
+    const float ch  __attribute__((aligned(128))) = sum_roi_temp1 - sum_roi1 * sum_temp1;
+    const float zn1 __attribute__((aligned(128))) = sum_temp_temp1 - sum_temp1 * sum_temp1;
+    const float zn2 __attribute__((aligned(128))) = sum_roi_roi1 - sum_roi1 * sum_roi1;
+    const float img_result_float __attribute__((aligned(128))) = ch / sqrt(zn1 * zn2) - (float)(diff_roi_temp.x + diff_roi_temp.y + diff_roi_temp.z + diff_roi_temp.w)
             / (sum_roi_temp_2.x + sum_roi_temp_2.y + sum_roi_temp_2.z + sum_roi_temp_2.w);
-    const int img_result_int = img_result_float * 1000000;
+    const int img_result_int __attribute__((aligned(128))) = img_result_float * 1000000;
     atomic_max(maxVal_int, img_result_int);
     barrier(CLK_GLOBAL_MEM_FENCE);
     if((*maxVal_int) == img_result_int)
