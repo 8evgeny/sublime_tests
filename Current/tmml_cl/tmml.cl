@@ -142,9 +142,8 @@ __kernel void work_cl_8(__global uchar * img_work,
     const float ch  = sum_roi_temp1 - sum_roi1 * sum_temp1;
     const float zn1 = sum_temp_temp1 - sum_temp1 * sum_temp1;
     const float zn2 = sum_roi_roi1 - sum_roi1 * sum_roi1;
-    const float img_result_float = ch / sqrt(zn1 * zn2)
-            - (float)(diff_roi_temp.x + diff_roi_temp.y + diff_roi_temp.z + diff_roi_temp.w) /
-            (sum_roi_temp_2.x + sum_roi_temp_2.y + sum_roi_temp_2.z + sum_roi_temp_2.w);
+    const float img_result_float = ch / sqrt(zn1 * zn2) - (float)(diff_roi_temp.x + diff_roi_temp.y + diff_roi_temp.z + diff_roi_temp.w)
+            / (sum_roi_temp_2.x + sum_roi_temp_2.y + sum_roi_temp_2.z + sum_roi_temp_2.w);
     const int img_result_int = img_result_float * 1000000;
     atomic_max(maxVal_int, img_result_int);
     barrier(CLK_GLOBAL_MEM_FENCE);
