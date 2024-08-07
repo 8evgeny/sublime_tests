@@ -105,11 +105,11 @@ __kernel void work_cl_6(__global unsigned char * img_work,
 } // END void work_cl_6
 
 
-__kernel void work_cl_8(__global uchar * img_work,
-                        __global uchar * img_temp,
-                        __global float * img_result,
-                        __global int * maxVal_int,
-                        __global struct Pix * pix_max)
+__kernel void work_cl_8(__global __attribute__((aligned(128))) uchar * img_work,
+                        __global __attribute__((aligned(128))) uchar * img_temp,
+                        __global __attribute__((aligned(128))) float * img_result,
+                        __global __attribute__((aligned(128))) int * maxVal_int,
+                        __global __attribute__((aligned(128))) struct Pix * pix_max)
 {
     int4 result = (int4)(get_global_id(0) % MAGIC_INT.z, get_global_id(0) / MAGIC_INT.z, get_global_id(0), 0);
     int4 sum_roi_temp = 0;
