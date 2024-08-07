@@ -64,12 +64,20 @@ int main()
         for(int iter = 0; iter < iter_num; ++iter)
         {
             tm->work_tmml(img_work, img_temp, tm->max_pix);
-            if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "CL iter " << iter << " error !!!" << endl; break;}
+            if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top)
+            {
+                cout << "CL iter " << iter << " error !!!" << endl;
+                ok = false;
+                break;
+            }
         }//-- END -- for(int iter = 0; iter < iter_num; ++iter)
         time_end = high_resolution_clock::now();
-        auto time_matching_CL = duration_cast<microseconds>(time_end - time_start);
-        printf("Duration CL =  \t\t%.2f mks \n", (float)time_matching_CL.count() / iter_num );
-        cout << "openCL xy = [" << ((int)tm->max_pix.x) << ", " << ((int)tm->max_pix.y) << "]" << endl << endl;
+        if (ok)
+        {
+            auto time_matching_CL = duration_cast<microseconds>(time_end - time_start);
+            printf("Duration CL =  \t\t%.2f mks \n", (float)time_matching_CL.count() / iter_num );
+            cout << "openCL xy = [" << ((int)tm->max_pix.x) << ", " << ((int)tm->max_pix.y) << "]" << endl << endl;
+        }// END if (ok)
 
 //Results
     #ifdef find_diff_result
