@@ -24,8 +24,8 @@ int main()
     Rect temp_rect{temp_left, temp_top, TEMPLATE_WIDTH, TEMPLATE_WIDTH};
     Mat img_source = imread("image_source", CV_8UC1);
     Rect work_rect(Point(0, 0), Point(WORK_WIDTH, WORK_WIDTH));
-    __attribute__((aligned(128))) Mat img_work = img_source(work_rect).clone();
-    __attribute__((aligned(128))) Mat img_temp = img_source(temp_rect).clone();
+    __attribute__((aligned(512))) Mat img_work = img_source(work_rect).clone();
+    __attribute__((aligned(512))) Mat img_temp = img_source(temp_rect).clone();
     duration<double> duration_matching;
     high_resolution_clock::time_point time_start, time_end;
     Mat img_work1;
