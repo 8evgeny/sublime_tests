@@ -35,15 +35,15 @@ struct Pix
     float bright = 0;
 }; // END Pix
 
-struct Templ
+struct TemplBuff
 {
-    unsigned char templ_arr[18][128]; //2304
+    unsigned char templ_buff_arr[18][128]; //2304
 }; // END Templ
 
-//struct Work
-//{
-//    unsigned char result_arr[288][128]; //36864
-//}; // END Templ
+struct WorkBuff
+{
+    unsigned char work_buff_arr[446][128]; //57088 33байта остается - отбрасываем
+}; // END Templ
 
 
 class tmml_cl

@@ -25,6 +25,15 @@ struct Pix
     float bright;
 }; // END Pix
 
+struct TemplBuff
+{
+    unsigned char templ_buff_arr[18][128]; //2304
+}; // END Templ
+
+struct WorkBuff
+{
+    unsigned char work_buff_arr[288][128]; //36864
+}; // END Templ
 
 __kernel void work_cl_6(__global unsigned char * img_work,
                         __global unsigned char * img_temp,
