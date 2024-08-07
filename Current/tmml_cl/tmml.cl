@@ -26,9 +26,8 @@ __kernel void work_cl_6(__global unsigned char * img_work,
                         __global int * maxVal_int,
                         __global struct Pix * pix_max)
 {
-    int result_id = get_global_id(0);
-    int result_y = result_id / RESULT_WIDTH;
-    int result_x = result_id % RESULT_WIDTH;
+    int4 result = (int4)(get_global_id(0) % RESULT_WIDTH, get_global_id(0) / RESULT_WIDTH, get_global_id(0), 0);
+
     int4 sum_roi_temp = 0;
     int4 sum_temp_temp = 0;
     int4 sum_roi_roi = 0;
@@ -37,7 +36,7 @@ __kernel void work_cl_6(__global unsigned char * img_work,
     int temp_id = 0;
     for(int tmp_y = 0; tmp_y < TEMPLATE_WIDTH; ++tmp_y)
     {
-        int roi_id0 = (result_y + tmp_y) * WORK_WIDTH + result_x;
+        int roi_id0 = (result.y + tmp_y) * WORK_WIDTH + result.x;
         for(int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; tmp_x += 4, temp_id += 4)
         {
             int4 temp = (int4)(img_temp[temp_id], img_temp[temp_id + 1], img_temp[temp_id + 2], img_temp[temp_id + 3]);
@@ -85,10 +84,10 @@ __kernel void work_cl_6(__global unsigned char * img_work,
     if((*maxVal_int) == img_result_int)
     {
         (*pix_max).bright = img_result_float;
-        (*pix_max).x = result_x;
-        (*pix_max).y = result_y;
+        (*pix_max).x = result.x;
+        (*pix_max).y = result.y;
     } // END if((*maxVal_int) == img_result_int)
-    img_result[result_id] = img_result_float;
+    img_result[result.z] = img_result_float;
 } // END void work_cl_6
 
 
@@ -98,9 +97,8 @@ __kernel void work_cl_8(__global unsigned char * img_work,
                         __global int * maxVal_int,
                         __global struct Pix * pix_max)
 {
-    int result_id = get_global_id(0);
-    int result_y = result_id / RESULT_WIDTH;
-    int result_x = result_id % RESULT_WIDTH;
+    int4 result = (int4)(get_global_id(0) % RESULT_WIDTH, get_global_id(0) / RESULT_WIDTH, get_global_id(0), 0);
+
     int4 sum_roi_temp = 0;
     int4 sum_roi_temp_2 = 0;
     int4 sum_temp_temp = 0;
@@ -111,7 +109,7 @@ __kernel void work_cl_8(__global unsigned char * img_work,
     int temp_id = 0;
     for(int tmp_y = 0; tmp_y < TEMPLATE_WIDTH; ++tmp_y)
     {
-        int roi_id0 = (result_y + tmp_y) * WORK_WIDTH + result_x;
+        int roi_id0 = (result.y + tmp_y) * WORK_WIDTH + result.x;
         for(int tmp_x = 0; tmp_x < TEMPLATE_WIDTH; tmp_x += 4, temp_id += 4)
         {
             int4 temp = (int4)(img_temp[temp_id], img_temp[temp_id + 1], img_temp[temp_id + 2], img_temp[temp_id + 3]);
@@ -170,30 +168,9 @@ __kernel void work_cl_8(__global unsigned char * img_work,
     if((*maxVal_int) == img_result_int)
     {
         (*pix_max).bright = img_result_float;
-        (*pix_max).x = result_x;
-        (*pix_max).y = result_y;
+        (*pix_max).x = result.x;
+        (*pix_max).y = result.y;
     } // END if((*maxVal_int) == img_result_int)
-    img_result[result_id] = img_result_float;
+    img_result[result.z] = img_result_float;
 } // END tmml_cl_8
 
-
-__kernel void work_cl_max(__global float * img_result,
-                          __global float * img_result_bright,
-                        __global unsigned char * img_result_x)
-{
-    int y = get_global_id(0);
-    int result_id0 = y * RESULT_WIDTH;
-    float result_bright_max = 0;
-    int x_max = 0;
-    for(int x = 0; x < RESULT_WIDTH; ++x)
-    {
-        float bright = img_result[result_id0 + x];
-        if(bright > result_bright_max)
-        {
-            result_bright_max = bright;
-            x_max = x;
-        } // END if(bright > result_bright_max)
-    } // END for(int x = 0; x < RESULT_WIDTH; ++x)
-    img_result_bright[y] = result_bright_max;
-    img_result_x[y] = x_max;
-} // END work_cl_max
