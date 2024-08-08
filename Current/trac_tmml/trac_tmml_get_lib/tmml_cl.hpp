@@ -11,8 +11,6 @@ const int WORK_AREA = WORK_WIDTH * WORK_WIDTH;
 const int RESULT_WIDTH = WORK_WIDTH - TEMPLATE_WIDTH + 1;
 const int RESULT_AREA = RESULT_WIDTH * RESULT_WIDTH;
 const int TEMPLATE_AREA = TEMPLATE_WIDTH * TEMPLATE_WIDTH;
-const float RESULT_AREA_1 = 1.f / RESULT_AREA;
-const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 
 #define KERNEL_FILE "tmml.cl"
 
@@ -34,6 +32,17 @@ struct Pix
     unsigned char y = 0;
     float bright = 0;
 }; // END Pix
+
+struct TemplBuff
+{
+    unsigned char templ_buff_arr[18][128]; //2304
+}; // END TemplBuff
+
+struct WorkBuff
+{
+    unsigned char work_buff_arr[446][128]; //57088 33байта остается - отбрасываем
+}; // END WorkBuff
+
 
 class tmml_cl
 {
