@@ -25,15 +25,15 @@ struct Pix
 struct TemplBuff
 {
     unsigned char templ_buff_arr[18][128]; //2304
-}; // END Templ
+}; // END TemplBuff
 
 struct WorkBuff
 {
     unsigned char work_buff_arr[446][128]; //57088 33байта остается - отбрасываем
 }; // END WorkBuff
 
-__kernel void work_cl_6(__global unsigned char * img_work,
-                        __global unsigned char * img_temp,
+__kernel void work_cl_6(__global uchar * img_work,
+                        __global uchar * img_temp,
                         __global float * img_result,
                         __global int * maxVal_int,
                         __global struct Pix * pix_max)
@@ -268,5 +268,6 @@ __kernel void work_cl_8(__global  uchar * img_work,
     } // END if((*maxVal_int) == img_result_int)
 
     img_result[result.s2] = img_result_float;
+
 } // END tmml_cl_8
 
