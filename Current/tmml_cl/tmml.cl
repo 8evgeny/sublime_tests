@@ -29,8 +29,8 @@ struct TemplBuff
 
 struct WorkBuff
 {
-    unsigned char work_buff_arr[288][128]; //36864
-}; // END Templ
+    unsigned char work_buff_arr[446][128]; //57088 33байта остается - отбрасываем
+}; // END WorkBuff
 
 __kernel void work_cl_6(__global unsigned char * img_work,
                         __global unsigned char * img_temp,
