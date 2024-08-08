@@ -47,13 +47,18 @@ __kernel void work_cl_6(__global uchar * img_work,
     int temp_id = 0;
     for(int tmp_y = 0; tmp_y < MAGIC_INT.s0; ++tmp_y)
     {
-        int roi_id0 = (result.y + tmp_y) * MAGIC_INT.s1 + result.x;
+        int8 roi_id0 = (int8)((result.y + tmp_y) * MAGIC_INT.s1 + result.x, (result.y + tmp_y) * MAGIC_INT.s1 + result.x + 1,
+                              (result.y + tmp_y) * MAGIC_INT.s1 + result.x + 2, (result.y + tmp_y) * MAGIC_INT.s1 + result.x + 3,
+                              (result.y + tmp_y) * MAGIC_INT.s1 + result.x + 4, (result.y + tmp_y) * MAGIC_INT.s1 + result.x + 5,
+                              (result.y + tmp_y) * MAGIC_INT.s1 + result.x + 6, (result.y + tmp_y) * MAGIC_INT.s1 + result.x + 7);
+
         for(int tmp_x = 0; tmp_x < MAGIC_INT.s0; tmp_x += 8, temp_id += 8)
         {
             int8 temp = (int8)(img_temp[temp_id], img_temp[temp_id + 1], img_temp[temp_id + 2], img_temp[temp_id + 3],
-                    img_temp[temp_id + 4], img_temp[temp_id + 5], img_temp[temp_id + 6], img_temp[temp_id + 7] );
-            int8 roi = (int8)(img_work[roi_id0 + tmp_x], img_work[roi_id0 + tmp_x + 1], img_work[roi_id0 + tmp_x + 2], img_work[roi_id0 + tmp_x + 3],
-                    img_work[roi_id0 + tmp_x + 4], img_work[roi_id0 + tmp_x + 5], img_work[roi_id0 + tmp_x + 6], img_work[roi_id0 + tmp_x + 7] );
+                               img_temp[temp_id + 4], img_temp[temp_id + 5], img_temp[temp_id + 6], img_temp[temp_id + 7] );
+
+            int8 roi = (int8)(img_work[roi_id0.s0 + tmp_x], img_work[roi_id0.s1 + tmp_x], img_work[roi_id0.s2 + tmp_x], img_work[roi_id0.s3 + tmp_x],
+                              img_work[roi_id0.s4 + tmp_x], img_work[roi_id0.s5 + tmp_x], img_work[roi_id0.s6 + tmp_x], img_work[roi_id0.s7 + tmp_x]);
 
             sum_roi_temp.s0 += roi.s0 * temp.s0;
             sum_roi_temp.s1 += roi.s1 * temp.s1;
@@ -163,7 +168,7 @@ __kernel void work_cl_8(__global  uchar * img_work,
         for(int tmp_x = 0; tmp_x < MAGIC_INT.s0; tmp_x += 8, temp_id += 8)
         {
             int8 temp = (int8)(img_temp[temp_id], img_temp[temp_id + 1], img_temp[temp_id + 2], img_temp[temp_id + 3],
-                    img_temp[temp_id + 4], img_temp[temp_id + 5], img_temp[temp_id + 6], img_temp[temp_id + 7] );
+                               img_temp[temp_id + 4], img_temp[temp_id + 5], img_temp[temp_id + 6], img_temp[temp_id + 7] );
 
             int8 roi = (int8)(img_work[roi_id0.s0 + tmp_x], img_work[roi_id0.s1 + tmp_x], img_work[roi_id0.s2 + tmp_x], img_work[roi_id0.s3 + tmp_x],
                               img_work[roi_id0.s4 + tmp_x], img_work[roi_id0.s5 + tmp_x], img_work[roi_id0.s6 + tmp_x], img_work[roi_id0.s7 + tmp_x]);
