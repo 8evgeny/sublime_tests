@@ -1,4 +1,3 @@
-
 #!/bin/bash
 # 
 if [ -n "$1" -a "$1" = "-h" ]; then
@@ -10,8 +9,7 @@ sensdir=/sys/bus/w1/devices
 for s in $sensdir/*-*/w1_slave; do
 	if [ ! -r $s ]; then
 	 #	echo "ERROR: can not read sensor $s"
-         echo 20
-	else
+	 echo 21	else
 		#  we are looking for a line with t= 
 		# 41 00 4b 46 ff ff 07 10 38 t=32312
 		awk '/t=/{sub(/^.+t=/, "");c=$0/1000;print c}' $s
