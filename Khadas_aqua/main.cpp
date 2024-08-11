@@ -15,8 +15,8 @@ using namespace std;
 const int gpio_pin_UF       = 6;    //PIN22     1_RELE
 const int gpio_pin_PUMP_AIR = 7;    //PIN23     2_RELE
 const int gpio_pin_FOOD     = 10;   //PIN29     3_RELE
-const int gpio_pin_HEAT     = 11;   //PIN30     5_RELE
-const int gpio_pin_LAMP     = 12;   //PIN31     6_RELE
+const int gpio_pin_HEAT     = 11;   //PIN30     4_RELE
+const int gpio_pin_LAMP     = 12;   //PIN31     5_RELE
 
 const int gpio_pin_COLD     = 13;   //PIN32
 const int gpio_pin_REZERV   = 15;   //PIN35
