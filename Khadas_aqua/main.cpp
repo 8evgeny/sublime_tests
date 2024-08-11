@@ -47,10 +47,10 @@ ofstream fileStateFeed;
 
 constexpr long numLinesInLog = 250;
 
-								//PIN37   onewire  измерение температуры
-								//PIN40   GND
-								//PIN1    +5
-								//PIN2    +5
+                                //PIN37   onewire  измерение температуры
+                                //PIN40   GND
+                                //PIN1    +5
+                                //PIN2    +5
 
 
 void printTime(ofstream & file)
@@ -147,7 +147,7 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
         logFile.open("/home/khadas/aqua/logFile", std::ios::app);
         if (!light)
         {
-            digitalWrite(gpio_pin_LAMP, HIGH);
+            digitalWrite(gpio_pin_LAMP, LOW);
             if (stateLight != "OFF")
             {
                 logFile << "######## light set OFF #######" <<"\t\t";
@@ -165,7 +165,7 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
             if ( (timeNow > time_light_on) && (timeNow < time_light_off) && (temperature < 27.5)
                     && (stateLight != "ON") )
             {
-                digitalWrite(gpio_pin_LAMP, LOW);
+                digitalWrite(gpio_pin_LAMP, HIGH);
                 logFile << "######## light set ON ########"  <<"\t\t";
                 printTime(logFile);
                 stateLight = "ON";
@@ -177,7 +177,7 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
             if ( (!((timeNow > time_light_on) &&  (timeNow < time_light_off)) || (temperature > 27.7))
                  && (stateLight != "OFF") )
             {
-                digitalWrite(gpio_pin_LAMP, HIGH);
+                digitalWrite(gpio_pin_LAMP, LOW);
                 logFile << "######## light set OFF ########"  <<"\t\t";
                 printTime(logFile);
                 stateLight = "OFF";
@@ -204,7 +204,7 @@ handlerUF(bool & UF, QTime & time_UF_on, QTime & time_UF_off)
         logFile.open("/home/khadas/aqua/logFile", std::ios::app);
         if (!UF)
         {
-            digitalWrite(gpio_pin_UF, HIGH);
+            digitalWrite(gpio_pin_UF, LOW);
             if (stateUF != "OFF")
             {
                 logFile << "######## UF set OFF #######" <<"\t\t";
@@ -221,7 +221,7 @@ handlerUF(bool & UF, QTime & time_UF_on, QTime & time_UF_off)
             auto timeNow = QTime::currentTime();
             if ((timeNow > time_UF_on) && (timeNow < time_UF_off) && (stateUF != "ON"))
             {
-                digitalWrite(gpio_pin_UF, LOW);
+                digitalWrite(gpio_pin_UF, HIGH);
                 logFile << "######## UF set ON ########"  <<"\t\t";
                 printTime(logFile);
                 stateUF = "ON";
@@ -232,7 +232,7 @@ handlerUF(bool & UF, QTime & time_UF_on, QTime & time_UF_off)
             }
             if (!((timeNow > time_UF_on) && (timeNow < time_UF_off)) && (stateUF != "OFF"))
             {
-                digitalWrite(gpio_pin_UF, HIGH);
+                digitalWrite(gpio_pin_UF, LOW);
                 logFile << "######## UF set OFF ########"  <<"\t\t";
                 printTime(logFile);
                 stateUF = "OFF";
@@ -259,7 +259,7 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
         logFile.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
         if (!heater && stateHeater != "OFF")
         {
-            digitalWrite(gpio_pin_HEAT, HIGH);
+            digitalWrite(gpio_pin_HEAT, LOW);
             logFile << "######## heater set OFF #######" <<"\t\t";
             printTime(logFile);
             stateHeater = "OFF";
@@ -272,7 +272,7 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
         {
             if (temperature > max_temp && stateHeater != "OFF")
             {
-                digitalWrite(gpio_pin_HEAT, HIGH);
+                digitalWrite(gpio_pin_HEAT, LOW);
                 logFile << "######## heater set OFF #######"  <<"\t\t";
                 printTime(logFile);
                 stateHeater = "OFF";
@@ -283,7 +283,7 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
             }
             if (temperature < min_temp && stateHeater != "ON")
             {
-                digitalWrite(gpio_pin_HEAT, LOW);
+                digitalWrite(gpio_pin_HEAT, HIGH);
                 logFile << "######## heater set ON ########"  <<"\t\t";
                 printTime(logFile);
                 stateHeater = "ON";
@@ -301,15 +301,15 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
 
 void feed()
 {
-    digitalWrite(gpio_pin_PUMP_AIR, HIGH);
+    digitalWrite(gpio_pin_PUMP_AIR, LOW);
     this_thread::sleep_for(chrono::milliseconds(20000));
-    digitalWrite(gpio_pin_FOOD, LOW);
-    this_thread::sleep_for(chrono::milliseconds(long_food));
     digitalWrite(gpio_pin_FOOD, HIGH);
+    this_thread::sleep_for(chrono::milliseconds(long_food));
+    digitalWrite(gpio_pin_FOOD, LOW);
     logFile << "######## FOOD ON ########"  <<"\t\t";
     printTime(logFile);
     this_thread::sleep_for(chrono::milliseconds(300000));
-    digitalWrite(gpio_pin_PUMP_AIR, LOW);
+    digitalWrite(gpio_pin_PUMP_AIR, HIGH);
     this_thread::sleep_for(chrono::milliseconds(3000));
 }
 
@@ -317,8 +317,8 @@ void feed()
 void
 handlerFood()
 {
-    digitalWrite(gpio_pin_FOOD, HIGH);
-    digitalWrite(gpio_pin_PUMP_AIR, LOW);
+    digitalWrite(gpio_pin_FOOD, LOW);
+    digitalWrite(gpio_pin_PUMP_AIR, HIGH);
     this_thread::sleep_for(chrono::milliseconds(5000));
     Mut.lock();
     logFile.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
@@ -363,22 +363,22 @@ handlerFood()
     }
 }
 
-int main () 
+int main ()
 {
-	if(-1 == wiringPiSetup())
-	{
-		printf("set up error");
-		exit(1);
-	}
+    if(-1 == wiringPiSetup())
+    {
+        printf("set up error");
+        exit(1);
+    }
 //    system("gpio readall");
     pinMode(gpio_pin_UF, OUTPUT);
-	pinMode(gpio_pin_COLD, OUTPUT);
-	pinMode(gpio_pin_LAMP, OUTPUT);
-	pinMode(gpio_pin_HEAT, OUTPUT);
+    pinMode(gpio_pin_COLD, OUTPUT);
+    pinMode(gpio_pin_LAMP, OUTPUT);
+    pinMode(gpio_pin_HEAT, OUTPUT);
     pinMode(gpio_pin_PUMP_AIR, OUTPUT);
-	pinMode(gpio_pin_FOOD, OUTPUT);
+    pinMode(gpio_pin_FOOD, OUTPUT);
     pinMode(gpio_pin_REZERV, OUTPUT);
-	
+
     this_thread::sleep_for(chrono::milliseconds(3000));
     thread (receiveTemp, ref(temperature)).detach();
     thread (receiveSettings,
@@ -408,8 +408,8 @@ int main ()
     bool UFNew = false;
     QString food_timeNew;
 
-	while(1)
-	{
+    while(1)
+    {
         Mut.lock();
         logFile.open("/home/khadas/aqua/logFile", std::ios::app);
 
@@ -511,9 +511,9 @@ int main ()
 
         this_thread::sleep_for(chrono::milliseconds(5000));
 
-	}
-    
-    
+    }
+
+
     return 0;
 
-} 
+}
