@@ -379,11 +379,7 @@ int main ()
     pinMode(gpio_pin_COLD, OUTPUT);
     pinMode(gpio_pin_REZERV, OUTPUT);
 
-    digitalWrite(gpio_pin_UF, LOW);
-    digitalWrite(gpio_pin_PUMP_AIR, LOW);
     digitalWrite(gpio_pin_FOOD, LOW);
-    digitalWrite(gpio_pin_HEAT, LOW);
-    digitalWrite(gpio_pin_LAMP, LOW);
 
     this_thread::sleep_for(chrono::milliseconds(3000));
     thread (receiveTemp, ref(temperature)).detach();
