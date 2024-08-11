@@ -6,11 +6,11 @@ max_temp = 24.9;
 [Light]
 light = true;
 time_light_on = 07:30:00;
-time_light_off = 19:30:00;
+time_light_off = 19:45:00;
 
 [Food]
 Food = true;
-time_Food = 07:45:00, 17:35:00, 19:19:00;
+time_Food = 07:45:00, 13:15:00, 19:15:00;
 long_Food = 1000;
 
 [UF]
