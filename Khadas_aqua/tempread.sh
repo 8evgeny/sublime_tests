@@ -9,7 +9,7 @@ sensdir=/sys/bus/w1/devices
 for s in $sensdir/*-*/w1_slave; do
 	if [ ! -r $s ]; then
 	 #	echo "ERROR: can not read sensor $s"
-	 echo 108
+	 echo 20
 	else
 		#  we are looking for a line with t= 
 		# 41 00 4b 46 ff ff 07 10 38 t=32312
