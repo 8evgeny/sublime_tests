@@ -4,6 +4,7 @@ project(trac_tmml_get_lib)
 
 #set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../chain_drone_server)
 set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../trac_from_lib_tmml)
+set(FROM_LIB_MULTI ${CMAKE_CURRENT_LIST_DIR}/../trac_from_lib_tmml_multitrack)
 #set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../../fenix2/fenix2_from_lib)
 
 set(USE_GPU 2) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
@@ -12,7 +13,7 @@ set(USE_GPU 2) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)
 # CORR_TYPE = 6 : CCOEFF_NORMED  (Кросскорреляция модифицированная)
 # CORR_TYPE = 8 ; COMBINED (объединение прямой и модифицированной кросскорреляции)
-set(CORR_TYPE 8)
+set(CORR_TYPE 6)
 
 set(TEMPLATE_WIDTH 48)
 set(EXT_VAL 5)
@@ -150,6 +151,7 @@ endif() # END if(${USE_GPU} EQUAL 1)
 
 if(${USE_GPU} EQUAL 2)
     configure_file(tmml.cl ${FROM_LIB}/run/tmml.cl)
+    configure_file(tmml.cl ${FROM_LIB_MULTI}/run/tmml.cl)
     add_library(${lib_name} SHARED
         trac_scale.hpp
         trac_scale.cpp
@@ -160,6 +162,11 @@ if(${USE_GPU} EQUAL 2)
         tmml_cl.hpp
     )
     target_link_libraries(${lib_name} ${OpenCL_LIBRARY})
+    add_custom_command(TARGET ${lib_name} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${lib_name}> ${FROM_LIB_MULTI}/lib/${lib_name}
+        COMMENT "Copy ${lib_name} to  ${FROM_LIB_MULTI}/lib/${lib_name}"
+    )
+
 endif() # END if(${USE_OPEN_CL} EQUAL 2)
 
 target_link_libraries(${lib_name} PRIVATE)
