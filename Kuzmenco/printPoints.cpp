@@ -145,6 +145,12 @@ void MainWindow::drawPoints()
 
 void MainWindow::on_button_save_clicked()
 {
+    string cmd = "mkdir -p ../Измерения/" + name_field.toStdString();
+    system(cmd.c_str());
+
+    QString path = "../Измерения/" + name_field + "/" + name_field + "_" + Date + "_№" + to_string(izmereniye).c_str();
+    nameOutFile = path.toStdString() ;
+
     QImage image(scene->sceneRect().size().toSize(), QImage::Format_ARGB32);  // Create the image with the exact size of the shrunk scene
     image.load("table.png");
 
@@ -159,8 +165,8 @@ void MainWindow::on_button_save_clicked()
     QPainter painter(&image);
     scene->render(&painter);
 
-    nameOutFile = "../Измерения/" + name_field.toStdString() + "__" + Date.toStdString()  + "__№" + to_string(izmereniye);
-    image.save(QString::fromStdString(nameOutFile + "_.png"));
+
+    image.save(QString::fromStdString(nameOutFile + ".png"));
     writeText();
 
 }
@@ -168,21 +174,21 @@ void MainWindow::on_button_save_clicked()
 void MainWindow::writeText()
 {
     ofstream fout;
-    fout.open(nameOutFile + "_.txt");
+    fout.open(nameOutFile + ".txt");
     fout <<" Имя: "<< name_field.toStdString() <<" / Дата: "<<Date.toStdString() <<" / Измерение № "<<to_string(izmereniye)<<endl<<endl;
-    fout << " P\t Легкие\t\t\t\t"<< r1 <<"\t" << l1 <<"\t" << letter1 <<endl;
-    fout << " MC\t Перикард\t\t\t"<< r2 <<"\t" << l2 <<"\t" << letter2 <<endl;
-    fout << " С\t Сердце\t\t\t\t"<< r3 <<"\t" << l3 <<"\t" << letter3 <<endl;
-    fout << " IG\t Тонкий кишечник\t\t"<< r4 <<"\t" << l4 <<"\t" << letter4 <<endl;
-    fout << " TR\t Гормональная система\t\t"<< r5 <<"\t" << l5 <<"\t" << letter5 <<endl;
-    fout << " GI\t Толстый кишечник\t\t"<< r6 <<"\t" << l6 <<"\t" << letter6 <<endl;
+    fout << " P   Легкие                   "<< r1 <<"\t" << l1 <<"\t" << letter1 <<endl;
+    fout << " MC  Перикард                 "<< r2 <<"\t" << l2 <<"\t" << letter2 <<endl;
+    fout << " С   Сердце                   "<< r3 <<"\t" << l3 <<"\t" << letter3 <<endl;
+    fout << " IG  Тонкий кишечник          "<< r4 <<"\t" << l4 <<"\t" << letter4 <<endl;
+    fout << " TR  Гормональная система     "<< r5 <<"\t" << l5 <<"\t" << letter5 <<endl;
+    fout << " GI  Толстый кишечник         "<< r6 <<"\t" << l6 <<"\t" << letter6 <<endl;
     fout << " " << endl;
-    fout << " RP\t Селезенка, Поджелудочная\t"<< r7 <<"\t" << l7 <<"\t" << letter7 <<endl;
-    fout << " F\t Печень\t\t\t\t"<< r8 <<"\t" << l8 <<"\t"<< letter8 <<endl;
-    fout << " R\t Почки\t\t\t\t"<< r9 <<"\t" << l9 <<"\t" << letter9 <<endl;
-    fout << " V\t Мочевой пузырь\t\t\t"<< r10 <<"\t" << l10 <<"\t" << letter10 <<endl;
-    fout << " VB\t Желчный пузырь\t\t\t"<< r11 <<"\t" << l11 <<"\t" << letter11 <<endl;
-    fout << " E\t Желудок\t\t\t"<< r12 <<"\t" << l12 <<"\t" << letter12 <<endl;
+    fout << " RP  Селезенка, Поджелудочная "<< r7 <<"\t" << l7 <<"\t" << letter7 <<endl;
+    fout << " F   Печень                   "<< r8 <<"\t" << l8 <<"\t"<< letter8 <<endl;
+    fout << " R   Почки                    "<< r9 <<"\t" << l9 <<"\t" << letter9 <<endl;
+    fout << " V   Мочевой пузырь           "<< r10 <<"\t" << l10 <<"\t" << letter10 <<endl;
+    fout << " VB  Желчный пузырь           "<< r11 <<"\t" << l11 <<"\t" << letter11 <<endl;
+    fout << " E   Желудок                  "<< r12 <<"\t" << l12 <<"\t" << letter12 <<endl;
 //    fout << endl<<" Коридор нормы верх: " << to_string(hight) <<endl;
 //    fout << " Коридор нормы низ: " << to_string(low) <<endl;
     fout << " " << endl;
@@ -194,19 +200,17 @@ void MainWindow::paintEvent(QPaintEvent* event)
 {
     if (r1 > 0 && l1 > 0)
     {
-//        QGraphicsTextItem * io = new QGraphicsTextItem;
-//        io->setDefaultTextColor(Qt::red);
-//        QFont font;
-//        font.setPixelSize(30);
-//        font.setBold(true);
-//        font.setFamily("Calibri");
-//        io->setPos(r1x + 5 ,700);
-//        io->setFont(font);
-//        io->setPlainText("A0");
-//        scene->addItem(io);
+        QGraphicsTextItem * io = new QGraphicsTextItem;
+        io->setDefaultTextColor(Qt::red);
+        QFont font;
+        font.setPixelSize(20);
+        font.setBold(false);
+        font.setFamily("Calibri");
+        io->setPos(r1x + 8 ,700);
+        io->setFont(font);
+        io->setPlainText("A0");
+        scene->addItem(io);
     }
-
-
 }
 
 void MainWindow::r1l1() //P

@@ -2831,12 +2831,12 @@
       </property>
       <item>
        <property name="text">
-        <string/>
+        <string>Женя</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>Женя</string>
+        <string>Семен</string>
        </property>
       </item>
       <item>
@@ -2846,7 +2846,7 @@
       </item>
       <item>
        <property name="text">
-        <string>Семен</string>
+        <string>Новый_клиент</string>
        </property>
       </item>
      </widget>

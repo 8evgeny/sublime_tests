@@ -10,6 +10,10 @@ MainWindow::MainWindow(QWidget *parent) :
 ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->name_field->setCurrentIndex(2);
+    name_field = ui->name_field->currentText();
+    ui->Izmereniye->insert("1");
+    ui->r_1->setFocus();
 }
 
 MainWindow::~MainWindow()
@@ -333,12 +337,12 @@ void MainWindow::on_name_field_textActivated(const QString &arg1)
 void MainWindow::on_Izmereniye_editingFinished()
 {
     izmereniye = ui->Izmereniye->text().toInt();
-    drawPoints();
 }
 
 
 void MainWindow::on_pushButton_3_clicked()
 {
     cout<< "button Clear: "<<endl;
+        drawPoints();
 }
 
