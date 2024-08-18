@@ -20,6 +20,7 @@ extern QPen penGreenLine;
 extern QPen penBlueLine;
 extern QPen penBlack;
 extern QGraphicsScene * scene;
+QPen penTriangle(Qt::green);
 
 float MainWindow::calcCornerLine(float in)
 {
@@ -200,16 +201,18 @@ void MainWindow::paintEvent(QPaintEvent* event)
 {
     if (r1 > 0 && l1 > 0)
     {
-        QGraphicsTextItem * io = new QGraphicsTextItem;
-        io->setDefaultTextColor(Qt::red);
-        QFont font;
-        font.setPixelSize(20);
-        font.setBold(false);
-        font.setFamily("Calibri");
-        io->setPos(r1x + 8 ,700);
-        io->setFont(font);
-        io->setPlainText("A0");
-        scene->addItem(io);
+//        QGraphicsTextItem * io = new QGraphicsTextItem;
+//        io->setDefaultTextColor(Qt::red);
+//        QFont font;
+//        font.setPixelSize(20);
+//        font.setBold(false);
+//        font.setFamily("Calibri");
+//        io->setPos(r1x + 8 ,700);
+//        io->setFont(font);
+//        io->setPlainText("A0");
+//        scene->addItem(io);
+        penTriangle.setWidth(8);
+        scene->addEllipse(122, 772, 8, 8, penTriangle);
     }
 }
 
