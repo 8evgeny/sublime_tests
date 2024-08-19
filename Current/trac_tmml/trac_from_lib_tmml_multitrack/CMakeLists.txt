@@ -6,7 +6,7 @@ message(STATUS "")
 message(STATUS "-------------------------------- CMAKE BEGINING for project trac_from_lib_tmml_multitrac")
 
 # Использование GPU:
-set(USE_GPU 2) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
+set(USE_GPU 1) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
 
 # Тип корреляции при template matching для USE_CORR_TYPE:
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)
@@ -106,7 +106,7 @@ else()
 endif()
 
 if(${USE_GPU} EQUAL 0)
-    set(trac_lib_name -l_trac_tmml_${USE_CORR_TYPE}_CPU) # Название подключаемой библиотеки CPU
+    set(trac_lib_name lib_trac_tmml_${USE_CORR_TYPE}_CPU) # Название подключаемой библиотеки CPU
     add_definitions(-DUSE_CPU)
     message(STATUS "--------------------------- USE_CORR_TYPE=${USE_CORR_TYPE}")
     message(STATUS "--------------------------- USE_CPU")
@@ -114,10 +114,10 @@ endif() # END if(${USE_GPU} EQUAL 0)
 
 if(${USE_GPU} EQUAL 1)
     if(NOT ${USE_CORR_TYPE} EQUAL 10)
-       set(trac_lib_name -l_trac_tmml_${USE_CORR_TYPE}_CUDA) # Название подключаемой библиотеки CUDA
+       set(trac_lib_name lib_trac_tmml_${USE_CORR_TYPE}_CUDA) # Название подключаемой библиотеки CUDA
     endif()
     if(${USE_CORR_TYPE} EQUAL 10)
-        set(trac_lib_name -l_trac_tmml_TKDNN) # Название подключаемой библиотеки CUDA
+        set(trac_lib_name lib_trac_tmml_TKDNN) # Название подключаемой библиотеки CUDA
         add_definitions(-DTKDNN)
         message(STATUS "--------------------------- USE_CORR_TYPE=${USE_CORR_TYPE}")
         message(STATUS "--------------------------- USE_TKDNN")
@@ -128,7 +128,7 @@ if(${USE_GPU} EQUAL 1)
 endif() # END if(${USE_GPU} EQUAL 1)
 
 if(${USE_GPU} EQUAL 2)
-    set(trac_lib_name -l_trac_tmml_${USE_CORR_TYPE}_CL) # Название подключаемой библиотеки CUDA
+    set(trac_lib_name lib_trac_tmml_${USE_CORR_TYPE}_CL) # Название подключаемой библиотеки CUDA
     add_definitions(-DUSE_CL)
     message(STATUS "--------------------------- USE_CORR_TYPE=${USE_CORR_TYPE}")
     message(STATUS "--------------------------- USE_CL")
@@ -153,7 +153,7 @@ message(OpenCV_INCLUDE_DIRS=${OpenCV_INCLUDE_DIRS})
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 link_directories(${CMAKE_CURRENT_LIST_DIR}/lib)
-
+include_directories(${CMAKE_SOURCE_DIR}/lib)
 include_directories(tools/)
 
 file(GLOB TracShatsFiles "${CMAKE_CURRENT_LIST_DIR}/tracshats/*")
@@ -502,6 +502,6 @@ if(${USE_GPU} EQUAL 2)
   set(run_name run_${GUI_RUN_PSTFX}_${USE_COLOR_CHANNEL_MODE}_${USE_CORR_TYPE}_CL)
 endif() # END if(${USE_GPU} EQUAL 2)
 
-target_link_libraries(trac_from_lib_tmml_multitrac ${OpenCV_LIBS} ${GPU_LIB} ${trac_lib_name} -lrt -lpthread)
-target_link_libraries(trac_from_lib_tmml_multitrac ${OpenCV_LIBS} ${GPU_LIB} ${trac_lib_name} -lrt -lpthread)
+target_link_libraries(trac_from_lib_tmml_multitrac ${OpenCV_LIBS} ${GPU_LIB} ${trac_lib_name}.so -lrt -lpthread)
+target_link_libraries(trac_from_lib_tmml_multitrac ${OpenCV_LIBS} ${GPU_LIB} ${trac_lib_name}.so -lrt -lpthread)
 set_target_properties(trac_from_lib_tmml_multitrac PROPERTIES OUTPUT_NAME ${run_name})

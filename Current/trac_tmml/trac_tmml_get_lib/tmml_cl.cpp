@@ -40,6 +40,12 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
 
 tmml_cl::~tmml_cl()
 {
+//    clFinish(qu);
+//    clReleaseKernel(tmml_cl_kernel1.getInfo());
+//    clReleaseProgram(program);
+//    clReleaseCommandQueue(queue);
+//    clReleaseContext(context);
+
     cout << "Destructor tmml_cl\n";
 } // END ~tmml_cl
 

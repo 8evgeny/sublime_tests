@@ -7,7 +7,7 @@ set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../trac_from_lib_tmml)
 set(FROM_LIB_MULTI ${CMAKE_CURRENT_LIST_DIR}/../trac_from_lib_tmml_multitrack)
 #set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../../fenix2/fenix2_from_lib)
 
-set(USE_GPU 2) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
+set(USE_GPU 1) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
 
 # Тип корреляции при template matching
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)
@@ -163,8 +163,8 @@ if(${USE_GPU} EQUAL 2)
     )
     target_link_libraries(${lib_name} ${OpenCL_LIBRARY})
     add_custom_command(TARGET ${lib_name} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${lib_name}> ${FROM_LIB_MULTI}/lib/${lib_name}
-        COMMENT "Copy ${lib_name} to  ${FROM_LIB_MULTI}/lib/${lib_name}"
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${lib_name}> ${FROM_LIB_MULTI}/lib/lib${lib_name}.so
+        COMMENT "Copy ${lib_name} to  ${FROM_LIB_MULTI}/lib/lib${lib_name}"
     )
 
 endif() # END if(${USE_OPEN_CL} EQUAL 2)

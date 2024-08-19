@@ -112,8 +112,11 @@ bool Multitrac::remove_trac() // удаление трекера на позиц
     {
         if(iter_main.operator*()->tracShats->isInited())
         {
+            cout <<"*****1*****\n";
             iter_main.operator*()->tracShats->deinit();
+            cout <<"*****2*****\n";
             l_trac_ptr.erase(iter_main);
+
             cout << "dbg:: ok erase" << endl;
         } // END if(l_trac_ptr.back()->tracShats->isInited())
         else

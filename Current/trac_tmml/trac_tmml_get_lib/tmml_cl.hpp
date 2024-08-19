@@ -53,7 +53,7 @@ class tmml_cl
     unsigned char img_result_x[RESULT_WIDTH];
     float img_result_bright[RESULT_WIDTH];
     std::string kernel_source{""};
-    cl::Kernel tmml_cl_kernel1, tmml_cl_kernel2;
+    cl::Kernel tmml_cl_kernel1;
     cl::Buffer img_work_buff, img_temp_buff, img_result_buff, img_result_x_buff, img_result_bright_buff;
     cl::Buffer maxVal_int_buff, max_pix_buff;
     cl::CommandQueue qu;
