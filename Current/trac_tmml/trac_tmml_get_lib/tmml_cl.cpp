@@ -45,7 +45,17 @@ tmml_cl::~tmml_cl()
 //    clReleaseProgram(program);
 //    clReleaseCommandQueue(queue);
 //    clReleaseContext(context);
+    clReleaseMemObject(img_work_buff());
+    clReleaseMemObject(img_temp_buff());
+    clReleaseMemObject(img_result_buff());
+    clReleaseMemObject(maxVal_int_buff());
+    clReleaseCommandQueue(qu());
+    clReleaseContext(context());
+    clReleaseProgram(program());
+    clReleaseDevice(default_device());
+    clReleaseKernel(tmml_cl_kernel1());
 
+//    clReleaseMemObject(max_pix_buff());
     cout << "Destructor tmml_cl\n";
 } // END ~tmml_cl
 

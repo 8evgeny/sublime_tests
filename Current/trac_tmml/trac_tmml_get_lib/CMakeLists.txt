@@ -7,7 +7,7 @@ set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../trac_from_lib_tmml)
 set(FROM_LIB_MULTI ${CMAKE_CURRENT_LIST_DIR}/../trac_from_lib_tmml_multitrack)
 #set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../../fenix2/fenix2_from_lib)
 
-set(USE_GPU 1) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
+set(USE_GPU 2) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
 
 # Тип корреляции при template matching
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)

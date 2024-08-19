@@ -6,7 +6,7 @@ message(STATUS "")
 message(STATUS "-------------------------------- CMAKE BEGINING for project trac_from_lib_tmml_multitrac")
 
 # Использование GPU:
-set(USE_GPU 1) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
+set(USE_GPU 2) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
 
 # Тип корреляции при template matching для USE_CORR_TYPE:
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)

@@ -11,7 +11,7 @@ set(CORR_TYPE 8)
 set(TEMPLATE_WIDTH 48)
 set(EXT_VAL 5)
 set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda)
-set(find_diff_result 0)
+set(find_diff_result 1)
 
 ###############################################################
 
