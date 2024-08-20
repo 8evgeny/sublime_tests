@@ -80,9 +80,10 @@ trac_tmml::trac_tmml(const std::string& config_path, bool& ok)
 } // -- END trac_tmml
 
 trac_tmml::~trac_tmml()
-{    
+{
 #if defined OPEN_CL
-   tm->~tmml_cl();
+   //tm->~tmml_cl();
+   tm.release();
 #endif // END #if defined OPEN_CL
 #if !defined OPEN_CL
    tm->~tmml();
