@@ -45,7 +45,7 @@ set(USE_CORSAIR_400_RAW 0) # 10 (Шар ОЭЦН400, сырой UDP видеоп
 set(USE_ETHERNET_CONNECTION 0)
 set(USE_PCAP 0)
 
-set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda)
+set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib)
 
 set(USE_CUDA_RESIZE_DEVICE_IMX219 0) # использование resize через cv::cuda на уровне device
 set(SYSTEM_ENDIANNESS LITTLE) # системный порядок байтов LITTLE / BIG (зачастую LITTLE).

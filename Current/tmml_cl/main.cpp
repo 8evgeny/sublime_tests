@@ -4,7 +4,7 @@ using namespace std;
 using namespace cv;
 using namespace chrono;
 float min_max_Val = 0.76;
-const int iter_num = 1000;
+const int iter_num = 100;
 const int koef_resize = 2;
 
 constexpr int temp_center_x = 150;

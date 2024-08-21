@@ -10,12 +10,11 @@ set(CORR_TYPE 8)
 
 set(TEMPLATE_WIDTH 48)
 set(EXT_VAL 5)
-set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda)
+set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib)
 set(find_diff_result 0)
 
 ###############################################################
 
-set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda)
 set(CMAKE_MAKE_PROGRAM "make -j${nproc}")
 
 find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
