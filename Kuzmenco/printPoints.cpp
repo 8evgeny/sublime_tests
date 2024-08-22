@@ -22,6 +22,32 @@ extern QPen penBlack;
 extern QGraphicsScene * scene;
 QPen penTriangle(Qt::green);
 
+// OK OP ABC/-2 -1 0 1 2
+void MainWindow::diagnostic()
+{
+//Канал легких
+    if (Channel_P == "A/2")
+    {
+        diagnosic_message.append("Острое заболевание органов дыхательной системы.\n");
+    }
+    if (Channel_P == "A/1")
+    {
+        diagnosic_message.append("Дискомфорт.\n");
+    }
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
 float MainWindow::calcCornerLine(float in)
 {
     if (in > 0 && in < 5) return (712.0f + (5.0f - in) * 4.4f);
@@ -96,18 +122,18 @@ return "ERR";
 
 void MainWindow::calculateLetters()
 {
-    letter1 = calculateLetter((float)r1y, (float)l1y);
-    letter2 = calculateLetter((float)r2y, (float)l2y);
-    letter3 = calculateLetter((float)r3y, (float)l3y);
-    letter4 = calculateLetter((float)r4y, (float)l4y);
-    letter5 = calculateLetter((float)r5y, (float)l5y);
-    letter6 = calculateLetter((float)r6y, (float)l6y);
-    letter7 = calculateLetter((float)r7y, (float)l7y);
-    letter8 = calculateLetter((float)r8y, (float)l8y);
-    letter9 = calculateLetter((float)r9y, (float)l9y);
-    letter10 = calculateLetter((float)r10y, (float)l10y);
-    letter11 = calculateLetter((float)r11y, (float)l11y);
-    letter12 = calculateLetter((float)r12y, (float)l12y);
+    Channel_P = calculateLetter((float)r1y, (float)l1y);
+    Channel_MC = calculateLetter((float)r2y, (float)l2y);
+    Channel_C = calculateLetter((float)r3y, (float)l3y);
+    Channel_IG = calculateLetter((float)r4y, (float)l4y);
+    Channel_TR = calculateLetter((float)r5y, (float)l5y);
+    Channel_GI = calculateLetter((float)r6y, (float)l6y);
+    Channel_RP = calculateLetter((float)r7y, (float)l7y);
+    Channel_F = calculateLetter((float)r8y, (float)l8y);
+    Channel_R = calculateLetter((float)r9y, (float)l9y);
+    Channel_V = calculateLetter((float)r10y, (float)l10y);
+    Channel_VB = calculateLetter((float)r11y, (float)l11y);
+    Channel_E = calculateLetter((float)r12y, (float)l12y);
 }
 
 void MainWindow::drawPoints()
@@ -140,6 +166,8 @@ void MainWindow::drawPoints()
         scene->addLine(corner_x_begin, calcCornerLine(low), corner_x_end, calcCornerLine(low), penYellow);
 
         calculateLetters();
+
+        diagnostic();
     }
 
 }
@@ -177,21 +205,22 @@ void MainWindow::writeText()
     ofstream fout;
     fout.open(nameOutFile + ".txt");
     fout <<" Имя: "<< name_field.toStdString() <<" / Дата: "<<Date.toStdString() <<" / Измерение № "<<to_string(izmereniye)<<endl<<endl;
-    fout << " P   Легкие                   "<< r1 <<"\t" << l1 <<"\t" << letter1 <<endl;
-    fout << " MC  Перикард                 "<< r2 <<"\t" << l2 <<"\t" << letter2 <<endl;
-    fout << " С   Сердце                   "<< r3 <<"\t" << l3 <<"\t" << letter3 <<endl;
-    fout << " IG  Тонкий кишечник          "<< r4 <<"\t" << l4 <<"\t" << letter4 <<endl;
-    fout << " TR  Гормональная система     "<< r5 <<"\t" << l5 <<"\t" << letter5 <<endl;
-    fout << " GI  Толстый кишечник         "<< r6 <<"\t" << l6 <<"\t" << letter6 <<endl;
+    fout << " P   Легкие                   "<< r1 <<"\t" << l1 <<"\t" << Channel_P <<endl;
+    fout << " MC  Перикард                 "<< r2 <<"\t" << l2 <<"\t" << Channel_MC <<endl;
+    fout << " С   Сердце                   "<< r3 <<"\t" << l3 <<"\t" << Channel_C <<endl;
+    fout << " IG  Тонкий кишечник          "<< r4 <<"\t" << l4 <<"\t" << Channel_IG <<endl;
+    fout << " TR  Гормональная система     "<< r5 <<"\t" << l5 <<"\t" << Channel_TR <<endl;
+    fout << " GI  Толстый кишечник         "<< r6 <<"\t" << l6 <<"\t" << Channel_GI <<endl;
     fout << " " << endl;
-    fout << " RP  Селезенка, Поджелудочная "<< r7 <<"\t" << l7 <<"\t" << letter7 <<endl;
-    fout << " F   Печень                   "<< r8 <<"\t" << l8 <<"\t"<< letter8 <<endl;
-    fout << " R   Почки                    "<< r9 <<"\t" << l9 <<"\t" << letter9 <<endl;
-    fout << " V   Мочевой пузырь           "<< r10 <<"\t" << l10 <<"\t" << letter10 <<endl;
-    fout << " VB  Желчный пузырь           "<< r11 <<"\t" << l11 <<"\t" << letter11 <<endl;
-    fout << " E   Желудок                  "<< r12 <<"\t" << l12 <<"\t" << letter12 <<endl;
+    fout << " RP  Селезенка, Поджелудочная "<< r7 <<"\t" << l7 <<"\t" << Channel_RP <<endl;
+    fout << " F   Печень                   "<< r8 <<"\t" << l8 <<"\t"<< Channel_F <<endl;
+    fout << " R   Почки                    "<< r9 <<"\t" << l9 <<"\t" << Channel_R <<endl;
+    fout << " V   Мочевой пузырь           "<< r10 <<"\t" << l10 <<"\t" << Channel_V <<endl;
+    fout << " VB  Желчный пузырь           "<< r11 <<"\t" << l11 <<"\t" << Channel_VB <<endl;
+    fout << " E   Желудок                  "<< r12 <<"\t" << l12 <<"\t" << Channel_E <<endl;
 //    fout << endl<<" Коридор нормы верх: " << to_string(hight) <<endl;
 //    fout << " Коридор нормы низ: " << to_string(low) <<endl;
+    fout <<diagnosic_message<<endl;
     fout << " " << endl;
     fout.close();
 
@@ -1459,6 +1488,10 @@ void MainWindow::r12l12()
         }
     }
 }
+
+
+
+
 
 
 
