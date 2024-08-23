@@ -22,6 +22,7 @@ set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         printPoints.cpp
+        channels.cpp
         mainwindow.h
         mainwindow.ui
 )

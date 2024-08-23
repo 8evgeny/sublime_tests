@@ -80,6 +80,20 @@ void paintEvent(QPaintEvent *event);
     void on_Izmereniye_editingFinished();
     void calculateLetters();
     void diagnostic();
+    void channel_P();
+    void channel_MC();
+    void channel_C();
+    void channel_IG();
+    void channel_TR();
+    void channel_GI();
+    void channel_RP();
+    void channel_F();
+    void channel_R();
+    void channel_V();
+    void channel_VB();
+    void channel_E();
+
+
     std::string calculateLetter(float r, float l);
 
     void on_pushButton_3_clicked();

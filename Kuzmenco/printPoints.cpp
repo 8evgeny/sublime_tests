@@ -25,21 +25,18 @@ QPen penTriangle(Qt::green);
 // OK OP ABC/-2 -1 0 1 2
 void MainWindow::diagnostic()
 {
-//Канал легких
-    if (Channel_P == "A/2")
-    {
-        diagnosic_message.append("Острое заболевание органов дыхательной системы.\n");
-    }
-    if (Channel_P == "A/1")
-    {
-        diagnosic_message.append("Дискомфорт.\n");
-    }
-
-
-
-
-
-
+    channel_P();
+    channel_MC();
+    channel_C();
+    channel_IG();
+    channel_TR();
+    channel_GI();
+    channel_RP();
+    channel_F();
+    channel_R();
+    channel_V();
+    channel_VB();
+    channel_E();
 }
 
 
