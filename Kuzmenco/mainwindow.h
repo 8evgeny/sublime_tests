@@ -128,7 +128,7 @@ private:
 //    unsigned int  l1{0}, l2{0}, l3{0}, l4{0}, l5{0}, l6{0}, l7{0}, l8{0}, l9{0}, l10{0}, l11{0}, l12{0};
     unsigned int  r1{25}, r2{85}, r3{35}, r4{45}, r5{85}, r6{25}, r7{55}, r8{65}, r9{75}, r10{35}, r11{75}, r12{25};
     unsigned int  l1{25}, l2{35}, l3{35}, l4{75}, l5{70}, l6{40}, l7{50}, l8{70}, l9{70}, l10{35}, l11{90}, l12{40};
-    std::string diagnosic_message {"\n  Диагноз:  "};
+    std::string diagnosic_message {"\nДиагноз:\n"};
 };
 
 #endif // MAINWINDOW_H

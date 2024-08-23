@@ -799,13 +799,154 @@ void MainWindow::channel_V()
 
 void MainWindow::channel_VB()
 {
+    //Канал желчного пузыря А
+        if (Channel_VB == "A/2")
+        {
+            diagnosic_message.append("Канал желчного пузыря: начальная стадия бескаменного холецистита.\n");
+        }
+        if (Channel_VB == "A/1")
+        {
+            diagnosic_message.append("Канал желчного пузыря: норма.\n");
+        }
+        if (Channel_VB == "A/0")
+        {
+            diagnosic_message.append("Канал желчного пузыря: норма.\n");
+        }
+        if (Channel_VB == "A/-1")
+        {
+            diagnosic_message.append("Канал желчного пузыря: норма.\n");
+        }
+        if (Channel_VB == "A/-2")
+        {
+            diagnosic_message.append("Канал желчного пузыря: хронический бескаменный холецистит.\n");
+        }
+        if (Channel_VB == "OK")
+        {
+            diagnosic_message.append("Канал желчного пузыря: избыток желчи при бескаменном холецистите.\n");
+        }
 
+    //Канал желчного пузыря В
+        if (Channel_VB == "B/2")
+        {
+            diagnosic_message.append("Канал желчного пузыря: дискинезия желчных путей.\n");
+        }
+        if (Channel_VB == "B/1")
+        {
+            diagnosic_message.append("Канал желчного пузыря: норма.\n");
+        }
+        if (Channel_VB == "B/0")
+        {
+            diagnosic_message.append("Канал желчного пузыря: норма.\n");
+        }
+        if (Channel_VB == "B/-1")
+        {
+            diagnosic_message.append("Канал желчного пузыря: норма.\n");
+        }
+        if (Channel_VB == "B/-2")
+        {
+            diagnosic_message.append("Канал желчного пузыря: дискинезия желчных путей.\n");
+        }
+
+    //Канал желчного пузыря С
+        if (Channel_VB == "C/2")
+        {
+            diagnosic_message.append("Канал желчного пузыря: начальная стадия желчекаменной болезни.\n");
+        }
+        if (Channel_VB == "C/1")
+        {
+            diagnosic_message.append("Канал желчного пузыря: начальная стадия желчекаменной болезни.\n");
+        }
+        if (Channel_VB == "C/0")
+        {
+            diagnosic_message.append("Канал желчного пузыря: непроявленное заболевание, ремиссия или предрасположенность.\n");
+        }
+        if (Channel_VB == "C/-1")
+        {
+            diagnosic_message.append("Канал желчного пузыря: желчекаменная болезнь.\n");
+        }
+        if (Channel_VB == "C/-2")
+        {
+            diagnosic_message.append("Канал желчного пузыря: желчекаменная болезнь. Вероятность наличия камней или песка в желчном пузыре (нужно еще смотреть другие меридианы!).\n");
+        }
+        if (Channel_VB == "OP")
+        {
+            diagnosic_message.append("Канал желчного пузыря: наличие камней или песка в желчном пузыре. Вероятность рака желчного пузыря (нужно еще смотреть другие меридианы!).\n");
+        }
 
 }
 
 void MainWindow::channel_E()
 {
+    //Канал желудка А
+        if (Channel_E == "A/2")
+        {
+            diagnosic_message.append("Канал желудка: повышенная кислотность желудочного сока.\n");
+        }
+        if (Channel_E == "A/1")
+        {
+            diagnosic_message.append("Канал желудка: норма.\n");
+        }
+        if (Channel_E == "A/0")
+        {
+            diagnosic_message.append("Канал желудка: норма.\n");
+        }
+        if (Channel_E == "A/-1")
+        {
+            diagnosic_message.append("Канал желудка: норма.\n");
+        }
+        if (Channel_E == "A/-2")
+        {
+            diagnosic_message.append("Канал желудка: пониженная кислотность желудочного сока.\n");
+        }
 
+    //Канал желудка В
+        if (Channel_E == "B/2")
+        {
+            diagnosic_message.append("Канал желудка: повышенная кислотность желудочного сока.\n");
+        }
+        if (Channel_E == "B/1")
+        {
+            diagnosic_message.append("Канал желудка: норма.\n");
+        }
+        if (Channel_E == "B/0")
+        {
+            diagnosic_message.append("Канал желудка: норма.\n");
+        }
+        if (Channel_E == "B/-1")
+        {
+            diagnosic_message.append("Канал желудка: норма.\n");
+        }
+        if (Channel_E == "B/-2")
+        {
+            diagnosic_message.append("Канал желудка: пониженная кислотность желудочного сока.\n");
+        }
+
+
+    //Канал желудка С
+        if (Channel_E == "C/2")
+        {
+            diagnosic_message.append("Канал желудка: гастрит с повышенной кислотностью желудочного сока.\n");
+        }
+        if (Channel_E == "C/1")
+        {
+            diagnosic_message.append("Канал желудка: гастрит с повышенной кислотностью желудочного сока.\n");
+        }
+        if (Channel_E == "C/0")
+        {
+            diagnosic_message.append("Канал желудка: непроявленное заболевание, ремиссия или предрасположенность.\n");
+        }
+        if (Channel_E == "C/-1")
+        {
+            diagnosic_message.append("Канал желудка: гастрит с пониженной кислотностью желудочного сока.\n");
+        }
+        if (Channel_E == "C/-2")
+        {
+            diagnosic_message.append("Канал желудка: гастрит с пониженной кислотностью желудочного сока.\n");
+        }
+        if (Channel_E == "OP")
+        {
+            diagnosic_message.append("Канал желудка: переедание при гастрите. Вероятность рака желудка (нужно еще смотреть другие меридианы!).\n");
+        }
 
 }
 
