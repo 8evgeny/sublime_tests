@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <iostream>
+#include <QFileDialog>
+#include <fstream>
 
 using namespace std;
 extern QApplication * app;
@@ -24,6 +26,44 @@ MainWindow::~MainWindow()
 Ui::MainWindow *MainWindow::getUi() const
 {
     return ui;
+}
+
+void MainWindow::on_button_load_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                QString::fromUtf8("Открыть файл"),
+                                QDir::currentPath().append("/../Data/"),
+                                "data (*.dat );;All files (*.*)");
+    ifstream fin;
+    fin.open(fileName.toStdString());
+    fin>>r1>>r2>>r3>>r4>>r5>>r6>>r7>>r8>>r9>>r10>>r11>>r12>>
+         l1>>l2>>l3>>l4>>l5>>l6>>l7>>l8>>l9>>l10>>l11>>l12;
+    fin.close();
+    ui->r_1->setText(QString::number(r1));
+    ui->r_2->setText(QString::number(r2));
+    ui->r_3->setText(QString::number(r3));
+    ui->r_4->setText(QString::number(r4));
+    ui->r_5->setText(QString::number(r5));
+    ui->r_6->setText(QString::number(r6));
+    ui->r_7->setText(QString::number(r7));
+    ui->r_8->setText(QString::number(r8));
+    ui->r_9->setText(QString::number(r9));
+    ui->r_10->setText(QString::number(r10));
+    ui->r_11->setText(QString::number(r11));
+    ui->r_12->setText(QString::number(r12));
+    ui->l_1->setText(QString::number(l1));
+    ui->l_2->setText(QString::number(l2));
+    ui->l_3->setText(QString::number(l3));
+    ui->l_4->setText(QString::number(l4));
+    ui->l_5->setText(QString::number(l5));
+    ui->l_6->setText(QString::number(l6));
+    ui->l_7->setText(QString::number(l7));
+    ui->l_8->setText(QString::number(l8));
+    ui->l_9->setText(QString::number(l9));
+    ui->l_10->setText(QString::number(l10));
+    ui->l_11->setText(QString::number(l11));
+    ui->l_12->setText(QString::number(l12));
+    drawPoints();
 }
 
 void MainWindow::on_dateEdit_dateChanged(const QDate &date)
