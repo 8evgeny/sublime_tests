@@ -3,8 +3,8 @@
 #include <iostream>
 #include <QApplication>
 #include <QMainWindow>
-#include <curses.h>
-#include <ncursesw/ncurses.h>
+//#include <curses.h>
+//#include <ncursesw/ncurses.h>
 #include <math.h>
 #include <QLabel>
 #include <QStyle>

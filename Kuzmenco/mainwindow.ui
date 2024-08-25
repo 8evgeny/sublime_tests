@@ -2979,7 +2979,7 @@
        <item alignment="Qt::AlignTop">
         <widget class="QPushButton" name="pushButton_3">
          <property name="text">
-          <string>Очистить</string>
+          <string>Загрузить</string>
          </property>
         </widget>
        </item>
