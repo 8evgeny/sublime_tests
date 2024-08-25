@@ -111,12 +111,6 @@ void MainWindow::calculateLetters()
     Channel_E = calculateLetter((float)r12y, (float)l12y);
 }
 
-bool is_minus(string & str) {
-//    static const regex r(R"(\w+@\w+\.(?:com|in))");
-    static const regex r(R"(\w+-\w+\)");
-    return regex_match(str.data(), r);
-}
-
 void MainWindow::drawPoints()
 {
     scene->clear();
@@ -151,6 +145,12 @@ void MainWindow::drawPoints()
     }
 }
 
+void MainWindow::on_button_load_clicked()
+{
+//    cout<< "button Clear: "<<endl;
+    drawPoints();
+}
+
 void MainWindow::on_button_save_clicked()
 {
     string cmd = "mkdir -p ../Измерения/" + name_field.toStdString();
@@ -173,13 +173,11 @@ void MainWindow::on_button_save_clicked()
     QPainter painter(&image);
     scene->render(&painter);
 
-
     image.save(QString::fromStdString(nameOutFile + ".png"));
-    writeText();
-
+    saveData();
 }
 
-void MainWindow::writeText()
+void MainWindow::saveData()
 {
     ofstream fout;
     fout.open(nameOutFile + ".txt");
@@ -203,6 +201,11 @@ void MainWindow::writeText()
     fout << " " << endl;
     fout.close();
 
+    ofstream fout2;
+    fout2.open(nameOutFile + ".save");
+    fout2<<r1<<","<<r2<<","<<r3<<","<<r4<<","<<r5<<","<<r6<<","<<r7<<","<<r8<<","<<r9<<","<<r10<<","<<r11<<","<<r12<<","
+         <<l1<<","<<l2<<","<<l3<<","<<l4<<","<<l5<<","<<l6<<","<<l7<<","<<l8<<","<<l9<<","<<l10<<","<<l11<<","<<l12;
+    fout2.close();
 }
 
 void MainWindow::paintEvent(QPaintEvent* event)

@@ -2977,7 +2977,7 @@
         </spacer>
        </item>
        <item alignment="Qt::AlignTop">
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="button_load">
          <property name="text">
           <string>Загрузить</string>
          </property>
@@ -3074,7 +3074,7 @@
   <tabstop>lineEdit_31</tabstop>
   <tabstop>lineEdit_32</tabstop>
   <tabstop>scrollArea_2</tabstop>
-  <tabstop>pushButton_3</tabstop>
+  <tabstop>button_load</tabstop>
   <tabstop>scrollArea</tabstop>
   <tabstop>button_exit</tabstop>
  </tabstops>

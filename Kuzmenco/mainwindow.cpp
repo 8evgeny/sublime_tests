@@ -340,9 +340,4 @@ void MainWindow::on_Izmereniye_editingFinished()
 }
 
 
-void MainWindow::on_pushButton_3_clicked()
-{
-    cout<< "button Clear: "<<endl;
-        drawPoints();
-}
 

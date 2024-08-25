@@ -75,9 +75,9 @@ void paintEvent(QPaintEvent *event);
     void r12l12();
 
     void on_button_save_clicked();
-    void on_pushButton_3_clicked();
+    void on_button_load_clicked();
 
-    void writeText();
+    void saveData();
     float calcCornerLine(float input);
     void on_Izmereniye_editingFinished();
     void calculateLetters();
