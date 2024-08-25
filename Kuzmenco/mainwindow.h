@@ -78,6 +78,7 @@ void paintEvent(QPaintEvent *event);
     void on_button_load_clicked();
 
     void saveData();
+    void loadData();
     float calcCornerLine(float input);
     void on_Izmereniye_editingFinished();
     void calculateLetters();
@@ -122,10 +123,10 @@ private:
     unsigned int  corner_x_begin{80}, corner_x_end{1150};
     unsigned int  r1y{0}, r2y{0}, r3y{0}, r4y{0}, r5y{0}, r6y{0}, r7y{0}, r8y{0}, r9y{0}, r10y{0}, r11y{0}, r12y{0};
     unsigned int  l1y{0}, l2y{0}, l3y{0}, l4y{0}, l5y{0}, l6y{0}, l7y{0}, l8y{0}, l9y{0}, l10y{0}, l11y{0}, l12y{0};
-//    unsigned int  r1{0}, r2{0}, r3{0}, r4{0}, r5{0}, r6{0}, r7{0}, r8{0}, r9{0}, r10{0}, r11{0}, r12{0};
-//    unsigned int  l1{0}, l2{0}, l3{0}, l4{0}, l5{0}, l6{0}, l7{0}, l8{0}, l9{0}, l10{0}, l11{0}, l12{0};
-    unsigned int  r1{90}, r2{85}, r3{35}, r4{45}, r5{60}, r6{25}, r7{55}, r8{65}, r9{75}, r10{35}, r11{75}, r12{25};
-    unsigned int  l1{10}, l2{35}, l3{35}, l4{75}, l5{85}, l6{40}, l7{50}, l8{70}, l9{70}, l10{35}, l11{90}, l12{40};
+    unsigned int  r1{0}, r2{0}, r3{0}, r4{0}, r5{0}, r6{0}, r7{0}, r8{0}, r9{0}, r10{0}, r11{0}, r12{0};
+    unsigned int  l1{0}, l2{0}, l3{0}, l4{0}, l5{0}, l6{0}, l7{0}, l8{0}, l9{0}, l10{0}, l11{0}, l12{0};
+//    unsigned int  r1{90}, r2{85}, r3{35}, r4{45}, r5{60}, r6{25}, r7{55}, r8{65}, r9{75}, r10{35}, r11{75}, r12{25};
+//    unsigned int  l1{10}, l2{35}, l3{35}, l4{75}, l5{85}, l6{40}, l7{50}, l8{70}, l9{70}, l10{35}, l11{90}, l12{40};
     std::string diagnosic_message {"\nДиагноз:\n"};
 };
 

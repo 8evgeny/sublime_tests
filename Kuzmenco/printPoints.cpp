@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iostream>
 #include <regex>
+#include <QFileDialog>
 
 using namespace std;
 extern QScreen *screenMain;
@@ -148,15 +149,37 @@ void MainWindow::drawPoints()
 void MainWindow::on_button_load_clicked()
 {
 //    cout<< "button Clear: "<<endl;
+//    drawPoints();
+    loadData();
+}
+
+void MainWindow::loadData()
+{
+//    string name = "/home/user/SOFT/Github/Sublime_tests/Kuzmenco/Data/Таня/Таня_25.08.2024_№3.dat";
+//    QString fileName = QFileDialog::getOpenFileName(this,
+//                                QString::fromUtf8("Открыть файл"),
+//                                QDir::currentPath(),
+//                                "Images (*.png *.xpm *.jpg);;All files (*.*)");
+
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                QString::fromUtf8("Открыть файл"),
+                                QDir::currentPath(),
+                                "data (*.dat );;All files (*.*)");
+
+    ifstream fin;
+    fin.open(fileName.toStdString());
+    fin>>r1>>r2>>r3>>r4>>r5>>r6>>r7>>r8>>r9>>r10>>r11>>r12>>
+         l1>>l2>>l3>>l4>>l5>>l6>>l7>>l8>>l9>>l10>>l11>>l12;
+    fin.close();
     drawPoints();
 }
 
 void MainWindow::on_button_save_clicked()
 {
-    string cmd = "mkdir -p ../Измерения/" + name_field.toStdString();
+    string cmd = "mkdir -p ../Data/" + name_field.toStdString();
     system(cmd.c_str());
 
-    QString path = "../Измерения/" + name_field + "/" + name_field + "_" + Date + "_№" + to_string(izmereniye).c_str();
+    QString path = "../Data/" + name_field + "/" + name_field + "_" + Date + "_№" + to_string(izmereniye).c_str();
     nameOutFile = path.toStdString() ;
 
     QImage image(scene->sceneRect().size().toSize(), QImage::Format_ARGB32);  // Create the image with the exact size of the shrunk scene
@@ -202,9 +225,13 @@ void MainWindow::saveData()
     fout.close();
 
     ofstream fout2;
-    fout2.open(nameOutFile + ".save");
-    fout2<<r1<<","<<r2<<","<<r3<<","<<r4<<","<<r5<<","<<r6<<","<<r7<<","<<r8<<","<<r9<<","<<r10<<","<<r11<<","<<r12<<","
-         <<l1<<","<<l2<<","<<l3<<","<<l4<<","<<l5<<","<<l6<<","<<l7<<","<<l8<<","<<l9<<","<<l10<<","<<l11<<","<<l12;
+    fout2.open(nameOutFile + ".dat");
+//    fout2<<r1<<","<<r2<<","<<r3<<","<<r4<<","<<r5<<","<<r6<<","<<r7<<","<<r8<<","<<r9<<","<<r10<<","<<r11<<","<<r12<<","
+//         <<l1<<","<<l2<<","<<l3<<","<<l4<<","<<l5<<","<<l6<<","<<l7<<","<<l8<<","<<l9<<","<<l10<<","<<l11<<","<<l12;
+
+    fout2<<r1<<" "<<r2<<" "<<r3<<" "<<r4<<" "<<r5<<" "<<r6<<" "<<r7<<" "<<r8<<" "<<r9<<" "<<r10<<" "<<r11<<" "<<r12<<" "
+            <<l1<<" "<<l2<<" "<<l3<<" "<<l4<<" "<<l5<<" "<<l6<<" "<<l7<<" "<<l8<<" "<<l9<<" "<<l10<<" "<<l11<<" "<<l12;
+
     fout2.close();
 }
 
