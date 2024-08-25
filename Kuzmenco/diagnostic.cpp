@@ -359,7 +359,7 @@ void MainWindow::channel_C()
         if (Channel_C.find("-2") != string::npos)//Обе точки ниже
         {
             scene->addEllipse(294, 772, 8, 8, penTriangle);
-            scene->addEllipse(353, 772, 8, 8, penTriangle);
+            scene->addEllipse(351, 772, 8, 8, penTriangle);
         }
         if (Channel_C.find("A/-1") != string::npos)//левая ниже
         {
@@ -367,16 +367,16 @@ void MainWindow::channel_C()
         }
         if (Channel_C.find("C/-1") != string::npos)//правая ниже
         {
-            scene->addEllipse(353, 772, 8, 8, penTriangle);
+            scene->addEllipse(351, 772, 8, 8, penTriangle);
         }
         if (Channel_C.find("/2") != string::npos)//Обе точки выше
         {
             scene->addEllipse(294, 795, 8, 8, penTriangle);
-            scene->addEllipse(353, 795, 8, 8, penTriangle);
+            scene->addEllipse(351, 795, 8, 8, penTriangle);
         }
         if (Channel_C.find("A/1") != string::npos)//правая выше
         {
-            scene->addEllipse(353, 795, 8, 8, penTriangle);
+            scene->addEllipse(351, 795, 8, 8, penTriangle);
         }
         if (Channel_C.find("C/1") != string::npos)//левая выше
         {
@@ -385,88 +385,127 @@ void MainWindow::channel_C()
         if (Channel_C.find("OP") != string::npos)//левая выше  правая ниже
         {
             scene->addEllipse(294, 795, 8, 8, penTriangle);
-            scene->addEllipse(353, 772, 8, 8, penTriangle);
+            scene->addEllipse(351, 772, 8, 8, penTriangle);
         }
         if (Channel_C.find("OK") != string::npos)//левая ниже  правая выше
         {
             scene->addEllipse(294, 772, 8, 8, penTriangle);
-            scene->addEllipse(353, 795, 8, 8, penTriangle);
+            scene->addEllipse(351, 795, 8, 8, penTriangle);
         }
     }//triangles
 }
 
 void MainWindow::channel_IG()
 {
-    //Канал тонкого кишечника А
-        if (Channel_IG == "A/2")
-        {
-            diagnosic_message.append("Канал тонк.киш.: через 1,5-2 часа после приема пищи.\n");
-        }
-        if (Channel_IG == "A/1")
-        {
-            diagnosic_message.append("Канал тонк.киш.: норма.\n");
-        }
-        if (Channel_IG == "A/0")
-        {
-            diagnosic_message.append("Канал тонк.киш.: норма.\n");
-        }
-        if (Channel_IG == "A/-1")
-        {
-            diagnosic_message.append("Канал тонк.киш.: норма.\n");
-        }
-        if (Channel_IG == "A/-2")
-        {
-            diagnosic_message.append("Канал тонк.киш.: через 2 часа после приема пищи.\n");
-        }
+//Канал тонкого кишечника А
+    if (Channel_IG == "A/2")
+    {
+        diagnosic_message.append("Канал тонк.киш.: через 1,5-2 часа после приема пищи.\n");
+    }
+    if (Channel_IG == "A/1")
+    {
+        diagnosic_message.append("Канал тонк.киш.: норма.\n");
+    }
+    if (Channel_IG == "A/0")
+    {
+        diagnosic_message.append("Канал тонк.киш.: норма.\n");
+    }
+    if (Channel_IG == "A/-1")
+    {
+        diagnosic_message.append("Канал тонк.киш.: норма.\n");
+    }
+    if (Channel_IG == "A/-2")
+    {
+        diagnosic_message.append("Канал тонк.киш.: через 2 часа после приема пищи.\n");
+    }
 
-    //Канал тонкого кишечника B
-        if (Channel_IG == "B/2")
-        {
-            diagnosic_message.append("Канал тонк.киш.: через 1,5-2 часа после приема пищи.\n");
-        }
-        if (Channel_IG == "B/1")
-        {
-            diagnosic_message.append("Канал тонк.киш.: норма.\n");
-        }
-        if (Channel_IG == "B/0")
-        {
-            diagnosic_message.append("Канал тонк.киш.: норма.\n");
-        }
-        if (Channel_IG == "B/-1")
-        {
-            diagnosic_message.append("Канал тонк.киш.: норма.\n");
-        }
-        if (Channel_IG == "B/-2")
-        {
-            diagnosic_message.append("Канал тонк.киш.: через 2 часа после приема пищи.\n");
-        }
+//Канал тонкого кишечника B
+    if (Channel_IG == "B/2")
+    {
+        diagnosic_message.append("Канал тонк.киш.: через 1,5-2 часа после приема пищи.\n");
+    }
+    if (Channel_IG == "B/1")
+    {
+        diagnosic_message.append("Канал тонк.киш.: норма.\n");
+    }
+    if (Channel_IG == "B/0")
+    {
+        diagnosic_message.append("Канал тонк.киш.: норма.\n");
+    }
+    if (Channel_IG == "B/-1")
+    {
+        diagnosic_message.append("Канал тонк.киш.: норма.\n");
+    }
+    if (Channel_IG == "B/-2")
+    {
+        diagnosic_message.append("Канал тонк.киш.: через 2 часа после приема пищи.\n");
+    }
 
-    //Канал тонкого кишечника C
-        if (Channel_IG == "C/2")
+//Канал тонкого кишечника C
+    if (Channel_IG == "C/2")
+    {
+        diagnosic_message.append("Канал тонк.киш.: обострение хронического дуоденита.\n");
+    }
+    if (Channel_IG == "C/1")
+    {
+        diagnosic_message.append("Канал тонк.киш.: начало обострения хронического дуоденита.\n");
+    }
+    if (Channel_IG == "C/0")
+    {
+        diagnosic_message.append("Канал тонк.киш.: непроявленное заболевание, ремиссия, или есть предрасположенность.\n");
+    }
+    if (Channel_IG == "C/-1")
+    {
+        diagnosic_message.append("Канал тонк.киш.: состояние перед ремиссией дуоденита.\n");
+    }
+    if (Channel_IG == "C/-2")
+    {
+        diagnosic_message.append("Канал тонк.киш.: старый вялотекущий дуоденит.\n");
+    }
+    if (Channel_IG == "OP")
+    {
+        diagnosic_message.append("Канал тонк.киш.: через 2 часа после обильного застолья при дуодените; или вероятность рака 12-ти перстной кишки (нужно дополнительно смотреть состояние других меридианов!) .\n");
+    }
+//Закрашиваем треугольники
+    if (Channel_IG.find_first_of('0') == string::npos ) //Обе точки не в коридоре
+    {
+        if (Channel_IG.find("-2") != string::npos)//Обе точки ниже
         {
-            diagnosic_message.append("Канал тонк.киш.: обострение хронического дуоденита.\n");
+            scene->addEllipse(380, 772, 8, 8, penTriangle);
+            scene->addEllipse(435, 772, 8, 8, penTriangle);
         }
-        if (Channel_IG == "C/1")
+        if (Channel_IG.find("A/-1") != string::npos)//левая ниже
         {
-            diagnosic_message.append("Канал тонк.киш.: начало обострения хронического дуоденита.\n");
+            scene->addEllipse(380, 772, 8, 8, penTriangle);
         }
-        if (Channel_IG == "C/0")
+        if (Channel_IG.find("C/-1") != string::npos)//правая ниже
         {
-            diagnosic_message.append("Канал тонк.киш.: непроявленное заболевание, ремиссия, или есть предрасположенность.\n");
+            scene->addEllipse(435, 772, 8, 8, penTriangle);
         }
-        if (Channel_IG == "C/-1")
+        if (Channel_IG.find("/2") != string::npos)//Обе точки выше
         {
-            diagnosic_message.append("Канал тонк.киш.: состояние перед ремиссией дуоденита.\n");
+            scene->addEllipse(380, 795, 8, 8, penTriangle);
+            scene->addEllipse(435, 795, 8, 8, penTriangle);
         }
-        if (Channel_IG == "C/-2")
+        if (Channel_IG.find("A/1") != string::npos)//правая выше
         {
-            diagnosic_message.append("Канал тонк.киш.: старый вялотекущий дуоденит.\n");
+            scene->addEllipse(435, 795, 8, 8, penTriangle);
         }
-        if (Channel_IG == "OP")
+        if (Channel_IG.find("C/1") != string::npos)//левая выше
         {
-            diagnosic_message.append("Канал тонк.киш.: через 2 часа после обильного застолья при дуодените; или вероятность рака 12-ти перстной кишки (нужно дополнительно смотреть состояние других меридианов!) .\n");
+            scene->addEllipse(380, 795, 8, 8, penTriangle);
         }
-
+        if (Channel_IG.find("OP") != string::npos)//левая выше  правая ниже
+        {
+            scene->addEllipse(380, 795, 8, 8, penTriangle);
+            scene->addEllipse(435, 772, 8, 8, penTriangle);
+        }
+        if (Channel_IG.find("OK") != string::npos)//левая ниже  правая выше
+        {
+            scene->addEllipse(380, 772, 8, 8, penTriangle);
+            scene->addEllipse(435, 795, 8, 8, penTriangle);
+        }
+    }//triangles
 }
 
 void MainWindow::channel_TR()
