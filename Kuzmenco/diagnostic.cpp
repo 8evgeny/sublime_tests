@@ -510,392 +510,587 @@ void MainWindow::channel_IG()
 
 void MainWindow::channel_TR()
 {
-    //Канал тройного обогревателя А
-        if (Channel_TR == "A/2")
-        {
-            diagnosic_message.append("Канал 3 обогревателя: физическое пернапряжение.\n");
-        }
-        if (Channel_TR == "A/1")
-        {
-            diagnosic_message.append("Канал 3 обогревателя: норма.\n");
-        }
-        if (Channel_TR == "A/0")
-        {
-            diagnosic_message.append("Канал 3 обогревателя: норма.\n");
-        }
-        if (Channel_TR == "A/-1")
-        {
-            diagnosic_message.append("Канал 3 обогревателя: норма.\n");
-        }
-        if (Channel_TR == "A/-2")
-        {
-            diagnosic_message.append("Канал 3 обогревателя: физическое утомление.\n");
-        }
-        if (Channel_TR == "OK")
-        {
-            diagnosic_message.append("Канал 3 обогревателя: дисфункция гормональной системы (сглаз).\n");
-        }
+//Канал тройного обогревателя А
+    if (Channel_TR == "A/2")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: физическое пернапряжение.\n");
+    }
+    if (Channel_TR == "A/1")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: норма.\n");
+    }
+    if (Channel_TR == "A/0")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: норма.\n");
+    }
+    if (Channel_TR == "A/-1")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: норма.\n");
+    }
+    if (Channel_TR == "A/-2")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: физическое утомление.\n");
+    }
+    if (Channel_TR == "OK")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: дисфункция гормональной системы (сглаз).\n");
+    }
 
-    //Канал тройного обогревателя В
-        if (Channel_TR == "B/2")
-        {
-            diagnosic_message.append("Канал 3 обогревателя: избыток энергии.\n");
-        }
-        if (Channel_TR == "B/1")
-        {
-            diagnosic_message.append("Канал 3 обогревателя: норма.\n");
-        }
-        if (Channel_TR == "B/0")
-        {
-            diagnosic_message.append("Канал 3 обогревателя: норма.\n");
-        }
-        if (Channel_TR == "B/-1")
-        {
-            diagnosic_message.append("Канал 3 обогревателя: норма.\n");
-        }
-        if (Channel_TR == "B/-2")
-        {
-            diagnosic_message.append("Канал 3 обогревателя: усталость, физическое переутомление.\n");
-        }
+//Канал тройного обогревателя В
+    if (Channel_TR == "B/2")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: избыток энергии.\n");
+    }
+    if (Channel_TR == "B/1")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: норма.\n");
+    }
+    if (Channel_TR == "B/0")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: норма.\n");
+    }
+    if (Channel_TR == "B/-1")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: норма.\n");
+    }
+    if (Channel_TR == "B/-2")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: усталость, физическое переутомление.\n");
+    }
 
-    //Канал тройного обогревателя С
-        if (Channel_TR == "C/2")
+//Канал тройного обогревателя С
+    if (Channel_TR == "C/2")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: гиперфункция гормональной системы.\n");
+    }
+    if (Channel_TR == "C/1")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: гиперфункция гормональной системы.\n");
+    }
+    if (Channel_TR == "C/0")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: дисфункция гормональной системы.\n");
+    }
+    if (Channel_TR == "C/-1")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: гипофункция гормональной системы.\n");
+    }
+    if (Channel_TR == "C/-2")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: гипофункция гормональной системы.\n");
+    }
+    if (Channel_TR == "OP")
+    {
+        diagnosic_message.append("Канал 3 обогревателя: тяжелая дисфункция гормональной системы (порча).\n");
+    }
+//Закрашиваем треугольники
+    if (Channel_TR.find_first_of('0') == string::npos ) //Обе точки не в коридоре
+    {
+        if (Channel_TR.find("-2") != string::npos)//Обе точки ниже
         {
-            diagnosic_message.append("Канал 3 обогревателя: гиперфункция гормональной системы.\n");
+            scene->addEllipse(466, 772, 8, 8, penTriangle);
+            scene->addEllipse(520, 772, 8, 8, penTriangle);
         }
-        if (Channel_TR == "C/1")
+        if (Channel_TR.find("A/-1") != string::npos)//левая ниже
         {
-            diagnosic_message.append("Канал 3 обогревателя: гиперфункция гормональной системы.\n");
+            scene->addEllipse(466, 772, 8, 8, penTriangle);
         }
-        if (Channel_TR == "C/0")
+        if (Channel_TR.find("C/-1") != string::npos)//правая ниже
         {
-            diagnosic_message.append("Канал 3 обогревателя: дисфункция гормональной системы.\n");
+            scene->addEllipse(520, 772, 8, 8, penTriangle);
         }
-        if (Channel_TR == "C/-1")
+        if (Channel_TR.find("/2") != string::npos)//Обе точки выше
         {
-            diagnosic_message.append("Канал 3 обогревателя: гипофункция гормональной системы.\n");
+            scene->addEllipse(466, 795, 8, 8, penTriangle);
+            scene->addEllipse(520, 795, 8, 8, penTriangle);
         }
-        if (Channel_TR == "C/-2")
+        if (Channel_TR.find("A/1") != string::npos)//правая выше
         {
-            diagnosic_message.append("Канал 3 обогревателя: гипофункция гормональной системы.\n");
+            scene->addEllipse(520, 795, 8, 8, penTriangle);
         }
-        if (Channel_TR == "OP")
+        if (Channel_TR.find("C/1") != string::npos)//левая выше
         {
-            diagnosic_message.append("Канал 3 обогревателя: тяжелая дисфункция гормональной системы (порча).\n");
+            scene->addEllipse(466, 795, 8, 8, penTriangle);
         }
-
+        if (Channel_TR.find("OP") != string::npos)//левая выше  правая ниже
+        {
+            scene->addEllipse(466, 795, 8, 8, penTriangle);
+            scene->addEllipse(520, 772, 8, 8, penTriangle);
+        }
+        if (Channel_TR.find("OK") != string::npos)//левая ниже  правая выше
+        {
+            scene->addEllipse(466, 772, 8, 8, penTriangle);
+            scene->addEllipse(520, 795, 8, 8, penTriangle);
+        }
+    }//triangles
 }
 
 void MainWindow::channel_GI()
 {
-    //Канал толстого кишечника А
-        if (Channel_GI == "A/2")
-        {
-            diagnosic_message.append("Канал толст.киш.: усиление перистальтики толстого кишечника.\n");
-        }
-        if (Channel_GI == "A/1")
-        {
-            diagnosic_message.append("Канал толст.киш.: небольшое усиление функции толстого кишечника.\n");
-        }
-        if (Channel_GI == "A/0")
-        {
-            diagnosic_message.append("Канал толст.киш.: норма.\n");
-        }
-        if (Channel_GI == "A/-1")
-        {
-            diagnosic_message.append("Канал толст.киш.: склонность к неполному опорожнению кишечника.\n");
-        }
-        if (Channel_GI == "A/-2")
-        {
-            diagnosic_message.append("Канал толст.киш.: запор на нервной почве.\n");
-        }
-        if (Channel_GI == "OK")
-        {
-            diagnosic_message.append("Канал толст.киш.: метеоризм.\n");
-        }
+//Канал толстого кишечника А
+    if (Channel_GI == "A/2")
+    {
+        diagnosic_message.append("Канал толст.киш.: усиление перистальтики толстого кишечника.\n");
+    }
+    if (Channel_GI == "A/1")
+    {
+        diagnosic_message.append("Канал толст.киш.: небольшое усиление функции толстого кишечника.\n");
+    }
+    if (Channel_GI == "A/0")
+    {
+        diagnosic_message.append("Канал толст.киш.: норма.\n");
+    }
+    if (Channel_GI == "A/-1")
+    {
+        diagnosic_message.append("Канал толст.киш.: склонность к неполному опорожнению кишечника.\n");
+    }
+    if (Channel_GI == "A/-2")
+    {
+        diagnosic_message.append("Канал толст.киш.: запор на нервной почве.\n");
+    }
+    if (Channel_GI == "OK")
+    {
+        diagnosic_message.append("Канал толст.киш.: метеоризм.\n");
+    }
 
-    //Канал толстого кишечника В
-        if (Channel_GI == "B/2")
-        {
-            diagnosic_message.append("Канал толст.киш.: усиление перистальтики толстого кишечника, употребление слабительного.\n");
-        }
-        if (Channel_GI == "B/1")
-        {
-            diagnosic_message.append("Канал толст.киш.: норма.\n");
-        }
-        if (Channel_GI == "B/01")
-        {
-            diagnosic_message.append("Канал толст.киш.: норма.\n");
-        }
-        if (Channel_GI == "B/-1")
-        {
-            diagnosic_message.append("Канал толст.киш.: норма.\n");
-        }
-        if (Channel_GI == "B/-2")
-        {
-            diagnosic_message.append("Канал толст.киш.: запор на нервной почве.\n");
-        }
+//Канал толстого кишечника В
+    if (Channel_GI == "B/2")
+    {
+        diagnosic_message.append("Канал толст.киш.: усиление перистальтики толстого кишечника, употребление слабительного.\n");
+    }
+    if (Channel_GI == "B/1")
+    {
+        diagnosic_message.append("Канал толст.киш.: норма.\n");
+    }
+    if (Channel_GI == "B/01")
+    {
+        diagnosic_message.append("Канал толст.киш.: норма.\n");
+    }
+    if (Channel_GI == "B/-1")
+    {
+        diagnosic_message.append("Канал толст.киш.: норма.\n");
+    }
+    if (Channel_GI == "B/-2")
+    {
+        diagnosic_message.append("Канал толст.киш.: запор на нервной почве.\n");
+    }
 
-    //Канал толстого кишечника С
-        if (Channel_GI == "C/2")
+//Канал толстого кишечника С
+    if (Channel_GI == "C/2")
+    {
+        diagnosic_message.append("Канал толст.киш.: усиление перистальтики толстого кишечника, колит.\n");
+    }
+    if (Channel_GI == "C/1")
+    {
+        diagnosic_message.append("Канал толст.киш.: небольшое усиление перистальтики толстого кишечника.\n");
+    }
+    if (Channel_GI == "C/0")
+    {
+        diagnosic_message.append("Канал толст.киш.: непроявленное заболевание, ремиссия или предрасположенность.\n");
+    }
+    if (Channel_GI == "C/-1")
+    {
+        diagnosic_message.append("Канал толст.киш.: начальная стадия колита.\n");
+    }
+    if (Channel_GI == "C/-2")
+    {
+        diagnosic_message.append("Канал толст.киш.: хронический колит.\n");
+    }
+    if (Channel_GI == "OP")
+    {
+        diagnosic_message.append("Канал толст.киш.: метеоризм при колите; вероятность рака толстой кишки (нужно уточнять другие меридианы!).\n");
+    }
+//Закрашиваем треугольники
+    if (Channel_GI.find_first_of('0') == string::npos ) //Обе точки не в коридоре
+    {
+        if (Channel_GI.find("-2") != string::npos)//Обе точки ниже
         {
-            diagnosic_message.append("Канал толст.киш.: усиление перистальтики толстого кишечника, колит.\n");
+            scene->addEllipse(551, 772, 8, 8, penTriangle);
+            scene->addEllipse(606, 772, 8, 8, penTriangle);
         }
-        if (Channel_GI == "C/1")
+        if (Channel_GI.find("A/-1") != string::npos)//левая ниже
         {
-            diagnosic_message.append("Канал толст.киш.: небольшое усиление перистальтики толстого кишечника.\n");
+            scene->addEllipse(551, 772, 8, 8, penTriangle);
         }
-        if (Channel_GI == "C/0")
+        if (Channel_GI.find("C/-1") != string::npos)//правая ниже
         {
-            diagnosic_message.append("Канал толст.киш.: непроявленное заболевание, ремиссия или предрасположенность.\n");
+            scene->addEllipse(606, 772, 8, 8, penTriangle);
         }
-        if (Channel_GI == "C/-1")
+        if (Channel_GI.find("/2") != string::npos)//Обе точки выше
         {
-            diagnosic_message.append("Канал толст.киш.: начальная стадия колита.\n");
+            scene->addEllipse(551, 795, 8, 8, penTriangle);
+            scene->addEllipse(606, 795, 8, 8, penTriangle);
         }
-        if (Channel_GI == "C/-2")
+        if (Channel_GI.find("A/1") != string::npos)//правая выше
         {
-            diagnosic_message.append("Канал толст.киш.: хронический колит.\n");
+            scene->addEllipse(606, 795, 8, 8, penTriangle);
         }
-        if (Channel_GI == "OP")
+        if (Channel_GI.find("C/1") != string::npos)//левая выше
         {
-            diagnosic_message.append("Канал толст.киш.: метеоризм при колите; вероятность рака толстой кишки (нужно уточнять другие меридианы!).\n");
+            scene->addEllipse(551, 795, 8, 8, penTriangle);
         }
-
+        if (Channel_GI.find("OP") != string::npos)//левая выше  правая ниже
+        {
+            scene->addEllipse(551, 795, 8, 8, penTriangle);
+            scene->addEllipse(606, 772, 8, 8, penTriangle);
+        }
+        if (Channel_GI.find("OK") != string::npos)//левая ниже  правая выше
+        {
+            scene->addEllipse(551, 772, 8, 8, penTriangle);
+            scene->addEllipse(606, 795, 8, 8, penTriangle);
+        }
+    }//triangles
 }
 
 void MainWindow::channel_RP()
 {
-    //Канал селезенки и поджелудочной А
-        if (Channel_RP == "A/2")
-        {
-            diagnosic_message.append("Канал селезенки: повышен сахар и иммунитет, лейкоцитоз, селезенка работает в напряженном режиме.\n");
-        }
-        if (Channel_RP == "A/1")
-        {
-            diagnosic_message.append("Канал селезенки: начинает повышаться сахар в крови и иммунитет.\n");
-        }
-        if (Channel_RP == "A/0")
-        {
-            diagnosic_message.append("Канал селезенки: норма.\n");
-        }
-        if (Channel_RP == "A/-1")
-        {
-            diagnosic_message.append("Канал селезенки: снижается сахар в крови, снижается иммунитет.\n");
-        }
-        if (Channel_RP == "A/-2")
-        {
-            diagnosic_message.append("Канал селезенки: понижен сахар и иммунитет, или состояние голода.\n");
-        }
-        if (Channel_RP == "OK")
-        {
-            diagnosic_message.append("Канал селезенки: переходное состояние в панкреатит.\n");
-        }
+//Канал селезенки и поджелудочной А
+    if (Channel_RP == "A/2")
+    {
+        diagnosic_message.append("Канал селезенки: повышен сахар и иммунитет, лейкоцитоз, селезенка работает в напряженном режиме.\n");
+    }
+    if (Channel_RP == "A/1")
+    {
+        diagnosic_message.append("Канал селезенки: начинает повышаться сахар в крови и иммунитет.\n");
+    }
+    if (Channel_RP == "A/0")
+    {
+        diagnosic_message.append("Канал селезенки: норма.\n");
+    }
+    if (Channel_RP == "A/-1")
+    {
+        diagnosic_message.append("Канал селезенки: снижается сахар в крови, снижается иммунитет.\n");
+    }
+    if (Channel_RP == "A/-2")
+    {
+        diagnosic_message.append("Канал селезенки: понижен сахар и иммунитет, или состояние голода.\n");
+    }
+    if (Channel_RP == "OK")
+    {
+        diagnosic_message.append("Канал селезенки: переходное состояние в панкреатит.\n");
+    }
 
-    //Канал селезенки и поджелудочной В
-        if (Channel_RP == "B/2")
-        {
-            diagnosic_message.append("Канал селезенки: сахар повышен, иммунитет повышен.\n");
-        }
-        if (Channel_RP == "B/1")
-        {
-            diagnosic_message.append("Канал селезенки: норма.\n");
-        }
-        if (Channel_RP == "B/0")
-        {
-            diagnosic_message.append("Канал селезенки: норма.\n");
-        }
-        if (Channel_RP == "B/-1")
-        {
-            diagnosic_message.append("Канал селезенки: норма.\n");
-        }
-        if (Channel_RP == "B/-2")
-        {
-            diagnosic_message.append("Канал селезенки: сахар понижен, или состояние голода.\n");
-        }
+//Канал селезенки и поджелудочной В
+    if (Channel_RP == "B/2")
+    {
+        diagnosic_message.append("Канал селезенки: сахар повышен, иммунитет повышен.\n");
+    }
+    if (Channel_RP == "B/1")
+    {
+        diagnosic_message.append("Канал селезенки: норма.\n");
+    }
+    if (Channel_RP == "B/0")
+    {
+        diagnosic_message.append("Канал селезенки: норма.\n");
+    }
+    if (Channel_RP == "B/-1")
+    {
+        diagnosic_message.append("Канал селезенки: норма.\n");
+    }
+    if (Channel_RP == "B/-2")
+    {
+        diagnosic_message.append("Канал селезенки: сахар понижен, или состояние голода.\n");
+    }
 
-    //Канал селезенки и поджелудочной С
-        if (Channel_RP == "C/2")
+//Канал селезенки и поджелудочной С
+    if (Channel_RP == "C/2")
+    {
+        diagnosic_message.append("Канал селезенки: обострение хронического панкреатита, лейкоцитоз, сдвиг лейкоцитарной формулы влево.\n");
+    }
+    if (Channel_RP == "C/1")
+    {
+        diagnosic_message.append("Канал селезенки: начальные проявления панкреатита.\n");
+    }
+    if (Channel_RP == "C/0")
+    {
+        diagnosic_message.append("Канал селезенки: непроявленное заболвавние, ремиссия или предрасположенность.\n");
+    }
+    if (Channel_RP == "C/-1")
+    {
+        diagnosic_message.append("Канал селезенки: увеличение селезенки.\n");
+    }
+    if (Channel_RP == "C/-2")
+    {
+        diagnosic_message.append("Канал селезенки: состояние голода у больного панкреатитом; или гипогликемия, лейкопения; \n вероятность тяжелого поражения, рак, иммунодефицит (нужно смотреть другие меридианы!) \n");
+    }
+    if (Channel_RP == "OP")
+    {
+        diagnosic_message.append("Канал селезенки: предрак, или состояние рака поджелудочной железы или селезенки (нужно смотреть другие меридианы!) \n");
+    }
+//Закрашиваем треугольники
+    if (Channel_RP.find_first_of('0') == string::npos ) //Обе точки не в коридоре
+    {
+        if (Channel_RP.find("-2") != string::npos)//Обе точки ниже
         {
-            diagnosic_message.append("Канал селезенки: обострение хронического панкреатита, лейкоцитоз, сдвиг лейкоцитарной формулы влево.\n");
+            scene->addEllipse(638, 772, 8, 8, penTriangle);
+            scene->addEllipse(692, 772, 8, 8, penTriangle);
         }
-        if (Channel_RP == "C/1")
+        if (Channel_RP.find("A/-1") != string::npos)//левая ниже
         {
-            diagnosic_message.append("Канал селезенки: начальные проявления панкреатита.\n");
+            scene->addEllipse(638, 772, 8, 8, penTriangle);
         }
-        if (Channel_RP == "C/0")
+        if (Channel_RP.find("C/-1") != string::npos)//правая ниже
         {
-            diagnosic_message.append("Канал селезенки: непроявленное заболвавние, ремиссия или предрасположенность.\n");
+            scene->addEllipse(692, 772, 8, 8, penTriangle);
         }
-        if (Channel_RP == "C/-1")
+        if (Channel_RP.find("/2") != string::npos)//Обе точки выше
         {
-            diagnosic_message.append("Канал селезенки: увеличение селезенки.\n");
+            scene->addEllipse(638, 795, 8, 8, penTriangle);
+            scene->addEllipse(692, 795, 8, 8, penTriangle);
         }
-        if (Channel_RP == "C/-2")
+        if (Channel_RP.find("A/1") != string::npos)//правая выше
         {
-            diagnosic_message.append("Канал селезенки: состояние голода у больного панкреатитом; или гипогликемия, лейкопения; \n вероятность тяжелого поражения, рак, иммунодефицит (нужно смотреть другие меридианы!) \n");
+            scene->addEllipse(692, 795, 8, 8, penTriangle);
         }
-        if (Channel_RP == "OP")
+        if (Channel_RP.find("C/1") != string::npos)//левая выше
         {
-            diagnosic_message.append("Канал селезенки: предрак, или состояние рака поджелудочной железы или селезенки (нужно смотреть другие меридианы!) \n");
+            scene->addEllipse(638, 795, 8, 8, penTriangle);
         }
-
+        if (Channel_RP.find("OP") != string::npos)//левая выше  правая ниже
+        {
+            scene->addEllipse(638, 795, 8, 8, penTriangle);
+            scene->addEllipse(692, 772, 8, 8, penTriangle);
+        }
+        if (Channel_RP.find("OK") != string::npos)//левая ниже  правая выше
+        {
+            scene->addEllipse(638, 772, 8, 8, penTriangle);
+            scene->addEllipse(692, 795, 8, 8, penTriangle);
+        }
+    }//triangles
 }
 
 void MainWindow::channel_F()
 {
-    //Канал печени А
-        if (Channel_F == "A/2")
-        {
-            diagnosic_message.append("Канал печени: вероятность приема кофе, крепкого чая, алкоголя, лекарств.\n");
-        }
-        if (Channel_F == "A/1")
-        {
-            diagnosic_message.append("Канал печени: вероятность приема кофе, крепкого чая, алкоголя, лекарств.\n");
-        }
-        if (Channel_F == "A/0")
-        {
-            diagnosic_message.append("Канал печени: норма.\n");
-        }
-       if (Channel_F == "A/-1")
-        {
-            diagnosic_message.append("Канал печени: понижена функция печени.\n");
-        }
-       if (Channel_F == "A/-2")
-        {
-            diagnosic_message.append("Канал печени: понижена функция печени.\n");
-        }
-       if (Channel_F == "OK")
-        {
-            diagnosic_message.append("Канал печени: шлаки в печени.\n");
-        }
+//Канал печени А
+    if (Channel_F == "A/2")
+    {
+        diagnosic_message.append("Канал печени: вероятность приема кофе, крепкого чая, алкоголя, лекарств.\n");
+    }
+    if (Channel_F == "A/1")
+    {
+        diagnosic_message.append("Канал печени: вероятность приема кофе, крепкого чая, алкоголя, лекарств.\n");
+    }
+    if (Channel_F == "A/0")
+    {
+        diagnosic_message.append("Канал печени: норма.\n");
+    }
+   if (Channel_F == "A/-1")
+    {
+        diagnosic_message.append("Канал печени: понижена функция печени.\n");
+    }
+   if (Channel_F == "A/-2")
+    {
+        diagnosic_message.append("Канал печени: понижена функция печени.\n");
+    }
+   if (Channel_F == "OK")
+    {
+        diagnosic_message.append("Канал печени: шлаки в печени.\n");
+    }
 
-    //Канал печени В
-        if (Channel_F == "B/2")
-        {
-            diagnosic_message.append("Канал печени: вероятность приема кофе, крепкого чая, алкоголя, лекарств.\n");
-        }
-        if (Channel_F == "B/1")
-        {
-            diagnosic_message.append("Канал печени: норма.\n");
-        }
-        if (Channel_F == "B/0")
-        {
-            diagnosic_message.append("Канал печени: норма.\n");
-        }
-        if (Channel_F == "B/-1")
-        {
-            diagnosic_message.append("Канал печени: норма.\n");
-        }
-        if (Channel_F == "B/-2")
-        {
-            diagnosic_message.append("Канал печени: функция печени понижена.\n");
-        }
+//Канал печени В
+    if (Channel_F == "B/2")
+    {
+        diagnosic_message.append("Канал печени: вероятность приема кофе, крепкого чая, алкоголя, лекарств.\n");
+    }
+    if (Channel_F == "B/1")
+    {
+        diagnosic_message.append("Канал печени: норма.\n");
+    }
+    if (Channel_F == "B/0")
+    {
+        diagnosic_message.append("Канал печени: норма.\n");
+    }
+    if (Channel_F == "B/-1")
+    {
+        diagnosic_message.append("Канал печени: норма.\n");
+    }
+    if (Channel_F == "B/-2")
+    {
+        diagnosic_message.append("Канал печени: функция печени понижена.\n");
+    }
 
-    //Канал печени С
-        if (Channel_F == "C/2")
+//Канал печени С
+    if (Channel_F == "C/2")
+    {
+        diagnosic_message.append("Канал печени: обострение хронического гепатита.\n");
+    }
+    if (Channel_F == "C/1")
+    {
+        diagnosic_message.append("Канал печени: обострение хронического гепатита.\n");
+    }
+    if (Channel_F == "C/0")
+    {
+        diagnosic_message.append("Канал печени: непроявленное заболевание, ремиссия или предрасположенность.\n");
+    }
+    if (Channel_F == "C/-1")
+    {
+        diagnosic_message.append("Канал печени: увеличение печени (гепатит).\n");
+    }
+    if (Channel_F == "C/-2")
+    {
+        diagnosic_message.append("Канал печени: старый гепатит, вероятен переход в цирроз.\n");
+    }
+    if (Channel_F == "OP")
+    {
+        diagnosic_message.append("Канал печени: вероятность рака печени, или цирроза печени (нужно еще смотреть другие каналы!).\n");
+    }
+//Закрашиваем треугольники
+    if (Channel_F.find_first_of('0') == string::npos ) //Обе точки не в коридоре
+    {
+        if (Channel_F.find("-2") != string::npos)//Обе точки ниже
         {
-            diagnosic_message.append("Канал печени: обострение хронического гепатита.\n");
+            scene->addEllipse(724, 772, 8, 8, penTriangle);
+            scene->addEllipse(779, 772, 8, 8, penTriangle);
         }
-        if (Channel_F == "C/1")
+        if (Channel_F.find("A/-1") != string::npos)//левая ниже
         {
-            diagnosic_message.append("Канал печени: обострение хронического гепатита.\n");
+            scene->addEllipse(724, 772, 8, 8, penTriangle);
         }
-        if (Channel_F == "C/0")
+        if (Channel_F.find("C/-1") != string::npos)//правая ниже
         {
-            diagnosic_message.append("Канал печени: непроявленное заболевание, ремиссия или предрасположенность.\n");
+            scene->addEllipse(779, 772, 8, 8, penTriangle);
         }
-        if (Channel_F == "C/-1")
+        if (Channel_F.find("/2") != string::npos)//Обе точки выше
         {
-            diagnosic_message.append("Канал печени: увеличение печени (гепатит).\n");
+            scene->addEllipse(724, 795, 8, 8, penTriangle);
+            scene->addEllipse(779, 795, 8, 8, penTriangle);
         }
-        if (Channel_F == "C/-2")
+        if (Channel_F.find("A/1") != string::npos)//правая выше
         {
-            diagnosic_message.append("Канал печени: старый гепатит, вероятен переход в цирроз.\n");
+            scene->addEllipse(779, 795, 8, 8, penTriangle);
         }
-        if (Channel_F == "OP")
+        if (Channel_F.find("C/1") != string::npos)//левая выше
         {
-            diagnosic_message.append("Канал печени: вероятность рака печени, или цирроза печени (нужно еще смотреть другие каналы!).\n");
+            scene->addEllipse(724, 795, 8, 8, penTriangle);
         }
-
+        if (Channel_F.find("OP") != string::npos)//левая выше  правая ниже
+        {
+            scene->addEllipse(724, 795, 8, 8, penTriangle);
+            scene->addEllipse(779, 772, 8, 8, penTriangle);
+        }
+        if (Channel_F.find("OK") != string::npos)//левая ниже  правая выше
+        {
+            scene->addEllipse(724, 772, 8, 8, penTriangle);
+            scene->addEllipse(779, 795, 8, 8, penTriangle);
+        }
+    }//triangles
 }
 
 void MainWindow::channel_R()
 {
-    //Канал почек А
-        if (Channel_R == "A/2")
-        {
-            diagnosic_message.append("Канал почек: усиленное мочеиспускание, вероятность приема мочегонных препаратов.\n");
-        }
-        if (Channel_R == "A/1")
-        {
-            diagnosic_message.append("Канал почек: небольшое усиление мочеиспускания.\n");
-        }
-        if (Channel_R == "A/0")
-        {
-            diagnosic_message.append("Канал почек: норма.\n");
-        }
-        if (Channel_R == "A/-1")
-        {
-            diagnosic_message.append("Канал почек: отёки, вероятность наличия заболевания в правой почке, или опущение правой почки.\n");
-        }
-        if (Channel_R == "A/-2")
-        {
-            diagnosic_message.append("Канал почек: отёки, вероятность камня в правой почке, опущение правой почки, или её воспаление.\n");
-        }
-        if (Channel_R == "OK")
-        {
-            diagnosic_message.append("Канал почек: вероятность отказа правой почки (камни, сморщенная почка, рак, отсутствие почки).\n");
-        }
+//Канал почек А
+    if (Channel_R == "A/2")
+    {
+        diagnosic_message.append("Канал почек: усиленное мочеиспускание, вероятность приема мочегонных препаратов.\n");
+    }
+    if (Channel_R == "A/1")
+    {
+        diagnosic_message.append("Канал почек: небольшое усиление мочеиспускания.\n");
+    }
+    if (Channel_R == "A/0")
+    {
+        diagnosic_message.append("Канал почек: норма.\n");
+    }
+    if (Channel_R == "A/-1")
+    {
+        diagnosic_message.append("Канал почек: отёки, вероятность наличия заболевания в правой почке, или опущение правой почки.\n");
+    }
+    if (Channel_R == "A/-2")
+    {
+        diagnosic_message.append("Канал почек: отёки, вероятность камня в правой почке, опущение правой почки, или её воспаление.\n");
+    }
+    if (Channel_R == "OK")
+    {
+        diagnosic_message.append("Канал почек: вероятность отказа правой почки (камни, сморщенная почка, рак, отсутствие почки).\n");
+    }
 
-    //Канал почек В
-        if (Channel_R == "B/2")
-        {
-            diagnosic_message.append("Канал почек: усиленное мочеиспускание, вероятность приема мочегонных препаратов.\n");
-        }
-        if (Channel_R == "B/1")
-        {
-            diagnosic_message.append("Канал почек: норма.\n");
-        }
-        if (Channel_R == "B/0")
-        {
-            diagnosic_message.append("Канал почек: норма.\n");
-        }
-        if (Channel_R == "B/-1")
-        {
-            diagnosic_message.append("Канал почек: норма.\n");
-        }
-        if (Channel_R == "B/-2")
-        {
-            diagnosic_message.append("Канал почек: отёки (функциональные); вероятность присутствия камней в обеих почках, опущение почек.\n");
-        }
+//Канал почек В
+    if (Channel_R == "B/2")
+    {
+        diagnosic_message.append("Канал почек: усиленное мочеиспускание, вероятность приема мочегонных препаратов.\n");
+    }
+    if (Channel_R == "B/1")
+    {
+        diagnosic_message.append("Канал почек: норма.\n");
+    }
+    if (Channel_R == "B/0")
+    {
+        diagnosic_message.append("Канал почек: норма.\n");
+    }
+    if (Channel_R == "B/-1")
+    {
+        diagnosic_message.append("Канал почек: норма.\n");
+    }
+    if (Channel_R == "B/-2")
+    {
+        diagnosic_message.append("Канал почек: отёки (функциональные); вероятность присутствия камней в обеих почках, опущение почек.\n");
+    }
 
-    //Канал почек С
-        if (Channel_R == "C/2")
+//Канал почек С
+    if (Channel_R == "C/2")
+    {
+        diagnosic_message.append("Канал почек: начало мочекаменной болезни.\n");
+    }
+    if (Channel_R == "C/1")
+    {
+        diagnosic_message.append("Канал почек: начало мочекаменной болезни.\n");
+    }
+    if (Channel_R == "C/0")
+    {
+        diagnosic_message.append("Канал почек: норма.\n");
+    }
+    if (Channel_R == "C/-1")
+    {
+        diagnosic_message.append("Канал почек: отёки, вероятность камня в левой почке, или опущение левой почки.\n");
+    }
+    if (Channel_R == "C/-2")
+    {
+        diagnosic_message.append("Канал почек: отёки, вероятность камня в левой почке, или опущение левой почки, воспаление.\n");
+    }
+    if (Channel_R == "OP")
+    {
+        diagnosic_message.append("Канал почек: вероятность отключения левой почки, её отсутствие, камни, рак (нужно еще смотреть другие меридианы!).\n");
+    }
+//Закрашиваем треугольники
+    if (Channel_R.find_first_of('0') == string::npos ) //Обе точки не в коридоре
+    {
+        if (Channel_R.find("-2") != string::npos)//Обе точки ниже
         {
-            diagnosic_message.append("Канал почек: начало мочекаменной болезни.\n");
+            scene->addEllipse(809, 772, 8, 8, penTriangle);
+            scene->addEllipse(865, 772, 8, 8, penTriangle);
         }
-        if (Channel_R == "C/1")
+        if (Channel_R.find("A/-1") != string::npos)//левая ниже
         {
-            diagnosic_message.append("Канал почек: начало мочекаменной болезни.\n");
+            scene->addEllipse(809, 772, 8, 8, penTriangle);
         }
-        if (Channel_R == "C/0")
+        if (Channel_R.find("C/-1") != string::npos)//правая ниже
         {
-            diagnosic_message.append("Канал почек: норма.\n");
+            scene->addEllipse(865, 772, 8, 8, penTriangle);
         }
-        if (Channel_R == "C/-1")
+        if (Channel_R.find("/2") != string::npos)//Обе точки выше
         {
-            diagnosic_message.append("Канал почек: отёки, вероятность камня в левой почке, или опущение левой почки.\n");
+            scene->addEllipse(809, 795, 8, 8, penTriangle);
+            scene->addEllipse(865, 795, 8, 8, penTriangle);
         }
-        if (Channel_R == "C/-2")
+        if (Channel_R.find("A/1") != string::npos)//правая выше
         {
-            diagnosic_message.append("Канал почек: отёки, вероятность камня в левой почке, или опущение левой почки, воспаление.\n");
+            scene->addEllipse(865, 795, 8, 8, penTriangle);
         }
-        if (Channel_R == "OP")
+        if (Channel_R.find("C/1") != string::npos)//левая выше
         {
-            diagnosic_message.append("Канал почек: вероятность отключения левой почки, её отсутствие, камни, рак (нужно еще смотреть другие меридианы!).\n");
+            scene->addEllipse(809, 795, 8, 8, penTriangle);
         }
-
+        if (Channel_R.find("OP") != string::npos)//левая выше  правая ниже
+        {
+            scene->addEllipse(809, 795, 8, 8, penTriangle);
+            scene->addEllipse(865, 772, 8, 8, penTriangle);
+        }
+        if (Channel_R.find("OK") != string::npos)//левая ниже  правая выше
+        {
+            scene->addEllipse(809, 772, 8, 8, penTriangle);
+            scene->addEllipse(865, 795, 8, 8, penTriangle);
+        }
+    }//triangles
 }
 
 void MainWindow::channel_V()
