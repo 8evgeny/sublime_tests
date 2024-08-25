@@ -119,7 +119,7 @@ void MainWindow::channel_P()
         diagnosic_message.append("Канал лёгких: левосторонняя пневмония.\n");
     }
 
-    //Закрашиваем треугольники
+//Закрашиваем треугольники
     if (Channel_P.find_first_of('0') == string::npos ) //Обе точки не в коридоре
     {
         if (Channel_P.find("-2") != string::npos)//Обе точки ниже
@@ -148,165 +148,251 @@ void MainWindow::channel_P()
         {
             scene->addEllipse(121, 795, 8, 8, penTriangle);
         }
-    }
-
-
+        if (Channel_P.find("OP") != string::npos)//левая выше  правая ниже
+        {
+            scene->addEllipse(121, 795, 8, 8, penTriangle);
+            scene->addEllipse(178, 772, 8, 8, penTriangle);
+        }
+        if (Channel_P.find("OK") != string::npos)//левая ниже  правая выше
+        {
+            scene->addEllipse(122, 772, 8, 8, penTriangle);
+            scene->addEllipse(177, 795, 8, 8, penTriangle);
+        }
+    }//triangles
 }
 
 void MainWindow::channel_MC()
 {
-    //Канал перикарда А
-        if (Channel_MC == "A/2")
-        {
-            diagnosic_message.append("Канал перикарда: нервное перевозбуждение, повышенное АД, повышенное сексуальное желание.\n");
-        }
-        if (Channel_MC == "A/1")
-        {
-            diagnosic_message.append("Канал перикарда: нервное перевозбуждение, повышенное АД, повышенное сексуальное желание.\n");
-        }
-        if (Channel_MC == "A/0")
-        {
-            diagnosic_message.append("Канал перикарда: норма.\n");
-        }
-        if (Channel_MC == "A/-1")
-        {
-            diagnosic_message.append("Канал перикарда: понижено АД.\n");
-        }
-        if (Channel_MC == "A/-2")
-        {
-            diagnosic_message.append("Канал перикарда: понижено АД, понижено сексуальное желание.\n");
-        }
-        if (Channel_MC == "OK")
-        {
-            diagnosic_message.append("Канал перикарда: бывает при эндометритах и простатитах.\n");
-        }
+//Канал перикарда А
+    if (Channel_MC == "A/2")
+    {
+        diagnosic_message.append("Канал перикарда: нервное перевозбуждение, повышенное АД, повышенное сексуальное желание.\n");
+    }
+    if (Channel_MC == "A/1")
+    {
+        diagnosic_message.append("Канал перикарда: нервное перевозбуждение, повышенное АД, повышенное сексуальное желание.\n");
+    }
+    if (Channel_MC == "A/0")
+    {
+        diagnosic_message.append("Канал перикарда: норма.\n");
+    }
+    if (Channel_MC == "A/-1")
+    {
+        diagnosic_message.append("Канал перикарда: понижено АД.\n");
+    }
+    if (Channel_MC == "A/-2")
+    {
+        diagnosic_message.append("Канал перикарда: понижено АД, понижено сексуальное желание.\n");
+    }
+    if (Channel_MC == "OK")
+    {
+        diagnosic_message.append("Канал перикарда: бывает при эндометритах и простатитах.\n");
+    }
 
-    //Канал перикарда В
-        if (Channel_MC == "B/2")
-        {
-            diagnosic_message.append("Канал перикарда: повышено систолическое давление.\n");
-        }
-        if (Channel_MC == "B/1")
-        {
-            diagnosic_message.append("Канал перикарда: норма.\n");
-        }
-        if (Channel_MC == "B/0")
-        {
-            diagnosic_message.append("Канал перикарда: норма.\n");
-        }
-        if (Channel_MC == "B/-1")
-        {
-            diagnosic_message.append("Канал перикарда: норма.\n");
-        }
-        if (Channel_MC == "B/-2")
-        {
-            diagnosic_message.append("Канал перикарда: понижено систолическое давление.\n");
-        }
+//Канал перикарда В
+    if (Channel_MC == "B/2")
+    {
+        diagnosic_message.append("Канал перикарда: повышено систолическое давление.\n");
+    }
+    if (Channel_MC == "B/1")
+    {
+        diagnosic_message.append("Канал перикарда: норма.\n");
+    }
+    if (Channel_MC == "B/0")
+    {
+        diagnosic_message.append("Канал перикарда: норма.\n");
+    }
+    if (Channel_MC == "B/-1")
+    {
+        diagnosic_message.append("Канал перикарда: норма.\n");
+    }
+    if (Channel_MC == "B/-2")
+    {
+        diagnosic_message.append("Канал перикарда: понижено систолическое давление.\n");
+    }
 
-    //Канал перикарда С
-        if (Channel_MC == "C/2")
+//Канал перикарда С
+    if (Channel_MC == "C/2")
+    {
+        diagnosic_message.append("Канал перикарда: обострение хронических заболеваний половой системы, гипертония.\n");
+    }
+    if (Channel_MC == "C/1")
+    {
+        diagnosic_message.append("Канал перикарда: начало клинических проявлений заболеваний половой системы, гипертония.\n");
+    }
+    if (Channel_MC == "C/0")
+    {
+        diagnosic_message.append("Канал перикарда: непроявленные заболевания половой системы, ремиссия или предрасположенность.\n");
+    }
+    if (Channel_MC == "C/-1")
+    {
+        diagnosic_message.append("Канал перикарда: состояние перед ремиссией заболеваний половой системы.\n");
+    }
+    if (Channel_MC == "C/-2")
+    {
+        diagnosic_message.append("Канал перикарда: вялотекущее хроническое заболевание половой системы.\n");
+    }
+    if (Channel_MC == "OP")
+    {
+        diagnosic_message.append("Канал перикарда: вероятность опухоли в органах половой системы, или их тяжелое воспаление. Но здесь нужно смотреть сочетания с другими меридианами!.\n");
+    }
+//Закрашиваем треугольники
+    if (Channel_MC.find_first_of('0') == string::npos ) //Обе точки не в коридоре
+    {
+        if (Channel_MC.find("-2") != string::npos)//Обе точки ниже
         {
-            diagnosic_message.append("Канал перикарда: обострение хронических заболеваний половой системы, гипертония.\n");
+            scene->addEllipse(208, 772, 8, 8, penTriangle);
+            scene->addEllipse(264, 772, 8, 8, penTriangle);
         }
-        if (Channel_MC == "C/1")
+        if (Channel_MC.find("A/-1") != string::npos)//левая ниже
         {
-            diagnosic_message.append("Канал перикарда: начало клинических проявлений заболеваний половой системы, гипертония.\n");
+            scene->addEllipse(208, 772, 8, 8, penTriangle);
         }
-        if (Channel_MC == "C/0")
+        if (Channel_MC.find("C/-1") != string::npos)//правая ниже
         {
-            diagnosic_message.append("Канал перикарда: непроявленные заболевания половой системы, ремиссия или предрасположенность.\n");
+            scene->addEllipse(264, 772, 8, 8, penTriangle);
         }
-        if (Channel_MC == "C/-1")
+        if (Channel_MC.find("/2") != string::npos)//Обе точки выше
         {
-            diagnosic_message.append("Канал перикарда: состояние перед ремиссией заболеваний половой системы.\n");
+            scene->addEllipse(208, 795, 8, 8, penTriangle);
+            scene->addEllipse(264, 795, 8, 8, penTriangle);
         }
-        if (Channel_MC == "C/-2")
+        if (Channel_MC.find("A/1") != string::npos)//правая выше
         {
-            diagnosic_message.append("Канал перикарда: вялотекущее хроническое заболевание половой системы.\n");
+            scene->addEllipse(264, 795, 8, 8, penTriangle);
         }
-        if (Channel_MC == "OP")
+        if (Channel_MC.find("C/1") != string::npos)//левая выше
         {
-            diagnosic_message.append("Канал перикарда: вероятность опухоли в органах половой системы, или их тяжелое воспаление. Но здесь нужно смотреть сочетания с другими меридианами!.\n");
+            scene->addEllipse(208, 795, 8, 8, penTriangle);
         }
-
+        if (Channel_MC.find("OP") != string::npos)//левая выше  правая ниже
+        {
+            scene->addEllipse(208, 795, 8, 8, penTriangle);
+            scene->addEllipse(264, 772, 8, 8, penTriangle);
+        }
+        if (Channel_MC.find("OK") != string::npos)//левая ниже  правая выше
+        {
+            scene->addEllipse(208, 772, 8, 8, penTriangle);
+            scene->addEllipse(264, 795, 8, 8, penTriangle);
+        }
+    }//triangles
 }
 
 void MainWindow::channel_C()
 {
-    //Канал сердца А
-        if (Channel_C == "A/2")
-        {
-            diagnosic_message.append("Канал сердца: тахикардия, гипертрофия левого желудочка сердца, повышено АД.\n");
-        }
-        if (Channel_C == "A/1")
-        {
-            diagnosic_message.append("Канал сердца: тахикардия, гипертрофия левого желудочка сердца, повышено АД.\n");
-        }
-        if (Channel_C == "A/0")
-        {
-            diagnosic_message.append("Канал сердца: норма.\n");
-        }
-        if (Channel_C == "A/-1")
-        {
-            diagnosic_message.append("Канал сердца: брадикардия, гипертрофия правого желудочка сердца, понижено АД.\n");
-        }
-        if (Channel_C == "A/-2")
-        {
-            diagnosic_message.append("Канал сердца: брадикардия, гипертрофия правого желудочка сердца, понижено АД.\n");
-        }
-        if (Channel_C == "OK")
-        {
-            diagnosic_message.append("Канал сердца: миокардиодистрофия.\n");
-        }
+//Канал сердца А
+    if (Channel_C == "A/2")
+    {
+        diagnosic_message.append("Канал сердца: тахикардия, гипертрофия левого желудочка сердца, повышено АД.\n");
+    }
+    if (Channel_C == "A/1")
+    {
+        diagnosic_message.append("Канал сердца: тахикардия, гипертрофия левого желудочка сердца, повышено АД.\n");
+    }
+    if (Channel_C == "A/0")
+    {
+        diagnosic_message.append("Канал сердца: норма.\n");
+    }
+    if (Channel_C == "A/-1")
+    {
+        diagnosic_message.append("Канал сердца: брадикардия, гипертрофия правого желудочка сердца, понижено АД.\n");
+    }
+    if (Channel_C == "A/-2")
+    {
+        diagnosic_message.append("Канал сердца: брадикардия, гипертрофия правого желудочка сердца, понижено АД.\n");
+    }
+    if (Channel_C == "OK")
+    {
+        diagnosic_message.append("Канал сердца: миокардиодистрофия.\n");
+    }
 
-    //Канал сердца В
-        if (Channel_C == "B/2")
-        {
-            diagnosic_message.append("Канал сердца: тахикардия, повышено диастолическое давление.\n");
-        }
-        if (Channel_C == "B/1")
-        {
-            diagnosic_message.append("Канал сердца: норма.\n");
-        }
-        if (Channel_C == "B/0")
-        {
-            diagnosic_message.append("Канал сердца: норма.\n");
-        }
-        if (Channel_C == "B/-1")
-        {
-            diagnosic_message.append("Канал сердца: норма.\n");
-        }
-       if (Channel_C == "B/2")
-        {
-            diagnosic_message.append("Канал сердца: брадикардия, понижено диастолическое давление.\n");
-        }
+//Канал сердца В
+    if (Channel_C == "B/2")
+    {
+        diagnosic_message.append("Канал сердца: тахикардия, повышено диастолическое давление.\n");
+    }
+    if (Channel_C == "B/1")
+    {
+        diagnosic_message.append("Канал сердца: норма.\n");
+    }
+    if (Channel_C == "B/0")
+    {
+        diagnosic_message.append("Канал сердца: норма.\n");
+    }
+    if (Channel_C == "B/-1")
+    {
+        diagnosic_message.append("Канал сердца: норма.\n");
+    }
+   if (Channel_C == "B/2")
+    {
+        diagnosic_message.append("Канал сердца: брадикардия, понижено диастолическое давление.\n");
+    }
 
-    //Канал сердца С
-        if (Channel_C == "C/2")
+//Канал сердца С
+    if (Channel_C == "C/2")
+    {
+        diagnosic_message.append("Канал сердца: тахикардия, гипертрофия правого желудочка сердца.\n");
+    }
+    if (Channel_C == "C/1")
+    {
+        diagnosic_message.append("Канал сердца: тахикардия, гипертония, гипертрофия правого желудочка сердца.\n");
+    }
+    if (Channel_C == "C/0")
+    {
+        diagnosic_message.append("Канал сердца: норма.\n");
+    }
+    if (Channel_C == "C/-1")
+    {
+        diagnosic_message.append("Канал сердца: брадикардия, гипотония, гипертрофия левого желудочка сердца.\n");
+    }
+    if (Channel_C == "C/-2")
+    {
+        diagnosic_message.append("Канал сердца: брадикардия, гипотония, гипертрофия левого желудочка сердца; переходное состояние из гипотонии в гипертонию.\n");
+    }
+    if (Channel_C == "OP")
+    {
+        diagnosic_message.append("Канал сердца: миокардит, или \"панцирное сердце\" бывает при раке щитовидной железы.\n");
+    }
+//Закрашиваем треугольники
+    if (Channel_C.find_first_of('0') == string::npos ) //Обе точки не в коридоре
+    {
+        if (Channel_C.find("-2") != string::npos)//Обе точки ниже
         {
-            diagnosic_message.append("Канал сердца: тахикардия, гипертрофия правого желудочка сердца.\n");
+            scene->addEllipse(294, 772, 8, 8, penTriangle);
+            scene->addEllipse(353, 772, 8, 8, penTriangle);
         }
-        if (Channel_C == "C/1")
+        if (Channel_C.find("A/-1") != string::npos)//левая ниже
         {
-            diagnosic_message.append("Канал сердца: тахикардия, гипертония, гипертрофия правого желудочка сердца.\n");
+            scene->addEllipse(294, 772, 8, 8, penTriangle);
         }
-        if (Channel_C == "C/0")
+        if (Channel_C.find("C/-1") != string::npos)//правая ниже
         {
-            diagnosic_message.append("Канал сердца: норма.\n");
+            scene->addEllipse(353, 772, 8, 8, penTriangle);
         }
-        if (Channel_C == "C/-1")
+        if (Channel_C.find("/2") != string::npos)//Обе точки выше
         {
-            diagnosic_message.append("Канал сердца: брадикардия, гипотония, гипертрофия левого желудочка сердца.\n");
+            scene->addEllipse(294, 795, 8, 8, penTriangle);
+            scene->addEllipse(353, 795, 8, 8, penTriangle);
         }
-        if (Channel_C == "C/-2")
+        if (Channel_C.find("A/1") != string::npos)//правая выше
         {
-            diagnosic_message.append("Канал сердца: брадикардия, гипотония, гипертрофия левого желудочка сердца; переходное состояние из гипотонии в гипертонию.\n");
+            scene->addEllipse(353, 795, 8, 8, penTriangle);
         }
-        if (Channel_C == "OP")
+        if (Channel_C.find("C/1") != string::npos)//левая выше
         {
-            diagnosic_message.append("Канал сердца: миокардит, или \"панцирное сердце\" бывает при раке щитовидной железы.\n");
+            scene->addEllipse(294, 795, 8, 8, penTriangle);
         }
-
+        if (Channel_C.find("OP") != string::npos)//левая выше  правая ниже
+        {
+            scene->addEllipse(294, 795, 8, 8, penTriangle);
+            scene->addEllipse(353, 772, 8, 8, penTriangle);
+        }
+        if (Channel_C.find("OK") != string::npos)//левая ниже  правая выше
+        {
+            scene->addEllipse(294, 772, 8, 8, penTriangle);
+            scene->addEllipse(353, 795, 8, 8, penTriangle);
+        }
+    }//triangles
 }
 
 void MainWindow::channel_IG()

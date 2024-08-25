@@ -117,45 +117,6 @@ bool is_minus(string & str) {
     return regex_match(str.data(), r);
 }
 
-void MainWindow::triangles()
-{
-
-    if (Channel_MC.find_first_of('-') != string::npos )
-        scene->addEllipse(208, 772, 8, 8, penTriangle);
-
-    if (Channel_C.find_first_of('-') != string::npos )
-        scene->addEllipse(294, 772, 8, 8, penTriangle);
-
-    if (Channel_IG.find_first_of('-') != string::npos )
-        scene->addEllipse(380, 772, 8, 8, penTriangle);
-
-    if (Channel_TR.find_first_of('-') != string::npos )
-        scene->addEllipse(466, 772, 8, 8, penTriangle);
-
-    if (Channel_GI.find_first_of('-') != string::npos )
-        scene->addEllipse(551, 772, 8, 8, penTriangle);
-
-    if (Channel_RP.find_first_of('-') != string::npos )
-        scene->addEllipse(638, 772, 8, 8, penTriangle);
-
-    if (Channel_F.find_first_of('-') != string::npos )
-        scene->addEllipse(724, 772, 8, 8, penTriangle);
-
-    if (Channel_R.find_first_of('-') != string::npos )
-        scene->addEllipse(809, 772, 8, 8, penTriangle);
-
-    if (Channel_V.find_first_of('-') != string::npos )
-        scene->addEllipse(895, 772, 8, 8, penTriangle);
-
-    if (Channel_VB.find_first_of('-') != string::npos )
-        scene->addEllipse(981, 772, 8, 8, penTriangle);
-
-    if (Channel_E.find_first_of('-') != string::npos )
-        scene->addEllipse(1066, 772, 8, 8, penTriangle);
-
-}
-
-
 void MainWindow::drawPoints()
 {
     scene->clear();
@@ -187,7 +148,6 @@ void MainWindow::drawPoints()
         scene->addLine(corner_x_begin, calcCornerLine(low), corner_x_end, calcCornerLine(low), penYellow);
         calculateLetters();
         diagnostic();
-        triangles();
     }
 }
 
