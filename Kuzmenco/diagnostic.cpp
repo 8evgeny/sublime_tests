@@ -1095,235 +1095,347 @@ void MainWindow::channel_R()
 
 void MainWindow::channel_V()
 {
-    //Канал мочевого пузыря А
-        if (Channel_V == "A/2")
-        {
-            diagnosic_message.append("Канал мочевого пузыря: умственное перевозбуждение.\n");
-        }
-        if (Channel_V == "A/1")
-        {
-            diagnosic_message.append("Канал мочевого пузыря: норма.\n");
-        }
-        if (Channel_V == "A/0")
-        {
-            diagnosic_message.append("Канал мочевого пузыря: норма.\n");
-        }
-        if (Channel_V == "A/-1")
-        {
-            diagnosic_message.append("Канал мочевого пузыря: норма.\n");
-        }
-        if (Channel_V == "A/-2")
-        {
-            diagnosic_message.append("Канал мочевого пузыря: переутомление нервной системы, пониженная работоспособность мозга (например при переутомлении или голоде).\n");
-        }
-        if (Channel_V == "OK")
-        {
-            diagnosic_message.append("Канал мочевого пузыря: переполнение мочевого пузыря.\n");
-        }
+//Канал мочевого пузыря А
+    if (Channel_V == "A/2")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: умственное перевозбуждение.\n");
+    }
+    if (Channel_V == "A/1")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+    }
+    if (Channel_V == "A/0")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+    }
+    if (Channel_V == "A/-1")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+    }
+    if (Channel_V == "A/-2")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: переутомление нервной системы, пониженная работоспособность мозга (например при переутомлении или голоде).\n");
+    }
+    if (Channel_V == "OK")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: переполнение мочевого пузыря.\n");
+    }
 
-    //Канал мочевого пузыря В
-        if (Channel_V == "B/2")
-        {
-            diagnosic_message.append("Канал мочевого пузыря: напряжение нервной системы.\n");
-        }
-        if (Channel_V == "B/1")
-        {
-            diagnosic_message.append("Канал мочевого пузыря: норма.\n");
-        }
-        if (Channel_V == "B/0")
-        {
-            diagnosic_message.append("Канал мочевого пузыря: норма.\n");
-        }
-        if (Channel_V == "B/-1")
-        {
-            diagnosic_message.append("Канал мочевого пузыря: норма.\n");
-        }
-        if (Channel_V == "B/2")
-        {
-            diagnosic_message.append("Канал мочевого пузыря: утомление нервной системы, пониженная работоспособность мозга (например при усталости или голоде).\n");
-        }
+//Канал мочевого пузыря В
+    if (Channel_V == "B/2")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: напряжение нервной системы.\n");
+    }
+    if (Channel_V == "B/1")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+    }
+    if (Channel_V == "B/0")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+    }
+    if (Channel_V == "B/-1")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+    }
+    if (Channel_V == "B/2")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: утомление нервной системы, пониженная работоспособность мозга (например при усталости или голоде).\n");
+    }
 
-    //Канал мочевого пузыря С
-        if (Channel_V == "C/2")
+//Канал мочевого пузыря С
+    if (Channel_V == "C/2")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: эмоциональное перевозбуждение.\n");
+    }
+    if (Channel_V == "C/1")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+    }
+    if (Channel_V == "C/0")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+    }
+    if (Channel_V == "C/-1")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+    }
+    if (Channel_V == "C/-2")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: переутомление нервной системы, пониженная работоспособность мозга (например при усталости или голоде).\n");
+    }
+    if (Channel_V == "OP")
+    {
+        diagnosic_message.append("Канал мочевого пузыря: вероятность рака мочевого пузыря или костей (нужно еще смотреть другие меридианы!).\n");
+    }
+//Закрашиваем треугольники
+    if (Channel_V.find_first_of('0') == string::npos ) //Обе точки не в коридоре
+    {
+        if (Channel_V.find("-2") != string::npos)//Обе точки ниже
         {
-            diagnosic_message.append("Канал мочевого пузыря: эмоциональное перевозбуждение.\n");
+            scene->addEllipse(896, 772, 8, 8, penTriangle);
+            scene->addEllipse(951, 772, 8, 8, penTriangle);
         }
-        if (Channel_V == "C/1")
+        if (Channel_V.find("A/-1") != string::npos)//левая ниже
         {
-            diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+            scene->addEllipse(896, 772, 8, 8, penTriangle);
         }
-        if (Channel_V == "C/0")
+        if (Channel_V.find("C/-1") != string::npos)//правая ниже
         {
-            diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+            scene->addEllipse(951, 772, 8, 8, penTriangle);
         }
-        if (Channel_V == "C/-1")
+        if (Channel_V.find("/2") != string::npos)//Обе точки выше
         {
-            diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+            scene->addEllipse(896, 795, 8, 8, penTriangle);
+            scene->addEllipse(951, 795, 8, 8, penTriangle);
         }
-        if (Channel_V == "C/-2")
+        if (Channel_V.find("A/1") != string::npos)//правая выше
         {
-            diagnosic_message.append("Канал мочевого пузыря: переутомление нервной системы, пониженная работоспособность мозга (например при усталости или голоде).\n");
+            scene->addEllipse(951, 795, 8, 8, penTriangle);
         }
-        if (Channel_V == "OP")
+        if (Channel_V.find("C/1") != string::npos)//левая выше
         {
-            diagnosic_message.append("Канал мочевого пузыря: вероятность рака мочевого пузыря или костей (нужно еще смотреть другие меридианы!).\n");
+            scene->addEllipse(896, 795, 8, 8, penTriangle);
         }
-
+        if (Channel_V.find("OP") != string::npos)//левая выше  правая ниже
+        {
+            scene->addEllipse(896, 795, 8, 8, penTriangle);
+            scene->addEllipse(951, 772, 8, 8, penTriangle);
+        }
+        if (Channel_V.find("OK") != string::npos)//левая ниже  правая выше
+        {
+            scene->addEllipse(896, 772, 8, 8, penTriangle);
+            scene->addEllipse(951, 795, 8, 8, penTriangle);
+        }
+    }//triangles
 }
 
 void MainWindow::channel_VB()
 {
-    //Канал желчного пузыря А
-        if (Channel_VB == "A/2")
-        {
-            diagnosic_message.append("Канал желчного пузыря: начальная стадия бескаменного холецистита.\n");
-        }
-        if (Channel_VB == "A/1")
-        {
-            diagnosic_message.append("Канал желчного пузыря: норма.\n");
-        }
-        if (Channel_VB == "A/0")
-        {
-            diagnosic_message.append("Канал желчного пузыря: норма.\n");
-        }
-        if (Channel_VB == "A/-1")
-        {
-            diagnosic_message.append("Канал желчного пузыря: норма.\n");
-        }
-        if (Channel_VB == "A/-2")
-        {
-            diagnosic_message.append("Канал желчного пузыря: хронический бескаменный холецистит.\n");
-        }
-        if (Channel_VB == "OK")
-        {
-            diagnosic_message.append("Канал желчного пузыря: избыток желчи при бескаменном холецистите.\n");
-        }
+//Канал желчного пузыря А
+    if (Channel_VB == "A/2")
+    {
+        diagnosic_message.append("Канал желчного пузыря: начальная стадия бескаменного холецистита.\n");
+    }
+    if (Channel_VB == "A/1")
+    {
+        diagnosic_message.append("Канал желчного пузыря: норма.\n");
+    }
+    if (Channel_VB == "A/0")
+    {
+        diagnosic_message.append("Канал желчного пузыря: норма.\n");
+    }
+    if (Channel_VB == "A/-1")
+    {
+        diagnosic_message.append("Канал желчного пузыря: норма.\n");
+    }
+    if (Channel_VB == "A/-2")
+    {
+        diagnosic_message.append("Канал желчного пузыря: хронический бескаменный холецистит.\n");
+    }
+    if (Channel_VB == "OK")
+    {
+        diagnosic_message.append("Канал желчного пузыря: избыток желчи при бескаменном холецистите.\n");
+    }
 
-    //Канал желчного пузыря В
-        if (Channel_VB == "B/2")
-        {
-            diagnosic_message.append("Канал желчного пузыря: дискинезия желчных путей.\n");
-        }
-        if (Channel_VB == "B/1")
-        {
-            diagnosic_message.append("Канал желчного пузыря: норма.\n");
-        }
-        if (Channel_VB == "B/0")
-        {
-            diagnosic_message.append("Канал желчного пузыря: норма.\n");
-        }
-        if (Channel_VB == "B/-1")
-        {
-            diagnosic_message.append("Канал желчного пузыря: норма.\n");
-        }
-        if (Channel_VB == "B/-2")
-        {
-            diagnosic_message.append("Канал желчного пузыря: дискинезия желчных путей.\n");
-        }
+//Канал желчного пузыря В
+    if (Channel_VB == "B/2")
+    {
+        diagnosic_message.append("Канал желчного пузыря: дискинезия желчных путей.\n");
+    }
+    if (Channel_VB == "B/1")
+    {
+        diagnosic_message.append("Канал желчного пузыря: норма.\n");
+    }
+    if (Channel_VB == "B/0")
+    {
+        diagnosic_message.append("Канал желчного пузыря: норма.\n");
+    }
+    if (Channel_VB == "B/-1")
+    {
+        diagnosic_message.append("Канал желчного пузыря: норма.\n");
+    }
+    if (Channel_VB == "B/-2")
+    {
+        diagnosic_message.append("Канал желчного пузыря: дискинезия желчных путей.\n");
+    }
 
-    //Канал желчного пузыря С
-        if (Channel_VB == "C/2")
+//Канал желчного пузыря С
+    if (Channel_VB == "C/2")
+    {
+        diagnosic_message.append("Канал желчного пузыря: начальная стадия желчекаменной болезни.\n");
+    }
+    if (Channel_VB == "C/1")
+    {
+        diagnosic_message.append("Канал желчного пузыря: начальная стадия желчекаменной болезни.\n");
+    }
+    if (Channel_VB == "C/0")
+    {
+        diagnosic_message.append("Канал желчного пузыря: непроявленное заболевание, ремиссия или предрасположенность.\n");
+    }
+    if (Channel_VB == "C/-1")
+    {
+        diagnosic_message.append("Канал желчного пузыря: желчекаменная болезнь.\n");
+    }
+    if (Channel_VB == "C/-2")
+    {
+        diagnosic_message.append("Канал желчного пузыря: желчекаменная болезнь. Вероятность наличия камней или песка в желчном пузыре (нужно еще смотреть другие меридианы!).\n");
+    }
+    if (Channel_VB == "OP")
+    {
+        diagnosic_message.append("Канал желчного пузыря: наличие камней или песка в желчном пузыре. Вероятность рака желчного пузыря (нужно еще смотреть другие меридианы!).\n");
+    }
+//Закрашиваем треугольники
+    if (Channel_VB.find_first_of('0') == string::npos ) //Обе точки не в коридоре
+    {
+        if (Channel_VB.find("-2") != string::npos)//Обе точки ниже
         {
-            diagnosic_message.append("Канал желчного пузыря: начальная стадия желчекаменной болезни.\n");
+            scene->addEllipse(981, 772, 8, 8, penTriangle);
+            scene->addEllipse(1037, 772, 8, 8, penTriangle);
         }
-        if (Channel_VB == "C/1")
+        if (Channel_VB.find("A/-1") != string::npos)//левая ниже
         {
-            diagnosic_message.append("Канал желчного пузыря: начальная стадия желчекаменной болезни.\n");
+            scene->addEllipse(981, 772, 8, 8, penTriangle);
         }
-        if (Channel_VB == "C/0")
+        if (Channel_VB.find("C/-1") != string::npos)//правая ниже
         {
-            diagnosic_message.append("Канал желчного пузыря: непроявленное заболевание, ремиссия или предрасположенность.\n");
+            scene->addEllipse(1037, 772, 8, 8, penTriangle);
         }
-        if (Channel_VB == "C/-1")
+        if (Channel_VB.find("/2") != string::npos)//Обе точки выше
         {
-            diagnosic_message.append("Канал желчного пузыря: желчекаменная болезнь.\n");
+            scene->addEllipse(981, 795, 8, 8, penTriangle);
+            scene->addEllipse(1037, 795, 8, 8, penTriangle);
         }
-        if (Channel_VB == "C/-2")
+        if (Channel_VB.find("A/1") != string::npos)//правая выше
         {
-            diagnosic_message.append("Канал желчного пузыря: желчекаменная болезнь. Вероятность наличия камней или песка в желчном пузыре (нужно еще смотреть другие меридианы!).\n");
+            scene->addEllipse(1037, 795, 8, 8, penTriangle);
         }
-        if (Channel_VB == "OP")
+        if (Channel_VB.find("C/1") != string::npos)//левая выше
         {
-            diagnosic_message.append("Канал желчного пузыря: наличие камней или песка в желчном пузыре. Вероятность рака желчного пузыря (нужно еще смотреть другие меридианы!).\n");
+            scene->addEllipse(981, 795, 8, 8, penTriangle);
         }
-
+        if (Channel_VB.find("OP") != string::npos)//левая выше  правая ниже
+        {
+            scene->addEllipse(981, 795, 8, 8, penTriangle);
+            scene->addEllipse(1037, 772, 8, 8, penTriangle);
+        }
+        if (Channel_VB.find("OK") != string::npos)//левая ниже  правая выше
+        {
+            scene->addEllipse(981, 772, 8, 8, penTriangle);
+            scene->addEllipse(1037, 795, 8, 8, penTriangle);
+        }
+    }//triangles
 }
 
 void MainWindow::channel_E()
 {
-    //Канал желудка А
-        if (Channel_E == "A/2")
-        {
-            diagnosic_message.append("Канал желудка: повышенная кислотность желудочного сока.\n");
-        }
-        if (Channel_E == "A/1")
-        {
-            diagnosic_message.append("Канал желудка: норма.\n");
-        }
-        if (Channel_E == "A/0")
-        {
-            diagnosic_message.append("Канал желудка: норма.\n");
-        }
-        if (Channel_E == "A/-1")
-        {
-            diagnosic_message.append("Канал желудка: норма.\n");
-        }
-        if (Channel_E == "A/-2")
-        {
-            diagnosic_message.append("Канал желудка: пониженная кислотность желудочного сока.\n");
-        }
+//Канал желудка А
+    if (Channel_E == "A/2")
+    {
+        diagnosic_message.append("Канал желудка: повышенная кислотность желудочного сока.\n");
+    }
+    if (Channel_E == "A/1")
+    {
+        diagnosic_message.append("Канал желудка: норма.\n");
+    }
+    if (Channel_E == "A/0")
+    {
+        diagnosic_message.append("Канал желудка: норма.\n");
+    }
+    if (Channel_E == "A/-1")
+    {
+        diagnosic_message.append("Канал желудка: норма.\n");
+    }
+    if (Channel_E == "A/-2")
+    {
+        diagnosic_message.append("Канал желудка: пониженная кислотность желудочного сока.\n");
+    }
 
-    //Канал желудка В
-        if (Channel_E == "B/2")
-        {
-            diagnosic_message.append("Канал желудка: повышенная кислотность желудочного сока.\n");
-        }
-        if (Channel_E == "B/1")
-        {
-            diagnosic_message.append("Канал желудка: норма.\n");
-        }
-        if (Channel_E == "B/0")
-        {
-            diagnosic_message.append("Канал желудка: норма.\n");
-        }
-        if (Channel_E == "B/-1")
-        {
-            diagnosic_message.append("Канал желудка: норма.\n");
-        }
-        if (Channel_E == "B/-2")
-        {
-            diagnosic_message.append("Канал желудка: пониженная кислотность желудочного сока.\n");
-        }
+//Канал желудка В
+    if (Channel_E == "B/2")
+    {
+        diagnosic_message.append("Канал желудка: повышенная кислотность желудочного сока.\n");
+    }
+    if (Channel_E == "B/1")
+    {
+        diagnosic_message.append("Канал желудка: норма.\n");
+    }
+    if (Channel_E == "B/0")
+    {
+        diagnosic_message.append("Канал желудка: норма.\n");
+    }
+    if (Channel_E == "B/-1")
+    {
+        diagnosic_message.append("Канал желудка: норма.\n");
+    }
+    if (Channel_E == "B/-2")
+    {
+        diagnosic_message.append("Канал желудка: пониженная кислотность желудочного сока.\n");
+    }
 
-
-    //Канал желудка С
-        if (Channel_E == "C/2")
+//Канал желудка С
+    if (Channel_E == "C/2")
+    {
+        diagnosic_message.append("Канал желудка: гастрит с повышенной кислотностью желудочного сока.\n");
+    }
+    if (Channel_E == "C/1")
+    {
+        diagnosic_message.append("Канал желудка: гастрит с повышенной кислотностью желудочного сока.\n");
+    }
+    if (Channel_E == "C/0")
+    {
+        diagnosic_message.append("Канал желудка: непроявленное заболевание, ремиссия или предрасположенность.\n");
+    }
+    if (Channel_E == "C/-1")
+    {
+        diagnosic_message.append("Канал желудка: гастрит с пониженной кислотностью желудочного сока.\n");
+    }
+    if (Channel_E == "C/-2")
+    {
+        diagnosic_message.append("Канал желудка: гастрит с пониженной кислотностью желудочного сока.\n");
+    }
+    if (Channel_E == "OP")
+    {
+        diagnosic_message.append("Канал желудка: переедание при гастрите. Вероятность рака желудка (нужно еще смотреть другие меридианы!).\n");
+    }
+//Закрашиваем треугольники
+    if (Channel_E.find_first_of('0') == string::npos ) //Обе точки не в коридоре
+    {
+        if (Channel_E.find("-2") != string::npos)//Обе точки ниже
         {
-            diagnosic_message.append("Канал желудка: гастрит с повышенной кислотностью желудочного сока.\n");
+            scene->addEllipse(1066, 772, 8, 8, penTriangle);
+            scene->addEllipse(1122, 772, 8, 8, penTriangle);
         }
-        if (Channel_E == "C/1")
+        if (Channel_E.find("A/-1") != string::npos)//левая ниже
         {
-            diagnosic_message.append("Канал желудка: гастрит с повышенной кислотностью желудочного сока.\n");
+            scene->addEllipse(1066, 772, 8, 8, penTriangle);
         }
-        if (Channel_E == "C/0")
+        if (Channel_E.find("C/-1") != string::npos)//правая ниже
         {
-            diagnosic_message.append("Канал желудка: непроявленное заболевание, ремиссия или предрасположенность.\n");
+            scene->addEllipse(1122, 772, 8, 8, penTriangle);
         }
-        if (Channel_E == "C/-1")
+        if (Channel_E.find("/2") != string::npos)//Обе точки выше
         {
-            diagnosic_message.append("Канал желудка: гастрит с пониженной кислотностью желудочного сока.\n");
+            scene->addEllipse(1066, 795, 8, 8, penTriangle);
+            scene->addEllipse(1122, 795, 8, 8, penTriangle);
         }
-        if (Channel_E == "C/-2")
+        if (Channel_E.find("A/1") != string::npos)//правая выше
         {
-            diagnosic_message.append("Канал желудка: гастрит с пониженной кислотностью желудочного сока.\n");
+            scene->addEllipse(1122, 795, 8, 8, penTriangle);
         }
-        if (Channel_E == "OP")
+        if (Channel_E.find("C/1") != string::npos)//левая выше
         {
-            diagnosic_message.append("Канал желудка: переедание при гастрите. Вероятность рака желудка (нужно еще смотреть другие меридианы!).\n");
+            scene->addEllipse(1066, 795, 8, 8, penTriangle);
         }
-
+        if (Channel_E.find("OP") != string::npos)//левая выше  правая ниже
+        {
+            scene->addEllipse(1066, 795, 8, 8, penTriangle);
+            scene->addEllipse(1122, 772, 8, 8, penTriangle);
+        }
+        if (Channel_E.find("OK") != string::npos)//левая ниже  правая выше
+        {
+            scene->addEllipse(1066, 772, 8, 8, penTriangle);
+            scene->addEllipse(1122, 795, 8, 8, penTriangle);
+        }
+    }//triangles
 }
-
-#if 0
-
-#endif
