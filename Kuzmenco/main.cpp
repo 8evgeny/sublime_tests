@@ -27,6 +27,7 @@ QPen penRedLine(Qt::red);
 QPen penGreenLine(Qt::green);
 QPen penBlueLine(Qt::blue);
 QPen penBlack(Qt::black);
+QPen penTriangle(Qt::black);
 QGraphicsScene * scene;
 QScreen *screenMain;
 
@@ -61,7 +62,7 @@ int main(int argc, char *argv[])
     penGreenLine.setWidth(3);
     penBlueLine.setWidth(3);
     penBlack.setWidth(1);
-
+    penTriangle.setWidth(8);
 //    main_logic();
 
     w->showFullScreen();

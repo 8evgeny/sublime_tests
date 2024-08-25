@@ -8,6 +8,7 @@
 #include <QScreen>
 #include <fstream>
 #include <iostream>
+#include <regex>
 
 using namespace std;
 extern QScreen *screenMain;
@@ -20,30 +21,7 @@ extern QPen penGreenLine;
 extern QPen penBlueLine;
 extern QPen penBlack;
 extern QGraphicsScene * scene;
-QPen penTriangle(Qt::green);
-
-// OK OP ABC/-2 -1 0 1 2
-void MainWindow::diagnostic()
-{
-    channel_P();
-    channel_MC();
-    channel_C();
-    channel_IG();
-    channel_TR();
-    channel_GI();
-    channel_RP();
-    channel_F();
-    channel_R();
-    channel_V();
-    channel_VB();
-    channel_E();
-}
-
-
-
-
-
-
+extern QPen penTriangle;
 
 float MainWindow::calcCornerLine(float in)
 {
@@ -133,6 +111,51 @@ void MainWindow::calculateLetters()
     Channel_E = calculateLetter((float)r12y, (float)l12y);
 }
 
+bool is_minus(string & str) {
+//    static const regex r(R"(\w+@\w+\.(?:com|in))");
+    static const regex r(R"(\w+-\w+\)");
+    return regex_match(str.data(), r);
+}
+
+void MainWindow::triangles()
+{
+
+    if (Channel_MC.find_first_of('-') != string::npos )
+        scene->addEllipse(208, 772, 8, 8, penTriangle);
+
+    if (Channel_C.find_first_of('-') != string::npos )
+        scene->addEllipse(294, 772, 8, 8, penTriangle);
+
+    if (Channel_IG.find_first_of('-') != string::npos )
+        scene->addEllipse(380, 772, 8, 8, penTriangle);
+
+    if (Channel_TR.find_first_of('-') != string::npos )
+        scene->addEllipse(466, 772, 8, 8, penTriangle);
+
+    if (Channel_GI.find_first_of('-') != string::npos )
+        scene->addEllipse(551, 772, 8, 8, penTriangle);
+
+    if (Channel_RP.find_first_of('-') != string::npos )
+        scene->addEllipse(638, 772, 8, 8, penTriangle);
+
+    if (Channel_F.find_first_of('-') != string::npos )
+        scene->addEllipse(724, 772, 8, 8, penTriangle);
+
+    if (Channel_R.find_first_of('-') != string::npos )
+        scene->addEllipse(809, 772, 8, 8, penTriangle);
+
+    if (Channel_V.find_first_of('-') != string::npos )
+        scene->addEllipse(895, 772, 8, 8, penTriangle);
+
+    if (Channel_VB.find_first_of('-') != string::npos )
+        scene->addEllipse(981, 772, 8, 8, penTriangle);
+
+    if (Channel_E.find_first_of('-') != string::npos )
+        scene->addEllipse(1066, 772, 8, 8, penTriangle);
+
+}
+
+
 void MainWindow::drawPoints()
 {
     scene->clear();
@@ -156,17 +179,16 @@ void MainWindow::drawPoints()
     low = averadge - 7;
     if (low < 0) low = 0;
 
+    //Проверка что все значения введены
     if (r1>0 && r2>0 && r3>0 && r4>0 && r5>0 && r6>0 && r7>0 && r8>0 && r9>0 && r10>0 && r11>0 && r12>0 &&
         l1>0 && l2>0 && l3>0 && l4>0 && l5>0 && l6>0 && l7>0 && l8>0 && l9>0 && l10>0 && l11>0 && l12>0)
     {
         scene->addLine(corner_x_begin, calcCornerLine(hight), corner_x_end, calcCornerLine(hight), penYellow);
         scene->addLine(corner_x_begin, calcCornerLine(low), corner_x_end, calcCornerLine(low), penYellow);
-
         calculateLetters();
-
         diagnostic();
+        triangles();
     }
-
 }
 
 void MainWindow::on_button_save_clicked()
@@ -225,21 +247,17 @@ void MainWindow::writeText()
 
 void MainWindow::paintEvent(QPaintEvent* event)
 {
-    if (r1 > 0 && l1 > 0)
-    {
-//        QGraphicsTextItem * io = new QGraphicsTextItem;
-//        io->setDefaultTextColor(Qt::red);
-//        QFont font;
-//        font.setPixelSize(20);
-//        font.setBold(false);
-//        font.setFamily("Calibri");
-//        io->setPos(r1x + 8 ,700);
-//        io->setFont(font);
-//        io->setPlainText("A0");
-//        scene->addItem(io);
-        penTriangle.setWidth(8);
-        scene->addEllipse(122, 772, 8, 8, penTriangle);
-    }
+    //        QGraphicsTextItem * io = new QGraphicsTextItem;
+    //        io->setDefaultTextColor(Qt::red);
+    //        QFont font;
+    //        font.setPixelSize(20);
+    //        font.setBold(false);
+    //        font.setFamily("Calibri");
+    //        io->setPos(r1x + 8 ,700);
+    //        io->setFont(font);
+    //        io->setPlainText("A0");
+    //        scene->addItem(io);
+
 }
 
 void MainWindow::r1l1() //P

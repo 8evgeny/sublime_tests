@@ -1,4 +1,26 @@
 #include "mainwindow.h"
+#include <QGraphicsScene>
+
+using namespace std;
+extern QPen penTriangle;
+extern QGraphicsScene * scene;
+
+// OK OP ABC/-2 -1 0 1 2
+void MainWindow::diagnostic()
+{
+    channel_P();
+    channel_MC();
+    channel_C();
+    channel_IG();
+    channel_TR();
+    channel_GI();
+    channel_RP();
+    channel_F();
+    channel_R();
+    channel_V();
+    channel_VB();
+    channel_E();
+}
 
 void MainWindow::channel_P()
 {
@@ -96,6 +118,38 @@ void MainWindow::channel_P()
     {
         diagnosic_message.append("Канал лёгких: левосторонняя пневмония.\n");
     }
+
+    //Закрашиваем треугольники
+    if (Channel_P.find_first_of('0') == string::npos ) //Обе точки не в коридоре
+    {
+        if (Channel_P.find("-2") != string::npos)//Обе точки ниже
+        {
+            scene->addEllipse(122, 772, 8, 8, penTriangle);
+            scene->addEllipse(178, 772, 8, 8, penTriangle);
+        }
+        if (Channel_P.find("A/-1") != string::npos)//левая ниже
+        {
+            scene->addEllipse(122, 772, 8, 8, penTriangle);
+        }
+        if (Channel_P.find("C/-1") != string::npos)//правая ниже
+        {
+            scene->addEllipse(178, 772, 8, 8, penTriangle);
+        }
+        if (Channel_P.find("/2") != string::npos)//Обе точки выше
+        {
+            scene->addEllipse(121, 795, 8, 8, penTriangle);
+            scene->addEllipse(177, 795, 8, 8, penTriangle);
+        }
+        if (Channel_P.find("A/1") != string::npos)//правая выше
+        {
+            scene->addEllipse(177, 795, 8, 8, penTriangle);
+        }
+        if (Channel_P.find("C/1") != string::npos)//левая выше
+        {
+            scene->addEllipse(121, 795, 8, 8, penTriangle);
+        }
+    }
+
 
 }
 
