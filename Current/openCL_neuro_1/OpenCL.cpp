@@ -5,30 +5,32 @@ cl::Program OpenCL::clprogram;
 cl::Context OpenCL::clcontext;
 cl::CommandQueue OpenCL::clqueue;
 
-void OpenCL::initialize_OpenCL() {
+void OpenCL::initialize_OpenCL()
+{
 	// get all platforms (drivers), e.g. NVIDIA
 	std::vector<cl::Platform> all_platforms;
 	cl::Platform::get(&all_platforms);
 
-	if (all_platforms.size() == 0) {
+    if (all_platforms.size() == 0)
+    {
 		std::cout << " No platforms found. Check OpenCL installation!\n";
 		exit(1);
-	}
+    }//END if (all_platforms.size() == 0)
 	cl::Platform default_platform = all_platforms[0];
 	std::cout << "Using platform: " << default_platform.getInfo<CL_PLATFORM_NAME>() << "\n";
 
 	// get default device (CPUs, GPUs) of the default platform
 	std::vector<cl::Device> all_devices;
 	default_platform.getDevices(CL_DEVICE_TYPE_ALL, &all_devices);
-	if (all_devices.size() == 0) {
+    if (all_devices.size() == 0)
+    {
 		std::cout << " No devices found. Check OpenCL installation!\n";
 		exit(1);
-	}
-
+    }//END if (all_devices.size() == 0)
 	
 	cl::Device default_device = all_devices[0];
 	std::cout << "Using device: " << default_device.getInfo<CL_DEVICE_NAME>() << "\n";
-    ////////////////////////////////////////////////////
+////////////////////////////////////////////////////
 	std::cout << "\t-------------------------" << std::endl;
 
 	std::string s;
@@ -63,7 +65,7 @@ void OpenCL::initialize_OpenCL() {
 	std::cout << "\x08)" << std::endl;
 
 	std::cout << "\t-------------------------" << std::endl;
-    ////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 
 	// a context is like a "runtime link" to the device and platform;
 	// i.e. communication is possible
@@ -71,7 +73,6 @@ void OpenCL::initialize_OpenCL() {
 
 	// create the program that we want to execute on the device
 	cl::Program::Sources sources;
-
 	
 	std::string src,src2,src3;
 	
@@ -85,22 +86,23 @@ void OpenCL::initialize_OpenCL() {
 	sources.push_back({ src.c_str(), src.length() });
 
 	OpenCL::clprogram=cl::Program(OpenCL::clcontext, sources);
-	try {
+    try
+    {
 		OpenCL::clprogram.build({ default_device });
 	}
-	catch (...) {
-
+    catch (...)
+    {
 		cl_int buildErr = CL_SUCCESS;
 		auto buildInfo = OpenCL::clprogram.getBuildInfo<CL_PROGRAM_BUILD_LOG>(&buildErr);
-		for (auto &pair : buildInfo) {
+        for (auto &pair : buildInfo)
+        {
 			std::cerr << pair.second << std::endl << std::endl;
 		}
-		
-	}
+    }//END catch (...)
 
 	OpenCL::clqueue=cl::CommandQueue(OpenCL::clcontext, default_device);
 
-}
+}//END void OpenCL::initialize_OpenCL()
 
 
 
