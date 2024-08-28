@@ -119,7 +119,7 @@ void ConvNN::train(std::vector<std::vector<float>> &inputs, std::vector<std::vec
 {
 	int i = 0;
 
-    for (int e = 0; e <epoches; e++)
+    for (int e = 0; e < epoches; e++)
     {
 		if (e < inputs.size()) { i = e; }
         else if ( e % inputs.size() == 0) { i = 0; }
@@ -147,7 +147,7 @@ void ConvNN::train(std::vector<std::vector<float>> &inputs, std::vector<std::vec
 			std::cout << e << std::endl;
 		}
 
-		//calculateError(targets[i]);
+//        calculateError(targets[i]);
 
 		///backward
 		//std::cout << "back" << std::endl;
@@ -205,15 +205,15 @@ void ConvNN::train(std::vector<std::vector<float>> &inputs, std::vector<std::vec
 		err = (OpenCL::clqueue).enqueueNDRangeKernel(backpropcnnKern, cl::NullRange,
             cl::NDRange(filterdim, filterdim,convLayer.numOfFilters), cl::NullRange);
 
-        if (e % 50000 == 0 && e!=0)
+        if (e % 10000 == 0 && e!=0)
         {
 			trainingAccuracy(testinputs, testtargets, 2000,0);
 		}
     }//END for (int e = 0; e<epoches; e++)
 }//END void ConvNN::train
 
-void ConvNN::trainFCNN(std::vector<std::vector<float>> &inputs, std::vector<std::vector<float>> &targets, std::vector<std::vector<float>> &testinputs, std::vector<float> &testtargets, int epoches) {
-
+void ConvNN::trainFCNN(std::vector<std::vector<float>> &inputs, std::vector<std::vector<float>> &targets, std::vector<std::vector<float>> &testinputs, std::vector<float> &testtargets, int epoches)
+{
 	int i = 0;
 
     for (int e = 0; e < epoches; e++)
@@ -273,7 +273,7 @@ void ConvNN::trainFCNN(std::vector<std::vector<float>> &inputs, std::vector<std:
             }//END else
         }//END for (int l = h_layers.size() - 1; l>0; l--)
 
-        if (e % 50000 == 0 && e!=0)
+        if (e % 5000 == 0 && e!=0)
         {
 			trainingAccuracy(testinputs, testtargets, 2000, 1);
 		}

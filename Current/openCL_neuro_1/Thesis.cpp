@@ -120,7 +120,7 @@ int main(void)
 
 		///CNN
 		//////////////////////////////////////////////////////////
-
+/*
 		ConvNN m_nn;
 		m_nn.createConvNN(7, 7, 32);//num of filters,filterdim,imagedim
 
@@ -129,16 +129,16 @@ int main(void)
         netVec = { 169 * 7, 10 };
 		m_nn.createFullyConnectedNN(netVec, 0, 32);
 
-		m_nn.train(inputs, targets, testinputs, testtargets, 1000000);
+        m_nn.train(inputs, targets, testinputs, testtargets, 100000);
 
         cout << "trained in : " << timer.getTimeMilliseconds() / 1000.0 << " s" << endl;
-
+*/
         //////////////////////////////////////////////////////////////////////////////
 
 		/// FCNN
         ////////////////////////////////////////////////////
         //Define our neural network
-/*        ConvNN m_nn;
+       ConvNN m_nn;
 
         vector<int> netVec;
         netVec = { 1024, 10 };
@@ -154,7 +154,7 @@ int main(void)
         //Test accuracy on test data
         m_nn.trainingAccuracy(testinputs, testtargets, 2000, 1);
        /////////////////////////////////////////////////////////////
-*/
+
     }//END try
 
 	catch (cl::Error e) 

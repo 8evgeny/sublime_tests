@@ -18,7 +18,8 @@ public:
 	void trainingAccuracy(std::vector<std::vector<float>> &testinputs, std::vector<float> &testtargets, int num, bool onlyfcnn);
 	void calculateError(std::vector<float> desiredout);
 
-	float lr = 0.001;
+    float lr = 0.001;
+//    float lr = 0.0001;
 	int softflag = 0;
 
 private:
