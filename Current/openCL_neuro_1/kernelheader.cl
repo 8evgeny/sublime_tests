@@ -1,4 +1,4 @@
-#define actflag 0// 0:sigmoid , 1:tanh ,2:relu
+#define actflag 0// 0:sigmoid , 1:tanh ,  2:relu
 
 typedef struct Node
 {
