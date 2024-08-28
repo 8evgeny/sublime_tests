@@ -19,7 +19,8 @@ typedef unsigned __int64 uint64_t;
 
 #include <cstdlib>
 
-namespace util {
+namespace util
+{
 
 	inline std::string loadProgram(std::string input)
 	{
