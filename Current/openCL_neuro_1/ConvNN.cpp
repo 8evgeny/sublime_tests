@@ -45,13 +45,13 @@ void ConvNN::createFullyConnectedNN(std::vector<cl_int> &newNetVec, bool onlyFCN
 {
 	///Create the input layer
 	h_netVec = newNetVec;
-	Layer *inputLayer = layer(h_netVec[0], 0);
+    Layer * inputLayer = layer(h_netVec[0], 0);
 	h_layers.push_back(*inputLayer);
 
 	///Create the other layers
-	for (unsigned int i = 1; i <h_netVec.size(); i++)
+    for (unsigned int i = 1; i < h_netVec.size(); i++)
 	{
-		Layer *hidlayer = layer(h_netVec[i], h_netVec[i - 1]);
+        Layer * hidlayer = layer(h_netVec[i], h_netVec[i - 1]);
 		h_layers.push_back(*hidlayer);
     }//END for (unsigned int i = 1; i <h_netVec.size(); i++)
 

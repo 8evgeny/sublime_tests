@@ -6,26 +6,32 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 
-void read_Mnist(std::string filename, std::vector<std::vector<float>> &vec);
-void read_Mnist_Label(std::string filename, std::vector<std::vector<float>> &vec, std::vector<float> &testtargets, bool testflag);
-void printInput(std::vector<float> &inputs);
-void read_CIFAR10(cv::Mat &trainX, cv::Mat &testX, cv::Mat &trainY, cv::Mat &testY);
+using namespace std;
+using namespace cv;
+
+void read_Mnist(string filename, vector<vector<float>> &vec);
+void read_Mnist_Label(string filename, vector<vector<float>> &vec, vector<float> &testtargets, bool testflag);
+void printInput(vector<float> &inputs);
+void read_CIFAR10(Mat &trainX, Mat &testX, Mat &trainY, Mat &testY);
 
 int main(void)
 {
     try
     {
+        // First initialize OpenCL
 		OpenCL::initialize_OpenCL();
 
 		util::Timer timer;
 		timer.reset();
 
-		std::vector<std::vector<float> > inputs, targets;
-		std::vector<std::vector<float> > testinputs;
-		std::vector<float> testtargets;
+        //Create vectors for input and targes
+        vector<vector<float> > inputs;
+        vector<vector<float> > targets;
+        vector<vector<float> > testinputs;
+        vector<float> testtargets;
 
 		/*//////////////////////////////////
-		std::vector<float> intemp(28 * 28);
+        vector<float> intemp(28 * 28);
 
         for (int i = 0; i < 28 * 28; i++)
         {
@@ -35,7 +41,7 @@ int main(void)
 		for (int j = 0; j < 10000; j++)
 			inputs.push_back(intemp);
 
-		std::vector<float> temp(10);
+        vector<float> temp(10);
 
 		for (int i = 0; i < 1; i++)
 			temp.at(i) = 0;
@@ -55,15 +61,15 @@ int main(void)
 		read_Mnist("train-images.idx3-ubyte", inputs);
 		read_Mnist_Label("train-labels.idx1-ubyte", targets,testtargets,0);
 
-		std::cout << "MNIST loaded in: " <<timer.getTimeMilliseconds()/1000.0 <<" s"<<std::endl;
+        cout << "MNIST loaded in: " <<timer.getTimeMilliseconds()/1000.0 <<" s"<<endl;
 
 		timer.reset();
 		read_Mnist("t10k-images.idx3-ubyte", testinputs);
 		read_Mnist_Label("t10k-labels.idx1-ubyte", targets, testtargets, 1);
 
 		//for (int i = 0; i < 30; i++)
-			//std::cout << " " <<testtargets[i];
-		std::cout << "MNIST test loaded in: " << timer.getTimeMilliseconds() / 1000.0 << " s" << std::endl;
+            //cout << " " <<testtargets[i];
+        cout << "MNIST test loaded in: " << timer.getTimeMilliseconds() / 1000.0 << " s" << endl;
 
 		//printInput(inputs[54]);
 
@@ -72,23 +78,23 @@ int main(void)
 
 		///CIFAR10
 		/////////////////////////////////////////////////////////
-		cv::Mat trainX, testX;
-		cv::Mat trainY, testY;
-		trainX = cv::Mat::zeros(1024, 50000, CV_32FC1);
-		testX = cv::Mat::zeros(1024, 10000, CV_32FC1);
-		trainY = cv::Mat::zeros(1, 50000, CV_32FC1);
-		testY = cv::Mat::zeros(1, 10000, CV_32FC1);
+        Mat trainX, testX;
+        Mat trainY, testY;
+        trainX = Mat::zeros(1024, 50000, CV_32FC1);
+        testX = Mat::zeros(1024, 10000, CV_32FC1);
+        trainY = Mat::zeros(1, 50000, CV_32FC1);
+        testY = Mat::zeros(1, 10000, CV_32FC1);
 
 		read_CIFAR10(trainX, testX, trainY, testY);
 
-		std::cout << "Cifar10 loaded in: " << timer.getTimeMilliseconds() / 1000.0 << " s" << std::endl;
+        cout << "Cifar10 loaded in: " << timer.getTimeMilliseconds() / 1000.0 << " s" << endl;
 
 		timer.reset();
 
         for (int i = 0; i < 50000; i++)
         {
 			inputs.push_back(trainX.col(i));
-			std::vector<float> tempvec(10);
+            vector<float> tempvec(10);
 
             for (int j = 0; j < 10; j++)
             {
@@ -107,11 +113,11 @@ int main(void)
 			testtargets.push_back(testY.col(i).at<float>(0));
         }//END for (int i = 0; i < 10000; i++)
 
-		std::cout << "Cifar10 converted in: " << timer.getTimeMilliseconds() / 1000.0 << " s" << std::endl;
+        cout << "Cifar10 converted in: " << timer.getTimeMilliseconds() / 1000.0 << " s" << endl;
 		timer.reset();
 
 		////////////////////////////////////////////////////////*/
-
+/*
 		///CNN
 		//////////////////////////////////////////////////////////
 
@@ -119,44 +125,46 @@ int main(void)
 		m_nn.createConvNN(7, 7, 32);//num of filters,filterdim,imagedim
 
 		//todo::many filters  3d kernel
-		std::vector<int> netVec;
+        vector<int> netVec;
 		netVec = { 169 * 7,10 };
 		m_nn.createFullyConnectedNN(netVec, 0, 32);
 
 		m_nn.train(inputs, targets, testinputs, testtargets, 1000000);
 
-		std::cout << "trained in : " << timer.getTimeMilliseconds() / 1000.0 << " s" << std::endl;
+        cout << "trained in : " << timer.getTimeMilliseconds() / 1000.0 << " s" << endl;
 
 		//////////////////////////////////////////////////////////////////////////////*/
 
 		/// FCNN
-		/*////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////
+        //Define our neural network
+        ConvNN m_nn;
 
-	   ConvNN m_nn;
+        vector<int> netVec;
+        netVec = { 1024, 10 };
+        m_nn.createFullyConnectedNN(netVec, 1, 32);
 
-	   std::vector<int> netVec;
-	   netVec = { 1024,10 };
-	   m_nn.createFullyConnectedNN(netVec, 1, 32);
+        //m_nn.forwardFCNN(inputs[0]);
 
-	   //m_nn.forwardFCNN(inputs[0]);
+        //Train the network
+        m_nn.trainFCNN(inputs, targets, testinputs, testtargets, 50000);
 
-	   m_nn.trainFCNN(inputs, targets, testinputs, testtargets, 50000);
+        cout << "trained in : " << timer.getTimeMilliseconds() / 1000.0 << " s" << endl;
 
-	   std::cout << "trained in : " << timer.getTimeMilliseconds() / 1000.0 << " s" << std::endl;
-
-	   m_nn.trainingAccuracy(testinputs, testtargets, 2000, 1);
-	   /////////////////////////////////////////////////////////////*/
+        //Test accuracy on test data
+        m_nn.trainingAccuracy(testinputs, testtargets, 2000, 1);
+       /////////////////////////////////////////////////////////////
 
     }//END try
 
 	catch (cl::Error e) 
 	{
-		std::cout << "opencl error: " << e.what() << std::endl;
-		std::cout << "error number: " << e.err() << std::endl;
+        cout << "opencl error: " << e.what() << endl;
+        cout << "error number: " << e.err() << endl;
 	}
 	catch (int e)
 	{
-		std::cout << "An exception occurred. Exception Nr. " << e << '\n';
+        cout << "An exception occurred. Exception Nr. " << e << '\n';
 	}
 	
 }//END int main(void)
