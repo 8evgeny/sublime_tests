@@ -38,7 +38,7 @@ float inline sigmoid(float x)
 
 float inline devsigmoid(float x)
 {
-	return (x*(1-x));
+    return (x * (1 - x));
 }
 
 float inline mtanh(float x)
@@ -48,12 +48,12 @@ float inline mtanh(float x)
 
 float inline devtanh(float x)
 {
-	return (1-x*x);
+    return (1 - x * x);
 }
 
 float inline relu(float x)
 {
-	if(x<0)
+    if(x < 0)
 		return 0;
 	else
 		return x;
@@ -61,7 +61,7 @@ float inline relu(float x)
 
 float inline devrelu(float x)
 {
-	if(x<0)
+    if(x < 0)
 		return 0;
 	else
 		return 1;

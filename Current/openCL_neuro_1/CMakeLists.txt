@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(openCL_project_1 LANGUAGES CXX)
+project(openCL_project_neuro_1 LANGUAGES CXX)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)

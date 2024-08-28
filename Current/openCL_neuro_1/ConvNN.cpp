@@ -56,11 +56,9 @@ void ConvNN::createFullyConnectedNN(std::vector<cl_int> &newNetVec, bool onlyFCN
     }//END for (unsigned int i = 1; i <h_netVec.size(); i++)
 
 	///Create memory buffers
-
-	///Create memory buffers
     if (onlyFCNN == 1)
     {
-		d_InputBuffer = cl::Buffer(OpenCL::clcontext, CL_MEM_READ_WRITE, sizeof(float)*inpdim*inpdim);
+        d_InputBuffer = cl::Buffer(OpenCL::clcontext, CL_MEM_READ_WRITE, sizeof(float) * inpdim * inpdim);
 		inputdim = inpdim;
 		cnnToFcnnKern = cl::Kernel(OpenCL::clprogram, "cnntoFcnn");
 		softmaxKern = cl::Kernel(OpenCL::clprogram, "softmax");

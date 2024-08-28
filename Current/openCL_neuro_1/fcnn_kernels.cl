@@ -1,5 +1,6 @@
-kernel void compout(global Node * nodes,
-                    global Node * prevnodes,
+//forward propagation
+__kernel void compout(__global Node * nodes,
+                    __global Node * prevnodes,
                     int softflag)
 {
     const int n = get_global_size(0);
@@ -27,20 +28,20 @@ kernel void compout(global Node * nodes,
 	
 }//END kernel void compout
 
-kernel void softmax(global Node * nodes,int nodesnum)
+__kernel void softmax(__global Node * nodes,int nodesnum)
 {
     const int i = get_global_id(0);
 	float expsum=0;
-	for (int j=0;j<nodesnum;j++)
-        expsum+=exp(nodes[j].output);
+    for (int j=0; j < nodesnum; j++)
+        expsum += exp(nodes[j].output);
 	
-	nodes[i].output=exp(nodes[i].output)/expsum;
+    nodes[i].output = exp(nodes[i].output)/expsum;
 	
 }//END kernel void softmax
 
-kernel void backprophid(global Node * nodes,
-                        global Node * prevnodes,
-                        global Node * nextnodes,
+__kernel void backprophid(__global Node * nodes,
+                        __global Node * prevnodes,
+                        __global Node * nextnodes,
                         int nextnumNodes,
                         float a)
 {
@@ -65,9 +66,9 @@ kernel void backprophid(global Node * nodes,
 }//END kernel void backprophid
 
 
-kernel void backpropout(global Node * nodes,
-                        global Node * prevnodes,
-                        global float * targets,
+__kernel void backpropout(__global Node * nodes,
+                        __global Node * prevnodes,
+                        __global float * targets,
                         float a,
                         int softflag)
 {
@@ -83,14 +84,14 @@ kernel void backpropout(global Node * nodes,
     {
         switch(actflag)
         {
-                case 0: delta = (nodes[i].output-targets[i])*devsigmoid(nodes[i].output); break;
-                case 1: delta = (nodes[i].output-targets[i])*devtanh(nodes[i].output); break;
-                case 2: delta = nodes[i].output-targets[i]*devrelu(nodes[i].output); break;
+                case 0: delta = (nodes[i].output - targets[i]) * devsigmoid(nodes[i].output); break;
+                case 1: delta = (nodes[i].output - targets[i]) * devtanh(nodes[i].output); break;
+                case 2: delta = nodes[i].output - targets[i] * devrelu(nodes[i].output); break;
         }
 	}
 
     for (int j = 0; j !=nodes[i].numberOfWeights; j++)
-	   nodes[i].weights[j] -= a*delta*prevnodes[j].output;
+       nodes[i].weights[j] -= a * delta * prevnodes[j].output;
 
     nodes[i].delta = delta;
 
