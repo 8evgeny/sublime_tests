@@ -291,8 +291,7 @@ void ConvNN::computeConvolution()
 	convKern.setArg(5, featmapdim);
 
 	err = (OpenCL::clqueue).enqueueNDRangeKernel(convKern, cl::NullRange,
-		cl::NDRange(featmapdim, featmapdim, convLayer.numOfFilters),
-		cl::NullRange);
+        cl::NDRange(featmapdim, featmapdim, convLayer.numOfFilters), cl::NullRange);
 }//END void ConvNN::computeConvolution()
 
 void ConvNN::pooling()

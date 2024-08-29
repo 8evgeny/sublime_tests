@@ -74,7 +74,7 @@ void OpenCL::initialize_OpenCL()
 	// create the program that we want to execute on the device
 	cl::Program::Sources sources;
 	
-	std::string src,src2,src3;
+    std::string src, src2, src3;
 	
 	src = util::loadProgram("kernelheader.cl");
 	src2 = util::loadProgram("fcnn_kernels.cl");
