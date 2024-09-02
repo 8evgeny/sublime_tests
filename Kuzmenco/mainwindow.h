@@ -94,6 +94,9 @@ private slots:
     void channel_VB();
     void channel_E();
 
+
+    void on_textEdit_selectionChanged();
+
 private:
     Ui::MainWindow *ui;
     QString name_field{""};

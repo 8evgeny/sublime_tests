@@ -381,3 +381,8 @@ void MainWindow::on_Izmereniye_editingFinished()
 
 
 
+void MainWindow::on_textEdit_selectionChanged()
+{
+    cout<< "comment: " << endl;
+}
+
