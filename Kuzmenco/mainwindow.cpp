@@ -381,8 +381,9 @@ void MainWindow::on_Izmereniye_editingFinished()
 
 
 
-void MainWindow::on_textEdit_selectionChanged()
+void MainWindow::on_textEdit_textChanged()
 {
-    cout<< "comment: " << endl;
+    comment_message = ui->textEdit->toPlainText().toStdString();
 }
+
 

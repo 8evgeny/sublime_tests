@@ -194,6 +194,8 @@ void MainWindow::saveData()
 //    fout << endl<<" Коридор нормы верх: " << to_string(hight) <<endl;
 //    fout << " Коридор нормы низ: " << to_string(low) <<endl;
     fout <<diagnosic_message<<endl;
+//    comment_message.append(ui->textEdit->toPlainText().toStdString());
+    fout <<"\nКомментарий:\n"<<comment_message<<endl;
     fout << " " << endl;
     fout.close();
 

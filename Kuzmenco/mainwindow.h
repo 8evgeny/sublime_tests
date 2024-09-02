@@ -94,8 +94,8 @@ private slots:
     void channel_VB();
     void channel_E();
 
+    void on_textEdit_textChanged();
 
-    void on_textEdit_selectionChanged();
 
 private:
     Ui::MainWindow *ui;
@@ -126,6 +126,7 @@ private:
     unsigned int  r1{0}, r2{0}, r3{0}, r4{0}, r5{0}, r6{0}, r7{0}, r8{0}, r9{0}, r10{0}, r11{0}, r12{0};
     unsigned int  l1{0}, l2{0}, l3{0}, l4{0}, l5{0}, l6{0}, l7{0}, l8{0}, l9{0}, l10{0}, l11{0}, l12{0};
     std::string diagnosic_message {"\nДиагноз:\n"};
+    std::string comment_message {""};
 };
 
 #endif // MAINWINDOW_H
