@@ -175,40 +175,6 @@ void MainWindow::on_button_save_clicked()
     saveData();
 }
 
-void MainWindow::saveData()
-{
-    ofstream fout;
-    fout.open(nameOutFile + ".txt");
-    fout <<" Имя: "<< name_field.toStdString() <<" / Дата: "<<Date.toStdString() <<" / Измерение № "<<to_string(izmereniye)<<endl<<endl;
-    fout << " P   Легкие                   "<< r1 <<"\t" << l1 <<"\t" << Channel_P <<endl;
-    fout << " MC  Перикард                 "<< r2 <<"\t" << l2 <<"\t" << Channel_MC <<endl;
-    fout << " С   Сердце                   "<< r3 <<"\t" << l3 <<"\t" << Channel_C <<endl;
-    fout << " IG  Тонкий кишечник          "<< r4 <<"\t" << l4 <<"\t" << Channel_IG <<endl;
-    fout << " TR  Гормональная система     "<< r5 <<"\t" << l5 <<"\t" << Channel_TR <<endl;
-    fout << " GI  Толстый кишечник         "<< r6 <<"\t" << l6 <<"\t" << Channel_GI <<endl;
-    fout << " " << endl;
-    fout << " RP  Селезенка, Поджелудочная "<< r7 <<"\t" << l7 <<"\t" << Channel_RP <<endl;
-    fout << " F   Печень                   "<< r8 <<"\t" << l8 <<"\t"<< Channel_F <<endl;
-    fout << " R   Почки                    "<< r9 <<"\t" << l9 <<"\t" << Channel_R <<endl;
-    fout << " V   Мочевой пузырь           "<< r10 <<"\t" << l10 <<"\t" << Channel_V <<endl;
-    fout << " VB  Желчный пузырь           "<< r11 <<"\t" << l11 <<"\t" << Channel_VB <<endl;
-    fout << " E   Желудок                  "<< r12 <<"\t" << l12 <<"\t" << Channel_E <<endl;
-//    fout << endl<<" Коридор нормы верх: " << to_string(hight) <<endl;
-//    fout << " Коридор нормы низ: " << to_string(low) <<endl;
-    fout <<diagnosic_message<<endl;
-//    comment_message.append(ui->textEdit->toPlainText().toStdString());
-    fout <<"\nКомментарий:\n"<<comment_message<<endl;
-    fout << " " << endl;
-    fout.close();
-
-    ofstream fout2;
-    fout2.open(nameOutFile + ".dat");
-    fout2<<r1<<" "<<r2<<" "<<r3<<" "<<r4<<" "<<r5<<" "<<r6<<" "<<r7<<" "<<r8<<" "<<r9<<" "<<r10<<" "<<r11<<" "<<r12<<" "
-            <<l1<<" "<<l2<<" "<<l3<<" "<<l4<<" "<<l5<<" "<<l6<<" "<<l7<<" "<<l8<<" "<<l9<<" "<<l10<<" "<<l11<<" "<<l12
-            <<" "<<name_field.toStdString();
-    fout2.close();
-}
-
 void MainWindow::paintEvent(QPaintEvent* event)
 {
     //        QGraphicsTextItem * io = new QGraphicsTextItem;
