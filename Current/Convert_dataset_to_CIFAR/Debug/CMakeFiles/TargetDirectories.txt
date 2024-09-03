@@ -1,0 +1,4 @@
+/home/user/WORK/Github/sublime_tests/Current/Convert_dataset_to_CIFAR/Debug/CMakeFiles/dataset2cifar.dir
+/home/user/WORK/Github/sublime_tests/Current/Convert_dataset_to_CIFAR/Debug/CMakeFiles/edit_cache.dir
+/home/user/WORK/Github/sublime_tests/Current/Convert_dataset_to_CIFAR/Debug/CMakeFiles/rebuild_cache.dir
+/home/user/WORK/Github/sublime_tests/Current/Convert_dataset_to_CIFAR/Debug/CMakeFiles/dataset2cifar_autogen.dir

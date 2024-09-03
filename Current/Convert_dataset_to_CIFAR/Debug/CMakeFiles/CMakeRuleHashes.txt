@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+f49ed164ceb30f327f7b7f4696e92eff CMakeFiles/dataset2cifar_autogen
