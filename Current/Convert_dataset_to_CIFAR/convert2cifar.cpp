@@ -41,20 +41,13 @@ bool convert2cifar::get_ini_params(const string &config)
         cout << "Can't load '" << config << "'\n";
         return 1;
     }
-    width = reader.GetInteger("main_settings", "width", -1);
-    if(width == 1)
+    width_height = reader.GetInteger("main_settings", "width_height", -1);
+    if(width_height == 1)
     {
-        cout << "width not declared!!" << endl;
+        cout << "width_height not declared!!" << endl;
         return 1;
     }
-    cout << "width = " << width << ";\n";
-    height = reader.GetInteger("main_settings", "height", -1);
-    if(height == -1)
-    {
-        cout << "height not declared!!" << endl;
-        return 1;
-    }
-    cout << "height = " << width << ";\n";
+    cout << "width_height = " << width_height << ";\n";
     patch_to_dataset = reader.Get("main_settings", "path_to_dataset", "");
     if(patch_to_dataset == "")
     {
@@ -84,10 +77,18 @@ int convert2cifar::start()
 {
     cout << "start convert...\n\n" ;
 
-    int i = 1;
+    int i = 0;
     fs::path imagePath;
     string labelName;
     string stringlabelPatch;
+    ifstream fin;
+    Mat image;
+    int centerX = 0;
+    int centerY = 0;
+    Point lh;
+    Point rd;
+    namedWindow( "image_window", WINDOW_AUTOSIZE );
+
     for (auto & p : fs::directory_iterator(patch_to_dataset + "/images"))
     {
 
@@ -104,6 +105,21 @@ int convert2cifar::start()
         }
         vectorLabelssPatch.push_back(stringlabelPatch);
 
+        fin.open(vectorLabelssPatch[i]);
+        fin>>numClass>>imgX>>imgY>>imgW>>imgH;
+        fin.close();
+
+        cout <<numClass<<" "<<imgX<<" "<<imgY<<" "<<imgW<<" "<<imgH<<endl;
+
+        centerX = (int)(256 * imgX);
+        centerY = (int)(256 * imgY);
+        lh = Point((centerX - width_height /2), (centerY - width_height /2));
+        rd = Point((centerX + width_height /2), (centerY + width_height /2));
+        image = imread(vectorImagesPatch[i], IMREAD_UNCHANGED);
+        rectangle(image, lh, rd, Scalar(0,0,255), 3);
+        imshow("image_window", image );
+        waitKey(0);
+
         --num_images_load;
         ++i;
         if (num_images_load == 0) break;
@@ -116,6 +132,8 @@ int convert2cifar::start()
     cout<< "\nLabels:" << endl;
     for (auto &i:vectorLabelssPatch)
         cout<< i << endl;
+
+
 
 
     return 0;

@@ -19,12 +19,16 @@ class convert2cifar
   private:
     std::string config_path{""};
     std::string patch_to_dataset{""};
-    int height = 0;
-    int width = 0;
+    int width_height = 0;
     int num_images_load = 0;
     std::vector<std::string> vectorImagesPatch;
     std::vector<std::string> vectorLabelssPatch;
 
+    int numClass;
+    float imgX;
+    float imgY;
+    float imgW;
+    float imgH;
 
 }; // END convert2cifar
 
