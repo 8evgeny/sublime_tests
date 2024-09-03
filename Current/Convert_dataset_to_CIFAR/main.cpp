@@ -7,7 +7,7 @@ int main()
 {
     bool ok = false;
     unique_ptr<convert2cifar> converter = make_unique<convert2cifar>("../config.ini", ok);
-
+    converter->start();
 
 
 } // END main
