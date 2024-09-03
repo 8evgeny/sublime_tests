@@ -48,7 +48,7 @@ bool convert2cifar::get_ini_params(const string &config)
         return 1;
     }
     cout << "width_height = " << width_height << ";\n";
-    patch_to_dataset = reader.Get("main_settings", "path_to_dataset", "");
+    patch_to_dataset = reader.Get("main_settings", "patch_to_dataset", "");
     if(patch_to_dataset == "")
     {
         cout << "patch_to_dataset not declared" << endl;
@@ -88,11 +88,11 @@ int convert2cifar::start()
     int centerY = 0;
     Point lh;
     Point rd;
-    namedWindow( "image_window", WINDOW_AUTOSIZE );
-
+//    namedWindow( "image_window", WINDOW_AUTOSIZE );
+        string cmd = "mkdir -p " + patch_to_dataset + "/cropped";
+        system(cmd.c_str());
     for (auto & p : fs::directory_iterator(patch_to_dataset + "/images"))
     {
-
         imagePath = p;
         vectorImagesPatch.push_back(imagePath.fs::path::generic_string());
         stringlabelPatch = imagePath.parent_path().parent_path().append("/labels/");
@@ -109,9 +109,7 @@ int convert2cifar::start()
         fin.open(vectorLabelssPatch[i]);
         fin>>numClass>>imgX>>imgY>>imgW>>imgH;
         fin.close();
-
-        cout <<numClass<<" "<<imgX<<" "<<imgY<<" "<<imgW<<" "<<imgH<<endl;
-
+//        cout <<numClass<<" "<<imgX<<" "<<imgY<<" "<<imgW<<" "<<imgH<<endl;
         centerX = (int)(256 * imgX);
         centerY = (int)(256 * imgY);
         lh = Point((centerX - width_height /2), (centerY - width_height /2));
@@ -119,24 +117,34 @@ int convert2cifar::start()
         imageOrigin = imread(vectorImagesPatch[i], IMREAD_UNCHANGED);
         Rect rec(lh, rd);
         imageCrop = imageOrigin(rec);
-        imshow("image_window", imageCrop );
+//Сохраняем новый файл
+        string patch = patch_to_dataset;
+        patch.append("/cropped/");
+        patch.append(to_string(i));
+        patch.append(".jpg");
+//        cout<<"patch:"<<patch<<endl;
+        imwrite(patch, imageCrop);
 
+
+
+
+//        imshow("image_window", imageCrop );
 //        rectangle(imageOrigin, lh, rd, Scalar(0,0,255), 3);
 //        imshow("image_window", imageOrigin );
-        waitKey(0);
+//        waitKey(0);
 
         --num_images_load;
         ++i;
         if (num_images_load == 0) break;
     }
 
-    cout<< "Images:" << endl;
-    for (auto &i:vectorImagesPatch)
-        cout<< i << endl;
+//    cout<< "Images:" << endl;
+//    for (auto &i:vectorImagesPatch)
+//        cout<< i << endl;
 
-    cout<< "\nLabels:" << endl;
-    for (auto &i:vectorLabelssPatch)
-        cout<< i << endl;
+//    cout<< "\nLabels:" << endl;
+//    for (auto &i:vectorLabelssPatch)
+//        cout<< i << endl;
 
 
 
