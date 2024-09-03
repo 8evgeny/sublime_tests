@@ -55,22 +55,50 @@ bool convert2cifar::get_ini_params(const string &config)
         return 1;
     }
     cout << "patch_to_dataset = " << patch_to_dataset << ";\n";
-    num_images_load = reader.GetInteger("main_settings", "num_images_load", -1);
-    if(num_images_load == -1)
+    name_dir_for_train = reader.Get("main_settings", "name_dir_for_train", "");
+    if(name_dir_for_train == "")
     {
-        cout << "num_images_load not declared!!" << endl;
+        cout << "name_dir_for_train not declared" << endl;
         return 1;
     }
-    cout << "num_images_load = " << num_images_load << ";\n";
-
+    cout << "name_dir_for_train = " << name_dir_for_train << ";\n";
+    name_dir_for_test = reader.Get("main_settings", "name_dir_for_test", "");
+    if(name_dir_for_test == "")
+    {
+        cout << "name_dir_for_test not declared" << endl;
+        return 1;
+    }
+    cout << "name_dir_for_test = " << name_dir_for_test << ";\n";
+    num_images_load_train = reader.GetInteger("main_settings", "num_images_load_train", -1);
+    if(num_images_load_train == -1)
+    {
+        cout << "num_images_load_train not declared!!" << endl;
+        return 1;
+    }
+    cout << "num_images_load_train = " << num_images_load_train << ";\n";
+    num_images_load_test = reader.GetInteger("main_settings", "num_images_load_test", -1);
+    if(num_images_load_test == -1)
+    {
+        cout << "num_images_load_test not declared!!" << endl;
+        return 1;
+    }
+    cout << "num_images_load_test = " << num_images_load_test << ";\n";
 
     cout << "get_ini OK" << endl;
     return 0;
 } // -- END get_ini_params
 
-inline bool exists (const std::string& name) {
+bool convert2cifar::labelExists (const std::string& name)
+{
     ifstream f(name.c_str());
     return f.good();
+}
+
+void convert2cifar::showImage(Mat imageCrop)
+{
+    namedWindow( "image_window", WINDOW_AUTOSIZE );
+    imshow("image_window", imageCrop );
+    waitKey(0);
 }
 
 int convert2cifar::start()
@@ -78,6 +106,9 @@ int convert2cifar::start()
     cout << "start convert...\n\n" ;
 
     int i = 0;
+    int all_num_images = num_images_load_train + num_images_load_test;
+    bool images_for_train = true;
+    bool images_for_test = false;
     fs::path imagePath;
     string labelName;
     string stringlabelPatch;
@@ -88,9 +119,12 @@ int convert2cifar::start()
     int centerY = 0;
     Point lh;
     Point rd;
-//    namedWindow( "image_window", WINDOW_AUTOSIZE );
-        string cmd = "mkdir -p " + patch_to_dataset + "/cropped";
-        system(cmd.c_str());
+
+    string cmd1 = "mkdir -p " + patch_to_dataset + "/" + name_dir_for_train;
+    system(cmd1.c_str());
+    string cmd2 = "mkdir -p " + patch_to_dataset + "/" + name_dir_for_test;
+    system(cmd2.c_str());
+
     for (auto & p : fs::directory_iterator(patch_to_dataset + "/images"))
     {
         imagePath = p;
@@ -99,7 +133,7 @@ int convert2cifar::start()
         labelName = imagePath.stem();
         labelName.append(".txt");
         stringlabelPatch.append(labelName);
-        if (!exists(stringlabelPatch))
+        if (!labelExists(stringlabelPatch))
         {
           cout << "label not exist: "<< stringlabelPatch << endl;
           return 0;
@@ -109,7 +143,6 @@ int convert2cifar::start()
         fin.open(vectorLabelssPatch[i]);
         fin>>numClass>>imgX>>imgY>>imgW>>imgH;
         fin.close();
-//        cout <<numClass<<" "<<imgX<<" "<<imgY<<" "<<imgW<<" "<<imgH<<endl;
         centerX = (int)(256 * imgX);
         centerY = (int)(256 * imgY);
         lh = Point((centerX - width_height /2), (centerY - width_height /2));
@@ -117,37 +150,36 @@ int convert2cifar::start()
         imageOrigin = imread(vectorImagesPatch[i], IMREAD_UNCHANGED);
         Rect rec(lh, rd);
         imageCrop = imageOrigin(rec);
-//Сохраняем новый файл
-        string patch = patch_to_dataset;
-        patch.append("/cropped/");
-        patch.append(to_string(i));
-        patch.append(".jpg");
-//        cout<<"patch:"<<patch<<endl;
-        imwrite(patch, imageCrop);
 
-
-
-
-//        imshow("image_window", imageCrop );
-//        rectangle(imageOrigin, lh, rd, Scalar(0,0,255), 3);
-//        imshow("image_window", imageOrigin );
-//        waitKey(0);
-
-        --num_images_load;
+        if(images_for_train)
+        {
+            //Сохраняем вырезанную область в новый файл
+            string patch = patch_to_dataset + "/" + name_dir_for_train + "/";
+            patch.append(to_string(i));
+            patch.append(".jpg");
+            imwrite(patch, imageCrop);
+//            showImage(imageCrop);
+        }
+        if(images_for_test)
+        {
+            string patch = patch_to_dataset + "/" + name_dir_for_test + "/";
+            patch.append(to_string(i));
+            patch.append(".jpg");
+            imwrite(patch, imageCrop);
+//            showImage(imageCrop);
+        }
+        --all_num_images;
         ++i;
-        if (num_images_load == 0) break;
-    }
+        if (all_num_images == num_images_load_test)
+        {
+            images_for_train = false;
+            images_for_test = true;
+        }
+        if (all_num_images == 0)
+        {
+            break;
+        }
 
-//    cout<< "Images:" << endl;
-//    for (auto &i:vectorImagesPatch)
-//        cout<< i << endl;
-
-//    cout<< "\nLabels:" << endl;
-//    for (auto &i:vectorLabelssPatch)
-//        cout<< i << endl;
-
-
-
-
+    }//END for (auto & p : fs::directory_iterator(patch_to_dataset + "/images"))
     return 0;
 }// -- END start

@@ -15,12 +15,17 @@ class convert2cifar
     bool get_ini_params(const std::string& config);
     bool FileIsExist(const std::string& filePath);
     int start();
+    bool labelExists (const std::string& name);
+    void showImage(cv::Mat imageCrop);
 
   private:
     std::string config_path{""};
     std::string patch_to_dataset{""};
+    std::string name_dir_for_train{""};
+    std::string name_dir_for_test{""};
     int width_height = 0;
-    int num_images_load = 0;
+    int num_images_load_train = 0;
+    int num_images_load_test = 0;
     std::vector<std::string> vectorImagesPatch;
     std::vector<std::string> vectorLabelssPatch;
 
