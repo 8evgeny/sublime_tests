@@ -189,14 +189,14 @@ void MainWindow::channel_MC()
     if (((Channel_MC == "C/0")) &&
             ((Channel_TR == "C/2")||(Channel_TR == "C/1")||(Channel_TR == "C/0")||(Channel_TR == "C/-1")||(Channel_TR == "C/-2")))
         {
-            diagnosic_message.append("Канал перикарда: (2мд: МС/С/0+TR/C) склонность к спазмам сосудов и заболеваниям матки или предстательной железы.\n");
+            diagnosic_message.append("Канал перикарда: (2мд: МС/С/0+TR/C) склонность к спазмам сосудов или заболеваниям матки/предстательной железы.\n");
             return;
         }
 
-    if (((Channel_MC == "C/1")||(Channel_TR == "C/2")) &&
+    if (((Channel_MC == "C/1")||(Channel_MC == "C/2")) &&
             ((Channel_TR == "C/2")||(Channel_TR == "C/1")||(Channel_TR == "C/0")||(Channel_TR == "C/-1")||(Channel_TR == "C/-2")))
         {
-            diagnosic_message.append("Канал перикарда: (2мд: МС/С/1,2+TR/C) есть предвестник, или легкие заболевания сосудов, или матки/предстательной железы.\n");
+            diagnosic_message.append("Канал перикарда: (2мд: МС/С/1,2+TR/C) есть предвестник, или легкие заболевания - сосудов, или матки/предстательной железы.\n");
             return;
         }
 
@@ -374,7 +374,7 @@ void MainWindow::channel_C()
     {
         diagnosic_message.append("Канал сердца: норма.\n");
     }
-   if (Channel_C == "B/2")
+   if (Channel_C == "B/-2")
     {
         diagnosic_message.append("Канал сердца: брадикардия, понижено диастолическое давление.\n Больше физиология и дискомфорт.\n ");
     }
@@ -448,10 +448,23 @@ void MainWindow::channel_C()
 
 void MainWindow::channel_IG()
 {
+    if (((Channel_IG == "C/2")||(Channel_IG == "C/1")||(Channel_IG == "C/0")||(Channel_IG == "C/-1")||(Channel_IG == "C/-2")) &&
+            ((Channel_P == "C/2")||(Channel_P == "C/1")||(Channel_P == "C/0")||(Channel_P == "C/-1")||(Channel_P == "C/-2")))
+        {
+            diagnosic_message.append("Канал тонк.киш.: (2мд: IG/C+P/C) дуоденит - воспаление 12-ти перстной кишки.\n");
+            return;
+        }
+    if (((Channel_IG == "C/2")||(Channel_IG == "C/1")||(Channel_IG == "C/0")||(Channel_IG == "C/-1")||(Channel_IG == "C/-2")) &&
+            ((Channel_C == "C/2")||(Channel_C == "C/1")||(Channel_C == "C/0")||(Channel_C == "C/-1")||(Channel_C == "C/-2")))
+        {
+            diagnosic_message.append("Канал тонк.киш.: (2мд: IG/C+C/C) илио-кардиальный синдром.\n Редкое заболевание: проблемы с сердцем из-за отравленной пищи в тонком кишечнике - нужно убрать интоксикацию.\n Таким людям нужно кушать только проверенную качественную пищу.\n");
+            return;
+        }
+
 //Канал тонкого кишечника А
     if (Channel_IG == "A/2")
     {
-        diagnosic_message.append("Канал тонк.киш.: через 1,5-2 часа после приема пищи.\n");
+        diagnosic_message.append("Канал тонк.киш.: через 3 часа после приема пищи.\n");
     }
     if (Channel_IG == "A/1")
     {
@@ -469,11 +482,15 @@ void MainWindow::channel_IG()
     {
         diagnosic_message.append("Канал тонк.киш.: через 2 часа после приема пищи.\n");
     }
+    if (Channel_IG == "OK")
+    {
+        diagnosic_message.append("Канал тонк.киш.: переел 2 часа назад.\n");
+    }
 
 //Канал тонкого кишечника B
     if (Channel_IG == "B/2")
     {
-        diagnosic_message.append("Канал тонк.киш.: через 1,5-2 часа после приема пищи.\n");
+        diagnosic_message.append("Канал тонк.киш.: через 3 часа после приема пищи.\n Здесь съел мало еды; часто мясоеды; когда голодаем.\n");
     }
     if (Channel_IG == "B/1")
     {
@@ -495,27 +512,27 @@ void MainWindow::channel_IG()
 //Канал тонкого кишечника C
     if (Channel_IG == "C/2")
     {
-        diagnosic_message.append("Канал тонк.киш.: обострение хронического дуоденита.\n");
+        diagnosic_message.append("Канал тонк.киш.: эмоция - неприятие человека или ситуации.\n");
     }
     if (Channel_IG == "C/1")
     {
-        diagnosic_message.append("Канал тонк.киш.: начало обострения хронического дуоденита.\n");
+        diagnosic_message.append("Канал тонк.киш.: эмоция - неприятие человека или ситуации.\n");
     }
     if (Channel_IG == "C/0")
     {
-        diagnosic_message.append("Канал тонк.киш.: непроявленное заболевание, ремиссия, или есть предрасположенность.\n");
+        diagnosic_message.append("Канал тонк.киш.: эмоция - неприятие человека или ситуации; (склонность к заболеваниям 12-ти перстной кишки).\n");
     }
     if (Channel_IG == "C/-1")
     {
-        diagnosic_message.append("Канал тонк.киш.: состояние перед ремиссией дуоденита.\n");
+        diagnosic_message.append("Канал тонк.киш.: эмоция - неприятие человека или ситуации.\n");
     }
     if (Channel_IG == "C/-2")
     {
-        diagnosic_message.append("Канал тонк.киш.: старый вялотекущий дуоденит.\n");
+        diagnosic_message.append("Канал тонк.киш.: эмоция - неприятие человека или ситуации.\n");
     }
     if (Channel_IG == "OP")
     {
-        diagnosic_message.append("Канал тонк.киш.: через 2 часа после обильного застолья при дуодените; или вероятность рака 12-ти перстной кишки (нужно дополнительно смотреть состояние других меридианов!) .\n");
+        diagnosic_message.append("Канал тонк.киш.: через 2-3 часа после переедания при дуодените; или вероятность рака 12-ти перстной кишки (нужно дополнительно смотреть состояние других меридианов!) .\n");
     }
 //Закрашиваем треугольники
     if (Channel_IG.find_first_of('0') == string::npos ) //Обе точки не в коридоре
@@ -564,11 +581,11 @@ void MainWindow::channel_TR()
 //Канал тройного обогревателя А
     if (Channel_TR == "A/2")
     {
-        diagnosic_message.append("Канал 3 обогревателя: физическое пернапряжение.\n");
+        diagnosic_message.append("Канал 3 обогревателя: физическое пернапряжение, избыток физической энергии\n");
     }
     if (Channel_TR == "A/1")
     {
-        diagnosic_message.append("Канал 3 обогревателя: норма.\n");
+        diagnosic_message.append("Канал 3 обогревателя: норма, возможен избыток физической энергии.\n");
     }
     if (Channel_TR == "A/0")
     {
@@ -576,7 +593,7 @@ void MainWindow::channel_TR()
     }
     if (Channel_TR == "A/-1")
     {
-        diagnosic_message.append("Канал 3 обогревателя: норма.\n");
+        diagnosic_message.append("Канал 3 обогревателя: усталость.\n");
     }
     if (Channel_TR == "A/-2")
     {
@@ -584,13 +601,13 @@ void MainWindow::channel_TR()
     }
     if (Channel_TR == "OK")
     {
-        diagnosic_message.append("Канал 3 обогревателя: дисфункция гормональной системы (сглаз).\n");
+        diagnosic_message.append("Канал 3 обогревателя: дисфункция гормональной системы (сглаз).\n Три тела человека находятся в раздрае.\n");
     }
 
 //Канал тройного обогревателя В
     if (Channel_TR == "B/2")
     {
-        diagnosic_message.append("Канал 3 обогревателя: избыток энергии.\n");
+        diagnosic_message.append("Канал 3 обогревателя: ПЕРЕизбыток энергии.\n Человек сильный физически.\n");
     }
     if (Channel_TR == "B/1")
     {
@@ -606,7 +623,7 @@ void MainWindow::channel_TR()
     }
     if (Channel_TR == "B/-2")
     {
-        diagnosic_message.append("Канал 3 обогревателя: усталость, физическое переутомление.\n");
+        diagnosic_message.append("Канал 3 обогревателя: усталость, физическое переутомление.\n Но человек может быть сильным физически.\n");
     }
 
 //Канал тройного обогревателя С
@@ -678,30 +695,56 @@ void MainWindow::channel_TR()
 
 void MainWindow::channel_GI()
 {
+    if (((Channel_GI == "C/1")||(Channel_GI == "C/0")||(Channel_GI == "C/-1")) &&
+            ((Channel_P == "C/2")||(Channel_P == "C/1")||(Channel_P == "C/0")||(Channel_P == "C/-1")||(Channel_P == "C/-2")))
+        {
+            diagnosic_message.append("Канал толс.киш.: (2мд: GI/C+P/C) колит - воспаление толстой кишки.\n");
+            return;
+        }
+    if (((Channel_GI == "C/2")) &&
+            ((Channel_P == "C/2")||(Channel_P == "C/1")||(Channel_P == "C/0")||(Channel_P == "C/-1")||(Channel_P == "C/-2")))
+        {
+            diagnosic_message.append("Канал толс.киш.: (2мд: GI/C+P/C) колит - воспаление толстой кишки; с избыточной дефекацией.\n");
+            return;
+        }
+
+    if (((Channel_GI == "C/-2")) &&
+            ((Channel_P == "C/2")||(Channel_P == "C/1")||(Channel_P == "C/0")||(Channel_P == "C/-1")||(Channel_P == "C/-2")))
+        {
+            diagnosic_message.append("Канал толс.киш.: (2мд: GI/C+P/C) колит - воспаление толстой кишки; с запорами.\n");
+            return;
+        }
+    if (((Channel_GI == "OP")) &&
+            ((Channel_P == "C/2")||(Channel_P == "C/1")||(Channel_P == "C/0")||(Channel_P == "C/-1")||(Channel_P == "C/-2")))
+        {
+            diagnosic_message.append("Канал толс.киш.: (2мд: GI/C+P/C) колит - воспаление толстой кишки; с переизбытком каловых масс. Возможно рак.\n");
+            return;
+        }
+
 //Канал толстого кишечника А
     if (Channel_GI == "A/2")
     {
-        diagnosic_message.append("Канал толст.киш.: усиление перистальтики толстого кишечника.\n");
+        diagnosic_message.append("Канал толст.киш.: усиление перистальтики толстого кишечника.\n Метеоризм (см расстояние между точками).\n");
     }
     if (Channel_GI == "A/1")
     {
-        diagnosic_message.append("Канал толст.киш.: небольшое усиление функции толстого кишечника.\n");
+        diagnosic_message.append("Канал толст.киш.: небольшое усиление функции толстого кишечника.\n Метеоризм (см расстояние между точками).\n");
     }
     if (Channel_GI == "A/0")
     {
-        diagnosic_message.append("Канал толст.киш.: норма.\n");
+        diagnosic_message.append("Канал толст.киш.: норма.\n  Метеоризм (см расстояние между точками).\n");
     }
     if (Channel_GI == "A/-1")
     {
-        diagnosic_message.append("Канал толст.киш.: склонность к неполному опорожнению кишечника.\n");
+        diagnosic_message.append("Канал толст.киш.: склонность к неполному опорожнению кишечника.\n Метеоризм (см расстояние между точками).\n");
     }
     if (Channel_GI == "A/-2")
     {
-        diagnosic_message.append("Канал толст.киш.: запор на нервной почве.\n");
+        diagnosic_message.append("Канал толст.киш.: запор на нервной почве.\n Метеоризм (см расстояние между точками).\n");
     }
     if (Channel_GI == "OK")
     {
-        diagnosic_message.append("Канал толст.киш.: метеоризм.\n");
+        diagnosic_message.append("Канал толст.киш.: сильный метеоризм.\n");
     }
 
 //Канал толстого кишечника В
@@ -713,7 +756,7 @@ void MainWindow::channel_GI()
     {
         diagnosic_message.append("Канал толст.киш.: норма.\n");
     }
-    if (Channel_GI == "B/01")
+    if (Channel_GI == "B/0")
     {
         diagnosic_message.append("Канал толст.киш.: норма.\n");
     }
@@ -729,7 +772,7 @@ void MainWindow::channel_GI()
 //Канал толстого кишечника С
     if (Channel_GI == "C/2")
     {
-        diagnosic_message.append("Канал толст.киш.: усиление перистальтики толстого кишечника, колит.\n");
+        diagnosic_message.append("Канал толст.киш.: усиление перистальтики толстого кишечника.\n");
     }
     if (Channel_GI == "C/1")
     {
@@ -737,19 +780,19 @@ void MainWindow::channel_GI()
     }
     if (Channel_GI == "C/0")
     {
-        diagnosic_message.append("Канал толст.киш.: непроявленное заболевание, ремиссия или предрасположенность.\n");
+        diagnosic_message.append("Канал толст.киш.: эмоции; склонность к заболеваниям толской кишки.\n");
     }
     if (Channel_GI == "C/-1")
     {
-        diagnosic_message.append("Канал толст.киш.: начальная стадия колита.\n");
+        diagnosic_message.append("Канал толст.киш.: эмоции; склонность к заболеваниям толской кишки.\n");
     }
     if (Channel_GI == "C/-2")
     {
-        diagnosic_message.append("Канал толст.киш.: хронический колит.\n");
+        diagnosic_message.append("Канал толст.киш.: эмоции; склонность к заболеваниям толской кишки.\n");
     }
     if (Channel_GI == "OP")
     {
-        diagnosic_message.append("Канал толст.киш.: метеоризм при колите; вероятность рака толстой кишки (нужно уточнять другие меридианы!).\n");
+        diagnosic_message.append("Канал толст.киш.: метеоризм; избыток содержимого; вероятность рака толстой кишки (нужно уточнять другие меридианы!).\n");
     }
 //Закрашиваем треугольники
     if (Channel_GI.find_first_of('0') == string::npos ) //Обе точки не в коридоре
@@ -802,15 +845,15 @@ void MainWindow::channel_RP()
     }
     if (Channel_RP == "A/1")
     {
-        diagnosic_message.append("Канал селезенки: начинает повышаться сахар в крови и иммунитет.\n");
+        diagnosic_message.append("Канал селезенки: начинает повышаться сахар в крови, иммунитет повышен.\n");
     }
     if (Channel_RP == "A/0")
     {
-        diagnosic_message.append("Канал селезенки: норма.\n");
+        diagnosic_message.append("Канал селезенки: сахар и иммунитет - норма.\n");
     }
     if (Channel_RP == "A/-1")
     {
-        diagnosic_message.append("Канал селезенки: снижается сахар в крови, снижается иммунитет.\n");
+        diagnosic_message.append("Канал селезенки: понижен сахар в крови,  иммунитет в норме.\n");
     }
     if (Channel_RP == "A/-2")
     {
@@ -818,7 +861,7 @@ void MainWindow::channel_RP()
     }
     if (Channel_RP == "OK")
     {
-        diagnosic_message.append("Канал селезенки: переходное состояние в панкреатит.\n");
+        diagnosic_message.append("Канал селезенки: сахар низкий, иммунитет высокий; возможно переходное состояние в панкреатит.\n");
     }
 
 //Канал селезенки и поджелудочной В
@@ -828,15 +871,15 @@ void MainWindow::channel_RP()
     }
     if (Channel_RP == "B/1")
     {
-        diagnosic_message.append("Канал селезенки: норма.\n");
+        diagnosic_message.append("Канал селезенки: сахар и иммунитет - норма.\n");
     }
     if (Channel_RP == "B/0")
     {
-        diagnosic_message.append("Канал селезенки: норма.\n");
+        diagnosic_message.append("Канал селезенки: сахар и иммунитет - норма.\n");
     }
     if (Channel_RP == "B/-1")
     {
-        diagnosic_message.append("Канал селезенки: норма.\n");
+        diagnosic_message.append("Канал селезенки: сахар и иммунитет - норма.\n");
     }
     if (Channel_RP == "B/-2")
     {
@@ -846,7 +889,7 @@ void MainWindow::channel_RP()
 //Канал селезенки и поджелудочной С
     if (Channel_RP == "C/2")
     {
-        diagnosic_message.append("Канал селезенки: обострение хронического панкреатита, лейкоцитоз, сдвиг лейкоцитарной формулы влево.\n");
+        diagnosic_message.append("Канал селезенки: проблемы в поджелудочной (обострение хронического панкреатита), лейкоцитоз, сдвиг лейкоцитарной формулы влево.\n");
     }
     if (Channel_RP == "C/1")
     {
@@ -854,11 +897,11 @@ void MainWindow::channel_RP()
     }
     if (Channel_RP == "C/0")
     {
-        diagnosic_message.append("Канал селезенки: непроявленное заболвавние, ремиссия или предрасположенность.\n");
+        diagnosic_message.append("Канал селезенки: склонность к заболевания поджелудочной железы.\n");
     }
     if (Channel_RP == "C/-1")
     {
-        diagnosic_message.append("Канал селезенки: увеличение селезенки.\n");
+        diagnosic_message.append("Канал селезенки: хроническое заболевание селезенки; (увеличение).\n");
     }
     if (Channel_RP == "C/-2")
     {
