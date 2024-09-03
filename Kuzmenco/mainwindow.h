@@ -106,6 +106,7 @@ private:
     float averadgeY;
     float hight;
     float low;
+    float delta = 3.1;
     std::string Channel_P, Channel_MC, Channel_C, Channel_IG, Channel_TR, Channel_GI, Channel_RP, Channel_F, Channel_R, Channel_V, Channel_VB, Channel_E;
     unsigned int izmereniye{1};
     unsigned int  r1x{123}, l1x{181};

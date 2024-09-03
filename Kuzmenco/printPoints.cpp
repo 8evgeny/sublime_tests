@@ -60,8 +60,8 @@ string MainWindow::calculateLetter(float r1, float l1)
 {
     float r = 1000.0f - r1;
     float l = 1000.0f - l1;
-    float hightY = 1000.0f - calcCornerLine(hight);
-    float lowY = 1000.0f - calcCornerLine(low);
+    float hightY = 1000.0f - calcCornerLine(hight - delta);
+    float lowY = 1000.0f - calcCornerLine(low + delta);
 if (r < l)
 {
     if (r < lowY && l > hightY) return "OK";
@@ -132,6 +132,8 @@ void MainWindow::drawPoints()
 
     hight = averadge + 7;
     low = averadge - 7;
+    cout<<"hight: "<<hight<<endl;
+    cout<<"low: "<<low<<endl;
     if (low < 0) low = 0;
 
     //Проверка что все значения введены
