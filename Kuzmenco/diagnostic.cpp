@@ -448,18 +448,23 @@ void MainWindow::channel_C()
 
 void MainWindow::channel_IG()
 {
+
+//Или 1 или 2
+    bool one_or_two = false;
     if (((Channel_IG == "C/2")||(Channel_IG == "C/1")||(Channel_IG == "C/0")||(Channel_IG == "C/-1")||(Channel_IG == "C/-2")) &&
             ((Channel_P == "C/2")||(Channel_P == "C/1")||(Channel_P == "C/0")||(Channel_P == "C/-1")||(Channel_P == "C/-2")))
         {
+            one_or_two = true;
             diagnosic_message.append("Канал тонк.киш.: (2мд: IG/C+P/C) дуоденит - воспаление 12-ти перстной кишки.\n");
-            return;
         }
     if (((Channel_IG == "C/2")||(Channel_IG == "C/1")||(Channel_IG == "C/0")||(Channel_IG == "C/-1")||(Channel_IG == "C/-2")) &&
             ((Channel_C == "C/2")||(Channel_C == "C/1")||(Channel_C == "C/0")||(Channel_C == "C/-1")||(Channel_C == "C/-2")))
         {
+            one_or_two = true;
             diagnosic_message.append("Канал тонк.киш.: (2мд: IG/C+C/C) илио-кардиальный синдром.\n Редкое заболевание: проблемы с сердцем из-за отравленной пищи в тонком кишечнике - нужно убрать интоксикацию.\n Таким людям нужно кушать только проверенную качественную пищу.\n");
-            return;
         }
+    if (one_or_two)
+        return;
 
 //Канал тонкого кишечника А
     if (Channel_IG == "A/2")
