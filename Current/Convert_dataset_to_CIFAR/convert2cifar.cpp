@@ -82,7 +82,8 @@ int convert2cifar::start()
     string labelName;
     string stringlabelPatch;
     ifstream fin;
-    Mat image;
+    Mat imageOrigin;
+    Mat imageCrop;
     int centerX = 0;
     int centerY = 0;
     Point lh;
@@ -115,9 +116,13 @@ int convert2cifar::start()
         centerY = (int)(256 * imgY);
         lh = Point((centerX - width_height /2), (centerY - width_height /2));
         rd = Point((centerX + width_height /2), (centerY + width_height /2));
-        image = imread(vectorImagesPatch[i], IMREAD_UNCHANGED);
-        rectangle(image, lh, rd, Scalar(0,0,255), 3);
-        imshow("image_window", image );
+        imageOrigin = imread(vectorImagesPatch[i], IMREAD_UNCHANGED);
+        Rect rec(lh, rd);
+        imageCrop = imageOrigin(rec);
+        imshow("image_window", imageCrop );
+
+//        rectangle(imageOrigin, lh, rd, Scalar(0,0,255), 3);
+//        imshow("image_window", imageOrigin );
         waitKey(0);
 
         --num_images_load;
