@@ -360,7 +360,7 @@ void MainWindow::channel_C()
 //Канал сердца В
     if (Channel_C == "B/2")
     {
-        diagnosic_message.append("Канал сердца: тахикардия, повышено диастолическое давление.\n Больше физиология и дискомфорт.\n ");
+        diagnosic_message.append("Канал сердца: тахикардия, повышено диастолическое давление.\n Больше физиология и дискомфорт.\n");
     }
     if (Channel_C == "B/1")
     {
@@ -376,7 +376,7 @@ void MainWindow::channel_C()
     }
    if (Channel_C == "B/-2")
     {
-        diagnosic_message.append("Канал сердца: брадикардия, понижено диастолическое давление.\n Больше физиология и дискомфорт.\n ");
+        diagnosic_message.append("Канал сердца: брадикардия, понижено диастолическое давление.\n Больше физиология и дискомфорт.\n");
     }
 
 //Канал сердца С
@@ -843,6 +843,25 @@ void MainWindow::channel_GI()
 
 void MainWindow::channel_RP()
 {
+
+    //Или 1 или 2
+        bool one_or_two = false;
+        if (((Channel_RP == "C/-2")) &&
+                ((Channel_TR == "C/-2")))
+            {
+                one_or_two = true;
+                diagnosic_message.append("Канал селезенки: (2мд: RP/C/-2 +TR/C/-2) иммунодефицит.\n");
+            }
+        if (((Channel_RP == "C/-2")||(Channel_RP == "B/-2")||(Channel_RP == "A/-2")) && //понижен сахар
+                ((Channel_V == "A/-2")||(Channel_V == "B/-2")||(Channel_V == "C/-2")) && //мозг не соображает
+                       ((Channel_E == "A/2")||(Channel_E == "B/2")||(Channel_E == "C/2")))  //повышена кислотность
+            {
+                one_or_two = true;
+                diagnosic_message.append("Канал селезенки: (3мд: RP/ABC/-2 + V/ABC/-2 + E/ABC/2) сахар понижен, человек голодный.\n");
+            }
+        if (one_or_two)
+            return;
+
 //Канал селезенки и поджелудочной А
     if (Channel_RP == "A/2")
     {
@@ -858,7 +877,7 @@ void MainWindow::channel_RP()
     }
     if (Channel_RP == "A/-1")
     {
-        diagnosic_message.append("Канал селезенки: понижен сахар в крови,  иммунитет в норме.\n");
+        diagnosic_message.append("Канал селезенки: понижен сахар в крови, иммунитет в норме.\n");
     }
     if (Channel_RP == "A/-2")
     {
@@ -960,10 +979,26 @@ void MainWindow::channel_RP()
 
 void MainWindow::channel_F()
 {
+
+    if (((Channel_F == "A/2")||(Channel_F == "A/1")||(Channel_F == "A/0")||(Channel_F == "A/-1")||(Channel_F == "A/-2")) &&
+            ((Channel_RP == "C/2")||(Channel_RP == "B/2")||(Channel_RP == "A/2")))
+        {
+            diagnosic_message.append("Канал печени: (2мд: F/A+RP/ABC/2) острый гепатит ( особенно А/2,-2).\n");
+            return;
+        }
+
+    if (((Channel_F == "C/2")) &&
+            ((Channel_RP == "C/2")||(Channel_RP == "B/2")||(Channel_RP == "A/2")))
+        {
+            diagnosic_message.append("Канал печени: (2мд: F/C+RP/ABC/2) гепатит.\n");
+            return;
+        }
+
+
 //Канал печени А
     if (Channel_F == "A/2")
     {
-        diagnosic_message.append("Канал печени: вероятность приема кофе, крепкого чая, алкоголя, лекарств.\n");
+        diagnosic_message.append("Канал печени: избыток лекарственных препаратов или пищевых добавок.\n Печень в критическом состоянии, ее пора чистить - иначе перейдет в С.\n");
     }
     if (Channel_F == "A/1")
     {
@@ -989,7 +1024,7 @@ void MainWindow::channel_F()
 //Канал печени В
     if (Channel_F == "B/2")
     {
-        diagnosic_message.append("Канал печени: вероятность приема кофе, крепкого чая, алкоголя, лекарств.\n");
+        diagnosic_message.append("Канал печени: вероятность недавнего приема кофе, крепкого чая, алкоголя, лекарств.\n");
     }
     if (Channel_F == "B/1")
     {
@@ -1005,13 +1040,13 @@ void MainWindow::channel_F()
     }
     if (Channel_F == "B/-2")
     {
-        diagnosic_message.append("Канал печени: функция печени понижена.\n");
+        diagnosic_message.append("Канал печени: человек мало есть жирного, соленого, острого. Функция печени понижена.\n");
     }
 
 //Канал печени С
     if (Channel_F == "C/2")
     {
-        diagnosic_message.append("Канал печени: обострение хронического гепатита.\n");
+        diagnosic_message.append("Канал печени: гепатоз.\n");
     }
     if (Channel_F == "C/1")
     {
@@ -1019,7 +1054,7 @@ void MainWindow::channel_F()
     }
     if (Channel_F == "C/0")
     {
-        diagnosic_message.append("Канал печени: непроявленное заболевание, ремиссия или предрасположенность.\n");
+        diagnosic_message.append("Канал печени: склонность к заболеванию печени.\n");
     }
     if (Channel_F == "C/-1")
     {
@@ -1077,14 +1112,54 @@ void MainWindow::channel_F()
 
 void MainWindow::channel_R()
 {
+    if (((Channel_R == "B/2")) &&
+            ((Channel_RP == "A/2")||(Channel_RP == "B/2")||(Channel_RP == "C/2")||(Channel_RP == "A/-2")||(Channel_RP == "B/-2")||(Channel_RP == "C/-2")))
+        {
+            diagnosic_message.append("Канал почек: (2мд: R/B/2+RP/ABC/2,-2) усиленное мочеиспускание и 2х сторонний нефрит.\n");
+            return;
+        }
+    if (((Channel_R == "B/-2")) &&
+            ((Channel_RP == "A/2")||(Channel_RP == "B/2")||(Channel_RP == "C/2")||(Channel_RP == "A/-2")||(Channel_RP == "B/-2")||(Channel_RP == "C/-2")))
+        {
+            diagnosic_message.append("Канал почек: (2мд: R/B/-2 +RP/ABC/2,-2) отеки и 2х сторонний нефрит.\n");
+            return;
+        }
+
+    if (((Channel_R == "A/2")||(Channel_RP == "A/1")) &&
+            ((Channel_RP == "A/2")||(Channel_RP == "B/2")||(Channel_RP == "C/2")||(Channel_RP == "A/-2")||(Channel_RP == "B/-2")||(Channel_RP == "C/-2")))
+        {
+            diagnosic_message.append("Канал почек: (2мд: R/A/2,1 +RP/ABC/2,-2) острый левосторонний нефрит.\n");
+            return;
+        }
+    if (((Channel_R == "A/-2")||(Channel_RP == "A/-1")) &&
+            ((Channel_RP == "A/2")||(Channel_RP == "B/2")||(Channel_RP == "C/2")||(Channel_RP == "A/-2")||(Channel_RP == "B/-2")||(Channel_RP == "C/-2")))
+        {
+            diagnosic_message.append("Канал почек: (2мд: R/A/-2,-1 +RP/ABC/2,-2) острый правосторонний нефрит.\n");
+            return;
+        }
+
+    if (((Channel_R == "C/2")||(Channel_RP == "C/1")) &&
+            ((Channel_RP == "A/2")||(Channel_RP == "B/2")||(Channel_RP == "C/2")||(Channel_RP == "A/-2")||(Channel_RP == "B/-2")||(Channel_RP == "C/-2")))
+        {
+            diagnosic_message.append("Канал почек: (2мд: R/C/2,1 +RP/ABC/2,-2) хроническое воспаление правой почки.\n");
+            return;
+        }
+    if (((Channel_R == "C/-2")||(Channel_RP == "C/-1")) &&
+            ((Channel_RP == "A/2")||(Channel_RP == "B/2")||(Channel_RP == "C/2")||(Channel_RP == "A/-2")||(Channel_RP == "B/-2")||(Channel_RP == "C/-2")))
+        {
+            diagnosic_message.append("Канал почек: (2мд: R/C/-2,-1 +RP/ABC/2,-2) хроническое воспаление левой почки.\n");
+            return;
+        }
+
+
 //Канал почек А
     if (Channel_R == "A/2")
     {
-        diagnosic_message.append("Канал почек: усиленное мочеиспускание, вероятность приема мочегонных препаратов.\n");
+        diagnosic_message.append("Канал почек: усиленное мочеиспускание,за счет левой почки; вероятность приема мочегонных препаратов.\n");
     }
     if (Channel_R == "A/1")
     {
-        diagnosic_message.append("Канал почек: небольшое усиление мочеиспускания.\n");
+        diagnosic_message.append("Канал почек: небольшое усиление мочеиспускания, за счет левой почки.\n");
     }
     if (Channel_R == "A/0")
     {
@@ -1096,7 +1171,7 @@ void MainWindow::channel_R()
     }
     if (Channel_R == "A/-2")
     {
-        diagnosic_message.append("Канал почек: отёки, вероятность камня в правой почке, опущение правой почки, или её воспаление.\n");
+        diagnosic_message.append("Канал почек: отёки, вероятность камня в правой почке, опущение правой почки.\n");
     }
     if (Channel_R == "OK")
     {
@@ -1106,7 +1181,7 @@ void MainWindow::channel_R()
 //Канал почек В
     if (Channel_R == "B/2")
     {
-        diagnosic_message.append("Канал почек: усиленное мочеиспускание, вероятность приема мочегонных препаратов.\n");
+        diagnosic_message.append("Канал почек: усиленное мочеиспускание, вероятность приема мочегонных препаратов.\n Человек много пил воды, или болел 3 дня назад и почки выводят инфекцию.\n");
     }
     if (Channel_R == "B/1")
     {
@@ -1122,17 +1197,17 @@ void MainWindow::channel_R()
     }
     if (Channel_R == "B/-2")
     {
-        diagnosic_message.append("Канал почек: отёки (функциональные); вероятность присутствия камней в обеих почках, опущение почек.\n");
+        diagnosic_message.append("Канал почек: отёки (функциональные) - но почему сказать не можем; вероятность присутствия камней в обеих почках, опущение почек.\n");
     }
 
 //Канал почек С
     if (Channel_R == "C/2")
     {
-        diagnosic_message.append("Канал почек: начало мочекаменной болезни.\n");
+        diagnosic_message.append("Канал почек: начало мочекаменной болезни. Усиленное мочеиспускание,за счет левой почки.\n");
     }
     if (Channel_R == "C/1")
     {
-        diagnosic_message.append("Канал почек: начало мочекаменной болезни.\n");
+        diagnosic_message.append("Канал почек: начало мочекаменной болезни. Усиленное мочеиспускание,за счет левой почки.\n");
     }
     if (Channel_R == "C/0")
     {
@@ -1140,15 +1215,15 @@ void MainWindow::channel_R()
     }
     if (Channel_R == "C/-1")
     {
-        diagnosic_message.append("Канал почек: отёки, вероятность камня в левой почке, или опущение левой почки.\n");
+        diagnosic_message.append("Канал почек: пониженное мочеиспускание и отёки, за счет левой почки; вероятность камня в левой почке, или опущение левой почки.\n");
     }
     if (Channel_R == "C/-2")
     {
-        diagnosic_message.append("Канал почек: отёки, вероятность камня в левой почке, или опущение левой почки, воспаление.\n");
+        diagnosic_message.append("Канал почек:  пониженное мочеиспускание и отёки, за счет левой почки; вероятность камня в левой почке, или опущение левой почки, воспаление.\n");
     }
     if (Channel_R == "OP")
     {
-        diagnosic_message.append("Канал почек: вероятность отключения левой почки, её отсутствие, камни, рак (нужно еще смотреть другие меридианы!).\n");
+        diagnosic_message.append("Канал почек: вероятность отключения левой почки, почему то она не работает; она отсутствут, камни, рак (нужно еще смотреть другие меридианы!).\n");
     }
 //Закрашиваем треугольники
     if (Channel_R.find_first_of('0') == string::npos ) //Обе точки не в коридоре
@@ -1194,14 +1269,33 @@ void MainWindow::channel_R()
 
 void MainWindow::channel_V()
 {
+    if (((Channel_V == "OP")) &&
+            ((Channel_IG == "C/2")||(Channel_IG == "C/1")||(Channel_IG == "C/0")||(Channel_IG == "C/-1")||(Channel_IG == "C/-2")))
+        {
+            diagnosic_message.append("Канал мочевого пузыря: (2мд: V/OP+IG/C) стресс; возможно рак мозга.\n");
+            return;
+        }
+    if (((Channel_V == "OP")) &&
+            ((Channel_R == "C/2")||(Channel_R == "C/1")||(Channel_R == "C/0")||(Channel_R == "C/-1")||(Channel_R == "C/-2")))
+        {
+            diagnosic_message.append("Канал мочевого пузыря: (2мд: V/OP+R/C) стресс; возможно рак мочевого пузыря.\n");
+            return;
+        }
+    if (((Channel_V == "OP")) &&
+            ((Channel_VB == "C/2")||(Channel_VB == "C/1")||(Channel_VB == "C/0")||(Channel_VB == "C/-1")||(Channel_VB == "C/-2")))
+        {
+            diagnosic_message.append("Канал мочевого пузыря: (2мд: V/OP+VB/C) стресс; возможно рак костей.\n");
+            return;
+        }
+
 //Канал мочевого пузыря А
     if (Channel_V == "A/2")
     {
-        diagnosic_message.append("Канал мочевого пузыря: умственное перевозбуждение.\n");
+        diagnosic_message.append("Канал мочевого пузыря: умственное перевозбуждение.\n Больше напрягается левое полушарие мозга: технарь.\n");
     }
     if (Channel_V == "A/1")
     {
-        diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+        diagnosic_message.append("Канал мочевого пузыря: норма.\n Больше напрягается левое полушарие мозга: технарь.\n");
     }
     if (Channel_V == "A/0")
     {
@@ -1223,33 +1317,33 @@ void MainWindow::channel_V()
 //Канал мочевого пузыря В
     if (Channel_V == "B/2")
     {
-        diagnosic_message.append("Канал мочевого пузыря: напряжение нервной системы.\n");
+        diagnosic_message.append("Канал мочевого пузыря: напряжение нервной системы.\n Универсальное мышление: работают и левое и правое полушрия мозга.\n");
     }
     if (Channel_V == "B/1")
     {
-        diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+        diagnosic_message.append("Канал мочевого пузыря: норма.\n Универсальное мышление: работают и левое и правое полушрия мозга.\n");
     }
     if (Channel_V == "B/0")
     {
-        diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+        diagnosic_message.append("Канал мочевого пузыря: норма.\n Универсальное мышление: работают и левое и правое полушрия мозга.\n");
     }
     if (Channel_V == "B/-1")
     {
-        diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+        diagnosic_message.append("Канал мочевого пузыря: норма.\n Универсальное мышление: работают и левое и правое полушрия мозга.\n");
     }
     if (Channel_V == "B/2")
     {
-        diagnosic_message.append("Канал мочевого пузыря: утомление нервной системы, пониженная работоспособность мозга (например при усталости или голоде).\n");
+        diagnosic_message.append("Канал мочевого пузыря: утомление нервной системы, пониженная работоспособность мозга (например при усталости или голоде).\n Универсальное мышление: работают и левое и правое полушрия мозга.\n");
     }
 
 //Канал мочевого пузыря С
     if (Channel_V == "C/2")
     {
-        diagnosic_message.append("Канал мочевого пузыря: эмоциональное перевозбуждение.\n");
+        diagnosic_message.append("Канал мочевого пузыря: эмоциональное перевозбуждение.\n Больше напрягается правое полушарие мозга: гуманитарий.\n");
     }
     if (Channel_V == "C/1")
     {
-        diagnosic_message.append("Канал мочевого пузыря: норма.\n");
+        diagnosic_message.append("Канал мочевого пузыря: норма.\n Больше напрягается правое полушарие мозга: гуманитарий.\n");
     }
     if (Channel_V == "C/0")
     {
@@ -1265,7 +1359,7 @@ void MainWindow::channel_V()
     }
     if (Channel_V == "OP")
     {
-        diagnosic_message.append("Канал мочевого пузыря: вероятность рака мочевого пузыря или костей (нужно еще смотреть другие меридианы!).\n");
+        diagnosic_message.append("Канал мочевого пузыря: стресс, избыток мочи, возможно инфекция.\n");
     }
 //Закрашиваем треугольники
     if (Channel_V.find_first_of('0') == string::npos ) //Обе точки не в коридоре
@@ -1311,6 +1405,13 @@ void MainWindow::channel_V()
 
 void MainWindow::channel_VB()
 {
+    if (((Channel_VB == "C/-2")) &&
+            ((Channel_R == "C/2")||(Channel_R == "C/1")||(Channel_R == "C/0")||(Channel_R == "C/-1")||(Channel_R == "C/-2")))
+        {
+            diagnosic_message.append("Канал желчного пузыря: (2мд: VB/C/-2 +R/C) желчекаменная болезнь; есть камни или песок в желчном пузыре.\n");
+            return;
+        }
+
 //Канал желчного пузыря А
     if (Channel_VB == "A/2")
     {
@@ -1330,7 +1431,7 @@ void MainWindow::channel_VB()
     }
     if (Channel_VB == "A/-2")
     {
-        diagnosic_message.append("Канал желчного пузыря: хронический бескаменный холецистит.\n");
+        diagnosic_message.append("Канал желчного пузыря: хронический бескаменный холецистит, застой желчи.\n");
     }
     if (Channel_VB == "OK")
     {
@@ -1340,7 +1441,7 @@ void MainWindow::channel_VB()
 //Канал желчного пузыря В
     if (Channel_VB == "B/2")
     {
-        diagnosic_message.append("Канал желчного пузыря: дискинезия желчных путей.\n");
+        diagnosic_message.append("Канал желчного пузыря: дискинезия желчных путей с избытком (выбросом) желчи.\n");
     }
     if (Channel_VB == "B/1")
     {
@@ -1356,29 +1457,30 @@ void MainWindow::channel_VB()
     }
     if (Channel_VB == "B/-2")
     {
-        diagnosic_message.append("Канал желчного пузыря: дискинезия желчных путей.\n");
+        diagnosic_message.append("Канал желчного пузыря: дискинезия желчных путей с застоем желчи.\n");
     }
 
 //Канал желчного пузыря С
     if (Channel_VB == "C/2")
     {
-        diagnosic_message.append("Канал желчного пузыря: начальная стадия желчекаменной болезни.\n");
+        diagnosic_message.append("Канал желчного пузыря: начальная стадия желчекаменной болезни. Активная стадия болезни, камней пока нет, а болезнь уже есть.\n");
     }
     if (Channel_VB == "C/1")
     {
-        diagnosic_message.append("Канал желчного пузыря: начальная стадия желчекаменной болезни.\n");
+        diagnosic_message.append("Канал желчного пузыря: начальная стадия желчекаменной болезни. Склонность к камнеобразованию.\n");
     }
     if (Channel_VB == "C/0")
     {
-        diagnosic_message.append("Канал желчного пузыря: непроявленное заболевание, ремиссия или предрасположенность.\n");
+        diagnosic_message.append("Канал желчного пузыря: склонность к заболеванию ЖКБ. Склонность к камнеобразованию.\n");
     }
     if (Channel_VB == "C/-1")
     {
-        diagnosic_message.append("Канал желчного пузыря: желчекаменная болезнь.\n");
+        diagnosic_message.append("Канал желчного пузыря: желчекаменная болезнь. Склонность к камнеобразованию.\n");
     }
     if (Channel_VB == "C/-2")
     {
-        diagnosic_message.append("Канал желчного пузыря: желчекаменная болезнь. Вероятность наличия камней или песка в желчном пузыре (нужно еще смотреть другие меридианы!).\n");
+        diagnosic_message.append("Канал желчного пузыря: желчекаменная болезнь. Возможны камни: тк вялотекущий хронический застой."
+                                 ".\n");
     }
     if (Channel_VB == "OP")
     {
@@ -1453,7 +1555,7 @@ void MainWindow::channel_E()
 //Канал желудка В
     if (Channel_E == "B/2")
     {
-        diagnosic_message.append("Канал желудка: повышенная кислотность желудочного сока.\n");
+        diagnosic_message.append("Канал желудка: повышенная кислотность желудочного сока; .\n");
     }
     if (Channel_E == "B/1")
     {
