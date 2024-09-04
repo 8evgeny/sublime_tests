@@ -55,6 +55,20 @@ bool convert2cifar::get_ini_params(const string &config)
         return 1;
     }
     cout << "patch_to_dataset = " << patch_to_dataset << ";\n";
+    patch_to_output = reader.Get("main_settings", "patch_to_output", "");
+    if(patch_to_output == "")
+    {
+        cout << "patch_to_output not declared" << endl;
+        return 1;
+    }
+    cout << "patch_to_output = " << patch_to_output << ";\n";
+    output_extention = reader.Get("main_settings", "output_extention", "");
+    if(output_extention == "")
+    {
+        cout << "output_extention not declared" << endl;
+        return 1;
+    }
+    cout << "output_extention = " << output_extention << ";\n";
     name_dir_for_train = reader.Get("main_settings", "name_dir_for_train", "");
     if(name_dir_for_train == "")
     {
@@ -120,9 +134,9 @@ int convert2cifar::start()
     Point lh;
     Point rd;
 
-    string cmd1 = "mkdir -p " + patch_to_dataset + "/" + name_dir_for_train;
+    string cmd1 = "mkdir -p " + patch_to_output + "/" + name_dir_for_train;
     system(cmd1.c_str());
-    string cmd2 = "mkdir -p " + patch_to_dataset + "/" + name_dir_for_test;
+    string cmd2 = "mkdir -p " + patch_to_output + "/" + name_dir_for_test;
     system(cmd2.c_str());
 
     for (auto & p : fs::directory_iterator(patch_to_dataset + "/images"))
@@ -154,17 +168,19 @@ int convert2cifar::start()
         if(images_for_train)
         {
             //Сохраняем вырезанную область в новый файл
-            string patch = patch_to_dataset + "/" + name_dir_for_train + "/";
+            string patch = patch_to_output + "/" + name_dir_for_train + "/";
             patch.append(to_string(i));
-            patch.append(".jpg");
+            patch.append(".");
+            patch.append(output_extention);
             imwrite(patch, imageCrop);
 //            showImage(imageCrop);
         }
         if(images_for_test)
         {
-            string patch = patch_to_dataset + "/" + name_dir_for_test + "/";
+            string patch = patch_to_output + "/" + name_dir_for_test + "/";
             patch.append(to_string(i));
-            patch.append(".jpg");
+            patch.append(".");
+            patch.append(output_extention);
             imwrite(patch, imageCrop);
 //            showImage(imageCrop);
         }

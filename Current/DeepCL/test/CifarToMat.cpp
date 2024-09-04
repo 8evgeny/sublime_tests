@@ -46,7 +46,8 @@ void doTrainingFiles( string dir )
     int *labels = new int[N];
     const int cubeSize = numPlanes * imageSize * imageSize;
     unsigned char *images = new unsigned char[ N * cubeSize ];
-    for( int batch = 1; batch <= 5; batch++ ) {
+//    for( int batch = 1; batch <= 5; batch++ ) {
+    for( int batch = 1; batch <= 1; batch++ ) { //@@@###
         string cifarFilename = dir + "/data_batch_" + toString( batch ) + ".bin";
         CifarLoader::load( cifarFilename, images + ( batch - 1 ) * 10000 * cubeSize, labels + ( batch - 1 ) * 10000 );
     }
