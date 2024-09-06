@@ -2,7 +2,7 @@ import sys
 from rknn.api import RKNN
 
 DATASET_PATH = 'datasets/NIGHT_FLY/night_fly_subset_20.txt'
-DEFAULT_RKNN_PATH = 'examples/yolov8/model/yolov8.rknn'
+DEFAULT_RKNN_PATH = 'examples/yolov8/model/best.rknn'
 DEFAULT_QUANT = True
 
 def parse_arg():

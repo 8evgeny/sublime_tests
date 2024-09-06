@@ -2,7 +2,7 @@
 
 source /home/user/anaconda3/etc/profile.d/conda.sh
 conda activate fastdeploy
-python examples/yolov8/python/convert.py yolov8n.onnx rk3588
+python examples/yolov8/python/convert.py best.onnx rk3588
 
 
 
