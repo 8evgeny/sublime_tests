@@ -2824,31 +2824,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>16</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <pointsize>12</pointsize>
        </font>
       </property>
-      <item>
-       <property name="text">
-        <string>Женя</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Семен</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Таня</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Новый_клиент</string>
-       </property>
-      </item>
      </widget>
      <widget class="QLabel" name="label_24">
       <property name="geometry">

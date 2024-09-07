@@ -4,7 +4,8 @@
 #include <QFileDialog>
 #include <fstream>
 //#include <regex>
-
+#include <QInputDialog>
+#include <QDebug>
 using namespace std;
 extern QApplication * app;
 
@@ -13,8 +14,23 @@ MainWindow::MainWindow(QWidget *parent) :
 ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->name_field->setCurrentIndex(2);
-    name_field = ui->name_field->currentText();
+//    ui->name_field->setCurrentIndex(2);
+//    name_field = ui->name_field->currentText();
+
+    QFile textFile("Сlients.txt");
+    textFile.open(QIODevice::ReadOnly);
+    while(!textFile.atEnd())
+    {
+        clients.append(textFile.readLine());
+    }
+    textFile.close();
+    for (auto &i:clients)
+        i.chop(1);
+//    qDebug()<<clients;
+
+    ui->name_field->insertItems(0, clients);
+    ui->name_field->insertItem(0, "Новый клиент");
+
     ui->Izmereniye->insert("1");
     ui->r_1->setFocus();
 }
@@ -213,7 +229,7 @@ void MainWindow::on_button_load_clicked()
 void MainWindow::on_dateEdit_dateChanged(const QDate &date)
 {
     Date = ui->dateEdit->text();
-    cout<< "Date: " << Date.toStdString() << endl;
+//    cout<< "Date: " << Date.toStdString() << endl;
 }
 void MainWindow::on_r_1_editingFinished()
 {
@@ -513,9 +529,33 @@ void MainWindow::on_button_exit_clicked()
 void MainWindow::on_name_field_textActivated(const QString &arg1)
 {
     name_field = arg1;
-    cout<< "name_field: " << name_field.toStdString() << endl;
+//    cout<< "name_field: " << name_field.toStdString() << endl;
     repaint();
     update();
+    if (name_field == "Новый клиент")
+    {
+        addNewClient();
+    }
+}
+
+void MainWindow::addNewClient()
+{
+    bool ok;
+     QString text = QInputDialog::getText(this, tr("Добавление клиента"),
+                                          tr("Введите имя:"), QLineEdit::Normal,
+                                          QDir::home().dirName(), &ok);
+     if (ok && !text.isEmpty())
+         ui->name_field->insertItem(1, text);
+     clients.append(text);
+
+     QFile textFile("Сlients.txt");
+     textFile.open(QIODevice::WriteOnly);
+     for (auto &i:clients)
+     {
+         textFile.write(i.toUtf8());
+         textFile.write("\n");
+     }
+     textFile.close();
 }
 
 void MainWindow::on_Izmereniye_editingFinished()

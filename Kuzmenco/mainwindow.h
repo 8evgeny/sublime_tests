@@ -27,7 +27,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
+    QStringList clients;
     Ui::MainWindow *getUi() const;
 
 private slots:
@@ -94,6 +94,7 @@ private slots:
     void channel_VB();
     void channel_E();
 
+    void addNewClient();
     void on_textEdit_textChanged();
 
 
@@ -129,6 +130,7 @@ private:
     std::string diagnosic_message {"\nДиагноз:\n"};
     std::string comment_message {""};
     bool diagnostic_end{false};
+
 };
 
 #endif // MAINWINDOW_H
