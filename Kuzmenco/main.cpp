@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     penRed.setWidth(4);
     penGreen.setWidth(4);
     penBlue.setWidth(4);
-    penYellow.setWidth(1);
+    penYellow.setWidth(2);
     penRedLine.setWidth(3);
     penGreenLine.setWidth(3);
     penBlueLine.setWidth(3);

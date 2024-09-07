@@ -11,12 +11,10 @@ extern QApplication * app;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-//    ui->name_field->setCurrentIndex(2);
-//
-
+//    cout<<"delta = "<< delta <<endl;
     QFile textFile("../Сlients.txt");
     textFile.open(QIODevice::ReadOnly);
     while(!textFile.atEnd())
@@ -223,6 +221,7 @@ void MainWindow::on_button_load_clicked()
     ui->l_10->setText(QString::number(l10));
     ui->l_11->setText(QString::number(l11));
     ui->l_12->setText(QString::number(l12));
+    diagnostic_end = false;
     drawPoints();
 }
 
@@ -566,8 +565,6 @@ void MainWindow::on_Izmereniye_editingFinished()
 {
     izmereniye = ui->Izmereniye->text().toInt();
 }
-
-
 
 void MainWindow::on_textEdit_textChanged()
 {

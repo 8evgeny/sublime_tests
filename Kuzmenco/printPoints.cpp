@@ -60,8 +60,10 @@ string MainWindow::calculateLetter(float r1, float l1)
 {
     float r = 1000.0f - r1;
     float l = 1000.0f - l1;
-    float hightY = 1000.0f - calcCornerLine(hight - delta);
-    float lowY = 1000.0f - calcCornerLine(low + delta);
+    float hightY = 1000.0f - calcCornerLine(hight);
+    float lowY = 1000.0f - calcCornerLine(low);
+//    hightY += delta;
+//    lowY -=delta;
 if (r < l)
 {
     if (r < lowY && l > hightY) return "OK";
