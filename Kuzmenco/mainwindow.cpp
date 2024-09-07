@@ -3,6 +3,7 @@
 #include <iostream>
 #include <QFileDialog>
 #include <fstream>
+//#include <regex>
 
 using namespace std;
 extern QApplication * app;
@@ -53,12 +54,14 @@ void MainWindow::saveData()
 
     ofstream fout2;
     fout2.open(nameOutFile + ".dat");
+    string text_comment = ui->textEdit->toPlainText().toStdString();
+//    text_comment = regex_replace(text_comment, std::regex("\n\n"), "\n.\n");
     fout2<<r1<<" "<<r2<<" "<<r3<<" "<<r4<<" "<<r5<<" "<<r6<<" "<<r7<<" "<<r8<<" "<<r9<<" "<<r10<<" "<<r11<<" "<<r12<<" "
             <<l1<<" "<<l2<<" "<<l3<<" "<<l4<<" "<<l5<<" "<<l6<<" "<<l7<<" "<<l8<<" "<<l9<<" "<<l10<<" "<<l11<<" "<<l12
             <<" "<<name_field.toStdString()<<" "
             <<ui->dateEdit->date().toJulianDay()<<" "
             <<ui->Izmereniye->text().toStdString()<<" \n"
-            <<ui->textEdit->toPlainText().toStdString();
+            <<text_comment;
     fout2.close();
 }
 
@@ -78,21 +81,103 @@ void MainWindow::on_button_load_clicked()
     int julianDate;
     fin>>r1>>r2>>r3>>r4>>r5>>r6>>r7>>r8>>r9>>r10>>r11>>r12>>
          l1>>l2>>l3>>l4>>l5>>l6>>l7>>l8>>l9>>l10>>l11>>l12>>name>>julianDate>>number;
+    bool ex = false;
+    string text_comment;
     getline(fin, comment_line1); //Надо 2 раза
-    getline(fin, comment_line1);
-    getline(fin, comment_line2);
-    getline(fin, comment_line3);
-    getline(fin, comment_line4);
-    getline(fin, comment_line5);
-    getline(fin, comment_line6);
-    getline(fin, comment_line7);
-    getline(fin, comment_line8);
-    getline(fin, comment_line9);
+    if (!ex)
+    {
+        getline(fin, comment_line1);
+        if (comment_line1 != "")
+        {
+            text_comment.append(comment_line1);
+        }
+        else ex = true;
+    }
+    if (!ex)
+    {
+        getline(fin, comment_line2);
+        if (comment_line2 != "")
+        {
+            text_comment.append("\n");
+            text_comment.append(comment_line2);
+        }
+        else ex = true;
+    }
+    if (!ex)
+    {
+        getline(fin, comment_line3);
+        if (comment_line3 != "")
+        {
+            text_comment.append("\n");
+            text_comment.append(comment_line3);
+        }
+        else ex = true;
+    }
+    if (!ex)
+    {
+        getline(fin, comment_line4);
+        if (comment_line4 != "")
+        {
+            text_comment.append("\n");
+            text_comment.append(comment_line4);
+        }
+        else ex = true;
+    }
+    if (!ex)
+    {
+        getline(fin, comment_line5);
+        if (comment_line5 != "")
+        {
+            text_comment.append("\n");
+            text_comment.append(comment_line5);
+        }
+        else ex = true;
+    }
+    if (!ex)
+    {
+        getline(fin, comment_line6);
+        if (comment_line6 != "")
+        {
+            text_comment.append("\n");
+            text_comment.append(comment_line6);
+        }
+        else ex = true;
+    }
+    if (!ex)
+    {
+        getline(fin, comment_line7);
+        if (comment_line7 != "")
+        {
+            text_comment.append("\n");
+            text_comment.append(comment_line7);
+        }
+        else ex = true;
+    }
+    if (!ex)
+    {
+        getline(fin, comment_line8);
+        if (comment_line8 != "")
+        {
+            text_comment.append("\n");
+            text_comment.append(comment_line8);
+        }
+        else ex = true;
+    }
+    if (!ex)
+    {
+        getline(fin, comment_line9);
+        if (comment_line9 != "")
+        {
+            text_comment.append("\n");
+            text_comment.append(comment_line9);
+        }
+        else ex = true;
+    }
+
+
     fin.close();
 
-    ui->textEdit->setText(QString::fromStdString(comment_line1 + "\n" + comment_line2 + "\n" + comment_line3 + "\n" +
-                                                 comment_line4 + "\n" + comment_line5 + "\n" + comment_line6 + "\n" +
-                                                 comment_line7 + "\n" + comment_line8 + "\n" + comment_line9 + "\n" ));
+    ui->textEdit->setText(QString::fromStdString(text_comment));
     ui->Izmereniye->setText(QString::fromStdString(number));
     izmereniye = atoi(number.c_str());
     ui->name_field->setCurrentText(QString::fromStdString(name));
