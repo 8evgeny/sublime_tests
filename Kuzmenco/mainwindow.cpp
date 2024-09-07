@@ -46,12 +46,9 @@ void MainWindow::saveData()
     fout << " V   Мочевой пузырь           "<< r10 <<"\t" << l10 <<"\t" << Channel_V <<endl;
     fout << " VB  Желчный пузырь           "<< r11 <<"\t" << l11 <<"\t" << Channel_VB <<endl;
     fout << " E   Желудок                  "<< r12 <<"\t" << l12 <<"\t" << Channel_E <<endl;
-//    fout << endl<<" Коридор нормы верх: " << to_string(hight) <<endl;
-//    fout << " Коридор нормы низ: " << to_string(low) <<endl;
+
+    fout <<"\nКомментарий:\n"<<comment_message<<endl<<endl;
     fout <<diagnosic_message<<endl;
-//    comment_message.append(ui->textEdit->toPlainText().toStdString());
-    fout <<"\nКомментарий:\n"<<comment_message<<endl;
-    fout << " " << endl;
     fout.close();
 
     ofstream fout2;
@@ -60,7 +57,7 @@ void MainWindow::saveData()
             <<l1<<" "<<l2<<" "<<l3<<" "<<l4<<" "<<l5<<" "<<l6<<" "<<l7<<" "<<l8<<" "<<l9<<" "<<l10<<" "<<l11<<" "<<l12
             <<" "<<name_field.toStdString()<<" "
             <<ui->dateEdit->date().toJulianDay()<<" "
-            <<ui->Izmereniye->text().toStdString()<<" "
+            <<ui->Izmereniye->text().toStdString()<<" \n"
             <<ui->textEdit->toPlainText().toStdString();
     fout2.close();
 }
@@ -76,14 +73,30 @@ void MainWindow::on_button_load_clicked()
     fin.open(fileName.toStdString());
     string name;
     string number;
-    string comment;
+    string comment_line1, comment_line2, comment_line3, comment_line4, comment_line5, comment_line6, comment_line7, comment_line8, comment_line9;
+
     int julianDate;
     fin>>r1>>r2>>r3>>r4>>r5>>r6>>r7>>r8>>r9>>r10>>r11>>r12>>
-         l1>>l2>>l3>>l4>>l5>>l6>>l7>>l8>>l9>>l10>>l11>>l12>>name>>julianDate>>number>>comment;
+         l1>>l2>>l3>>l4>>l5>>l6>>l7>>l8>>l9>>l10>>l11>>l12>>name>>julianDate>>number;
+    getline(fin, comment_line1); //Надо 2 раза
+    getline(fin, comment_line1);
+    getline(fin, comment_line2);
+    getline(fin, comment_line3);
+    getline(fin, comment_line4);
+    getline(fin, comment_line5);
+    getline(fin, comment_line6);
+    getline(fin, comment_line7);
+    getline(fin, comment_line8);
+    getline(fin, comment_line9);
     fin.close();
-    ui->textEdit->setText(QString::fromStdString(comment));
+
+    ui->textEdit->setText(QString::fromStdString(comment_line1 + "\n" + comment_line2 + "\n" + comment_line3 + "\n" +
+                                                 comment_line4 + "\n" + comment_line5 + "\n" + comment_line6 + "\n" +
+                                                 comment_line7 + "\n" + comment_line8 + "\n" + comment_line9 + "\n" ));
     ui->Izmereniye->setText(QString::fromStdString(number));
+    izmereniye = atoi(number.c_str());
     ui->name_field->setCurrentText(QString::fromStdString(name));
+    name_field = QString::fromStdString(name);
     ui->dateEdit->setDate(QDate::fromJulianDay(julianDate));
     ui->r_1->setText(QString::number(r1));
     ui->r_2->setText(QString::number(r2));
