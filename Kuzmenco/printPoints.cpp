@@ -8,7 +8,7 @@
 #include <QScreen>
 #include <fstream>
 #include <iostream>
-
+#include <regex>
 
 using namespace std;
 extern QScreen *screenMain;
@@ -151,11 +151,18 @@ void MainWindow::drawPoints()
     }
 }
 
+QString MainWindow::replace_whitespace(QString & text)
+{
+    string txt = text.toStdString();
+    txt = regex_replace(txt, std::regex(" "), "\\ ");
+    cout<<txt<<endl;
+    return QString::fromStdString(txt);
+}
 
 
 void MainWindow::on_button_save_clicked()
 {
-    string cmd = "mkdir -p ../Data/" + name_field.toStdString();
+    string cmd = "mkdir -p ../Data/"  + replace_whitespace(name_field).toStdString();
     system(cmd.c_str());
 
     QString path = "../Data/" + name_field + "/" + name_field + "_" + Date + "_№" + to_string(izmereniye).c_str();

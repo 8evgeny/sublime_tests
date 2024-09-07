@@ -15,7 +15,6 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Gui Widgets Pdf REQUIRED)
 find_package(Qt5 COMPONENTS Core Gui Widgets #[[Pdf]] REQUIRED)
 
 configure_file("${CMAKE_SOURCE_DIR}/table.png" ${PROJECT_BINARY_DIR} COPYONLY)
-configure_file("${CMAKE_SOURCE_DIR}/Сlients.txt" ${PROJECT_BINARY_DIR} COPYONLY)
 
 set(PROJECT_SOURCES
         main.cpp

@@ -15,9 +15,9 @@ ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 //    ui->name_field->setCurrentIndex(2);
-//    name_field = ui->name_field->currentText();
+//
 
-    QFile textFile("Сlients.txt");
+    QFile textFile("../Сlients.txt");
     textFile.open(QIODevice::ReadOnly);
     while(!textFile.atEnd())
     {
@@ -26,11 +26,10 @@ ui(new Ui::MainWindow)
     textFile.close();
     for (auto &i:clients)
         i.chop(1);
-//    qDebug()<<clients;
 
     ui->name_field->insertItems(0, clients);
     ui->name_field->insertItem(0, "Новый клиент");
-
+    name_field = ui->name_field->currentText();
     ui->Izmereniye->insert("1");
     ui->r_1->setFocus();
 }
@@ -548,12 +547,15 @@ void MainWindow::addNewClient()
          ui->name_field->insertItem(1, text);
      clients.append(text);
 
-     QFile textFile("Сlients.txt");
+     QFile textFile("../Сlients.txt");
      textFile.open(QIODevice::WriteOnly);
      for (auto &i:clients)
      {
-         textFile.write(i.toUtf8());
-         textFile.write("\n");
+         if (i != "")
+         {
+             textFile.write(i.toUtf8());
+             textFile.write("\n");
+         }
      }
      textFile.close();
 }
