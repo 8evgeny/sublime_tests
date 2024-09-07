@@ -547,6 +547,7 @@ void MainWindow::addNewClient()
      if (ok && !text.isEmpty())
          ui->name_field->insertItem(1, text);
      clients.append(text);
+     clients.sort();
 
      QFile textFile("../Сlients.txt");
      textFile.open(QIODevice::WriteOnly);
