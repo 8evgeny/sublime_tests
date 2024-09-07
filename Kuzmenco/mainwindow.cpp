@@ -60,7 +60,8 @@ void MainWindow::saveData()
             <<l1<<" "<<l2<<" "<<l3<<" "<<l4<<" "<<l5<<" "<<l6<<" "<<l7<<" "<<l8<<" "<<l9<<" "<<l10<<" "<<l11<<" "<<l12
             <<" "<<name_field.toStdString()<<" "
             <<ui->dateEdit->date().toJulianDay()<<" "
-            <<ui->Izmereniye->text().toStdString();
+            <<ui->Izmereniye->text().toStdString()<<" "
+            <<ui->textEdit->toPlainText().toStdString();
     fout2.close();
 }
 
@@ -75,10 +76,12 @@ void MainWindow::on_button_load_clicked()
     fin.open(fileName.toStdString());
     string name;
     string number;
+    string comment;
     int julianDate;
     fin>>r1>>r2>>r3>>r4>>r5>>r6>>r7>>r8>>r9>>r10>>r11>>r12>>
-         l1>>l2>>l3>>l4>>l5>>l6>>l7>>l8>>l9>>l10>>l11>>l12>>name>>julianDate>>number;
+         l1>>l2>>l3>>l4>>l5>>l6>>l7>>l8>>l9>>l10>>l11>>l12>>name>>julianDate>>number>>comment;
     fin.close();
+    ui->textEdit->setText(QString::fromStdString(comment));
     ui->Izmereniye->setText(QString::fromStdString(number));
     ui->name_field->setCurrentText(QString::fromStdString(name));
     ui->dateEdit->setDate(QDate::fromJulianDay(julianDate));
