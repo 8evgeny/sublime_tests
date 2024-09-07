@@ -73,7 +73,7 @@ void MainWindow::saveData()
 //    text_comment = regex_replace(text_comment, std::regex("\n\n"), "\n.\n");
     fout2<<r1<<" "<<r2<<" "<<r3<<" "<<r4<<" "<<r5<<" "<<r6<<" "<<r7<<" "<<r8<<" "<<r9<<" "<<r10<<" "<<r11<<" "<<r12<<" "
             <<l1<<" "<<l2<<" "<<l3<<" "<<l4<<" "<<l5<<" "<<l6<<" "<<l7<<" "<<l8<<" "<<l9<<" "<<l10<<" "<<l11<<" "<<l12
-            <<" "<<name_field.toStdString()<<" "
+            <<" "<<replace_whitespace(name_field, " ", "@").toStdString()<<" "
             <<ui->dateEdit->date().toJulianDay()<<" "
             <<ui->Izmereniye->text().toStdString()<<" \n"
             <<text_comment;
@@ -96,6 +96,9 @@ void MainWindow::on_button_load_clicked()
     int julianDate;
     fin>>r1>>r2>>r3>>r4>>r5>>r6>>r7>>r8>>r9>>r10>>r11>>r12>>
          l1>>l2>>l3>>l4>>l5>>l6>>l7>>l8>>l9>>l10>>l11>>l12>>name>>julianDate>>number;
+    QString replased(name.c_str());
+    replased = replace_whitespace(replased, "@", " ");
+    name = replased.toStdString();
     bool ex = false;
     string text_comment;
     getline(fin, comment_line1); //Надо 2 раза
@@ -188,8 +191,6 @@ void MainWindow::on_button_load_clicked()
         }
         else ex = true;
     }
-
-
     fin.close();
 
     ui->textEdit->setText(QString::fromStdString(text_comment));
