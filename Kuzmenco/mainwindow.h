@@ -110,6 +110,8 @@ private:
     float low;
     float delta = 7.5;
     std::string Channel_P, Channel_MC, Channel_C, Channel_IG, Channel_TR, Channel_GI, Channel_RP, Channel_F, Channel_R, Channel_V, Channel_VB, Channel_E;
+    bool Pr, MCr, Cr, IGr, TRr, GIr, RPr, Fr, Rr, Vr, VBr, Er;
+    bool Pl, MCl, Cl, IGl, TRl, GIl, RPl, Fl, Rl, Vl, VBl, El;
     unsigned int izmereniye{1};
     unsigned int  r1x{123}, l1x{181};
     unsigned int  r2x{208}, l2x{267};

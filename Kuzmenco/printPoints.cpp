@@ -64,11 +64,12 @@ string MainWindow::calculateLetter(float r1, float l1)
     float lowY = 1000.0f - calcCornerLine(low);
 //    hightY += delta;
 //    lowY -=delta;
-if (r < l)
+if (r < l) //A
 {
-    if (r < lowY && l > hightY) return "OK";
-    if (l<lowY) return "A/-2";
-    if (r<lowY && l>=lowY && l<=hightY) return "A/-1";
+if (r < lowY && l > hightY) return "OK";
+if (l<(lowY + delta)) return "A/-2";
+if (r < lowY && (l > lowY - delta) && l<(hightY - delta)) return "A/-1";
+
     if (r>=lowY && r<hightY && l<=hightY) return "A/0";
     if (r>=lowY && r<=hightY && l>hightY) return "A/1";
     if (r>hightY) return "A/2";
