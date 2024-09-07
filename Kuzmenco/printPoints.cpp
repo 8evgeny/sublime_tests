@@ -143,7 +143,11 @@ void MainWindow::drawPoints()
         scene->addLine(corner_x_begin, calcCornerLine(hight), corner_x_end, calcCornerLine(hight), penYellow);
         scene->addLine(corner_x_begin, calcCornerLine(low), corner_x_end, calcCornerLine(low), penYellow);
         calculateLetters();
-        diagnostic();
+        if (!diagnostic_end)
+        {
+            diagnostic_end = true;
+            diagnostic();
+        }
     }
 }
 
