@@ -15,7 +15,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 //    cout<<"delta = "<< delta <<endl;
-    QFile textFile("../Сlients.txt");
+
+    QDir dirr=QDir::current();
+    dirr.cdUp();
+    QString path =  dirr.absolutePath() + "/Сlients.txt";
+//    qDebug()<<path;
+    QFile textFile(path);
     textFile.open(QIODevice::ReadOnly);
     while(!textFile.atEnd())
     {
@@ -160,8 +165,6 @@ void MainWindow::on_button_load_clicked()
     }
     else cout << "error open file!!!" <<endl;
 
-    string name;
-    string number;
     int julianDate;
     QStringList dataList = unpack(data);
 //    qDebug()<<dataList;
@@ -192,13 +195,10 @@ void MainWindow::on_button_load_clicked()
     l11 = dataList[22].toInt();
     l12 = dataList[23].toInt();
 
-    name = dataList[24].toStdString();
+    name_field = dataList[24];
     julianDate = dataList[25].toInt();
-    number = dataList[26].toStdString();
-    QString replased(name.c_str());
-    replased = replace_string(replased, "@", " ");
-    name = replased.toStdString();
-    bool ex = false;
+    QString number = dataList[26];
+    name_field = replace_string(name_field, "@", " ");
     string text_comment;
     int numLineComment = comment.size();
 
@@ -211,10 +211,9 @@ void MainWindow::on_button_load_clicked()
 //    cout<<text_comment<<endl;
 
     ui->textEdit->setText(QString::fromStdString(text_comment));
-    ui->Izmereniye->setText(QString::fromStdString(number));
-    izmereniye = atoi(number.c_str());
-    ui->name_field->setCurrentText(QString::fromStdString(name));
-    name_field = QString::fromStdString(name);
+    ui->Izmereniye->setText(number);
+    izmereniye = number.toInt();
+    ui->name_field->setCurrentText(name_field);
     ui->dateEdit->setDate(QDate::fromJulianDay(julianDate));
     ui->r_1->setText(QString::number(r1));
     ui->r_2->setText(QString::number(r2));
