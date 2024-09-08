@@ -3,9 +3,11 @@
 #include <iostream>
 #include <QFileDialog>
 #include <fstream>
-//#include <regex>
+#include <stdexcept>
 #include <QInputDialog>
 #include <QDebug>
+#include <QTextCodec>
+
 using namespace std;
 extern QApplication * app;
 
@@ -137,111 +139,126 @@ QStringList unpack(QString const& string)
     return string.split(" ");
 }
 
+QString russian(QString text)
+ {
+    string tmp = text.toStdString();
+    QByteArray encodedString = QByteArray::fromStdString(tmp);
+    QTextCodec *codec = QTextCodec::codecForName("CP1251");
+    return codec->fromUnicode(encodedString);
+ }
+
 void MainWindow::on_button_load_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(this,
+     QString fileName = "";
+    fileName = QFileDialog::getOpenFileName(this,
                                 QString::fromUtf8("Открыть файл"),
                                 QDir::currentPath().append("/../Data/"),
                                 "data (*.dat );;All files (*.*)");
+
     QStringList comment;
     QString data;
-    QFile inputFile(fileName);
-    if (inputFile.open(QIODevice::ReadOnly))
+    if(fileName != "")
     {
-        bool firstLine = true;
-        QTextStream in(&inputFile);
-        while (!in.atEnd())
+        QFile inputFile(fileName);
+
+        if (inputFile.open(QIODevice::ReadOnly))
         {
-            if (firstLine)
+            bool firstLine = true;
+            QTextStream in(&inputFile);
+            while (!in.atEnd())
             {
-                data = in.readLine();
-                firstLine = false;
+                if (firstLine)
+                {
+                    data = in.readLine();
+                    firstLine = false;
+                }
+                else
+                {
+                    comment.push_back(in.readLine());
+                }
             }
-            else
-            {
-                comment.push_back(in.readLine());
-            }
+            inputFile.close();
         }
-        inputFile.close();
-    }
-    else cout << "error open file!!!" <<endl;
+        else cout << "error open file!!!" <<endl;
 
-    int julianDate;
-    QStringList dataList = unpack(data);
-//    qDebug()<<dataList;
-//    qDebug()<<comment;
-    r1 = dataList[0].toInt();
-    r2 = dataList[1].toInt();
-    r3 = dataList[2].toInt();
-    r4 = dataList[3].toInt();
-    r5 = dataList[4].toInt();
-    r6 = dataList[5].toInt();
-    r7 = dataList[6].toInt();
-    r8 = dataList[7].toInt();
-    r9 = dataList[8].toInt();
-    r10 = dataList[9].toInt();
-    r11 = dataList[10].toInt();
-    r12 = dataList[11].toInt();
+        int julianDate;
+        QStringList dataList = unpack(data);
+    //    qDebug()<<dataList;
+    //    qDebug()<<comment;
+        r1 = dataList[0].toInt();
+        r2 = dataList[1].toInt();
+        r3 = dataList[2].toInt();
+        r4 = dataList[3].toInt();
+        r5 = dataList[4].toInt();
+        r6 = dataList[5].toInt();
+        r7 = dataList[6].toInt();
+        r8 = dataList[7].toInt();
+        r9 = dataList[8].toInt();
+        r10 = dataList[9].toInt();
+        r11 = dataList[10].toInt();
+        r12 = dataList[11].toInt();
 
-    l1 = dataList[12].toInt();
-    l2 = dataList[13].toInt();
-    l3 = dataList[14].toInt();
-    l4 = dataList[15].toInt();
-    l5 = dataList[16].toInt();
-    l6 = dataList[17].toInt();
-    l7 = dataList[18].toInt();
-    l8 = dataList[19].toInt();
-    l9 = dataList[20].toInt();
-    l10 = dataList[21].toInt();
-    l11 = dataList[22].toInt();
-    l12 = dataList[23].toInt();
+        l1 = dataList[12].toInt();
+        l2 = dataList[13].toInt();
+        l3 = dataList[14].toInt();
+        l4 = dataList[15].toInt();
+        l5 = dataList[16].toInt();
+        l6 = dataList[17].toInt();
+        l7 = dataList[18].toInt();
+        l8 = dataList[19].toInt();
+        l9 = dataList[20].toInt();
+        l10 = dataList[21].toInt();
+        l11 = dataList[22].toInt();
+        l12 = dataList[23].toInt();
 
-    name_field = dataList[24];
-    julianDate = dataList[25].toInt();
-    QString number = dataList[26];
-    name_field = name_field.replace("@", " ");
-    string text_comment;
-    int numLineComment = comment.size();
+        name_field = dataList[24];
+//        name_field = russian(dataList[24]);
+        julianDate = dataList[25].toInt();
+        QString number = dataList[26];
+        name_field = name_field.replace("@", " ");
+        string text_comment;
+        int numLineComment = comment.size();
 
-    for (int i = 0; i < numLineComment; ++i)
-    {
-        string line = comment[i].toStdString();
-        text_comment.append(line);
-        text_comment.append("\n");
-    }
-//    cout<<text_comment<<endl;
+        for (int i = 0; i < numLineComment; ++i)
+        {
+            string line = comment[i].toStdString();
+            text_comment.append(line);
+            text_comment.append("\n");
+        }
+    //    cout<<text_comment<<endl;
 
-    ui->textEdit->setText(QString::fromStdString(text_comment));
-    ui->Izmereniye->setText(number);
-    izmereniye = number.toInt();
-    ui->name_field->setCurrentText(name_field);
-    ui->dateEdit->setDate(QDate::fromJulianDay(julianDate));
-    ui->r_1->setText(QString::number(r1));
-    ui->r_2->setText(QString::number(r2));
-    ui->r_3->setText(QString::number(r3));
-    ui->r_4->setText(QString::number(r4));
-    ui->r_5->setText(QString::number(r5));
-    ui->r_6->setText(QString::number(r6));
-    ui->r_7->setText(QString::number(r7));
-    ui->r_8->setText(QString::number(r8));
-    ui->r_9->setText(QString::number(r9));
-    ui->r_10->setText(QString::number(r10));
-    ui->r_11->setText(QString::number(r11));
-    ui->r_12->setText(QString::number(r12));
-    ui->l_1->setText(QString::number(l1));
-    ui->l_2->setText(QString::number(l2));
-    ui->l_3->setText(QString::number(l3));
-    ui->l_4->setText(QString::number(l4));
-    ui->l_5->setText(QString::number(l5));
-    ui->l_6->setText(QString::number(l6));
-    ui->l_7->setText(QString::number(l7));
-    ui->l_8->setText(QString::number(l8));
-    ui->l_9->setText(QString::number(l9));
-    ui->l_10->setText(QString::number(l10));
-    ui->l_11->setText(QString::number(l11));
-    ui->l_12->setText(QString::number(l12));
-    diagnostic_end = false;
-    drawPoints();
+        ui->textEdit->setText(QString::fromStdString(text_comment));
+        ui->Izmereniye->setText(number);
+        izmereniye = number.toInt();
+        ui->name_field->setCurrentText(name_field);
+        ui->dateEdit->setDate(QDate::fromJulianDay(julianDate));
+        ui->r_1->setText(QString::number(r1));
+        ui->r_2->setText(QString::number(r2));
+        ui->r_3->setText(QString::number(r3));
+        ui->r_4->setText(QString::number(r4));
+        ui->r_5->setText(QString::number(r5));
+        ui->r_6->setText(QString::number(r6));
+        ui->r_7->setText(QString::number(r7));
+        ui->r_8->setText(QString::number(r8));
+        ui->r_9->setText(QString::number(r9));
+        ui->r_10->setText(QString::number(r10));
+        ui->r_11->setText(QString::number(r11));
+        ui->r_12->setText(QString::number(r12));
+        ui->l_1->setText(QString::number(l1));
+        ui->l_2->setText(QString::number(l2));
+        ui->l_3->setText(QString::number(l3));
+        ui->l_4->setText(QString::number(l4));
+        ui->l_5->setText(QString::number(l5));
+        ui->l_6->setText(QString::number(l6));
+        ui->l_7->setText(QString::number(l7));
+        ui->l_8->setText(QString::number(l8));
+        ui->l_9->setText(QString::number(l9));
+        ui->l_10->setText(QString::number(l10));
+        ui->l_11->setText(QString::number(l11));
+        ui->l_12->setText(QString::number(l12));
+        diagnostic_end = false;
+        drawPoints();
+    }//END  if(fileName != "")
 }
 
 void MainWindow::on_dateEdit_dateChanged(const QDate &date)
