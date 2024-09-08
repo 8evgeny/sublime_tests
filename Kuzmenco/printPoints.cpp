@@ -158,7 +158,7 @@ QString MainWindow::replace_string(QString & text, const std::string from, const
 {
     string txt = text.toStdString();
     txt = regex_replace(txt, std::regex(from), to);
-    cout<<txt<<endl;
+//    cout<<txt<<endl;
     return QString::fromStdString(txt);
 }
 

@@ -85,24 +85,45 @@ void MainWindow::saveData()
         QString line12 = " VB  Желчный пузырь           " + QString::number(r11) + "\t" + QString::number(l11) + "\t" + QString::fromStdString(Channel_VB) + "\n";
         QByteArray block12(line12.toStdString().c_str());
         outputFile.write(block12);
-        QString line13 = " E   Желудок                  " + QString::number(r12) + "\t" + QString::number(l12) + "\t" + QString::fromStdString(Channel_E) + "\n";
+        QString line13 = " E   Желудок                  " + QString::number(r12) + "\t" + QString::number(l12) + "\t" + QString::fromStdString(Channel_E) + "\n\n";
         QByteArray block13(line13.toStdString().c_str());
         outputFile.write(block13);
+        //comment
+        QString line14 = comment_message;
+        QByteArray block14(line14.toStdString().c_str());
+        outputFile.write("Комментарий:\n");
+        outputFile.write(block14);
+        //diagn
+        QString line15 = QString::fromStdString(diagnosic_message);
+        QByteArray block15(line15.toStdString().c_str());
+        outputFile.write(block15);
         outputFile.close();
     }
     else cout << "error open file!!!" <<endl;
 
-    ofstream fout2;
-    fout2.open(nameOutFile + ".dat");
-    string text_comment = ui->textEdit->toPlainText().toStdString();
-//    text_comment = regex_replace(text_comment, std::regex("\n\n"), "\n.\n");
-    fout2<<r1<<" "<<r2<<" "<<r3<<" "<<r4<<" "<<r5<<" "<<r6<<" "<<r7<<" "<<r8<<" "<<r9<<" "<<r10<<" "<<r11<<" "<<r12<<" "
-            <<l1<<" "<<l2<<" "<<l3<<" "<<l4<<" "<<l5<<" "<<l6<<" "<<l7<<" "<<l8<<" "<<l9<<" "<<l10<<" "<<l11<<" "<<l12
-            <<" "<<replace_string(name_field, " ", "@").toStdString()<<" "
-            <<ui->dateEdit->date().toJulianDay()<<" "
-            <<ui->Izmereniye->text().toStdString()<<" \n"
-            <<text_comment;
-    fout2.close();
+    string data = nameOutFile + ".dat";
+    QFile dataFile(data.c_str());
+    if (dataFile.open(QIODevice::WriteOnly))
+    {
+        QString linedata =
+                QString::number(r1) + " " + QString::number(r2) + " " + QString::number(r3) + " " +
+                QString::number(r4) + " " + QString::number(r5) + " " + QString::number(r6) + " " +
+                QString::number(r7) + " " + QString::number(r8) + " " + QString::number(r9) + " " +
+                QString::number(r10) + " " + QString::number(r11) + " " + QString::number(r12) + " " +
+                QString::number(l1) + " " + QString::number(l2) + " " + QString::number(l3) + " " +
+                QString::number(l4) + " " + QString::number(l5) + " " + QString::number(l6) + " " +
+                QString::number(l7) + " " + QString::number(l8) + " " + QString::number(l9) + " " +
+                QString::number(l10) + " " + QString::number(l11) + " " + QString::number(l12) + " " +
+                replace_string(name_field, " ", "@") + " " + QString::number(ui->dateEdit->date().toJulianDay()) + " " +
+                ui->Izmereniye->text() + "\n";
+        QByteArray blockData(linedata.toStdString().c_str());
+        dataFile.write(blockData);
+        QString commentData = ui->textEdit->toPlainText();
+        QByteArray blockComment(commentData.toStdString().c_str());
+        dataFile.write(blockComment);
+        dataFile.close();
+    }
+    else cout << "error open file!!!" <<endl;
 }
 
 QStringList unpack(QString const& string)
@@ -143,8 +164,8 @@ void MainWindow::on_button_load_clicked()
     string number;
     int julianDate;
     QStringList dataList = unpack(data);
-    qDebug()<<dataList;
-    qDebug()<<comment;
+//    qDebug()<<dataList;
+//    qDebug()<<comment;
     r1 = dataList[0].toInt();
     r2 = dataList[1].toInt();
     r3 = dataList[2].toInt();
@@ -566,7 +587,7 @@ void MainWindow::on_Izmereniye_editingFinished()
 
 void MainWindow::on_textEdit_textChanged()
 {
-    comment_message = ui->textEdit->toPlainText().toStdString();
+    comment_message = ui->textEdit->toPlainText();
 }
 
 
