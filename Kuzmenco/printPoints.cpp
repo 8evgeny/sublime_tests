@@ -68,7 +68,7 @@ if (r < l) //A
 {
 if (r < lowY && l > hightY) return "OK";
 if (l<(lowY + delta)) return "A/-2";
-if (r < lowY && (l > lowY - delta) && l<(hightY - delta)) return "A/-1";
+if (r < lowY && (l > lowY - delta) && l < hightY) return "A/-1";
 
     if (r>=lowY && r<hightY && l<=hightY) return "A/0";
     if (r>=lowY && r<=hightY && l>hightY) return "A/1";

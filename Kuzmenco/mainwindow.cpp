@@ -91,6 +91,19 @@ void MainWindow::on_button_load_clicked()
     string number;
     string comment_line1, comment_line2, comment_line3, comment_line4, comment_line5, comment_line6, comment_line7, comment_line8, comment_line9;
 
+//    QFile inputFile(fileName);
+//    if (inputFile.open(QIODevice::ReadOnly))
+//    {
+//       QTextStream in(&inputFile);
+//       while (!in.atEnd())
+//       {
+//          QString line = in.readLine();
+//          ...
+//       }
+//       inputFile.close();
+//    }
+
+
     int julianDate;
     fin>>r1>>r2>>r3>>r4>>r5>>r6>>r7>>r8>>r9>>r10>>r11>>r12>>
          l1>>l2>>l3>>l4>>l5>>l6>>l7>>l8>>l9>>l10>>l11>>l12>>name>>julianDate>>number;
