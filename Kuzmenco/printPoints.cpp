@@ -154,7 +154,7 @@ void MainWindow::drawPoints()
     }
 }
 
-QString MainWindow::replace_whitespace(QString & text, const std::string from, const std::string to)
+QString MainWindow::replace_string(QString & text, const std::string from, const std::string to)
 {
     string txt = text.toStdString();
     txt = regex_replace(txt, std::regex(from), to);
@@ -165,7 +165,7 @@ QString MainWindow::replace_whitespace(QString & text, const std::string from, c
 
 void MainWindow::on_button_save_clicked()
 {
-    string cmd = "mkdir -p ../Data/"  + replace_whitespace(name_field, " ", "\\ ").toStdString();
+    string cmd = "mkdir -p ../Data/"  + replace_string(name_field, " ", "\\ ").toStdString();
     system(cmd.c_str());
 
     QString path = "../Data/" + name_field + "/" + name_field + "_" + Date + "_№" + to_string(izmereniye).c_str();

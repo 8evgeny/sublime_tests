@@ -71,13 +71,17 @@ void MainWindow::saveData()
 //    text_comment = regex_replace(text_comment, std::regex("\n\n"), "\n.\n");
     fout2<<r1<<" "<<r2<<" "<<r3<<" "<<r4<<" "<<r5<<" "<<r6<<" "<<r7<<" "<<r8<<" "<<r9<<" "<<r10<<" "<<r11<<" "<<r12<<" "
             <<l1<<" "<<l2<<" "<<l3<<" "<<l4<<" "<<l5<<" "<<l6<<" "<<l7<<" "<<l8<<" "<<l9<<" "<<l10<<" "<<l11<<" "<<l12
-            <<" "<<replace_whitespace(name_field, " ", "@").toStdString()<<" "
+            <<" "<<replace_string(name_field, " ", "@").toStdString()<<" "
             <<ui->dateEdit->date().toJulianDay()<<" "
             <<ui->Izmereniye->text().toStdString()<<" \n"
             <<text_comment;
     fout2.close();
 }
 
+QStringList unpack(QString const& string)
+{
+    return string.split(" ");
+}
 
 void MainWindow::on_button_load_clicked()
 {
@@ -85,124 +89,78 @@ void MainWindow::on_button_load_clicked()
                                 QString::fromUtf8("Открыть файл"),
                                 QDir::currentPath().append("/../Data/"),
                                 "data (*.dat );;All files (*.*)");
-    ifstream fin;
-    fin.open(fileName.toStdString());
+    QStringList comment;
+    QString data;
+    QFile inputFile(fileName);
+    if (inputFile.open(QIODevice::ReadOnly))
+    {
+        bool firstLine = true;
+        QTextStream in(&inputFile);
+        while (!in.atEnd())
+        {
+            if (firstLine)
+            {
+                data = in.readLine();
+                firstLine = false;
+            }
+            else
+            {
+                comment.push_back(in.readLine());
+            }
+        }
+        inputFile.close();
+    }
+    else cout << "error oprn file!!!" <<endl;
+
     string name;
     string number;
-    string comment_line1, comment_line2, comment_line3, comment_line4, comment_line5, comment_line6, comment_line7, comment_line8, comment_line9;
-
-//    QFile inputFile(fileName);
-//    if (inputFile.open(QIODevice::ReadOnly))
-//    {
-//       QTextStream in(&inputFile);
-//       while (!in.atEnd())
-//       {
-//          QString line = in.readLine();
-//          ...
-//       }
-//       inputFile.close();
-//    }
-
-
     int julianDate;
-    fin>>r1>>r2>>r3>>r4>>r5>>r6>>r7>>r8>>r9>>r10>>r11>>r12>>
-         l1>>l2>>l3>>l4>>l5>>l6>>l7>>l8>>l9>>l10>>l11>>l12>>name>>julianDate>>number;
+    QStringList dataList = unpack(data);
+    qDebug()<<dataList;
+    qDebug()<<comment;
+    r1 = dataList[0].toInt();
+    r2 = dataList[1].toInt();
+    r3 = dataList[2].toInt();
+    r4 = dataList[3].toInt();
+    r5 = dataList[4].toInt();
+    r6 = dataList[5].toInt();
+    r7 = dataList[6].toInt();
+    r8 = dataList[7].toInt();
+    r9 = dataList[8].toInt();
+    r10 = dataList[9].toInt();
+    r11 = dataList[10].toInt();
+    r12 = dataList[11].toInt();
+
+    l1 = dataList[12].toInt();
+    l2 = dataList[13].toInt();
+    l3 = dataList[14].toInt();
+    l4 = dataList[15].toInt();
+    l5 = dataList[16].toInt();
+    l6 = dataList[17].toInt();
+    l7 = dataList[18].toInt();
+    l8 = dataList[19].toInt();
+    l9 = dataList[20].toInt();
+    l10 = dataList[21].toInt();
+    l11 = dataList[22].toInt();
+    l12 = dataList[23].toInt();
+
+    name = dataList[24].toStdString();
+    julianDate = dataList[25].toInt();
+    number = dataList[26].toInt();
     QString replased(name.c_str());
-    replased = replace_whitespace(replased, "@", " ");
+    replased = replace_string(replased, "@", " ");
     name = replased.toStdString();
     bool ex = false;
     string text_comment;
-    getline(fin, comment_line1); //Надо 2 раза
-    if (!ex)
+    int numLineComment = comment.size();
+
+    for (int i = 0; i < numLineComment; ++i)
     {
-        getline(fin, comment_line1);
-        if (comment_line1 != "")
-        {
-            text_comment.append(comment_line1);
-        }
-        else ex = true;
+        string line = comment[i].toStdString();
+        text_comment.append(line);
+        text_comment.append("\n");
     }
-    if (!ex)
-    {
-        getline(fin, comment_line2);
-        if (comment_line2 != "")
-        {
-            text_comment.append("\n");
-            text_comment.append(comment_line2);
-        }
-        else ex = true;
-    }
-    if (!ex)
-    {
-        getline(fin, comment_line3);
-        if (comment_line3 != "")
-        {
-            text_comment.append("\n");
-            text_comment.append(comment_line3);
-        }
-        else ex = true;
-    }
-    if (!ex)
-    {
-        getline(fin, comment_line4);
-        if (comment_line4 != "")
-        {
-            text_comment.append("\n");
-            text_comment.append(comment_line4);
-        }
-        else ex = true;
-    }
-    if (!ex)
-    {
-        getline(fin, comment_line5);
-        if (comment_line5 != "")
-        {
-            text_comment.append("\n");
-            text_comment.append(comment_line5);
-        }
-        else ex = true;
-    }
-    if (!ex)
-    {
-        getline(fin, comment_line6);
-        if (comment_line6 != "")
-        {
-            text_comment.append("\n");
-            text_comment.append(comment_line6);
-        }
-        else ex = true;
-    }
-    if (!ex)
-    {
-        getline(fin, comment_line7);
-        if (comment_line7 != "")
-        {
-            text_comment.append("\n");
-            text_comment.append(comment_line7);
-        }
-        else ex = true;
-    }
-    if (!ex)
-    {
-        getline(fin, comment_line8);
-        if (comment_line8 != "")
-        {
-            text_comment.append("\n");
-            text_comment.append(comment_line8);
-        }
-        else ex = true;
-    }
-    if (!ex)
-    {
-        getline(fin, comment_line9);
-        if (comment_line9 != "")
-        {
-            text_comment.append("\n");
-            text_comment.append(comment_line9);
-        }
-        else ex = true;
-    }
-    fin.close();
+//    cout<<text_comment<<endl;
 
     ui->textEdit->setText(QString::fromStdString(text_comment));
     ui->Izmereniye->setText(QString::fromStdString(number));

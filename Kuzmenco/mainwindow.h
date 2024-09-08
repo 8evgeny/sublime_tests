@@ -74,7 +74,7 @@ private slots:
     void r11l11();
     void r12l12();
     void on_button_save_clicked();
-    QString replace_whitespace(QString & text, const std::string from, const std::string to);
+    QString replace_string(QString & text, const std::string from, const std::string to);
     void on_button_load_clicked();
     void saveData();
     float calcCornerLine(float input);
