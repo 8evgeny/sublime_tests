@@ -44,26 +44,53 @@ Ui::MainWindow *MainWindow::getUi() const
 
 void MainWindow::saveData()
 {
-    ofstream fout;
-    fout.open(nameOutFile + ".txt");
-    fout <<" Имя: "<< name_field.toStdString() <<" / Дата: "<<Date.toStdString() <<" / Измерение № "<<to_string(izmereniye)<<endl<<endl;
-    fout << " P   Легкие                   "<< r1 <<"\t" << l1 <<"\t" << Channel_P <<endl;
-    fout << " MC  Перикард                 "<< r2 <<"\t" << l2 <<"\t" << Channel_MC <<endl;
-    fout << " С   Сердце                   "<< r3 <<"\t" << l3 <<"\t" << Channel_C <<endl;
-    fout << " IG  Тонкий кишечник          "<< r4 <<"\t" << l4 <<"\t" << Channel_IG <<endl;
-    fout << " TR  Гормональная система     "<< r5 <<"\t" << l5 <<"\t" << Channel_TR <<endl;
-    fout << " GI  Толстый кишечник         "<< r6 <<"\t" << l6 <<"\t" << Channel_GI <<endl;
-    fout << " " << endl;
-    fout << " RP  Селезенка, Поджелудочная "<< r7 <<"\t" << l7 <<"\t" << Channel_RP <<endl;
-    fout << " F   Печень                   "<< r8 <<"\t" << l8 <<"\t"<< Channel_F <<endl;
-    fout << " R   Почки                    "<< r9 <<"\t" << l9 <<"\t" << Channel_R <<endl;
-    fout << " V   Мочевой пузырь           "<< r10 <<"\t" << l10 <<"\t" << Channel_V <<endl;
-    fout << " VB  Желчный пузырь           "<< r11 <<"\t" << l11 <<"\t" << Channel_VB <<endl;
-    fout << " E   Желудок                  "<< r12 <<"\t" << l12 <<"\t" << Channel_E <<endl;
+    string name = nameOutFile + ".txt";
+    QFile outputFile(name.c_str());
+    if (outputFile.open(QIODevice::WriteOnly))
+    {
+        QString line1 = " Имя: " + name_field + " / Дата: " + Date + " / Измерение № " + QString::number(izmereniye) + "\n";
+        QByteArray block1(line1.toStdString().c_str());
+        outputFile.write(block1);
+        QString line2 = " P   Легкие                   " + QString::number(r1) + "\t" + QString::number(l1) + "\t" + QString::fromStdString(Channel_P) + "\n";
+        QByteArray block2(line2.toStdString().c_str());
+        outputFile.write(block2);
+        QString line3 = " MC  Перикард                 " + QString::number(r2) + "\t" + QString::number(l2) + "\t" + QString::fromStdString(Channel_MC) + "\n";
+        QByteArray block3(line3.toStdString().c_str());
+        outputFile.write(block3);
+        QString line4 = " С   Сердце                   " + QString::number(r3) + "\t" + QString::number(l3) + "\t" + QString::fromStdString(Channel_C) + "\n";
+        QByteArray block4(line4.toStdString().c_str());
+        outputFile.write(block4);
+        QString line5 = " IG  Тонкий кишечник          " + QString::number(r4) + "\t" + QString::number(l4) + "\t" + QString::fromStdString(Channel_C) + "\n";
+        QByteArray block5(line5.toStdString().c_str());
+        outputFile.write(block5);
+        QString line6 = " TR  Гормональная система     " + QString::number(r5) + "\t" + QString::number(l5) + "\t" + QString::fromStdString(Channel_TR) + "\n";
+        QByteArray block6(line6.toStdString().c_str());
+        outputFile.write(block6);
+        QString line7 = " GI  Толстый кишечник         " + QString::number(r6) + "\t" + QString::number(l6) + "\t" + QString::fromStdString(Channel_GI) + "\n\n";
+        QByteArray block7(line7.toStdString().c_str());
+        outputFile.write(block7);
 
-    fout <<"\nКомментарий:\n"<<comment_message<<endl<<endl;
-    fout <<diagnosic_message<<endl;
-    fout.close();
+        QString line8 = " RP  Селезенка, Поджелудочная " + QString::number(r7) + "\t" + QString::number(l7) + "\t" + QString::fromStdString(Channel_RP) + "\n";
+        QByteArray block8(line8.toStdString().c_str());
+        outputFile.write(block8);
+        QString line9 = " F   Печень                   " + QString::number(r8) + "\t" + QString::number(l8) + "\t" + QString::fromStdString(Channel_F) + "\n";
+        QByteArray block9(line9.toStdString().c_str());
+        outputFile.write(block9);
+        QString line10 = " R   Почки                    " + QString::number(r9) + "\t" + QString::number(l9) + "\t" + QString::fromStdString(Channel_R) + "\n";
+        QByteArray block10(line10.toStdString().c_str());
+        outputFile.write(block10);
+        QString line11 = " V   Мочевой пузырь           " + QString::number(r10) + "\t" + QString::number(l10) + "\t" + QString::fromStdString(Channel_V) + "\n";
+        QByteArray block11(line11.toStdString().c_str());
+        outputFile.write(block11);
+        QString line12 = " VB  Желчный пузырь           " + QString::number(r11) + "\t" + QString::number(l11) + "\t" + QString::fromStdString(Channel_VB) + "\n";
+        QByteArray block12(line12.toStdString().c_str());
+        outputFile.write(block12);
+        QString line13 = " E   Желудок                  " + QString::number(r12) + "\t" + QString::number(l12) + "\t" + QString::fromStdString(Channel_E) + "\n";
+        QByteArray block13(line13.toStdString().c_str());
+        outputFile.write(block13);
+        outputFile.close();
+    }
+    else cout << "error open file!!!" <<endl;
 
     ofstream fout2;
     fout2.open(nameOutFile + ".dat");
@@ -110,7 +137,7 @@ void MainWindow::on_button_load_clicked()
         }
         inputFile.close();
     }
-    else cout << "error oprn file!!!" <<endl;
+    else cout << "error open file!!!" <<endl;
 
     string name;
     string number;
