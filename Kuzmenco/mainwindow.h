@@ -74,7 +74,6 @@ private slots:
     void r11l11();
     void r12l12();
     void on_button_save_clicked();
-    QString replace_string(QString & text, const std::string from, const std::string to);
     void on_button_load_clicked();
     void saveData();
     float calcCornerLine(float input);
@@ -99,11 +98,13 @@ private slots:
     void on_textEdit_textChanged();
 
 
+    void on_name_field_activated(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     QString name_field{""};
     QString  Date;
-    std::string  nameOutFile;
+    QString  nameOutFile;
     float averadge;
     float averadgeY;
     float hight;

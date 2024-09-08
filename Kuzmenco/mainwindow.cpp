@@ -49,7 +49,8 @@ Ui::MainWindow *MainWindow::getUi() const
 
 void MainWindow::saveData()
 {
-    string name = nameOutFile + ".txt";
+    string name = QString(nameOutFile + ".txt").toStdString();
+ cout << name <<endl;
     QFile outputFile(name.c_str());
     if (outputFile.open(QIODevice::WriteOnly))
     {
@@ -106,7 +107,7 @@ void MainWindow::saveData()
     }
     else cout << "error open file!!!" <<endl;
 
-    string data = nameOutFile + ".dat";
+    string data = QString(nameOutFile + ".dat").toStdString();
     QFile dataFile(data.c_str());
     if (dataFile.open(QIODevice::WriteOnly))
     {
@@ -119,7 +120,7 @@ void MainWindow::saveData()
                 QString::number(l4) + " " + QString::number(l5) + " " + QString::number(l6) + " " +
                 QString::number(l7) + " " + QString::number(l8) + " " + QString::number(l9) + " " +
                 QString::number(l10) + " " + QString::number(l11) + " " + QString::number(l12) + " " +
-                replace_string(name_field, " ", "@") + " " + QString::number(ui->dateEdit->date().toJulianDay()) + " " +
+                name_field.replace(" ", "@") + " " + QString::number(ui->dateEdit->date().toJulianDay()) + " " +
                 ui->Izmereniye->text() + "\n";
         QByteArray blockData(linedata.toStdString().c_str());
         dataFile.write(blockData);
@@ -198,7 +199,7 @@ void MainWindow::on_button_load_clicked()
     name_field = dataList[24];
     julianDate = dataList[25].toInt();
     QString number = dataList[26];
-    name_field = replace_string(name_field, "@", " ");
+    name_field = name_field.replace("@", " ");
     string text_comment;
     int numLineComment = comment.size();
 
@@ -546,7 +547,7 @@ void MainWindow::on_button_exit_clicked()
 void MainWindow::on_name_field_textActivated(const QString &arg1)
 {
     name_field = arg1;
-//    cout<< "name_field: " << name_field.toStdString() << endl;
+    qDebug()<< "name_field: " << name_field;
     repaint();
     update();
     if (name_field == "Новый клиент")
@@ -566,7 +567,10 @@ void MainWindow::addNewClient()
      clients.append(text);
      clients.sort();
 
-     QFile textFile("../Сlients.txt");
+     QDir dirr=QDir::current();
+     dirr.cdUp();
+     QString path =  dirr.absolutePath() + "/Сlients.txt";
+     QFile textFile(path);
      textFile.open(QIODevice::WriteOnly);
      for (auto &i:clients)
      {
@@ -590,3 +594,15 @@ void MainWindow::on_textEdit_textChanged()
 }
 
 
+
+void MainWindow::on_name_field_activated(const QString &arg1)
+{
+    name_field = arg1;
+    qDebug()<< "name_field: " << name_field;
+    repaint();
+    update();
+    if (name_field == "Новый клиент")
+    {
+        addNewClient();
+    }
+}

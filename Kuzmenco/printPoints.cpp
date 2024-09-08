@@ -8,7 +8,7 @@
 #include <QScreen>
 #include <fstream>
 #include <iostream>
-#include <regex>
+#include <QDir>
 
 using namespace std;
 extern QScreen *screenMain;
@@ -154,22 +154,13 @@ void MainWindow::drawPoints()
     }
 }
 
-QString MainWindow::replace_string(QString & text, const std::string from, const std::string to)
-{
-    string txt = text.toStdString();
-    txt = regex_replace(txt, std::regex(from), to);
-//    cout<<txt<<endl;
-    return QString::fromStdString(txt);
-}
-
-
 void MainWindow::on_button_save_clicked()
 {
-    string cmd = "mkdir -p ../Data/"  + replace_string(name_field, " ", "\\ ").toStdString();
+    string cmd = "mkdir -p ../Data/"  + name_field.replace(" ", "\\ ").toStdString();
     system(cmd.c_str());
-
-    QString path = "../Data/" + name_field + "/" + name_field + "_" + Date + "_№" + to_string(izmereniye).c_str();
-    nameOutFile = path.toStdString() ;
+    QDir dirr=QDir::current();
+    dirr.cdUp();
+    nameOutFile = dirr.absolutePath() + "/Data/" + name_field + "/" + name_field + "_" + Date + "_№" + QString::number(izmereniye);
 
     QImage image(scene->sceneRect().size().toSize(), QImage::Format_ARGB32);  // Create the image with the exact size of the shrunk scene
     image.load("table.png");
@@ -185,7 +176,7 @@ void MainWindow::on_button_save_clicked()
     QPainter painter(&image);
     scene->render(&painter);
 
-    image.save(QString::fromStdString(nameOutFile + ".png"));
+    image.save(nameOutFile + ".png");
     saveData();
 }
 
