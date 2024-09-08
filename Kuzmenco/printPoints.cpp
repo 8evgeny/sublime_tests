@@ -156,7 +156,8 @@ void MainWindow::drawPoints()
 
 void MainWindow::on_button_save_clicked()
 {
-    string cmd = "mkdir -p ../Data/"  + name_field.replace(" ", "\\ ").toStdString();
+    auto tmp = name_field;
+    string cmd = "mkdir -p ../Data/"  + tmp.replace(" ", "\\ ").toStdString();
     system(cmd.c_str());
     QDir dirr=QDir::current();
     dirr.cdUp();

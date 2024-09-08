@@ -50,7 +50,7 @@ Ui::MainWindow *MainWindow::getUi() const
 void MainWindow::saveData()
 {
     string name = QString(nameOutFile + ".txt").toStdString();
- cout << name <<endl;
+// cout << name <<endl;
     QFile outputFile(name.c_str());
     if (outputFile.open(QIODevice::WriteOnly))
     {
@@ -544,17 +544,17 @@ void MainWindow::on_button_exit_clicked()
     app->exit();
 }
 
-void MainWindow::on_name_field_textActivated(const QString &arg1)
-{
-    name_field = arg1;
-    qDebug()<< "name_field: " << name_field;
-    repaint();
-    update();
-    if (name_field == "Новый клиент")
-    {
-        addNewClient();
-    }
-}
+//void MainWindow::on_name_field_textActivated(const QString &arg1)
+//{
+//    name_field = arg1;
+////    qDebug()<< "name_field: " << name_field;
+//    repaint();
+//    update();
+//    if (name_field == "Новый клиент")
+//    {
+//        addNewClient();
+//    }
+//}
 
 void MainWindow::addNewClient()
 {
@@ -598,7 +598,7 @@ void MainWindow::on_textEdit_textChanged()
 void MainWindow::on_name_field_activated(const QString &arg1)
 {
     name_field = arg1;
-    qDebug()<< "name_field: " << name_field;
+//    qDebug()<< "name_field: " << name_field;
     repaint();
     update();
     if (name_field == "Новый клиент")
