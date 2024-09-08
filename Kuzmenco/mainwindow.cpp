@@ -146,7 +146,7 @@ void MainWindow::on_button_load_clicked()
 
     name = dataList[24].toStdString();
     julianDate = dataList[25].toInt();
-    number = dataList[26].toInt();
+    number = dataList[26].toStdString();
     QString replased(name.c_str());
     replased = replace_string(replased, "@", " ");
     name = replased.toStdString();
