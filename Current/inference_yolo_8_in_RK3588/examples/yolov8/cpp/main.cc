@@ -107,7 +107,7 @@ int main(int argc, char **argv)
         draw_text(&src_image, text, x1, y1 - 20, COLOR_RED, 10);
     }
 
-    write_image("out.png", &src_image);
+//    write_image("out.png", &src_image); //@@@###
 
 out:
     deinit_post_process();

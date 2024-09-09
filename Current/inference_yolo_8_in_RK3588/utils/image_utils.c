@@ -96,7 +96,7 @@ static int read_image_jpeg(const char* path, image_buffer_t* image)
     int crop_width = origin_width / 16 * 16;
     int crop_height = origin_height / 16 * 16;
 
-    printf("origin size=%dx%d crop size=%dx%d\n", origin_width, origin_height, crop_width, crop_height);
+//    printf("origin size=%dx%d crop size=%dx%d\n", origin_width, origin_height, crop_width, crop_height); //@@@###
 
     // gettimeofday(&tv1, NULL);
     ret = tjDecompressHeader3(handle, jpegBuf, size, &width, &height, &subsample, &colorspace);
@@ -104,8 +104,8 @@ static int read_image_jpeg(const char* path, image_buffer_t* image)
         printf("header file error, errorStr:%s, errorCode:%d\n", tjGetErrorStr(), tjGetErrorCode(handle));
         return -1;
     }
-    printf("input image: %d x %d, subsampling: %s, colorspace: %s, orientation: %d\n", 
-            width, height, subsampName[subsample], colorspaceName[colorspace], orientation);
+//    printf("input image: %d x %d, subsampling: %s, colorspace: %s, orientation: %d\n",
+//            width, height, subsampName[subsample], colorspaceName[colorspace], orientation); //@@@###
     int sw_out_size = width * height * 3;
     unsigned char* sw_out_buf = image->virt_addr;
     if (sw_out_buf == NULL) {
@@ -666,17 +666,17 @@ int convert_image(image_buffer_t* src_img, image_buffer_t* dst_img, image_rect_t
 {
     int ret;
  
-    printf("src width=%d height=%d fmt=0x%x virAddr=0x%p fd=%d\n",
-        src_img->width, src_img->height, src_img->format, src_img->virt_addr, src_img->fd);
-    printf("dst width=%d height=%d fmt=0x%x virAddr=0x%p fd=%d\n",
-        dst_img->width, dst_img->height, dst_img->format, dst_img->virt_addr, dst_img->fd);
+//    printf("src width=%d height=%d fmt=0x%x virAddr=0x%p fd=%d\n",
+//        src_img->width, src_img->height, src_img->format, src_img->virt_addr, src_img->fd);
+//    printf("dst width=%d height=%d fmt=0x%x virAddr=0x%p fd=%d\n",
+//        dst_img->width, dst_img->height, dst_img->format, dst_img->virt_addr, dst_img->fd); //@@@###
     if (src_box != NULL) {
-        printf("src_box=(%d %d %d %d)\n", src_box->left, src_box->top, src_box->right, src_box->bottom);
+//        printf("src_box=(%d %d %d %d)\n", src_box->left, src_box->top, src_box->right, src_box->bottom);//@@@###
     }
     if (dst_box != NULL) {
-        printf("dst_box=(%d %d %d %d)\n", dst_box->left, dst_box->top, dst_box->right, dst_box->bottom);
+//        printf("dst_box=(%d %d %d %d)\n", dst_box->left, dst_box->top, dst_box->right, dst_box->bottom);//@@@###
     }
-    printf("color=0x%x\n", color);
+//    printf("color=0x%x\n", color);//@@@###
 
     ret = convert_image_rga(src_img, dst_img, src_box, dst_box, color);
     if (ret != 0) {
@@ -757,9 +757,9 @@ int convert_image_with_letterbox(image_buffer_t* src_image, image_buffer_t* dst_
         dst_box.right = dst_box.left + resize_w - 1;
         _left_offset = dst_box.left;
     }
-    printf("scale=%f dst_box=(%d %d %d %d) allow_slight_change=%d _left_offset=%d _top_offset=%d padding_w=%d padding_h=%d\n",
-        scale, dst_box.left, dst_box.top, dst_box.right, dst_box.bottom, allow_slight_change,
-        _left_offset, _top_offset, padding_w, padding_h);
+//    printf("scale=%f dst_box=(%d %d %d %d) allow_slight_change=%d _left_offset=%d _top_offset=%d padding_w=%d padding_h=%d\n",
+//        scale, dst_box.left, dst_box.top, dst_box.right, dst_box.bottom, allow_slight_change,
+//        _left_offset, _top_offset, padding_w, padding_h); //@@@###
 
     //set offset and scale
     if(letterbox != NULL){
