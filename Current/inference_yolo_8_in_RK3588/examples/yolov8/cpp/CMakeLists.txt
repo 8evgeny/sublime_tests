@@ -11,17 +11,17 @@ endif ()
 
 set(rknpu_yolov8_file rknpu2/yolov8.cc)
 
-if (TARGET_SOC STREQUAL "rv1106" OR TARGET_SOC STREQUAL "rv1103")
-    add_definitions(-DRV1106_1103)
-    set(rknpu_yolov8_file rknpu2/yolov8_rv1106_1103.cc)
-    #dma
-    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../3rdparty/allocator/dma)
-endif()
+#if (TARGET_SOC STREQUAL "rv1106" OR TARGET_SOC STREQUAL "rv1103")
+#    add_definitions(-DRV1106_1103)
+#    set(rknpu_yolov8_file rknpu2/yolov8_rv1106_1103.cc)
+#    #dma
+#    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../3rdparty/allocator/dma)
+#endif()
 
-if(TARGET_SOC STREQUAL "rk1808" OR TARGET_SOC STREQUAL "rv1109" OR TARGET_SOC STREQUAL "rv1126")
-    add_definitions(-DRKNPU1)
-    set(rknpu_yolov8_file rknpu1/yolov8.cc)
-endif()
+#if(TARGET_SOC STREQUAL "rk1808" OR TARGET_SOC STREQUAL "rv1109" OR TARGET_SOC STREQUAL "rv1126")
+#    add_definitions(-DRKNPU1)
+#    set(rknpu_yolov8_file rknpu1/yolov8.cc)
+#endif()
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../../3rdparty/ 3rdparty.out)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../../utils/ utils.out)
@@ -44,11 +44,11 @@ target_link_libraries(${PROJECT_NAME}
     dl
 )
 
-if (CMAKE_SYSTEM_NAME STREQUAL "Android")
-    target_link_libraries(${PROJECT_NAME}
-    log
-)
-endif()
+#if (CMAKE_SYSTEM_NAME STREQUAL "Android")
+#    target_link_libraries(${PROJECT_NAME}
+#    log
+#)
+#endif()
 
 message(STATUS "!!!!!!!!!!!CMAKE_SYSTEM_NAME: ${CMAKE_SYSTEM_NAME}")
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
