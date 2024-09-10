@@ -26,6 +26,10 @@
 #include "image_drawing.h"
 #include <chrono>
 
+//#include "opencv2/imgcodecs.hpp"
+//#include "opencv2/highgui.hpp"
+//#include "opencv2/imgproc.hpp"
+
 using namespace std;
 using namespace chrono;
 
@@ -133,7 +137,7 @@ int main(int argc, char **argv)
 
 out:
     auto time_inference = duration_cast<microseconds>(time_end - time_start);
-    printf("time_inference = \t%.2f ms \n", (float)time_inference.count()/1000 );
+    printf("time_inference = %.2f ms \n", (float)time_inference.count()/1000 );
 
     deinit_post_process();
 
@@ -145,12 +149,7 @@ out:
 
     if (src_image.virt_addr != NULL)
     {
-#if defined(RV1106_1103) 
-        dma_buf_free(rknn_app_ctx.img_dma_buf.size, &rknn_app_ctx.img_dma_buf.dma_buf_fd, 
-                rknn_app_ctx.img_dma_buf.dma_buf_virt_addr);
-#else
         free(src_image.virt_addr);
-#endif
     }
 
     return 0;
