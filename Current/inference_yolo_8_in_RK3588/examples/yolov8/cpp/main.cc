@@ -24,6 +24,10 @@
 #include "image_utils.h"
 #include "file_utils.h"
 #include "image_drawing.h"
+#include <chrono>
+
+using namespace std;
+using namespace chrono;
 
 //#if defined(RV1106_1103)
 //    #include "dma_alloc.hpp"
@@ -39,6 +43,7 @@ int main(int argc, char **argv)
         printf("%s <model_path> <image_path>\n", argv[0]);
         return -1;
     }
+    high_resolution_clock::time_point time_start, time_end;
 
     const char *model_path = argv[1];
     const char *image_path = argv[2];
@@ -58,20 +63,30 @@ int main(int argc, char **argv)
 
     image_buffer_t src_image;
     memset(&src_image, 0, sizeof(image_buffer_t));
+
     ret = read_image(image_path, &src_image);
 
-//#if defined(RV1106_1103)
-//    //RV1106 rga requires that input and output bufs are memory allocated by dma
-//    ret = dma_buf_alloc(RV1106_CMA_HEAP_PATH, src_image.size, &rknn_app_ctx.img_dma_buf.dma_buf_fd,
-//                       (void **) & (rknn_app_ctx.img_dma_buf.dma_buf_virt_addr));
-//    memcpy(rknn_app_ctx.img_dma_buf.dma_buf_virt_addr, src_image.virt_addr, src_image.size);
-//    dma_sync_cpu_to_device(rknn_app_ctx.img_dma_buf.dma_buf_fd);
-//    free(src_image.virt_addr);
-//    src_image.virt_addr = (unsigned char *)rknn_app_ctx.img_dma_buf.dma_buf_virt_addr;
-//    src_image.fd = rknn_app_ctx.img_dma_buf.dma_buf_fd;
-//    rknn_app_ctx.img_dma_buf.size = src_image.size;
-//#endif
-    
+    printf("width=%d\n"
+           "height=%d\n"
+           "width_stride=%d\n"
+           "height_stride=%d\n"
+           "format=%d\n"
+           "virt_addr=%p\n"
+           "size=%d\n"
+           "fd=%d\n"
+           ,
+           src_image.width,
+           src_image.height,
+           src_image.width_stride,
+           src_image.height_stride,
+           src_image.format,
+           src_image.virt_addr,
+           src_image.size,
+           src_image.fd
+
+           );
+
+
     if (ret != 0)
     {
         printf("read image fail! ret=%d image_path=%s\n", ret, image_path);
@@ -80,12 +95,19 @@ int main(int argc, char **argv)
 
     object_detect_result_list od_results;
 
+    time_start = high_resolution_clock::now();
     ret = inference_yolov8_model(&rknn_app_ctx, &src_image, &od_results);
+    time_end = high_resolution_clock::now();
+
+
+
     if (ret != 0)
     {
         printf("init_yolov8_model fail! ret=%d\n", ret);
         goto out;
     }
+
+
 
     // 画框和概率
     char text[256];
@@ -110,6 +132,9 @@ int main(int argc, char **argv)
 //    write_image("out.png", &src_image); //@@@###
 
 out:
+    auto time_inference = duration_cast<microseconds>(time_end - time_start);
+    printf("time_inference = \t%.2f ms \n", (float)time_inference.count()/1000 );
+
     deinit_post_process();
 
     ret = release_yolov8_model(&rknn_app_ctx);
