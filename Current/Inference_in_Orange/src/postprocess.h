@@ -6,6 +6,8 @@
 #include "rknn_api.h"
 #include "common.h"
 #include "image_utils.h"
+#include "yolov8.h"
+
 
 #define OBJ_NAME_MAX_SIZE 64
 #define OBJ_NUMB_MAX_SIZE 128

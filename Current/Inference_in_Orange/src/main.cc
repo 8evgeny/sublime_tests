@@ -1,20 +1,3 @@
-// Copyright (c) 2023 by Rockchip Electronics Co., Ltd. All Rights Reserved.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-/*-------------------------------------------
-                Includes
--------------------------------------------*/
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,33 +9,26 @@
 #include "image_drawing.h"
 #include <chrono>
 
-//#include "opencv2/imgcodecs.hpp"
-//#include "opencv2/highgui.hpp"
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/highgui.hpp"
 #include "opencv2/opencv.hpp"
 
 using namespace std;
 using namespace chrono;
 
-//#if defined(RV1106_1103)
-//    #include "dma_alloc.hpp"
-//#endif
+const char *model_path = "model/best.rknn";
+int num_iterations = 1;
 
-/*-------------------------------------------
-                  Main Function
--------------------------------------------*/
 int main(int argc, char **argv)
 {
-    if (argc != 3)
+    if (argc != 2)
     {
-        printf("%s <model_path> <image_path>\n", argv[0]);
+        printf("error image_path\n");
         return -1;
     }
+    const char *image_path = argv[1];
+
     high_resolution_clock::time_point time_start, time_end;
-
-    int num_iterations = 1000;
-
-    const char *model_path = argv[1];
-    const char *image_path = argv[2];
 
     int ret;
     rknn_app_context_t rknn_app_ctx;
@@ -72,25 +48,24 @@ int main(int argc, char **argv)
 
     ret = read_image(image_path, &src_image);
 
-    printf("width=%d\n"
-           "height=%d\n"
-           "width_stride=%d\n"
-           "height_stride=%d\n"
-           "format=%d\n"
-           "virt_addr=%p\n"
-           "size=%d\n"
-           "fd=%d\n"
-           ,
-           src_image.width,
-           src_image.height,
-           src_image.width_stride,
-           src_image.height_stride,
-           src_image.format,
-           src_image.virt_addr,
-           src_image.size,
-           src_image.fd
-
-           );
+//    printf("width=%d\n"
+//           "height=%d\n"
+//           "width_stride=%d\n"
+//           "height_stride=%d\n"
+//           "format=%d\n"
+//           "virt_addr=%p\n"
+//           "size=%d\n"
+//           "fd=%d\n"
+//           ,
+//           src_image.width,
+//           src_image.height,
+//           src_image.width_stride,
+//           src_image.height_stride,
+//           src_image.format,
+//           src_image.virt_addr,
+//           src_image.size,
+//           src_image.fd
+//           );
 
 
     if (ret != 0)
@@ -106,17 +81,13 @@ int main(int argc, char **argv)
     for (int i = 0; i < num_iterations; ++i)
     {
         ret = inference_yolov8_model(&rknn_app_ctx, &src_image, &od_results);
+        if (ret != 0)
+        {
+            printf("init_yolov8_model fail! ret=%d\n", ret);
+            goto out;
+        }
     }
     time_end = high_resolution_clock::now();
-
-
-
-    if (ret != 0)
-    {
-        printf("init_yolov8_model fail! ret=%d\n", ret);
-        goto out;
-    }
-
 
 
     // 画框和概率
