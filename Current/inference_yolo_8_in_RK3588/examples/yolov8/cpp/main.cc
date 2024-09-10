@@ -28,7 +28,7 @@
 
 //#include "opencv2/imgcodecs.hpp"
 //#include "opencv2/highgui.hpp"
-//#include "opencv2/imgproc.hpp"
+//#include "opencv2/opencv.hpp"
 
 using namespace std;
 using namespace chrono;
@@ -100,7 +100,10 @@ int main(int argc, char **argv)
     object_detect_result_list od_results;
 
     time_start = high_resolution_clock::now();
-    ret = inference_yolov8_model(&rknn_app_ctx, &src_image, &od_results);
+
+    for (int i = 0; i<100;++i)
+        ret = inference_yolov8_model(&rknn_app_ctx, &src_image, &od_results);
+
     time_end = high_resolution_clock::now();
 
 
@@ -137,7 +140,7 @@ int main(int argc, char **argv)
 
 out:
     auto time_inference = duration_cast<microseconds>(time_end - time_start);
-    printf("time_inference = %.2f ms \n", (float)time_inference.count()/1000 );
+    printf("time_inference = %.2f ms \n", (float)time_inference.count()/(1000 * 100) );
 
     deinit_post_process();
 

@@ -11,6 +11,11 @@ endif ()
 
 set(rknpu_yolov8_file rknpu2/yolov8.cc)
 
+set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_no_CUDA)
+find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
+include_directories(${OpenCV_DIR})
+
+
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../../3rdparty/ 3rdparty.out)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../../utils/ utils.out)
 
@@ -30,6 +35,7 @@ target_link_libraries(${PROJECT_NAME}
     imagedrawing    
     ${LIBRKNNRT}
     dl
+#    ${OpenCV_LIBS}
 )
 
 message(STATUS "!!!!!!!!!!!CMAKE_SYSTEM_NAME: ${CMAKE_SYSTEM_NAME}")
@@ -43,6 +49,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${LIBRKNNRT_INCLUDES}
     /home/user/WORK/Github/sublime_tests/Current/inference_yolo_8_in_RK3588/3rdparty/rknpu2/include
+    /home/user/WORK/Github/sublime_tests/Current/inference_yolo_8_in_RK3588/3rdparty/opencv/opencv-linux-aarch64/include/opencv2
 )
 
 install(TARGETS ${PROJECT_NAME} DESTINATION .)
