@@ -49,6 +49,8 @@ int main(int argc, char **argv)
     }
     high_resolution_clock::time_point time_start, time_end;
 
+    int num_iterations = 1000;
+
     const char *model_path = argv[1];
     const char *image_path = argv[2];
 
@@ -101,9 +103,10 @@ int main(int argc, char **argv)
 
     time_start = high_resolution_clock::now();
 
-    for (int i = 0; i<100;++i)
+    for (int i = 0; i < num_iterations; ++i)
+    {
         ret = inference_yolov8_model(&rknn_app_ctx, &src_image, &od_results);
-
+    }
     time_end = high_resolution_clock::now();
 
 
@@ -140,7 +143,7 @@ int main(int argc, char **argv)
 
 out:
     auto time_inference = duration_cast<microseconds>(time_end - time_start);
-    printf("time_inference = %.2f ms \n", (float)time_inference.count()/(1000 * 100) );
+    printf("time_inference = %.2f ms \n", (float)time_inference.count()/(1000 * num_iterations) );
 
     deinit_post_process();
 
