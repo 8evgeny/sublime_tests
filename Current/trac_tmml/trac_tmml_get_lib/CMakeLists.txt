@@ -18,7 +18,7 @@ set(CORR_TYPE 6)
 set(TEMPLATE_WIDTH 48)
 set(EXT_VAL 5)
 
-set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_static)
+set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda_static)
 include_directories($CMAKE_SOURCE_DIR})
 
 set(COUT_OK 0) # Вывод в терминал.
