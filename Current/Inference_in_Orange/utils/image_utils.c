@@ -92,7 +92,7 @@ static int read_image_jpeg(const char* path, image_buffer_t* image)
         return -1;
     }
 
-    // 对图像做裁剪16对齐，利于后续rga操作
+    // Обрежьте изображение и выровняйте его по 16, чтобы облегчить последующие операции rga.
     int crop_width = origin_width / 16 * 16;
     int crop_height = origin_height / 16 * 16;
 
@@ -118,7 +118,7 @@ static int read_image_jpeg(const char* path, image_buffer_t* image)
 
     flags |= 0;
 
-    // 错误码为0时，表示警告，错误码为-1时表示错误
+    // Когда код ошибки равен 0, это означает предупреждение; когда код ошибки равен -1, это означает ошибку.
     int pixelFormat = TJPF_RGB;
     ret = tjDecompress2(handle, jpegBuf, size, sw_out_buf, width, 0, height, pixelFormat, flags);
     // ret = tjDecompressToYUV2(handle, jpeg_buf, size, dst_buf, *width, padding, *height, flags);
@@ -211,7 +211,7 @@ static int write_image_jpeg(const char* path, int quality, const image_buffer_t*
 
 static int read_image_stb(const char* path, image_buffer_t* image)
 {
-    // 默认图像为3通道
+    // Изображение по умолчанию — 3 канала
     int w, h, c;
     unsigned char* pixeldata = stbi_load(path, &w, &h, &c, 0);
     if (!pixeldata) {
@@ -221,7 +221,7 @@ static int read_image_stb(const char* path, image_buffer_t* image)
     // printf("load image wxhxc=%dx%dx%d path=%s\n", w, h, c, path);
     int size = w * h * c;
 
-    // 设置图像数据
+    // Установить данные изображения
     if (image->virt_addr != NULL) {
         memcpy(image->virt_addr, pixeldata, size);
         stbi_image_free(pixeldata);
@@ -306,7 +306,7 @@ static int crop_and_scale_image_c(int channel, unsigned char *src, int src_width
     //     dst_width, dst_height, dst_box_x, dst_box_y, dst_box_width, dst_box_height);
     // printf("channel=%d x_ratio=%f y_ratio=%f\n", channel, x_ratio, y_ratio);
 
-    // 从原图指定区域取数据，双线性缩放到目标指定区域
+    // Возьмите данные из указанной области исходного изображения и билинейно масштабируйте их до целевой указанной области.
     for (int dst_y = dst_box_y; dst_y < dst_box_y + dst_box_height; dst_y++) {
         for (int dst_x = dst_box_x; dst_x < dst_box_x + dst_box_width; dst_x++) {
             int dst_x_offset = dst_x - dst_box_x;
@@ -321,13 +321,13 @@ static int crop_and_scale_image_c(int channel, unsigned char *src, int src_width
             int index1 = src_y * src_width * channel + src_x * channel;
             int index2 = index1 + src_width * channel;    // down
             if (src_y == src_height - 1) {
-                // 如果到图像最下边缘，变成选择上面的像素
+                // Если вы подойдете к нижнему краю изображения, вы выделите пиксели над ним.
                 index2 = index1 - src_width * channel;
             }
             int index3 = index1 + 1 * channel;            // right
             int index4 = index2 + 1 * channel;            // down right
             if (src_x == src_width - 1) {
-                // 如果到图像最右边缘，变成选择左边的像素
+                // Если вы подойдете к самому правому краю изображения, он станет пикселем слева
                 index3 = index1 - 1 * channel;
                 index4 = index2 - 1 * channel;
             }
