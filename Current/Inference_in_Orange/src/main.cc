@@ -1,4 +1,4 @@
-#include "copter_struct.hpp"
+﻿#include "copter_struct.hpp"
 
 
 #include <stdint.h>
@@ -21,7 +21,10 @@ using namespace chrono;
 using namespace cv;
 
 const char *model_path = "model/best.rknn";
-int num_iterations = 100;
+int num_iterations = 1;
+bool write_result_inference_in_file = false;
+bool input_data_from_mat_or_image = true; //true - from mat  false - from image
+Mat img_orig;
 
 void yolo_work(const Point& left_top, vector<tr>& vtr)
 {
@@ -48,95 +51,8 @@ void yolo_work(const Point& left_top, vector<tr>& vtr)
 //    } // -- END for(int i_trt=0; i_trt < vtrt.size(); i_trt++)
 } // -- END yolo_work
 
-
-int main(int argc, char **argv)
+void print_results(object_detect_result_list & od_results, image_buffer_t & src_image)
 {
-    if (argc != 2)
-    {
-        printf("error image_path\n");
-        return -1;
-    }
-
-    Mat img_orig = imread(argv[1], IMREAD_UNCHANGED);
-//    imshow("image", img_orig);
-//    waitKey(0);
-
-
-
-    const char *image_path = argv[1];
-    cout<<"num iterations = "<<num_iterations<<endl;
-
-    high_resolution_clock::time_point time_start, time_end;
-
-    int ret;
-    rknn_app_context_t rknn_app_ctx;
-    memset(&rknn_app_ctx, 0, sizeof(rknn_app_context_t));
-
-    init_post_process();
-
-    ret = init_yolov8_model(model_path, &rknn_app_ctx);
-    if (ret != 0)
-    {
-        printf("init_yolov8_model fail! ret=%d model_path=%s\n", ret, model_path);
-        goto out;
-    }
-
-    image_buffer_t src_image;
-    memset(&src_image, 0, sizeof(image_buffer_t));
-
-    //    ret = read_image(image_path, &src_image);
-    // Replace function read_image -  data from Mat
-
-    src_image.width = 256;
-    src_image.height = 256;
-    src_image.format = IMAGE_FORMAT_RGB888;
-    src_image.virt_addr = img_orig.data;
-    src_image.size=196608;
-
-
-//    printf("width=%d\n"
-//           "height=%d\n"
-//           "width_stride=%d\n"
-//           "height_stride=%d\n"
-//           "format=%d\n"
-//           "virt_addr=%p\n"
-//           "size=%d\n"
-//           "fd=%d\n"
-//           ,
-//           src_image.width,
-//           src_image.height,
-//           src_image.width_stride,
-//           src_image.height_stride,
-//           src_image.format,
-//           src_image.virt_addr,
-//           src_image.size,
-//           src_image.fd
-//           );
-
-
-    if (ret != 0)
-    {
-        printf("read image fail! ret=%d image_path=%s\n", ret, image_path);
-        goto out;
-    }
-
-    object_detect_result_list od_results;
-
-    time_start = high_resolution_clock::now();
-
-    for (int i = 0; i < num_iterations; ++i)
-    {
-        ret = inference_yolov8_model(&rknn_app_ctx, &src_image, &od_results);
-        if (ret != 0)
-        {
-            printf("init_yolov8_model fail! ret=%d\n", ret);
-            goto out;
-        }
-    }
-    time_end = high_resolution_clock::now();
-
-
-    // Фреймы и вероятности
     char text[256];
     for (int i = 0; i < od_results.count; i++)
     {
@@ -158,24 +74,103 @@ int main(int argc, char **argv)
         draw_text(&src_image, text, x1, y1 - 20, COLOR_RED, 10);
     }
 
-    write_image("out.png", &src_image); //@@@###
+    printf("\n");
+    if (write_result_inference_in_file)
+        write_image("out.png", &src_image); //@@@###
+}
 
-out:
-    auto time_inference = duration_cast<microseconds>(time_end - time_start);
-    printf("time_inference = %.2f ms \n", (float)time_inference.count()/(1000 * num_iterations) );
+void release_resources(rknn_app_context_t & rknn_app_ctx, image_buffer_t & src_image)
+{
 
     deinit_post_process();
 
-    ret = release_yolov8_model(&rknn_app_ctx);
+    int ret = release_yolov8_model(&rknn_app_ctx);
     if (ret != 0)
     {
         printf("release_yolov8_model fail! ret=%d\n", ret);
     }
 
-    if (src_image.virt_addr != NULL)
+    if (!input_data_from_mat_or_image)
     {
-        free(src_image.virt_addr);
+        if (src_image.virt_addr != NULL)
+        {
+            free(src_image.virt_addr);
+        }
     }
+}
+
+int main(int argc, char **argv)
+{
+    if (argc != 2)
+    {
+        printf("error image_path\n");
+        return -1;
+    }
+    const char *image_path = argv[1];
+
+    if(input_data_from_mat_or_image)
+    {
+        img_orig = imread(image_path, IMREAD_UNCHANGED);
+//        imshow("image", img_orig);
+//        waitKey(0);
+    }
+
+    high_resolution_clock::time_point time_start, time_end;
+    int ret;
+    rknn_app_context_t rknn_app_ctx;
+    memset(&rknn_app_ctx, 0, sizeof(rknn_app_context_t));
+
+    init_post_process();
+    image_buffer_t src_image;
+
+    memset(&src_image, 0, sizeof(image_buffer_t));
+
+    ret = init_yolov8_model(model_path, &rknn_app_ctx);
+    if (ret != 0)
+    {
+        printf("init_yolov8_model fail! ret=%d model_path=%s\n", ret, model_path);
+        release_resources(rknn_app_ctx, src_image);
+    }
+
+    // Replace function read_image -  data from Mat
+    if (input_data_from_mat_or_image)
+    {
+        src_image.width = 256;
+        src_image.height = 256;
+        src_image.format = IMAGE_FORMAT_RGB888;
+        src_image.virt_addr = img_orig.data;
+        src_image.size=196608;
+    }
+    else
+    {
+        ret = read_image(image_path, &src_image);
+        if (ret != 0)
+        {
+            printf("read image fail! ret=%d image_path=%s\n", ret, image_path);
+            release_resources(rknn_app_ctx, src_image);
+            return -1;
+        }
+    }
+
+    object_detect_result_list od_results;
+    time_start = high_resolution_clock::now();
+
+    for (int i = 0; i < num_iterations; ++i)
+    {
+        ret = inference_yolov8_model(&rknn_app_ctx, &src_image, &od_results);
+        if (ret != 0)
+        {
+            printf("init_yolov8_model fail! ret=%d\n", ret);
+            release_resources(rknn_app_ctx, src_image);
+            return -1;
+        }
+    }
+    time_end = high_resolution_clock::now();
+    auto time_inference = duration_cast<microseconds>(time_end - time_start);
+    printf("\nnum_iterations = %d\ntime_inference = %.2f ms \n\n", num_iterations, (float)time_inference.count()/(1000 * num_iterations) );
+
+    print_results(od_results, src_image);
+    release_resources(rknn_app_ctx, src_image);
 
     return 0;
 }
