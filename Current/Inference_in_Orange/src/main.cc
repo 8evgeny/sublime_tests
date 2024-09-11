@@ -54,8 +54,14 @@ void yolo_work(const Point& left_top, vector<tr>& vtr)
 void print_results(object_detect_result_list & od_results, image_buffer_t & src_image)
 {
     char text[256];
+    vector<tr> vtr;
+//    cv::Point2f xy = cv::Point2f(-1.f, -1.f); // Координаты центра объекта.
+//    cv::Point2f wh_2 = cv::Point2f(0, 0); // Координаты центра объекта.
+//    int class_num = -1; // Номер класса
+//    double tp; // Точка времени.
     for (int i = 0; i < od_results.count; i++)
     {
+        tr tr;
         object_detect_result *det_result = &(od_results.results[i]);
         printf("%s %d (%d %d %d %d) %.3f\n",
                class_to_name(det_result->cls_id),
@@ -67,6 +73,10 @@ void print_results(object_detect_result_list & od_results, image_buffer_t & src_
         int y1 = det_result->box.top;
         int x2 = det_result->box.right;
         int y2 = det_result->box.bottom;
+
+        tr.class_num = det_result->cls_id;
+        tr.xy = Point2f(x1 + (x2 - x1)/2, y1 + (y2 - y1)/2);
+//        tr.wh_2 =
 
         draw_rectangle(&src_image, x1, y1, x2 - x1, y2 - y1, COLOR_BLUE, 3);
 
