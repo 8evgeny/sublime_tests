@@ -156,8 +156,14 @@ void MainWindow::drawPoints()
 
 void MainWindow::on_button_save_clicked()
 {
+#ifndef  WINDOWS
     auto tmp = name_field;
     string cmd = "mkdir -p ../Data/"  + tmp.replace(" ", "\\ ").toStdString();
+#endif
+#ifdef  WINDOWS
+    string cmd = "MKDIR C:\\Users\\Professional\\Documents\\Kuzmenco\\Data\\\""
+                 + name_field.toStdString() + "\"";
+#endif
     system(cmd.c_str());
     QDir dirr=QDir::current();
     dirr.cdUp();

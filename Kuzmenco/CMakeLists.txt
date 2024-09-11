@@ -4,6 +4,10 @@ project(Kuzmenco VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+if (WIN32)
+    add_definitions(-DWINDOWS)
+endif (WIN32)
+
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
