@@ -21,10 +21,12 @@ using namespace chrono;
 using namespace cv;
 
 const char *model_path = "model/best.rknn";
-int num_iterations = 1;
-bool write_result_inference_in_file = false;
+int num_iterations = 10;
+bool write_result_inference_in_file = true;
 bool input_data_from_mat_or_image = true; //true - from mat  false - from image
 Mat img_orig;
+high_resolution_clock::time_point time_start_inference, time_end_inference, time_start_iterations, time_end_iterations;
+vector<tr> vtr;
 
 void yolo_work(const Point& left_top, vector<tr>& vtr)
 {
@@ -51,17 +53,10 @@ void yolo_work(const Point& left_top, vector<tr>& vtr)
 //    } // -- END for(int i_trt=0; i_trt < vtrt.size(); i_trt++)
 } // -- END yolo_work
 
-void print_results(object_detect_result_list & od_results, image_buffer_t & src_image)
+void results_print_and_save(object_detect_result_list & od_results, image_buffer_t & src_image)
 {
-    char text[256];
-    vector<tr> vtr;
-//    cv::Point2f xy = cv::Point2f(-1.f, -1.f); // Координаты центра объекта.
-//    cv::Point2f wh_2 = cv::Point2f(0, 0); // Координаты центра объекта.
-//    int class_num = -1; // Номер класса
-//    double tp; // Точка времени.
     for (int i = 0; i < od_results.count; i++)
     {
-        tr tr;
         object_detect_result *det_result = &(od_results.results[i]);
         printf("%s %d (%d %d %d %d) %.3f\n",
                class_to_name(det_result->cls_id),
@@ -73,32 +68,44 @@ void print_results(object_detect_result_list & od_results, image_buffer_t & src_
         int y1 = det_result->box.top;
         int x2 = det_result->box.right;
         int y2 = det_result->box.bottom;
-
-        tr.class_num = det_result->cls_id;
-        tr.xy = Point2f(x1 + (x2 - x1)/2, y1 + (y2 - y1)/2);
-//        tr.wh_2 =
-
         draw_rectangle(&src_image, x1, y1, x2 - x1, y2 - y1, COLOR_BLUE, 3);
-
+        char text[256];
         sprintf(text, "%s %.1f%%", class_to_name(det_result->cls_id), det_result->prop * 100);
         draw_text(&src_image, text, x1, y1 - 20, COLOR_RED, 10);
-    }
+    }//END for (int i = 0; i < od_results.count; i++)
 
     printf("\n");
     if (write_result_inference_in_file)
-        write_image("out.png", &src_image); //@@@###
-}
+        write_image("out.png", &src_image);
+}//END void results_print_and_save
+
+void results_save_to_vector(object_detect_result_list & od_results, image_buffer_t & src_image, vector<tr>& vtr)
+{
+    for (int i = 0; i < od_results.count; i++)
+    {
+        auto time_inference = duration_cast<microseconds>(time_end_inference - time_start_inference);
+        tr tr;
+        object_detect_result *det_result = &(od_results.results[i]);
+        int x1 = det_result->box.left;
+        int y1 = det_result->box.top;
+        int x2 = det_result->box.right;
+        int y2 = det_result->box.bottom;
+        tr.xy = Point2f(x1 + (x2 - x1)/2, y1 + (y2 - y1)/2);
+        tr.wh_2 = Point2f((x2 - x1)/2, (y2 - y1)/2);
+        tr.class_num = det_result->cls_id;
+        tr.tp = time_inference.count();
+        vtr.push_back(tr);
+
+    }//END for (int i = 0; i < od_results.count; i++)
+
+} // END void results_save_to_vector
 
 void release_resources(rknn_app_context_t & rknn_app_ctx, image_buffer_t & src_image)
 {
-
     deinit_post_process();
-
     int ret = release_yolov8_model(&rknn_app_ctx);
     if (ret != 0)
-    {
         printf("release_yolov8_model fail! ret=%d\n", ret);
-    }
 
     if (!input_data_from_mat_or_image)
     {
@@ -106,8 +113,8 @@ void release_resources(rknn_app_context_t & rknn_app_ctx, image_buffer_t & src_i
         {
             free(src_image.virt_addr);
         }
-    }
-}
+    }//END if (!input_data_from_mat_or_image)
+}//END void release_resources
 
 int main(int argc, char **argv)
 {
@@ -125,8 +132,7 @@ int main(int argc, char **argv)
 //        waitKey(0);
     }
 
-    high_resolution_clock::time_point time_start, time_end;
-    int ret;
+
     rknn_app_context_t rknn_app_ctx;
     memset(&rknn_app_ctx, 0, sizeof(rknn_app_context_t));
 
@@ -135,23 +141,22 @@ int main(int argc, char **argv)
 
     memset(&src_image, 0, sizeof(image_buffer_t));
 
-    ret = init_yolov8_model(model_path, &rknn_app_ctx);
+    int ret = init_yolov8_model(model_path, &rknn_app_ctx);
     if (ret != 0)
     {
         printf("init_yolov8_model fail! ret=%d model_path=%s\n", ret, model_path);
         release_resources(rknn_app_ctx, src_image);
-    }
+    }//END if (ret != 0)
 
-    // Replace function read_image -  data from Mat
-    if (input_data_from_mat_or_image)
+    if (input_data_from_mat_or_image)// Input Mat
     {
         src_image.width = 256;
         src_image.height = 256;
         src_image.format = IMAGE_FORMAT_RGB888;
         src_image.virt_addr = img_orig.data;
         src_image.size=196608;
-    }
-    else
+    }//END if (input_data_from_mat_or_image)
+    if (!input_data_from_mat_or_image)// Input Image file
     {
         ret = read_image(image_path, &src_image);
         if (ret != 0)
@@ -159,27 +164,28 @@ int main(int argc, char **argv)
             printf("read image fail! ret=%d image_path=%s\n", ret, image_path);
             release_resources(rknn_app_ctx, src_image);
             return -1;
-        }
-    }
+        }//END if (ret != 0)
+    }//END if (!input_data_from_mat_or_image)
 
     object_detect_result_list od_results;
-    time_start = high_resolution_clock::now();
+
+    time_start_iterations = high_resolution_clock::now();
+
 
     for (int i = 0; i < num_iterations; ++i)
     {
-        ret = inference_yolov8_model(&rknn_app_ctx, &src_image, &od_results);
-        if (ret != 0)
-        {
-            printf("init_yolov8_model fail! ret=%d\n", ret);
-            release_resources(rknn_app_ctx, src_image);
-            return -1;
-        }
-    }
-    time_end = high_resolution_clock::now();
-    auto time_inference = duration_cast<microseconds>(time_end - time_start);
-    printf("\nnum_iterations = %d\ntime_inference = %.2f ms \n\n", num_iterations, (float)time_inference.count()/(1000 * num_iterations) );
+        time_start_inference = high_resolution_clock::now();
+        ret = inference_yolov8_model(&rknn_app_ctx, &src_image, &od_results);  if (ret != 0) {printf("init_yolov8_model fail! ret=%d\n", ret); release_resources(rknn_app_ctx, src_image);  return -1; }
+        time_end_inference = high_resolution_clock::now();
+        results_save_to_vector(od_results, src_image, vtr);
+    }//END for (int i = 0; i < num_iterations; ++i)
 
-    print_results(od_results, src_image);
+    time_end_iterations = high_resolution_clock::now();
+    auto time_iterations = duration_cast<microseconds>(time_end_iterations - time_start_iterations);
+    printf("\nnum_iterations = %d\ntime_inference = %.2f ms \n\n", num_iterations, (float)time_iterations.count()/(1000 * num_iterations) );
+
+    results_print_and_save(od_results, src_image);
+
     release_resources(rknn_app_ctx, src_image);
 
     return 0;
