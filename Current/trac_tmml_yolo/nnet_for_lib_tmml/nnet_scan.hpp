@@ -24,7 +24,9 @@
 #include "INIReader.h"
 
 #include TRAC_API
+#ifdef TRT_ENABLE
 #include TRT_API
+#endif
 
 class nnet
 {
@@ -40,10 +42,10 @@ class nnet
    trac_struct trac_str;
    std::unique_ptr<trac_struct> ts = nullptr; // Структура трекинга.
    std::unique_ptr<std::list<trac_st>> ltrac_ptr = nullptr;
-
+#ifdef TRT_ENABLE
    std::unique_ptr<trt_detector::YOLO_TRT_Detector> yolo_trt = nullptr;
    std::unique_ptr<trt_detector::YOLO_TRT_Detector> yolo_trt_track = nullptr;
-
+#endif
    cv::Mat img_orig, img_orig_roi; // Матрицы для оригинального кадра и для ROI из оригинального кадра.
    cv::Rect2f rct_local_orig; // Рект для ROI на оригинальном кадре.
 

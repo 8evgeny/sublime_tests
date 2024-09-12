@@ -2,24 +2,20 @@ cmake_minimum_required(VERSION 3.5)
 set(CMAKE_CXX_STANDARD 14)
 
 message(STATUS "")
-message(STATUS " Алгоритм генерации библиотеки для сканирующего коптера")
+message(STATUS " Алгоритм генерации библиотеки for neural network")
 project(nnet_for_lib_tmml)
-
-set(NNET_LIB _trac_tmml_TKDNN)
-
+message(${CMAKE_SYSTEM_PROCESSOR})
 # Тип экстраполяции трака (0) - по крайним точкам, (1) - МНК, (2) - Калман:
 set(USE_polinom 0)
 
 set(work_in round) # Работа в круге, вписанном в центр фрейма (round), либо во всём фрейме (rect).
 # set(work_in rect) # Работа в круге, вписанном в центр фрейма (round), либо во всём фрейме (rect).
 
-set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda_static)
-
 set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../trac_from_lib_tmml/)
 
-set(trt_enable 1) # TensorRT
-set(yolo_enable 0) # Yolo
-set(USE_YOLO_VERSION v4) # Использование версии Yolo (v3 или v4):
+set(trt_enable 0)   # TensorRT
+set(rknn_enable 1)  # Rockchip neuro network in Orange Pi
+
 set(FIND_DISC_ID 0) # Привязка к железу вычислителя.
 ##################################################################################################
 set(threads_num ${nproc}) # Число потоков компиляции:
@@ -50,37 +46,14 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${FROM_LIB}lib)
 
 include(${CMAKE_CURRENT_LIST_DIR}/opencv_static.cmake)
 
-find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
-include_directories(${OpenCV_DIR})
-
 if(${FIND_DISC_ID} EQUAL 1)
   add_definitions(-DFIND_DISC_ID)
   message("----- FIND_DISC_ID enable")
 endif() # END if(${FIND_DISC_ID} EQUAL 1)
 
-############################## IF YOLO_ENABLE:
-if(${yolo_enable} EQUAL 1)
-    set(YOLO_LIB_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../darknet4)
-    link_directories(${YOLO_LIB_DIRECTORY})
-    add_definitions(-DYOLO_ENABLE)
-    add_definitions(-DYOLO_${USE_YOLO_VERSION})
-    message("Use yolo version = " YOLO_${USE_YOLO_VERSION})
-    add_definitions(-DYOLO_API="$ENV{HOME}/QtProg/darknet4/include/yolo_v2_class_${USE_YOLO_VERSION}.hpp")
-
-    message(STATUS "--------------------------- LIB ${NNET_LIB}")
-    add_library(${NNET_LIB} SHARED
-        nnet_scan.hpp
-        nnet_scan.cpp
-        nnet_yolo.cpp
-        ${FROM_LIB}tracshats/trac_api.hpp
-        ${FROM_LIB}tracshats/trac_struct.hpp
-        )
-    target_link_libraries(${NNET_LIB} ${CUDA_LIBRARIES})
-    target_link_libraries(${NNET_LIB} ${CUDA_LIBRARIES})
-endif() # if(${yolo_enable} EQUAL 1)
-
 ############################## IF TRT_ENABLE:
 if(${trt_enable} EQUAL 1)
+   set(NNET_LIB _trac_tmml_TKDNN)
    set(TKDNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../tkDNN)
    add_definitions(-DTRT_ENABLE)
    message("----- TensorRT enable")
@@ -91,12 +64,15 @@ if(${trt_enable} EQUAL 1)
    ###### CUDA ######
    find_package(CUDA REQUIRED)
    find_package(CUDNN REQUIRED)
+   set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda_static)
+   find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
    include_directories(
        ${TKDNN_DIRECTORY}
        ${OPENCV_INCLUDE_DIRS}
        ${NVINFER_INCLUDES}
        ${CUDA_INCLUDE_DIRS}
        ${CUDNN_INCLUDE_DIR}
+       ${OpenCV_DIR}
    )
    add_library(${NNET_LIB} SHARED
        nnet_scan.hpp
@@ -109,3 +85,29 @@ if(${trt_enable} EQUAL 1)
    target_link_libraries(${NNET_LIB} PRIVATE ${CUDA_LIBRARIES} ${CUDA_CUBLAS_LIBRARIES} ${CUDNN_LIBRARIES} -ltkDNN -lkernels -ltkdnn_yolo)
    target_link_libraries(${NNET_LIB} PRIVATE ${CUDA_LIBRARIES} ${CUDA_CUBLAS_LIBRARIES} ${CUDNN_LIBRARIES} -ltkDNN -lkernels -ltkdnn_yolo)
 endif() # if(${trt_enable} EQUAL 1)
+
+############################## IF RKNN_ENABLE:
+if(${rknn_enable} EQUAL 1)
+    set(NNET_LIB _trac_tmml_RKNN)
+    set(RKNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../RKNN_API)
+    add_definitions(-DRKNN_ENABLE)
+    message("----- RKNN enable")
+    add_definitions(-DRKNN_API="${RKNN_DIRECTORY}/rknn_api.hpp")
+    link_directories(${RKNN_DIRECTORY})
+    set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_static)
+    find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
+
+    include_directories(
+       ${RKNN_DIRECTORY}
+       ${OPENCV_INCLUDE_DIRS}
+       ${OpenCV_DIR}
+    )
+    add_library(${NNET_LIB} SHARED
+       nnet_scan.hpp
+       nnet_scan.cpp
+       ${FROM_LIB}tracshats/trac_api.hpp
+       ${FROM_LIB}tracshats/trac_struct.hpp
+       )
+#    target_link_libraries(${NNET_LIB} PRIVATE  -ltkDNN -lkernels -ltkdnn_yolo)
+
+endif() # if(${rknn_enable} EQUAL 1)

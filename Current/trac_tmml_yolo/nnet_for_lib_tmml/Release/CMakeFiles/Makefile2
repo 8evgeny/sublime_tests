@@ -54,16 +54,16 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/user/WORK/Github/sublime_tests/Current/trac_tmml_yolo/nnet_for_lib_tmml
+CMAKE_SOURCE_DIR = /media/user/WORK_EXT_NVME1/sublime_tests/Current/trac_tmml_yolo/nnet_for_lib_tmml
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/user/WORK/Github/sublime_tests/Current/trac_tmml_yolo/nnet_for_lib_tmml/Release
+CMAKE_BINARY_DIR = /media/user/WORK_EXT_NVME1/sublime_tests/Current/trac_tmml_yolo/nnet_for_lib_tmml/Release
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/_trac_tmml_TKDNN.dir/all
+all: CMakeFiles/_trac_tmml_RKNN.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/_trac_tmml_TKDNN.dir/clean
+clean: CMakeFiles/_trac_tmml_RKNN.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/_trac_tmml_TKDNN.dir
+# Target rules for target CMakeFiles/_trac_tmml_RKNN.dir
 
 # All Build rule for target.
-CMakeFiles/_trac_tmml_TKDNN.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/_trac_tmml_TKDNN.dir/build.make CMakeFiles/_trac_tmml_TKDNN.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/_trac_tmml_TKDNN.dir/build.make CMakeFiles/_trac_tmml_TKDNN.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/WORK/Github/sublime_tests/Current/trac_tmml_yolo/nnet_for_lib_tmml/Release/CMakeFiles --progress-num=1,2,3 "Built target _trac_tmml_TKDNN"
-.PHONY : CMakeFiles/_trac_tmml_TKDNN.dir/all
+CMakeFiles/_trac_tmml_RKNN.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/_trac_tmml_RKNN.dir/build.make CMakeFiles/_trac_tmml_RKNN.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/_trac_tmml_RKNN.dir/build.make CMakeFiles/_trac_tmml_RKNN.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/user/WORK_EXT_NVME1/sublime_tests/Current/trac_tmml_yolo/nnet_for_lib_tmml/Release/CMakeFiles --progress-num=1,2 "Built target _trac_tmml_RKNN"
+.PHONY : CMakeFiles/_trac_tmml_RKNN.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/_trac_tmml_TKDNN.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/WORK/Github/sublime_tests/Current/trac_tmml_yolo/nnet_for_lib_tmml/Release/CMakeFiles 3
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/_trac_tmml_TKDNN.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/WORK/Github/sublime_tests/Current/trac_tmml_yolo/nnet_for_lib_tmml/Release/CMakeFiles 0
-.PHONY : CMakeFiles/_trac_tmml_TKDNN.dir/rule
+CMakeFiles/_trac_tmml_RKNN.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /media/user/WORK_EXT_NVME1/sublime_tests/Current/trac_tmml_yolo/nnet_for_lib_tmml/Release/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/_trac_tmml_RKNN.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /media/user/WORK_EXT_NVME1/sublime_tests/Current/trac_tmml_yolo/nnet_for_lib_tmml/Release/CMakeFiles 0
+.PHONY : CMakeFiles/_trac_tmml_RKNN.dir/rule
 
 # Convenience name for target.
-_trac_tmml_TKDNN: CMakeFiles/_trac_tmml_TKDNN.dir/rule
-.PHONY : _trac_tmml_TKDNN
+_trac_tmml_RKNN: CMakeFiles/_trac_tmml_RKNN.dir/rule
+.PHONY : _trac_tmml_RKNN
 
 # clean rule for target.
-CMakeFiles/_trac_tmml_TKDNN.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/_trac_tmml_TKDNN.dir/build.make CMakeFiles/_trac_tmml_TKDNN.dir/clean
-.PHONY : CMakeFiles/_trac_tmml_TKDNN.dir/clean
+CMakeFiles/_trac_tmml_RKNN.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/_trac_tmml_RKNN.dir/build.make CMakeFiles/_trac_tmml_RKNN.dir/clean
+.PHONY : CMakeFiles/_trac_tmml_RKNN.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

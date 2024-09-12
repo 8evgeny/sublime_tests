@@ -42,8 +42,10 @@ nnet::nnet(const string& config_path, bool& ok)
 nnet::~nnet()
 {
   cout << "Destructor nnet" << endl;
+#ifdef TRT_ENABLE
   yolo_trt.release();
   yolo_trt_track.release();
+#endif
   ltrac_ptr.release();
   ts.release();
 } // END ~nnet()
