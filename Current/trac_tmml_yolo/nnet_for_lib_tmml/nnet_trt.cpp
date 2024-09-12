@@ -153,7 +153,6 @@ bool nnet::init_yolo(const char* config_path)
    return 1;
 } // -- END init_yolo
 
-#ifdef TRT_ENABLE
 void nnet::yolo_work(const Point& left_top, vector<tr>& vtr)
 {
     time_point_first = system_clock::now();
@@ -203,56 +202,3 @@ void nnet::yolo_work_track(const Point& left_top, vector<tr>& vtr)
         } // -- END if(cls != class_num_musor && object_pix2 > min_object_pix2)
     } // -- END for(int i_trt=0; i_trt < vtrt.size(); i_trt++)
 } // -- END yolo_work_track
-#endif
-
-#ifdef RKNN_ENABLE
-void nnet::yolo_work(const Point& left_top, vector<tr>& vtr)
-{
-//    time_point_first = system_clock::now();
-//    Mat img4yolo = img_orig(Rect(left_top.x, left_top.y, cfg_w, cfg_h));
-//    if(change_color){cvtColor(img4yolo, img4yolo, change_color);}
-//    const vector<tk::dnn::box>& vtrt = yolo_trt->detect(img4yolo);
-//    time_point_new = system_clock::now();
-//    duration_now = time_point_new - time_point_first;
-//    ts->yolo_exec_time = duration_now.count();
-//    vtr.reserve(vtrt.size());
-//    for(int i_trt=0; i_trt < vtrt.size(); i_trt++)
-//    {
-//        const tk::dnn::box& trt_i = vtrt[i_trt];
-//        char cls = vclass[trt_i.cl];
-//        int object_pix2 = trt_i.w*trt_i.h;
-//        if(cls != class_num_musor && trt_i.w*trt_i.h > min_object_pix2)
-//        {
-//           Point2f wh_2(0.5*trt_i.w, 0.5*trt_i.h);
-//           Point2f xy = wh_2 + Point2f(left_top.x + trt_i.x, left_top.y + trt_i.y);
-//           duration_now = time_point_new - time_begin;
-//           vtr.emplace_back(tr{xy, wh_2, cls, duration_now.count()});
-//        } // -- END if(cls != class_num_musor && object_pix2 > min_object_pix2)
-//    } // -- END for(int i_trt=0; i_trt < vtrt.size(); i_trt++)
-} // -- END yolo_work
-
-void nnet::yolo_work_track(const Point& left_top, vector<tr>& vtr)
-{
-//    time_point_first = system_clock::now();
-//    Mat img4yolo = img_orig(Rect(left_top.x, left_top.y, cfg_w, cfg_h));
-//    if(change_color){cvtColor(img4yolo, img4yolo, change_color);}
-//    const vector<tk::dnn::box>& vtrt = yolo_trt_track->detect(img4yolo);
-//    time_point_new = system_clock::now();
-//    duration_now = time_point_new - time_point_first;
-//    ts->yolo_exec_time = duration_now.count();
-//    vtr.reserve(vtrt.size());
-//    for(int i_trt=0; i_trt < vtrt.size(); i_trt++)
-//    {
-//        const tk::dnn::box& trt_i = vtrt[i_trt];
-//        char cls = vclass_track[trt_i.cl];
-//        int object_pix2 = trt_i.w*trt_i.h;
-//        if(cls != class_num_musor && object_pix2 > min_object_pix2)
-//        {
-//           Point2f wh_2(0.5*trt_i.w, 0.5*trt_i.h);
-//           Point2f xy = wh_2 + Point2f(left_top.x + trt_i.x, left_top.y + trt_i.y);
-//           duration_now = time_point_new - time_begin;
-//           vtr.emplace_back(tr{xy, wh_2, cls, duration_now.count()});
-//        } // -- END if(cls != class_num_musor && object_pix2 > min_object_pix2)
-//    } // -- END for(int i_trt=0; i_trt < vtrt.size(); i_trt++)
-} // -- END yolo_work_track
-#endif
