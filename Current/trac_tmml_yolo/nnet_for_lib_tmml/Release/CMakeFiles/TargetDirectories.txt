@@ -1,3 +1,0 @@
-/media/user/WORK_EXT_NVME1/sublime_tests/Current/trac_tmml_yolo/nnet_for_lib_tmml/Release/CMakeFiles/_trac_tmml_RKNN.dir
-/media/user/WORK_EXT_NVME1/sublime_tests/Current/trac_tmml_yolo/nnet_for_lib_tmml/Release/CMakeFiles/edit_cache.dir
-/media/user/WORK_EXT_NVME1/sublime_tests/Current/trac_tmml_yolo/nnet_for_lib_tmml/Release/CMakeFiles/rebuild_cache.dir
