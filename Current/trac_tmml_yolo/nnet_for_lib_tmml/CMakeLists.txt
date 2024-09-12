@@ -5,7 +5,7 @@ message(STATUS "")
 message(STATUS " Алгоритм генерации библиотеки for neural network")
 project(nnet_for_lib_tmml)
 
-if(CMAKE_HOST_SYSTEM_VERSION MATCHES "rockchip$")
+if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "rockchip$")
     set(rknn_enable 1)  # Rockchip neuro network in Orange Pi
     set(trt_enable 0)
     message("set rknn_enable")
