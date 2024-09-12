@@ -112,6 +112,7 @@ if(${rknn_enable} EQUAL 1)
     add_library(${NNET_LIB} SHARED
        nnet_scan.hpp
        nnet_scan.cpp
+       nnet_rknn.cpp
        ${FROM_LIB}tracshats/trac_api.hpp
        ${FROM_LIB}tracshats/trac_struct.hpp
        )

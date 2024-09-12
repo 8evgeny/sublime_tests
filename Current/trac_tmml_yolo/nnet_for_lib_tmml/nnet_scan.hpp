@@ -27,6 +27,11 @@
 #ifdef TRT_ENABLE
 #include TRT_API
 #endif
+#ifdef RKNN_ENABLE
+#include RKNN_API
+#endif
+
+
 
 class nnet
 {

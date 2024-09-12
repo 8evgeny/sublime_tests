@@ -1,4 +1,5 @@
 #pragma once
+#ifdef TRT_ENABLE
 #include "copter_scan.hpp"
 #include YOLO_API
 
@@ -220,3 +221,5 @@ void trac_tmml::yolo_work_track(const Point& left_top, vector<tr>& vtr)
         } // -- END if(cls != class_num_musor && object_pix2 > min_object_pix2)
     } // -- END for(int i_bb=0; i_bb < vbb.size(); i_bb++)
 } // -- END yolo_work_track
+
+#endif
