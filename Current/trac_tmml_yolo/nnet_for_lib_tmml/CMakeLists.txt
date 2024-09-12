@@ -4,7 +4,17 @@ set(CMAKE_CXX_STANDARD 14)
 message(STATUS "")
 message(STATUS " Алгоритм генерации библиотеки for neural network")
 project(nnet_for_lib_tmml)
-message(${CMAKE_SYSTEM_PROCESSOR})
+
+if(CMAKE_HOST_SYSTEM_VERSION MATCHES "rockchip$")
+    set(rknn_enable 1)  # Rockchip neuro network in Orange Pi
+    set(trt_enable 0)
+    message("set rknn_enable")
+else()
+    set(rknn_enable 0)
+    set(trt_enable 1)   # TensorRT
+    message("set trt_enable")
+endif() # if(${CMAKE_HOST_SYSTEM_VERSION}
+
 # Тип экстраполяции трака (0) - по крайним точкам, (1) - МНК, (2) - Калман:
 set(USE_polinom 0)
 
@@ -12,9 +22,6 @@ set(work_in round) # Работа в круге, вписанном в цент�
 # set(work_in rect) # Работа в круге, вписанном в центр фрейма (round), либо во всём фрейме (rect).
 
 set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../trac_from_lib_tmml/)
-
-set(trt_enable 0)   # TensorRT
-set(rknn_enable 1)  # Rockchip neuro network in Orange Pi
 
 set(FIND_DISC_ID 0) # Привязка к железу вычислителя.
 ##################################################################################################
