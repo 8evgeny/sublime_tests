@@ -171,6 +171,24 @@ class nnet
    bool init_yolo(const char* config_path);
    void yolo_work(const cv::Point& left_top, std::vector<tr>& vtr);
    void yolo_work_track(const cv::Point& left_top, std::vector<tr>& vtr);
+
+#ifdef RKNN_ENABLE
+
+   rknn_app_context_t rknn_app_ctx;
+   image_buffer_t img_buff;
+   object_detect_result_list od_results;
+   const char *model_path = "model/best.rknn";
+   std::vector<tr> vtr;
+   void init_RKNN();
+   void results_save_to_vector(object_detect_result_list & od_results, image_buffer_t & img_buff, std::vector<tr>& vtr);
+   void release_resources(rknn_app_context_t & rknn_app_ctx, image_buffer_t & img_buff);
+
+#endif
+
+
+
+
+
 }; // -- END nnet
 
 

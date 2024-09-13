@@ -37,6 +37,11 @@ nnet::nnet(const string& config_path, bool& ok)
    #endif // -------------------------- END FIND DISC_ID -----------------------------------------------
    ok = get_ini_params(config_path);
    if(!ok){cout << "Not get_ini_params!" << endl;}
+
+#ifdef RKNN_ENABLE
+   init_RKNN();
+#endif
+
 } // -- END nnet
 
 nnet::~nnet()

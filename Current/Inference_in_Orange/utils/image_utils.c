@@ -686,12 +686,12 @@ int convert_image(image_buffer_t* src_img, image_buffer_t* dst_img, image_rect_t
     return ret;
 }
 
-int convert_image_with_letterbox(image_buffer_t* src_image, image_buffer_t* dst_image, letterbox_t* letterbox, char color)
+int convert_image_with_letterbox(image_buffer_t* img_buff, image_buffer_t* dst_image, letterbox_t* letterbox, char color)
 {
     int ret = 0;
     int allow_slight_change = 1;
-    int src_w = src_image->width;
-    int src_h = src_image->height;
+    int src_w = img_buff->width;
+    int src_h = img_buff->height;
     int dst_w = dst_image->width;
     int dst_h = dst_image->height;
     int resize_w = dst_w;
@@ -707,8 +707,8 @@ int convert_image_with_letterbox(image_buffer_t* src_image, image_buffer_t* dst_
     image_rect_t src_box;
     src_box.left = 0;
     src_box.top = 0;
-    src_box.right = src_image->width - 1;
-    src_box.bottom = src_image->height - 1;
+    src_box.right = img_buff->width - 1;
+    src_box.bottom = img_buff->height - 1;
 
     image_rect_t dst_box;
     dst_box.left = 0;
@@ -777,6 +777,6 @@ int convert_image_with_letterbox(image_buffer_t* src_image, image_buffer_t* dst_
             return -1;
         }
     }
-    ret = convert_image(src_image, dst_image, &src_box, &dst_box, color);
+    ret = convert_image(img_buff, dst_image, &src_box, &dst_box, color);
     return ret;
 }

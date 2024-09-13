@@ -54,7 +54,7 @@ if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "rockchip$") #OrangePi
     set(RKNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/RKNN_API)
     add_definitions(-DRKNN_ENABLE)
     message("----- RKNN enable")
-    add_definitions(-DRKNN_API="${RKNN_DIRECTORY}/rknn_api.hpp")
+    add_definitions(-DRKNN_API="${RKNN_DIRECTORY}/yolov8.h")
     link_directories(${RKNN_DIRECTORY})
 
     file(COPY ${RKNN_DIRECTORY}/model DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
