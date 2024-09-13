@@ -27,6 +27,9 @@ bool input_data_from_mat_or_image = true; //true - from mat  false - from image
 Mat img_orig;
 high_resolution_clock::time_point time_start_inference, time_end_inference, time_start_iterations, time_end_iterations;
 vector<tr> vtr;
+rknn_app_context_t rknn_app_ctx;
+image_buffer_t src_image;
+object_detect_result_list od_results;
 
 void yolo_work(const Point& left_top, vector<tr>& vtr)
 {
@@ -116,15 +119,9 @@ void release_resources(rknn_app_context_t & rknn_app_ctx, image_buffer_t & src_i
     }//END if (!input_data_from_mat_or_image)
 }//END void release_resources
 
-int main(int argc, char **argv)
+int load_data(const char * image_path)
 {
-    if (argc != 2)
-    {
-        printf("error image_path\n");
-        return -1;
-    }
-    const char *image_path = argv[1];
-
+    int ret = 0;
     if(input_data_from_mat_or_image)
     {
         img_orig = imread(image_path, IMREAD_UNCHANGED);
@@ -133,29 +130,6 @@ int main(int argc, char **argv)
     }
 
 
-    rknn_app_context_t rknn_app_ctx;
-    memset(&rknn_app_ctx, 0, sizeof(rknn_app_context_t));
-
-    init_post_process();
-    image_buffer_t src_image;
-
-    memset(&src_image, 0, sizeof(image_buffer_t));
-
-    int ret = init_yolov8_model(model_path, &rknn_app_ctx);
-    if (ret != 0)
-    {
-        printf("init_yolov8_model fail! ret=%d model_path=%s\n", ret, model_path);
-        release_resources(rknn_app_ctx, src_image);
-    }//END if (ret != 0)
-
-    if (input_data_from_mat_or_image)// Input Mat
-    {
-        src_image.width = 256;
-        src_image.height = 256;
-        src_image.format = IMAGE_FORMAT_RGB888;
-        src_image.virt_addr = img_orig.data;
-        src_image.size=196608;
-    }//END if (input_data_from_mat_or_image)
     if (!input_data_from_mat_or_image)// Input Image file
     {
         ret = read_image(image_path, &src_image);
@@ -166,12 +140,44 @@ int main(int argc, char **argv)
             return -1;
         }//END if (ret != 0)
     }//END if (!input_data_from_mat_or_image)
+    return ret;
+}
 
-    object_detect_result_list od_results;
+void init_RKNN()
+{
+    memset(&rknn_app_ctx, 0, sizeof(rknn_app_context_t));
+    init_post_process();
+    memset(&src_image, 0, sizeof(image_buffer_t));
+    int ret = init_yolov8_model(model_path, &rknn_app_ctx);
+    if (ret != 0)
+    {
+        printf("init_yolov8_model fail! ret=%d model_path=%s\n", ret, model_path);
+        release_resources(rknn_app_ctx, src_image);
+    }//END if (ret != 0)
+    if (input_data_from_mat_or_image)// Input Mat
+    {
+        src_image.width = 256;
+        src_image.height = 256;
+        src_image.format = IMAGE_FORMAT_RGB888;
+        src_image.virt_addr = img_orig.data;
+        src_image.size=196608;
+    }//END if (input_data_from_mat_or_image)
+}
 
+int main(int argc, char **argv)
+{
+    if (argc != 2)
+    {
+        printf("error image_path\n");
+        return -1;
+    }
+
+    load_data(argv[1]);
+
+    init_RKNN();
+
+    int ret = 0;
     time_start_iterations = high_resolution_clock::now();
-
-
     for (int i = 0; i < num_iterations; ++i)
     {
         time_start_inference = high_resolution_clock::now();
@@ -179,13 +185,11 @@ int main(int argc, char **argv)
         time_end_inference = high_resolution_clock::now();
         results_save_to_vector(od_results, src_image, vtr);
     }//END for (int i = 0; i < num_iterations; ++i)
-
     time_end_iterations = high_resolution_clock::now();
     auto time_iterations = duration_cast<microseconds>(time_end_iterations - time_start_iterations);
+
     printf("\nnum_iterations = %d\ntime_inference = %.2f ms \n\n", num_iterations, (float)time_iterations.count()/(1000 * num_iterations) );
-
     results_print_and_save(od_results, src_image);
-
     release_resources(rknn_app_ctx, src_image);
 
     return 0;
