@@ -5,7 +5,7 @@ message(STATUS "")
 message(STATUS " Алгоритм генерации библиотеки для сканирующего коптера")
 project(nnet_for_lib_tmml)
 
-set(NNET_LIB _trac_tmml_TKDNN)
+
 
 # Тип экстраполяции трака (0) - по крайним точкам, (1) - МНК, (2) - Калман:
 set(USE_polinom 0)
@@ -13,25 +13,27 @@ set(USE_polinom 0)
 set(work_in round) # Работа в круге, вписанном в центр фрейма (round), либо во всём фрейме (rect).
 # set(work_in rect) # Работа в круге, вписанном в центр фрейма (round), либо во всём фрейме (rect).
 
-if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "rockchip$") #OrangePi
-    set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_static)
-    set(ROCKCHIP 1)
-else()
-    set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda_static)
-    set(ROCKCHIP 0)
-endif()
-message("____________________OpenCV_DIR: ${OpenCV_DIR}")
-
 set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../trac_from_lib_tmml/)
 
 set(trt_enable 1) # TensorRT
 set(yolo_enable 0) # Yolo
-
-
-
 set(USE_YOLO_VERSION v4) # Использование версии Yolo (v3 или v4):
 set(FIND_DISC_ID 0) # Привязка к железу вычислителя.
+set(rknn_enable 1) # RKNN on OrangePi5
 ##################################################################################################
+
+if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "rockchip$") #OrangePi
+    set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_static)
+    set(HOST_ROCKCHIP 1)
+    set(NNET_LIB _trac_tmml_RKNN)
+else()
+    set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda_static)
+    set(HOST_ROCKCHIP 0)
+    set(NNET_LIB _trac_tmml_TKDNN)
+endif()
+message("____________________OpenCV_DIR: ${OpenCV_DIR}")
+
+
 set(threads_num ${nproc}) # Число потоков компиляции:
 set(CMAKE_MAKE_PROGRAM "${CMAKE_MAKE_PROGRAM} -j${threads_num}")
 
@@ -90,7 +92,7 @@ if(${yolo_enable} EQUAL 1)
 endif() # if(${yolo_enable} EQUAL 1)
 
 ############################## IF TRT_ENABLE:
-if(${trt_enable} EQUAL 1  AND ${ROCKCHIP} EQUAL 0)
+if(${trt_enable} EQUAL 1  AND ${HOST_ROCKCHIP} EQUAL 0)
    set(TKDNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../tkDNN)
    add_definitions(-DTRT_ENABLE)
    message("____________________TensorRT enable")
@@ -119,3 +121,31 @@ if(${trt_enable} EQUAL 1  AND ${ROCKCHIP} EQUAL 0)
    target_link_libraries(${NNET_LIB} PRIVATE ${CUDA_LIBRARIES} ${CUDA_CUBLAS_LIBRARIES} ${CUDNN_LIBRARIES} -ltkDNN -lkernels -ltkdnn_yolo)
    target_link_libraries(${NNET_LIB} PRIVATE ${CUDA_LIBRARIES} ${CUDA_CUBLAS_LIBRARIES} ${CUDNN_LIBRARIES} -ltkDNN -lkernels -ltkdnn_yolo)
 endif() # if(${trt_enable} EQUAL 1)
+
+
+############################## IF RKNN_ENABLE:
+if(${rknn_enable} EQUAL 1  AND ${HOST_ROCKCHIP} EQUAL 1)
+   set(TKDNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../tkDNN)
+   add_definitions(-DTRT_ENABLE)
+   message("____________________RKNN enable")
+   add_definitions(-DTRT_API="${TKDNN_DIRECTORY}/yolo_trt_api.hpp")
+   link_directories(${TKDNN_DIRECTORY})
+   set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+   message("CMAKE_MODULE_PATH = " ${CMAKE_MODULE_PATH} )
+
+   include_directories(
+       ${TKDNN_DIRECTORY}
+       ${OPENCV_INCLUDE_DIRS}
+       ${NVINFER_INCLUDES}
+       ${CUDA_INCLUDE_DIRS}
+       ${CUDNN_INCLUDE_DIR}
+   )
+   add_library(${NNET_LIB} SHARED
+       nnet_scan.hpp
+       nnet_scan.cpp
+       nnet_trt.cpp
+       ${FROM_LIB}tracshats/trac_api.hpp
+       ${FROM_LIB}tracshats/trac_struct.hpp
+       )
+
+endif()
