@@ -6,7 +6,6 @@ message(STATUS " Алгоритм генерации библиотеки для
 project(nnet_for_lib_tmml)
 
 
-
 # Тип экстраполяции трака (0) - по крайним точкам, (1) - МНК, (2) - Калман:
 set(USE_polinom 0)
 
@@ -125,27 +124,51 @@ endif() # if(${trt_enable} EQUAL 1)
 
 ############################## IF RKNN_ENABLE:
 if(${rknn_enable} EQUAL 1  AND ${HOST_ROCKCHIP} EQUAL 1)
-   set(TKDNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../tkDNN)
-   add_definitions(-DTRT_ENABLE)
+   set(RKNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/RKNN_API)
+   add_definitions(-DRKNN_ENABLE)
    message("____________________RKNN enable")
-   add_definitions(-DTRT_API="${TKDNN_DIRECTORY}/yolo_trt_api.hpp")
-   link_directories(${TKDNN_DIRECTORY})
-   set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-   message("CMAKE_MODULE_PATH = " ${CMAKE_MODULE_PATH} )
+   add_definitions(-DRKNN_API="${RKNN_DIRECTORY}/yolov8.h")
+   link_directories(${RKNN_DIRECTORY})
+#   set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+#   message("CMAKE_MODULE_PATH = " ${CMAKE_MODULE_PATH} )
 
-   include_directories(
-       ${TKDNN_DIRECTORY}
-       ${OPENCV_INCLUDE_DIRS}
-       ${NVINFER_INCLUDES}
-       ${CUDA_INCLUDE_DIRS}
-       ${CUDNN_INCLUDE_DIR}
-   )
+   file(COPY ${RKNN_DIRECTORY}/model DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+   add_subdirectory(${RKNN_DIRECTORY}/3rdparty/ 3rdparty.out)
+   add_subdirectory(${RKNN_DIRECTORY}/utils/ utils.out)
+   file(GLOB RKNN_SRC ${RKNN_DIRECTORY}/*.cc)
+   message("RKNN_SRC: ${RKNN_SRC}")
+
    add_library(${NNET_LIB} SHARED
+       ${RKNN_SRC}
        nnet_scan.hpp
        nnet_scan.cpp
-       nnet_trt.cpp
+#       nnet_trt.cpp
+       nnet_rknn.cpp
        ${FROM_LIB}tracshats/trac_api.hpp
        ${FROM_LIB}tracshats/trac_struct.hpp
        )
+    set_target_properties(${NNET_LIB} PROPERTIES LINKER_LANGUAGE CXX)
+    target_include_directories(${NNET_LIB} PRIVATE
+        ${FROM_LIB}tracshats
+        ${RKNN_DIRECTORY}
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${RKNN_DIRECTORY}/3rdparty/rknpu2/include
+        ${RKNN_DIRECTORY}/3rdparty/opencv/opencv-linux-aarch64/include/opencv2
+    )
+
+
+   set(THREADS_PREFER_PTHREAD_FLAG ON)
+   find_package(Threads REQUIRED)
+   target_link_libraries(${NNET_LIB}
+       Threads::Threads
+       imageutils
+       fileutils
+       imagedrawing
+       ${RKNN_DIRECTORY}/lib/librknnrt.so
+       ${RKNN_DIRECTORY}/lib/librga.so
+       dl
+#       ${OpenCV_LIBS}
+       )
+
 
 endif()
