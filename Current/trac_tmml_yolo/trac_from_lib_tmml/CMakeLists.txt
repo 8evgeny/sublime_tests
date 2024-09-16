@@ -7,7 +7,7 @@ message(STATUS "----------------------------CMAKE BEGINING for project trac_from
 
 
 # Использование GPU:
-set(USE_GPU 2) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
+set(USE_GPU 1) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
 
 
 # Тип корреляции при template matching для USE_CORR_TYPE:
@@ -510,7 +510,13 @@ else()
     endif() # END if(${USE_GPU} EQUAL 1)
 
     if(${USE_GPU} EQUAL 2)
-        set(run_name run_${GUI_RUN_PSTFX}_${USE_COLOR_CHANNEL_MODE}_${USE_CORR_TYPE}_CL)
+        if(NOT ${USE_CORR_TYPE} EQUAL 10)
+            set(run_name run_${GUI_RUN_PSTFX}_${USE_COLOR_CHANNEL_MODE}_${USE_CORR_TYPE}_CL)
+        endif() # END if(NOT ${USE_CORR_TYPE} EQUAL 10)
+        if(${USE_CORR_TYPE} EQUAL 10)
+            set(run_name run_${GUI_RUN_PSTFX}_${USE_COLOR_CHANNEL_MODE}_RKNN)
+        endif() # END if(${USE_CORR_TYPE} EQUAL 10)
+
     endif() # END if(${USE_GPU} EQUAL 2)
 
     target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} ${GPU_LIB} ${trac_lib_name} -lrt -lpthread)
