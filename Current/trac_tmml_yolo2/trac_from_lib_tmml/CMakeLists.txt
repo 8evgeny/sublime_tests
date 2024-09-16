@@ -6,7 +6,7 @@ message(STATUS "")
 message(STATUS "-------------------------------- CMAKE BEGINING for project trac_from_lib_tmml")
 
 # Использование GPU:
-set(USE_GPU 1) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
+set(USE_GPU 3) # (0 - CPU, 1 - CUDA, 2 - OPENCL, 3 - NPU)
 
 # Тип корреляции при template matching для USE_CORR_TYPE:
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)
@@ -46,18 +46,19 @@ set(USE_PCAP 0)
 if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "rockchip$") #OrangePi
     set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib)
     set(HOST_ROCKCHIP 1)
+    set(RKDNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../nnet_for_lib_tmml/RKNN_API)
 else()
     set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda)
     set(HOST_ROCKCHIP 0)
+    # Использование версии Yolo v3, v4 или trt:
+    set(USE_YOLO_VERSION trt)
+    set(GPU_LIB_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../darknet4)
+    set(TKDNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../tkDNN)
 endif()
 
 set(USE_CUDA_RESIZE_DEVICE_IMX219 0) # использование resize через cv::cuda на уровне device
 set(SYSTEM_ENDIANNESS LITTLE) # системный порядок байтов LITTLE / BIG (зачастую LITTLE).
 
-# Использование версии Yolo v3, v4 или trt:
-set(USE_YOLO_VERSION trt)
-set(GPU_LIB_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../darknet4)
-set(TKDNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../tkDNN)
 
 if(${USE_CORSAIR_400_RAW} EQUAL 1)
     set(DBG_VIDEO_SENDER 0) # включение отправки видео и командного обмена с эмулятором шара (QtProg/poes400/corsair_terminal_emulator)
@@ -107,6 +108,7 @@ else()
     add_definitions(-DCCM_${USE_COLOR_CHANNEL_MODE})
 endif()
 
+
 if(${USE_GPU} EQUAL 0)
     set(trac_lib_name -l_trac_tmml_${USE_CORR_TYPE}_CPU) # Название подключаемой библиотеки CPU
     add_definitions(-DUSE_CPU)
@@ -135,6 +137,7 @@ if(${USE_GPU} EQUAL 1)
     message(STATUS "--------------------------- USE_CUDA")
 endif() # END if(${USE_GPU} EQUAL 1)
 
+
 if(${USE_GPU} EQUAL 2)
     set(trac_lib_name -l_trac_tmml_${USE_CORR_TYPE}_CL) # Название подключаемой библиотеки CUDA
     add_definitions(-DUSE_CL)
@@ -148,6 +151,19 @@ if(${USE_ROI_TMP} EQUAL 1)
     add_definitions(-DUSE_ROI_TMP)
 endif()
 
+if(${USE_GPU} EQUAL 3)
+    if(${USE_CORR_TYPE} EQUAL 10)
+        set(GPU_PREFIX gpu)
+        message(STATUS "--------------------------- USE_CORR_TYPE=${USE_CORR_TYPE}")
+        message(STATUS "--------------------------- USE_TKDNN")
+        add_definitions(-Dclass_name=nnet)
+        add_definitions(-Dcreate_name=create_nnet)
+        link_directories(${RKDNN_DIRECTORY})
+
+    endif() # END if(${USE_CORR_TYPE} EQUAL 10)
+endif() # END if(${USE_GPU} EQUAL 3)
+
+
 if(${USE_GUI} EQUAL 1)
     add_definitions(-DGUI_OK)
     message(STATUS "--------------------------- USE_GUI=1")
@@ -158,7 +174,12 @@ endif()
 
 link_directories(${CMAKE_CURRENT_LIST_DIR})
 
+
+
 find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
+
+
+
 message(OpenCV_INCLUDE_DIRS=${OpenCV_INCLUDE_DIRS})
 include_directories(${OpenCV_INCLUDE_DIRS})
 
@@ -516,6 +537,11 @@ else()
     if(${USE_GPU} EQUAL 2)
         set(run_name run_${GUI_RUN_PSTFX}_${USE_COLOR_CHANNEL_MODE}_${USE_CORR_TYPE}_CL)
     endif() # END if(${USE_GPU} EQUAL 2)
+
+    if(${USE_GPU} EQUAL 3)
+        set(run_name run_${GUI_RUN_PSTFX}_${USE_COLOR_CHANNEL_MODE}_${USE_CORR_TYPE}_RKNN)
+    endif() # END if(${USE_GPU} EQUAL 2)
+
 
     target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} ${GPU_LIB} ${trac_lib_name} -lrt -lpthread)
     target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} ${GPU_LIB} ${trac_lib_name} -lrt -lpthread)
