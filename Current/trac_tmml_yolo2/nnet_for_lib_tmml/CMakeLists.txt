@@ -13,12 +13,22 @@ set(USE_polinom 0)
 set(work_in round) # Работа в круге, вписанном в центр фрейма (round), либо во всём фрейме (rect).
 # set(work_in rect) # Работа в круге, вписанном в центр фрейма (round), либо во всём фрейме (rect).
 
-set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda_static)
+if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "rockchip$") #OrangePi
+    set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_static)
+    set(ROCKCHIP 1)
+else()
+    set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda_static)
+    set(ROCKCHIP 0)
+endif()
+message("____________________OpenCV_DIR: ${OpenCV_DIR}")
 
 set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../trac_from_lib_tmml/)
 
 set(trt_enable 1) # TensorRT
 set(yolo_enable 0) # Yolo
+
+
+
 set(USE_YOLO_VERSION v4) # Использование версии Yolo (v3 или v4):
 set(FIND_DISC_ID 0) # Привязка к железу вычислителя.
 ##################################################################################################
@@ -80,10 +90,10 @@ if(${yolo_enable} EQUAL 1)
 endif() # if(${yolo_enable} EQUAL 1)
 
 ############################## IF TRT_ENABLE:
-if(${trt_enable} EQUAL 1)
+if(${trt_enable} EQUAL 1  AND ${ROCKCHIP} EQUAL 0)
    set(TKDNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../../tkDNN)
    add_definitions(-DTRT_ENABLE)
-   message("----- TensorRT enable")
+   message("____________________TensorRT enable")
    add_definitions(-DTRT_API="${TKDNN_DIRECTORY}/yolo_trt_api.hpp")
    link_directories(${TKDNN_DIRECTORY})
    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)

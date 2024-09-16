@@ -3,7 +3,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 message(STATUS "")
 message(STATUS " Алгоритм генерации библиотеки for neural network")
-project(nnet_for_lib_tmml)
+project(1_nnet_for_lib_tmml)
 
 # Тип экстраполяции трака (0) - по крайним точкам, (1) - МНК, (2) - Калман:
 set(USE_polinom 0)
