@@ -3,7 +3,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(trac_from_lib_tmml)
 message(STATUS "")
-message(STATUS "-------------------------------- CMAKE BEGINING for project trac_from_lib_tmml")
+message(STATUS "----------------------------CMAKE BEGINING for project trac_from_lib_tmml")
 
 
 # Использование GPU:
@@ -45,7 +45,12 @@ set(USE_CORSAIR_400_RAW 0) # 10 (Шар ОЭЦН400, сырой UDP видеоп
 set(USE_ETHERNET_CONNECTION 0)
 set(USE_PCAP 0)
 
-set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib)
+if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "rockchip$") #OrangePi
+    set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib)
+else()
+    set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda)
+endif()
+message("_______________________________OpenCV DIR: ${OpenCV_DIR}")
 
 set(USE_CUDA_RESIZE_DEVICE_IMX219 0) # использование resize через cv::cuda на уровне device
 set(SYSTEM_ENDIANNESS LITTLE) # системный порядок байтов LITTLE / BIG (зачастую LITTLE).
