@@ -6,7 +6,7 @@ message(STATUS "")
 message(STATUS "-------------------------------- CMAKE BEGINING for project trac_from_lib_tmml")
 
 # Использование GPU:
-set(USE_GPU 3) # (0 - CPU, 1 - CUDA, 2 - OPENCL, 3 - NPU)
+set(USE_GPU 1) # (0 - CPU, 1 - CUDA, 2 - OPENCL, 3 - NPU)
 
 # Тип корреляции при template matching для USE_CORR_TYPE:
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)
@@ -118,7 +118,7 @@ if(${USE_GPU} EQUAL 0)
     add_definitions(-Dcreate_name=create_track)
 endif() # END if(${USE_GPU} EQUAL 0)
 
-if(${USE_GPU} EQUAL 1)
+if(${USE_GPU} EQUAL 1 AND ${HOST_ROCKCHIP} EQUAL 0 )
     if(NOT ${USE_CORR_TYPE} EQUAL 10)
         set(trac_lib_name -l_trac_tmml_${USE_CORR_TYPE}_CUDA) # Название подключаемой библиотеки CUDA
         add_definitions(-Dclass_name=trac_tmml)
@@ -151,11 +151,12 @@ if(${USE_ROI_TMP} EQUAL 1)
     add_definitions(-DUSE_ROI_TMP)
 endif()
 
-if(${USE_GPU} EQUAL 3)
+if(${USE_GPU} EQUAL 3 AND ${HOST_ROCKCHIP} EQUAL 1)
     if(${USE_CORR_TYPE} EQUAL 10)
+        set(trac_lib_name -l_trac_tmml_RKNN)
         set(GPU_PREFIX gpu)
         message(STATUS "--------------------------- USE_CORR_TYPE=${USE_CORR_TYPE}")
-        message(STATUS "--------------------------- USE_TKDNN")
+        message(STATUS "--------------------------- USE_RKNN")
         add_definitions(-Dclass_name=nnet)
         add_definitions(-Dcreate_name=create_nnet)
         link_directories(${RKDNN_DIRECTORY})
