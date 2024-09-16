@@ -168,7 +168,9 @@ class nnet
    bool get_ini_params(const string& config);
    void find_candidates();
    bool get_ini_params4yolo(const std::string& config);
+#ifndef RKNN_ENABLE
    bool init_yolo(const char* config_path);
+#endif
    void yolo_work(const cv::Point& left_top, std::vector<tr>& vtr);
    void yolo_work_track(const cv::Point& left_top, std::vector<tr>& vtr);
 

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+﻿cmake_minimum_required(VERSION 3.5)
 set(CMAKE_CXX_STANDARD 17)
 
 project(trac_from_lib_tmml)
@@ -6,7 +6,7 @@ message(STATUS "")
 message(STATUS "-------------------------------- CMAKE BEGINING for project trac_from_lib_tmml")
 
 # Использование GPU:
-set(USE_GPU 1) # (0 - CPU, 1 - CUDA, 2 - OPENCL, 3 - NPU)
+set(USE_GPU 3) # (0 - CPU, 1 - CUDA, 2 - OPENCL, 3 - NPU)
 
 # Тип корреляции при template matching для USE_CORR_TYPE:
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)
@@ -540,15 +540,7 @@ else()
     endif() # END if(${USE_GPU} EQUAL 2)
 
 
-    target_link_libraries(trac_from_lib_tmml
-        ${OpenCV_LIBS}
+    target_link_libraries(trac_from_lib_tmml  ${OpenCV_LIBS} ${trac_lib_name} -lrt -lpthread )
+    target_link_libraries(trac_from_lib_tmml  ${OpenCV_LIBS} ${trac_lib_name} -lrt -lpthread )
 
-        ${trac_lib_name}
-        -lrt
-        -lpthread
-        )
-
-
-
-    target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} ${GPU_LIB} ${trac_lib_name} -lrt -lpthread)
     set_target_properties(trac_from_lib_tmml PROPERTIES OUTPUT_NAME ${run_name})

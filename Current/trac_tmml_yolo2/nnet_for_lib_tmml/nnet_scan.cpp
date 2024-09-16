@@ -38,10 +38,6 @@ nnet::nnet(const string& config_path, bool& ok)
    ok = get_ini_params(config_path);
    if(!ok){cout << "Not get_ini_params!" << endl;}
 
-#ifdef RKNN_ENABLE
-   init_RKNN();
-#endif
-
 } // -- END nnet
 
 nnet::~nnet()
@@ -127,8 +123,13 @@ int get_trac(shared_ptr<nnet>& copt)
 
 bool nnet::init_copter_scan(const char* config_path)
 {
+#ifndef RKNN_ENABLE
     bool init_yolo_ok = init_yolo(config_path);
     if(!init_yolo_ok){return 0;}
+#endif
+#ifdef RKNN_ENABLE
+   init_RKNN();
+#endif
     fr_w0_1 = 1.f/fr_w0;
     fr_h0_1 = 1.f/fr_h0;
     int num_x = fr_w0/cfg_w;
