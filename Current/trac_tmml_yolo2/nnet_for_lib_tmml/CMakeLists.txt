@@ -61,8 +61,6 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${FROM_LIB}lib)
 
 include(${CMAKE_CURRENT_LIST_DIR}/opencv_static.cmake)
 
-#find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
-#include_directories(${OpenCV_DIR})
 
 if(${FIND_DISC_ID} EQUAL 1)
   add_definitions(-DFIND_DISC_ID)
@@ -130,8 +128,17 @@ if(${rknn_enable} EQUAL 1  AND ${HOST_ROCKCHIP} EQUAL 1)
    message("____________________RKNN enable")
    add_definitions(-DRKNN_API="${RKNN_DIRECTORY}/yolov8.h")
    link_directories(${RKNN_DIRECTORY})
-#   set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-#   message("CMAKE_MODULE_PATH = " ${CMAKE_MODULE_PATH} )
+   set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+   message("CMAKE_MODULE_PATH = " ${CMAKE_MODULE_PATH} )
+
+
+   find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Gui Widgets REQUIRED)
+   find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets REQUIRED)
+
+   set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib)
+
+   find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
+   include_directories(${OpenCV_DIR})
 
    file(COPY ${RKNN_DIRECTORY}/model DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
    add_subdirectory(${RKNN_DIRECTORY}/3rdparty/ 3rdparty.out)
@@ -143,7 +150,6 @@ if(${rknn_enable} EQUAL 1  AND ${HOST_ROCKCHIP} EQUAL 1)
        ${RKNN_SRC}
        nnet_scan.hpp
        nnet_scan.cpp
-#       nnet_trt.cpp
        nnet_rknn.cpp
        ${FROM_LIB}tracshats/trac_api.hpp
        ${FROM_LIB}tracshats/trac_struct.hpp
@@ -154,9 +160,8 @@ if(${rknn_enable} EQUAL 1  AND ${HOST_ROCKCHIP} EQUAL 1)
         ${RKNN_DIRECTORY}
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${RKNN_DIRECTORY}/3rdparty/rknpu2/include
-        ${RKNN_DIRECTORY}/3rdparty/opencv/opencv-linux-aarch64/include
+#        ${RKNN_DIRECTORY}/3rdparty/opencv/opencv-linux-aarch64/include
     )
-
 
    set(THREADS_PREFER_PTHREAD_FLAG ON)
    find_package(Threads REQUIRED)
@@ -168,7 +173,7 @@ if(${rknn_enable} EQUAL 1  AND ${HOST_ROCKCHIP} EQUAL 1)
        ${RKNN_DIRECTORY}/lib/librknnrt.so
        ${RKNN_DIRECTORY}/lib/librga.so
        dl
-#       ${OpenCV_LIBS}
+       ${OpenCV_LIBS}
        )
 
 

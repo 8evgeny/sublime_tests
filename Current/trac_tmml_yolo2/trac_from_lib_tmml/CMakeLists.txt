@@ -6,7 +6,7 @@ message(STATUS "")
 message(STATUS "-------------------------------- CMAKE BEGINING for project trac_from_lib_tmml")
 
 # Использование GPU:
-set(USE_GPU 1) # (0 - CPU, 1 - CUDA, 2 - OPENCL, 3 - NPU)
+set(USE_GPU 3) # (0 - CPU, 1 - CUDA, 2 - OPENCL, 3 - NPU)
 
 # Тип корреляции при template matching для USE_CORR_TYPE:
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)
@@ -73,7 +73,7 @@ if(${USE_GPU} EQUAL 0)
     message(STATUS "--------------------------- USE_CPU")
 endif() # END if(${USE_GPU} EQUAL 0)
 
-if(${USE_GPU} EQUAL 1)
+if(${USE_GPU} EQUAL 1 AND ${HOST_ROCKCHIP} EQUAL 0)
     if(${USE_CORR_TYPE} EQUAL 10)
         set(GPU_PREFIX gpu)
         if(${USE_YOLO_VERSION} STREQUAL trt)
@@ -153,6 +153,8 @@ endif()
 
 if(${USE_GPU} EQUAL 3 AND ${HOST_ROCKCHIP} EQUAL 1)
     if(${USE_CORR_TYPE} EQUAL 10)
+        add_definitions(-DRKNN_ENABLE)
+#        set(GPU_LIB /media/user/WORK_EXT_NVME1/sublime_tests/Current/trac_tmml_yolo2/nnet_for_lib_tmml/RKNN_API/3rdparty/opencv/opencv-linux-aarch64/lib/libopencv_core.a)
         set(trac_lib_name -l_trac_tmml_RKNN)
         set(GPU_PREFIX gpu)
         message(STATUS "--------------------------- USE_CORR_TYPE=${USE_CORR_TYPE}")
@@ -175,14 +177,11 @@ endif()
 
 link_directories(${CMAKE_CURRENT_LIST_DIR})
 
-
+set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib)
 
 find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
+include_directories(${OpenCV_DIR})
 
-
-
-message(OpenCV_INCLUDE_DIRS=${OpenCV_INCLUDE_DIRS})
-include_directories(${OpenCV_INCLUDE_DIRS})
 
 link_directories(${CMAKE_CURRENT_LIST_DIR}/lib)
 
@@ -544,6 +543,15 @@ else()
     endif() # END if(${USE_GPU} EQUAL 2)
 
 
-    target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} ${GPU_LIB} ${trac_lib_name} -lrt -lpthread)
+    target_link_libraries(trac_from_lib_tmml
+        ${OpenCV_LIBS}
+
+        ${trac_lib_name}
+        -lrt
+        -lpthread
+        )
+
+
+
     target_link_libraries(trac_from_lib_tmml ${OpenCV_LIBS} ${GPU_LIB} ${trac_lib_name} -lrt -lpthread)
     set_target_properties(trac_from_lib_tmml PROPERTIES OUTPUT_NAME ${run_name})
