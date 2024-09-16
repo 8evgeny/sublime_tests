@@ -6,7 +6,7 @@ message(STATUS "")
 message(STATUS "-------------------------------- CMAKE BEGINING for project trac_from_lib_tmml")
 
 # Использование GPU:
-set(USE_GPU 3) # (0 - CPU, 1 - CUDA, 2 - OPENCL, 3 - NPU)
+set(USE_GPU 1) # (0 - CPU, 1 - CUDA, 2 - OPENCL, 3 - NPU)
 
 # Тип корреляции при template matching для USE_CORR_TYPE:
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)
@@ -177,11 +177,8 @@ endif()
 
 link_directories(${CMAKE_CURRENT_LIST_DIR})
 
-set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib)
-
 find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
 include_directories(${OpenCV_DIR})
-
 
 link_directories(${CMAKE_CURRENT_LIST_DIR}/lib)
 
