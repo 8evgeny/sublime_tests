@@ -25,6 +25,27 @@ void MainWindow::diagnostic()
 void MainWindow::channel_P()
 {
 //Канал легких
+    //Эндокринология Р
+    if (((Channel_P == "C/2")||(Channel_P == "C/1")||(Channel_P == "C/0")||(Channel_P == "C/-1")||(Channel_P == "C/-2")) &&
+        ((Channel_TR == "C/2")||(Channel_TR == "C/1")))
+        {
+            diagnosic_message.append("Канал Р: (2мд: P/С + TR/C/1,2) эндокринология:\n "
+                                     "недавно-склонность-давно(см.Р) появилась гиперфункция потовых/сальных желез.\n");
+        }
+    if (((Channel_P == "C/2")||(Channel_P == "C/1")||(Channel_P == "C/0")||(Channel_P == "C/-1")||(Channel_P == "C/-2")) &&
+        ((Channel_TR == "C/0")))
+        {
+            diagnosic_message.append("Канал Р: (2мд: P/С + TR/C/0) эндокринология:\n "
+                                     "недавно-склонность-давно(см.Р) появилась дисфункция потовых/сальных желез.\n");
+        }
+    if (((Channel_P == "C/2")||(Channel_P == "C/1")||(Channel_P == "C/0")||(Channel_P == "C/-1")||(Channel_P == "C/-2")) &&
+        ((Channel_TR == "C/-1")||(Channel_TR == "C/-2")))
+        {
+            diagnosic_message.append("Канал Р: (2мд: P/С + TR/C/-1-2) эндокринология:\n "
+                                     "недавно-склонность-давно(см.Р) появилась гипофункция потовых/сальных желез.\n");
+        }
+     //Эндокринология Р - конец
+
     if (((Channel_P == "B/2")||(Channel_P == "B/-2")) &&
         ((Channel_RP == "A/2")||(Channel_RP == "B/2")||(Channel_RP == "C/2")||(Channel_RP == "A/-2")||(Channel_RP == "B/-2")||(Channel_RP == "C/-2")))
         {
@@ -167,6 +188,28 @@ void MainWindow::channel_P()
 
 void MainWindow::channel_MC()
 {
+//Канал перикарда
+    //Эндокринология МС
+    if (((Channel_MC == "C/2")||(Channel_MC == "C/1")||(Channel_MC == "C/0")||(Channel_MC == "C/-1")||(Channel_MC == "C/-2")) &&
+        ((Channel_TR == "C/2")||(Channel_TR == "C/1")))
+        {
+            diagnosic_message.append("Канал MC: (2мд: MC/С + TR/C/12) эндокринология:\n "
+                                     "недавно-склонность-давно(см.MC) появилась гиперфункция матки/простаты.\n");
+        }
+    if (((Channel_MC == "C/2")||(Channel_MC == "C/1")||(Channel_MC == "C/0")||(Channel_MC == "C/-1")||(Channel_MC == "C/-2")) &&
+        ((Channel_TR == "C/0")))
+        {
+            diagnosic_message.append("Канал MC: (2мд: MC/С + TR/C/0) эндокринология:\n "
+                                     "недавно-склонность-давно(см.MC) появилась дисфункция матки/простаты.\n");
+        }
+    if (((Channel_MC == "C/2")||(Channel_MC == "C/1")||(Channel_MC == "C/0")||(Channel_MC == "C/-1")||(Channel_MC == "C/-2")) &&
+        ((Channel_TR == "C/-1")||(Channel_TR == "C/-2")))
+        {
+            diagnosic_message.append("Канал MC: (2мд: MC/С + TR/C/-1-2) эндокринология:\n "
+                                     "недавно-склонность-давно(см.MC) появилась гипофункция матки/простаты.\n");
+        }
+     //Эндокринология МС - конец
+
 
     if (((Channel_MC == "A/2")||(Channel_MC == "A/1")) &&
             ((Channel_RP == "A/2")||(Channel_RP == "B/2")||(Channel_RP == "C/2")))
@@ -343,6 +386,28 @@ void MainWindow::channel_MC()
 
 void MainWindow::channel_C()
 {
+//Канал сердца
+    //Эндокринология С
+    if (((Channel_C == "C/2")||(Channel_C == "C/1")||(Channel_C == "C/0")||(Channel_C == "C/-1")||(Channel_C == "C/-2")) &&
+        ((Channel_TR == "C/2")||(Channel_TR == "C/1")))
+        {
+            diagnosic_message.append("Канал C: (2мд: C/С + TR/C/12) эндокринология:\n "
+                                     "недавно-склонность-давно(см.C) появилась гиперфункция щитовидной железы.\n");
+        }
+    if (((Channel_C == "C/2")||(Channel_C == "C/1")||(Channel_C == "C/0")||(Channel_C == "C/-1")||(Channel_C == "C/-2")) &&
+        ((Channel_TR == "C/0")))
+        {
+            diagnosic_message.append("Канал C: (2мд: C/С + TR/C/0) эндокринология:\n "
+                                     "недавно-склонность-давно(см.C) появилась дисфункция щитовидной железы.\n");
+        }
+    if (((Channel_C == "C/2")||(Channel_C == "C/1")||(Channel_C == "C/0")||(Channel_C == "C/-1")||(Channel_C == "C/-2")) &&
+        ((Channel_TR == "C/-2")||(Channel_TR == "C/-1")))
+        {
+            diagnosic_message.append("Канал C: (2мд: C/С + TR/C/-1-2) эндокринология:\n "
+                                     "недавно-склонность-давно(см.C) появилась гипофункция щитовидной железы.\n");
+        }
+     //Эндокринология С - конец
+
     if (((Channel_C == "OP")) &&
             ((Channel_TR == "C/2")||(Channel_TR == "C/1")||(Channel_TR == "C/0")||(Channel_TR == "C/-1")||(Channel_TR == "C/-2")))
         {
@@ -494,6 +559,28 @@ void MainWindow::channel_C()
 
 void MainWindow::channel_IG()
 {
+//Канал тонкого кишечника
+    //Эндокринология IG
+    if (((Channel_IG == "C/2")||(Channel_IG == "C/1")||(Channel_IG == "C/0")||(Channel_IG == "C/-1")||(Channel_IG == "C/-2")) &&
+        ((Channel_TR == "C/2")||(Channel_TR == "C/1")))
+        {
+            diagnosic_message.append("Канал IG: (2мд: IG/С + TR/C/12) эндокринология:\n "
+                                     "недавно-склонность-давно(см.IG) появилась гиперфункция гипофиза и гипоталамуса.\n");
+        }
+    if (((Channel_IG == "C/2")||(Channel_IG == "C/1")||(Channel_IG == "C/0")||(Channel_IG == "C/-1")||(Channel_IG == "C/-2")) &&
+        ((Channel_TR == "C/0")))
+        {
+            diagnosic_message.append("Канал IG: (2мд: IG/С + TR/C/0) эндокринология:\n "
+                                     "недавно-склонность-давно(см.IG) появилась дисфункция гипофиза и гипоталамуса.\n");
+        }
+    if (((Channel_IG == "C/2")||(Channel_IG == "C/1")||(Channel_IG == "C/0")||(Channel_IG == "C/-1")||(Channel_IG == "C/-2")) &&
+        ((Channel_TR == "C/-2")||(Channel_TR == "C/-1")))
+        {
+            diagnosic_message.append("Канал IG: (2мд: IG/С + TR/C/-1-2) эндокринология:\n "
+                                     "недавно-склонность-давно(см.IG) появилась гипоыфункция гипофиза и гипоталамуса.\n");
+        }
+     //Эндокринология IG - конец
+
 
 //Или 1 или 2
     bool one_or_two = false;
