@@ -61,8 +61,8 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${FROM_LIB}lib)
 
 include(${CMAKE_CURRENT_LIST_DIR}/opencv_static.cmake)
 
-find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
-include_directories(${OpenCV_DIR})
+#find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
+#include_directories(${OpenCV_DIR})
 
 if(${FIND_DISC_ID} EQUAL 1)
   add_definitions(-DFIND_DISC_ID)
@@ -124,7 +124,8 @@ endif() # if(${trt_enable} EQUAL 1)
 
 ############################## IF RKNN_ENABLE:
 if(${rknn_enable} EQUAL 1  AND ${HOST_ROCKCHIP} EQUAL 1)
-   set(RKNN_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/RKNN_API)
+   set(RKNN_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/RKNN_API)
+   message("RKNN_DIRECTORY: ${RKNN_DIRECTORY}")
    add_definitions(-DRKNN_ENABLE)
    message("____________________RKNN enable")
    add_definitions(-DRKNN_API="${RKNN_DIRECTORY}/yolov8.h")
@@ -153,7 +154,7 @@ if(${rknn_enable} EQUAL 1  AND ${HOST_ROCKCHIP} EQUAL 1)
         ${RKNN_DIRECTORY}
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${RKNN_DIRECTORY}/3rdparty/rknpu2/include
-        ${RKNN_DIRECTORY}/3rdparty/opencv/opencv-linux-aarch64/include/opencv2
+        ${RKNN_DIRECTORY}/3rdparty/opencv/opencv-linux-aarch64/include
     )
 
 

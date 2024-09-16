@@ -37,13 +37,20 @@ nnet::nnet(const string& config_path, bool& ok)
    #endif // -------------------------- END FIND DISC_ID -----------------------------------------------
    ok = get_ini_params(config_path);
    if(!ok){cout << "Not get_ini_params!" << endl;}
+
+#ifdef RKNN_ENABLE
+   init_RKNN();
+#endif
+
 } // -- END nnet
 
 nnet::~nnet()
 {
   cout << "Destructor nnet" << endl;
+#ifdef TRT_ENABLE
   yolo_trt.release();
   yolo_trt_track.release();
+#endif
   ltrac_ptr.release();
   ts.release();
 } // END ~nnet()

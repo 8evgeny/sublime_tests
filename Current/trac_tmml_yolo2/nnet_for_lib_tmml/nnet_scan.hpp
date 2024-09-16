@@ -24,7 +24,12 @@
 #include "INIReader.h"
 
 #include TRAC_API
+#ifdef TRT_ENABLE
 #include TRT_API
+#endif
+#ifdef RKNN_ENABLE
+#include RKNN_API
+#endif
 
 class nnet
 {
@@ -41,8 +46,10 @@ class nnet
    std::unique_ptr<trac_struct> ts = nullptr; // Структура трекинга.
    std::unique_ptr<std::list<trac_st>> ltrac_ptr = nullptr;
 
+#ifdef TRT_ENABLE
    std::unique_ptr<trt_detector::YOLO_TRT_Detector> yolo_trt = nullptr;
    std::unique_ptr<trt_detector::YOLO_TRT_Detector> yolo_trt_track = nullptr;
+#endif
 
    cv::Mat img_orig, img_orig_roi; // Матрицы для оригинального кадра и для ROI из оригинального кадра.
    cv::Rect2f rct_local_orig; // Рект для ROI на оригинальном кадре.
@@ -164,6 +171,23 @@ class nnet
    bool init_yolo(const char* config_path);
    void yolo_work(const cv::Point& left_top, std::vector<tr>& vtr);
    void yolo_work_track(const cv::Point& left_top, std::vector<tr>& vtr);
+
+#ifdef RKNN_ENABLE
+
+   rknn_app_context_t rknn_app_ctx;
+   image_buffer_t img_buff;
+   object_detect_result_list od_results;
+   const char *model_path = "model/best.rknn";
+   std::vector<tr> vtr;
+   void init_RKNN();
+   void results_save_to_vector(object_detect_result_list & od_results, image_buffer_t & img_buff, std::vector<tr>& vtr);
+   void release_resources(rknn_app_context_t & rknn_app_ctx, image_buffer_t & img_buff);
+
+#endif
+
+
+
+
 }; // -- END nnet
 
 
