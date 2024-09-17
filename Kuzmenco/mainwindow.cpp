@@ -101,6 +101,12 @@ void MainWindow::saveData()
         QByteArray block14(line14.toStdString().c_str());
         outputFile.write("Комментарий:\n");
         outputFile.write(block14);
+
+        //Эндокринология
+        QString line16 = QString::fromStdString(diagnosic_message_2);
+        QByteArray block16(line16.toStdString().c_str());
+        outputFile.write(block16);
+
         //diagn
         QString line15 = QString::fromStdString(diagnosic_message);
         QByteArray block15(line15.toStdString().c_str());

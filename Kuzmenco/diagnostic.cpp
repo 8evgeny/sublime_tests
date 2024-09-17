@@ -20,31 +20,45 @@ void MainWindow::diagnostic()
     channel_V();
     channel_VB();
     channel_E();
+    endocrinology();
 }
 
-void MainWindow::channel_P()
+void MainWindow::endocrinology()
 {
-//Канал легких
     //Эндокринология Р
     if (((Channel_P == "C/2")||(Channel_P == "C/1")||(Channel_P == "C/0")||(Channel_P == "C/-1")||(Channel_P == "C/-2")) &&
         ((Channel_TR == "C/2")||(Channel_TR == "C/1")))
         {
-            diagnosic_message.append("Канал Р: (2мд: P/С + TR/C/1,2) эндокринология:\n "
+            diagnosic_message_2.append("Канал Р: (2мд: P/С + TR/C/1,2) эндокринология:\n "
                                      "недавно-склонность-давно(см.Р) появилась гиперфункция потовых/сальных желез.\n");
         }
     if (((Channel_P == "C/2")||(Channel_P == "C/1")||(Channel_P == "C/0")||(Channel_P == "C/-1")||(Channel_P == "C/-2")) &&
         ((Channel_TR == "C/0")))
         {
-            diagnosic_message.append("Канал Р: (2мд: P/С + TR/C/0) эндокринология:\n "
+            diagnosic_message_2.append("Канал Р: (2мд: P/С + TR/C/0) эндокринология:\n "
                                      "недавно-склонность-давно(см.Р) появилась дисфункция потовых/сальных желез.\n");
         }
     if (((Channel_P == "C/2")||(Channel_P == "C/1")||(Channel_P == "C/0")||(Channel_P == "C/-1")||(Channel_P == "C/-2")) &&
         ((Channel_TR == "C/-1")||(Channel_TR == "C/-2")))
         {
-            diagnosic_message.append("Канал Р: (2мд: P/С + TR/C/-1-2) эндокринология:\n "
+            diagnosic_message_2.append("Канал Р: (2мд: P/С + TR/C/-1-2) эндокринология:\n "
                                      "недавно-склонность-давно(см.Р) появилась гипофункция потовых/сальных желез.\n");
         }
      //Эндокринология Р - конец
+
+
+
+
+
+
+
+
+}
+
+void MainWindow::channel_P()
+{
+//Канал легких
+
 
     if (((Channel_P == "B/2")||(Channel_P == "B/-2")) &&
         ((Channel_RP == "A/2")||(Channel_RP == "B/2")||(Channel_RP == "C/2")||(Channel_RP == "A/-2")||(Channel_RP == "B/-2")||(Channel_RP == "C/-2")))
