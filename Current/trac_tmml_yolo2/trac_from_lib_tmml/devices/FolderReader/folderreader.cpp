@@ -63,6 +63,7 @@ FolderReader::FolderReader(const string& path_to_ini, bool& ok)
         frame = imread(filename);
         frame_w = frame.cols;
         frame_h = frame.rows;
+        cout <<"filename: "<<filename<<endl;
         cout << "FolderReader:: autodetextion Frame size != " << frame.size() << endl;
     } // END if(!frame_w || !frame_h)
 
@@ -163,9 +164,10 @@ void FolderReader::getFormatedImage(uint8_t *f, int w, int h, int id, cv::Mat &i
 #else
     throw std::runtime_error("Not supported color space for output format");
 #endif
-
     Rect rct(round(0.5 * (w - h)), 0, h, h);
     image = img_buf(rct).clone();
+
+    cout<<"__________frame_w "<<frame_w<<"  frame_h "<<frame_h<<endl;
     resize(image, image, Size(frame_w, frame_h));
 } // END getFormatedImage
 

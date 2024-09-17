@@ -127,7 +127,6 @@ Application::Application(const string & pathToConfig,
     default:
         break;
     } // -- END switch
-
     if(device != nullptr)
     {
         if(!parallel && !(device_id == FOLDER || device_id == VIDEO))
@@ -164,7 +163,6 @@ Application::Application(const string & pathToConfig,
 #ifdef GUI_OK
     namedWindow(app_win_name, WINDOW_NORMAL);
 #endif //GUI_OK
-
 #ifdef DBG_VIDEO_SENDER
     cout << " ------ BEGIN create fenix2frame_sender_ptr" << endl;
     settings_srv_ptr = std::make_shared<rtp::server::Settings>();
