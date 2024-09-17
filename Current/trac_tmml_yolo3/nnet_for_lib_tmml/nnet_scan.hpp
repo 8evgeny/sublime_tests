@@ -26,6 +26,19 @@
 #include TRAC_API
 #include TRT_API
 
+struct box {
+    int cl;
+    float x, y, w, h;
+    float prob;
+    std::vector<float> probs;
+
+    void print()
+    {
+        std::cout<<"x: "<<x<<"\ty: "<<y<<"\tw: "<<w<<"\th: "<<h<<"\tcl: "<<cl<<"\tprob: "<<prob<<std::endl;
+    }
+};
+
+
 class nnet
 {
  public:
