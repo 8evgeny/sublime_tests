@@ -21,11 +21,12 @@ void nnet::init_RKNN()
     img_buff.format = IMAGE_FORMAT_RGB888;
 //    img_buff.virt_addr = img_orig.data;
     img_buff.size=196608;
-    cout<<"init_RKNN\n";
+    cout<<"____________init_RKNN OK\n";
 }
 
 void nnet::yolo_work(const Point& left_top, vector<tr>& vtr)
 {
+    cout<<"____________yolo_work\n";
     Mat img4yolo = img_orig(Rect(left_top.x, left_top.y, 256, 256));
     img_buff.virt_addr = img4yolo.data;
 
@@ -43,6 +44,7 @@ void nnet::yolo_work(const Point& left_top, vector<tr>& vtr)
 
 void nnet::yolo_work_track(const Point& left_top, vector<tr>& vtr)
 {
+    cout<<"____________yolo_work_track\n";
     time_point_first = system_clock::now();
     Mat img4yolo = img_orig(Rect(left_top.x, left_top.y, cfg_w, cfg_h));
 

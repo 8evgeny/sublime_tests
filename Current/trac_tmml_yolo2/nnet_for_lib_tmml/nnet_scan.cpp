@@ -71,6 +71,7 @@ bool nnet::get_cmd_result(const string& get_disk_id, const vector<string>& v_dis
 
 shared_ptr<nnet> create_nnet(const char* config_path, bool& ok, trac_struct& trac_str0)
 {
+    cout<<"_______create_nnet"<<endl;
     shared_ptr<nnet> nnet0 = make_shared<nnet>(config_path, ok);
     if(!ok){cout << "NOT shared_ptr<nnet>!!!\n"; return nnet0;}
 
@@ -115,6 +116,7 @@ shared_ptr<nnet> create_nnet(const char* config_path, bool& ok, trac_struct& tra
 } // -- END create_nnet
 
 
+
 int get_trac(shared_ptr<nnet>& copt)
 {
     return copt->work();
@@ -123,6 +125,7 @@ int get_trac(shared_ptr<nnet>& copt)
 
 bool nnet::init_copter_scan(const char* config_path)
 {
+    cout<<"__________init_copter_scan\n";
 #ifndef RKNN_ENABLE
     bool init_yolo_ok = init_yolo(config_path);
     if(!init_yolo_ok){return 0;}

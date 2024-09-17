@@ -573,6 +573,7 @@ void Application::exec()
 #endif // END USE_LOGGER
 
 #if !defined(TKDNN)
+cout<<"__3__ "<<endl;
             workflowShats();
 #endif // END #if !defined(TKDNN)
 #if defined(TKDNN)

@@ -1,5 +1,9 @@
 #include "folderreader.h"
 
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/imgproc.hpp"
+
 using namespace std;
 using namespace cv;
 
@@ -155,7 +159,6 @@ bool FolderReader::isBayerColorChannel()
 
 void FolderReader::getFormatedImage(uint8_t *f, int w, int h, int id, cv::Mat &image)
 {
-
     Mat img_buf(Size(w,h), image.type());
 #if defined(CCM_8UC1)
     memcpy(img_buf.data, f, img_buf.total());
@@ -166,8 +169,8 @@ void FolderReader::getFormatedImage(uint8_t *f, int w, int h, int id, cv::Mat &i
 #endif
     Rect rct(round(0.5 * (w - h)), 0, h, h);
     image = img_buf(rct).clone();
-
-    cout<<"__________frame_w "<<frame_w<<"  frame_h "<<frame_h<<endl;
+    cout<<"frame_w "<<frame_w<<"  frame_h "<<frame_h<<endl;
+cout<<"__2__ "<<endl;
     resize(image, image, Size(frame_w, frame_h));
 } // END getFormatedImage
 
@@ -416,7 +419,7 @@ bool FolderReader::getNextFrame(cv::Mat& frame)
     {
         string file_name = fileList[frame_id];
         string filename = path + "/" + file_name;
-        //cout << "filename=" << filename << endl;
+//        cout << "filename=" << filename << endl;
         if(!FileIsExist(filename))
         {
             cout << "filename=" << filename << " DON't Exist!" << endl;
@@ -431,7 +434,13 @@ bool FolderReader::getNextFrame(cv::Mat& frame)
         frame_id++;
         //            std::scoped_lock guard(frame_mutex);
 #if defined(CCM_8UC1)
+cout<<"__1__ "<<endl;
         frame = imread(filename, cv::ImreadModes::IMREAD_GRAYSCALE);
+
+//        Mat img_source = imread("test.png", CV_8UC1);
+//        imshow("test_window", img_source);
+//        waitKey(0);
+
 #elif defined(CCM_8UC3)
         frame = imread(filename, cv::ImreadModes::IMREAD_COLOR);
 #else
