@@ -116,6 +116,7 @@ bool nnet::get_ini_params4yolo(const string& config_path)
 
 bool nnet::init_yolo(const char* config_path)
 {    
+cout<<"____init_yolo\n";
    cout << "----------------------------- DEFINE TRT_ENABLE" << endl;
 
    bool ok = get_ini_params4yolo(config_path);
@@ -126,8 +127,8 @@ bool nnet::init_yolo(const char* config_path)
       cout << "============================== FILE weights_rt_batch1_way=" << weights_rt_batch1_way << " NOT FOUND!" << endl;
       return 0;
    }
-   yolo_trt = make_unique<trt_detector::YOLO_TRT_Detector>(weights_rt_batch1_way, tresh, vclass.size());
-   batchsize = yolo_trt->getMaxBatchSize();
+//   yolo_trt = make_unique<trt_detector::YOLO_TRT_Detector>(weights_rt_batch1_way, tresh, vclass.size());
+//   batchsize = yolo_trt->getMaxBatchSize();
    if(batchsize != 1)
    {
        cout << "============================== Некорректное значение batchsize=" << batchsize << ", должно быть batchsize=1" << endl;
@@ -139,8 +140,8 @@ bool nnet::init_yolo(const char* config_path)
       cout << "============================== FILE weights_rt_batch1_track_way=" << weights_rt_batch1_track_way << " NOT FOUND!" << endl;
       return 0;
    }
-   yolo_trt_track = make_unique<trt_detector::YOLO_TRT_Detector>(weights_rt_batch1_track_way, tresh_track, vclass_track.size());
-   batchsize_track = yolo_trt_track->getMaxBatchSize();
+//   yolo_trt_track = make_unique<trt_detector::YOLO_TRT_Detector>(weights_rt_batch1_track_way, tresh_track, vclass_track.size());
+//   batchsize_track = yolo_trt_track->getMaxBatchSize();
    if(batchsize_track != 1)
    {
        cout << "============================== Некорректное значение batchsize_track=" << batchsize_track << ", должно быть batchsize=1" << endl;
@@ -152,10 +153,12 @@ bool nnet::init_yolo(const char* config_path)
 
 void nnet::yolo_work(const Point& left_top, vector<tr>& vtr)
 {
+//    cout<<"____yolo_work\n";
     time_point_first = system_clock::now();
     Mat img4yolo = img_orig(Rect(left_top.x, left_top.y, cfg_w, cfg_h));
     if(change_color){cvtColor(img4yolo, img4yolo, change_color);}
-    const vector<tk::dnn::box>& vtrt = yolo_trt->detect(img4yolo);
+//    const vector<tk::dnn::box>& vtrt = yolo_trt->detect(img4yolo);
+    vector<tk::dnn::box> vtrt;
     time_point_new = system_clock::now();
     duration_now = time_point_new - time_point_first;
     ts->yolo_exec_time = duration_now.count();
@@ -167,7 +170,7 @@ void nnet::yolo_work(const Point& left_top, vector<tr>& vtr)
         int object_pix2 = trt_i.w*trt_i.h;
         if(cls != class_num_musor && trt_i.w*trt_i.h > min_object_pix2)
         {
-           Point2f wh_2(0.5*trt_i.w, 0.5*trt_i.h);           
+           Point2f wh_2(0.5*trt_i.w, 0.5*trt_i.h);
            Point2f xy = wh_2 + Point2f(left_top.x + trt_i.x, left_top.y + trt_i.y);
            duration_now = time_point_new - time_begin;
            vtr.emplace_back(tr{xy, wh_2, cls, duration_now.count()});
@@ -178,10 +181,12 @@ void nnet::yolo_work(const Point& left_top, vector<tr>& vtr)
 
 void nnet::yolo_work_track(const Point& left_top, vector<tr>& vtr)
 {
+cout<<"____yolo_work_track\n";
     time_point_first = system_clock::now();
     Mat img4yolo = img_orig(Rect(left_top.x, left_top.y, cfg_w, cfg_h));
     if(change_color){cvtColor(img4yolo, img4yolo, change_color);}
-    const vector<tk::dnn::box>& vtrt = yolo_trt_track->detect(img4yolo);
+//    const vector<tk::dnn::box>& vtrt = yolo_trt_track->detect(img4yolo);
+    vector<tk::dnn::box> vtrt ;
     time_point_new = system_clock::now();
     duration_now = time_point_new - time_point_first;
     ts->yolo_exec_time = duration_now.count();

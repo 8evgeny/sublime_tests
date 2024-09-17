@@ -89,8 +89,8 @@ if(${trt_enable} EQUAL 1)
    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
    message("CMAKE_MODULE_PATH = " ${CMAKE_MODULE_PATH} )
    ###### CUDA ######
-   find_package(CUDA REQUIRED)
-   find_package(CUDNN REQUIRED)
+#   find_package(CUDA REQUIRED)
+#   find_package(CUDNN REQUIRED)
    include_directories(
        ${TKDNN_DIRECTORY}
        ${OPENCV_INCLUDE_DIRS}
