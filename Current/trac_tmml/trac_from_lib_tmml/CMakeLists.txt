@@ -47,7 +47,15 @@ set(USE_CORSAIR_400_RAW 0) # 10 (Шар ОЭЦН400, сырой UDP видеоп
 set(USE_ETHERNET_CONNECTION 0)
 set(USE_PCAP 0)
 
-set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda)
+if(NOT ${CMAKE_HOST_SYSTEM_VERSION} MATCHES "rockchip$")
+    set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_cuda_static)
+else()
+    find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Gui Widgets REQUIRED)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets REQUIRED)
+    set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib)
+    find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
+    include_directories(${OpenCV_DIR})
+endif()
 
 set(USE_CUDA_RESIZE_DEVICE_IMX219 0) # использование resize через cv::cuda на уровне device
 set(SYSTEM_ENDIANNESS LITTLE) # системный порядок байтов LITTLE / BIG (зачастую LITTLE).

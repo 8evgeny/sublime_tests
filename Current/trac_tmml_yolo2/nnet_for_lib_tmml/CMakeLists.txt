@@ -136,7 +136,6 @@ if(${rknn_enable} EQUAL 1  AND ${HOST_ROCKCHIP} EQUAL 1)
    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets REQUIRED)
 
    set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib)
-
    find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
    include_directories(${OpenCV_DIR})
 
