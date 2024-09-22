@@ -161,6 +161,24 @@ void MainWindow::endocrinology()
                                        "RP/C/-2 проблема селезенки (иммунитета).");
         }
 
+
+//Эндокринология МС, R
+    //Миома, аденома
+   if (((Channel_MC == "C/2")||(Channel_MC == "C/1")||(Channel_MC == "C/0")||(Channel_MC == "C/-1")||(Channel_MC == "C/-2")) &&
+       ((Channel_TR == "C/-2")||(Channel_TR == "C/-1")||(Channel_TR == "C/0")||(Channel_TR == "C/1")||(Channel_TR == "C/2")) &&
+           ((Channel_R == "A/-2")||(Channel_R == "A/-1")||(Channel_R == "A/0")||(Channel_R == "A/1")||(Channel_R == "A/2")
+            ||(Channel_R == "B/-2")||(Channel_R == "B/-1")||(Channel_R == "B/0")||(Channel_R == "B/1")||(Channel_R == "B/2")))
+       {
+           diagnosic_message_2.append("Канал MC,R: (3мд: MC/С + TR/C + R/AB) миома/аденома предст.железы.\n");
+       }
+   //Проблемы с почками
+   if (((Channel_R == "C/2")||(Channel_R == "C/1")||(Channel_R == "C/0")||(Channel_R == "C/-1")||(Channel_R == "C/-2")) &&
+       ((Channel_TR == "A/-2")||(Channel_TR == "A/-1")||(Channel_TR == "A/0")||(Channel_TR == "A/1")||(Channel_TR == "A/2")
+        ||(Channel_TR == "B/-2")||(Channel_TR == "B/-1")||(Channel_TR == "B/0")||(Channel_TR == "B/1")||(Channel_TR == "B/2")))
+       {
+           diagnosic_message_2.append("Канал R: (2мд: R/С + TR/AB) негормональные проблемы с почками.\n");
+       }
+
 }
 
 void MainWindow::channel_P()
@@ -311,7 +329,14 @@ void MainWindow::channel_P()
 void MainWindow::channel_MC()
 {
 //Канал перикарда
-
+    //Фиброма, простатит - лекция "Эндокринология 2.1"
+    if (((Channel_MC == "C/2")||(Channel_MC == "C/1")||(Channel_MC == "C/0")||(Channel_MC == "C/-1")||(Channel_MC == "C/-2")) &&
+        ((Channel_TR == "A/-2")||(Channel_TR == "A/-1")||(Channel_TR == "A/0")||(Channel_TR == "A/1")||(Channel_TR == "A/2")
+         ||(Channel_TR == "B/-2")||(Channel_TR == "B/-1")||(Channel_TR == "B/0")||(Channel_TR == "B/1")||(Channel_TR == "B/2")))
+        {
+            diagnosic_message_2.append("Канал MC,R: (2мд: MC/С + TR/AB) проблемы с сосудами, спазмы сосудов в каких-то органах.\n "
+                                       "Если прощупывается миома - то это фиброма а не миома;\n "
+                                       "если есть проблемы с простатой - то это простатит, а не аденома.\n");
 
 
     if (((Channel_MC == "A/2")||(Channel_MC == "A/1")) &&
