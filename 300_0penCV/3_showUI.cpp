@@ -1,4 +1,5 @@
 #include <opencv2/opencv.hpp>
+#include "opencv2/objdetect/objdetect.hpp"
 #include <iostream>
 using namespace std;
 using namespace cv;
@@ -32,17 +33,17 @@ int main(int, char* argv[]) {//Аргумент запуска  ../1.jpeg
 // Создаем главное окно
     namedWindow(main_win);
 // Создаем шрифт для добавления текста поверх изображения
-    CvFont font = fontQt("Arial", 20, Scalar(255,0,0,0), CV_FONT_NORMAL, CV_STYLE_NORMAL);
+    auto font = fontQt("Arial", 20, Scalar(255,0,0,0), QT_FONT_NORMAL, QT_STYLE_NORMAL);
 // Задаем функции обратного вызова
     setMouseCallback(main_win, cbMouse, NULL);
     createTrackbar(track1, main_win, &tb1_value, 100, tb1_Callback);
-    createButton(checkbox, checkboxCallBack, 0,  CV_CHECKBOX);
+    createButton(checkbox, checkboxCallBack, 0,  QT_CHECKBOX);
 // Передаем значение (шрифт) функции обратного вызова
-    createButton(pushbutton, pushbuttonCallBack, (void *)&font, CV_PUSH_BUTTON);
+    createButton(pushbutton, pushbuttonCallBack, (void *)&font, QT_PUSH_BUTTON);
 //    createTrackbar(track2, NULL, &tb2_value, 50, tb2_Callback);
 // Передаем значения функциям обратного вызова
-    createButton(radiobox1, radioboxCallBack, (void *)radiobox1, CV_RADIOBOX);
-    createButton(radiobox2, radioboxCallBack, (void *)radiobox2, CV_RADIOBOX);
+    createButton(radiobox1, radioboxCallBack, (void *)radiobox1, QT_RADIOBOX);
+    createButton(radiobox2, radioboxCallBack, (void *)radiobox2, QT_RADIOBOX);
 // показываем исходное изображение
     imshow(main_win, orig_img);
     cout << "Для выхода нажмите 0..." << endl;
