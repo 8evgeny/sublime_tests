@@ -3,7 +3,9 @@ set(CMAKE_CXX_STANDARD 14)
 project(300)
 set (OpenCV_DIR /home/evg/opencv/build)
 
-find_package( OpenCV REQUIRED )
+set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib)
+find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
+#find_package( OpenCV REQUIRED )
 #find_package(Qt5Widgets REQUIRED)
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 
