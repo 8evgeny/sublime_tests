@@ -35,7 +35,7 @@ void MainWindow::endocrinology()
     if (((Channel_P == "C/2")||(Channel_P == "C/1")||(Channel_P == "C/0")||(Channel_P == "C/-1")||(Channel_P == "C/-2")) &&
         ((Channel_TR == "C/0")))
         {
-            diagnosic_message_2.append("Канал Р: (2мд: P/С + TR/C/0) эндокринология:\n "
+            diagnosic_message_2.append("Канал Р: (2мд: P/С + TR/C/0)\n "
                                      "недавно-склонность-давно(см.Р) появилась дисфункция потовых/сальных желез.\n");
         }
     if (((Channel_P == "C/2")||(Channel_P == "C/1")||(Channel_P == "C/0")||(Channel_P == "C/-1")||(Channel_P == "C/-2")) &&
@@ -47,19 +47,19 @@ void MainWindow::endocrinology()
 
 //Эндокринология МС, R
     //Гормональная гипер- дис- гипо- функция матки/простаты
-    if (((Channel_MC == "C/2")||(Channel_MC == "C/1")||(Channel_MC == "C/0")||(Channel_MC == "C/-1")||(Channel_MC == "C/-2")) &&
+    if (((Channel_MC == "C/2")||(Channel_MC == "C/1")||(Channel_MC == "C/0")||(Channel_MC == "C/-1")||(Channel_MC == "C/-2")||(Channel_MC == "C/OP")) &&
         ((Channel_TR == "C/2")||(Channel_TR == "C/1")))
         {
             diagnosic_message_2.append("Канал MC: (2мд: MC/С + TR/C/12; учитываем TR/C/1 только если ->2, иначе горм.дисфункция)\n "
                                      "недавно-склонность-давно(см.MC) появилась гормональная ГИПЕРфункция матки/простаты.\n");
         }
-    if (((Channel_MC == "C/2")||(Channel_MC == "C/1")||(Channel_MC == "C/0")||(Channel_MC == "C/-1")||(Channel_MC == "C/-2")) &&
+    if (((Channel_MC == "C/2")||(Channel_MC == "C/1")||(Channel_MC == "C/0")||(Channel_MC == "C/-1")||(Channel_MC == "C/-2")||(Channel_MC == "C/OP")) &&
         ((Channel_TR == "C/0")))
         {
             diagnosic_message_2.append("Канал MC: (2мд: MC/С + TR/C/0)\n "
                                      "недавно-склонность-давно(см.MC) появилась гормональная ДИСфункция матки/простаты.\n");
         }
-    if (((Channel_MC == "C/2")||(Channel_MC == "C/1")||(Channel_MC == "C/0")||(Channel_MC == "C/-1")||(Channel_MC == "C/-2")) &&
+    if (((Channel_MC == "C/2")||(Channel_MC == "C/1")||(Channel_MC == "C/0")||(Channel_MC == "C/-1")||(Channel_MC == "C/-2")||(Channel_MC == "C/OP")) &&
         ((Channel_TR == "C/-1")||(Channel_TR == "C/-2")))
         {
             diagnosic_message_2.append("Канал MC: (2мд: MC/С + TR/C/-1-2; учитываем TR/C/1 только если ->2, иначе горм.дисфункция)\n "
@@ -67,19 +67,19 @@ void MainWindow::endocrinology()
         }
 
     //Гормональная гипер- дис- гипо- функция надпочечников / яичников(семенников)
-    if (((Channel_R == "C/2")||(Channel_R == "C/1")||(Channel_R == "C/0")||(Channel_R == "C/-1")||(Channel_R == "C/-2")) &&
+    if (((Channel_R == "C/2")||(Channel_R == "C/1")||(Channel_R == "C/0")||(Channel_R == "C/-1")||(Channel_R == "C/-2")||(Channel_R == "C/OP")) &&
         ((Channel_TR == "C/2")||(Channel_TR == "C/1")))
         {
             diagnosic_message_2.append("Канал R: (2мд: R/С + TR/C/12; учитываем TR/C/1 только если ->2, иначе горм.дисфункция)\n "
                                      "недавно-склонность-давно(см.R) появилась гормональная ГИПЕРфункция надпочечников/яичников(семенников).\n");
         }
-    if (((Channel_R == "C/2")||(Channel_R == "C/1")||(Channel_R == "C/0")||(Channel_R == "C/-1")||(Channel_R == "C/-2")) &&
+    if (((Channel_R == "C/2")||(Channel_R == "C/1")||(Channel_R == "C/0")||(Channel_R == "C/-1")||(Channel_R == "C/-2")||(Channel_R == "C/OP")) &&
         ((Channel_TR == "C/0")))
         {
             diagnosic_message_2.append("Канал R: (2мд: R/С + TR/C/0)\n "
                                      "недавно-склонность-давно(см.R) появилась гормональная ДИСфункция надпочечников/яичников(семенников).\n");
         }
-    if (((Channel_R == "C/2")||(Channel_R == "C/1")||(Channel_R == "C/0")||(Channel_R == "C/-1")||(Channel_R == "C/-2")) &&
+    if (((Channel_R == "C/2")||(Channel_R == "C/1")||(Channel_R == "C/0")||(Channel_R == "C/-1")||(Channel_R == "C/-2")||(Channel_R == "C/OP")) &&
         ((Channel_TR == "C/-2")||(Channel_TR == "C/-1")))
         {
             diagnosic_message_2.append("Канал R: (2мд: R/С + TR/C/-1-2; учитываем TR/C/-1 только если ->-2, иначе горм.дисфункция)\n "
@@ -102,18 +102,20 @@ void MainWindow::endocrinology()
                ((Channel_R == "A/-2")||(Channel_R == "A/-1")||(Channel_R == "A/0")||(Channel_R == "A/1")||(Channel_R == "A/2")
                 ||(Channel_R == "B/-2")||(Channel_R == "B/-1")||(Channel_R == "B/0")||(Channel_R == "B/1")||(Channel_R == "B/2")))
            {
-               diagnosic_message_2.append("Канал MC,R: (3мд: MC/С + TR/C + R/AB) эндокринное заболевание - миома/аденома предст.железы.\n");
+               diagnosic_message_2.append("Канал MC,R: (3мд: MC/С + TR/C + R/AB)\n "
+                                          "эндокринное заболевание - миома/аденома предст.железы.\n");
            }
-       //возможность онко
+          //возможность онко
        if (((Channel_MC == "C/2")||(Channel_MC == "C/1")||(Channel_MC == "C/0")||(Channel_MC == "C/-1")||(Channel_MC == "C/-2")) &&
            ((Channel_TR == "C/-2")||(Channel_TR == "C/-1")||(Channel_TR == "C/0")||(Channel_TR == "C/1")||(Channel_TR == "C/2")) &&
                ((Channel_R == "A/-2")||(Channel_R == "A/-1")||(Channel_R == "A/0")||(Channel_R == "A/1")||(Channel_R == "A/2")
                 ||(Channel_R == "B/-2")||(Channel_R == "B/-1")||(Channel_R == "B/0")||(Channel_R == "B/1")||(Channel_R == "B/2")) &&
                ((Channel_VB == "C/-2")||(Channel_VB == "C/-1")||(Channel_VB == "C/0")||(Channel_VB == "C/1")||(Channel_VB == "C/2")))
            {
-               diagnosic_message_2.append("Канал MC,R: (3мд: MC/С + TR/C + R/AB + VB/C) миома/аденома предст.железы c вероятностью онкологии.\n");
+               diagnosic_message_2.append("Канал MC,R: (3мд: MC/С + TR/C + R/AB + VB/C)\n "
+                                          "миома/аденома предст.железы c вероятностью онкологии.\n");
            }
-       //когда  VB/С или А/-1-2 - тогда TR/А/-1-2 становится красным модулем С
+          //когда  VB/С или А/-1-2 - тогда TR/А/-1-2 становится красным модулем С
        if (((Channel_MC == "C/2")||(Channel_MC == "C/1")||(Channel_MC == "C/0")||(Channel_MC == "C/-1")||(Channel_MC == "C/-2")) &&
                ((Channel_TR == "A/-2")||(Channel_TR == "A/-1")) &&
                ((Channel_VB == "C/-2")||(Channel_VB == "C/-1")||(Channel_VB == "C/0")||(Channel_VB == "C/1")||(Channel_VB == "C/2")
@@ -121,7 +123,8 @@ void MainWindow::endocrinology()
                ((Channel_R == "A/-2")||(Channel_R == "A/-1")||(Channel_R == "A/0")||(Channel_R == "A/1")||(Channel_R == "A/2")
                 ||(Channel_R == "B/-2")||(Channel_R == "B/-1")||(Channel_R == "B/0")||(Channel_R == "B/1")||(Channel_R == "B/2")))
            {
-               diagnosic_message_2.append("Канал MC,R: (3мд: MC/С + TR/А/-1-2(+ VB/C[A/-1-2]) + R/AB) эндокринное заболевание - миома/аденома предст.железы.\n");
+               diagnosic_message_2.append("Канал MC,R: (3мд: MC/С + TR/А/-1-2(+ VB/C[A/-1-2]) + R/AB)\n "
+                                          "эндокринное заболевание - миома/аденома предст.железы.\n");
            }
 
     //Проблемы с почками
@@ -129,7 +132,8 @@ void MainWindow::endocrinology()
            ((Channel_TR == "A/-2")||(Channel_TR == "A/-1")||(Channel_TR == "A/0")||(Channel_TR == "A/1")||(Channel_TR == "A/2")
             ||(Channel_TR == "B/-2")||(Channel_TR == "B/-1")||(Channel_TR == "B/0")||(Channel_TR == "B/1")||(Channel_TR == "B/2")))
            {
-               diagnosic_message_2.append("Канал R: (2мд: TR/AB + R/C) негормональные проблемы с почками.\n");
+               diagnosic_message_2.append("Канал R: (2мд: TR/AB + R/C)\n "
+                                          "негормональные проблемы с почками.\n");
            }
 
     //Проблема с надпочечниками
@@ -138,7 +142,8 @@ void MainWindow::endocrinology()
                   ((Channel_MC == "A/-2")||(Channel_MC == "A/-1")||(Channel_MC == "A/0")||(Channel_MC == "A/1")||(Channel_MC == "A/2")
                    ||(Channel_MC == "B/-2")||(Channel_MC == "B/-1")||(Channel_MC == "B/0")||(Channel_MC == "B/1")||(Channel_MC == "B/2")))
               {
-                  diagnosic_message_2.append("Канал MC,R: (3мд: MC/AB + TR/C + R/C) проблема с надпочечниками.\n");
+                  diagnosic_message_2.append("Канал MC,R: (3мд: MC/AB + TR/C + R/C)\n "
+                                             "проблема с надпочечниками.\n");
               }
           //когда  VB/С или А/-1-2 - тогда TR/А/-1-2 становится красным модулем С
           if (((Channel_R == "C/2")||(Channel_R == "C/1")||(Channel_R == "C/0")||(Channel_R == "C/-1")||(Channel_R == "C/-2")) &&
@@ -148,7 +153,8 @@ void MainWindow::endocrinology()
                   ((Channel_MC == "A/-2")||(Channel_MC == "A/-1")||(Channel_MC == "A/0")||(Channel_MC == "A/1")||(Channel_MC == "A/2")
                    ||(Channel_MC == "B/-2")||(Channel_MC == "B/-1")||(Channel_MC == "B/0")||(Channel_MC == "B/1")||(Channel_MC == "B/2")))
               {
-                  diagnosic_message_2.append("Канал MC,R: (3мд: MC/AB + TR/А/-1-2(+ VB/C[A/-1-2]) + R/C) проблема с надпочечниками.\n");
+                  diagnosic_message_2.append("Канал MC,R: (3мд: MC/AB + TR/А/-1-2(+ VB/C[A/-1-2]) + R/C)\n "
+                                             "проблема с надпочечниками.\n");
               }
 
     //Проблема в яичниках/семенниках
@@ -156,9 +162,9 @@ void MainWindow::endocrinology()
                  ((Channel_TR == "C/-2")||(Channel_TR == "C/-1")||(Channel_TR == "C/0")||(Channel_TR == "C/1")||(Channel_TR == "C/2")) &&
                  ((Channel_R == "C/-2")||(Channel_R == "C/-1")||(Channel_R == "C/0")||(Channel_R == "C/1")||(Channel_R == "C/2")))
                  {
-                     diagnosic_message_2.append("Канал MC,R: (3мд: MC/С + TR/C + R/C) проблема в яичниках/семенниках.\n "
-                                                "МС - недавно/склонность/давно; TR - гипер.дис.гипо; "
-                                                "R/C/2 - справа; R/C/0 - оба; R/C/-2 - слева.\n");
+                     diagnosic_message_2.append("Канал MC,R: (3мд: MC/С + TR/C + R/C)\n "
+                                                "проблема в яичниках/семенниках.\n "
+                                                "МС - недавно/склонность/давно; TR - гипер.дис.гипо; R/C/2 - справа; R/C/0 - оба; R/C/-2 - слева.\n");
                  }
              //когда  VB/С или А/-1-2 - тогда TR/А/-1-2 становится красным модулем С
              if (((Channel_MC == "C/2")||(Channel_MC == "C/1")||(Channel_MC == "C/0")||(Channel_MC == "C/-1")||(Channel_MC == "C/-2")) &&
@@ -167,9 +173,9 @@ void MainWindow::endocrinology()
                       ||(Channel_VB == "A/-2")||(Channel_VB == "A/-1")) &&
                      ((Channel_R == "C/-2")||(Channel_R == "C/-1")||(Channel_R == "C/0")||(Channel_R == "C/1")||(Channel_R == "C/2")))
                  {
-                     diagnosic_message_2.append("Канал MC,R: (3мд: MC/С + TR/А/-1-2(+ VB/C[A/-1-2]) + R/C) проблема в яичниках/семенниках.\n "
-                                                "МС - недавно/склонность/давно; TR - гипер.дис.гипо; "
-                                                "R/C/2 - справа; R/C/0 - оба; R/C/-2 - слева.\n");
+                     diagnosic_message_2.append("Канал MC,R: (3мд: MC/С + TR/А/-1-2(+ VB/C[A/-1-2]) + R/C)\n "
+                                                "проблема в яичниках/семенниках.\n "
+                                                "МС - недавно/склонность/давно; TR - гипер.дис.гипо; R/C/2 - справа; R/C/0 - оба; R/C/-2 - слева.\n");
                  }
 
 //Эндокринология С
@@ -192,7 +198,7 @@ void MainWindow::endocrinology()
                                      "недавно-склонность-давно(см.C) появилась гипофункция щитовидной железы.\n");
         }
 
-//Эндокринология IG
+//Эндокринология IG, V
     if (((Channel_IG == "C/2")||(Channel_IG == "C/1")||(Channel_IG == "C/0")||(Channel_IG == "C/-1")||(Channel_IG == "C/-2")) &&
         ((Channel_TR == "C/2")||(Channel_TR == "C/1")))
         {
@@ -217,7 +223,7 @@ void MainWindow::endocrinology()
     if (((Channel_RP == "C/2")||(Channel_RP == "C/1")) &&
         ((Channel_TR == "C/-2")||(Channel_TR == "C/-1")))
         {
-            diagnosic_message_2.append("Канал RP: (2мд: RP/С/12 + TR/C/-1-2;\n "
+            diagnosic_message_2.append("Канал RP: (2мд: RP/С/12 + TR/C/-1-2; "
                                        "учитываем RP/C/1 только если ->2, и учитываем TR/C/-1 только если ->-2, иначе возможно диатез)\n "
                                        "начальная стадия диабета: понижен инсулин, повышен сахар.\n");
         }
@@ -230,7 +236,7 @@ void MainWindow::endocrinology()
     if (((Channel_RP == "C/-2")||(Channel_RP == "C/-1")) &&
         ((Channel_TR == "C/2")||(Channel_TR == "C/1")))
         {
-            diagnosic_message_2.append("Канал RP: (2мд: RP/С/-1-2 + TR/C/12;\n "
+            diagnosic_message_2.append("Канал RP: (2мд: RP/С/-1-2 + TR/C/12; "
                                        "учитываем RP/C/-1 только если ->-2, и учитываем TR/C/1 только если ->2, иначе возможно диатез)\n "
                                        "диабет: человек ввел инсулин, но забыл поесть; инсулина избыток, сахара недостаток.\n");
         }
@@ -239,21 +245,21 @@ void MainWindow::endocrinology()
     if (((Channel_RP == "C/2")||(Channel_RP == "C/1")||(Channel_RP == "C/-1")||(Channel_RP == "C/-2")) &&
         ((Channel_TR == "C/0")||(Channel_TR == "C/-1")||(Channel_TR == "C/1")))
         {
-            diagnosic_message_2.append("Канал RP: (2мд: RP/С/21-1-2 + TR/C/10-1;\n "
+            diagnosic_message_2.append("Канал RP: (2мд: RP/С/21-1-2 + TR/C/10-1; "
                                        "учитываем RP/C/1,-1 только если ->2,-2; учитываем TR/C/1,-1 только если ->0, иначе возможно диабет/имм.деф.)\n "
                                        "диатез: норм.кол-во инсулина, при котором сахар понижен или повышен.\n");
         }
     if (((Channel_RP == "C/1")||(Channel_RP == "C/-1")||(Channel_RP == "C/0")) &&
         ((Channel_TR == "C/2")||(Channel_TR == "C/1")||(Channel_TR == "C/-1")||(Channel_TR == "C/-2")))
         {
-            diagnosic_message_2.append("Канал RP: (2мд: RP/С/10-1 + TR/C/21-1-2;\n "
+            diagnosic_message_2.append("Канал RP: (2мд: RP/С/10-1 + TR/C/21-1-2; "
                                        "учитываем RP/C/1,-1 только если ->0; учитываем TR/C/1,-1 только если ->2,-2, иначе возможно диабет/имм.деф.)\n "
                                        "диатез: норм.кол-во сахара, при котором инсулин понижен или повышен.\n");
         }
     if (((Channel_RP == "C/2")||(Channel_RP == "C/1")) &&
         ((Channel_TR == "C/2")||(Channel_TR == "C/1")))
         {
-            diagnosic_message_2.append("Канал RP: (2мд: RP/С/12 + TR/C/12;\n "
+            diagnosic_message_2.append("Канал RP: (2мд: RP/С/12 + TR/C/12; "
                                        "учитываем RP/C/1 только если ->2; учитываем TR/C/1 только если ->2, иначе возможно диабет.)\n "
                                        "диатез: повышен сахар и повышен инсулин; при диабете не может быть одновременно повышен сахар и инсулин.\n");
         }
@@ -262,7 +268,7 @@ void MainWindow::endocrinology()
     if (((Channel_RP == "C/-2")||(Channel_RP == "C/-1")) &&
         ((Channel_TR == "C/-1")||(Channel_TR == "C/-2")))
         {
-            diagnosic_message_2.append("Канал RP: (2мд: RP/С/-1-2 + TR/C/-1-2;\n "
+            diagnosic_message_2.append("Канал RP: (2мд: RP/С/-1-2 + TR/C/-1-2; "
                                        "учитываем RP/C/-1 только если ->-2; учитываем TR/C/-1 только если ->-2, иначе возможно диабет/диатез.)\n "
                                        "иммунодефицит: инсулин и сахар понижены; слабость физ.здоровья, повышенная утомляемость.\n "
                                        "RP/C/-2 проблема селезенки (иммунитета).");
