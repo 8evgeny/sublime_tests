@@ -1,0 +1,69 @@
+sudo apt update && sudo apt upgrade
+ 
+sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio
+
+
+sudo apt-get install libavcodec-dev
+sudo apt-get install libavformat-dev
+sudo apt-get install libavutil-dev
+sudo apt-get install libsvscale-dev
+sudo apt-get install libavresample-dev
+sudo apt-get install libgstreamer-plugins-base1.0-dev 
+sudo apt-get install libavdevice-dev
+sudo apt-get install libqt5opengl5-dev
+sudo apt-get install libjpeg-dev 
+sudo apt-get install libpng-dev 
+
+sudo apt install build-essential
+
+1. Установка qmake для qt5:
+sudo apt-get install qt5-qmake
+
+2. Установка Qt:
+sudo apt-get install qtcreator -y
+
+3. Установка пути по умолчанию в Qt:
+%{JS: Util.asciify("%{CurrentProject:NativePath}/%{CurrentBuild:Name}")}
+
+При проблемах попробовать дополнительно:
+sudo apt-get install qtbase5-dev
+sudo apt-get install qtdeclarative5-dev 
+
+  OpenCV: 
+with_qt ON
+with_openmp ON
+Enable_fast_math ON
+cmake_install_prefix: way to opencv_install_folder
+OPENCV_GENERATE_PKGCONFIG ON
+BUILD_SHARED_LIBS OFF
+
+=============================================================
+Папка с библиотеками ubuntu: /usr/include/x86_64-linux-gnu
+изменить права на папку, или файл: sudo chown alex:users <<путь к файлу, или папке>>
+pcap:  sudo apt-get install libpcap-dev  
+Вывод id сетевой карты и диска: udevadm info --query=all --name=nvme0n1 | grep ID_SERIAL_SHORT 
+
+Установка pqxx: 
+sudo apt update
+sudo apt install libpqxx-dev
+Установка Postgres:
+sudo apt install postgresql postgresql-contrib
+Установка роли: 
+sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
+    
+Выключение/включение графического интерфейса Ubuntu: 
+Подготовка (1 раз):
+sudo systemctl enable multi-user.target
+Выключение:
+sudo systemctl set-default multi-user.target
+Включение: 
+sudo systemctl set-default graphical.target
+
+Переключение раскладки клавиатуры Ubuntu 22.04:
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Shift>Alt_L']"
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Alt>Shift_L']"
+Или: 
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Shift><Ctrl>']"
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Ctrl>Shift_L']"
+
+

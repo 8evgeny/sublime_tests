@@ -1,0 +1,18 @@
+Installing OpenCL
+
+cd /usr/lib
+sudo wget https://github.com/JeffyCN/mirrors/raw/libmali/lib/aarch64-linux-gnu/libmali-valhall-g610-g6p0-x11-wayland-gbm.so
+cd /lib/firmware
+sudo wget https://github.com/JeffyCN/mirrors/raw/libmali/firmware/g610/mali_csffw.bin
+sudo apt install mesa-opencl-icd clinfo ocl-icd-opencl-dev
+sudo mkdir -p /etc/OpenCL/vendors
+
+Версия 2.1
+echo "/usr/lib/libmali-valhall-g610-g6p0-x11-wayland-gbm.so" | sudo tee /etc/OpenCL/vendors/mali.icd
+
+Версия 3.0
+echo "/usr/lib/libmali-valhall-g610-g13p0-x11-wayland-gbm.so" | sudo tee /etc/OpenCL/vendors/mali.icd
+sudo apt install libxcb-dri2-0 libxcb-dri3-0 libwayland-client0 libwayland-server0 libx11-xcb1
+
+Проверка корректности установки:
+clinfo
