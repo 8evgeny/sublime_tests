@@ -1,0 +1,3 @@
+/home/user/QtProg/chain_drone/trac_tmml_get_lib/Release/CMakeFiles/_trac_tmml_8_CUDA.dir
+/home/user/QtProg/chain_drone/trac_tmml_get_lib/Release/CMakeFiles/edit_cache.dir
+/home/user/QtProg/chain_drone/trac_tmml_get_lib/Release/CMakeFiles/rebuild_cache.dir
