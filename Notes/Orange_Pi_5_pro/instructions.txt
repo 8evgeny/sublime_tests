@@ -1,18 +1,34 @@
 sudo apt update && sudo apt upgrade
  
-sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio
+sudo apt-get install \
+libgstreamer1.0-dev \
+libgstreamer-plugins-base1.0-dev \
+libgstreamer-plugins-bad1.0-dev \
+gstreamer1.0-plugins-base \
+gstreamer1.0-plugins-good \
+gstreamer1.0-plugins-bad \
+gstreamer1.0-plugins-ugly \
+gstreamer1.0-libav \
+gstreamer1.0-tools \
+gstreamer1.0-x \
+gstreamer1.0-alsa \
+gstreamer1.0-gl \
+gstreamer1.0-gtk3 \
+gstreamer1.0-qt5 \
+gstreamer1.0-pulseaudio
 
 
-sudo apt-get install libavcodec-dev
-sudo apt-get install libavformat-dev
-sudo apt-get install libavutil-dev
-sudo apt-get install libsvscale-dev
-sudo apt-get install libavresample-dev
-sudo apt-get install libgstreamer-plugins-base1.0-dev 
-sudo apt-get install libavdevice-dev
-sudo apt-get install libqt5opengl5-dev
-sudo apt-get install libjpeg-dev 
-sudo apt-get install libpng-dev 
+sudo apt-get install \
+libavcodec-dev \
+libavformat-dev \
+libavutil-dev \
+libgstreamer-plugins-base1.0-dev \
+libavdevice-dev \
+libqt5opengl5-dev \
+libjpeg-dev \
+libpng-dev \
+libswresample-dev \
+libswscale-dev
 
 sudo apt install build-essential
 
@@ -34,6 +50,8 @@ with_qt ON
 with_openmp ON
 Enable_fast_math ON
 cmake_install_prefix: way to opencv_install_folder
+path_to_modules
+BUILD_PNG ON
 OPENCV_GENERATE_PKGCONFIG ON
 BUILD_SHARED_LIBS OFF
 
@@ -67,3 +85,18 @@ gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Shift><Ct
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Ctrl>Shift_L']"
 
 
+
+cd /usr/lib
+sudo wget https://github.com/JeffyCN/mirrors/raw/libmali/lib/aarch64-linux-gnu/libmali-valhall-g610-g6p0-x11-wayland-gbm.so
+
+cd /lib/firmware
+sudo wget https://github.com/JeffyCN/mirrors/raw/libmali/firmware/g610/mali_csffw.bin
+Now we need the OpenCL ICD loader. The one in apt will suffice. Then, since we manually downloaded the Mali GPU blob, we need to add it to the OpenCL ICD config file.
+
+sudo apt install mesa-opencl-icd clinfo
+
+sudo mkdir -p /etc/OpenCL/vendors
+echo "/usr/lib/libmali-valhall-g610-g6p0-x11-wayland-gbm.so" | sudo tee /etc/OpenCL/vendors/mali.icd
+Finally, we need to statisify the dependencies of the Mali OpenCL.
+
+sudo apt install libxcb-dri2-0 libxcb-dri3-0 libwayland-client0 libwayland-server0 libx11-xcb1
