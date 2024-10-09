@@ -9,7 +9,7 @@ int g_run = 1, g_dontset = 0; // начинаем в режиме покадро
 cv::VideoCapture g_cap;
 
 void onTrackbarSlide( int pos, void *) {
-    g_cap.set( CV_CAP_PROP_POS_FRAMES, pos );
+    g_cap.set( cv::CAP_PROP_POS_FRAMES, pos );
     if( !g_dontset )
     g_run = 1;
     g_dontset = 0;
@@ -17,11 +17,11 @@ void onTrackbarSlide( int pos, void *) {
 
 int main( int argc, char** argv ) {
 //    cv::namedWindow( "Example2_4", CV_WINDOW_AUTOSIZE );
-    cv::namedWindow( "Example2_4", CV_WINDOW_NORMAL );
+    cv::namedWindow( "Example2_4", cv::WINDOW_NORMAL );
     g_cap.open( string(argv[1]) );
-    int frames = (int) g_cap.get(CV_CAP_PROP_FRAME_COUNT);
-    int tmpw = (int) g_cap.get(CV_CAP_PROP_FRAME_WIDTH);
-    int tmph = (int) g_cap.get(CV_CAP_PROP_FRAME_HEIGHT);
+    int frames = (int) g_cap.get(cv::CAP_PROP_FRAME_COUNT);
+    int tmpw = (int) g_cap.get(cv::CAP_PROP_FRAME_WIDTH);
+    int tmph = (int) g_cap.get(cv::CAP_PROP_FRAME_HEIGHT);
     cout << "В виде " << frames << " кадров размером("
     << tmpw << ", " << tmph << ")." << endl;
 
@@ -32,7 +32,7 @@ int main( int argc, char** argv ) {
     for(;;) {
         if( g_run != 0 ) {
             g_cap >> frame; if(frame.empty()) break;
-            int current_pos = (int)g_cap.get(CV_CAP_PROP_POS_FRAMES);
+            int current_pos = (int)g_cap.get(cv::CAP_PROP_POS_FRAMES);
             g_dontset = 1;
             cv::setTrackbarPos("Position", "Example2_4", current_pos);
             cv::imshow( "Example2_4", frame );

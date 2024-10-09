@@ -6,8 +6,8 @@ using namespace std;
 
 int main( int argc, char** argv ) {
     cv::Mat image = cv::imread(argv[1],-1);
-    cv::namedWindow( "Example2_5-in", CV_WINDOW_AUTOSIZE );
-    cv::namedWindow( "Example2_5-out", CV_WINDOW_AUTOSIZE );
+    cv::namedWindow( "Example2_5-in", cv::WINDOW_AUTOSIZE );
+    cv::namedWindow( "Example2_5-out", cv::WINDOW_AUTOSIZE );
     cv::imshow( "Example2_5-in", image );
     cv::Mat out;
 //Сглаживаем
