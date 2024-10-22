@@ -1,0 +1,4 @@
+/media/user/WORK_EXT_NVME1/sublime_tests/Current/trac_tmml_yolo2/trac_from_lib_tmml/Debug/CMakeFiles/trac_from_lib_tmml.dir
+/media/user/WORK_EXT_NVME1/sublime_tests/Current/trac_tmml_yolo2/trac_from_lib_tmml/Debug/CMakeFiles/vertelka.dir
+/media/user/WORK_EXT_NVME1/sublime_tests/Current/trac_tmml_yolo2/trac_from_lib_tmml/Debug/CMakeFiles/edit_cache.dir
+/media/user/WORK_EXT_NVME1/sublime_tests/Current/trac_tmml_yolo2/trac_from_lib_tmml/Debug/CMakeFiles/rebuild_cache.dir
