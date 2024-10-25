@@ -19,12 +19,10 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/core.hpp>
+#include <opencv2/highgui.hpp>
 #include "tools/watchdog.h"
 #include "tools/INIReader.h"
 #include "devices/device.hpp"
-#ifdef GUI_OK
-   #include <opencv2/highgui.hpp>
-#endif // END #ifdef GUI_OK
 
 enum PixelFormat
 {

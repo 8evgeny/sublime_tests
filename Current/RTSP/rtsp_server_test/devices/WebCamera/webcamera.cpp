@@ -44,7 +44,7 @@ bool WebCamera::start_cam()
     cap_ptr->set(CAP_PROP_BUFFERSIZE, 3);
 
     Mat img_buf;
-    if(!cap_ptr->read(img_buf)){cout << "Don't read FIRST FRAME!\n"; return 0;}
+    if(!cap_ptr->read(img_buf)){cout << "Don't read FIRST FRAMR!\n"; return 0;}
     frame_w = img_buf.cols;
     frame_h = img_buf.rows;
     fps = cap_ptr->get(CAP_PROP_FPS);
@@ -56,12 +56,10 @@ bool WebCamera::start_cam()
     else{cout << "change_color ERROR!\n"; return 0;}
     if(change_color){cvtColor(img_buf, img_buf, change_color);}
     cout << "WebCamera FIRST FRAME SIZE=[" << frame_w << ", " << frame_h << "]; channels_in=" << channels_in << "; channels_out=" << channels_out << "; fps=" << fps << "\n";
-#ifdef GUI_OK
-//    imshow("first_frame", img_buf);
-//    unsigned char key = waitKey(1000);
-//    destroyWindow("first_frame");
-//    if(key == '`'){return 0;}
-#endif // END #ifdef GUI_OK
+    imshow("first_frame", img_buf);
+    unsigned char key = waitKey(1000);
+    destroyWindow("first_frame");
+    if(key == '`'){return 0;}
     return 1;
 } // -- END start_cam
 
@@ -133,15 +131,19 @@ uint8_t *WebCamera::receiveFrame(int &w, int &h, int &id, int &num)
 
 int WebCamera::getFrameCounter(){return frameCnt;} // -- END getFrameCounter
 
-void WebCamera::getFormatedImage(uint8_t * dat, int w, int h, int id, cv::Mat & image)
+void WebCamera::getFormatedImage(uint8_t *f, int w, int h, int id, Mat &image)
 {
+    Mat img_buf(Size(w,h), image.type());
 #if defined(CCM_8UC1)
-    memcpy(image.data, dat, image.total());
+    memcpy(img_buf.data, f, img_buf.total());
 #elif defined(CCM_8UC3)
-    memcpy(image.data, dat, 3*image.total());
+    memcpy(img_buf.data, f, 3*img_buf.total());
 #else
-    throw std::runtime_error("Not supported color space for output format");
+    throw runtime_error("Not supported color space for output format");
 #endif
+    Rect rct(round(0.5 * (w - h)), 0, h, h);
+    image = img_buf(rct).clone();
+    resize(image, image, Size(frame_w, frame_h));
 } // END getFormatedImage
 
 void WebCamera::quit()
