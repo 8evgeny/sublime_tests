@@ -24,12 +24,12 @@ const int gpio_pin_LAMP     = 12;   //PIN31     5_RELE
 const int gpio_pin_COLD     = 13;   //PIN32
 const int gpio_pin_REZERV   = 15;   //PIN35
 
-
-
 float min_temp, max_temp;
 bool heater = false;
 float temperature;
 QTime time_light_on, time_light_off, time_UF_on, time_UF_off;
+QTime checkSun;
+QString timeCheckSun = "00:01:00";
 vector<QTime> food(0);
 QString food_time;
 int long_food = 0;
@@ -55,12 +55,13 @@ constexpr long numLinesInLog = 250;
                                 //PIN1    +5
                                 //PIN2    +5
 
-void sunset(int year, int  month, int day);
+pair<string, string> sunRiseSet(int year, int  month, int day);
 void printTime(ofstream & file)
 {
     const auto now = std::chrono::system_clock::now();
     const auto t_c = std::chrono::system_clock::to_time_t(now);
-    file << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+//    file << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
+    file << std::put_time(std::localtime(&t_c), "%T\n");
 }
 void printOnylTime(ofstream & file)
 {
@@ -68,7 +69,6 @@ void printOnylTime(ofstream & file)
     const auto t_c = std::chrono::system_clock::to_time_t(now);
     file << std::put_time(std::localtime(&t_c), "%T\n");
 }
-
 
 void
 receiveTemp(float & temperature)
@@ -316,7 +316,6 @@ void feed()
     this_thread::sleep_for(chrono::milliseconds(3000));
 }
 
-
 void
 handlerFood()
 {
@@ -367,18 +366,45 @@ handlerFood()
 }
 
 void
-handlerSunSet()
+handlerSunRiseSet()
 {
-    this_thread::sleep_for(chrono::milliseconds(60000));
+    this_thread::sleep_for(chrono::milliseconds(30000));
+    string sunUp, sunDown;
+    QTime checkSun_end;
     while(1)
     {
-            auto timeNow = QTime::currentTime();
-            this_thread::sleep_for(chrono::milliseconds(60000));
-            sunset(2024, 10, 25);
+        checkSun_end = checkSun;
+        checkSun_end = checkSun_end.addSecs(40);
+        auto timeNow = QTime::currentTime();
+        if ((timeNow > checkSun) && (timeNow < checkSun_end))
+        {
+            Mut.lock();
+            logFile.open("/home/khadas/aqua/logFile", std::ios::app); // окрываем файл для дозаписи
+            const auto now = std::chrono::system_clock::now();
+            const auto t_c = std::chrono::system_clock::to_time_t(now);
+
+            stringstream streamYear, streamMounth, streamDay, streamCurrentDate;
+            streamCurrentDate << std::put_time(std::localtime(&t_c), "%d.%m.%Y\n");
+            string currentDate = streamCurrentDate.str();
+            streamYear << std::put_time(std::localtime(&t_c), "%Y\n");
+            string currentYear = streamYear.str();
+            streamMounth << std::put_time(std::localtime(&t_c), "%m\n");
+            string currentMounth = streamMounth.str();
+            streamDay << std::put_time(std::localtime(&t_c), "%d\n");
+            string currentDay = streamDay.str();
+            auto up_down = sunRiseSet(stoi(currentYear), stoi(currentMounth), stoi(currentDay));
+            sunUp = up_down.first;
+            sunDown = up_down.second;
+            logFile << "##############  New day ############       " <<
+                       currentDate <<
+                       "Sun Up\t\t" << sunUp <<"Sun Down\t"<< sunDown;
+            logFile.close();
+            Mut.unlock();
+            this_thread::sleep_for(chrono::milliseconds(30000)); //Чтобы точно было всего 1 срабатывание условия
+        }
+        this_thread::sleep_for(chrono::milliseconds(30000));
     }
 }
-
-
 
 int main ()
 {
@@ -397,6 +423,8 @@ int main ()
     pinMode(gpio_pin_REZERV, OUTPUT);
 
     digitalWrite(gpio_pin_FOOD, HIGH);
+
+    checkSun = QTime::fromString(timeCheckSun);
 
     this_thread::sleep_for(chrono::milliseconds(3000));
     thread (receiveTemp, ref(temperature)).detach();
@@ -418,7 +446,7 @@ int main ()
     this_thread::sleep_for(chrono::milliseconds(3000));
 
     thread (handlerFood).detach();
-    thread (handlerSunSet).detach();
+    thread (handlerSunRiseSet).detach();
 
     float temperatureForLog, temperatureForWeb, min_tempNew, max_tempNew;
     bool heaterNew = false;
@@ -728,7 +756,7 @@ double calcSunsetUTC(double JD, double latitude, double longitude)
     return timeUTC;
 }
 
-void sunset(int year, int  month, int day)
+pair<string, string> sunRiseSet(int year, int  month, int day)
 {
     time_t seconds;
     time_t tseconds;
@@ -758,12 +786,14 @@ void sunset(int year, int  month, int day)
     seconds = seconds + calcSunriseUTC( JD,  latitude,  longitude) * 60;
     seconds = seconds - delta * 3600;
     strftime(buffer,30,"%T\n",localtime(&seconds));
-    printf("%s",buffer);
+    string sunUp{buffer};
+//    printf("%s",buffer);
 
     seconds = tseconds;
     seconds += calcSunsetUTC( JD,  latitude,  longitude) * 60;
     seconds = seconds - delta * 3600;
     strftime(buffer,30,"%T\n",localtime(&seconds));
-    printf("%s",buffer);
-
+    string sunDown{buffer};
+//    printf("%s",buffer);
+    return make_pair(sunUp, sunDown);
 }
