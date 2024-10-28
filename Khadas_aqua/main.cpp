@@ -395,9 +395,17 @@ handlerSunRiseSet()
             auto up_down = sunRiseSet(stoi(currentYear), stoi(currentMounth), stoi(currentDay));
             sunUp = up_down.first;
             sunDown = up_down.second;
-            logFile << "##############  New day ############       " <<
+            QTime t1 = QTime::fromString(QString::fromStdString(sunUp));
+            QTime t2 = QTime::fromString(QString::fromStdString(sunDown));
+            int long_day_in_minutes_in_day = t1.secsTo(t2)/60;
+            int long_hours = long_day_in_minutes_in_day/60;
+            int long_minutes = long_day_in_minutes_in_day%60;
+
+            logFile << "\n##############  New day ############             " <<
                        currentDate <<
-                       "Sun Up\t\t" << sunUp <<"Sun Down\t"<< sunDown;
+                       "Sun Up\t\t" << sunUp <<"Sun Down\t"<< sunDown <<
+                       "long Day\t" << long_hours <<"h "<< long_minutes <<"m\n";
+
             logFile.close();
             Mut.unlock();
             this_thread::sleep_for(chrono::milliseconds(30000)); //Чтобы точно было всего 1 срабатывание условия
