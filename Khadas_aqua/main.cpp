@@ -401,10 +401,40 @@ handlerSunRiseSet()
             int long_hours = long_day_in_minutes_in_day/60;
             int long_minutes = long_day_in_minutes_in_day%60;
 
-            logFile << "\n##############  New day ############             " <<
+            logFile << "\n###################  New day #################  " <<
                        currentDate <<
                        "Sun Up\t\t" << sunUp <<"Sun Down\t"<< sunDown <<
-                       "long Day\t" << long_hours <<"h "<< long_minutes <<"m\n";
+                       "long Day\t" << long_hours <<"h "<< long_minutes <<"m\n"
+                       "########################################################\n";
+
+            time_light_on = QTime::fromString(QString::fromStdString(sunUp));
+            fileLight_on.open("/home/khadas/aqua/for_web/light_on", std::ios::out);
+            fileLight_on << time_light_on.toString().toStdString();
+            fileLight_on.close();
+            if (long_day_in_minutes_in_day >= 12 * 60)
+            {
+                time_light_off = QTime::fromString(QString::fromStdString(sunDown));
+                fileLight_off.open("/home/khadas/aqua/for_web/light_off", std::ios::out);
+                fileLight_off << time_light_off.toString().toStdString();
+                fileLight_off.close();
+            }
+            else //День меньше 12 часов
+            {
+                time_light_off = time_light_on;
+                time_light_off = time_light_off.addSecs(12 * 3600);
+                fileLight_off.open("/home/khadas/aqua/for_web/light_off", std::ios::out);
+                fileLight_off << time_light_off.toString().toStdString();
+                fileLight_off.close();
+            }
+
+//food.clear();
+//food_time.clear();
+//for (int i = 0; i < 3; ++i)
+//{
+//    food.push_back(QTime::fromString(foodTimes.at(i)));
+//    food_time.push_back(foodTimes.at(i));
+//    food_time.push_back("    ");
+//}
 
             logFile.close();
             Mut.unlock();
