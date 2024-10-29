@@ -371,11 +371,15 @@ handlerSunRiseSet()
     this_thread::sleep_for(chrono::milliseconds(30000));
     string sunUp, sunDown;
     QTime checkSun_end;
+    QTime food1, food2, food3;
+    QStringList foodTimes;
+
     while(1)
     {
         checkSun_end = checkSun;
         checkSun_end = checkSun_end.addSecs(40);
         auto timeNow = QTime::currentTime();
+
         if ((timeNow > checkSun) && (timeNow < checkSun_end))
         {
             Mut.lock();
@@ -397,9 +401,9 @@ handlerSunRiseSet()
             sunDown = up_down.second;
             QTime t1 = QTime::fromString(QString::fromStdString(sunUp));
             QTime t2 = QTime::fromString(QString::fromStdString(sunDown));
-            int long_day_in_minutes_in_day = t1.secsTo(t2)/60;
-            int long_hours = long_day_in_minutes_in_day/60;
-            int long_minutes = long_day_in_minutes_in_day%60;
+            int long_day_in_minutes = t1.secsTo(t2)/60;
+            int long_hours = long_day_in_minutes/60;
+            int long_minutes = long_day_in_minutes%60;
 
             logFile << "\n###################  New day #################  " <<
                        currentDate <<
@@ -411,7 +415,7 @@ handlerSunRiseSet()
             fileLight_on.open("/home/khadas/aqua/for_web/light_on", std::ios::out);
             fileLight_on << time_light_on.toString().toStdString();
             fileLight_on.close();
-            if (long_day_in_minutes_in_day >= 12 * 60)
+            if (long_day_in_minutes >= 12 * 60)
             {
                 time_light_off = QTime::fromString(QString::fromStdString(sunDown));
                 fileLight_off.open("/home/khadas/aqua/for_web/light_off", std::ios::out);
@@ -426,15 +430,24 @@ handlerSunRiseSet()
                 fileLight_off << time_light_off.toString().toStdString();
                 fileLight_off.close();
             }
+            food1 = time_light_on;
+            food1 = food1.addSecs(60 * 15);
+            food2 = time_light_on;
+            food2 = food2.addSecs(6 * 3600);
+            food3 = time_light_off;
+            food3 = food1.addSecs(-60 * 15);
+            food.clear();
+            food.push_back(food1);
+            food.push_back(food2);
+            food.push_back(food3);
 
-//food.clear();
-//food_time.clear();
-//for (int i = 0; i < 3; ++i)
-//{
-//    food.push_back(QTime::fromString(foodTimes.at(i)));
-//    food_time.push_back(foodTimes.at(i));
-//    food_time.push_back("    ");
-//}
+            food_time.clear();
+            for (int i = 0; i < 3; ++i)
+            {
+                QTime tmp = food.at(i);
+                food_time.push_back(tmp.toString("hh:mm:ss"));
+                food_time.push_back("    ");
+            }
 
             logFile.close();
             Mut.unlock();
