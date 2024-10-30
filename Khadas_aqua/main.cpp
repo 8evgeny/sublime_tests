@@ -405,11 +405,12 @@ handlerSunRiseSet()
             int long_hours = long_day_in_minutes/60;
             int long_minutes = long_day_in_minutes%60;
 
-            logFile << "\n###################  New day #################  " <<
-                       currentDate <<
-                       "Sun Up\t\t" << sunUp <<"Sun Down\t"<< sunDown <<
+            currentDate.pop_back(); //убираю \n
+            logFile << "\n###################  New day " << currentDate <<" #################\n"
+                       "Sun Up\t\t" << sunUp <<
+                       "Sun Down\t" << sunDown <<
                        "long Day\t" << long_hours <<"h "<< long_minutes <<"m\n"
-                       "########################################################\n";
+                       "##########################################################\n\n";
 
             time_light_on = QTime::fromString(QString::fromStdString(sunUp));
             fileLight_on.open("/home/khadas/aqua/for_web/light_on", std::ios::out);
@@ -435,7 +436,7 @@ handlerSunRiseSet()
             food2 = time_light_on;
             food2 = food2.addSecs(6 * 3600);
             food3 = time_light_off;
-            food3 = food1.addSecs(-60 * 15);
+            food3 = food3.addSecs(-60 * 15);
             food.clear();
             food.push_back(food1);
             food.push_back(food2);
@@ -502,11 +503,12 @@ int main ()
     float temperatureForLog, temperatureForWeb, min_tempNew, max_tempNew;
     bool heaterNew = false;
     QTime time_light_on_New, time_light_off_New;
+    bool set_time_light_once = true; //Один раз при загрузке - далее по солнцу
     bool lightNew = false;
     QTime time_UF_on_New, time_UF_off_New;
     bool UFNew = false;
     QString food_timeNew;
-
+    bool set_foot_time_once = true; //Один раз при загрузке - далее по солнцу
     while(1)
     {
         Mut.lock();
@@ -551,24 +553,29 @@ int main ()
             heaterNew = heater;
         }
 
-        if (time_light_on_New != time_light_on)
+        if (set_time_light_once)
         {
-            logFile << "settig_light_on = " << time_light_on.toString("hh:mm").toStdString()<<"\t\t\t";
-            printTime(logFile);
-            time_light_on_New = time_light_on;
-            fileLight_on.open("/home/khadas/aqua/for_web/light_on", std::ios::out);
-            fileLight_on<<time_light_on_New.toString().toStdString();
-            fileLight_on.close();
+            set_time_light_once = false; //Один раз при загрузке - далее по солнцу
+            if (time_light_on_New != time_light_on)
+            {
+                logFile << "settig_light_on = " << time_light_on.toString("hh:mm").toStdString()<<"\t\t\t";
+                printTime(logFile);
+                time_light_on_New = time_light_on;
+                fileLight_on.open("/home/khadas/aqua/for_web/light_on", std::ios::out);
+                fileLight_on<<time_light_on_New.toString().toStdString();
+                fileLight_on.close();
+            }
+            if (time_light_off_New != time_light_off)
+            {
+                logFile << "settig_light_off = " << time_light_off.toString("hh:mm").toStdString()<<"\t\t";
+                printTime(logFile);
+                time_light_off_New = time_light_off;
+                fileLight_off.open("/home/khadas/aqua/for_web/light_off", std::ios::out);
+                fileLight_off<<time_light_off_New.toString().toStdString();
+                fileLight_off.close();
+            }
         }
-        if (time_light_off_New != time_light_off)
-        {
-            logFile << "settig_light_off = " << time_light_off.toString("hh:mm").toStdString()<<"\t\t";
-            printTime(logFile);
-            time_light_off_New = time_light_off;
-            fileLight_off.open("/home/khadas/aqua/for_web/light_off", std::ios::out);
-            fileLight_off<<time_light_off_New.toString().toStdString();
-            fileLight_off.close();
-        }
+
         if (lightNew != light)
         {
             logFile << "settig_light = " << boolalpha <<light<<"\t\t\t";
@@ -595,8 +602,9 @@ int main ()
             UFNew = UF;
         }
 
-        if (food_timeNew != food_time)
+        if ((food_timeNew != food_time) && set_foot_time_once)
         {
+            set_foot_time_once = false; //Один раз при загрузке - далее по солнцу
             logFile << "settig_food_time = " << food_time.toStdString()<<"\t\t\t";
             printTime(logFile);
             food_timeNew = food_time;
@@ -607,10 +615,8 @@ int main ()
 
         logFile.close();
         Mut.unlock();
-
         this_thread::sleep_for(chrono::milliseconds(5000));
-
-    }
+    }//END while(1)
 
 
     return 0;
