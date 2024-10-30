@@ -29,7 +29,7 @@ bool heater = false;
 float temperature;
 QTime time_light_on, time_light_off, time_UF_on, time_UF_off;
 QTime checkSun;
-QString timeCheckSun = "00:01:00";
+QString timeCheckSun = "06:29:00";
 vector<QTime> food(0);
 QString food_time;
 int long_food = 0;
@@ -449,6 +449,9 @@ handlerSunRiseSet()
                 food_time.push_back(tmp.toString("hh:mm:ss"));
                 food_time.push_back("    ");
             }
+            fileFood.open("/home/khadas/aqua/for_web/food_time", std::ios::out);
+            fileFood<<food_time.toStdString();
+            fileFood.close();
 
             logFile.close();
             Mut.unlock();
