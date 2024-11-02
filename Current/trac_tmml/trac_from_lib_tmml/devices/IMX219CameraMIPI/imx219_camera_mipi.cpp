@@ -255,16 +255,18 @@ uint8_t* IMX219CameraMIPI::receiveFrame(int &w, int &h, int &id, int &num)
     return nullptr;    
 }
 
-void IMX219CameraMIPI::getFormatedImage(uint8_t *f, int w, int h, int id, cv::Mat &image)
+void IMX219CameraMIPI::keyHandler(uchar &key){return void();} // END keyHandler
+
+void IMX219CameraMIPI::getFormatedImage(uint8_t * dat, int w, int h, int id, cv::Mat & image)
 {
 #if defined(CCM_8UC1)
-    memcpy(image.data, f, image.total());
+    memcpy(image.data, dat, image.total());
 #elif defined(CCM_8UC3)
-    memcpy(image.data, f, 3*image.total());
+    memcpy(image.data, dat, 3*image.total());
 #else
     throw std::runtime_error("Not supported color space for output format");
 #endif
-}
+} // END getFormatedImage
 
 bool IMX219CameraMIPI::isBayerColorChannel()
 {

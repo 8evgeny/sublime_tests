@@ -13,7 +13,7 @@ set(USE_polinom 0)
 set(work_in round) # Работа в круге, вписанном в центр фрейма (round), либо во всём фрейме (rect).
 # set(work_in rect) # Работа в круге, вписанном в центр фрейма (round), либо во всём фрейме (rect).
 
-set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_static)
+set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_static)
 
 set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../trac_from_lib_tmml/)
 

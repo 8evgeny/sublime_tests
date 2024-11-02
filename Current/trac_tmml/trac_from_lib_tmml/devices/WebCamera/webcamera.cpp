@@ -6,62 +6,113 @@ using namespace cv;
 WebCamera::~WebCamera()
 {
     cout << "Деструктор WebCamera : Device" << endl;
-    capturer->release();
+    cap_ptr->release();
 } // -- END WebCamera::~WebCamera()
 
-WebCamera::WebCamera(const string& path_to_ini, bool& ok)
+WebCamera::WebCamera(const string& path2ini, bool& ok, int & dev_fps)
 {
     cout << "Begin Constructor WebCamera\n";
-    ok = getSettings(path_to_ini);
-    if(!ok){return;}
-
-    capturer = make_unique<VideoCapture>();
-    cout << "WebCamera::WebCamera:: capture open is " << capturer->open(device_id) << endl;
-    if(capturer->isOpened())
-    {
-        if(!frame_w || !frame_h)
-        {
-            Mat img_buf;
-            capturer->read(img_buf);
-            frame_w = img_buf.cols;
-            frame_h = img_buf.rows;
-            chann = img_buf.channels();
-            cout << "WebCamera AUTOSETTINGS FRAME SIZE: frame w; h; chann = [" << frame_w << "; " << frame_h << "; " << chann << "]\n";
-            imshow("first_frame", img_buf);
-            unsigned char key = waitKey(1000);
-            destroyWindow("first_frame");
-        } // END if(!frameWidth || !frameHeight)
-        int color_chann = getColorChannels();
-        cout << "SET =========== w; h; channels; fps = [" << frame_w << "; " << frame_h << "; " << color_chann << "; " << fps << "]\n";
-        //capturer->set(CAP_PROP_FRAME_WIDTH, frameWidth);
-        //capturer->set(CAP_PROP_FRAME_HEIGHT, frameHeight);
-        capturer->set(CAP_PROP_BUFFERSIZE, 10);
-        capturer->set(CAP_PROP_FPS, fps);
-        int fr_w0 = int(capturer->get(CAP_PROP_FRAME_WIDTH));
-        int fr_h0 = int(capturer->get(CAP_PROP_FRAME_HEIGHT));
-        int chann0 = int(capturer->get(CAP_PROP_CHANNEL));
-        int fps0 = int(capturer->get(CAP_PROP_FPS));
-        cout << "GET ==================== w; h; channels; fps = [" << fr_w0 << "; " << fr_h0 << "; " << chann0 << "; " << fps0 << "]\n";
-        //if(!fr_w0 || !fr_h0 || !fps0 || !fps0){ok = 0; return;}
-        ok = 1;
-    } // END if(capturer->isOpened())
-    else
-    {
-        cout << "=============== capturer is NOT Opened !!! \n";
-        ok = 0;
-        return;
-    } // END if(NOT capturer->isOpened())
-
+    ok = getSettings(path2ini);
+    if(!ok){cout << "Not readIniSettings!!!\n"; return;}
+    ok = start_cam();
+    if(!ok){cout << "Not start_cam!!!\n"; return;}
+    dev_fps = fps;
     tp_get_fr = chrono::high_resolution_clock::now();
     thread execution(&WebCamera::exec, this);
     execution.detach();
     cout << "END Constructor WebCamera\n";
 } // -- END WebCamera
 
-void WebCamera::keyHandler(uchar &key)
+bool WebCamera::start_cam()
 {
-    return void();
-} // END keyHandler
+    cap_ptr = make_unique<VideoCapture>();
+    if(cap_ptr == nullptr){cout << "Not make_unique<VideoCapture>!\n"; return 0;}
+    bool setup_report = true;
+    if(backend_id == BACKEND_V4L2)
+    {
+        setup_report &= cap_ptr->open(webcamera_id, CAP_V4L2);
+        cap_ptr->set(CAP_PROP_FOURCC, VideoWriter::fourcc('M', 'J', 'P', 'G'));
+    }
+    else if(backend_id == BACKEND_GSTREAMER){setup_report &= cap_ptr->open(webcamera_id, CAP_GSTREAMER);}
+
+    if(!cap_ptr->isOpened()){cout << "Not opened First Frame!\n"; return 0;}
+
+    cap_ptr->set(CAP_PROP_FRAME_WIDTH, frame_w);
+    cap_ptr->set(CAP_PROP_FRAME_HEIGHT, frame_h);
+    cap_ptr->set(CAP_PROP_FPS, fps);
+    cap_ptr->set(CAP_PROP_BUFFERSIZE, 3);    
+    cap_ptr->set(CAP_PROP_CHANNEL, channels_out);
+    int channels_get = cap_ptr->get(CAP_PROP_CHANNEL);
+
+    Mat img_buf;
+    if(!cap_ptr->read(img_buf)){cout << "Don't read FIRST FRAME!\n"; return 0;}
+    frame_w = img_buf.cols;
+    frame_h = img_buf.rows;
+    int fps_real = cap_ptr->get(CAP_PROP_FPS);
+    if(fps_real != -1){fps = fps_real;}
+    channels_in = img_buf.channels();    
+    cout << "WebCamera FIRST FRAME SIZE=[" << frame_w << ", " << frame_h << "]; channels_in=";
+    cout << channels_in << "; channels_out=" << channels_out << "; channels_get=" << channels_get;
+    cout << "; fps_real=" << fps_real << "; fps=" << fps << "\n";
+    if(channels_in == 3 && channels_out == 3){change_color = 0;}
+    else if(channels_in == 1 && channels_out == 1){change_color = 0;}
+    else if(channels_in == 3 && channels_out == 1){change_color = COLOR_BGR2GRAY;}
+    else if(channels_in == 1 && channels_out == 3){change_color = COLOR_GRAY2BGR;}    
+    else{cout << "change_color ERROR!\n"; return 0;}
+#ifdef GUI_OK
+    if(change_color){cvtColor(img_buf, img_buf, change_color);}
+    imshow("first_frame", img_buf);
+    unsigned char key = waitKey(1000);
+    destroyWindow("first_frame");
+    if(key == '`'){return 0;}
+#endif // END #ifdef GUI_OK
+    return 1;
+} // -- END start_cam
+
+void WebCamera::getFrame(Mat& fr)
+{
+    frame_id++;
+    cap_ptr->read(fr);
+    if(!frame.data){cout << "NOT data for frame" << endl; return;}
+#if defined(CCM_8UC1)
+    if(fr.channels() == 3){cvtColor(fr, frame, COLOR_BGR2GRAY);}
+#elif defined(CCM_8UC3)
+    if(fr.channels() == 1){cvtColor(fr, frame, COLOR_GRAY2BGR);}
+#endif
+    frame_ready.store(true, memory_order_release);
+    frameCV.notify_one();
+} // -- END getFrame
+
+bool WebCamera::getSettings(const string &path_to_ini)
+{
+    INIReader reader(path_to_ini);
+    if(reader.ParseError() < 0){cout << "ini reader: Parse error\n"; return 0;}
+
+    frame_w = reader.GetInteger("webcamera", "frame_w", -1);
+    if(frame_w == -1){cout << "frame_w ini error\n"; return 0;}
+
+    frame_h = reader.GetInteger("webcamera", "frame_h", -1);
+    if(frame_h == -1){cout << "frame_h ini error\n"; return 0;}
+
+    fps = reader.GetInteger("webcamera", "fps", -1);
+    if(fps == -1){cout << "fps ini error\n"; return 0;}
+    sourceFrameDelay_ms = 1000 / fps;
+
+    webcamera_id = reader.GetInteger("webcamera", "webcamera_id", -1);
+    if(webcamera_id == -1){cout << "webcamera_id ini error\n"; return 0;}
+    cout << "WebCamera get settings success" << endl;
+
+    backend_id = reader.GetInteger("webcamera", "backend_id", -1);
+    if(backend_id == -1){cout << "backend_id ini error\n"; return 0;}
+
+    channels_out = reader.GetInteger("webcamera", "channels_out", -1);
+    if(channels_out == -1){cout << "channels_out ini error\n"; return 0;}
+    return 1;
+} // END getSettings
+
+// ====================================== NOT USE:
+
+void WebCamera::keyHandler(uchar &key){return void();} // END keyHandler
 
 int WebCamera::getColorChannels()
 {
@@ -72,10 +123,7 @@ int WebCamera::getColorChannels()
 #endif // CCM_8UC1/3
 } // END getColorChannels
 
-bool WebCamera::isBayerColorChannel()
-{
-    return false;
-} // END isBayerColorChannel
+bool WebCamera::isBayerColorChannel(){return false;} // END isBayerColorChannel
 
 void WebCamera::workflow(){ }
 
@@ -89,37 +137,21 @@ uint8_t *WebCamera::receiveFrame(int &w, int &h, int &id, int &num)
         return frame.data;
         frame_mutex.unlock();
         frame_ready.store(false);
-    }
+    } // END if(frame_ready.load())
     return nullptr;
 } // -- END receiveFrame
 
-void WebCamera::getFrame(Mat& frame)
-{
-    tp_get_fr_cur = chrono::high_resolution_clock::now();
-    tp_get_fr = chrono::high_resolution_clock::now();
-    bool success = getNextFrame(frame);
-} // -- END getFrame
+int WebCamera::getFrameCounter(){return frameCnt;} // -- END getFrameCounter
 
-int WebCamera::getFrameCounter()
+void WebCamera::getFormatedImage(uint8_t * dat, int w, int h, int id, cv::Mat & image)
 {
-    return frameCnt;
-} // -- END getFrameCounter
-
-void WebCamera::getFormatedImage(uint8_t *f, int w, int h, int id, Mat &image)
-{
-
-    Mat img_buf(Size(w,h), image.type());
 #if defined(CCM_8UC1)
-    memcpy(img_buf.data, f, img_buf.total());
+    memcpy(image.data, dat, image.total());
 #elif defined(CCM_8UC3)
-    memcpy(img_buf.data, f, 3*img_buf.total());
+    memcpy(image.data, dat, 3*image.total());
 #else
-    throw runtime_error("Not supported color space for output format");
+    throw std::runtime_error("Not supported color space for output format");
 #endif
-
-    Rect rct(round(0.5 * (w - h)), 0, h, h);
-    image = img_buf(rct).clone();
-    resize(image, image, Size(frame_w, frame_h));
 } // END getFormatedImage
 
 void WebCamera::quit()
@@ -128,10 +160,7 @@ void WebCamera::quit()
     this_thread::sleep_for(chrono::milliseconds(sourceFrameDelay_ms * 2));
 } // -- END quit
 
-int WebCamera::getId()
-{
-   return frame_id;
-} // END -- getId
+int WebCamera::getId(){return frame_id;} // END -- getId
 
 void WebCamera::exec()
 {
@@ -157,56 +186,15 @@ void WebCamera::exec()
     quit();
 } // -- END exec
 
-bool WebCamera::getSettings(const string &path_to_ini)
-{
-    INIReader reader(path_to_ini);
-    if(reader.ParseError() < 0)
-    {
-        cout << "ini reader: Parse error";
-        return false;
-    }
-
-    frame_w = reader.GetInteger("webcamera", "frame_width", -1);
-    if(frame_w == -1)
-    {
-        cout << "ini reader: Parse width error\n";
-        return 0;
-    }
-
-
-    frame_h = reader.GetInteger("webcamera", "frame_height", -1);
-    if(frame_h == -1){
-        cout << "ini reader: Parse height error\n";
-        return false;
-    }
-
-    fps = reader.GetInteger("webcamera", "fps", -1);
-    if(fps == -1)
-    {
-        cout << "ini reader: Parse source fps name error\n";
-        return false;
-    }
-    sourceFrameDelay_ms = 1000 / fps;
-
-    device_id = reader.GetInteger("webcamera", "device_id", -1);
-    if(device_id == -1)
-    {
-        cout << "ini reader: Parse source [webcamera]:device_id name error\n";
-        return false;
-    }
-    cout << "WebCamera get settings success" << endl;
-    return true;
-} // END getSettings
-
-bool WebCamera::getNextFrame(Mat& frame)
+bool WebCamera::getNextFrame(Mat& fr)
 {
         frame_id++;
-        capturer->read(frame);
+        cap_ptr->read(fr);
         if(!frame.data){cout << "NOT data for frame" << endl; return 1;}
 #if defined(CCM_8UC1)
-        cvtColor(frame, frame, COLOR_BGR2GRAY);
+        if(fr.channels() == 3){cvtColor(fr, frame, COLOR_BGR2GRAY);}
 #elif defined(CCM_8UC3)
-        cvtColor(frame, frame, COLOR_GRAY2BGR);
+        if(fr.channels() == 1){cvtColor(fr, frame, COLOR_GRAY2BGR);}
 #endif
         frame_ready.store(true, memory_order_release);
         frameCV.notify_one();
@@ -219,10 +207,7 @@ void WebCamera::runHandleFrame()
     {
         unique_lock<mutex> lk(frame_mutex);
         frameCV.wait(lk);
-        if(!handle_frame_execute.load(memory_order_acquire))
-        {
-            break;
-        }
+        if(!handle_frame_execute.load(memory_order_acquire)){break;}
         for(auto handler : frame_handlers)
         {
             handler->handle(frame.data, frame.cols, frame.rows, 0, 0);

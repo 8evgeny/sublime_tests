@@ -103,7 +103,7 @@ bool devices::imx477_square_camera_mipi::checkValidAndAdaptationSettings(UserSet
     return true;
 } // -- END checkValidSettings(Settings settings)
 
-std::shared_ptr<IMX477SquareCamMIPI> devices::imx477_square_camera_mipi::create(const std::string &config_path)
+std::shared_ptr<IMX477SquareCamMIPI> devices::imx477_square_camera_mipi::create(const std::string &config_path, int & dev_fps)
 {
     bool success_rd_ini = false;
     devices::imx477_square_camera_mipi::UserSettings settings = readSettings(config_path, success_rd_ini);
@@ -116,5 +116,6 @@ std::shared_ptr<IMX477SquareCamMIPI> devices::imx477_square_camera_mipi::create(
         std::cout << "Error: settings imx477_square_camera_mipi not correct!" << std::endl;
     }
     std::shared_ptr<IMX477SquareCamMIPI> imx219device = std::make_shared<IMX477SquareCamMIPI>(settings);
+    dev_fps = imx219device->fps;
     return imx219device;
 } // -- END create(const std::string &config_path)

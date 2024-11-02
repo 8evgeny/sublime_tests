@@ -31,6 +31,7 @@ namespace devices
         bool isBayerColorChannel() override;
         void keyHandler(uchar &key) override;
         void workflow() override;
+        int fps = 0;
     private:
         void exec(); // прием фреймов из gst конвейера + конвертация формата
 

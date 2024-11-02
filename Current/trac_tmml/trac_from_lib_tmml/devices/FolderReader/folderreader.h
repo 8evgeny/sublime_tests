@@ -24,6 +24,10 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/imgcodecs.hpp>
+#ifdef GUI_OK
+   #include <opencv2/highgui/highgui.hpp>
+   #include "opencv2/highgui.hpp"
+#endif // END ifdef GUI_OK
 
 #include "tools/INIReader.h"
 #include "tools/watchdog.h"
@@ -36,7 +40,7 @@ class FolderReader : public Device
     FolderReader();
     ~FolderReader();
 
-    FolderReader(const std::string& path_to_ini, bool &ok);
+    FolderReader(const std::string& path_to_ini, bool &ok, int & dev_fps);
     void keyHandler(unsigned char &key) override;
     //void start() override;
     void workflow() override;
@@ -104,9 +108,6 @@ private:
     bool FileIsExist(const string& filePath);
     // загрузка рамки цели из файла
     //bool loadFirstLastFrameNum(std::string);
-
-
-
 };
 
 #endif // FOLDERREADER_H

@@ -8,7 +8,9 @@
 #include "INIReader.h"
 #include "tools/time_keeper/time_keeper.hpp"
 #include "tools/colors.h"
-
+#ifdef CV_GST_SEND
+    #include "cv_gst_send.hpp"
+#endif // END #ifdef CV_GST_SEND
 #include "tracshats/tracshats.hpp"
 
 #include <cstring>
@@ -44,6 +46,10 @@
 #ifdef USE_IMX477_SQUARE_CAMERA_MIPI
 #include "devices/imx477squareCameraMIPI/imx477_square_camera_mipi_factory.hpp"
 #endif // USE_IMX477_SQUARE_CAMERA_MIPI
+
+#ifdef USE_IMX415_CAMERA_MIPI
+#include "devices/imx415CameraMIPI/imx415_camera_mipi_factory.hpp"
+#endif // USE_IMX415_CAMERA_MIPI
 
 #ifdef USE_SHARED_MEMORY
 #include "devices/SharedMemory/sharedmemory.hpp"
@@ -100,6 +106,7 @@ public:
 	bool quit_async();  
 	void start();
 	void exec();    // основная функция выполнения приложения    
+    int dev_fps = 0;
 
 private:
 	// перечень устройств-источников видеопотока
@@ -115,7 +122,8 @@ private:
         RTSP_H265 = 7,
         SHARED_MEMORY = 8,
         HVGS_GRAY_USB_CAMERA = 9,
-        CORSAIR_400_RAW = 10
+        CORSAIR_400_RAW = 10,
+        IMX415_CAMERA_MIPI = 11,
     }; // -- END enum Devices
 
     cv::Mat frame_process_0; // двойная буфферизация
@@ -240,6 +248,10 @@ private:
 
     int max_objects = 10;
     bool flag_zahvat = 0;
+
+#ifdef CV_GST_SEND
+    std::unique_ptr<cv_gst_send> cv_gst_sender = nullptr;  //Send video stream from Gstreamer to host
+#endif // CV_GST_SEND
 
 #ifdef DBG_VIDEO_SENDER
     std::shared_ptr<rtp::RtpServer> fenix2frame_sender_ptr = nullptr;

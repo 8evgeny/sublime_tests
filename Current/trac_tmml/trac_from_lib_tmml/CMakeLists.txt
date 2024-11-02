@@ -13,7 +13,7 @@ set(USE_GPU 2) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
 # CORR_TYPE = 6 : CCOEFF_NORMED  (Кросскорреляция модифицированная)
 # CORR_TYPE = 8 ; COMBINED (объединение прямой и модифицированной кросскорреляции)
 # CORR_TYPE = 10 : TKDNN, RKNN
-set(USE_CORR_TYPE 10)
+set(USE_CORR_TYPE 8)
 
 set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib)
 
@@ -22,20 +22,21 @@ set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib)
 # Использование в режиме GUI show_ok=0 -- удобство GUI при средней скорости.
 set(USE_SHOW_OK0 0)
 # Использовавть внешние колонки
-set(USE_SPEAKER 1)
+set(USE_SPEAKER 0)
+set(CV_GST_SEND 1) # Sending video stream to HOST (only Khadas - section [cv_gst_send] in inifile)
 
 # Работа в режиме GUI (медленно), или без GUI (быстро):
 set(USE_GUI 1)
 # Использование логгера
 set(USE_LOGGER 1)
 # Режим цветового пространства, получаемых изображений от источника видеопотока
-set(USE_COLOR_CHANNEL_MODE 8UC1) # (8UC3 -- BGR, 8UC1 -- GRAY8, 8UC4 -- RGBA)
+set(USE_COLOR_CHANNEL_MODE 8UC3) # (8UC3 -- BGR, 8UC1 -- GRAY8, 8UC4 -- RGBA)
 
 set(USE_ROI_TMP 0) # Работа в ROI и с центральным шаблоном.
 # Use Devices:
 set(USE_FOLDER_READER 1) # 0
 set(USE_VIDEO_READER 0) # 1
-set(USE_WEB_CAMERA 0) # 2
+set(USE_WEB_CAMERA 1) # 2
 set(USE_COLIBRI_TV 0) # 3
 set(USE_RASPBERRY_HQ_CAMERA 0) # 4
 set(USE_IMX477_SQUARE_CAMERA_MIPI 0) # 5
@@ -44,6 +45,7 @@ set(USE_HIKVISION 0) # 7
 set(USE_SHARED_MEMORY 0) # 8
 set(USE_HVGS_GRAY_USB_CAMERA 0) # 9
 set(USE_CORSAIR_400_RAW 0) # 10 (Шар ОЭЦН400, сырой UDP видеопоток напрямую)
+set(USE_IMX415_CAMERA_MIPI 0) # 11
 set(USE_ETHERNET_CONNECTION 0)
 set(USE_PCAP 0)
 
@@ -131,7 +133,7 @@ if(${USE_GPU} EQUAL 1)
 endif() # END if(${USE_GPU} EQUAL 1)
 
 if(${USE_GPU} EQUAL 2)
-    set(trac_lib_name -l_trac_tmml_${USE_CORR_TYPE}_CL) # Название подключаемой библиотеки CUDA
+    set(trac_lib_name -l_trac_tmml_${USE_CORR_TYPE}_CL) # Название подключаемой библиотеки CL
     if(NOT ${USE_CORR_TYPE} EQUAL 10)
        add_definitions(-DUSE_CL)
        message(STATUS "--------------------------- USE_CORR_TYPE=${USE_CORR_TYPE}")
@@ -140,7 +142,7 @@ if(${USE_GPU} EQUAL 2)
        add_definitions(-Dcreate_name=create_track)
     endif() # END if(NOT ${USE_CORR_TYPE} EQUAL 10)
     if(${USE_CORR_TYPE} EQUAL 10)
-        set(trac_lib_name -l_trac_tmml_RKNN) # Название подключаемой библиотеки CUDA
+        set(trac_lib_name -l_trac_tmml_RKNN) # Название подключаемой библиотеки CL
         add_definitions(-DTKDNN)
         message(STATUS "--------------------------- USE_CORR_TYPE=${USE_CORR_TYPE}")
         message(STATUS "--------------------------- USE_RKNN")
@@ -215,6 +217,15 @@ endif() # END if(${USE_LOGGER} EQUAL 1)
 
 ########################### BEGIN DEVICES:
 
+if(${CV_GST_SEND} EQUAL 1)
+    add_definitions(-DCV_GST_SEND)
+    include_directories(tools/cv_gst_send)
+    target_sources(trac_from_lib_tmml PRIVATE
+        tools/cv_gst_send/cv_gst_send.hpp
+        tools/cv_gst_send/cv_gst_send.cpp
+        )
+endif() #if(${CV_GST_SEND} EQUAL 1)
+
 if(${USE_FOLDER_READER} EQUAL 1) # 0
     add_definitions(-DUSE_FOLDER_READER)
     target_sources(trac_from_lib_tmml PRIVATE
@@ -283,6 +294,17 @@ if(${USE_IMX477_SQUARE_CAMERA_MIPI} EQUAL 1) # 5
         devices/imx477squareCameraMIPI/imx477_square_camera_mipi_settings.hpp
         )
 endif() # END if(${USE_IMX477_SQUARE_CAMERA_MIPI} EQUAL 1)
+
+if(${USE_IMX415_CAMERA_MIPI} EQUAL 1) # 5
+    add_definitions(-DUSE_IMX415_CAMERA_MIPI)
+    target_sources(trac_from_lib_tmml PRIVATE
+        devices/imx415CameraMIPI/imx415_camera_mipi_factory.hpp
+        devices/imx415CameraMIPI/imx415_camera_mipi_factory.cpp
+        devices/imx415CameraMIPI/imx415_camera_mipi.hpp
+        devices/imx415CameraMIPI/imx415_camera_mipi.cpp
+        devices/imx415CameraMIPI/imx415_camera_mipi_settings.hpp
+        )
+endif() # END if(${USE_IMX415_CAMERA_MIPI} EQUAL 1)
 
 if(${USE_IMX219_CAMERA_MIPI} EQUAL 1) # 6
     add_definitions(-DUSE_IMX219_CAMERA_MIPI)

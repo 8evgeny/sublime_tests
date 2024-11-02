@@ -41,15 +41,11 @@ class nnet
    std::unique_ptr<trac_struct> ts = nullptr; // Структура трекинга.
    std::unique_ptr<std::list<trac_st>> ltrac_ptr = nullptr;
 
-//   std::unique_ptr<trt_detector::YOLO_TRT_Detector> yolo_trt = nullptr;
-//   std::unique_ptr<trt_detector::YOLO_TRT_Detector> yolo_trt_track = nullptr;
-
-   cv::Mat img_orig, img_orig_roi; // Матрицы для оригинального кадра и для ROI из оригинального кадра.
+   cv::Mat img_orig; // Матрицы для оригинального кадра и для ROI из оригинального кадра.
    cv::Rect2f rct_local_orig; // Рект для ROI на оригинальном кадре.
-
    int fr_w0 = 0, fr_h0 = 0;
    cv::Point scan_left_top{0, 0}; // Координаты левого-верхнего угла рамки при сканировании объекта.
-   int img_orig_type = 0;
+   int img_orig_type = CV_8UC1;
    int change_color = -1;
    int color_channels = 0, color_channels_track = 0;
    float fr_w0_1, fr_h0_1;
@@ -166,22 +162,15 @@ class nnet
    void yolo_work_track(const cv::Point& left_top, std::vector<tr>& vtr);
 
 #ifdef RKNN_ENABLE
-
    rknn_app_context_t rknn_app_ctx;
    image_buffer_t img_buff;
    object_detect_result_list od_results;
-
 //   const char *model_path = "model/best.rknn";
    const char * model_path ;
    std::vector<tr> vtr;
    void results_save_to_vector(object_detect_result_list & od_results, image_buffer_t & img_buff, std::vector<tr>& vtr);
    void release_resources(rknn_app_context_t & rknn_app_ctx, image_buffer_t & img_buff);
-
-#endif
-
-
-
-
+#endif // END #ifdef RKNN_ENABLE
 }; // -- END nnet
 
 

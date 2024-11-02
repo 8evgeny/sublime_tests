@@ -24,8 +24,9 @@ namespace devices
         void getFormatedImage(uint8_t *f, int w, int h, int id, cv::Mat &image) override; 
         int getColorChannels() override;
         bool isBayerColorChannel() override;
-        void keyHandler(char &key) override;
+        void keyHandler(uchar &key) override;
         void workflow() override;
+
     private:
         void exec(); // прием фреймов из gst конвейера + конвертация формата
         void runHandleFrame(); // уведомление подписчиков (рассылка фремйма)

@@ -6,7 +6,7 @@ project(trac_tmml_get_lib)
 set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../trac_from_lib_tmml)
 #set(FROM_LIB ${CMAKE_CURRENT_LIST_DIR}/../../fenix2/fenix2_from_lib)
 
-set(USE_GPU 0) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
+set(USE_GPU 2) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
 
 # Тип корреляции при template matching
 # CORR_TYPE = 2 : SQDIFF_NORMED (Прямая корреляция)
@@ -17,7 +17,7 @@ set(CORR_TYPE 8)
 set(TEMPLATE_WIDTH 48)
 set(EXT_VAL 5)
 
-set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib_static)
+set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_static)
 include_directories($CMAKE_SOURCE_DIR})
 
 set(COUT_OK 0) # Вывод в терминал.

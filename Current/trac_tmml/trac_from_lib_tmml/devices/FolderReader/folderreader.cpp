@@ -10,11 +10,12 @@ FolderReader::FolderReader()
 
 FolderReader::~FolderReader(){cout << "Destructor FolderReader" << endl;}
 
-FolderReader::FolderReader(const string& path_to_ini, bool& ok)
+FolderReader::FolderReader(const string& path_to_ini, bool& ok, int & dev_fps)
 {
     cout << "Begin Constructor FolderReader\n";
     ok = getSettings(path_to_ini);
     if(!ok){return;}
+    dev_fps = fps;
 
     if(!rect_init_from_file)
     {
@@ -71,6 +72,12 @@ FolderReader::FolderReader(const string& path_to_ini, bool& ok)
         thread execution(&FolderReader::exec, this);
         execution.detach();
     } // END if(parallel)
+#ifdef GUI_OK
+    imshow("first_frame", frame);
+    unsigned char key = waitKey(1000);
+    destroyWindow("first_frame");
+    if(key == '`'){ok = 0; cout << "PUSH key='`'"; return;}
+#endif // END #ifdef GUI_OK
     cout << "END Constructor FolderReader\n";
 } // -- END FolderReader
 
@@ -152,21 +159,15 @@ bool FolderReader::isBayerColorChannel()
 } // -- END isBayerColorChannel
 
 
-void FolderReader::getFormatedImage(uint8_t *f, int w, int h, int id, cv::Mat &image)
+void FolderReader::getFormatedImage(uint8_t * dat, int w, int h, int id, cv::Mat & image)
 {
-
-    Mat img_buf(Size(w,h), image.type());
 #if defined(CCM_8UC1)
-    memcpy(img_buf.data, f, img_buf.total());
+    memcpy(image.data, dat, image.total());
 #elif defined(CCM_8UC3)
-    memcpy(img_buf.data, f, 3*img_buf.total());
+    memcpy(image.data, dat, 3*image.total());
 #else
     throw std::runtime_error("Not supported color space for output format");
 #endif
-
-    Rect rct(round(0.5 * (w - h)), 0, h, h);
-    image = img_buf(rct).clone();
-    resize(image, image, Size(frame_w, frame_h));
 } // END getFormatedImage
 
 void FolderReader::quit()

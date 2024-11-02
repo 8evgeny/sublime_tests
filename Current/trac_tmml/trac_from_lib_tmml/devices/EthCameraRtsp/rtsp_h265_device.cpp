@@ -226,27 +226,17 @@ uint8_t *RTSP_H265_device::receiveFrame(int &w, int &h, int &id, int &num)
     return nullptr;
 }
 
-void RTSP_H265_device::getFormatedImage(uint8_t *f, int w, int h, int id, cv::Mat &image)
+void RTSP_H265_device::getFormatedImage(uint8_t * dat, int w, int h, int id, cv::Mat & image)
 {
-
-#if defined(CCM_8UC3)
-    static cv::Mat tempImg(settings->video.height, settings->video.width, CV_8UC4);
-    memcpy(tempImg.data, map.data, frame_byte_length);
-    cv::cvtColor(tempImg, image, cv::COLOR_RGBA2BGR);
-#elif defined(CCM_8UC1)
-    //    cout << "dbg:: w    =  " << w << endl;
-    //    cout << "dbg:: h    =  " << h << endl;
-    //    cout << "dbg:: id   =  " << id << endl;
-    //    cout << "dbg:: image.size =  " << image.size() << "; channels = " << image.channels() << endl;
-    //    cout << "dbg:: map.size() = " << map.size << endl;
-    //    cout << "dbg:: frame_byte_length = " << frame_byte_length << endl;
-    //    cout << "dbg:: map_sz/byte_length= " << map.size / frame_byte_length << endl;
-    memcpy(image.data, map.data, frame_byte_length);
+#if defined(CCM_8UC1)
+    memcpy(image.data, dat, image.total());
+#elif defined(CCM_8UC3)
+    memcpy(image.data, dat, 3*image.total());
 #else
     throw std::runtime_error("Not supported color space for output format");
 #endif
     sync.frameReady.store(false);
-}
+} // END getFormatedImage
 
 int RTSP_H265_device::getColorChannels()
 {

@@ -71,7 +71,6 @@ shared_ptr<nnet> create_nnet(const char* config_path, bool& ok, trac_struct& tra
     shared_ptr<nnet> nnet0 = make_shared<nnet>(config_path, ok);
     if(!ok){cout << "NOT shared_ptr<nnet>!!!\n"; return nnet0;}
 
-    nnet0->img_orig_type = trac_str0.img_orig_type;
     nnet0->fr_w0 = trac_str0.fr_w0;
     nnet0->fr_h0 = trac_str0.fr_h0;
     nnet0->fr_w0_1 = 1.f/nnet0->fr_w0;
@@ -83,18 +82,6 @@ shared_ptr<nnet> create_nnet(const char* config_path, bool& ok, trac_struct& tra
     bool init_copter_scan_ok = nnet0->init_copter_scan(config_path);
     if(!init_copter_scan_ok){ok = 0; cout << "NOT init_copter_scan!\n"; return nnet0;}
 
-    if(nnet0->img_orig_type == CV_8UC1 && nnet0->color_channels == 1){nnet0->change_color = 0;}
-    else if(nnet0->img_orig_type == CV_8UC3 && nnet0->color_channels == 3){nnet0->change_color = 0;}
-    else if(nnet0->img_orig_type == CV_8UC1 && nnet0->color_channels == 3){nnet0->change_color = COLOR_GRAY2BGR;}
-    else if(nnet0->img_orig_type == CV_8UC3 && nnet0->color_channels == 1){nnet0->change_color = COLOR_BGR2GRAY;}
-
-    if(nnet0->change_color == -1)
-    {
-        cout << "img_orig_type=" << nnet0->img_orig_type << "; color_channels=" << nnet0->color_channels << endl;
-        cout << "change_color = -1!" << endl;
-        ok = 0;
-        return nnet0;
-    } // -- END if(nnet0->change_color == -1)
     nnet0->ts = unique_ptr<trac_struct>(&trac_str0);
     nnet0->ts->roi_w = nnet0->cfg_w;
     nnet0->ts->roi_h = nnet0->cfg_h;
@@ -632,7 +619,7 @@ int nnet::work()
     if(ts->new_frame)
     {
         //if(!ts->img_orig_data){cout << "NOT data for img_orig!!!" << endl; return 0;}
-        img_orig = Mat(ts->fr_h0, ts->fr_w0, ts->img_orig_type, ts->img_orig_data);
+        img_orig = Mat(ts->fr_h0, ts->fr_w0, img_orig_type, ts->img_orig_data);
     } // -- END if(t_st->new_frame)
     // ==========================================================
     get_list_objects();

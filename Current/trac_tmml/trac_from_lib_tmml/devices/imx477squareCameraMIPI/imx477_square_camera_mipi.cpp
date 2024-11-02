@@ -23,20 +23,24 @@ void IMX477SquareCamMIPI::setup()
     switch(settings.camera_mode)
     {
         case CAM_MODE_1920_1080_60FPS:
-            gen_settings.video = VideoSettings(1920, 1080, 60);       
+            gen_settings.video = VideoSettings(1920, 1080, 60);
+            fps = 60;
         break;
 
         case CAM_MODE_3840_2160_30FPS:
             gen_settings.video = VideoSettings(3840, 2160, 30);
+            fps = 30;
         break;
 
         case CAM_MODE_4032_3040_20FPS:
             gen_settings.video = VideoSettings(4032, 3040, 20);
+            fps = 20;
         break;
 
         default:
             std::cout << "ERROR: failed recognize IMX477SquareCamMIPI camera_mode, check ini-file. Use default 4K@30fps" << std::endl;
             gen_settings.video = VideoSettings(3840, 2160, 30);
+            fps = 30;
         break;
     };
 
@@ -294,16 +298,16 @@ void IMX477SquareCamMIPI::quit()
 //     return nullptr;    
 // }
 
-void IMX477SquareCamMIPI::getFormatedImage(uint8_t *f, int w, int h, int id, cv::Mat &image)
+void IMX477SquareCamMIPI::getFormatedImage(uint8_t * dat, int w, int h, int id, cv::Mat & image)
 {
 #if defined(CCM_8UC1)
-    memcpy(image.data, f, image.total());
+    memcpy(image.data, dat, image.total());
 #elif defined(CCM_8UC3)
-    memcpy(image.data, f, 3*image.total());
+    memcpy(image.data, dat, 3*image.total());
 #else
     throw std::runtime_error("Not supported color space for output format");
 #endif
-}
+} // END getFormatedImage
 
 bool IMX477SquareCamMIPI::isBayerColorChannel()
 {

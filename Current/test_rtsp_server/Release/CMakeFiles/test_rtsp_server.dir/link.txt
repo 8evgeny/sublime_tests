@@ -1,0 +1,1 @@
+/usr/bin/gcc-13 -O3 -DNDEBUG "CMakeFiles/test_rtsp_server.dir/test-launch.c.o" -o test_rtsp_server  -L/usr/lib/aarch64-linux-gnu -lgstreamer-1.0 -lgobject-2.0 -lglib-2.0 -L/usr/lib/aarch64-linux-gnu -lgstapp-1.0 -lgstbase-1.0 -lgstreamer-1.0 -lgobject-2.0 -lglib-2.0 -lgstapp-1.0 -lgstbase-1.0 

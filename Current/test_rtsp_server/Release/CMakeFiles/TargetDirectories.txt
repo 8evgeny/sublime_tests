@@ -1,0 +1,4 @@
+/media/khadas/WORK_EXT_NVME/sublime_tests/Current/test_rtsp_server/Release/CMakeFiles/test_rtsp_server_pipe.dir
+/media/khadas/WORK_EXT_NVME/sublime_tests/Current/test_rtsp_server/Release/CMakeFiles/test_rtsp_server.dir
+/media/khadas/WORK_EXT_NVME/sublime_tests/Current/test_rtsp_server/Release/CMakeFiles/edit_cache.dir
+/media/khadas/WORK_EXT_NVME/sublime_tests/Current/test_rtsp_server/Release/CMakeFiles/rebuild_cache.dir

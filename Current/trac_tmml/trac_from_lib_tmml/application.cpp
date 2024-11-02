@@ -54,59 +54,64 @@ Application::Application(const string & pathToConfig,
     {
 #ifdef USE_FOLDER_READER
     case FOLDER:
-        device = make_shared<FolderReader>(config_path, ok);
+        device = make_shared<FolderReader>(config_path, ok, dev_fps);
         cout << "make_shared<FolderReader> OK=" << ok << endl;
         if(!ok){cout << "Not ok FolderReader!" << endl; return;}
         break;
 #endif // END USE_FOLDER_READER
 #ifdef USE_COLIBRI_TV
     case COLIBRITV:
-        device = make_shared<ColibriTV>(config_path, ok);
+        device = make_shared<ColibriTV>(config_path, ok, dev_fps);
         if(!ok){cout << "Not ok ColibriTV!" << endl; return;}
         device->setup();
         break;
 #endif // END USE_COLIBRI_TV
 #ifdef USE_VIDEO_READER
     case VIDEO:
-        device = make_shared<VideoReader>(config_path, ok);
+        device = make_shared<VideoReader>(config_path, ok, dev_fps, dev_fps);
         if(!ok){return;}
         break;
 #endif
 #ifdef USE_WEB_CAMERA
     case WEBCAMERA:
-        device = make_shared<WebCamera>(config_path, ok);
+        device = make_shared<WebCamera>(config_path, ok, dev_fps);
         if(!ok){return;}
         break;
 #endif // END USE_WEB_CAMERA
 #ifdef USE_SHARED_MEMORY
     case SHARED_MEMORY:
-        device = make_shared<SharedMemory>(config_path, ok);
+        device = make_shared<SharedMemory>(config_path, ok, dev_fps);
         if(!ok){return;}
         device->setup();
         break;
 #endif // END USE_SHARED_MEMORY
 #ifdef USE_RASPBERRY_HQ_CAMERA
     case RASPBERRY_HQ_CAMERA:
-        device = devices::raspberry_hq_camera::create(config_path);
+        device = devices::raspberry_hq_camera::create(config_path, dev_fps);
         device->setup();
         break;
 #endif // END USE_RASPBERRY_HQ_CAMERA
 #ifdef USE_IMX219_CAMERA_MIPI
     case IMX219_CAMERA_MIPI:
-        device = devices::imx219_camera_mipi::create(config_path);
+        device = devices::imx219_camera_mipi::create(config_path, dev_fps);
         device->setup();
         break;
 #endif // END USE_IMX219_CAMERA_MIPI
 #ifdef USE_IMX477_SQUARE_CAMERA_MIPI
     case IMX477_SQUARE_CAMERA_MIPI:
-        device = devices::imx477_square_camera_mipi::create(config_path);
+        device = devices::imx477_square_camera_mipi::create(config_path, dev_fps);
         device->setup();
         break;
 #endif
-
+#ifdef USE_IMX415_CAMERA_MIPI
+    case IMX415_CAMERA_MIPI:
+        device = devices::imx415_camera_mipi::create(config_path, dev_fps);
+        device->setup();
+        break;
+#endif
 #ifdef USE_HIKVISION
     case RTSP_H265:
-        device = devices::rtsp_h265_device::create(config_path, "rtsp_h265_device");
+        device = devices::rtsp_h265_device::create(config_path, "rtsp_h265_device", dev_fps);
         device->setup();
         break;
 
@@ -114,7 +119,7 @@ Application::Application(const string & pathToConfig,
 
 #ifdef USE_CORSAIR_400_RAW
     case CORSAIR_400_RAW:
-        device = devices::corsair_400_raw::create(config_path, "corsair_400_raw");
+        device = devices::corsair_400_raw::create(config_path, "corsair_400_raw", dev_fps);
         if(device == nullptr)
         {
             std::cout << "ERROR: create CORSAIR_400_RAW device failed" << std::endl;
@@ -439,6 +444,16 @@ void Application::exec()
     frame_w_1 = 1.f / (float)frame_w;
     frame_h_1 = 1.f / (float)frame_h;
 
+#ifdef CV_GST_SEND
+    cv_gst_sender = make_unique<cv_gst_send>(config_path, ok, frame_w, frame_h, dev_fps);
+    if(!ok)
+    {
+        cout << "NOT make_unique<cv_gst_send>!\n";
+        quit();
+        return;
+    } // END if (!ok)
+#endif // END #ifdef CV_GST_SEND
+
     cout << "exec:: frame size : frame_w = " << frame_w << "; frame_h = " << frame_h << endl;
     tracShats = make_shared<TracShats>(config_path, frame_process_0, ok);
     if(!ok)
@@ -690,6 +705,13 @@ void Application::exec()
             {
                 circle(frame_show, Point(frame_show_width_2, frame_show_height_2), frame_show_height_2, color::white, 1);
             } // END if(tracShats->trac_str.work_in_round)
+
+
+
+
+
+
+
             if(mouseHandler(frame_show, rectm))
             {
                 // инициализация трекера, если указана новая рамка цели
@@ -1287,19 +1309,24 @@ bool Application::loadRectFromFile(string path)
 // подготовка изображения для tracShats
 void Application::prepareFrameForTracShats()
 {
+#ifdef CV_GST_SEND  //send frame_receive to host
+    cv_gst_sender->sendToHost(frame_receive);
+#endif // END CV_GST_SEND
     if(roi_mode and isRoiSetted)
     {
         // расчет абсолютных координат ROI
         Rect realSizedROI(roi.x * frame_receive.cols, roi.y * frame_receive.rows,
                           roi.width * frame_receive.cols, roi.height * frame_receive.rows);
         frame_process_tracshats = frame_receive(realSizedROI).clone();
-        //                        // отрисовка ROI
-        //                        rectangle(frame_color, realSizedROI, color::blue, 2);
-        // imwrite("../test_data/img1.png", frame_process_tracshats);
+        if(frame_receive.channels() == 3){cvtColor(frame_process_tracshats, frame_process_tracshats, COLOR_BGR2GRAY);}
     } // END if(roi_mode and isRoiSetted)
     else
     {
-        frame_process_tracshats = frame_receive; //.clone();
+        if(frame_receive.channels() == 3){cvtColor(frame_receive, frame_process_tracshats, COLOR_BGR2GRAY);}
+        else
+        {
+            frame_process_tracshats = frame_receive; //.clone();
+        }
     } // END if(!(roi_mode and isRoiSetted))
 } // -- END prepareFrameForTracShats
 

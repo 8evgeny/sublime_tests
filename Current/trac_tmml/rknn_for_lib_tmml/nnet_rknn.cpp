@@ -140,11 +140,14 @@ bool nnet::init_yolo(const char* config_path)
         printf("init_yolov8_model fail! ret=%d model_path=%s\n", ret, model_path);
         release_resources(rknn_app_ctx, img_buff);
     } //END if(ret != 0)
-    img_buff.width = 256;
-    img_buff.height = 256;
-    img_buff.format = IMAGE_FORMAT_RGB888;
-    //    img_buff.virt_addr = img_orig.data;
-    img_buff.size=196608;
+    img_buff.width = cfg_w;
+    img_buff.height = cfg_h;
+    if (color_channels == 3)
+        img_buff.format = IMAGE_FORMAT_RGB888;
+    if (color_channels == 1)
+        img_buff.format = IMAGE_FORMAT_GRAY8;
+    img_buff.size = cfg_w * cfg_h * color_channels;
+    cout << "img_buff.size = "<<img_buff.size<<endl;
     cout << "init_yolo OK\n";
     return 1;
 } // -- END init_yolo
@@ -161,7 +164,7 @@ void nnet::yolo_work(const Point& left_top, vector<tr>& vtr)
 {
     time_point_first = system_clock::now();
     Mat img4yolo = img_orig(Rect(left_top.x, left_top.y, cfg_w, cfg_h));
-    if(change_color){cvtColor(img4yolo, img4yolo, change_color);}
+    cvtColor(img4yolo, img4yolo, COLOR_GRAY2BGR);
     img_buff.virt_addr = img4yolo.data;
     int ret = inference_yolov8_model(&rknn_app_ctx, &img_buff, &od_results);
 //    if(ret != 0)
@@ -189,13 +192,15 @@ void nnet::yolo_work(const Point& left_top, vector<tr>& vtr)
             vtr.emplace_back(tr{xy, wh_2, cls, duration_now.count()});
         } // -- END if(cls != class_num_musor && object_pix2 > min_object_pix2)
     } // -- END for(int i_obj=0; i_obj < od_results.count; i_obj++)
+    //cout << "vtr.size=" << vtr.size() << endl;
 } // -- END yolo_work
 
 void nnet::yolo_work_track(const Point& left_top, vector<tr>& vtr)
 {
     time_point_first = system_clock::now();
     Mat img4yolo = img_orig(Rect(left_top.x, left_top.y, cfg_w, cfg_h));
-    if(change_color){cvtColor(img4yolo, img4yolo, change_color);}
+    cvtColor(img4yolo, img4yolo, COLOR_GRAY2BGR);
+    img_buff.virt_addr = img4yolo.data;
     int ret = inference_yolov8_model(&rknn_app_ctx, &img_buff, &od_results);
 //    if(ret != 0)
 //    {
@@ -222,5 +227,6 @@ void nnet::yolo_work_track(const Point& left_top, vector<tr>& vtr)
             vtr.emplace_back(tr{xy, wh_2, cls, duration_now.count()});
         } // -- END if(cls != class_num_musor && object_pix2 > min_object_pix2)
     } // -- END for(int i_obj=0; i_obj < od_results.count; i_obj++)
+    //cout << "vtr.size=" << vtr.size() << endl;
 } // -- END yolo_work_track
 
