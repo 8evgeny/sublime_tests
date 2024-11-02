@@ -71,6 +71,10 @@
 #include "modules/cmd400/cmd400_keeper_factory.hpp"
 #endif // USE_CORSAIR_400_RAW
 
+#ifdef USE_RTSP
+#include "devices/rtsp/rtsp_factory.hpp"
+#endif // USE_RTSP
+
 #ifdef DBG_VIDEO_SENDER
 #include "modules/fenix2meta/fenix2meta_struct.hpp"
 #include "video_eth_controllers/gstc/rtp_server_x264/rtp_server.hpp"
@@ -124,6 +128,7 @@ private:
         HVGS_GRAY_USB_CAMERA = 9,
         CORSAIR_400_RAW = 10,
         IMX415_CAMERA_MIPI = 11,
+        RTSP = 12
     }; // -- END enum Devices
 
     cv::Mat frame_process_0; // двойная буфферизация

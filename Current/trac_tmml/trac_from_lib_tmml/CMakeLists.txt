@@ -23,7 +23,7 @@ set(OpenCV_DIR $ENV{HOME}/opencv/install_4_7_0_contrib)
 set(USE_SHOW_OK0 0)
 # Использовавть внешние колонки
 set(USE_SPEAKER 0)
-set(CV_GST_SEND 1) # Sending video stream to HOST (only Khadas - section [cv_gst_send] in inifile)
+set(CV_GST_SEND 0) # Sending video stream to HOST (only Khadas - section [cv_gst_send] in inifile)
 
 # Работа в режиме GUI (медленно), или без GUI (быстро):
 set(USE_GUI 1)
@@ -34,9 +34,9 @@ set(USE_COLOR_CHANNEL_MODE 8UC3) # (8UC3 -- BGR, 8UC1 -- GRAY8, 8UC4 -- RGBA)
 
 set(USE_ROI_TMP 0) # Работа в ROI и с центральным шаблоном.
 # Use Devices:
-set(USE_FOLDER_READER 1) # 0
+set(USE_FOLDER_READER 0) # 0
 set(USE_VIDEO_READER 0) # 1
-set(USE_WEB_CAMERA 1) # 2
+set(USE_WEB_CAMERA 0) # 2
 set(USE_COLIBRI_TV 0) # 3
 set(USE_RASPBERRY_HQ_CAMERA 0) # 4
 set(USE_IMX477_SQUARE_CAMERA_MIPI 0) # 5
@@ -46,6 +46,7 @@ set(USE_SHARED_MEMORY 0) # 8
 set(USE_HVGS_GRAY_USB_CAMERA 0) # 9
 set(USE_CORSAIR_400_RAW 0) # 10 (Шар ОЭЦН400, сырой UDP видеопоток напрямую)
 set(USE_IMX415_CAMERA_MIPI 0) # 11
+set(USE_RTSP 1) # 12
 set(USE_ETHERNET_CONNECTION 0)
 set(USE_PCAP 0)
 
@@ -422,6 +423,30 @@ if(${USE_CORSAIR_400_RAW} EQUAL 1) # 10
         ${cors400_src_dir_path}/protocols/udp/
         )
 endif() # END if(${USE_CORSAIR_400_RAW} EQUAL 1)
+
+if(${USE_RTSP} EQUAL 1) # 12
+    add_definitions(-DUSE_RTSP)
+    include_directories(tools/)
+    include_directories(tools/toolbox_common_utils/)
+    target_sources(trac_from_lib_tmml PRIVATE
+        devices/rtsp/rtsp.hpp
+        devices/rtsp/rtsp.cpp
+        devices/rtsp/rtsp_factory.hpp
+        devices/rtsp/rtsp_factory.cpp
+        devices/rtsp/rtsp_settings.hpp
+        )
+    find_package(PkgConfig REQUIRED)
+    pkg_search_module(GST REQUIRED gstreamer-1.0>=1.4
+        gstreamer-sdp-1.0>=1.4
+        gstreamer-video-1.0>=1.4
+        gstreamer-app-1.0>=1.4
+        gstrtp-1.0
+        glib-2.0
+        )
+    target_link_libraries(trac_from_lib_tmml ${GST_LIBRARIES} ${GST_LIBRARIES} gstapp-1.0)
+    target_include_directories(trac_from_lib_tmml PRIVATE ${GST_INCLUDE_DIRS})
+    add_subdirectory(${CMAKE_SOURCE_DIR}/rtsp)
+endif() # END if(${USE_RTSP} EQUAL 1)
 
 ############################################ END DEVICES
 
