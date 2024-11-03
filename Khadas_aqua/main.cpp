@@ -29,7 +29,7 @@ bool heater = false;
 float temperature;
 QTime time_light_on, time_light_off, time_UF_on, time_UF_off;
 QTime checkSun;
-QString timeCheckSun = "06:29:00";
+QString timeCheckSun = "00:01:00";
 vector<QTime> food(0);
 QString food_time;
 int long_food = 0;
@@ -99,8 +99,8 @@ receiveSettings(float & min_temp, float & max_temp, bool & heater,
                 QTime & time_UF_on, QTime & time_UF_off, bool & UF)
 {
     QStringList foodTimes;
-    while(1)
-    {
+//    while(1)
+//    {
         Mut.lock();
         QSettings settings("/home/khadas/aqua/config", QSettings::IniFormat);
         settings.beginGroup("Temperature");
@@ -136,7 +136,7 @@ receiveSettings(float & min_temp, float & max_temp, bool & heater,
 
         Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(1000));
-    }
+//    }
 }
 
 void
@@ -483,17 +483,20 @@ int main ()
 
     this_thread::sleep_for(chrono::milliseconds(3000));
     thread (receiveTemp, ref(temperature)).detach();
-    thread (receiveSettings,
-            ref(min_temp),
-            ref(max_temp),
-            ref(heater),
-            ref(time_light_on),
-            ref(time_light_off),
-            ref(light),
-            ref(time_UF_on),
-            ref(time_UF_off),
-            ref(UF)
-            ).detach();
+//    thread (receiveSettings,
+//            ref(min_temp),
+//            ref(max_temp),
+//            ref(heater),
+//            ref(time_light_on),
+//            ref(time_light_off),
+//            ref(light),
+//            ref(time_UF_on),
+//            ref(time_UF_off),
+//            ref(UF)
+//            ).detach();
+    receiveSettings(min_temp, max_temp, heater, time_light_on,
+                    time_light_off, light, time_UF_on, time_UF_off, UF );
+
     thread (handlerLight, ref(light), ref(time_light_on), ref(time_light_off)).detach();
     thread (handlerUF, ref(UF), ref(time_UF_on), ref(time_UF_off)).detach();
     thread (handlerHeater, ref(heater), ref(min_temp), ref(max_temp)).detach();
