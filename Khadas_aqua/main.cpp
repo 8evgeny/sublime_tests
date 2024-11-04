@@ -855,8 +855,6 @@ sunRiseSet(int year, int  month, int day)
     struct tm  tm;
     char buffer[30];
     float JD=calcJD(year,month,day);
-    double latitude = 55.751244;  //convert to just degrees.  No min/sec
-    double longitude = 37.618423;
     int dst = -1;
     JD = calcJD(year,month,day);
     tm.tm_year= year-1900;
