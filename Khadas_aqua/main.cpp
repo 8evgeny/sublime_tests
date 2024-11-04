@@ -13,6 +13,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <math.h>
+#include <cstdio>      // для функции rename
 using namespace std;
 
 const int gpio_pin_UF       = 6;    //PIN22     1_RELE
@@ -28,6 +29,9 @@ float min_temp, max_temp;
 bool heater = false;
 float temperature;
 QTime time_light_on, time_light_off, time_UF_on, time_UF_off;
+//Moscow
+double latitude = 55.751244;  //convert to just degrees.  No min/sec
+double longitude = 37.618423;
 QTime checkSun;
 QString timeCheckSun = "00:01:00";
 vector<QTime> food(0);
@@ -48,27 +52,29 @@ ofstream fileStateHeat;
 ofstream fileFood;
 ofstream fileStateFeed;
 
-constexpr long numLinesInLog = 250;
-
                                 //PIN37   onewire  измерение температуры
                                 //PIN40   GND
                                 //PIN1    +5
                                 //PIN2    +5
 
 pair<string, string> sunRiseSet(int year, int  month, int day);
-void printTime(ofstream & file)
+
+void
+printTime(ofstream & file)
 {
     const auto now = std::chrono::system_clock::now();
     const auto t_c = std::chrono::system_clock::to_time_t(now);
 //    file << std::put_time(std::localtime(&t_c), "%T  %d.%b.%y \n");
     file << std::put_time(std::localtime(&t_c), "%T\n");
-}
-void printOnylTime(ofstream & file)
+} // printTime
+
+void
+printOnylTime(ofstream & file)
 {
     const auto now = std::chrono::system_clock::now();
     const auto t_c = std::chrono::system_clock::to_time_t(now);
     file << std::put_time(std::localtime(&t_c), "%T\n");
-}
+} // printOnylTime
 
 void
 receiveTemp(float & temperature)
@@ -90,8 +96,8 @@ receiveTemp(float & temperature)
         temperature = std::stof(tmp);
         Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(60000));
-    }
-}
+    } // while(1)
+} // receiveTemp
 
 void
 receiveSettings(float & min_temp, float & max_temp, bool & heater,
@@ -137,7 +143,7 @@ receiveSettings(float & min_temp, float & max_temp, bool & heater,
         Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(1000));
 //    }
-}
+} // receiveSettings
 
 void
 handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
@@ -194,7 +200,7 @@ handlerLight(bool & light, QTime & time_light_on, QTime & time_light_off)
         Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(1000));
     }
-}
+} // handlerLight
 
 void
 handlerUF(bool & UF, QTime & time_UF_on, QTime & time_UF_off)
@@ -248,8 +254,8 @@ handlerUF(bool & UF, QTime & time_UF_on, QTime & time_UF_off)
         logFile.close();
         Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(1000));
-    }
-}
+    } // while(1)
+} // handlerUF
 
 void
 handlerHeater(bool & heater, float & min_temp, float & max_temp)
@@ -299,8 +305,8 @@ handlerHeater(bool & heater, float & min_temp, float & max_temp)
         logFile.close();
         Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(1080));
-    }
-}
+    } // while(1)
+} // handlerHeater
 
 void feed()
 {
@@ -314,7 +320,7 @@ void feed()
     this_thread::sleep_for(chrono::milliseconds(300000));
     digitalWrite(gpio_pin_PUMP_AIR, LOW);
     this_thread::sleep_for(chrono::milliseconds(3000));
-}
+} // feed()
 
 void
 handlerFood()
@@ -362,8 +368,8 @@ handlerFood()
         logFile.close();
         Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(5000));
-    }
-}
+    } // while(1)
+} // handlerFood
 
 void
 handlerSunRiseSet()
@@ -454,12 +460,18 @@ handlerSunRiseSet()
             fileFood.close();
 
             logFile.close();
+            if (stoi(currentDay) == 5) //Переименовываем лог-файл
+            {
+                rename("/home/khadas/aqua/logFile", "/home/khadas/aqua/logFileOld");
+                logFile.open("/home/khadas/aqua/logFile");
+                logFile.close();
+            }
             Mut.unlock();
             this_thread::sleep_for(chrono::milliseconds(30000)); //Чтобы точно было всего 1 срабатывание условия
         }
         this_thread::sleep_for(chrono::milliseconds(30000));
-    }
-}
+    } // while(1)
+} // handlerSunRiseSet
 
 int main ()
 {
@@ -623,33 +635,33 @@ int main ()
         Mut.unlock();
         this_thread::sleep_for(chrono::milliseconds(5000));
     }//END while(1)
-
-
     return 0;
 } //END main
 
 double calcSunEqOfCenter(double t);
-
 /* Convert degree angle to radians */
-
-double  degToRad(double angleDeg)
+double
+degToRad(double angleDeg)
 {
     return (M_PI * angleDeg / 180.0);
-}
+} // degToRad
 
-double radToDeg(double angleRad)
+double
+radToDeg(double angleRad)
 {
     return (180.0 * angleRad / M_PI);
-}
+} // radToDeg
 
-double calcMeanObliquityOfEcliptic(double t)
+double
+calcMeanObliquityOfEcliptic(double t)
 {
     double seconds = 21.448 - t*(46.8150 + t*(0.00059 - t*(0.001813)));
     double e0 = 23.0 + (26.0 + (seconds/60.0))/60.0;
     return e0;              // in degrees
-}
+} // calcMeanObliquityOfEcliptic
 
-double calcGeomMeanLongSun(double t)
+double
+calcGeomMeanLongSun(double t)
 {
     double L = 280.46646 + t * (36000.76983 + 0.0003032 * t);
     while( (int) L >  360 )
@@ -661,29 +673,33 @@ double calcGeomMeanLongSun(double t)
         L += 360.0;
     }
     return L;              // in degrees
-}
+} // calcGeomMeanLongSun
 
-double calcObliquityCorrection(double t)
+double
+calcObliquityCorrection(double t)
 {
     double e0 = calcMeanObliquityOfEcliptic(t);
     double omega = 125.04 - 1934.136 * t;
     double e = e0 + 0.00256 * cos(degToRad(omega));
     return e;               // in degrees
-}
+} // calcObliquityCorrection
 
-double calcEccentricityEarthOrbit(double t)
+double
+calcEccentricityEarthOrbit(double t)
 {
     double e = 0.016708634 - t * (0.000042037 + 0.0000001267 * t);
     return e;               // unitless
-}
+} // calcEccentricityEarthOrbit
 
-double calcGeomMeanAnomalySun(double t)
+double
+calcGeomMeanAnomalySun(double t)
 {
     double M = 357.52911 + t * (35999.05029 - 0.0001537 * t);
     return M;               // in degrees
-}
+} // calcGeomMeanAnomalySun
 
-double calcEquationOfTime(double t)
+double
+calcEquationOfTime(double t)
 {
     double epsilon = calcObliquityCorrection(t);
     double  l0 = calcGeomMeanLongSun(t);
@@ -699,56 +715,63 @@ double calcEquationOfTime(double t)
     double Etime = y * sin2l0 - 2.0 * e * sinm + 4.0 * e * y * sinm * cos2l0
                 - 0.5 * y * y * sin4l0 - 1.25 * e * e * sin2m;
     return radToDeg(Etime)*4.0;	// in minutes of time
-}
+} // calcEquationOfTime
 
-double calcTimeJulianCent(double jd)
+double
+calcTimeJulianCent(double jd)
 {
     double T = ( jd - 2451545.0)/36525.0;
     return T;
-}
+} // calcTimeJulianCent
 
-double calcSunTrueLong(double t)
+double
+calcSunTrueLong(double t)
 {
     double l0 = calcGeomMeanLongSun(t);
     double c = calcSunEqOfCenter(t);
     double O = l0 + c;
     return O;               // in degrees
-}
+} // calcSunTrueLong
 
-double calcSunApparentLong(double t)
+double
+calcSunApparentLong(double t)
 {
     double o = calcSunTrueLong(t);
     double  omega = 125.04 - 1934.136 * t;
     double  lambda = o - 0.00569 - 0.00478 * sin(degToRad(omega));
     return lambda;          // in degrees
-}
+} // calcSunApparentLong
 
-double calcSunDeclination(double t)
+double
+calcSunDeclination(double t)
 {
     double e = calcObliquityCorrection(t);
     double lambda = calcSunApparentLong(t);
     double sint = sin(degToRad(e)) * sin(degToRad(lambda));
     double theta = radToDeg(asin(sint));
     return theta;           // in degrees
-}
+} // calcSunDeclination
 
-double calcHourAngleSunrise(double lat, double solarDec)
+double
+calcHourAngleSunrise(double lat, double solarDec)
 {
     double latRad = degToRad(lat);
     double sdRad  = degToRad(solarDec);
     double HA = (acos(cos(degToRad(90.833))/(cos(latRad)*cos(sdRad))-tan(latRad) * tan(sdRad)));
     return HA;              // in radians
-}
+} // calcHourAngleSunrise
 
-double calcHourAngleSunset(double lat, double solarDec)
+double
+calcHourAngleSunset(double lat, double solarDec)
 {
     double latRad = degToRad(lat);
     double sdRad  = degToRad(solarDec);
     double HA = (acos(cos(degToRad(90.833))/(cos(latRad)*cos(sdRad))-tan(latRad) * tan(sdRad)));
     return -HA;              // in radians
-}
+} // calcHourAngleSunset
 
-double calcJD(int year,int month,int day)
+double
+calcJD(int year,int month,int day)
 {
     if (month <= 2)
     {
@@ -759,15 +782,17 @@ double calcJD(int year,int month,int day)
     int B = 2 - A + floor(A/4);
     double JD = floor(365.25*(year + 4716)) + floor(30.6001*(month+1)) + day + B - 1524.5;
     return JD;
-}
+} // calcJD
 
-double calcJDFromJulianCent(double t)
+double
+calcJDFromJulianCent(double t)
 {
     double JD = t * 36525.0 + 2451545.0;
     return JD;
-}
+} // calcJDFromJulianCent
 
-double calcSunEqOfCenter(double t)
+double
+calcSunEqOfCenter(double t)
 {
     double m = calcGeomMeanAnomalySun(t);
     double mrad = degToRad(m);
@@ -776,9 +801,10 @@ double calcSunEqOfCenter(double t)
     double sin3m = sin(mrad+mrad+mrad);
     double C = sinm * (1.914602 - t * (0.004817 + 0.000014 * t)) + sin2m * (0.019993 - 0.000101 * t) + sin3m * 0.000289;
     return C;		// in degrees
-}
+} // calcSunEqOfCenter
 
-double calcSunriseUTC(double JD, double latitude, double longitude)
+double
+calcSunriseUTC(double JD, double latitude, double longitude)
 {
     double t = calcTimeJulianCent(JD);
         // *** First pass to approximate sunrise
@@ -796,9 +822,10 @@ double calcSunriseUTC(double JD, double latitude, double longitude)
     timeDiff = 4 * delta;
     timeUTC = 720 + timeDiff - eqTime; // in minutes
     return timeUTC;
-}
+} // calcSunriseUTC
 
-double calcSunsetUTC(double JD, double latitude, double longitude)
+double
+calcSunsetUTC(double JD, double latitude, double longitude)
 {
     double t = calcTimeJulianCent(JD);
         // *** First pass to approximate sunset
@@ -817,9 +844,10 @@ double calcSunsetUTC(double JD, double latitude, double longitude)
     timeUTC = 720 + timeDiff - eqTime; // in minutes
     // printf("************ eqTime = %f  \nsolarDec = %f \ntimeUTC = %f\n\n",eqTime,solarDec,timeUTC);
     return timeUTC;
-}
+} // calcSunsetUTC
 
-pair<string, string> sunRiseSet(int year, int  month, int day)
+pair<string, string>
+sunRiseSet(int year, int  month, int day)
 {
     time_t seconds;
     time_t tseconds;
@@ -859,4 +887,4 @@ pair<string, string> sunRiseSet(int year, int  month, int day)
     string sunDown{buffer};
 //    printf("%s",buffer);
     return make_pair(sunUp, sunDown);
-}
+} // sunRiseSet
