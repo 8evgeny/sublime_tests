@@ -128,12 +128,12 @@ Application::Application(const string & pathToConfig,
         } // END if(device == nullptr)
         break;
 #endif // USE_CORSAIR_400_RAW
-#ifdef USE_RTSP
+#ifdef USE_RTSP_SERVER
     case RTSP:
-        device = devices::rtsp::create(config_path, "RTSP");
+        device = devices::rtsp::create(config_path, "RTSP_SERVER");
         device->setup();
         break;
-#endif // USE_RTSP
+#endif // USE_RTSP_SERVER
 
     default:
         break;

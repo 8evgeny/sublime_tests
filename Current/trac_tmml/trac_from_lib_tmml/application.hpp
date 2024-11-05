@@ -71,9 +71,9 @@
 #include "modules/cmd400/cmd400_keeper_factory.hpp"
 #endif // USE_CORSAIR_400_RAW
 
-#ifdef USE_RTSP
-#include "devices/rtsp/rtsp_factory.hpp"
-#endif // USE_RTSP
+#ifdef USE_RTSP_SERVER
+#include "rtsp_factory.hpp"
+#endif // USE_RTSP_SERVER
 
 #ifdef DBG_VIDEO_SENDER
 #include "modules/fenix2meta/fenix2meta_struct.hpp"

@@ -6,18 +6,10 @@
 
 namespace devices::rtsp
 {
-//    enum CameraModes
-//    {
-//        CAM_MODE_0 = 0,
-//        CAM_MODE_3840_2160_6FPS = 1, // max birate = 16384
-//        CAM_MODE_1280_720_20FPS = 2, // max birate = 8192
-//        CAM_MODE_LAST = 3
-//    }; // END CameraModes
-
     struct RtspsrcSettings
     {
         std::string ip = "127.0.0.1";
-        std::string codec = "h265";
+        std::string codec = "h264";
         int port = 8888;
         int channel = 1;
         int latency = 0;
@@ -34,12 +26,13 @@ namespace devices::rtsp
 
     struct VideoSettings // Запрашиваемые параметры видеопотока в gstreamer 
     {
-        VideoSettings(int _width, int _height,int _fps) : width(_width), height(_height), fps(_fps){}
-        VideoSettings(){}
-        int width = 1920;
-        int height = 1080;
-        int fps = 30;
+        // VideoSettings(int _width, int _height,int _fps) : width(_width), height(_height), fps(_fps){}
+        // VideoSettings(){}
+        int width = 0;
+        int height = 0;
+        int fps = 0;
         std::string mountpoint = "imx415video";
+        int  camera_id = 0;
     }; // END VideoSettings
 
     struct OutputSettings

@@ -27,11 +27,11 @@ SettingsPtr devices::rtsp::readSettings(const std::string &pathToSettings,
     success &= ini::GetInteger(reader, ini_section_name, "latency", settings.src.latency);
 
     ///SETTINGS.VIDEO
-
     success &= ini::GetInteger(reader, ini_section_name, "width", settings.video.width);
     success &= ini::GetInteger(reader, ini_section_name, "height", settings.video.height);
     success &= ini::GetInteger(reader, ini_section_name, "fps", settings.video.fps);
     success &= ini::Get(reader, ini_section_name, "mountpoint", settings.video.mountpoint);
+    success &= ini::GetInteger(reader, ini_section_name, "camera_id", settings.video.camera_id);
 
     success &= ini::GetInteger(reader, ini_section_name, "port", settings.src.port);
 
@@ -45,8 +45,8 @@ SettingsPtr devices::rtsp::readSettings(const std::string &pathToSettings,
 
 
     ///SETTINGS.OUT
-    success &= ini::Get(reader, ini_section_name, "format_out", settings.output.format_out);
-    success &= ini::GetInteger(reader, ini_section_name, "max_buffers", settings.output.max_buffers);
+    // success &= ini::Get(reader, ini_section_name, "format_out", settings.output.format_out);
+    // success &= ini::GetInteger(reader, ini_section_name, "max_buffers", settings.output.max_buffers);
 
     if(!success)
     {

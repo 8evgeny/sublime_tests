@@ -46,7 +46,7 @@ set(USE_SHARED_MEMORY 0) # 8
 set(USE_HVGS_GRAY_USB_CAMERA 0) # 9
 set(USE_CORSAIR_400_RAW 0) # 10 (Шар ОЭЦН400, сырой UDP видеопоток напрямую)
 set(USE_IMX415_CAMERA_MIPI 0) # 11
-set(USE_RTSP 1) # 12
+set(USE_RTSP_SERVER 1) # 12
 set(USE_ETHERNET_CONNECTION 0)
 set(USE_PCAP 0)
 
@@ -424,16 +424,15 @@ if(${USE_CORSAIR_400_RAW} EQUAL 1) # 10
         )
 endif() # END if(${USE_CORSAIR_400_RAW} EQUAL 1)
 
-if(${USE_RTSP} EQUAL 1) # 12
-    add_definitions(-DUSE_RTSP)
-    include_directories(tools/)
-    include_directories(tools/toolbox_common_utils/)
+if(${USE_RTSP_SERVER} EQUAL 1) # 12
+    add_definitions(-DUSE_RTSP_SERVER)
+    include_directories(devices/RtspServerDevice)
     target_sources(trac_from_lib_tmml PRIVATE
-        devices/rtsp/rtsp.hpp
-        devices/rtsp/rtsp.cpp
-        devices/rtsp/rtsp_factory.hpp
-        devices/rtsp/rtsp_factory.cpp
-        devices/rtsp/rtsp_settings.hpp
+        devices/RtspServerDevice/rtsp.hpp
+        devices/RtspServerDevice/rtsp.cpp
+        devices/RtspServerDevice/rtsp_factory.hpp
+        devices/RtspServerDevice/rtsp_factory.cpp
+        devices/RtspServerDevice/rtsp_settings.hpp
         )
     find_package(PkgConfig REQUIRED)
     pkg_search_module(GST REQUIRED gstreamer-1.0>=1.4
@@ -445,8 +444,8 @@ if(${USE_RTSP} EQUAL 1) # 12
         )
     target_link_libraries(trac_from_lib_tmml ${GST_LIBRARIES} ${GST_LIBRARIES} gstapp-1.0)
     target_include_directories(trac_from_lib_tmml PRIVATE ${GST_INCLUDE_DIRS})
-    add_subdirectory(${CMAKE_SOURCE_DIR}/rtsp)
-endif() # END if(${USE_RTSP} EQUAL 1)
+    add_subdirectory(${CMAKE_SOURCE_DIR}/rtsp_server)
+endif() # END if(${USE_RTSP_SERVER} EQUAL 1)
 
 ############################################ END DEVICES
 

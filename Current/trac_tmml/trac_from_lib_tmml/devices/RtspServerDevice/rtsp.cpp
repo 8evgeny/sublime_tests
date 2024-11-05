@@ -113,7 +113,7 @@ static gboolean my_bus_callback(GstBus *bus, GstMessage *message, gpointer data)
 RTSP::RTSP(SettingsPtr &settings) : settings(settings)
 {
 #if defined(CCM_8UC3)
-    settings->output.format_out = "RGBA";
+    settings->output.format_out = "RGB";
 #elif defined(CCM_8UC1)
     settings->output.format_out = "GRAY8";
 #else
@@ -128,8 +128,18 @@ RTSP::~RTSP()
 
 void RTSP::setup()
 {
-    //Start rtsp server
-    thread ([](){system("./rtsp_server");}).detach();
+   //Start rtsp server
+   string startRTSP =
+       "./rtsp_server " +
+                      to_string(settings->src.port) + " " + //argv[1]
+                      settings->video.mountpoint + " " +    //argv[2]
+        "\"v4l2src device=/dev/video" + to_string(settings->video.camera_id) + " io-mode=dmabuf "  //argv[3]
+        "! video/x-raw, width=" + to_string(settings->video.width) + ", height=" + to_string(settings->video.height) + ", framerate=" + to_string(settings->video.fps) + "/1 "
+        "! videoconvert "
+        "! mpp" + settings->src.codec + "enc min-force-key-unit-interval=10 "
+        "! rtp" + settings->src.codec + "pay name=pay0 pt=96\"";
+
+   thread ([&](){system(startRTSP.c_str());}).detach();
 
     std::string video_settings_str = "";
     if(settings->video.fps && settings->video.width && settings->video.height)
@@ -137,14 +147,19 @@ void RTSP::setup()
         video_settings_str = ",width=" + to_string(settings->video.width) +
                 ",height=" + to_string(settings->video.height) +
                 ",framerate=" + to_string(settings->video.fps) + "/1 ";
-    }
+    } // END if(settings->video.fps && settings->video.width && settings->video.height)
+
     pipeline_str = "rtspsrc location=rtsp://" + settings->src.ip +  ":" + to_string(settings->src.port) + "/" + settings->video.mountpoint +
             " latency=10 "
             "! application/x-rtp, payload=96 ! rtp" + settings->src.codec + "depay ! " + settings->src.codec + "parse ! avdec_" + settings->src.codec + " " +
             "! videoconvert ! video/x-raw, format=(string)" + settings->output.format_out +
             + video_settings_str.c_str() +
-            "! videoconvert ! video/x-raw, format=(string)BGR "
-            " ! appsink name=" + settings->sink.name + " " +
+            "! videoconvert "
+
+#if defined(CCM_8UC3)
+            "! video/x-raw, format=(string)BGR "
+#endif
+            "! appsink name=" + settings->sink.name + " " +
             "emit-signals=" + settings->sink.emit_signals + " " +
             "sync=" + settings->sink.sync + " " +
             "max-buffers=" + to_string(settings->sink.max_buffers) + " " +
@@ -160,11 +175,12 @@ void RTSP::setup()
     error = nullptr;
     pipeline = gst_parse_launch(descr, &error);
 
-    if(error) {
+    if(error)
+    {
         g_print("could not construct pipeline: %s\n", error->message);
         g_error_free(error);
         exit(-1);
-    }
+    } // END if(error)
 
     // Get sink
     sink = gst_bin_get_by_name(GST_BIN(pipeline), "sink");
@@ -185,11 +201,8 @@ void RTSP::start()
 
     sync.handleFrameExecute.store(true, std::memory_order_release);
     std::thread(&RTSP::exec, this).detach();
-
-
-
     std::thread(&RTSP::runHandleFrame, this).detach();
-}
+} // END RTSP::start()
 
 void RTSP::quit()
 {
@@ -201,8 +214,8 @@ void RTSP::quit()
         gst_element_set_state(pipeline, GST_STATE_NULL);
         gst_object_unref(GST_OBJECT(pipeline));
         pipeline = nullptr;
-    }
-}
+    } // END if(pipeline)
+} // END RTSP::quit()
 
 uint8_t *RTSP::receiveFrame(int &w, int &h, int &id, int &num)
 {
@@ -215,9 +228,9 @@ uint8_t *RTSP::receiveFrame(int &w, int &h, int &id, int &num)
         sync.frameReady.store(false);
 
         return map.data;
-    };
+    } // END if (sync.frameReady.load())
     return nullptr;
-}
+} // END receiveFrame
 
 void RTSP::getFormatedImage(uint8_t * dat, int w, int h, int id, cv::Mat & image)
 {
@@ -240,22 +253,13 @@ int RTSP::getColorChannels()
 #else
     return 0;
 #endif
-}
+} // END RTSP::getColorChannels()
 
-bool RTSP::isBayerColorChannel()
-{
-    return false;
-}
+bool RTSP::isBayerColorChannel() { return false; }
 
-void RTSP::keyHandler(unsigned char & key)
-{
+void RTSP::keyHandler(unsigned char & key) {}
 
-}
-
-void RTSP::workflow()
-{
-
-}
+void RTSP::workflow() {}
 
 void RTSP::exec()
 {
@@ -265,7 +269,7 @@ void RTSP::exec()
     gst_object_unref(bus);
 
     gst_element_set_state(GST_ELEMENT(pipeline), GST_STATE_PLAYING);
-}
+} // END exec
 
 void RTSP::runHandleFrame()
 {
@@ -284,6 +288,6 @@ void RTSP::runHandleFrame()
         } // -- END for(auto handler : frame_handlers)
         lk.unlock();
     } // -- END while
-}
+} // END runHandleFrame
 
 
