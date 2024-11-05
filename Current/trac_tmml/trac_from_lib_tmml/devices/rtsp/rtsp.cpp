@@ -143,8 +143,8 @@ void RTSP::setup()
             "! application/x-rtp, payload=96 ! rtp" + settings->src.codec + "depay ! " + settings->src.codec + "parse ! avdec_" + settings->src.codec + " " +
             "! videoconvert ! video/x-raw, format=(string)" + settings->output.format_out +
             + video_settings_str.c_str() +
-            "! videoconvert "
-            "! appsink name=" + settings->sink.name + " " +
+            "! videoconvert ! video/x-raw, format=(string)BGR "
+            " ! appsink name=" + settings->sink.name + " " +
             "emit-signals=" + settings->sink.emit_signals + " " +
             "sync=" + settings->sink.sync + " " +
             "max-buffers=" + to_string(settings->sink.max_buffers) + " " +
