@@ -412,7 +412,7 @@ handlerSunRiseSet()
             int long_minutes = long_day_in_minutes%60;
 
             currentDate.pop_back(); //убираю \n
-            logFile << "\n###################  New day " << currentDate <<" #################\n"
+            logFile << "\n###################  New day " << currentDate <<" ##################\n"
                        "Sun Up\t\t" << sunUp <<
                        "Sun Down\t" << sunDown <<
                        "long Day\t" << long_hours <<"h "<< long_minutes <<"m\n"
@@ -460,10 +460,15 @@ handlerSunRiseSet()
             fileFood.close();
 
             logFile.close();
-            if (stoi(currentDay) == 5) //Переименовываем лог-файл
+            if (stoi(currentDay) == 1) //Переименовываем лог-файл
             {
                 rename("/home/khadas/aqua/logFile", "/home/khadas/aqua/logFileOld");
                 logFile.open("/home/khadas/aqua/logFile");
+                logFile << "\n###################  New day " << currentDate <<" ##################\n"
+                           "Sun Up\t\t" << sunUp <<
+                           "Sun Down\t" << sunDown <<
+                           "long Day\t" << long_hours <<"h "<< long_minutes <<"m\n"
+                           "##########################################################\n\n";
                 logFile.close();
             }
             Mut.unlock();
