@@ -13,6 +13,7 @@ handleMessage::handleMessage()
 handleMessage::~handleMessage()
 {
     cout << "handleMessage instance destroyed." << endl;
+    instance_ptr = nullptr;
 } // END ~handleMessage()
 
 void handleMessage::operation1()
@@ -27,3 +28,4 @@ void handleMessage::operation3()
 {
     cout << "operation 3." << endl;
 }
+
