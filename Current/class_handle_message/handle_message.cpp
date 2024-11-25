@@ -1,6 +1,9 @@
 #include "handle_message.hpp"
 #include <iostream>
+#include <QDebug>
+
 using namespace std;
+
 
 // Initialize the static instance variable to nullptr
 handleMessage * handleMessage::instance_ptr = nullptr;
@@ -16,16 +19,34 @@ handleMessage::~handleMessage()
     instance_ptr = nullptr;
 } // END ~handleMessage()
 
-void handleMessage::operation1()
+void handleMessage::printHex(unsigned char byte)
 {
-    cout << "operation 1." << endl;
-}
-void handleMessage::operation2()
+    char hex[] = "0123456789ABCDEF";
+    printf("%c%c", hex[byte>>4], hex[byte&0xF]);
+} // END printHex
+
+void handleMessage::receiveIncomingMessage(string & ba)
 {
-    cout << "operation 2." << endl;
-}
-void handleMessage::operation3()
+    _incomingMessage = ba;
+    int size = _incomingMessage.size();
+    printf("incomingMessage=");
+    for(int i=0; i<size; i++)
+    {
+        printHex(_incomingMessage[i]);
+    }
+    printf("\n");
+} // END receiv eIncomingMessage
+
+void handleMessage::parseReceivedMessade()
 {
-    cout << "operation 3." << endl;
-}
+    CMD = _incomingMessage.at(0);
+    STATUS = _incomingMessage.at(1);
+
+    printf("CMD=%02hhX\n",CMD);
+    printf("STATUS=%02hhX\n",STATUS);
+
+
+
+
+} // END parseReceivedMessade
 
