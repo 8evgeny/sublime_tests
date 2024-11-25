@@ -3,11 +3,6 @@
 
 #include "memory"
 #include <iostream>
-#include "thread"
-#include <QByteArray>
-#include <QString>
-
-//#define getInstance() inst
 
 class handleMessage
 {
@@ -29,9 +24,11 @@ public:
     handleMessage(const handleMessage &&) = delete;
     ~handleMessage();
 
-
-    void receiveIncomingMessage(std::string & ba);
-    void parseReceivedMessade();
+    void receiveIncomingMessage(uint8_t * ba);
+    void receiveIncomingMessageHeading(uint8_t * ba);
+    void receiveIncomingMessageCount(uint8_t * ba);
+    void receiveIncomingMessageData(uint8_t * ba);
+    void parseHeading();
     void printHex(unsigned char byte);
 
 private:
@@ -40,9 +37,15 @@ private:
 
     // Private static instance variable
     static handleMessage* instance_ptr;
-    std::string _incomingMessage;
-    char CMD = 0xFF;
-    char STATUS = 0xFF;
+    std::string _incomingMessagePartOne;
+    char        CMD = 0xFF;
+    char        STATUS = 0xFF;
+    char        SRC_DEV = 0xFF;
+    char        SRC_FUN = 0xFF;
+    char        DST_DEV = 0xFF;
+    char        DST_FUN = 0xFF;
+    short       wCOUNT = 0;
+    std::string DATA = "";
 
 }; // END class handleMessage
 
