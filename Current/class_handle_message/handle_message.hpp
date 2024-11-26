@@ -4,9 +4,22 @@
 #include "memory"
 #include <iostream>
 
+#define requestWrite        0x00
+#define answerWrite         0x80
+#define requestRead         0x01
+#define answerRead          0x81
+
+#define requestNoAnswer     0x00
+#define requestWithAnswer   0x80
+
+#define DEVICE_ADRESS       0x33
+
+
+
 class handleMessage
 {
 public:
+
     // Static method to access the handleMessage instance
     static handleMessage * getInstance()
     {
@@ -24,11 +37,17 @@ public:
     handleMessage(const handleMessage &&) = delete;
     ~handleMessage();
 
-    void receiveIncomingMessage(uint8_t * ba);
-    void receiveIncomingMessageHeading(uint8_t * ba);
-    void receiveIncomingMessageCount(uint8_t * ba);
-    void receiveIncomingMessageData(uint8_t * ba);
-//    void parseHeading();
+    void receiveMessage(uint8_t * ba);
+    void receiveHeading(uint8_t * ba);
+    void receiveCount(uint8_t * ba);
+    void receiveData(uint8_t * ba);
+    void parseCmdType();
+    void parseStatusType();
+    void parseAdress(uint8_t addr);
+    void parseFun(uint8_t addr);
+    void sendErrorMessage();
+    void forwardMessage();
+    void runFoo(uint8_t foo);
     void printHex(unsigned char byte);
 
 private:
@@ -37,15 +56,21 @@ private:
 
     // Private static instance variable
     static handleMessage* instance_ptr;
-//    std::string _incomingMessagePartOne;
-    char        CMD = 0xFF;
-    char        STATUS = 0xFF;
-    char        SRC_DEV = 0xFF;
-    char        SRC_FUN = 0xFF;
-    char        DST_DEV = 0xFF;
-    char        DST_FUN = 0xFF;
-    short       wCOUNT = 0;
-    char DATA [4 * (256 * 256 + 256)];
+    static constexpr uint8_t dev_adress = 0x01;  //Собственный алрес устройства
+    uint8_t         CMD = 0xFF;
+    uint8_t         STATUS = 0xFF;
+    uint8_t         SRC_DEV = 0xFF;
+    uint8_t         SRC_FUN = 0xFF;
+    uint8_t         DST_DEV = 0xFF;
+    uint8_t         DST_FUN = 0xFF;
+    short           wCOUNT = 0;
+    uint8_t         DATA [4 * (256 * 256 + 256)];
+    uint            numberAllMessage = 0;
+    short           incorrectMessageNumber = 0;
+    bool            errorCurrentMessage = false;
+
+    uint8_t         cmdType = 0xFF;     //Таблица 2
+    uint8_t         stateType = 0xFF;   //Таблица 3
 
 }; // END class handleMessage
 
