@@ -28,7 +28,7 @@ public:
     void receiveIncomingMessageHeading(uint8_t * ba);
     void receiveIncomingMessageCount(uint8_t * ba);
     void receiveIncomingMessageData(uint8_t * ba);
-    void parseHeading();
+//    void parseHeading();
     void printHex(unsigned char byte);
 
 private:
@@ -37,7 +37,7 @@ private:
 
     // Private static instance variable
     static handleMessage* instance_ptr;
-    std::string _incomingMessagePartOne;
+//    std::string _incomingMessagePartOne;
     char        CMD = 0xFF;
     char        STATUS = 0xFF;
     char        SRC_DEV = 0xFF;
@@ -45,7 +45,7 @@ private:
     char        DST_DEV = 0xFF;
     char        DST_FUN = 0xFF;
     short       wCOUNT = 0;
-    std::string DATA = "";
+    char DATA [4 * (256 * 256 + 256)];
 
 }; // END class handleMessage
 

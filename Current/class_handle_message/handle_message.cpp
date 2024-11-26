@@ -25,14 +25,18 @@ void handleMessage::printHex(unsigned char byte)
 
 void handleMessage::receiveIncomingMessageHeading(uint8_t * ba)
 {
-    string ba_string((const char *)ba);
-    ba_string.substr(6);
-    _incomingMessagePartOne = ba_string;
-    cout<<"incomingMessage=";
-    for(int i = 0; i < 6; i++)
-    {
-        printHex(_incomingMessagePartOne[i]);
-    }
+    CMD = ba[0];
+    STATUS = ba[1];
+    SRC_DEV = ba[2];
+    SRC_FUN = ba[3];
+    DST_DEV = ba[4];
+    DST_FUN = ba[5];
+    printf("CMD=%02hhX\n",CMD);
+    printf("STATUS=%02hhX\n",STATUS);
+    printf("SRC_DEV=%02hhX\n",SRC_DEV);
+    printf("SRC_FUN=%02hhX\n",SRC_FUN);
+    printf("DST_DEV=%02hhX\n",DST_DEV);
+    printf("DST_FUN=%02hhX\n",DST_FUN);
     cout<<endl;
 } // END receiveIncomingMessagePartOne
 
@@ -42,43 +46,25 @@ void handleMessage::receiveIncomingMessageCount(uint8_t * ba)
     char wc1=ba[7];
     printf("wc0=%02hhx\nwc1=%02hhx\n", wc0, wc1);
     wCOUNT = wc0 * 256 + wc1;
-//    cout<<"wCOUNT="<<wCOUNT<<endl;
 } // END receiveIncomingMessageCount
 
 void handleMessage::receiveIncomingMessageData(uint8_t * ba)
 {
-    string ba_data((const char *)(ba + 8));
-    DATA = ba_data;
     cout<<"DATA=";
-    for(int i = 0; i < wCOUNT * 4; i++)
+    for(int i = 0; i < wCOUNT * 4; i += 4)
     {
-        printHex(DATA[i]);
+        for(int k = 0; k < 4; ++k)
+        {
+            DATA[i + k] = ba[i + k + 8];
+            printHex(DATA[i + k]);
+        }
+        cout <<"\n     ";
     }
-    cout<<endl;
 } // END receiveIncomingMessageData
-
-void handleMessage::parseHeading()
-{
-    CMD = _incomingMessagePartOne.at(0);
-    STATUS = _incomingMessagePartOne.at(1);
-    SRC_DEV = _incomingMessagePartOne.at(2);
-    SRC_FUN = _incomingMessagePartOne.at(3);
-    DST_DEV = _incomingMessagePartOne.at(4);
-    DST_FUN = _incomingMessagePartOne.at(5);
-
-    printf("CMD=%02hhX\n",CMD);
-    printf("STATUS=%02hhX\n",STATUS);
-    printf("SRC_DEV=%02hhX\n",SRC_DEV);
-    printf("SRC_FUN=%02hhX\n",SRC_FUN);
-    printf("DST_DEV=%02hhX\n",DST_DEV);
-    printf("DST_FUN=%02hhX\n",DST_FUN);
-
-} // END parseReceivedMessagePartOne
 
 void handleMessage::receiveIncomingMessage(uint8_t * ba)
 {
     receiveIncomingMessageHeading(ba);
-    parseHeading();
     receiveIncomingMessageCount(ba);
     receiveIncomingMessageData(ba);
 } // END receiveIncomingMessage
