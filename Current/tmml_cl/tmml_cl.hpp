@@ -11,22 +11,33 @@ const int WORK_AREA = WORK_WIDTH * WORK_WIDTH;
 const int RESULT_WIDTH = WORK_WIDTH - TEMPLATE_WIDTH + 1;
 const int RESULT_AREA = RESULT_WIDTH * RESULT_WIDTH;
 const int TEMPLATE_AREA = TEMPLATE_WIDTH * TEMPLATE_WIDTH;
+const float TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
+
+const int localSize = RESULT_WIDTH;
+const int globalSize = RESULT_AREA;
+
 //const float RESULT_AREA_1 = 1.f / RESULT_AREA;
 //const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 
-#define KERNEL_FILE "tmml.cl"
+#ifdef CL_FILE_EXTERN
+    #ifdef ARCH_ARM
+        #define KERNEL_FILE "tmml_arm.cl"
+    #endif
+    #ifdef ARCH_X86_64
+        #define KERNEL_FILE "tmml_x86.cl"
+    #endif
+#endif
 
 #ifdef SQDIFF_NORMED
-    #define KERNEL_tmml_cl_NAME1 "work_cl_2"
+    #define KERNEL_tmml_cl_NAME "work_cl_2"
 #endif
 #ifdef CCOEFF_NORMED
-    #define KERNEL_tmml_cl_NAME1 "work_cl_6"
+    #define KERNEL_tmml_cl_NAME "work_cl_6"
 #endif
 #ifdef COMBINED
-    #define KERNEL_tmml_cl_NAME1 "work_cl_8"
+    #define KERNEL_tmml_cl_NAME "work_cl"
+//    #define KERNEL_tmml_cl_NAME2 "work_cl_2"
 #endif
-
-#define KERNEL_tmml_cl_NAME2 "work_cl_max"
 
 struct Pix
 {
@@ -53,7 +64,7 @@ class tmml_cl
     unsigned char img_result_x[RESULT_WIDTH];
     float img_result_bright[RESULT_WIDTH];
     std::string kernel_source{""};
-    cl::Kernel tmml_cl_kernel1, tmml_cl_kernel2;
+    cl::Kernel tmml_cl_kernel;
     cl::Buffer img_work_buff, img_temp_buff, img_result_buff, img_result_x_buff, img_result_bright_buff;
     cl::Buffer maxVal_int_buff, max_pix_buff;
     cl::CommandQueue qu;
@@ -72,6 +83,7 @@ class tmml_cl
     void initDevice(bool & init_OK);
     void loadAndBuildProgram(bool & init_OK, const std::string & programFile);
     std::string loadKernelFile(const std::string & program);
+    void get_cl_string(std::string& kernel_str);
 }; // END tmml_cl
 
 

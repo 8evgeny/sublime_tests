@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <fstream>
 #include <exception>
-
 #include <math.h>
 
 #define __CL_ENABLE_EXCEPTIONS

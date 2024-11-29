@@ -1,5 +1,7 @@
 #include "tmml_cl.hpp"
 
+//#define __opencl_c_subgroups
+
 using namespace std;
 using namespace cv;
 using namespace cl;
@@ -12,7 +14,12 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
     min_max_Val2 = min_max_Val0 * min_max_Val0;
     initDevice(ok);
     if(!ok){cout << "error initDevice!!!\n"; return;}
+#ifdef CL_FILE_EXTERN
     loadAndBuildProgram(ok, string(KERNEL_FILE));
+#endif
+#ifndef CL_FILE_EXTERN
+    loadAndBuildProgram(ok, string("any name")); // Имя файла не нужно
+#endif
     if(!ok){cout << "error loadAndBuildProgram!!!\n"; return;}
 
     img_work_buff = Buffer(context, CL_MEM_READ_WRITE  | CL_MEM_ALLOC_HOST_PTR, sizeof(unsigned char) * WORK_AREA);
@@ -20,19 +27,19 @@ tmml_cl::tmml_cl(bool& ok, float& min_max_Val0)
     img_result_buff = Buffer(context, CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR, sizeof(float) * RESULT_AREA);
     maxVal_int_buff = Buffer(context, CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR, sizeof(int));
     max_pix_buff = Buffer(context, CL_MEM_READ_WRITE | CL_MEM_ALLOC_HOST_PTR, sizeof(Pix));
-    int clError1 = 0;
-    tmml_cl_kernel1 = Kernel(program, KERNEL_tmml_cl_NAME1, &clError1);
-    if(clError1 != 0)
+    int clError = 0;
+    tmml_cl_kernel = Kernel(program, KERNEL_tmml_cl_NAME, &clError);
+    if(clError != 0)
     {
-        cout << "clError1=" << clError1 << "; KERNEL_tmml_cl_NAME1=" << KERNEL_tmml_cl_NAME1 << " =============== !!!" << endl;
+        cout << "clError=" << clError << "; KERNEL_tmml_cl_NAME=" << KERNEL_tmml_cl_NAME << " =============== !!!" << endl;
         ok = false;
         return;
-    } // END if(clError1 != 0)
-    tmml_cl_kernel1.setArg(0, img_work_buff);
-    tmml_cl_kernel1.setArg(1, img_temp_buff);
-    tmml_cl_kernel1.setArg(2, img_result_buff);
-    tmml_cl_kernel1.setArg(3, maxVal_int_buff);
-    tmml_cl_kernel1.setArg(4, max_pix_buff);
+    } // END if(clError != 0)
+    tmml_cl_kernel.setArg(0, img_work_buff);
+    tmml_cl_kernel.setArg(1, img_temp_buff);
+    tmml_cl_kernel.setArg(2, img_result_buff);
+    tmml_cl_kernel.setArg(3, maxVal_int_buff);
+    tmml_cl_kernel.setArg(4, max_pix_buff);
 
     ok = true;
     cout << "Constructor tmml_cl ok=" << ok << endl;
@@ -49,7 +56,8 @@ void tmml_cl::work_tmml(const Mat & img_work, const Mat & img_temp, Pix & max_pi
     qu.enqueueWriteBuffer(maxVal_int_buff, CL_TRUE, 0, sizeof(int), &maxVal_int);
     qu.enqueueWriteBuffer(img_work_buff, CL_TRUE, 0, sizeof(unsigned char) * WORK_AREA, &img_work.data[0]);
     qu.enqueueWriteBuffer(img_temp_buff, CL_TRUE, 0, sizeof(unsigned char) * TEMPLATE_AREA, &img_temp.data[0]);
-    qu.enqueueNDRangeKernel(tmml_cl_kernel1, NullRange, NDRange(RESULT_AREA), NullRange);
+    qu.enqueueNDRangeKernel(tmml_cl_kernel, NullRange, NDRange(globalSize), NDRange(localSize));
+
     qu.finish();
     qu.enqueueReadBuffer(max_pix_buff, CL_TRUE, 0, sizeof(Pix), &max_pix);
 #if defined(find_diff_result)
@@ -90,7 +98,15 @@ void tmml_cl::initDevice(bool & init_OK)
 void tmml_cl::loadAndBuildProgram(bool & init_OK, const string & programFile)
 {
     Program::Sources sources;
-    string kernel_source = loadKernelFile(programFile);
+
+    string kernel_source;
+    #ifdef CL_FILE_EXTERN
+        kernel_source = loadKernelFile(KERNEL_FILE);
+    #endif // #ifdef CL_FILE_EXTERN
+    #ifndef CL_FILE_EXTERN
+        get_cl_string(kernel_source);
+    #endif // #ifndef CL_FILE_EXTERN
+
     pair<const char*, ::size_t> src(kernel_source.c_str(), kernel_source.length());
     sources.push_back(src);
     program = Program(context, sources);
