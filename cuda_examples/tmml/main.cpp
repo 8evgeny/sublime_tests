@@ -53,7 +53,7 @@ int main()
     time_point1 = system_clock::now();
 //  ========================================================
     duration_1 = time_point1 - time_point0;
-    cout << "Duration CUDA   (GPU) = " << round(1e6 * duration_1.count()/iter_num) << " mks " << endl<<endl;
+    cout << "Duration CUDA   (GPU) = " << round(1e6 * duration_1.count()/iter_num) << " mks" << endl<<endl;
 
     cout << "xy =    [" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "] \nxy_ok = [";
     cout << temp_left << ", " << temp_top << "] \nbright= " << tm->max_pix.bright << endl<<endl;
