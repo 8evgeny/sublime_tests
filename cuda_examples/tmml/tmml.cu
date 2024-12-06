@@ -126,11 +126,6 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
         cudaStreamCreate(&streamsKernel[i]);
     }
 
-    cv::cuda::Stream st1;
-    cv::cuda::Stream st2;
-    cv::cuda::Stream st3;
-    cv::cuda::Stream st4;
-
     img_work_gpu_1.upload(img_work(Range(0, 119), Range(0, 119)), st1);
     match_temp<<<blocks, threads, 0, streamsKernel[0]>>>(img_work_gpu_1, dev_max_val_1, dev_mp_1 );
     img_work_gpu_2.upload(img_work(Range(0, 119), Range(120, 239)),st2);

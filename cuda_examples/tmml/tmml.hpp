@@ -81,6 +81,11 @@ class tmml
     int blocks = 24;
     int threads = 96;
     const int numCudaTread = 4;
+    cv::cuda::Stream st1;
+    cv::cuda::Stream st2;
+    cv::cuda::Stream st3;
+    cv::cuda::Stream st4;
+
     cv::cuda::GpuMat img_temp_gpu;
     unsigned char  img_temp_arr[TEMPLATE_AREA];
     float error_Val = 0.f, min_max_Val2 = 0.f;
