@@ -154,22 +154,20 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 //    {
 //        cudaStreamCreate(&streamsMemory[i]);
 //    }
-
+    int a = 24;
+    int b = 96;
     cv::cuda::Stream st1;
     cv::cuda::Stream st2;
     cv::cuda::Stream st3;
     cv::cuda::Stream st4;
 
     img_work_gpu_1.upload(img_work(Range(0, 119), Range(0, 119)), st1);
-    img_work_gpu_2.upload(img_work(Range(0, 119), Range(120, 239)),st2);
-    img_work_gpu_3.upload(img_work(Range(120, 239), Range(0, 119)),st3);
-    img_work_gpu_4.upload(img_work(Range(120, 239), Range(120, 239)),st4);
-
-    int a = 24;
-    int b = 96;
     match_temp<<<a, b, 0, streamsKernel[0]>>>(img_work_gpu_1, dev_max_val_1, dev_mp_1 );
+    img_work_gpu_2.upload(img_work(Range(0, 119), Range(120, 239)),st2);
     match_temp<<<a, b, 0, streamsKernel[1]>>>(img_work_gpu_2, dev_max_val_2, dev_mp_2 );
+    img_work_gpu_3.upload(img_work(Range(120, 239), Range(0, 119)),st3);
     match_temp<<<a, b, 0, streamsKernel[2]>>>(img_work_gpu_3, dev_max_val_3, dev_mp_3 );
+    img_work_gpu_4.upload(img_work(Range(120, 239), Range(120, 239)),st4);
     match_temp<<<a, b, 0, streamsKernel[3]>>>(img_work_gpu_4, dev_max_val_4, dev_mp_4 );
 
     cudaMemcpy(&max_pix, dev_mp_4, sizeof(Pix), cudaMemcpyDeviceToHost);
