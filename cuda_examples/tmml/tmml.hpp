@@ -79,10 +79,10 @@ class tmml
     cv::cuda::GpuMat img_work_gpu_3;
     cv::cuda::GpuMat img_work_gpu_4;
 
-    cv::Mat img_work_1 = cv::Mat::zeros(60, 240, CV_8UC1);
-    cv::Mat img_work_2 = cv::Mat::zeros(60, 240, CV_8UC1);
-    cv::Mat img_work_3 = cv::Mat::zeros(60, 240, CV_8UC1);
-    cv::Mat img_work_4 = cv::Mat::zeros(60, 240, CV_8UC1);
+    cv::Mat img_work_1 = cv::Mat::zeros(120, 120, CV_8UC1);
+    cv::Mat img_work_2 = cv::Mat::zeros(120, 120, CV_8UC1);
+    cv::Mat img_work_3 = cv::Mat::zeros(120, 120, CV_8UC1);
+    cv::Mat img_work_4 = cv::Mat::zeros(120, 120, CV_8UC1);
 
     cv::cuda::GpuMat img_temp_gpu;
     unsigned char  img_temp_arr[TEMPLATE_AREA];
@@ -93,7 +93,10 @@ class tmml
     int * dev_max_val_3 = dev_max_val0;
     int * dev_max_val_4 = dev_max_val0;
 
-    Pix * dev_mp;
+    Pix * dev_mp_1;
+    Pix * dev_mp_2;
+    Pix * dev_mp_3;
+    Pix * dev_mp_4;
 //    float * dev_result_array_bright;
 #endif // END ifndef NO_GPU
 }; // END class tmml

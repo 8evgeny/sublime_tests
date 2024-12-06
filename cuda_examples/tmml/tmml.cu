@@ -23,7 +23,11 @@ void tmml::cuda_Malloc()
     cudaMalloc((void**)& dev_max_val_3, sizeof(int));
     cudaMalloc((void**)& dev_max_val_4, sizeof(int));
 
-    cudaMalloc((void**)&dev_mp, sizeof(Pix));
+    cudaMalloc((void**)&dev_mp_1, sizeof(Pix));
+    cudaMalloc((void**)&dev_mp_2, sizeof(Pix));
+    cudaMalloc((void**)&dev_mp_3, sizeof(Pix));
+    cudaMalloc((void**)&dev_mp_4, sizeof(Pix));
+
 //    cudaMalloc((void**)&dev_result_array_bright, sizeof(float) * RESULT_AREA);
 } // -- END cuda_Malloc()
 
@@ -40,7 +44,10 @@ void tmml::cuda_Free()
     cudaFree(dev_max_val_3);
     cudaFree(dev_max_val_4);
 
-    cudaFree(dev_mp);
+    cudaFree(dev_mp_1);
+    cudaFree(dev_mp_2);
+    cudaFree(dev_mp_3);
+    cudaFree(dev_mp_4);
 //    cudaFree(dev_result_array_bright);
 } // -- END cudaFree()
 
@@ -112,19 +119,28 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
 
 void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 {
-    img_work(Range(0, 59), Range(0, 239)).copyTo(img_work_1(Range(0, 59), Range(0, 239)));
-    img_work(Range(60, 119), Range(0, 239)).copyTo(img_work_2(Range(0, 59), Range(0, 239)));
-    img_work(Range(120, 179), Range(0, 239)).copyTo(img_work_1(Range(0, 59), Range(0, 239)));
-    img_work(Range(180, 239), Range(0, 239)).copyTo(img_work_1(Range(0, 59), Range(0, 239)));
-
-    img_work_gpu_1.upload(img_work_1);
-    img_work_gpu_2.upload(img_work_2);
-    img_work_gpu_3.upload(img_work_3);
-    img_work_gpu_4.upload(img_work_4);
-
     cudaMemcpyToSymbol(const_img_temp_array, img_temp.data, sizeof(unsigned char) * TEMPLATE_AREA);
-    match_temp<<<192, 192>>>(img_work_gpu_1, dev_max_val_1, dev_mp
-//                             , dev_result_array_bright
-                             );
-    cudaMemcpy(&max_pix, dev_mp, sizeof(Pix), cudaMemcpyDeviceToHost);
+
+    img_work(Range(0, 119), Range(0, 119)).copyTo(img_work_1(Range(0, 119), Range(0, 119)));
+    img_work_gpu_1.upload(img_work_1);
+    match_temp<<<48, 48>>>(img_work_gpu_1, dev_max_val_1, dev_mp_1 );
+
+    img_work(Range(0, 119), Range(120, 239)).copyTo(img_work_2(Range(0, 119), Range(0, 119)));
+    img_work_gpu_2.upload(img_work_2);
+    match_temp<<<48, 48>>>(img_work_gpu_2, dev_max_val_2, dev_mp_2 );
+
+    img_work(Range(120, 239), Range(0, 119)).copyTo(img_work_1(Range(0, 119), Range(0, 119)));
+    img_work_gpu_3.upload(img_work_3);
+    match_temp<<<48, 48>>>(img_work_gpu_3, dev_max_val_3, dev_mp_3 );
+
+    img_work(Range(120, 239), Range(120, 239)).copyTo(img_work_1(Range(0, 119), Range(0, 119)));
+    img_work_gpu_4.upload(img_work_4);
+    match_temp<<<48, 48>>>(img_work_gpu_4, dev_max_val_4, dev_mp_4 );
+
+//    printf("dev_mp_1=%f", dev_mp_1->bright);
+//    printf("dev_mp_2=%f", dev_mp_2->bright);
+//    printf("dev_mp_3=%f", dev_mp_3->bright);
+//    printf("dev_mp_4=%f", dev_mp_4->bright);
+
+    cudaMemcpy(&max_pix, dev_mp_2, sizeof(Pix), cudaMemcpyDeviceToHost);
 } // END work_tmml
