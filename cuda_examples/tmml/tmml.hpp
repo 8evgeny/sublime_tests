@@ -79,11 +79,6 @@ class tmml
     cv::cuda::GpuMat img_work_gpu_3;
     cv::cuda::GpuMat img_work_gpu_4;
 
-    cv::Mat img_work_1 = cv::Mat(120, 120, CV_8UC1);
-    cv::Mat img_work_2 = cv::Mat(120, 120, CV_8UC1);
-    cv::Mat img_work_3 = cv::Mat(120, 120, CV_8UC1);
-    cv::Mat img_work_4 = cv::Mat(120, 120, CV_8UC1);
-
     cv::cuda::GpuMat img_temp_gpu;
     unsigned char  img_temp_arr[TEMPLATE_AREA];
     float error_Val = 0.f, min_max_Val2 = 0.f;
