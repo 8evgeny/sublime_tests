@@ -73,11 +73,26 @@ class tmml
 #ifndef NO_GPU
     void cuda_Malloc();
     void init_matchers();
-    cv::cuda::GpuMat img_work_gpu, img_temp_gpu;
+//    cv::cuda::GpuMat img_work_gpu;
+    cv::cuda::GpuMat img_work_gpu_1;
+    cv::cuda::GpuMat img_work_gpu_2;
+    cv::cuda::GpuMat img_work_gpu_3;
+    cv::cuda::GpuMat img_work_gpu_4;
+
+    cv::Mat img_work_1 = cv::Mat::zeros(60, 240, CV_8UC1);
+    cv::Mat img_work_2 = cv::Mat::zeros(60, 240, CV_8UC1);
+    cv::Mat img_work_3 = cv::Mat::zeros(60, 240, CV_8UC1);
+    cv::Mat img_work_4 = cv::Mat::zeros(60, 240, CV_8UC1);
+
+    cv::cuda::GpuMat img_temp_gpu;
     unsigned char  img_temp_arr[TEMPLATE_AREA];
     float error_Val = 0.f, min_max_Val2 = 0.f;
     int * dev_max_val0 = 0;
-    int * dev_max_val = dev_max_val0;
+    int * dev_max_val_1 = dev_max_val0;
+    int * dev_max_val_2 = dev_max_val0;
+    int * dev_max_val_3 = dev_max_val0;
+    int * dev_max_val_4 = dev_max_val0;
+
     Pix * dev_mp;
     float * dev_result_array_bright;
 #endif // END ifndef NO_GPU
