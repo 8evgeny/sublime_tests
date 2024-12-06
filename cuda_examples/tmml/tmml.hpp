@@ -60,6 +60,7 @@ class tmml
 
     const Pix max_pix0;
     void work_tmml(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
+    Pix * maxValue(Pix *, Pix *, Pix *, Pix *);
     Pix max_pix = max_pix0;
     double maxVal = 0;
     cv::Mat img_result = cv::Mat(cv::Size(RESULT_WIDTH, RESULT_WIDTH), CV_32FC1, cv::Scalar(0));

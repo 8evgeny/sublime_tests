@@ -116,7 +116,6 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
     }  // END if(*dev_max_val == val)
 }  // END match_temp
 
-
 void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 {
     cudaMemcpyToSymbol(const_img_temp_array, img_temp.data, sizeof(unsigned char) * TEMPLATE_AREA);
@@ -125,7 +124,6 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
     {
         cudaStreamCreate(&streamsKernel[i]);
     }
-
     img_work_gpu_1.upload(img_work(Range(0, 119), Range(0, 119)), st1);
     match_temp<<<blocks, threads, 0, streamsKernel[0]>>>(img_work_gpu_1, dev_max_val_1, dev_mp_1 );
     img_work_gpu_2.upload(img_work(Range(0, 119), Range(120, 239)),st2);
@@ -134,8 +132,16 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
     match_temp<<<blocks, threads, 0, streamsKernel[2]>>>(img_work_gpu_3, dev_max_val_3, dev_mp_3 );
     img_work_gpu_4.upload(img_work(Range(120, 239), Range(120, 239)),st4);
     match_temp<<<blocks, threads, 0, streamsKernel[3]>>>(img_work_gpu_4, dev_max_val_4, dev_mp_4 );
-
-    cudaMemcpy(&max_pix, dev_mp_4, sizeof(Pix), cudaMemcpyDeviceToHost);
-
+    cudaMemcpy(&max_pix, maxValue(dev_mp_1, dev_mp_2, dev_mp_3, dev_mp_4), sizeof(Pix), cudaMemcpyDeviceToHost);
 } // END work_tmml
+
+Pix * tmml::maxValue(Pix *a, Pix * b, Pix * c, Pix * d )
+{
+//    int num = 0;
+//    a->bright>b->bright ? num = 0 : b->bright>c->bright ? num = 1 : num = 2;
+
+
+    return d;
+} // END maxValue
+
 
