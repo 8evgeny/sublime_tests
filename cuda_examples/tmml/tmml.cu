@@ -65,8 +65,8 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
     int sum_roi = 0;
     int sum_temp = 0;
 #endif // END ifdef COMBINED
-    const int result_y = result_id / RESULT_WIDTH;
-    const int result_x = result_id % RESULT_WIDTH;
+    const int result_y = result_id / 72; //120 - 48
+    const int result_x = result_id % 72;
 
 // 150 mks
     for(int temp_y = 0; temp_y < TEMPLATE_WIDTH; ++temp_y)
@@ -121,26 +121,23 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 {
     cudaMemcpyToSymbol(const_img_temp_array, img_temp.data, sizeof(unsigned char) * TEMPLATE_AREA);
 
-    img_work(Range(0, 119), Range(0, 119)).copyTo(img_work_1(Range(0, 119), Range(0, 119)));
+    img_work(Range(0, 119), Range(0, 119)).copyTo(img_work_1);
     img_work_gpu_1.upload(img_work_1);
     match_temp<<<48, 48>>>(img_work_gpu_1, dev_max_val_1, dev_mp_1 );
 
-    img_work(Range(0, 119), Range(120, 239)).copyTo(img_work_2(Range(0, 119), Range(0, 119)));
+    img_work(Range(0, 119), Range(120, 239)).copyTo(img_work_2);
     img_work_gpu_2.upload(img_work_2);
     match_temp<<<48, 48>>>(img_work_gpu_2, dev_max_val_2, dev_mp_2 );
 
-    img_work(Range(120, 239), Range(0, 119)).copyTo(img_work_1(Range(0, 119), Range(0, 119)));
+    img_work(Range(120, 239), Range(0, 119)).copyTo(img_work_3);
     img_work_gpu_3.upload(img_work_3);
     match_temp<<<48, 48>>>(img_work_gpu_3, dev_max_val_3, dev_mp_3 );
 
-    img_work(Range(120, 239), Range(120, 239)).copyTo(img_work_1(Range(0, 119), Range(0, 119)));
+    img_work(Range(120, 239), Range(120, 239)).copyTo(img_work_4);
     img_work_gpu_4.upload(img_work_4);
     match_temp<<<48, 48>>>(img_work_gpu_4, dev_max_val_4, dev_mp_4 );
 
-//    printf("dev_mp_1=%f", dev_mp_1->bright);
-//    printf("dev_mp_2=%f", dev_mp_2->bright);
-//    printf("dev_mp_3=%f", dev_mp_3->bright);
-//    printf("dev_mp_4=%f", dev_mp_4->bright);
+    cudaMemcpy(&max_pix, dev_mp_4, sizeof(Pix), cudaMemcpyDeviceToHost);
 
-    cudaMemcpy(&max_pix, dev_mp_2, sizeof(Pix), cudaMemcpyDeviceToHost);
 } // END work_tmml
+
