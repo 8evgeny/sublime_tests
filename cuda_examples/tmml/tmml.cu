@@ -24,7 +24,7 @@ void tmml::cuda_Malloc()
     cudaMalloc((void**)& dev_max_val_4, sizeof(int));
 
     cudaMalloc((void**)&dev_mp, sizeof(Pix));
-    cudaMalloc((void**)&dev_result_array_bright, sizeof(float) * RESULT_AREA);
+//    cudaMalloc((void**)&dev_result_array_bright, sizeof(float) * RESULT_AREA);
 } // -- END cuda_Malloc()
 
 void tmml::cuda_Free()
@@ -41,13 +41,14 @@ void tmml::cuda_Free()
     cudaFree(dev_max_val_4);
 
     cudaFree(dev_mp);
-    cudaFree(dev_result_array_bright);
+//    cudaFree(dev_result_array_bright);
 } // -- END cudaFree()
 
 __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
                            int * dev_max_val,
-                           Pix * dev_v_res_pix,
-                           float * dev_result_array_bright)
+                           Pix * dev_v_res_pix
+//                           ,float * dev_result_array_bright
+                           )
 {
     const int result_id = blockIdx.x * blockDim.x + threadIdx.x;
     int sum_roi_temp = 0;
@@ -122,8 +123,8 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
     img_work_gpu_4.upload(img_work_4);
 
     cudaMemcpyToSymbol(const_img_temp_array, img_temp.data, sizeof(unsigned char) * TEMPLATE_AREA);
-    //cudaMemcpy(dev_max_val, 0, sizeof(int), cudaMemcpyHostToDevice);
-//    match_temp<<<blocks_match_temp, threads_match_temp>>>(img_work_gpu, dev_max_val, dev_mp, dev_result_array_bright);
-    match_temp<<<192, 192>>>(img_work_gpu_1, dev_max_val_1, dev_mp, dev_result_array_bright);
+    match_temp<<<192, 192>>>(img_work_gpu_1, dev_max_val_1, dev_mp
+//                             , dev_result_array_bright
+                             );
     cudaMemcpy(&max_pix, dev_mp, sizeof(Pix), cudaMemcpyDeviceToHost);
 } // END work_tmml

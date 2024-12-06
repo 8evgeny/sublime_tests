@@ -94,6 +94,6 @@ class tmml
     int * dev_max_val_4 = dev_max_val0;
 
     Pix * dev_mp;
-    float * dev_result_array_bright;
+//    float * dev_result_array_bright;
 #endif // END ifndef NO_GPU
 }; // END class tmml
