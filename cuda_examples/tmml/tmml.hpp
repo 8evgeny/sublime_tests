@@ -78,7 +78,9 @@ class tmml
     cv::cuda::GpuMat img_work_gpu_2;
     cv::cuda::GpuMat img_work_gpu_3;
     cv::cuda::GpuMat img_work_gpu_4;
-
+    int blocks = 24;
+    int threads = 96;
+    const int numCudaTread = 4;
     cv::cuda::GpuMat img_temp_gpu;
     unsigned char  img_temp_arr[TEMPLATE_AREA];
     float error_Val = 0.f, min_max_Val2 = 0.f;

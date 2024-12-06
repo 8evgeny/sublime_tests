@@ -1,5 +1,4 @@
 ﻿#include "tmml.hpp"
-#include <thread>
 
 using namespace std;
 using namespace cv;
@@ -121,54 +120,25 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
 void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 {
     cudaMemcpyToSymbol(const_img_temp_array, img_temp.data, sizeof(unsigned char) * TEMPLATE_AREA);
-
-//    thread t1([&]{
-//        img_work_gpu_1.upload(img_work(Range(0, 119), Range(0, 119)));
-//        match_temp<<<48, 48>>>(img_work_gpu_1, dev_max_val_1, dev_mp_1 );
-//    });
-//    thread t2([&]{
-//        img_work_gpu_2.upload(img_work(Range(0, 119), Range(120, 239)));
-//        match_temp<<<48, 48>>>(img_work_gpu_2, dev_max_val_2, dev_mp_2 );
-//    });
-//    thread t3([&]{
-//        img_work_gpu_3.upload(img_work(Range(120, 239), Range(0, 119)));
-//        match_temp<<<48, 48>>>(img_work_gpu_3, dev_max_val_3, dev_mp_3 );
-//    });
-//    thread t4([&]{
-//        img_work_gpu_4.upload(img_work(Range(120, 239), Range(120, 239)));
-//        match_temp<<<48, 48>>>(img_work_gpu_4, dev_max_val_4, dev_mp_4 );
-//    });
-//t1.join();
-//t2.join();
-//t3.join();
-//t4.join();
-
-    cudaStream_t *streamsKernel = (cudaStream_t *)malloc(4 * sizeof(cudaStream_t));
-    for (int i = 0 ; i < 4; i++)
+    cudaStream_t *streamsKernel = (cudaStream_t *)malloc(numCudaTread * sizeof(cudaStream_t));
+    for (int i = 0 ; i < numCudaTread; i++)
     {
         cudaStreamCreate(&streamsKernel[i]);
     }
 
-//    cv::cuda::Stream *streamsMemory = (cv::cuda::Stream *)malloc(4 * sizeof(cv::cuda::Stream));
-//    for (int i = 0 ; i < 4; i++)
-//    {
-//        cudaStreamCreate(&streamsMemory[i]);
-//    }
-    int a = 24;
-    int b = 96;
     cv::cuda::Stream st1;
     cv::cuda::Stream st2;
     cv::cuda::Stream st3;
     cv::cuda::Stream st4;
 
     img_work_gpu_1.upload(img_work(Range(0, 119), Range(0, 119)), st1);
-    match_temp<<<a, b, 0, streamsKernel[0]>>>(img_work_gpu_1, dev_max_val_1, dev_mp_1 );
+    match_temp<<<blocks, threads, 0, streamsKernel[0]>>>(img_work_gpu_1, dev_max_val_1, dev_mp_1 );
     img_work_gpu_2.upload(img_work(Range(0, 119), Range(120, 239)),st2);
-    match_temp<<<a, b, 0, streamsKernel[1]>>>(img_work_gpu_2, dev_max_val_2, dev_mp_2 );
+    match_temp<<<blocks, threads, 0, streamsKernel[1]>>>(img_work_gpu_2, dev_max_val_2, dev_mp_2 );
     img_work_gpu_3.upload(img_work(Range(120, 239), Range(0, 119)),st3);
-    match_temp<<<a, b, 0, streamsKernel[2]>>>(img_work_gpu_3, dev_max_val_3, dev_mp_3 );
+    match_temp<<<blocks, threads, 0, streamsKernel[2]>>>(img_work_gpu_3, dev_max_val_3, dev_mp_3 );
     img_work_gpu_4.upload(img_work(Range(120, 239), Range(120, 239)),st4);
-    match_temp<<<a, b, 0, streamsKernel[3]>>>(img_work_gpu_4, dev_max_val_4, dev_mp_4 );
+    match_temp<<<blocks, threads, 0, streamsKernel[3]>>>(img_work_gpu_4, dev_max_val_4, dev_mp_4 );
 
     cudaMemcpy(&max_pix, dev_mp_4, sizeof(Pix), cudaMemcpyDeviceToHost);
 
