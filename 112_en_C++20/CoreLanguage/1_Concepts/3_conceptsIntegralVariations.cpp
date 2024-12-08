@@ -36,7 +36,6 @@ int main(){
     std::cout << "gcd1(100, 10)= " <<  gcd1(100, 10)  << '\n';
     std::cout << "gcd2(100, 10)= " <<  gcd2(100, 10)  << '\n';
     std::cout << "gcd3(100, 10)= " <<  gcd3(100, 10)  << '\n';
-
     std::cout << '\n';
 
 }
