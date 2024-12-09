@@ -7,10 +7,10 @@ __constant__ unsigned char const_img_temp_array[TEMPLATE_AREA];
 
 void tmml::cuda_Malloc()
 {
-    Mat img_work_1(Size(WORK_WIDTH, 60), CV_8UC1, Scalar(0));
-    Mat img_work_2(Size(WORK_WIDTH, 60), CV_8UC1, Scalar(0));
-    Mat img_work_3(Size(WORK_WIDTH, 60), CV_8UC1, Scalar(0));
-    Mat img_work_4(Size(WORK_WIDTH, 59), CV_8UC1, Scalar(0));
+    Mat img_work_1(Size(168, 168), CV_8UC1, Scalar(0));
+    Mat img_work_2(Size(168, 168), CV_8UC1, Scalar(0));
+    Mat img_work_3(Size(168, 168), CV_8UC1, Scalar(0));
+    Mat img_work_4(Size(168, 168), CV_8UC1, Scalar(0));
     img_work_gpu_1.upload(img_work_1);
     img_work_gpu_2.upload(img_work_2);
     img_work_gpu_3.upload(img_work_3);
