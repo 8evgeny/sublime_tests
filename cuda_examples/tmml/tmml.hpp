@@ -79,8 +79,8 @@ class tmml
     cv::cuda::GpuMat img_work_gpu_2;
     cv::cuda::GpuMat img_work_gpu_3;
     cv::cuda::GpuMat img_work_gpu_4;
-    int blocks = 24;
-    int threads = 96;
+    int blocks = 18;
+    int threads = 288;
     const int numCudaTread = 4;
     cv::cuda::Stream st1;
     cv::cuda::Stream st2;
