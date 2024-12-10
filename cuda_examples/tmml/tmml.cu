@@ -95,22 +95,19 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 
     for(int i = 0; i < numCudaTread; ++i)
     {
-        auto a = async(launch::async, [&](){
-        dev_img_work[i].upload(img_work(Ri[i]), st[i]);
-        cudaStreamCreate(&streamsKernel[i]);
-        match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
-    });
-
+        auto a = async(launch::async, [&]()
+        {
+            dev_img_work[i].upload(img_work(Ri[i]), st[i]);
+            cudaStreamCreate(&streamsKernel[i]);
+            match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
+        });
     }// END for(int i = 0; i < numCudaTread; ++i)
 
     for(int i = 0; i < numCudaTread; ++i)
     {
         cudaMemcpy(&host_mp[i], dev_mp[i], sizeof(Pix), cudaMemcpyDeviceToHost);
     }// END for(int i = 0; i < numCudaTread; ++i)
-
     max_pix = maxValue(host_mp);
-
-
 } // END work_tmml
 
 Pix tmml::maxValue(Pix host_mp[numCudaTread])
