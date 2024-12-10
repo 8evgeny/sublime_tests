@@ -64,7 +64,7 @@ class tmml
 
     const Pix max_pix0;
     void work_tmml(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
-    Pix * maxValue(Pix * dev_mp[numCudaTread]);
+    Pix maxValue(Pix dev_mp[numCudaTread]);
     Pix max_pix = max_pix0;
     double maxVal = 0;
     cv::Mat img_result = cv::Mat(cv::Size(RESULT_WIDTH, RESULT_WIDTH), CV_32FC1, cv::Scalar(0));
@@ -87,6 +87,7 @@ class tmml
     cv::cuda::Stream st[numCudaTread];
     int * dev_max_val[numCudaTread];
     Pix * dev_mp[numCudaTread];
+    Pix max_mp_host[numCudaTread];
     cv::cuda::GpuMat img_temp_gpu;
     unsigned char  img_temp_arr[TEMPLATE_AREA];
     float error_Val = 0.f, min_max_Val2 = 0.f;
