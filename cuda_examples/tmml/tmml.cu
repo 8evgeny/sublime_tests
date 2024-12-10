@@ -134,14 +134,19 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
         cudaMemcpy(&max_mp_host[i], dev_mp[i], sizeof(Pix), cudaMemcpyDeviceToHost);
     }
 
-
     max_pix = maxValue(max_mp_host);
 
 } // END work_tmml
 
-Pix tmml::maxValue(Pix dev_mp[numCudaTread])
+Pix tmml::maxValue(Pix arr[numCudaTread])
 {
-    return  dev_mp[1];
+    Pix max;
+    max.bright = 0;
+    for(int i = 0; i < numCudaTread; ++i)
+    {
+        if(arr[i].bright > max.bright) max = arr[i];
+    }
+    return  max;
 } // END maxValue
 
 
