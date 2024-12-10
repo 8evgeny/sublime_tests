@@ -12,11 +12,8 @@ void tmml::cuda_Malloc()
 
     for(int i = 0; i < numCudaTread; ++i)
     {
-//        cudaMalloc((void**)& dev_max_val[i], sizeof(int));
-        cudaMalloc((void**)& dev_mp[i], sizeof(Pix *));
+        cudaMalloc((void**)& dev_mp[i], sizeof(Pix));
     }// END for(int i = 0; i < numCudaTread; ++i)
-
-//    cudaMalloc((void**)&dev_result_array_bright, sizeof(float) * RESULT_AREA);
 } // -- END cuda_Malloc()
 
 void tmml::cuda_Free()
@@ -24,7 +21,7 @@ void tmml::cuda_Free()
     cudaFree(&img_temp_gpu);
     for(int i = 0; i < numCudaTread; ++i)
     {
-        cudaFree(&img_work_gpu[i]);
+        cudaFree(&dev_img_work[i]);
         cudaFree(dev_mp[i]);
     }// END for(int i = 0; i < numCudaTread; ++i)
 
@@ -46,7 +43,6 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
     const int result_y = result_id / RESULT_WIDTH_1;
     const int result_x = result_id % RESULT_WIDTH;
 
-// 150 mks
     for(int temp_y = 0; temp_y < TEMPLATE_WIDTH; ++temp_y)
     {
         int work_y = temp_y + result_y;
@@ -81,9 +77,8 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
 #ifdef SQDIFF_NORMED
     const float result_float = 1.f - KOEFF2LIB_float * diff_roi_temp2 / sqrt(sum_roi_roi1 * sum_temp_temp1);
 #endif // END ifdef SQDIFF_NORMED
-//    dev_result_array_bright[result_id] = result_float;
+
     int val = 1000000 * result_float;
-//    if(result_id == 0){*dev_max_val = 0;}
     atomicMax(&dev_v_res_pix->bright, val);
     __syncthreads();
     if(dev_v_res_pix->bright == val)
@@ -105,17 +100,17 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
     for(int i = 0; i < numCudaTread; ++i)
     {
 //    int i = 0;
-    img_work_gpu[i].upload(img_work(Ri[i]), st[i]);
-    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_mp[i] );
+    dev_img_work[i].upload(img_work(Ri[i]), st[i]);
+    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
 //    i = 1;
-    img_work_gpu[i].upload(img_work(Ri[i]), st[i]);
-    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_mp[i] );
+    dev_img_work[i].upload(img_work(Ri[i]), st[i]);
+    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
 //    i = 2;
-    img_work_gpu[i].upload(img_work(Ri[i]), st[i]);
-    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_mp[i] );
+    dev_img_work[i].upload(img_work(Ri[i]), st[i]);
+    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
 //    i = 3;
-    img_work_gpu[i].upload(img_work(Ri[i]), st[i]);
-    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_mp[i] );
+    dev_img_work[i].upload(img_work(Ri[i]), st[i]);
+    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
     }// END for(int i = 0; i < numCudaTread; ++i)
 
     for(int i = 0; i < numCudaTread; ++i)

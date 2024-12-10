@@ -82,7 +82,7 @@ class tmml
     void init_matchers();
     int blocks = 0;
     int threads = 0;
-    cv::cuda::GpuMat img_work_gpu[numCudaTread];
+    cv::cuda::GpuMat dev_img_work[numCudaTread];
     cv::Rect Ri[numCudaTread];
     cv::cuda::Stream st[numCudaTread];
     int * dev_max_val[numCudaTread];
