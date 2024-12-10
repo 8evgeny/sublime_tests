@@ -131,20 +131,20 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 
     for(int i = 0; i < numCudaTread; ++i)
     {
-        cudaMemcpy(&max_mp_host[i], dev_mp[i], sizeof(Pix), cudaMemcpyDeviceToHost);
-    }
+        cudaMemcpy(&host_mp[i], dev_mp[i], sizeof(Pix), cudaMemcpyDeviceToHost);
+    }// END for(int i = 0; i < numCudaTread; ++i)
 
-    max_pix = maxValue(max_mp_host);
+    max_pix = maxValue(host_mp);
 
 } // END work_tmml
 
-Pix tmml::maxValue(Pix arr[numCudaTread])
+Pix tmml::maxValue(Pix host_mp[numCudaTread])
 {
     Pix max;
     max.bright = 0;
     for(int i = 0; i < numCudaTread; ++i)
     {
-        if(arr[i].bright > max.bright) max = arr[i];
+        if(host_mp[i].bright > max.bright) max = host_mp[i];
     }
     return  max;
 } // END maxValue

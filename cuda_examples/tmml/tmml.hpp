@@ -87,7 +87,7 @@ class tmml
     cv::cuda::Stream st[numCudaTread];
     int * dev_max_val[numCudaTread];
     Pix * dev_mp[numCudaTread];
-    Pix max_mp_host[numCudaTread];
+    Pix host_mp[numCudaTread];
     cv::cuda::GpuMat img_temp_gpu;
     unsigned char  img_temp_arr[TEMPLATE_AREA];
     float error_Val = 0.f, min_max_Val2 = 0.f;
