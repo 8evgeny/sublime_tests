@@ -28,6 +28,10 @@ const float RESULT_AREA_1 = 1.f / RESULT_AREA;
 const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 const float TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
 const float KOEFF2LIB_float = KOEFF2LIB;
+const int numCudaTread = 4;
+const int RESULT_WIDTH_1 = RESULT_WIDTH / numCudaTread;
+const int Hi = RESULT_WIDTH_1 + TEMPLATE_WIDTH - 1;
+
 
 #ifdef GPU_AMPERE
     const int threads_match_temp = 128; // 256
@@ -67,6 +71,8 @@ class tmml
     cv::Mat img_result2 = cv::Mat(cv::Size(RESULT_WIDTH, RESULT_WIDTH), CV_32FC1, cv::Scalar(0));
     cv::Mat img_result6 = cv::Mat(cv::Size(RESULT_WIDTH, RESULT_WIDTH), CV_32FC1, cv::Scalar(0));
 
+
+
   private:
     double minVal, min_max_Val;
     cv::Point minLoc, maxLoc;
@@ -74,27 +80,28 @@ class tmml
 #ifndef NO_GPU
     void cuda_Malloc();
     void init_matchers();
-//    cv::cuda::GpuMat img_work_gpu;
-    cv::cuda::GpuMat img_work_gpu_1;
-    cv::cuda::GpuMat img_work_gpu_2;
-    cv::cuda::GpuMat img_work_gpu_3;
-    cv::cuda::GpuMat img_work_gpu_4;
+
+//    cv::cuda::GpuMat img_work_gpu_1;
+//    cv::cuda::GpuMat img_work_gpu_2;
+//    cv::cuda::GpuMat img_work_gpu_3;
+//    cv::cuda::GpuMat img_work_gpu_4;
+    cv::cuda::GpuMat img_work_gpu[numCudaTread];
+
+
     int blocks = 24; // 48 * 192
     int threads = 384;
-    const int numCudaTread = 4;
-    cv::cuda::Stream st1;
-    cv::cuda::Stream st2;
-    cv::cuda::Stream st3;
-    cv::cuda::Stream st4;
+    cv::Rect Ri[numCudaTread];
+    cv::cuda::Stream st[numCudaTread];
+    int * dev_max_val[numCudaTread];
 
     cv::cuda::GpuMat img_temp_gpu;
     unsigned char  img_temp_arr[TEMPLATE_AREA];
     float error_Val = 0.f, min_max_Val2 = 0.f;
     int * dev_max_val0 = 0;
-    int * dev_max_val_1 = dev_max_val0;
-    int * dev_max_val_2 = dev_max_val0;
-    int * dev_max_val_3 = dev_max_val0;
-    int * dev_max_val_4 = dev_max_val0;
+
+
+
+
 
     Pix * dev_mp_1;
     Pix * dev_mp_2;
