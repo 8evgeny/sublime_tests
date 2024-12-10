@@ -4,6 +4,7 @@ using namespace std;
 using namespace cv;
 
 __constant__ unsigned char const_img_temp_array[TEMPLATE_AREA];
+cudaStream_t streamsKernel[numCudaTread];
 
 void tmml::cuda_Malloc()
 {
@@ -91,27 +92,28 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
 void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 {
     cudaMemcpyToSymbol(const_img_temp_array, img_temp.data, sizeof(unsigned char) * TEMPLATE_AREA);
-    cudaStream_t *streamsKernel = (cudaStream_t *)malloc(numCudaTread * sizeof(cudaStream_t));
-    for (int i = 0 ; i < numCudaTread; i++)
-    {
-        cudaStreamCreate(&streamsKernel[i]);
-    }//END for (int i = 0 ; i < numCudaTread; i++)
 
-    for(int i = 0; i < numCudaTread; ++i)
-    {
-//    int i = 0;
+
+//    for(int i = 0; i < numCudaTread; ++i)
+//    {
+    int i = 0;
     dev_img_work[i].upload(img_work(Ri[i]), st[i]);
+    cudaStreamCreate(&streamsKernel[i]);
     match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
-//    i = 1;
+    i = 1;
     dev_img_work[i].upload(img_work(Ri[i]), st[i]);
+    cudaStreamCreate(&streamsKernel[i]);
     match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
-//    i = 2;
+    i = 2;
     dev_img_work[i].upload(img_work(Ri[i]), st[i]);
+    cudaStreamCreate(&streamsKernel[i]);
     match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
-//    i = 3;
+    i = 3;
     dev_img_work[i].upload(img_work(Ri[i]), st[i]);
+    cudaStreamCreate(&streamsKernel[i]);
     match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
-    }// END for(int i = 0; i < numCudaTread; ++i)
+
+//    }// END for(int i = 0; i < numCudaTread; ++i)
 
     for(int i = 0; i < numCudaTread; ++i)
     {
