@@ -29,7 +29,7 @@ const float RESULT_AREA_1 = 1.f / RESULT_AREA;
 const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 const float TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
 const float KOEFF2LIB_float = KOEFF2LIB;
-const int numCudaTread = 4;
+const int numCudaTread = 1;
 const int RESULT_WIDTH_1 = RESULT_WIDTH / numCudaTread;
 const int Hi = RESULT_WIDTH_1 + TEMPLATE_WIDTH - 1;
 

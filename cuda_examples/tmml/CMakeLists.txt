@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 set(CMAKE_CXX_STANDARD 17)
-project(tmml_new)
+project(tmml_stream)
 
 # Использование GPU:
 set(USE_GPU 1) # (0 - CPU, 1 - CUDA, 2 - OPENCL)

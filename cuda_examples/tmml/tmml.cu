@@ -89,20 +89,13 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
     }  // END if(*dev_max_val == val)
 }  // END match_temp
 
-//void tmml::gpu_work(const Mat& img_work, int i)
-//{
-//    dev_img_work[i].upload(img_work(Ri[i]), st[i]);
-//    cudaStreamCreate(&streamsKernel[i]);
-//    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
-//}
-
 void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 {
     cudaMemcpyToSymbol(const_img_temp_array, img_temp.data, sizeof(unsigned char) * TEMPLATE_AREA);
 
     for(int i = 0; i < numCudaTread; ++i)
     {
-        auto a = async(std::launch::async, [&](){
+        auto a = async(launch::async, [&](){
         dev_img_work[i].upload(img_work(Ri[i]), st[i]);
         cudaStreamCreate(&streamsKernel[i]);
         match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
@@ -110,10 +103,8 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 
     }// END for(int i = 0; i < numCudaTread; ++i)
 
-
     for(int i = 0; i < numCudaTread; ++i)
     {
-
         cudaMemcpy(&host_mp[i], dev_mp[i], sizeof(Pix), cudaMemcpyDeviceToHost);
     }// END for(int i = 0; i < numCudaTread; ++i)
 
