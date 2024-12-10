@@ -64,7 +64,7 @@ class tmml
 
     const Pix max_pix0;
     void work_tmml(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
-    Pix * maxValue(Pix *, Pix *, Pix *, Pix *);
+    Pix * maxValue(Pix * dev_mp[numCudaTread]);
     Pix max_pix = max_pix0;
     double maxVal = 0;
     cv::Mat img_result = cv::Mat(cv::Size(RESULT_WIDTH, RESULT_WIDTH), CV_32FC1, cv::Scalar(0));
@@ -80,33 +80,19 @@ class tmml
 #ifndef NO_GPU
     void cuda_Malloc();
     void init_matchers();
-
-//    cv::cuda::GpuMat img_work_gpu_1;
-//    cv::cuda::GpuMat img_work_gpu_2;
-//    cv::cuda::GpuMat img_work_gpu_3;
-//    cv::cuda::GpuMat img_work_gpu_4;
-    cv::cuda::GpuMat img_work_gpu[numCudaTread];
-
-
     int blocks = 24; // 48 * 192
     int threads = 384;
+    cv::cuda::GpuMat img_work_gpu[numCudaTread];
     cv::Rect Ri[numCudaTread];
     cv::cuda::Stream st[numCudaTread];
     int * dev_max_val[numCudaTread];
-
+    Pix * dev_mp[numCudaTread];
     cv::cuda::GpuMat img_temp_gpu;
     unsigned char  img_temp_arr[TEMPLATE_AREA];
     float error_Val = 0.f, min_max_Val2 = 0.f;
     int * dev_max_val0 = 0;
 
 
-
-
-
-    Pix * dev_mp_1;
-    Pix * dev_mp_2;
-    Pix * dev_mp_3;
-    Pix * dev_mp_4;
 //    float * dev_result_array_bright;
 #endif // END ifndef NO_GPU
 }; // END class tmml
