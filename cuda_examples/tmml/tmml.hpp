@@ -18,6 +18,7 @@
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <future>
 
 const int SOURCE_WIDTH = EXT_VAL * TEMPLATE_WIDTH;
 const int WORK_WIDTH = SOURCE_WIDTH - 1;
@@ -65,6 +66,7 @@ class tmml
     const Pix max_pix0;
     void work_tmml(const cv::Mat& img_work, const cv::Mat& img_temp, Pix& max_pix);
     Pix maxValue(Pix dev_mp[]);
+//    void gpu_work(const cv::Mat& img_work, int i);
     Pix max_pix = max_pix0;
     double maxVal = 0;
     cv::Mat img_result = cv::Mat(cv::Size(RESULT_WIDTH, RESULT_WIDTH), CV_32FC1, cv::Scalar(0));
