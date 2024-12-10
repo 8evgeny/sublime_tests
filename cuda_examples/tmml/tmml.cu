@@ -42,7 +42,6 @@ void tmml::cuda_Free()
 } // -- END cudaFree()
 
 __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
-                           int * dev_max_val,
                            Pix * dev_v_res_pix
 //                           ,float * dev_result_array_bright
                            )
@@ -95,14 +94,13 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
 #endif // END ifdef SQDIFF_NORMED
 //    dev_result_array_bright[result_id] = result_float;
     int val = 1000000 * result_float;
-    if(result_id == 0){*dev_max_val = 0;}
-    atomicMax(dev_max_val, val);
+//    if(result_id == 0){*dev_max_val = 0;}
+    atomicMax(&dev_v_res_pix->bright, val);
     __syncthreads();
-    if(*dev_max_val == val)
+    if(dev_v_res_pix->bright == val)
     {
         dev_v_res_pix->x = result_x;
         dev_v_res_pix->y = result_y;
-        dev_v_res_pix->bright = *dev_max_val;
     }  // END if(*dev_max_val == val)
 }  // END match_temp
 
@@ -119,16 +117,16 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 //    {
     int i = 0;
     img_work_gpu[i].upload(img_work(Ri[i]), st[i]);
-    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_max_val[i], dev_mp[i] );
+    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_mp[i] );
     i = 1;
     img_work_gpu[i].upload(img_work(Ri[i]), st[i]);
-    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_max_val[i], dev_mp[i] );
+    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_mp[i] );
     i = 2;
     img_work_gpu[i].upload(img_work(Ri[i]), st[i]);
-    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_max_val[i], dev_mp[i] );
+    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_mp[i] );
     i = 3;
     img_work_gpu[i].upload(img_work(Ri[i]), st[i]);
-    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_max_val[i], dev_mp[i] );
+    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_mp[i] );
 //    }
     cudaMemcpy(&max_pix, maxValue(dev_mp), sizeof(Pix), cudaMemcpyDeviceToHost);
 } // END work_tmml

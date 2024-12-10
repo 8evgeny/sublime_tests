@@ -52,7 +52,7 @@ const int Hi = RESULT_WIDTH_1 + TEMPLATE_WIDTH - 1;
     {
         unsigned char x = 0;
         unsigned char y = 0;
-        float bright = 0;
+        int bright = 0;
     };
 
 class tmml
