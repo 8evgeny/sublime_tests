@@ -93,27 +93,12 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 {
     cudaMemcpyToSymbol(const_img_temp_array, img_temp.data, sizeof(unsigned char) * TEMPLATE_AREA);
 
-
-//    for(int i = 0; i < numCudaTread; ++i)
-//    {
-    int i = 0;
-    dev_img_work[i].upload(img_work(Ri[i]), st[i]);
-    cudaStreamCreate(&streamsKernel[i]);
-    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
-    i = 1;
-    dev_img_work[i].upload(img_work(Ri[i]), st[i]);
-    cudaStreamCreate(&streamsKernel[i]);
-    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
-    i = 2;
-    dev_img_work[i].upload(img_work(Ri[i]), st[i]);
-    cudaStreamCreate(&streamsKernel[i]);
-    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
-    i = 3;
-    dev_img_work[i].upload(img_work(Ri[i]), st[i]);
-    cudaStreamCreate(&streamsKernel[i]);
-    match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
-
-//    }// END for(int i = 0; i < numCudaTread; ++i)
+    for(int i = 0; i < numCudaTread; ++i)
+    {
+        dev_img_work[i].upload(img_work(Ri[i]), st[i]);
+        cudaStreamCreate(&streamsKernel[i]);
+        match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(dev_img_work[i], dev_mp[i] );
+    }// END for(int i = 0; i < numCudaTread; ++i)
 
     for(int i = 0; i < numCudaTread; ++i)
     {
