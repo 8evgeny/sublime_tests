@@ -4,7 +4,7 @@ using namespace std;
 using namespace cv;
 using namespace chrono;
 
-const int iter_num = 1000;
+const int iter_num = 5;
 float min_max_Val = 0.99999;
 
 int main()

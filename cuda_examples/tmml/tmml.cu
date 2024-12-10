@@ -41,7 +41,7 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
     int sum_roi = 0;
     int sum_temp = 0;
 #endif // END ifdef COMBINED
-    const int result_y = result_id / RESULT_WIDTH_1;
+    const int result_y = result_id / (RESULT_WIDTH_1 + TEMPLATE_WIDTH - 1);
     const int result_x = result_id % RESULT_WIDTH;
 
     for(int temp_y = 0; temp_y < TEMPLATE_WIDTH; ++temp_y)
@@ -107,16 +107,24 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 
     max_pix = maxValue(host_mp);
 
+
 } // END work_tmml
 
 Pix tmml::maxValue(Pix host_mp[numCudaTread])
 {
     Pix max;
+    int maxIndex = 0;
     max.bright = 0;
     for(int i = 0; i < numCudaTread; ++i)
     {
-        if(host_mp[i].bright > max.bright) max = host_mp[i];
+        if(host_mp[i].bright > max.bright)
+        {
+            max = host_mp[i];
+            maxIndex = i;
+        }
     }
+//    cout<<"max_index="<<maxIndex<<endl;
+    max.y += maxIndex * RESULT_WIDTH_1;
     return  max;
 } // END maxValue
 
