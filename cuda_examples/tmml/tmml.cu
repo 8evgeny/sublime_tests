@@ -34,11 +34,9 @@ void tmml::cuda_Free()
     for(int i = 0; i < numCudaTread; ++i)
     {
         cudaFree(&img_work_gpu[i]);
-//        cudaFree(dev_max_val[i]);
         cudaFree(dev_mp[i]);
     }// END for(int i = 0; i < numCudaTread; ++i)
 
-//    cudaFree(dev_result_array_bright);
 } // -- END cudaFree()
 
 __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
@@ -54,8 +52,8 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
     int sum_roi = 0;
     int sum_temp = 0;
 #endif // END ifdef COMBINED
-    const int result_y = result_id / 48; //96 - 48
-    const int result_x = result_id % 192;//240 - 48
+    const int result_y = result_id / RESULT_WIDTH_1;
+    const int result_x = result_id % RESULT_WIDTH;
 
 // 150 mks
     for(int temp_y = 0; temp_y < TEMPLATE_WIDTH; ++temp_y)
@@ -111,23 +109,23 @@ void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
     for (int i = 0 ; i < numCudaTread; i++)
     {
         cudaStreamCreate(&streamsKernel[i]);
-    }
+    }//END for (int i = 0 ; i < numCudaTread; i++)
 
-//    for(int i = 0; i < numCudaTread; ++i)
-//    {
-    int i = 0;
+    for(int i = 0; i < numCudaTread; ++i)
+    {
+//    int i = 0;
     img_work_gpu[i].upload(img_work(Ri[i]), st[i]);
     match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_mp[i] );
-    i = 1;
+//    i = 1;
     img_work_gpu[i].upload(img_work(Ri[i]), st[i]);
     match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_mp[i] );
-    i = 2;
+//    i = 2;
     img_work_gpu[i].upload(img_work(Ri[i]), st[i]);
     match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_mp[i] );
-    i = 3;
+//    i = 3;
     img_work_gpu[i].upload(img_work(Ri[i]), st[i]);
     match_temp<<<blocks, threads, 0, streamsKernel[i]>>>(img_work_gpu[i], dev_mp[i] );
-//    }
+    }// END for(int i = 0; i < numCudaTread; ++i)
 
     for(int i = 0; i < numCudaTread; ++i)
     {

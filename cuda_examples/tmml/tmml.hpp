@@ -80,8 +80,8 @@ class tmml
 #ifndef NO_GPU
     void cuda_Malloc();
     void init_matchers();
-    int blocks = 24; // 48 * 192
-    int threads = 384;
+    int blocks = 0;
+    int threads = 0;
     cv::cuda::GpuMat img_work_gpu[numCudaTread];
     cv::Rect Ri[numCudaTread];
     cv::cuda::Stream st[numCudaTread];

@@ -18,6 +18,10 @@ tmml::tmml(bool &ok, float& min_max_Val0)
         Ri[i] = Rect(0, i* RESULT_WIDTH_1, WORK_WIDTH, Hi);
     }//END for (int i = 0; i < numCudaTread; ++i)
 
+    blocks = RESULT_WIDTH / (2 * numCudaTread);
+    threads = RESULT_WIDTH * 2;
+
+
     ok = true;
     cout << "Constructor tmml, ok= " << ok << endl;
 } // END tmml
