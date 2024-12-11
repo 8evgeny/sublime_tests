@@ -29,7 +29,7 @@ int main()
     tm->max_pix = tm->max_pix0;
     double minVal, maxVal;
     Point minLoc, maxLoc;   
-    cout << "iter_num=" << iter_num << "; numCudaTread=" << numCudaTread << endl;
+//    cout << "iter_num=" << iter_num << "; numCudaTread=" << numCudaTread << endl;
 
 //  0===============================================================
     time_point0 = system_clock::now();

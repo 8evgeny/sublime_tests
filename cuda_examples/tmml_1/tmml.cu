@@ -65,6 +65,7 @@ __global__ void match_temp(unsigned char * dev_img_work_arr, Pix * dev_v_res_pix
     const float result_float = 1.f - KOEFF2LIB_float * diff_roi_temp2 / sqrt(sum_roi_roi1 * sum_temp_temp1);
 #endif // END ifdef SQDIFF_NORMED
     int val = 1000000 * result_float;
+    if(result_id == 0){dev_v_res_pix->bright = 0;}
     atomicMax(&dev_v_res_pix->bright, val);
     __syncthreads();
     if(dev_v_res_pix->bright == val)

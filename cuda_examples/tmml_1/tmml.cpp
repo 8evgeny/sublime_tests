@@ -13,10 +13,10 @@ tmml::tmml(bool &ok, float& min_max_Val0)
     cuda_Malloc();
 #endif // END ifndef NO_GPU
 
-    for (int i = 0; i < numCudaTread; ++i)
-    {
-        Ri[i] = Rect(0, i * RESULT_WIDTH_n_th, WORK_WIDTH, Hi);
-    }//END for (int i = 0; i < numCudaTread; ++i)
+//    for (int i = 0; i < numCudaTread; ++i)
+//    {
+//        Ri[i] = Rect(0, i * RESULT_WIDTH_n_th, WORK_WIDTH, Hi);
+//    }//END for (int i = 0; i < numCudaTread; ++i)
     ok = true;
     cout << "Constructor tmml, ok= " << ok << endl;
 } // END tmml

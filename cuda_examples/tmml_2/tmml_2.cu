@@ -65,14 +65,15 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu, in
     const float ch  = sum_roi_temp1 - sum_roi1 * sum_temp1;
     const float zn1 = sum_temp_temp1 - sum_temp1 * sum_temp1;
     const float zn2 = sum_roi_roi1 - sum_roi1 * sum_roi1;
-    const float result_float = ch / sqrt(zn1 * zn2) - KOEFF2LIB_float * diff_roi_temp2 / sqrt(sum_roi_roi1 * sum_temp_temp1);
+    const float result_float = ch / sqrt(zn1 * zn2) -
+            KOEFF2LIB_float * diff_roi_temp2 / sqrt(sum_roi_roi1 * sum_temp_temp1);
 #endif // END ifdef COMBINED
 #ifdef SQDIFF_NORMED
     const float result_float = 1.f - KOEFF2LIB_float * diff_roi_temp2 / sqrt(sum_roi_roi1 * sum_temp_temp1);
 #endif // END ifdef SQDIFF_NORMED
 //    dev_result_array_bright[result_id] = result_float;
     volatile int val = 1000000 * result_float;
-
+    if(result_id == 0){*dev_max_val = 0;}
     atomicMax(dev_max_val, val);
     atomicMax(&shared_max_value, val);
     __syncthreads();

@@ -115,11 +115,11 @@ else()
         )
 endif() # END if(${CORR_TYPE} GREATER 0)
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} \
-    -Xptxas -O1 \
-    --dopt=on \
-    -use_fast_math \
-    -v \
-    --extra-device-vectorization \
-    ")
+#set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} \
+#    -Xptxas -O1 \
+#    --dopt=on \
+#    -use_fast_math \
+#    -v \
+#    --extra-device-vectorization \
+#    ")
 #    --gpu-architecture=compute_90a --gpu-code=sm_90a,compute_90,compute_90a \

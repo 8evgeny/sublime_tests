@@ -31,13 +31,13 @@ const float RESULT_AREA_1 = 1.f / RESULT_AREA;
 const float TEMPLATE_WIDTH_1 = 1.f / TEMPLATE_WIDTH;
 const float TEMPLATE_AREA_1 = 1.f / TEMPLATE_AREA;
 const float KOEFF2LIB_float = KOEFF2LIB;
-const int numCudaTread = 1;
-const int numCudaTread_1 = numCudaTread - 1;
-const int RESULT_WIDTH_n_th = RESULT_WIDTH / numCudaTread;
-const int Hi = RESULT_WIDTH_n_th + TEMPLATE_WIDTH - 1;
-const int blocks = RESULT_WIDTH / (2 * numCudaTread);
+//const int numCudaTread = 1;
+//const int numCudaTread_1 = numCudaTread - 1;
+//const int RESULT_WIDTH_n_th = RESULT_WIDTH / numCudaTread;
+//const int Hi = RESULT_WIDTH_n_th + TEMPLATE_WIDTH - 1;
+//const int blocks = RESULT_WIDTH / (2 * numCudaTread);
 const int threads = RESULT_WIDTH * 2;
-const int RESULT_AREA_n = RESULT_AREA / numCudaTread;
+//const int RESULT_AREA_n = RESULT_AREA / numCudaTread;
 
 #ifdef GPU_AMPERE
     const int threads_match_temp = 128; // 256
@@ -50,7 +50,7 @@ const int RESULT_AREA_n = RESULT_AREA / numCudaTread;
 #ifndef NO_GPU
     const float threads_match_temp_1 = 1.f / threads_match_temp;
     // Число нитей CUDA в итерации:
-    const int blocks_match_temp = RESULT_AREA * threads_match_temp_1 / numCudaTread;
+    const int blocks_match_temp = RESULT_AREA * threads_match_temp_1 /*/ numCudaTread*/;
 #endif // END ifndef NO_GPU
 
 struct Pix
@@ -80,11 +80,11 @@ class tmml
 #ifndef NO_GPU
     void cuda_Malloc();
     void init_matchers();
-    cv::Rect Ri[numCudaTread];
-    cv::cuda::Stream st[numCudaTread];
-    int * dev_max_val[numCudaTread];
+//    cv::Rect Ri[numCudaTread];
+//    cv::cuda::Stream st[numCudaTread];
+//    int * dev_max_val[numCudaTread];
     Pix * dev_mp;
-    Pix host_mp[numCudaTread];
+//    Pix host_mp[numCudaTread];
     unsigned char img_work_arr[WORK_AREA];
     unsigned char * dev_img_work_arr;
     unsigned char img_temp_arr[TEMPLATE_AREA];
