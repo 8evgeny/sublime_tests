@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 set(CMAKE_CXX_STANDARD 17)
-project(tmml_texture)
+project(tmml_new)
 
 # Использование GPU:
 set(USE_GPU 1) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
@@ -45,6 +45,7 @@ if(${USE_GPU} EQUAL 0)
 else()
     set(CMAKE_CUDA_COMPILER /usr/local/cuda/bin/nvcc)
     option(USE_CUDA "Use CUDA" ON)
+    add_definitions(-DUSE_CUDA)
     enable_language("CUDA")
     find_package(CUDA REQUIRED)
     include_directories(${CUDA_INCLUDE_DIRS})
@@ -100,25 +101,19 @@ if(${CORR_TYPE} EQUAL 8)
 endif()
 
 if(${CORR_TYPE} GREATER 0)
-    add_executable(${PROJECT_NAME}
+    add_executable(tmml
         main.cpp
-        tmml_texture.cpp
-        tmml_texture.hpp
-        tmml_texture.cu
+        tmml.cpp
+        tmml.hpp
+        tmml.cu
         )
-    set_target_properties(${PROJECT_NAME} PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
+    set_target_properties(tmml PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
 else()
-    add_executable(${PROJECT_NAME}
+    add_executable(tmml
         main.cpp
-        tmml_texture.cpp
-        tmml_texture.hpp
+        tmml.cpp
+        tmml.hpp
         )
 endif() # END if(${CORR_TYPE} GREATER 0)
-target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} \
-    -Xptxas -O1 \
-    --optimize 1 \
-    --dopt=on \
-    -use_fast_math \
-    -v \
-    ")
+
+target_link_libraries(tmml ${OpenCV_LIBS} -lrt -lpthread)

@@ -27,6 +27,7 @@ void tmml::cuda_Free()
 
 __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu, int * dev_max_val, Pix * dev_v_res_pix, float * dev_result_array_bright)
 {
+    __shared__ int shared_max_value;
     const int result_id = blockIdx.x * blockDim.x + threadIdx.x;
     int sum_roi_temp = 0;
     int sum_temp_temp = 0;
@@ -70,10 +71,12 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu, in
     const float result_float = 1.f - KOEFF2LIB_float * diff_roi_temp2 / sqrt(sum_roi_roi1 * sum_temp_temp1);
 #endif // END ifdef SQDIFF_NORMED
 //    dev_result_array_bright[result_id] = result_float;
-    int val = 1000000 * result_float;
-    if(result_id == 0){*dev_max_val = 0;}
+    volatile int val = 1000000 * result_float;
+
     atomicMax(dev_max_val, val);
+    atomicMax(&shared_max_value, val);
     __syncthreads();
+
     if(*dev_max_val == val)
     {
         dev_v_res_pix->x = result_x;

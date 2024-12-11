@@ -1,4 +1,4 @@
-#include "tmml_texture.hpp"
+#include "tmml.hpp"
 
 using namespace std;
 using namespace cv;
@@ -29,6 +29,7 @@ int main()
     tm->max_pix = tm->max_pix0;
     double minVal, maxVal;
     Point minLoc, maxLoc;   
+    cout << "iter_num=" << iter_num << "; numCudaTread=" << numCudaTread << endl;
 
 //  0===============================================================
     time_point0 = system_clock::now();
@@ -41,22 +42,22 @@ int main()
     time_point1 = system_clock::now();
 //  1===============================================================
     duration_1 = time_point1 - time_point0;
-    cout << "Duration OpenCV = \t" << round(1e6 * duration_1.count()/iter_num) << " mks" << endl;
+    cout << "\nDuration OpenCV (CPU) = " << round(1e6 * duration_1.count()/iter_num) << " mks" << endl;
 
 //  ========================================================
     time_point0 = system_clock::now();
     for(int iter = 0; iter < iter_num; ++iter)
     {
         tm->work_tmml(img_work, img_temp, tm->max_pix);
-//        if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "GPU iter=" << iter << " !!!" << endl; break;}
+        if(tm->max_pix.x != temp_left || tm->max_pix.y != temp_top){cout << "GPU iter=" << iter << " !!!" << endl; break;}
     }  // END for(int iter = 0; iter < iter_num; ++iter)
     time_point1 = system_clock::now();
 //  ========================================================
     duration_1 = time_point1 - time_point0;
-    cout << "Duration GPU = \t\t" << round(1e6 * duration_1.count()/iter_num) << " mks" << endl;
+    cout << "Duration CUDA   (GPU) = " << round(1e6 * duration_1.count()/iter_num) << " mks" << endl<<endl;
 
-    cout << "xy = \t\t[" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "]\nxy_ok = \t[";
-    cout << temp_left << ", " << temp_top << "]\nbright = " << tm->max_pix.bright << endl;
+    cout << "       xy = [" << (int)tm->max_pix.x << ", " << (int)tm->max_pix.y << "] \n right_xy = [";
+    cout << temp_left << ", " << temp_top << "] \n bright= " << tm->max_pix.bright << endl << endl;
 
 #ifdef find_diff_result    
 
