@@ -1,4 +1,4 @@
-CMakeFiles/tmml.dir/tmml.cu.o : /home/vitaly/QtProg/tmml1/tmml.cu \
+CMakeFiles/tmml.dir/tmml.cu.o : /home/user/WORK/Github/sublime_tests/cuda_examples/tmml1/tmml.cu \
     /usr/include/stdc-predef.h \
     /usr/local/cuda/include/cuda_runtime.h \
     /usr/local/cuda/include/crt/host_config.h \
@@ -33,66 +33,39 @@ CMakeFiles/tmml.dir/tmml.cu.o : /home/vitaly/QtProg/tmml1/tmml.cu \
     /usr/local/cuda/include/channel_descriptor.h \
     /usr/local/cuda/include/cuda_runtime_api.h \
     /usr/local/cuda/include/cuda_device_runtime_api.h \
-    /usr/local/cuda/include/driver_functions.h \
-    /usr/local/cuda/include/vector_functions.h \
-    /usr/local/cuda/include/vector_functions.hpp \
-    /usr/local/cuda/include/crt/common_functions.h \
-    /usr/include/string.h \
-    /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
-    /usr/include/strings.h \
-    /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
-    /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
-    /usr/include/time.h \
-    /usr/include/x86_64-linux-gnu/bits/time.h \
-    /usr/include/x86_64-linux-gnu/bits/types.h \
-    /usr/include/x86_64-linux-gnu/bits/typesizes.h \
-    /usr/include/x86_64-linux-gnu/bits/time64.h \
-    /usr/include/x86_64-linux-gnu/bits/timex.h \
-    /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
-    /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
-    /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
-    /usr/include/x86_64-linux-gnu/bits/endian.h \
-    /usr/include/x86_64-linux-gnu/bits/endianness.h \
-    /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
-    /usr/include/c++/11/new \
+    /usr/include/c++/11/stdlib.h \
+    /usr/include/c++/11/cstdlib \
     /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
     /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
     /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
     /usr/include/c++/11/pstl/pstl_config.h \
-    /usr/include/c++/11/bits/exception.h \
-    /usr/include/stdio.h \
-    /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h \
-    /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
-    /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
-    /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
-    /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
-    /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
-    /usr/include/x86_64-linux-gnu/bits/floatn.h \
-    /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
-    /usr/include/x86_64-linux-gnu/bits/stdio.h \
-    /usr/include/x86_64-linux-gnu/bits/stdio2.h \
-    /usr/include/c++/11/stdlib.h \
-    /usr/include/c++/11/cstdlib \
     /usr/include/stdlib.h \
     /usr/include/x86_64-linux-gnu/bits/waitflags.h \
     /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+    /usr/include/x86_64-linux-gnu/bits/floatn.h \
+    /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+    /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+    /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
     /usr/include/x86_64-linux-gnu/sys/types.h \
+    /usr/include/x86_64-linux-gnu/bits/types.h \
+    /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+    /usr/include/x86_64-linux-gnu/bits/time64.h \
+    /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+    /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+    /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+    /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
     /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
     /usr/include/endian.h \
+    /usr/include/x86_64-linux-gnu/bits/endian.h \
+    /usr/include/x86_64-linux-gnu/bits/endianness.h \
     /usr/include/x86_64-linux-gnu/bits/byteswap.h \
     /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
     /usr/include/x86_64-linux-gnu/sys/select.h \
     /usr/include/x86_64-linux-gnu/bits/select.h \
     /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
     /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+    /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+    /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
     /usr/include/x86_64-linux-gnu/bits/select2.h \
     /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
     /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -105,6 +78,33 @@ CMakeFiles/tmml.dir/tmml.cu.o : /home/vitaly/QtProg/tmml1/tmml.cu \
     /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
     /usr/include/x86_64-linux-gnu/bits/stdlib.h \
     /usr/include/c++/11/bits/std_abs.h \
+    /usr/local/cuda/include/driver_functions.h \
+    /usr/local/cuda/include/vector_functions.h \
+    /usr/local/cuda/include/vector_functions.hpp \
+    /usr/local/cuda/include/crt/common_functions.h \
+    /usr/include/string.h \
+    /usr/include/strings.h \
+    /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+    /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+    /usr/include/time.h \
+    /usr/include/x86_64-linux-gnu/bits/time.h \
+    /usr/include/x86_64-linux-gnu/bits/timex.h \
+    /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+    /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+    /usr/include/c++/11/new \
+    /usr/include/c++/11/bits/exception.h \
+    /usr/include/stdio.h \
+    /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h \
+    /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+    /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+    /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+    /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+    /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+    /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+    /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
+    /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+    /usr/include/x86_64-linux-gnu/bits/stdio.h \
+    /usr/include/x86_64-linux-gnu/bits/stdio2.h \
     /usr/include/assert.h \
     /usr/local/cuda/include/crt/math_functions.h \
     /usr/include/c++/11/math.h \
@@ -151,8 +151,6 @@ CMakeFiles/tmml.dir/tmml.cu.o : /home/vitaly/QtProg/tmml1/tmml.cu \
     /usr/include/c++/11/tr1/poly_laguerre.tcc \
     /usr/include/c++/11/tr1/riemann_zeta.tcc \
     /usr/local/cuda/include/crt/math_functions.hpp \
-    /usr/local/cuda/include/cuda_surface_types.h \
-    /usr/local/cuda/include/cuda_texture_types.h \
     /usr/local/cuda/include/crt/device_functions.h \
     /usr/local/cuda/include/crt/device_functions.hpp \
     /usr/local/cuda/include/device_atomic_functions.h \
@@ -179,32 +177,32 @@ CMakeFiles/tmml.dir/tmml.cu.o : /home/vitaly/QtProg/tmml1/tmml.cu \
     /usr/local/cuda/include/crt/sm_70_rt.hpp \
     /usr/local/cuda/include/crt/sm_80_rt.h \
     /usr/local/cuda/include/crt/sm_80_rt.hpp \
-    /usr/local/cuda/include/surface_functions.h \
-    /usr/local/cuda/include/texture_fetch_functions.h \
+    /usr/local/cuda/include/crt/sm_90_rt.h \
+    /usr/local/cuda/include/crt/sm_90_rt.hpp \
     /usr/local/cuda/include/texture_indirect_functions.h \
     /usr/local/cuda/include/surface_indirect_functions.h \
     /usr/local/cuda/include/crt/cudacc_ext.h \
     /usr/local/cuda/include/device_launch_parameters.h \
-    /home/vitaly/QtProg/tmml1/tmml.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cuda.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cvdef.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/version.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/hal/interface.h \
+    /usr/include/c++/11/utility \
+    /usr/include/c++/11/bits/stl_relops.h \
+    /usr/include/c++/11/initializer_list \
+    /home/user/WORK/Github/sublime_tests/cuda_examples/tmml1/tmml.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cuda.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cvdef.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/version.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/hal/interface.h \
     /usr/include/c++/11/cstddef \
     /usr/include/c++/11/cstdint \
     /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
     /usr/include/stdint.h \
     /usr/include/x86_64-linux-gnu/bits/wchar.h \
     /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
     /usr/include/c++/11/array \
-    /usr/include/c++/11/utility \
-    /usr/include/c++/11/bits/stl_relops.h \
-    /usr/include/c++/11/initializer_list \
     /usr/include/c++/11/bits/range_access.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/base.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/opencv_modules.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/base.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/opencv_modules.hpp \
     /usr/include/c++/11/climits \
     /usr/include/c++/11/algorithm \
     /usr/include/c++/11/bits/stl_algo.h \
@@ -245,7 +243,7 @@ CMakeFiles/tmml.dir/tmml.cu.o : /home/vitaly/QtProg/tmml1/tmml.cu \
     /usr/include/c++/11/bits/stl_bvector.h \
     /usr/include/c++/11/bits/vector.tcc \
     /usr/include/c++/11/pstl/execution_defs.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cvstd.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cvstd.hpp \
     /usr/include/c++/11/cstring \
     /usr/include/c++/11/cctype \
     /usr/include/ctype.h \
@@ -293,7 +291,7 @@ CMakeFiles/tmml.dir/tmml.cu.o : /home/vitaly/QtProg/tmml1/tmml.cu \
     /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
     /usr/include/c++/11/bits/charconv.h \
     /usr/include/c++/11/bits/basic_string.tcc \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
     /usr/include/c++/11/memory \
     /usr/include/c++/11/bits/stl_raw_storage_iter.h \
     /usr/include/c++/11/bits/align.h \
@@ -312,22 +310,22 @@ CMakeFiles/tmml.dir/tmml.cu.o : /home/vitaly/QtProg/tmml1/tmml.cu \
     /usr/include/c++/11/bits/atomic_lockfree_defines.h \
     /usr/include/c++/11/backward/auto_ptr.h \
     /usr/include/c++/11/pstl/glue_memory_defs.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/neon_utils.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/vsx_utils.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/check.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/traits.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/matx.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/saturate.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/fast_math.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/types.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/neon_utils.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/vsx_utils.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/check.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/traits.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/matx.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/saturate.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/fast_math.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/types.hpp \
     /usr/include/c++/11/cfloat \
     /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/mat.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/bufferpool.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/mat.inl.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/persistence.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/operations.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cvstd.inl.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/mat.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/bufferpool.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/mat.inl.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/persistence.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/operations.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cvstd.inl.hpp \
     /usr/include/c++/11/complex \
     /usr/include/c++/11/sstream \
     /usr/include/c++/11/istream \
@@ -354,7 +352,7 @@ CMakeFiles/tmml.dir/tmml.cu.o : /home/vitaly/QtProg/tmml1/tmml.cu \
     /usr/include/c++/11/bits/ostream.tcc \
     /usr/include/c++/11/bits/istream.tcc \
     /usr/include/c++/11/bits/sstream.tcc \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/utility.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/utility.hpp \
     /usr/include/c++/11/mutex \
     /usr/include/c++/11/chrono \
     /usr/include/c++/11/ratio \
@@ -362,59 +360,59 @@ CMakeFiles/tmml.dir/tmml.cu.o : /home/vitaly/QtProg/tmml1/tmml.cu \
     /usr/include/c++/11/bits/parse_numbers.h \
     /usr/include/c++/11/bits/std_mutex.h \
     /usr/include/c++/11/bits/unique_lock.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/optim.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/ovx.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cuda_types.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cuda.inl.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/imgproc.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/imgproc/segmentation.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/opencv.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/calib3d.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/features2d.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/miniflann.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/defines.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/config.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/affine.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/dnn.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/dnn/dnn.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/async.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/dnn/version.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/dnn/dict.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/optim.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/ovx.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cuda_types.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/cuda.inl.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/imgproc.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/imgproc/segmentation.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/opencv.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/calib3d.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/features2d.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/miniflann.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/defines.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/config.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/affine.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/dnn.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/dnn/dnn.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/core/async.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/dnn/version.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/dnn/dict.hpp \
     /usr/include/c++/11/map \
     /usr/include/c++/11/bits/stl_tree.h \
     /usr/include/c++/11/bits/stl_map.h \
     /usr/include/c++/11/bits/stl_multimap.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/dnn/layer.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/dnn/dnn.inl.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/flann_base.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/general.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/matrix.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/params.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/any.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/dnn/layer.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/dnn/dnn.inl.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/flann_base.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/general.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/matrix.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/params.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/any.h \
     /usr/include/c++/11/iostream \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/saving.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/nn_index.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/result_set.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/saving.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/nn_index.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/result_set.h \
     /usr/include/c++/11/set \
     /usr/include/c++/11/bits/stl_set.h \
     /usr/include/c++/11/bits/stl_multiset.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/all_indices.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/kdtree_index.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/dynamic_bitset.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/dist.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/heap.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/allocator.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/random.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/kdtree_single_index.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/kmeans_index.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/logger.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/composite_index.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/linear_index.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/lsh_index.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/lsh_table.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/all_indices.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/kdtree_index.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/dynamic_bitset.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/dist.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/heap.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/allocator.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/random.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/kdtree_single_index.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/kmeans_index.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/logger.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/composite_index.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/linear_index.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/lsh_index.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/lsh_table.h \
     /usr/include/c++/11/iomanip \
     /usr/include/c++/11/locale \
     /usr/include/c++/11/bits/locale_facets_nonio.h \
@@ -425,47 +423,47 @@ CMakeFiles/tmml.dir/tmml.cu.o : /home/vitaly/QtProg/tmml1/tmml.cu \
     /usr/include/c++/11/bits/locale_facets_nonio.tcc \
     /usr/include/c++/11/bits/locale_conv.h \
     /usr/include/c++/11/bits/quoted_string.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/autotuned_index.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/ground_truth.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/index_testing.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/timer.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/sampling.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/highgui.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/imgcodecs.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/videoio.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/ml.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/ml/ml.inl.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/objdetect.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/objdetect/face.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/objdetect/aruco_detector.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/objdetect/aruco_board.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/objdetect/charuco_detector.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/photo.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/warpers.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/warpers.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/matchers.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/util.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/autotuned_index.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/ground_truth.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/index_testing.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/timer.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/flann/sampling.h \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/highgui.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/imgcodecs.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/videoio.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/ml.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/ml/ml.inl.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/objdetect.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/objdetect/face.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/objdetect/aruco_detector.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/objdetect/aruco_board.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/objdetect/charuco_detector.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/photo.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/warpers.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/warpers.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/matchers.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/util.hpp \
     /usr/include/c++/11/list \
     /usr/include/c++/11/bits/stl_list.h \
     /usr/include/c++/11/bits/list.tcc \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
     /usr/include/c++/11/queue \
     /usr/include/c++/11/deque \
     /usr/include/c++/11/bits/stl_deque.h \
     /usr/include/c++/11/bits/deque.tcc \
     /usr/include/c++/11/bits/stl_queue.h \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/camera.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/blenders.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/video.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/video/tracking.hpp \
-    /home/vitaly/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/video/background_segm.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/camera.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/stitching/detail/blenders.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/video.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/video/tracking.hpp \
+    /home/user/opencv/install_4_7_0_contrib_cuda/include/opencv4/opencv2/video/background_segm.hpp \
     /usr/include/c++/11/fstream \
     /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
     /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \

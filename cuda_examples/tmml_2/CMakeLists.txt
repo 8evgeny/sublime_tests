@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 set(CMAKE_CXX_STANDARD 17)
-project(tmml_texture)
+project(tmml_2)
 
 # Использование GPU:
 set(USE_GPU 1) # (0 - CPU, 1 - CUDA, 2 - OPENCL)
@@ -102,9 +102,9 @@ endif()
 if(${CORR_TYPE} GREATER 0)
     add_executable(${PROJECT_NAME}
         main.cpp
-        tmml_texture.cpp
-        tmml_texture.hpp
-        tmml_texture.cu
+        tmml_2.cpp
+        tmml_2.hpp
+        tmml_2.cu
         )
     set_target_properties(${PROJECT_NAME} PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
 else()
@@ -117,8 +117,8 @@ endif() # END if(${CORR_TYPE} GREATER 0)
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} \
     -Xptxas -O1 \
-    --optimize 1 \
     --dopt=on \
     -use_fast_math \
     -v \
     ")
+#    --gpu-architecture=compute_90a --gpu-code=sm_90a,compute_90,compute_90a \

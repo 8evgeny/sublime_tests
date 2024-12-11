@@ -8,10 +8,9 @@ cudaStream_t streamsKernel[numCudaTread];
 
 void tmml::cuda_Malloc()
 {
-    Mat img_work(Size(WORK_WIDTH, WORK_WIDTH), CV_8UC1, Scalar(0));
-    img_work_gpu.upload(img_work);
     Mat img_temp(Size(TEMPLATE_WIDTH, TEMPLATE_WIDTH), CV_8UC1, Scalar(0));
     img_temp_gpu.upload(img_temp);
+    cudaMalloc((void**)& dev_img_work_arr, sizeof(unsigned char) * WORK_AREA);
     for(int i = 0; i < numCudaTread; ++i)
     {
         cudaMalloc((void**)& dev_mp[i], sizeof(Pix));
@@ -20,8 +19,8 @@ void tmml::cuda_Malloc()
 
 void tmml::cuda_Free()
 {
-    cudaFree(&img_work_gpu);
     cudaFree(&img_temp_gpu);
+    cudaFree(&dev_img_work_arr);
     for(int i = 0; i < numCudaTread; ++i)
     {
         cudaFree(&dev_img_work[i]);
@@ -29,7 +28,7 @@ void tmml::cuda_Free()
     }// END for(int i = 0; i < numCudaTread; ++i)
 } // -- END cudaFree()
 
-__global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
+__global__ void match_temp(unsigned char * dev_img_work_arr,
                            Pix * dev_v_res_pix,
                            int i
                            )
@@ -44,14 +43,15 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
 #endif // END ifdef COMBINED
     const int result_y = result_id / RESULT_WIDTH;
     const int result_x = result_id % RESULT_WIDTH;
+    int work_id0 = result_y * WORK_WIDTH + result_x;
     for(int temp_y = 0; temp_y < TEMPLATE_WIDTH; ++temp_y)
     {
-        int work_y = temp_y + result_y;
         int temp_id0 = temp_y * TEMPLATE_WIDTH;
+        int work_id = work_id0 + temp_y * WORK_WIDTH;
         for(int temp_x = 0; temp_x < TEMPLATE_WIDTH; ++temp_x)
         {
             int temp = const_img_temp_array[temp_id0 + temp_x];
-            int roi = img_work_gpu(work_y, temp_x + result_x);
+            int roi = dev_img_work_arr[work_id + temp_x];
             sum_roi_temp += roi * temp;
             sum_temp_temp += temp * temp;
             sum_roi_roi += roi * roi;
@@ -87,24 +87,24 @@ __global__ void match_temp(const cuda::PtrStepSz<unsigned char> img_work_gpu,
     }  // END if(*dev_max_val == val)
 }  // END match_temp
 
-void tmml::thr_gpu(int i, const cuda::PtrStepSz<unsigned char> img_work_gpu, Pix * host_mp)
+void tmml::thr_gpu(int i, unsigned char * dev_img_work_arr, Pix * host_mp)
 {
-    cudaStreamCreate(&streamsKernel[i]);
-    match_temp<<<blocks_match_temp, threads_match_temp, 0, streamsKernel[i]>>>(img_work_gpu, dev_mp[i], i);
-    //match_temp<<<blocks_match_temp, threads_match_temp>>>(img_work_gpu, dev_mp[i], i);
+    //cudaStreamCreate(&streamsKernel[i]);
+    //match_temp<<<blocks_match_temp, threads_match_temp, 0, streamsKernel[i]>>>(dev_img_work_arr, dev_mp[i], i);
+    match_temp<<<blocks_match_temp, threads_match_temp>>>(dev_img_work_arr, dev_mp[i], i);
     cudaMemcpy(&host_mp[i], dev_mp[i], sizeof(Pix), cudaMemcpyDeviceToHost);
 } // END thr_gpu
 
 void tmml::work_tmml(const Mat& img_work, const Mat& img_temp, Pix& max_pix)
 {
-    img_work_gpu.upload(img_work);
+    cudaMemcpy(dev_img_work_arr, img_work.data, sizeof(unsigned char) * WORK_AREA, cudaMemcpyHostToDevice);
     cudaMemcpyToSymbol(const_img_temp_array, img_temp.data, sizeof(unsigned char) * TEMPLATE_AREA);
     for(int i = 0; i < numCudaTread; ++i)
     {
-        //arr_th[i] = thread(&tmml::thr_gpu, this, i, img_work_gpu, ref(host_mp));
+        //arr_th[i] = thread(&tmml::thr_gpu, this, i, dev_img_work_arr, ref(host_mp));
         //if(i == numCudaTread_1){arr_th[i].join();}
         //else{arr_th[i].detach();}
-        thr_gpu(i, img_work_gpu, host_mp);
+        thr_gpu(i, dev_img_work_arr, host_mp);
     } // END for(int i = 0; i < numCudaTread; ++i)
 
 //    for(int i = 0; i < numCudaTread; ++i)
