@@ -1,4 +1,4 @@
-CMakeFiles/tmml.dir/main.cpp.o: \
+CMakeFiles/tmml_1.dir/main.cpp.o: \
  /home/user/WORK/Github/sublime_tests/cuda_examples/tmml_1/main.cpp \
  /usr/include/stdc-predef.h \
  /home/user/WORK/Github/sublime_tests/cuda_examples/tmml_1/tmml.hpp \

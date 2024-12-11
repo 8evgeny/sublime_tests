@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/user/WORK/Github/sublime_tests/cuda_examples/tmml_1/Rel
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/tmml.dir/all
+all: CMakeFiles/tmml_1.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/tmml.dir/clean
+clean: CMakeFiles/tmml_1.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/tmml.dir
+# Target rules for target CMakeFiles/tmml_1.dir
 
 # All Build rule for target.
-CMakeFiles/tmml.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tmml.dir/build.make CMakeFiles/tmml.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tmml.dir/build.make CMakeFiles/tmml.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/WORK/Github/sublime_tests/cuda_examples/tmml_1/Release/CMakeFiles --progress-num=1,2,3,4,5 "Built target tmml"
-.PHONY : CMakeFiles/tmml.dir/all
+CMakeFiles/tmml_1.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tmml_1.dir/build.make CMakeFiles/tmml_1.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tmml_1.dir/build.make CMakeFiles/tmml_1.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/user/WORK/Github/sublime_tests/cuda_examples/tmml_1/Release/CMakeFiles --progress-num=1,2,3,4,5 "Built target tmml_1"
+.PHONY : CMakeFiles/tmml_1.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/tmml.dir/rule: cmake_check_build_system
+CMakeFiles/tmml_1.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/WORK/Github/sublime_tests/cuda_examples/tmml_1/Release/CMakeFiles 5
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/tmml.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/tmml_1.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/WORK/Github/sublime_tests/cuda_examples/tmml_1/Release/CMakeFiles 0
-.PHONY : CMakeFiles/tmml.dir/rule
+.PHONY : CMakeFiles/tmml_1.dir/rule
 
 # Convenience name for target.
-tmml: CMakeFiles/tmml.dir/rule
-.PHONY : tmml
+tmml_1: CMakeFiles/tmml_1.dir/rule
+.PHONY : tmml_1
 
 # clean rule for target.
-CMakeFiles/tmml.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tmml.dir/build.make CMakeFiles/tmml.dir/clean
-.PHONY : CMakeFiles/tmml.dir/clean
+CMakeFiles/tmml_1.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tmml_1.dir/build.make CMakeFiles/tmml_1.dir/clean
+.PHONY : CMakeFiles/tmml_1.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

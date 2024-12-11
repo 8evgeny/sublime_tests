@@ -1,4 +1,4 @@
-CMakeFiles/tmml.dir/tmml.cu.o : /home/user/WORK/Github/sublime_tests/cuda_examples/tmml_1/tmml.cu \
+CMakeFiles/tmml_1.dir/tmml.cu.o : /home/user/WORK/Github/sublime_tests/cuda_examples/tmml_1/tmml.cu \
     /usr/include/stdc-predef.h \
     /usr/local/cuda/include/cuda_runtime.h \
     /usr/local/cuda/include/crt/host_config.h \

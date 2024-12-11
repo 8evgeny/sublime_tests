@@ -165,7 +165,7 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 CMAKE_PROJECT_INCLUDE_BEFORE:PATH=/usr/share/qtcreator/package-manager/auto-setup.cmake
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=tmml_new
+CMAKE_PROJECT_NAME:STATIC=tmml_1
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -387,13 +387,13 @@ QT_QMAKE_EXECUTABLE:STRING=/usr/lib/qt5/bin/qmake
 USE_CUDA:BOOL=ON
 
 //Value Computed by CMake
-tmml_new_BINARY_DIR:STATIC=/home/user/WORK/Github/sublime_tests/cuda_examples/tmml_1/Release
+tmml_1_BINARY_DIR:STATIC=/home/user/WORK/Github/sublime_tests/cuda_examples/tmml_1/Release
 
 //Value Computed by CMake
-tmml_new_IS_TOP_LEVEL:STATIC=ON
+tmml_1_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-tmml_new_SOURCE_DIR:STATIC=/home/user/WORK/Github/sublime_tests/cuda_examples/tmml_1
+tmml_1_SOURCE_DIR:STATIC=/home/user/WORK/Github/sublime_tests/cuda_examples/tmml_1
 
 
 ########################
