@@ -1,0 +1,3 @@
+/home/vitaly/QtProg/tmml1/Release/CMakeFiles/tmml.dir
+/home/vitaly/QtProg/tmml1/Release/CMakeFiles/edit_cache.dir
+/home/vitaly/QtProg/tmml1/Release/CMakeFiles/rebuild_cache.dir

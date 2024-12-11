@@ -1,3 +1,0 @@
-/home/user/WORK/Github/sublime_tests/cuda_examples/tmml1/Release/CMakeFiles/tmml.dir
-/home/user/WORK/Github/sublime_tests/cuda_examples/tmml1/Release/CMakeFiles/edit_cache.dir
-/home/user/WORK/Github/sublime_tests/cuda_examples/tmml1/Release/CMakeFiles/rebuild_cache.dir
