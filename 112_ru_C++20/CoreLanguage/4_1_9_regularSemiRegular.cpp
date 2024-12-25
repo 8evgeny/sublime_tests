@@ -61,7 +61,7 @@ int main() {
     behavesLikeAnInt2(equComp);
 
     NotEqualityComparable notEquComp;             
-    behavesLikeAnInt(notEquComp);                  
-    behavesLikeAnInt2(notEquComp);                 
+//    behavesLikeAnInt(notEquComp);
+//    behavesLikeAnInt2(notEquComp);
     
 }

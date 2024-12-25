@@ -1,5 +1,7 @@
 // math.cpp
 
+//module;
+
 export module math;
 
 export int add(int fir, int sec){
