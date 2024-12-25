@@ -1,14 +1,13 @@
 set(CMAKE_CXX_STANDARD 17)
 
 project (rs232_parser)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
 include_directories(headers  sources )
 FILE(GLOB SRC_FILES sources/* headers/* )
 
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Network REQUIRED)
-
 
 add_executable(${PROJECT_NAME}
     ${SRC_FILES}
