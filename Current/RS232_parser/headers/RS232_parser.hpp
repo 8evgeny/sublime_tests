@@ -5,7 +5,7 @@
 #include <QSerialPortInfo>
 #include <iostream>
 #include <memory>
-
+#include <thread>
 
 class RS232_parser
 {

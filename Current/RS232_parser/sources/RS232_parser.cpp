@@ -29,22 +29,20 @@ uint8_t RS232_parser::getCmdLen() const
 void RS232_parser::parsing()
 {
     uint8_t buf[getCmdLen()];
-    uint8_t forParsing[getCmdLen()];
     while(1)
     {
         QByteArray requestData;
-        while (serial.waitForReadyRead(1))
-            requestData += serial.read(getCmdLen());
+        while (serial.waitForReadyRead(1)) {this_thread::sleep_for(chrono::microseconds(1));}
 
+        requestData += serial.read(getCmdLen());
         if (requestData != "")
         {
             for (int i = 0;i < getCmdLen(); ++i)
             {
-                forParsing[i] = requestData[i];
                 buf[i] = requestData[i];
-//                cout<<hex<<(int)buf[i]<<" ";
-            } //
-//            cout<<dec<<endl;
+// cout<<hex<<(int)buf[i]<<" ";
+            } //END for (int i = 0;i < getCmdLen(); ++i)
+// cout<<dec<<endl;
             printf( "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
                     "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
                     "\n",
