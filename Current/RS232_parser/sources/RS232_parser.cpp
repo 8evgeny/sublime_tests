@@ -28,6 +28,34 @@ uint8_t RS232_parser::getCmdLen() const
 
 void RS232_parser::parsing()
 {
+    const auto serialPortInfos = QSerialPortInfo::availablePorts();
+    QString product{"1a86"};
+    for (const QSerialPortInfo &portInfo : serialPortInfos)
+    {
+//        qDebug() << "\n"
+//                 << "Port:" << portInfo.portName() << "\n"
+//                 << "Location:" << portInfo.systemLocation() << "\n"
+//                 << "Description:" << portInfo.description() << "\n"
+//                 << "Manufacturer:" << portInfo.manufacturer() << "\n"
+//                 << "Serial number:" << portInfo.serialNumber() << "\n"
+//                 << "Vendor Identifier:"
+//                 << (portInfo.hasVendorIdentifier()
+//                     ? QByteArray::number(portInfo.vendorIdentifier(), 16)
+//                     : QByteArray()) << "\n"
+//                 << "Product Identifier:"
+//                 << (portInfo.hasProductIdentifier()
+//                     ? QByteArray::number(portInfo.productIdentifier(), 16)
+//                     : QByteArray());
+        if (portInfo.manufacturer() == product)
+        {
+            qDebug() <<"Port:" << portInfo.portName();
+        }
+
+
+
+    }//END for (const QSerialPortInfo &portInfo : serialPortInfos)
+//1a86
+
     uint8_t buf[getCmdLen()];
     while(1)
     {
