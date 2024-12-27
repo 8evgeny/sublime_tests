@@ -49,7 +49,7 @@ void RS232_parser::parsing()
 {
 //    uint8_t buf_print[getCmdLen()];
     QByteArray requestData;
-
+    int i = 0;
     while(1)
     {
         requestData.clear();
@@ -65,9 +65,12 @@ void RS232_parser::parsing()
                 _cmdBuf[i] = requestData[i];
             } //END for (int i = 0; i < _cmdLen; ++i)
 
-            printDataRS232();
+//            printDataRS232();
 
-            find_cmd();
+            if(_cmdBuf[31] == 0x00 && _cmdBuf[1] == 0x90) //Признак команды
+            {
+                setCMD(find_cmd());
+            }//END if(_cmdBuf[31] == 0x00 && _cmdBuf[1] == 0x90)
 
             switch (CMD())
             {
@@ -85,17 +88,21 @@ void RS232_parser::parsing()
                 case CMD::TRACKING_STOP: {cout<<"CMD::TRACKING_STOP"<<endl; break;}
 
                 default:
-            {
-//                cout<<". . . "<<endl;
-            }
+                {
+                    ++i;
+                    if (i == 30)
+                    {
+                        cout << ". . . " << endl;
+                        i = 0;
+                    }
+                }
             }// END switch (CMD())
 
             setCMD(CMD::notCMD);
+
         }//END if (requestData != "")
     }//END while(1)
 }// END parsing()
-
-
 
 void RS232_parser::printDataRS232()
 {

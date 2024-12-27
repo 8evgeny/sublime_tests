@@ -31,13 +31,19 @@ public:
     const QString &getPortName() const;
     const int getSpeed() const;
     void parsing();
-    void find_cmd();
+    int find_cmd();
     bool find_cmd_STOP();
     bool find_cmd_LEFT();
     bool find_cmd_RIGHT();
     bool find_cmd_UP();
     bool find_cmd_DOWN();
-
+    bool find_cmd_INFRA();
+    bool find_cmd_TV();
+    bool find_cmd_ZOOM_MINUS();
+    bool find_cmd_ZOOM_PLUS();
+    bool find_cmd_TO_CENTRE();
+    bool find_cmd_TRACKING_START();
+    bool find_cmd_TRACKING_STOP();
 
     void printDataRS232();
     uint8_t getCmdLen() const;
