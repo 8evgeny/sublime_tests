@@ -3,12 +3,21 @@ using namespace std;
 
 RS232_parser::RS232_parser()
 {
-    cout<<"RS232_parser ctor"<<endl;
+    cout << "RS232_parser Ctor" << endl;
+    const auto serialPortInfos = QSerialPortInfo::availablePorts();
+    for (const QSerialPortInfo &portInfo : serialPortInfos)
+    {
+        if (portInfo.manufacturer() == _product)
+        {
+            _portName = portInfo.portName();
+            cout <<"Port:" << portInfo.portName().toStdString() << endl;
+        }
+    }//END for (const QSerialPortInfo &portInfo : serialPortInfos)
 }// END RS232_parser()
 
 RS232_parser::~RS232_parser()
 {
-    cout<<"RS232_parser dtor"<<endl;
+    cout << "RS232_parser Dtor" << endl;
 }// END ~RS232_parser()
 
 const QString &RS232_parser::getPortName() const
@@ -16,69 +25,86 @@ const QString &RS232_parser::getPortName() const
     return _portName;
 }// END getPortName()
 
-int RS232_parser::getSpeed() const
+const int RS232_parser::getSpeed() const
 {
     return _speed;
 }// END getSpeed()
 
 uint8_t RS232_parser::getCmdLen() const
 {
-    return cmdLen;
+    return _cmdLen;
+}
+
+uint8_t RS232_parser::CMD() const
+{
+    return _CMD;
+}
+
+void RS232_parser::setCMD(uint8_t newCMD)
+{
+    _CMD = newCMD;
 }//END getCmdLen()
 
 void RS232_parser::parsing()
 {
-    const auto serialPortInfos = QSerialPortInfo::availablePorts();
-    QString product{"1a86"};
-    for (const QSerialPortInfo &portInfo : serialPortInfos)
-    {
-//        qDebug() << "\n"
-//                 << "Port:" << portInfo.portName() << "\n"
-//                 << "Location:" << portInfo.systemLocation() << "\n"
-//                 << "Description:" << portInfo.description() << "\n"
-//                 << "Manufacturer:" << portInfo.manufacturer() << "\n"
-//                 << "Serial number:" << portInfo.serialNumber() << "\n"
-//                 << "Vendor Identifier:"
-//                 << (portInfo.hasVendorIdentifier()
-//                     ? QByteArray::number(portInfo.vendorIdentifier(), 16)
-//                     : QByteArray()) << "\n"
-//                 << "Product Identifier:"
-//                 << (portInfo.hasProductIdentifier()
-//                     ? QByteArray::number(portInfo.productIdentifier(), 16)
-//                     : QByteArray());
-        if (portInfo.manufacturer() == product)
-        {
-            qDebug() <<"Port:" << portInfo.portName();
-        }
+//    uint8_t buf_print[getCmdLen()];
+    QByteArray requestData;
 
-
-
-    }//END for (const QSerialPortInfo &portInfo : serialPortInfos)
-//1a86
-
-    uint8_t buf[getCmdLen()];
     while(1)
     {
-        QByteArray requestData;
-        while (serial.waitForReadyRead(1)) {this_thread::sleep_for(chrono::microseconds(1));}
-
-        requestData += serial.read(getCmdLen());
+        requestData.clear();
+        while (serial.waitForReadyRead(1))
+        {
+            this_thread::sleep_for(chrono::microseconds(1));
+        }
+        requestData += serial.read(_cmdLen);
         if (requestData != "")
         {
-            for (int i = 0;i < getCmdLen(); ++i)
+            for (int i = 0; i < _cmdLen; ++i)
             {
-                buf[i] = requestData[i];
-// cout<<hex<<(int)buf[i]<<" ";
-            } //END for (int i = 0;i < getCmdLen(); ++i)
-// cout<<dec<<endl;
-            printf( "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
-                    "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
-                    "\n",
-                    buf[0], buf[1], buf[2], buf[3], buf[4], buf[5], buf[6], buf[7],
-                    buf[8], buf[9], buf[10], buf[11], buf[12], buf[13], buf[14], buf[15],
-                    buf[16], buf[17], buf[18], buf[19], buf[20], buf[21], buf[22], buf[23],
-                    buf[24], buf[25], buf[26], buf[27], buf[28], buf[29], buf[30], buf[31]
-                    );
+                _cmdBuf[i] = requestData[i];
+            } //END for (int i = 0; i < _cmdLen; ++i)
+
+            printDataRS232();
+
+            find_cmd();
+
+            switch (CMD())
+            {
+                case CMD::STOP: {cout<<"CMD::STOP"<<endl; break;}
+                case CMD::LEFT: {cout<<"CMD::LEFT"<<endl; break;}
+                case CMD::RIGHT: {cout<<"CMD::RIGHT"<<endl; break;}
+                case CMD::UP: {cout<<"CMD::UP"<<endl; break;}
+                case CMD::DOWN: {cout<<"CMD::DOWN"<<endl; break;}
+                case CMD::INFRA: {cout<<"CMD::INFRA"<<endl; break;}
+                case CMD::TV: {cout<<"CMD::TV"<<endl; break;}
+                case CMD::ZOOM_MINUS: {cout<<"CMD::ZOOM_MINUS"<<endl; break;}
+                case CMD::ZOOM_PLUS: {cout<<"CMD::ZOOM_PLUS"<<endl; break;}
+                case CMD::TO_CENTRE: {cout<<"CMD::TO_CENTRE"<<endl; break;}
+                case CMD::TRACKING_START: {cout<<"CMD::TRACKING_START"<<endl; break;}
+                case CMD::TRACKING_STOP: {cout<<"CMD::TRACKING_STOP"<<endl; break;}
+
+                default:
+            {
+//                cout<<". . . "<<endl;
+            }
+            }// END switch (CMD())
+
+            setCMD(CMD::notCMD);
         }//END if (requestData != "")
-    }
+    }//END while(1)
 }// END parsing()
+
+
+
+void RS232_parser::printDataRS232()
+{
+    printf( "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
+            "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
+            "\n",
+            _cmdBuf[0], _cmdBuf[1], _cmdBuf[2], _cmdBuf[3], _cmdBuf[4], _cmdBuf[5], _cmdBuf[6], _cmdBuf[7],
+            _cmdBuf[8], _cmdBuf[9], _cmdBuf[10], _cmdBuf[11], _cmdBuf[12], _cmdBuf[13], _cmdBuf[14], _cmdBuf[15],
+            _cmdBuf[16], _cmdBuf[17], _cmdBuf[18], _cmdBuf[19], _cmdBuf[20], _cmdBuf[21], _cmdBuf[22], _cmdBuf[23],
+            _cmdBuf[24], _cmdBuf[25], _cmdBuf[26], _cmdBuf[27], _cmdBuf[28], _cmdBuf[29], _cmdBuf[30], _cmdBuf[31]
+            );
+}//END printDataRS232()

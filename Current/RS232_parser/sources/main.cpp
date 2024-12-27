@@ -9,11 +9,16 @@ int main(int argc, char *argv[])
     p->serial.setPortName(p->getPortName());
     p->serial.setBaudRate(p->getSpeed());
 
-    p->serial.open(QIODevice::ReadOnly);
-    qDebug() << p->serial.portName();
-
-    p->parsing();
-
+    if (p->getPortName() != "")
+    {
+        p->serial.open(QIODevice::ReadOnly);
+        cout << "Port name: " << p->serial.portName().toStdString() << endl;
+        p->parsing();
+    }
+    else
+    {
+        cout << "\nNo port found !!!\n\n";
+    }
 return 0;
 }// END while(1)
 
