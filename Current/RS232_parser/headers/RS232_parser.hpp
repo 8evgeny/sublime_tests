@@ -53,8 +53,8 @@ public:
     void setCMD(uint8_t newCMD);
 
 private:
-//    QString _product{"1a86"}; //Синий переходник (команда lsusb показывает данный ID - первые 4 символа)
-    QString _product{"067b"};
+    QString _product{"1a86"}; //Синий переходник (команда lsusb показывает данный ID - первые 4 символа)
+//    QString _product{"067b"};
     QString _portName{""};
     static constexpr uint8_t _cmdLen = 32;
     uint8_t _cmdBuf[_cmdLen];
