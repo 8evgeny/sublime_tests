@@ -1,8 +1,21 @@
 #include <RS232_parser.hpp>
+#include <xserial.hpp>
+
 using namespace std;
 
 RS232_parser::RS232_parser()
 {
+    // инициализируем доступный COM порт, без проверки бита четности, с 8-мью битами данных и одним стоп битом.
+    xserial::ComPort com(115200,com.COM_PORT_NOPARITY, 8, com.COM_PORT_ONESTOPBIT);
+    if (!com.getStateComPort())
+    {// Если порт не открылся
+        cout << "Error: com port is not open!" << endl;
+    }
+
+    // выводим список доступых портов
+    com.printListSerialPorts();
+
+
     cout << "RS232_parser Ctor" << endl;
     const auto serialPortInfos = QSerialPortInfo::availablePorts();
     for (const QSerialPortInfo &portInfo : serialPortInfos)
