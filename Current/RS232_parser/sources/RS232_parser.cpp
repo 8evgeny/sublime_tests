@@ -60,7 +60,7 @@ void RS232_parser::setCMD(uint8_t newCMD)
 
 void RS232_parser::parsing()
 {
-//    uint8_t buf_print[getCmdLen()];
+    uint8_t buf_print[getCmdLen()];
     QByteArray requestData;
     int i = 0;
     while(1)
@@ -78,7 +78,11 @@ void RS232_parser::parsing()
                 _cmdBuf[i] = requestData[i];
             } //END for (int i = 0; i < _cmdLen; ++i)
 
-//            printDataRS232();
+            if (_cmdBuf[1] == 0x90)
+            {
+                printDataRS232();
+//                printDataRS232_format();
+            }
 
             if(_cmdBuf[31] == 0x00 && _cmdBuf[1] == 0x90) //Признак команды
             {
@@ -105,7 +109,7 @@ void RS232_parser::parsing()
                     ++i;
                     if (i == 30)
                     {
-                        cout << ". . . " << endl;
+//                        cout << ". . . " << endl;
                         i = 0;
                     }
                 }
@@ -127,4 +131,40 @@ void RS232_parser::printDataRS232()
             _cmdBuf[16], _cmdBuf[17], _cmdBuf[18], _cmdBuf[19], _cmdBuf[20], _cmdBuf[21], _cmdBuf[22], _cmdBuf[23],
             _cmdBuf[24], _cmdBuf[25], _cmdBuf[26], _cmdBuf[27], _cmdBuf[28], _cmdBuf[29], _cmdBuf[30], _cmdBuf[31]
             );
+}//END printDataRS232()
+
+void RS232_parser::printDataRS232_format()
+{
+    printf( "x: %02X%02X  y: %02X%02X"
+            "\n",
+            _cmdBuf[4], _cmdBuf[3], _cmdBuf[6], _cmdBuf[5]
+            );
+
+    /// dbg::
+    int16_t x_dec;
+    int16_t y_dec;
+
+    uint8_t _xBuf[2];
+    _xBuf[0]=_cmdBuf[3];
+    _xBuf[1]=_cmdBuf[4];
+    memcpy(&x_dec, _xBuf, 2);
+    uint8_t _yBuf[2];
+    _yBuf[0]=_cmdBuf[5];
+    _yBuf[1]=_cmdBuf[6];
+    memcpy(&y_dec, _yBuf, 2);
+
+    printf( "1: x: %i  y: %i"
+            "\n",
+            x_dec, y_dec
+            );
+
+
+    memcpy(&x_dec, _cmdBuf + 3, 2);
+    memcpy(&y_dec, _cmdBuf + 5, 2);
+    printf( "2: +"
+            "x: %i  y: %i"
+            "\n",
+            x_dec, y_dec
+            );
+
 }//END printDataRS232()

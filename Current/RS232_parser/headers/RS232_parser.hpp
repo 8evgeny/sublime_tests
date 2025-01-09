@@ -46,6 +46,7 @@ public:
     bool find_cmd_TRACKING_STOP();
 
     void printDataRS232();
+    void printDataRS232_format();
     uint8_t getCmdLen() const;
 
     uint8_t CMD() const;
