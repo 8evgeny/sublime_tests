@@ -1,3 +1,0 @@
-/media/khadas/WORK_EXT_NVME/sublime_tests/Current/Дальномер/Release/CMakeFiles/port_cmd_parser.dir
-/media/khadas/WORK_EXT_NVME/sublime_tests/Current/Дальномер/Release/CMakeFiles/edit_cache.dir
-/media/khadas/WORK_EXT_NVME/sublime_tests/Current/Дальномер/Release/CMakeFiles/rebuild_cache.dir
