@@ -1,10 +1,10 @@
-#include <RS232_parser.hpp>
+#include <port_cmd_parser.hpp>
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-    unique_ptr<RS232_parser> p = make_unique<RS232_parser>();
+    unique_ptr<port_cmd_parser> p = make_unique<port_cmd_parser>();
 
     p->serial.setPortName(p->getPortName());
     p->serial.setBaudRate(p->getSpeed());

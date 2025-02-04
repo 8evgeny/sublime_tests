@@ -1,6 +1,6 @@
-#include <RS232_parser.hpp>
+#include <port_cmd_parser.hpp>
 
-int RS232_parser::find_cmd()
+int port_cmd_parser::find_cmd()
 {
     if(find_cmd_STOP()) return CMD::STOP;
     if(find_cmd_LEFT()) return CMD::LEFT;
@@ -17,7 +17,7 @@ int RS232_parser::find_cmd()
     return CMD::notCMD;
 }//END find_cmd()
 
-bool RS232_parser::find_cmd_STOP()
+bool port_cmd_parser::find_cmd_STOP()
 {
     if ((_cmdBuf[2] == 0x24) &&
         (_cmdBuf[3] == 0x00) && (_cmdBuf[4] == 0x00) && (_cmdBuf[5] == 0x00) && (_cmdBuf[6] == 0x00))
@@ -27,7 +27,7 @@ bool RS232_parser::find_cmd_STOP()
     return false;
 }//END find_cmd_STOP()
 
-bool RS232_parser::find_cmd_LEFT()
+bool port_cmd_parser::find_cmd_LEFT()
 {
     if ((_cmdBuf[2] == 0x24) &&
         (_cmdBuf[3] == 0x9C) && (_cmdBuf[4] == 0xFF))
@@ -37,7 +37,7 @@ bool RS232_parser::find_cmd_LEFT()
     return false;
 }//END find_cmd_LEFT()
 
-bool RS232_parser::find_cmd_RIGHT()
+bool port_cmd_parser::find_cmd_RIGHT()
 {
     if ((_cmdBuf[2] == 0x24) &&
         (_cmdBuf[3] == 0x64) && (_cmdBuf[4] == 0x00))
@@ -47,7 +47,7 @@ bool RS232_parser::find_cmd_RIGHT()
     return false;
 }//END find_cmd_RIGHT()
 
-bool RS232_parser::find_cmd_UP()
+bool port_cmd_parser::find_cmd_UP()
 {
     if ((_cmdBuf[2] == 0x24) &&
         (_cmdBuf[5] == 0x64) && (_cmdBuf[6] == 0x00))
@@ -57,7 +57,7 @@ bool RS232_parser::find_cmd_UP()
     return false;
 }//END find_cmd_UP()
 
-bool RS232_parser::find_cmd_DOWN()
+bool port_cmd_parser::find_cmd_DOWN()
 {
     if ((_cmdBuf[2] == 0x24) &&
         (_cmdBuf[5] == 0x9C) && (_cmdBuf[6] == 0xFF))
@@ -67,7 +67,7 @@ bool RS232_parser::find_cmd_DOWN()
     return false;
 }//END find_cmd_DOWN()
 
-bool RS232_parser::find_cmd_INFRA()
+bool port_cmd_parser::find_cmd_INFRA()
 {
     if ((_cmdBuf[2] == 0x03) &&
         (_cmdBuf[3] == 0x00) && (_cmdBuf[4] == 0x00) && (_cmdBuf[5] == 0x00) && (_cmdBuf[6] == 0x00))
@@ -77,7 +77,7 @@ bool RS232_parser::find_cmd_INFRA()
     return false;
 }//END find_cmd_INFRA()
 
-bool RS232_parser::find_cmd_TV()
+bool port_cmd_parser::find_cmd_TV()
 {
     if ((_cmdBuf[2] == 0x01) &&
         (_cmdBuf[3] == 0x00) && (_cmdBuf[4] == 0x00) && (_cmdBuf[5] == 0x00) && (_cmdBuf[6] == 0x00))
@@ -87,7 +87,7 @@ bool RS232_parser::find_cmd_TV()
     return false;
 }//END find_cmd_TV()
 
-bool RS232_parser::find_cmd_ZOOM_MINUS()
+bool port_cmd_parser::find_cmd_ZOOM_MINUS()
 {
     if ((_cmdBuf[2] == 0x25) &&
         (_cmdBuf[3] == 0x00) && (_cmdBuf[4] == 0x00) && (_cmdBuf[5] == 0x00) && (_cmdBuf[6] == 0x00) && (_cmdBuf[7] == 0x00) && (_cmdBuf[8] == 0xC4))
@@ -97,7 +97,7 @@ bool RS232_parser::find_cmd_ZOOM_MINUS()
     return false;
 }//END find_cmd_ZOOM_MINUS()
 
-bool RS232_parser::find_cmd_ZOOM_PLUS()
+bool port_cmd_parser::find_cmd_ZOOM_PLUS()
 {
     if ((_cmdBuf[2] == 0x25) &&
         (_cmdBuf[3] == 0x00) && (_cmdBuf[4] == 0x00) && (_cmdBuf[5] == 0x00) && (_cmdBuf[6] == 0x00) && (_cmdBuf[7] == 0x00) && (_cmdBuf[8] == 0x3C))
@@ -107,7 +107,7 @@ bool RS232_parser::find_cmd_ZOOM_PLUS()
     return false;
 }//END find_cmd_ZOOM_PLUS()
 
-bool RS232_parser::find_cmd_TO_CENTRE()
+bool port_cmd_parser::find_cmd_TO_CENTRE()
 {
     if ((_cmdBuf[2] == 0x2B) &&
         (_cmdBuf[3] == 0x00) && (_cmdBuf[4] == 0x00) && (_cmdBuf[5] == 0x00) && (_cmdBuf[6] == 0x00))
@@ -117,7 +117,7 @@ bool RS232_parser::find_cmd_TO_CENTRE()
     return false;
 }//END find_cmd_TO_CENTRE()
 
-bool RS232_parser::find_cmd_TRACKING_START()
+bool port_cmd_parser::find_cmd_TRACKING_START()
 {
     if ((_cmdBuf[2] == 0x0D) &&
         (_cmdBuf[3] == 0x00) && (_cmdBuf[4] == 0x00) && (_cmdBuf[5] == 0x00) && (_cmdBuf[6] == 0x00))
@@ -127,7 +127,7 @@ bool RS232_parser::find_cmd_TRACKING_START()
     return false;
 }//END find_cmd_TRACKING_START()
 
-bool RS232_parser::find_cmd_TRACKING_STOP()
+bool port_cmd_parser::find_cmd_TRACKING_STOP()
 {
     if ((_cmdBuf[2] == 0x0E) &&
         (_cmdBuf[3] == 0x00) && (_cmdBuf[4] == 0x00) && (_cmdBuf[5] == 0x00) && (_cmdBuf[6] == 0x00))

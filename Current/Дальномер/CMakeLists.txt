@@ -1,10 +1,10 @@
 set(CMAKE_CXX_STANDARD 17)
 
-project (Range_finder)
+project (port_cmd_parser)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
-include_directories(headers  sources)
-FILE(GLOB SRC_FILES sources/* headers/* )
+include_directories(headers  sources xserial/src)
+FILE(GLOB SRC_FILES sources/* headers/* xserial/src/*)
 
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Network REQUIRED)
@@ -15,6 +15,7 @@ add_executable(${PROJECT_NAME}
     )
 
 #qt5_use_modules(${PROJECT_NAME} Core SerialPort)
+
 
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
