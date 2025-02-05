@@ -60,6 +60,7 @@ void eth_ttl::rcv_ttl_send_udp()
         {
             data_from_port.clear();
             data_from_port += serial.read(get_cmdLen());
+            // serial.write(data_from_port);
 //Print data_from_port
             printf( "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
                     "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
@@ -88,12 +89,18 @@ void eth_ttl::handle_receive()
     while ( true)
     {
         int bytes = sock.receive_from(buffer(buff), ep);
-        std::string msg(buff, bytes);
-        cout<<"Received from UDP: " << msg << endl;
         QByteArray data_from_udp(buff, bytes);
-        qDebug()<<data_from_udp;
-    }
-}
+        data_from_udp.chop(1); //Delete \n
+        cout << data_from_udp.toStdString() << endl;
+        serial.write(data_from_udp);
+        serial.waitForBytesWritten(100);
+    }//END while
+
+//Send data to port
+
+
+
+}//END handle_receive()
 
 void eth_ttl::rcv_udp_send_ttl()
 {
