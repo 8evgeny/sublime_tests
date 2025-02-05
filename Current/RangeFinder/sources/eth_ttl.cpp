@@ -3,6 +3,7 @@
 #include <QtCore>
 #include <thread>
 #include "boost/asio.hpp"
+
 using namespace  boost::asio;
 
 using namespace std;
@@ -36,23 +37,23 @@ uint8_t eth_ttl::get_cmdLen() const
 void eth_ttl::work()
 {
     thread ttl_udp(&eth_ttl::rcv_ttl_send_udp, this);
-
-
+    thread udp_ttl(&eth_ttl::rcv_udp_send_ttl, this);
 
     ttl_udp.join();
+    udp_ttl.join();
 }
+
 
 void eth_ttl::rcv_ttl_send_udp()
 {
     uint8_t buf[get_cmdLen()];
     QByteArray data_from_port;
-    quint16 portSend = 44444;
     io_service io_service;
     ip::udp::socket socket(io_service);
-    ip::udp::endpoint remote_endpoint;
-    remote_endpoint = ip::udp::endpoint(ip::address::from_string("192.168.1.37"), portSend);
+    ip::udp::endpoint ep;
+    ep = ip::udp::endpoint(ip::address::from_string(_IP), _port);
     boost::system::error_code err;
-     while(1)
+    while(1)
     {
 //Read data from port
         if(serial.waitForReadyRead(1))
@@ -70,10 +71,34 @@ void eth_ttl::rcv_ttl_send_udp()
                   );
 //Send data to ethernet
             socket.open(ip::udp::v4());
-            socket.send_to(buffer(data_from_port, get_cmdLen()), remote_endpoint, 0, err);
+            socket.send_to(buffer(data_from_port, get_cmdLen()), ep, 0, err);
             socket.close();
         }//END if(serial.waitForReadyRead(1))
     }//END while(1)
 }// END rcv_ttl_send_udp()
 
 
+
+void eth_ttl::handle_receive()
+{
+    char buff[1024];
+    io_service service;
+    ip::udp::socket sock(service, ip::udp::endpoint(ip::udp::v4(), _port));
+    ip::udp::endpoint ep;
+    while ( true)
+    {
+        int bytes = sock.receive_from(buffer(buff), ep);
+        std::string msg(buff, bytes);
+        cout<<"Received from UDP: " << msg << endl;
+        QByteArray data_from_udp(buff, bytes);
+        qDebug()<<data_from_udp;
+    }
+}
+
+void eth_ttl::rcv_udp_send_ttl()
+{
+    while(1)
+    {
+        handle_receive();
+    }//END while(1)
+}// END rcv_udp_send_ttl()
