@@ -1,5 +1,6 @@
 #include <eth_ttl.hpp>
 #include <iostream>
+#include <thread>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ int main(int argc, char *argv[])
     else
     {
         qDebug() << p->serial.portName();
-        p->work_eth_ttl();
+        p->work();
     }
 
 return 0;

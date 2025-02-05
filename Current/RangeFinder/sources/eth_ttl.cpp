@@ -1,6 +1,7 @@
 #include <eth_ttl.hpp>
 #include <iostream>
 #include <QtCore>
+#include <thread>
 #include "boost/asio.hpp"
 using namespace  boost::asio;
 
@@ -31,30 +32,26 @@ uint8_t eth_ttl::get_cmdLen() const
     return _cmdLen;
 }//END get_cmdLen()
 
-void eth_ttl::work_eth_ttl()
-{
 
+void eth_ttl::work()
+{
+    thread ttl_udp(&eth_ttl::rcv_ttl_send_udp, this);
+
+
+
+    ttl_udp.join();
+}
+
+void eth_ttl::rcv_ttl_send_udp()
+{
+    uint8_t buf[get_cmdLen()];
+    QByteArray data_from_port;
+    quint16 portSend = 44444;
     io_service io_service;
     ip::udp::socket socket(io_service);
     ip::udp::endpoint remote_endpoint;
-
-    // socket.open(ip::udp::v4());
-    remote_endpoint = ip::udp::endpoint(ip::address::from_string("192.168.1.37"),9000);
+    remote_endpoint = ip::udp::endpoint(ip::address::from_string("192.168.1.37"), portSend);
     boost::system::error_code err;
-
-
-
-    uint8_t buf[get_cmdLen()];
-    QByteArray data_from_port;
-    QByteArray data_to_eth;
-    // QUdpSocket udpSocketSend;
-    // QUdpSocket udpSocketGet;
-    quint16 portSend = 44444;
-    quint16 portGet = 55555;
-    char buferGet[32];
-
-    // udpSocketGet.bind(44444, QUdpSocket::ShareAddress);
-
      while(1)
     {
 //Read data from port
@@ -62,7 +59,6 @@ void eth_ttl::work_eth_ttl()
         {
             data_from_port.clear();
             data_from_port += serial.read(get_cmdLen());
-
 //Print data_from_port
             printf( "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
                     "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
@@ -72,18 +68,12 @@ void eth_ttl::work_eth_ttl()
                     buf[16], buf[17], buf[18], buf[19], buf[20], buf[21], buf[22], buf[23],
                     buf[24], buf[25], buf[26], buf[27], buf[28], buf[29], buf[30], buf[31]
                   );
-
 //Send data to ethernet
             socket.open(ip::udp::v4());
             socket.send_to(buffer(data_from_port, get_cmdLen()), remote_endpoint, 0, err);
             socket.close();
-
         }//END if(serial.waitForReadyRead(1))
-
-//Read data from ethernet
-
-
     }//END while(1)
-}// END work_eth_ttl()
+}// END rcv_ttl_send_udp()
 
 

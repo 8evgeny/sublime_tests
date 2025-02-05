@@ -13,7 +13,8 @@ public:
     QSerialPort serial;
     const QString &getPortName() const;
     int getSpeed() const;
-    void work_eth_ttl();
+    void rcv_ttl_send_udp();
+    void work();
 
     uint8_t get_cmdLen() const;
 
