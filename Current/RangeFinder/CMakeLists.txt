@@ -1,6 +1,6 @@
 set(CMAKE_CXX_STANDARD 17)
 
-project (rs232_parser)
+project (eth_ttl)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
 include_directories(headers  sources )
@@ -14,7 +14,6 @@ add_executable(${PROJECT_NAME}
     )
 
 qt5_use_modules(${PROJECT_NAME} Core SerialPort)
-
 
 target_link_libraries(${PROJECT_NAME}
   PUBLIC

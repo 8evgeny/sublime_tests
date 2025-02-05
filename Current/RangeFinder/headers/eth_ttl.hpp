@@ -3,29 +3,23 @@
 #include <QDebug>
 #include <QSerialPort>
 #include <QSerialPortInfo>
-#include <iostream>
-#include <memory>
 
-
-class RS232_parser
+class eth_ttl
 {
 
 public:
-    RS232_parser();
-    ~RS232_parser();
+    eth_ttl();
+    ~eth_ttl();
     QSerialPort serial;
     const QString &getPortName() const;
     int getSpeed() const;
-    void parsing();
+    void work_eth_ttl();
 
-    uint8_t getCmdLen() const;
+    uint8_t get_cmdLen() const;
 
 private:
     QString _portName{"ttyUSB0"};
-    const uint8_t cmdLen = 32;
-    int _speed = 115200;
+    const uint8_t _cmdLen = 32;
+    int _speed = 9600;
 
 };
-
-
-
