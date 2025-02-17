@@ -1,4 +1,5 @@
-#include <eth_ttl.hpp>
+//https://open-dev.ru/manual-odtemp1#scripts
+#include <sensors.hpp>
 #include <iostream>
 #include <thread>
 
@@ -6,7 +7,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    unique_ptr<eth_ttl> p = make_unique<eth_ttl>();
+    unique_ptr<sensors> p = make_unique<sensors>();
 
     p->serial.setPortName(p->getPortName());
     p->serial.setBaudRate(p->getSpeed());
@@ -17,7 +18,9 @@ int main(int argc, char *argv[])
     else
     {
         qDebug() << p->serial.portName();
-        // p->work();
+//        p->work();
+        p->send_temperature();
+        p->check_position();
         p->check_range();
     }
 

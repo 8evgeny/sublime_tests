@@ -1,0 +1,9 @@
+https://github.com/jrowberg/i2cdevlib/tree/master/Arduino/MPU6050
+
+https://github.com/jrowberg/i2cdevlib/tree/master/LinuxI2CDev
+
+https://alexgyver.ru/arduino-mpu6050/
+https://bootlin.com/pub/conferences/2022/elce/ceresoli-basics-of-i2c-on-linux/ceresoli-basics-of-i2c-on-linux.pdf
+https://habr.com/ru/articles/413249/
+https://github.com/amaork/libi2c
+https://docs.kernel.org/5.17/i2c/dev-interface.html
