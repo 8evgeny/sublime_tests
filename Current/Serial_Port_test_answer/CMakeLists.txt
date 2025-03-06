@@ -4,18 +4,11 @@ project (serial_port_test_answer)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
 include_directories(headers  sources xserial/src)
-FILE(GLOB SRC_FILES sources/* headers/* xserial/src/*)
-
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Network REQUIRED)
-find_package(Qt5SerialPort REQUIRED)
+FILE(GLOB SRC_FILES sources/* headers/* )
 
 add_executable(${PROJECT_NAME}
     ${SRC_FILES}
     )
-
-#qt5_use_modules(${PROJECT_NAME} Core SerialPort)
-
 
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
