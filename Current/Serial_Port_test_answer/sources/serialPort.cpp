@@ -75,21 +75,17 @@ void UART::work()
         {
             int numByte = _serial_ptr->GetNumberOfBytesAvailable();
             _serial_ptr->Read(data, numByte);
-            printf( "Received from port:   ");
+            cout << "Received from " << _portName << " port:   ";
             printDataFromPort(numByte, data);
             if (data == good)
             {
                 cout <<"read request...\n";
+                cout <<"ansver 0xAA, 0x81\n";
+                _serial_ptr->Write(answ);
             }//END if (data == goog_request)
-            cout <<"ansver 0xAA, 0x81\n";
-            _serial_ptr->Write(answ);
 
         }//END if(_serial_ptr->IsDataAvailable())
     }//END while(1)
-
-
-
-
 }// END work()
 
 void UART::printDataFromPort(uint8_t num_byte, string & data)
