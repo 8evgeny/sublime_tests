@@ -90,12 +90,14 @@ void UART::work()
 
 void UART::printDataFromPort(uint8_t num_byte, string & data)
 {
+    int k = 0;
     for (int i = 0; i < num_byte; ++i)
     {
         _readBuf[i] = data[i];
     }
-    for (int i = 0; i < num_byte; ++i)
+    for (int i = 0; i < num_byte; ++i, ++k)
     {
+        if (k == 14) { k = 0; printf( "  " );}
         printf( "%02X ", _readBuf[i]);
     }
     printf("\n");
