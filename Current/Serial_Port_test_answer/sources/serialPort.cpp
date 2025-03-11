@@ -70,20 +70,27 @@ void UART::work()
     string data;
     while(1)
     {
-        this_thread::sleep_for(chrono::milliseconds(10));
+        int numByte1 = 0;
+        int numByte2 = 0;
+//        this_thread::sleep_for(chrono::milliseconds(10));
         if(_serial_ptr->IsDataAvailable())
         {
-            int numByte = _serial_ptr->GetNumberOfBytesAvailable();
-            _serial_ptr->Read(data, numByte);
-            cout << "Received from " << _portName << " port:   ";
-            printDataFromPort(numByte, data);
-            if (data == good)
+            numByte1 = _serial_ptr->GetNumberOfBytesAvailable();
+            this_thread::sleep_for(10ms);
+            numByte2 = _serial_ptr->GetNumberOfBytesAvailable();
+            if (numByte1 == numByte2)
             {
-                cout <<"read request...\n";
-                cout <<"ansver 0xAA, 0x81\n";
-                _serial_ptr->Write(answ);
-            }//END if (data == goog_request)
+                _serial_ptr->Read(data, numByte1);
+                cout << "Received from " << _portName << " port:   ";
+                printDataFromPort(numByte1, data);
 
+                if (data == good)
+                {
+                    cout <<"read request...\n";
+                    cout <<"ansver 0xAA, 0x81\n";
+                    _serial_ptr->Write(answ);
+                }//END if (data == goog_request)
+            }
         }//END if(_serial_ptr->IsDataAvailable())
     }//END while(1)
 }// END work()
