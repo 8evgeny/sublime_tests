@@ -24,7 +24,7 @@ private:
     const std::string _portName = "/dev/ttyUSB1";
     uint8_t _readBuf[512];
 
-};
+};//END class UART
 
 
 

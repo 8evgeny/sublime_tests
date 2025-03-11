@@ -101,12 +101,12 @@ void UART::printDataFromPort(uint8_t num_byte, string & data)
     for (int i = 0; i < num_byte; ++i)
     {
         _readBuf[i] = data[i];
-    }
+    }//END for (int i = 0; i < num_byte; ++i)
     for (int i = 0; i < num_byte; ++i, ++k)
     {
         if (k == 14) { k = 0; printf( "  " );}
         printf( "%02X ", _readBuf[i]);
-    }
+    }//END for (int i = 0; i < num_byte; ++i, ++k)
     printf("\n");
-}
+}//Endn printDataFromPort
 
