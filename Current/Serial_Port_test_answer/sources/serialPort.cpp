@@ -116,18 +116,18 @@ void UART::work()
                     {
                         handshake = false;
                         cout <<"received read request...\n";
-                        _serial_ptr->FlushOutputBuffer();
                         this_thread::sleep_for(50ms);
                         _serial_ptr->FlushOutputBuffer();
                         _serial_ptr->Write(answ_str);
-
+                        _serial_ptr->DrainWriteBuffer();
                     }//END if (read_data_str == good_str)
 
                     if (read_data_str == cmd_reset_str)
                     {
-                        reset = true;
                         cout <<"received cmd reset...\n";
                         handshake = true;
+                        _serial_ptr->FlushOutputBuffer();
+                        this_thread::sleep_for(50ms);
                         _serial_ptr->FlushOutputBuffer();
                         cout <<"send telemrtry data...\n";
                     }//END if (read_data_str == good_str)
@@ -142,20 +142,23 @@ void UART::work()
     readPort.detach();
 
     string telemetry_str = array_uint8_to_string(telemetry_data, sizeof(telemetry_data));
-
+    handshake = false;
     cout << "thread write_to_Port started...\n";
-
-
-
     while (1)  //in main thread send dats as telemetry
     {
         if (handshake)
         {
             mut.lock();
             _serial_ptr->Write(telemetry_str);
+            _serial_ptr->DrainWriteBuffer();
             mut.unlock();
         }//END if (handshake)
-        this_thread::sleep_for(10ms);
+        else
+        {
+            _serial_ptr->FlushOutputBuffer();
+            this_thread::sleep_for(50ms);
+        }
+        this_thread::sleep_for(100ms);
     }//END while (1)
 
 

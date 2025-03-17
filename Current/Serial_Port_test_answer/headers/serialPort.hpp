@@ -28,7 +28,6 @@ private:
     const std::string _portName = "/dev/ttyUSB1";
     uint8_t _readBuf[512];
     std::atomic_bool handshake = {false};
-    std::atomic_bool reset = {false};
 };//END class UART
 
 
