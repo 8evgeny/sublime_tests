@@ -1,6 +1,6 @@
 set(CMAKE_CXX_STANDARD 17)
 
-project (serial_port_test_answer)
+project (as_gyroplatphorm_RS485)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
 include_directories(headers  sources xserial/src)

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <memory>
 #include <thread>
+#include <functional>
 
 class UART
 {
@@ -23,6 +24,7 @@ private:
     bool _port_open_OK = false;
     const std::string _portName = "/dev/ttyUSB1";
     uint8_t _readBuf[512];
+    bool handshake = false;
 
 };//END class UART
 
