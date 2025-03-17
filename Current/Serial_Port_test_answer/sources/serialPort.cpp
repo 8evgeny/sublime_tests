@@ -24,7 +24,7 @@ uint8_t telemetry_data[] =
     0x00, 0x00, 0x00, 0x00, //8 MemsSpeedY
     0x00, 0x00, 0x00, 0x00, //9 MemsSpeedZ
     0x00, 0x00, 0x00, 0x00, //A Reserv
-    0xFF                    //CRC
+    0x0C                    //CRC
 };//END uint8_t telemetry_data[]
 
 
@@ -100,7 +100,7 @@ void UART::work()
         int numByte2 = 0;
         while(1)
         {
-            mut.lock();
+//            mut.lock();
             if(_serial_ptr->IsDataAvailable())
             {
                 numByte1 = _serial_ptr->GetNumberOfBytesAvailable();
@@ -133,7 +133,7 @@ void UART::work()
                     }//END if (read_data_str == good_str)
                 }
             }//END if(_serial_ptr->IsDataAvailable())
-            mut.unlock();
+//            mut.unlock();
             this_thread::sleep_for(10ms);
         }//END while(1)
     };//END function read_RS485 = [&]()
@@ -148,17 +148,17 @@ void UART::work()
     {
         if (handshake)
         {
-            mut.lock();
+//            mut.lock();
             _serial_ptr->Write(telemetry_str);
             _serial_ptr->DrainWriteBuffer();
-            mut.unlock();
+//            mut.unlock();
         }//END if (handshake)
         else
         {
             _serial_ptr->FlushOutputBuffer();
             this_thread::sleep_for(50ms);
-        }
-        this_thread::sleep_for(100ms);
+        }//END else
+        this_thread::sleep_for(150ms);
     }//END while (1)
 
 
