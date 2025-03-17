@@ -3,6 +3,31 @@
 using namespace std;
 using namespace LibSerial;
 
+uint8_t request_data[] =    {0xAA, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7A};
+uint8_t answer_data[] =     {0xAA, 0x81};
+uint8_t cmd_reset_data[] =  {0xAA, 0x00, 0x00, 0x00, 0x00, 0xF1, 0x00, 0x00, 0x00, 0xF1};
+uint8_t telemetry_data[] =
+{
+    0xAA,                   //STATE BYTE
+    0x81,                   //CMD
+    0x00,                   //STATUS
+    0x00, 0xEE,             //SRC
+    0x00, 0x00,             //DST
+    0x00, 0x0A,             //WORLD CNT
+    0x00, 0x00, 0x00, 0xFF, //1 State
+    0x00, 0x00, 0x00, 0x00, //2 Errors
+    0x01, 0x02, 0x03, 0x04, //3 AngleZ
+    0x05, 0x06, 0x07, 0x08, //4 AngleX
+    0x09, 0x0A, 0x0B, 0x0C, //5 SpeedZ
+    0x0D, 0x0E, 0x0F, 0x00, //6 SpeedX
+    0x00, 0x00, 0x00, 0x00, //7 MemsSpeedX
+    0x00, 0x00, 0x00, 0x00, //8 MemsSpeedY
+    0x00, 0x00, 0x00, 0x00, //9 MemsSpeedZ
+    0x00, 0x00, 0x00, 0x00, //A Reserv
+    0xFF                    //CRC
+};//END uint8_t telemetry_data[]
+
+
 UART::~UART()
 {
     cout << "UART Dtor" << endl;
@@ -59,10 +84,6 @@ string UART::array_uint8_to_string(uint8_t * request, int num)
 
 void UART::work()
 {
-    uint8_t request_data[] =    {0xAA, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7A};
-    uint8_t answer_data[] =     {0xAA, 0x81};
-    uint8_t cmd_reset_data[] =  {0xAA, 0x00, 0x00, 0x00, 0x00, 0xF1, 0x00, 0x00, 0x00, 0xF1};
-
     string cmd_request_str = array_uint8_to_string(request_data, sizeof(request_data));
     string cmd_reset_str = array_uint8_to_string(cmd_reset_data, sizeof(cmd_reset_data));
     string answ_str = array_uint8_to_string(answer_data, sizeof(answer_data));
@@ -75,10 +96,11 @@ void UART::work()
     function read_RS485 = [&]()
     {
         cout << "thread read_from_Port started...\n";
+        int numByte1 = 0;
+        int numByte2 = 0;
         while(1)
         {
-            int numByte1 = 0;
-            int numByte2 = 0;
+            mut.lock();
             if(_serial_ptr->IsDataAvailable())
             {
                 numByte1 = _serial_ptr->GetNumberOfBytesAvailable();
@@ -92,40 +114,43 @@ void UART::work()
 
                     if (read_data_str == cmd_request_str)
                     {
+                        handshake = false;
                         cout <<"received read request...\n";
+                        _serial_ptr->FlushOutputBuffer();
+                        this_thread::sleep_for(300ms);
+                        _serial_ptr->FlushOutputBuffer();
                         _serial_ptr->Write(answ_str);
                     }//END if (read_data_str == good_str)
 
                     if (read_data_str == cmd_reset_str)
                     {
                         cout <<"received cmd reset...\n";
-                        this_thread::sleep_for(1000ms);
                         handshake = true;
+                        _serial_ptr->FlushOutputBuffer();
+                        cout <<"send telemrtry data...\n";
                     }//END if (read_data_str == good_str)
-
                 }
             }//END if(_serial_ptr->IsDataAvailable())
+            mut.unlock();
+            this_thread::sleep_for(10ms);
         }//END while(1)
     };//END function read_RS485 = [&]()
     handshake = false;
     thread readPort(read_RS485);
     readPort.detach();
 
-    uint8_t telemetry_data[] =
-    {
-        0xAA, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x00,
-        0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x00,
-        0x01, 0x02
-    };
     string telemetry_str = array_uint8_to_string(telemetry_data, sizeof(telemetry_data));
 
     cout << "thread write_to_Port started...\n";
     while (1)  //in main thread send dats as telemetry
     {
-        this_thread::sleep_for(100ms);
         if (handshake)
+        {
+            mut.lock();
             _serial_ptr->Write(telemetry_str);
+            mut.unlock();
+        }//END if (handshake)
+        this_thread::sleep_for(10ms);
     }//END while (1)
 
 

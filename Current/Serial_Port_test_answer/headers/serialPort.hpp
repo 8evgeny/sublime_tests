@@ -4,6 +4,7 @@
 #include <memory>
 #include <thread>
 #include <functional>
+#include <mutex>
 
 class UART
 {
@@ -21,6 +22,7 @@ public:
 
 private:
     std::unique_ptr<LibSerial::SerialPort> _serial_ptr = nullptr;
+    std::mutex mut;
     bool _port_open_OK = false;
     const std::string _portName = "/dev/ttyUSB1";
     uint8_t _readBuf[512];
