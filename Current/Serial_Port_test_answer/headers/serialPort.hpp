@@ -5,6 +5,7 @@
 #include <thread>
 #include <functional>
 #include <mutex>
+#include <atomic>
 
 class UART
 {
@@ -26,8 +27,8 @@ private:
     bool _port_open_OK = false;
     const std::string _portName = "/dev/ttyUSB1";
     uint8_t _readBuf[512];
-    bool handshake = false;
-
+    std::atomic_bool handshake = {false};
+    std::atomic_bool reset = {false};
 };//END class UART
 
 
