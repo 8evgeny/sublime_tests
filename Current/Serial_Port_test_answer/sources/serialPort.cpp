@@ -75,7 +75,6 @@ void UART::work()
     function read_RS485 = [&]()
     {
         cout << "thread read_from_Port started...\n";
-        handshake = false;
         while(1)
         {
             int numByte1 = 0;
@@ -108,7 +107,7 @@ void UART::work()
             }//END if(_serial_ptr->IsDataAvailable())
         }//END while(1)
     };//END function read_RS485 = [&]()
-
+    handshake = false;
     thread readPort(read_RS485);
     readPort.detach();
 
@@ -121,15 +120,12 @@ void UART::work()
     };
     string telemetry_str = array_uint8_to_string(telemetry_data, sizeof(telemetry_data));
 
-    while (!handshake)
-    {
-        this_thread::sleep_for(1000ms);
-    }
     cout << "thread write_to_Port started...\n";
     while (1)  //in main thread send dats as telemetry
     {
         this_thread::sleep_for(100ms);
-        _serial_ptr->Write(telemetry_str);
+        if (handshake)
+            _serial_ptr->Write(telemetry_str);
     }//END while (1)
 
 
