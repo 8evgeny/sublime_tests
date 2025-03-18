@@ -16,15 +16,15 @@ uint8_t telemetry_data[] =
     0x00, 0x0A,             //WORLD CNT
     0x00, 0x00, 0x00, 0xFF, //1 State
     0x00, 0x00, 0x00, 0x00, //2 Errors
-    0x01, 0x02, 0x03, 0x04, //3 AngleZ
-    0x05, 0x06, 0x07, 0x08, //4 AngleX
-    0x09, 0x0A, 0x0B, 0x0C, //5 SpeedZ
-    0x0D, 0x0E, 0x0F, 0x00, //6 SpeedX
-    0x00, 0x00, 0x00, 0x00, //7 MemsSpeedX
-    0x00, 0x00, 0x00, 0x00, //8 MemsSpeedY
-    0x00, 0x00, 0x00, 0x00, //9 MemsSpeedZ
+    0x66, 0x66, 0x66, 0x66, //3 AngleZ
+    0x33, 0x33, 0x33, 0x33, //4 AngleX
+    0x44, 0x44, 0x44, 0x44, //5 SpeedZ
+    0x55, 0x55, 0x55, 0x55, //6 SpeedX
+    0x55, 0x55, 0x55, 0x55, //7 MemsSpeedX
+    0x55, 0x55, 0x55, 0x55, //8 MemsSpeedY
+    0x55, 0x55, 0x55, 0x55, //9 MemsSpeedZ
     0x00, 0x00, 0x00, 0x00, //A Reserv
-    0x0C                    //CRC
+    0xFF                    //CRC
 };//END uint8_t telemetry_data[]
 
 
@@ -36,6 +36,7 @@ UART::~UART()
 UART::UART()
 {
     cout << "UART Ctor" << endl;
+    init_crc_calculation();
     try
     {
         vector<string> ports =  _serial_ptr->GetAvailableSerialPorts();
@@ -72,6 +73,44 @@ UART::UART()
 }// END UART()
 #include <sstream>
 
+uint8_t UART::crc_calc(uint8_t *data, uint8_t size)
+{
+    uint8_t init_value = 0xFF;
+    uint8_t crc = init_value;
+    while (size--)
+    {
+        crc = _CRC8Table[crc ^ *data++];
+    }
+    return crc;
+}//END crc_calc(uint8_t *data, uint8_t size)
+
+
+void UART::init_crc_calculation()
+{
+    uint8_t poly = 0x31;
+    const uint32_t bits_mask = (1 << _poly_width) - 1;
+    const uint32_t top_bit = 1 << (_poly_width - 1);
+    uint32_t index;
+    for (index = 0; index < CRC_TABLE_SIZE; ++index)
+    {
+        uint32_t value = index << (_poly_width - 8);
+        uint32_t bit_index;
+        for (bit_index = 0; bit_index < 8; ++bit_index)
+        {
+            if (value & top_bit)
+            {
+                value = (value << 1) ^ poly;
+            }
+            else
+            {
+                value = value << 1;
+            }
+            value &= bits_mask;
+        }//END for (bit_index = 0; bit_index < 8; ++bit_index)
+        _CRC8Table[index] = value;
+    }//END for (index = 0; index < CRC_TABLE_SIZE; ++index)
+}//END init_crc_calculation()
+
 string UART::array_uint8_to_string(uint8_t * request, int num)
 {
     std::ostringstream conv;
@@ -100,7 +139,6 @@ void UART::work()
         int numByte2 = 0;
         while(1)
         {
-//            mut.lock();
             if(_serial_ptr->IsDataAvailable())
             {
                 numByte1 = _serial_ptr->GetNumberOfBytesAvailable();
@@ -108,6 +146,8 @@ void UART::work()
                 numByte2 = _serial_ptr->GetNumberOfBytesAvailable();
                 if (numByte1 == numByte2)
                 {
+                    send_telemetry_5sec = true;
+                    start = chrono::steady_clock::now();
                     _serial_ptr->Read(read_data_str, numByte1);
                     cout << "Received from " << _portName << " port:   ";
                     printDataFromPort(numByte1, read_data_str);
@@ -133,25 +173,26 @@ void UART::work()
                     }//END if (read_data_str == good_str)
                 }
             }//END if(_serial_ptr->IsDataAvailable())
-//            mut.unlock();
             this_thread::sleep_for(10ms);
         }//END while(1)
     };//END function read_RS485 = [&]()
     handshake = false;
     thread readPort(read_RS485);
     readPort.detach();
-
-    string telemetry_str = array_uint8_to_string(telemetry_data, sizeof(telemetry_data));
+    int len = sizeof(telemetry_data);
+//CRC
+    string telemetry_str = array_uint8_to_string(telemetry_data, len);
+    telemetry_str[len - 1] =  crc_calc(telemetry_data, len - 1);
     handshake = false;
     cout << "thread write_to_Port started...\n";
+
+    auto durations = 5000ms;
     while (1)  //in main thread send dats as telemetry
     {
-        if (handshake)
+        if (handshake && send_telemetry_5sec)
         {
-//            mut.lock();
             _serial_ptr->Write(telemetry_str);
             _serial_ptr->DrainWriteBuffer();
-//            mut.unlock();
         }//END if (handshake)
         else
         {
@@ -159,6 +200,13 @@ void UART::work()
             this_thread::sleep_for(50ms);
         }//END else
         this_thread::sleep_for(150ms);
+        stop = chrono::steady_clock::now();
+        chrono::duration<double> elapsed = stop - start;
+        if(elapsed > durations)
+        {
+            send_telemetry_5sec = false;
+        }//END if(elapsed > durations)
+
     }//END while (1)
 
 
