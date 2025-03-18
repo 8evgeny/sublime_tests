@@ -27,7 +27,6 @@ uint8_t telemetry_data[] =
     0xFF                    //CRC
 };//END uint8_t telemetry_data[]
 
-
 UART::~UART()
 {
     cout << "UART Dtor" << endl;

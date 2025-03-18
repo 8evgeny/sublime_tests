@@ -4,12 +4,10 @@
 #include <memory>
 #include <thread>
 #include <functional>
-#include <mutex>
 #include <atomic>
 
 class UART
 {
-
 public:
     UART();
     ~UART();
