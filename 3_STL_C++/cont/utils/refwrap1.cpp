@@ -14,6 +14,7 @@
 #include <deque>
 #include <algorithm>
 #include <memory>
+#include <vector>
 
 class Item {
   private:
