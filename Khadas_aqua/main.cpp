@@ -407,6 +407,7 @@ handlerSunRiseSet()
             sunDown = up_down.second;
             QTime t1 = QTime::fromString(QString::fromStdString(sunUp));
             QTime t2 = QTime::fromString(QString::fromStdString(sunDown));
+
             int long_day_in_minutes = t1.secsTo(t2)/60;
             int long_hours = long_day_in_minutes/60;
             int long_minutes = long_day_in_minutes%60;
@@ -425,6 +426,7 @@ handlerSunRiseSet()
             if (long_day_in_minutes >= 12 * 60)
             {
                 time_light_off = QTime::fromString(QString::fromStdString(sunDown));
+
                 fileLight_off.open("/home/khadas/aqua/for_web/light_off", std::ios::out);
                 fileLight_off << time_light_off.toString().toStdString();
                 fileLight_off.close();
