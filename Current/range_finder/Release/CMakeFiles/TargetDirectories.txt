@@ -1,0 +1,3 @@
+/home/user/QtProg/rpo/range_finder/Release/CMakeFiles/range_temp_position_sensor.dir
+/home/user/QtProg/rpo/range_finder/Release/CMakeFiles/edit_cache.dir
+/home/user/QtProg/rpo/range_finder/Release/CMakeFiles/rebuild_cache.dir
