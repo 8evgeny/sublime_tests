@@ -1,0 +1,1 @@
+/usr/bin/gcc -O3 -DNDEBUG CMakeFiles/tutorial_3_Dynamic_pipelines.dir/basic-tutorial-4.c.o -o tutorial_3_Dynamic_pipelines  -lgstreamer-1.0 -lgobject-2.0 -lglib-2.0 
