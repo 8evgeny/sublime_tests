@@ -9,6 +9,6 @@ int main()
    // Use & to find the address in memory
    cout << "Integer age is located at: 0x" << &age << endl;
    cout << "Double Pi is located at: 0x" << &Pi << endl;
-
+   cout << "sizeof Pi:" << sizeof(Pi) << endl;
    return 0;
 }
