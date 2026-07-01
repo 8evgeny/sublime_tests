@@ -1,6 +1,6 @@
 // Using the conditional operator to select output.
 #include <iostream>
-#include <format.h>
+#include <fmt/format.h>
 
 int main()
 {

@@ -1,7 +1,6 @@
 // Using the bitwise operators
 #include <iostream>
-#include <format.h>
-
+#include <fmt/format.h>
 int main()
 {
   const unsigned int red{ 0xFF0000u };   // Color red

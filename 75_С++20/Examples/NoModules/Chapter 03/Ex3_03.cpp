@@ -1,6 +1,6 @@
 // Operations with enumerations
 #include <iostream>
-#include <format.h>
+#include <fmt/format.h>
 
 int main()
 {

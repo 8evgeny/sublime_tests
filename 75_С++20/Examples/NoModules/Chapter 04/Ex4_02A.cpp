@@ -1,6 +1,6 @@
 // Using the named comparison functions
 #include <compare>  // Required when using operator <=> (even for fundamental types)
-#include <format.h>
+#include <fmt/format.h>
 #include <iostream>
 
 int main()
