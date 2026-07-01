@@ -7,7 +7,7 @@ int main()
    try
    {
       // Request a LOT of memory!
-      int* pointsToManyNums = new int [0x1fffffff];
+      int* pointsToManyNums = new int [0x1fffffffFF];
 
       // Use the allocated memory 
 

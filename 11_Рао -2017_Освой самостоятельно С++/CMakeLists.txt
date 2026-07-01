@@ -6,6 +6,14 @@ add_executable(8.3_Pointers_OnePtrManyIntegers 8.3_Pointers_OnePtrManyIntegers.c
 add_executable(8.4_Pointers_Dereferencing_or_IndirectionOperator 8.4_Pointers_Dereferencing_or_IndirectionOperator.cpp)
 add_executable(8.5_Pointers_AssigningUsingDerefOp 8.5_Pointers_AssigningUsingDerefOp.cpp)
 add_executable(8.6_Pointers_sizeof_Test 8.6_Pointers_sizeof_Test.cpp)
+add_executable(8.12_Pointers_Arrays_Similarities 8.12_Pointers_Arrays_Similarities.cpp)
+add_executable(8.15_Pointers_new_exceptionhandler 8.15_Pointers_new_exceptionhandler.cpp)
+add_executable(8.16_Pointers_new_nothrow 8.16_Pointers_new_nothrow.cpp)
+add_executable(8.17_References_Declaring_Initializing 8.17_References_Declaring_Initializing.cpp)
+add_executable(9.7_MyString_Destructor 9.7_MyString_Destructor.cpp)
+
+
+
 
 add_executable(26.1_MinimalSmartPtr 26.1_MinimalSmartPtr.cpp )
 
