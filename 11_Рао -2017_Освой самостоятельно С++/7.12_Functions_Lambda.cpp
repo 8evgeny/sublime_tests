@@ -24,7 +24,7 @@ int main()
    cout << "Sorting them in descending order" << endl;
 
    sort (myNums.begin(), myNums.end(), \
-        [](int Num1, int Num2) {return (Num2 < Num1); } );
+        [](int Num1, int Num2) {return (Num2 > Num1); } );
 
    DisplayNums(myNums);
 
