@@ -5,7 +5,7 @@ using namespace std;
 class MyString
 {
 private:
-   char* buffer;
+   char* buffer = nullptr;
 
 public:
    MyString(const char* initString)  // constructor

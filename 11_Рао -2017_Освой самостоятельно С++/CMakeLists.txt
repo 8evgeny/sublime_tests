@@ -11,9 +11,17 @@ add_executable(8.15_Pointers_new_exceptionhandler 8.15_Pointers_new_exceptionhan
 add_executable(8.16_Pointers_new_nothrow 8.16_Pointers_new_nothrow.cpp)
 add_executable(8.17_References_Declaring_Initializing 8.17_References_Declaring_Initializing.cpp)
 add_executable(9.7_MyString_Destructor 9.7_MyString_Destructor.cpp)
+add_executable(9.8_NoCopyConstructor_CopyMyString 9.8_NoCopyConstructor_CopyMyString.cpp)
+add_executable(9.9_CopyConstructor_MyString 9.9_CopyConstructor_MyString.cpp)
 
 
 
+
+
+
+
+
+add_executable(12.10_FunctionObjects_Functors_Operator 12.10_FunctionObjects_Functors_Operator.cpp)
 
 add_executable(26.1_MinimalSmartPtr 26.1_MinimalSmartPtr.cpp )
 
