@@ -32,10 +32,10 @@ int main()
    onlyPresident.SetName("Abraham Lincoln");
 
    // uncomment lines to see how compile failures prohibit duplicates
-   // President second; // cannot access constructor
-   // President* third= new President(); // cannot access constructor
-   // President fourth = onlyPresident; // cannot access copy constructor
-   // onlyPresident = President::GetInstance(); // cannot access operator=
+   //President second; // cannot access constructor
+   //President* third= new President(); // cannot access constructor
+   //President fourth = onlyPresident; // cannot access copy constructor
+   //onlyPresident = President::GetInstance(); // cannot access operator=
 
    cout << "The name of the President is: ";
    cout << President::GetInstance().GetName() << endl;

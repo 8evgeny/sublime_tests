@@ -13,13 +13,13 @@ add_executable(8.17_References_Declaring_Initializing 8.17_References_Declaring_
 add_executable(9.7_MyString_Destructor 9.7_MyString_Destructor.cpp)
 add_executable(9.8_NoCopyConstructor_CopyMyString 9.8_NoCopyConstructor_CopyMyString.cpp)
 add_executable(9.9_CopyConstructor_MyString 9.9_CopyConstructor_MyString.cpp)
-
-
-
-
-
-
-
+add_executable(9.10_Singleton 9.10_Singleton.cpp)
+add_executable(9.11_MonsterDB_ForceConstructionOnHeap 9.11_MonsterDB_ForceConstructionOnHeap.cpp)
+add_executable(9.12_explicit_constructors 9.12_explicit_constructors.cpp)
+add_executable(9.13_SizeOfClass 9.13_SizeOfClass.cpp)
+add_executable(9.14_FriendFunctions 9.14_FriendFunctions.cpp)
+add_executable(9.15_FriendClass 9.15_FriendClass.cpp)
+add_executable(9.16_UsingUnions 9.16_UsingUnions.cpp)
 
 add_executable(12.10_FunctionObjects_Functors_Operator 12.10_FunctionObjects_Functors_Operator.cpp)
 
