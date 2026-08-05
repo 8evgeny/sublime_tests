@@ -1,5 +1,5 @@
 project(8_C++17)
-
+cmake_minimum_required(VERSION 4.0)
 add_subdirectory(Chapter01_new_features)
 add_subdirectory(Chapter02_containers)
 add_subdirectory(Chapter03_iterators)
