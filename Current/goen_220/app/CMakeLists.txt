@@ -208,7 +208,7 @@ add_executable(qgst-goen220
   ldc20i/ldc20i_worker.cpp
   ldc20i/ldc20i_worker.h
 
-  lib/lib_trac_tmml_8_CL.so
+#  lib/lib_trac_tmml_8_CL.so
 
   mini640/mini640_controller.cpp
   mini640/mini640_controller.h
