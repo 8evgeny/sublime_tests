@@ -1,3 +1,4 @@
+using float32_t = float;
 #include <gst/gst.h>
 #include <gst/base/gstbasetransform.h>
 #include <gst/video/video.h> // For GstVideoFrame and GstVideoInfo
@@ -36,7 +37,6 @@ static int8_t m_bp[640*512];
 
 static const uint32_t L = 65536>>2;
 static uint64_t n_k_original[L];
-
 
 // static double n_k_equalized[L];
  static uint64_t p_k_original[L];
