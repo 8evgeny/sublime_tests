@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.14)
-
 project(qgst-goen220-daemon)
 
 set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_LIST_DIR}/Debug")
@@ -14,11 +13,11 @@ set( GYRO_PLATFORM_HOST_ENABLE true)
 add_compile_options(-fopenmp )
 
 find_package(Qt6 REQUIRED COMPONENTS Core SerialPort Network DBus
-
     PATHS "${CMAKE_PREFIX_PATH}"
     NO_DEFAULT_PATHcd 
     NO_CMAKE_FIND_ROOT_PATH
 )
+
 find_package(OpenMP REQUIRED   )
 find_package(OpenCV REQUIRED)
 
@@ -34,16 +33,16 @@ include_directories(
     "${CMAKE_CURRENT_LIST_DIR}/prebuild/"
     "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
     )
+
  add_subdirectory( lib/gst/gst-goen-fps-mon-plugin)
 # add_subdirectory( lib/gst/gst-goen-ircam-plugin)
  add_subdirectory( lib/gst/gst-goen-track-plugin)
  add_subdirectory( app)
 
-
 # add_subdirectory( lib/network/Goen220DataAndServer/libGoen220Data)
 # add_subdirectory( lib/network/Goen220DataAndServer/libGoen220Server)
 
-if( GYRO_PLATFORM_HOST_ENABLE)
+if(GYRO_PLATFORM_HOST_ENABLE)
     add_subdirectory( lib/gsp/Goen220Vdb)
     add_subdirectory( lib/gsp/Goen220GyroPlatformHost)
 endif()

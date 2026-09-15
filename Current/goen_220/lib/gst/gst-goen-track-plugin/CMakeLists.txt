@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(OpenCL REQUIRED )
 find_package(OpenCV REQUIRED)
 
-
 set(CMAKE_MAKE_PROGRAM "make -j${nproc}") # Число потоков компиляции.
 
 #include_directories(${OpenCL_INCLUDE_DIRS})
@@ -194,7 +193,7 @@ if(${USE_GPU} EQUAL 1)
         message(STATUS "--------------------------- USE_TKDNN")
         add_definitions(-Dclass_name=nnet)
         add_definitions(-Dcreate_name=create_nnet)
-    endif() # END if(${USE_CORR_TYPE} EQUAL 10)
+    endif() # END   if(${USE_CORR_TYPE} EQUAL 10)
     add_definitions(-DUSE_CUDA)
     message(STATUS "--------------------------- USE_CORR_TYPE=${USE_CORR_TYPE}")
     message(STATUS "--------------------------- USE_CUDA")
@@ -223,15 +222,12 @@ if(${USE_ROI_TMP} EQUAL 1)
     add_definitions(-DUSE_ROI_TMP)
 endif()
 
-
-
 add_library(${PROJECT_NAME} MODULE
-
- tracshats/trac_api.hpp
- tracshats/trac_struct.hpp
-
+    tracshats/trac_api.hpp
+    tracshats/trac_struct.hpp
     main_app.h main_app.cpp
-    trsh_wrapper.cpp trsh_wrapper.h
+    trsh_wrapper.cpp
+    trsh_wrapper.h
     gstgoentrack.h
     gstgoentrack_cb.cpp
 )
@@ -246,6 +242,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 )
 
 link_directories("/media/user/WORK/Github/Sublime_tests/Current/goen_220/lib/gst/gst-goen-track-plugin/lib")
+
 target_link_libraries(${PROJECT_NAME}
     ${OpenCV_LIBS}
     ${GSTBASE_LIBRARY}
@@ -253,18 +250,15 @@ target_link_libraries(${PROJECT_NAME}
     ${GSTVIDEO_LIBRARY}
     ${LIBGIO_LIBRARY}
     ${LIBDBUS_LIBRARY}
--L"/media/user/WORK/Github/Sublime_tests/Current/goen_220/prebuild/"${trac_lib_name}
+    -L"/media/user/WORK/Github/Sublime_tests/Current/goen_220/prebuild/"${trac_lib_name}
 )
 
-
 message(" OCV " ${OpenCV_INCLUDE_DIRS} " LIB:"    ${OpenCV_LIBS})
-
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
     PREFIX ""
     LIBRARY_OUTPUT_DIRECTORY "/media/user/WORK/Github/Sublime_tests/Current/goen_220/Debug/gst"
 )
-
 
 include(GNUInstallDirs)
 install(TARGETS ${PROJECT_NAME}

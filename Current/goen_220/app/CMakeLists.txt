@@ -48,8 +48,6 @@ find_path(GLIB_INCLUDE_DIR glib.h
 #    PATHS ${CMAKE_SYSROOT}/usr/lib/aarch64-linux-gnu/glib-2.0/include
 #    DOC "GLIB include directory")
 
-
-
 find_library(GSTREAMER_LIBRARY
     NAMES gstreamer-1.0
     PATHS ${CMAKE_SYSROOT}/usr/lib ${CMAKE_SYSROOT}/usr/local/lib
@@ -74,8 +72,6 @@ find_library(LIBDBUS_LIBRARY
     NAMES dbus-1
     PATHS ${CMAKE_SYSROOT}/usr/lib/aarch64-linux-gnu ${CMAKE_SYSROOT}/usr/local/lib
     DOC "dbus-1 library")
-
-
 
 #if(NOT GSTREAMER_INCLUDE_DIR OR NOT GSTREAMER_LIBRARY OR NOT GSTBASE_LIBRARY OR NOT LIBGOBJECT_LIBRARY)
 #    message(FATAL_ERROR "GStreamer components not found")
@@ -123,8 +119,8 @@ endif() # END if(${USE_GPU} EQUAL 2)
 
 set(CMAKE_MAKE_PROGRAM "make -j${nproc}") # Число потоков компиляции.
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/../Debug) # директория сборки проекта
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib_modules)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "/media/user/WORK/Github/Sublime_tests/Current/goen_220/Debug") # директория сборки проекта
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "/media/user/WORK/Github/Sublime_tests/Current/goen_220/lib")
 
 set(LIST_VALID_COLOR_CHANNEL_MODES 8UC1 8UC2 8UC3 8UC4)
 
@@ -182,13 +178,8 @@ if(${USE_GPU} EQUAL 2)
     endif() # END if(${USE_CORR_TYPE} EQUAL 10)
 endif() # END if(${USE_GPU} EQUAL 2)
 
-
-
 find_package(OpenCV REQUIRED)
-
-
 find_package(Qt6 REQUIRED COMPONENTS SerialPort)
-
 
 if( GYRO_PLATFORM_HOST_ENABLE)
     set(	GYRO_PLATFORM_HANDLER_SRC
@@ -197,7 +188,6 @@ if( GYRO_PLATFORM_HOST_ENABLE)
                 gpf/Pid.cpp
                 gpf/Pid.h)
 endif()
-
 
 add_executable(qgst-goen220
   main.cpp
@@ -243,9 +233,9 @@ add_executable(qgst-goen220
   gst_wrapper.h
   j200/lens_j200_worker.cpp
   j200/lens_j200_worker.h
-  #gpf/gpf_controller.cpp gpf/gpf_controller.h gpf/gpf_qserial.cpp gpf/gpf_qserial.h gpf/gpf_worker.cpp gpf/gpf_worker.h
-  # gpf/GyroPlatformHandler.cpp
-  # gpf/GyroPlatformHandler.h
+# gpf/gpf_controller.cpp gpf/gpf_controller.h gpf/gpf_qserial.cpp gpf/gpf_qserial.h gpf/gpf_worker.cpp gpf/gpf_worker.h
+# gpf/GyroPlatformHandler.cpp
+# gpf/GyroPlatformHandler.h
   ${GYRO_PLATFORM_HANDLER_SRC}
   vdb_registers.h
 )
@@ -262,8 +252,6 @@ file(GLOB TracShatsFiles "${CMAKE_CURRENT_LIST_DIR}/tracshats/*")
 #message("---CMAKE_CURRENT_LIST_DIR:" ${CMAKE_CURRENT_LIST_DIR}/lib)
 
 link_directories(${CMAKE_CURRENT_LIST_DIR}/lib)
-
-
 
 target_link_libraries(qgst-goen220 Qt${QT_VERSION_MAJOR}::Core
     OpenMP::OpenMP_CXX

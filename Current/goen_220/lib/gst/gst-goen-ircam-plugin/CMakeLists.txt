@@ -4,12 +4,9 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(OpenCL REQUIRED )
 find_package(OpenCV REQUIRED)
 
-
 set(CMAKE_MAKE_PROGRAM "make -j${nproc}") # Число потоков компиляции.
 
-
 include_directories(${OpenCL_INCLUDE_DIRS})
-
 
 set(USE_CUDA_RESIZE_DEVICE_IMX219 0) # использование resize через cv::cuda на уровне device
 set(SYSTEM_ENDIANNESS LITTLE) # системный порядок байтов LITTLE / BIG (зачастую LITTLE).
@@ -22,12 +19,9 @@ find_package(OpenCV REQUIRED   )
 
 find_package(OpenMP REQUIRED   )
 
-
 #set(OpenCV_INCLUDE_DIRS   "/usr/include/opencv4")
 message(STATUS "Found OpenCV: ${OpenCV_VERSION}")
 message(STATUS "OpenCV Libraries: ${OpenCV_LIBS}")
-
-
 
 # Enable NEON flags for ARM
 if(CMAKE_SYSTEM_PROCESSOR MATCHES "arm|ARM|aarch64|AARCH64")
@@ -52,8 +46,6 @@ find_path(GLIBCFG_INCLUDE_DIR glibconfig.h
            ${CMAKE_SYSROOT}/usr/lib/x86_64-linux-gnu/glib-2.0/include/
     DOC "GLIB include directory")
 
-
-
 find_library(GSTREAMER_LIBRARY
     NAMES gstreamer-1.0
     PATHS ${CMAKE_SYSROOT}/usr/lib ${CMAKE_SYSROOT}/usr/local/lib
@@ -63,8 +55,6 @@ find_library(GSTVIDEO_LIBRARY
     NAMES gstvideo-1.0
     PATHS ${CMAKE_SYSROOT}/usr/lib ${CMAKE_SYSROOT}/usr/local/lib
     DOC "GStreamer main library")
-
-
 
 find_library(GSTBASE_LIBRARY
     NAMES gstbase-1.0
@@ -97,20 +87,14 @@ find_library(LIBGIO_LIBRARY
 #     DOC " omp gomp iomp5 library"
 #     REQUIRED)
 
-
 if(NOT GSTREAMER_INCLUDE_DIR OR NOT GSTREAMER_LIBRARY OR NOT GSTBASE_LIBRARY OR NOT LIBGOBJECT_LIBRARY)
     message(FATAL_ERROR "GStreamer components not found")
 endif()
 
-
-
-
 set(CMAKE_MAKE_PROGRAM "make -j${nproc}") # Число потоков компиляции.
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-
 set(LIST_VALID_COLOR_CHANNEL_MODES 8UC1 8UC2 8UC3 8UC4)
-
 
 add_library(${PROJECT_NAME} MODULE
     g16g8_ir.cpp
@@ -119,12 +103,9 @@ add_library(${PROJECT_NAME} MODULE
 
 file(GLOB TracShatsFiles "${CMAKE_CURRENT_LIST_DIR}/tracshats/*")
 
-
-
-
 set_target_properties(${PROJECT_NAME} PROPERTIES
     PREFIX ""
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../../build/gst
+     LIBRARY_OUTPUT_DIRECTORY "/media/user/WORK/Github/Sublime_tests/Current/goen_220/Debug/gst"
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
@@ -133,7 +114,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${GLIBCFG_INCLUDE_DIR}
     ${OpenCV_INCLUDE_DIRS}
 )
-
 
 target_link_libraries(${PROJECT_NAME}
     ${OpenCV_LIBS}
@@ -144,12 +124,9 @@ target_link_libraries(${PROJECT_NAME}
     ${LIBOMP_LIBRARY}
     ${LIBDBUS_LIBRARY}
     OpenMP::OpenMP_CXX
-
 )
 
-
 message(" OCV " ${OpenCV_INCLUDE_DIRS} " LIB:"    ${OpenCV_LIBS})
-
 
 include(GNUInstallDirs)
 install(TARGETS ${PROJECT_NAME}

@@ -80,6 +80,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${GLIBCFG_INCLUDE_DIR}
 )
 message(" OCV " ${OpenCV_INCLUDE_DIRS} " LIB:"    ${OpenCV_LIBS})
+
 target_link_libraries(${PROJECT_NAME}
     ${GSTBASE_LIBRARY}
     ${GSTREAMER_LIBRARY}
