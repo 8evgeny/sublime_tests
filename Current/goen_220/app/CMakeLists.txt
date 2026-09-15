@@ -276,9 +276,9 @@ target_link_libraries(qgst-goen220 Qt${QT_VERSION_MAJOR}::Core
     ${GLIB_LIBRARY}
     ${LIBDBUS_LIBRARY}
     ${LIBGOBJECT_LIBRARY}
-    -L"/home/user/QtProg/goen_220/Debug/gst"  -lfpsmonitor
-    -L"/home/user/QtProg/goen_220/Debug/gst"  -lgoentrack
-    -L"/home/user/QtProg/goen_220/prebuild/gst"  ${trac_lib_name}
+    -L"/media/user/WORK/Github/Sublime_tests/Current/goen_220/Debug/gst"  -lfpsmonitor
+    -L"/media/user/WORK/Github/Sublime_tests/Current/goen_220/Debug/gst"  -lgoentrack
+    -L"/media/user/WORK/Github/Sublime_tests/Current/goen_220/prebuild/gst"  ${trac_lib_name}
 
     ${GYRO_PLATFORM_HOST_LIB_NAME}
 )

@@ -245,7 +245,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${OpenCV_INCLUDE_DIRS}
 )
 
-link_directories("/home/user/QtProg/goen_220/lib/gst/gst-goen-track-plugin/lib")
+link_directories("/media/user/WORK/Github/Sublime_tests/Current/goen_220/lib/gst/gst-goen-track-plugin/lib")
 target_link_libraries(${PROJECT_NAME}
     ${OpenCV_LIBS}
     ${GSTBASE_LIBRARY}
@@ -253,7 +253,7 @@ target_link_libraries(${PROJECT_NAME}
     ${GSTVIDEO_LIBRARY}
     ${LIBGIO_LIBRARY}
     ${LIBDBUS_LIBRARY}
--L"/home/user/QtProg/goen_220/prebuild/"${trac_lib_name}
+-L"/media/user/WORK/Github/Sublime_tests/Current/goen_220/prebuild/"${trac_lib_name}
 )
 
 
@@ -262,7 +262,7 @@ message(" OCV " ${OpenCV_INCLUDE_DIRS} " LIB:"    ${OpenCV_LIBS})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
     PREFIX ""
-    LIBRARY_OUTPUT_DIRECTORY "/home/user/QtProg/goen_220/Debug/gst"
+    LIBRARY_OUTPUT_DIRECTORY "/media/user/WORK/Github/Sublime_tests/Current/goen_220/Debug/gst"
 )
 
 

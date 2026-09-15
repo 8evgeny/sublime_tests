@@ -71,7 +71,7 @@ add_library(${PROJECT_NAME} MODULE
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
     PREFIX ""
-    LIBRARY_OUTPUT_DIRECTORY "/home/user/QtProg/goen_220/Debug/gst"
+    LIBRARY_OUTPUT_DIRECTORY "/media/user/WORK/Github/Sublime_tests/Current/goen_220/Debug/gst"
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
@@ -90,7 +90,7 @@ target_link_libraries(${PROJECT_NAME}
 
 #include(GNUInstallDirs)
 #install(TARGETS ${PROJECT_NAME}
-#        DESTINATION "/home/user/QtProg/goen_220/Debug/gst"
+#        DESTINATION "/media/user/WORK/Github/Sublime_tests/Current/goen_220/Debug/gst"
 #)
 #LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 #RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
