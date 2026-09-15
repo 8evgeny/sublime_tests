@@ -1,0 +1,1203 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      The system is: Linux -  - unknown
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /bin/aarch64-linux-gnu-gcc-11 
+      Build flags: 
+      Id flags: -c;--target=aarch64-linux-gnu 
+      
+      The output was:
+      1
+      aarch64-linux-gnu-gcc-11: error: unrecognized command-line option ‘--target=aarch64-linux-gnu’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /bin/aarch64-linux-gnu-gcc-11 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/3.28.3/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /bin/aarch64-linux-gnu-g++-11 
+      Build flags: -DQT_QML_DEBUG
+      Id flags: -c;--target=aarch64-linux-gnu 
+      
+      The output was:
+      1
+      aarch64-linux-gnu-g++-11: error: unrecognized command-line option ‘--target=aarch64-linux-gnu’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /bin/aarch64-linux-gnu-g++-11 
+      Build flags: -DQT_QML_DEBUG
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/3.28.3/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-BXNqRp"
+      binary: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-BXNqRp"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_C_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_SYSROOT: "/home/projects/goen-220/sysroot"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-BXNqRp'
+        
+        Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_c2c7c
+        [1/2] /bin/aarch64-linux-gnu-gcc-11 --sysroot=/home/projects/goen-220/sysroot   -fdiagnostics-color=always   -v -o CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/bin/aarch64-linux-gnu-gcc-11
+        Target: aarch64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) 
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-v' '-o' 'CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_c2c7c.dir/'
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/cc1 -quiet -v -imultiarch aarch64-linux-gnu -isysroot /home/projects/goen-220/sysroot /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_c2c7c.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mlittle-endian -mabi=lp64 -version -fdiagnostics-color=always -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -o /tmp/cctvFinC.s
+        GNU C17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)
+        	compiled by GNU C version 11.4.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/home/projects/goen-220/sysroot/usr/local/include/aarch64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc-cross/aarch64-linux-gnu/11/include-fixed"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/include
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include
+         /home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu
+         /home/projects/goen-220/sysroot/usr/include
+        End of search list.
+        GNU C17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)
+        	compiled by GNU C version 11.4.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: e3f86c46370880bec59f649bebf84a75
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-v' '-o' 'CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_c2c7c.dir/'
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o /tmp/cctvFinC.s
+        GNU assembler version 2.42 (aarch64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
+        COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/
+        LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-v' '-o' 'CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.'
+        [2/2] : && /bin/aarch64-linux-gnu-gcc-11 --sysroot=/home/projects/goen-220/sysroot  -v CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o -o cmTC_c2c7c   && :
+        Using built-in specs.
+        COLLECT_GCC=/bin/aarch64-linux-gnu-gcc-11
+        COLLECT_LTO_WRAPPER=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper
+        Target: aarch64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) 
+        COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/
+        LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c2c7c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'cmTC_c2c7c.'
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/collect2 -plugin /usr/lib/gcc-cross/aarch64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/cct6OjFt.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/home/projects/goen-220/sysroot --build-id --eh-frame-hdr --hash-style=gnu --as-needed -dynamic-linker /lib/ld-linux-aarch64.so.1 -X -EL -maarch64linux --fix-cortex-a53-843419 -pie -z now -z relro -o cmTC_c2c7c /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/Scrt1.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crti.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc-cross/aarch64-linux-gnu/11 -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib -L/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/lib/../lib -L/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/usr/lib/../lib -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib -L/home/projects/goen-220/sysroot/lib -L/home/projects/goen-220/sysroot/usr/lib CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtendS.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c2c7c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'cmTC_c2c7c.'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/lib/gcc-cross/aarch64-linux-gnu/11/include]
+          add: [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include]
+          add: [/home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu]
+          add: [/home/projects/goen-220/sysroot/usr/include]
+        end of search list found
+        collapse include dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/include] ==> [/usr/lib/gcc-cross/aarch64-linux-gnu/11/include]
+        collapse include dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include] ==> [/usr/aarch64-linux-gnu/include]
+        collapse include dir [/home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu] ==> [/home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu]
+        collapse include dir [/home/projects/goen-220/sysroot/usr/include] ==> [/home/projects/goen-220/sysroot/usr/include]
+        implicit include dirs: [/usr/lib/gcc-cross/aarch64-linux-gnu/11/include;/usr/aarch64-linux-gnu/include;/home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu;/home/projects/goen-220/sysroot/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(aarch64-linux-gnu-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-BXNqRp']
+        ignore line: []
+        ignore line: [Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_c2c7c]
+        ignore line: [[1/2] /bin/aarch64-linux-gnu-gcc-11 --sysroot=/home/projects/goen-220/sysroot   -fdiagnostics-color=always   -v -o CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/bin/aarch64-linux-gnu-gcc-11]
+        ignore line: [Target: aarch64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-v' '-o' 'CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_c2c7c.dir/']
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/cc1 -quiet -v -imultiarch aarch64-linux-gnu -isysroot /home/projects/goen-220/sysroot /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_c2c7c.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mlittle-endian -mabi=lp64 -version -fdiagnostics-color=always -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -o /tmp/cctvFinC.s]
+        ignore line: [GNU C17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/home/projects/goen-220/sysroot/usr/local/include/aarch64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc-cross/aarch64-linux-gnu/11/include-fixed"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/include]
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include]
+        ignore line: [ /home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu]
+        ignore line: [ /home/projects/goen-220/sysroot/usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: e3f86c46370880bec59f649bebf84a75]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-v' '-o' 'CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_c2c7c.dir/']
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o /tmp/cctvFinC.s]
+        ignore line: [GNU assembler version 2.42 (aarch64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-v' '-o' 'CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o' '-c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.']
+        ignore line: [[2/2] : && /bin/aarch64-linux-gnu-gcc-11 --sysroot=/home/projects/goen-220/sysroot  -v CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o -o cmTC_c2c7c   && :]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/bin/aarch64-linux-gnu-gcc-11]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper]
+        ignore line: [Target: aarch64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) ]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c2c7c' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'cmTC_c2c7c.']
+        link line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/collect2 -plugin /usr/lib/gcc-cross/aarch64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/cct6OjFt.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/home/projects/goen-220/sysroot --build-id --eh-frame-hdr --hash-style=gnu --as-needed -dynamic-linker /lib/ld-linux-aarch64.so.1 -X -EL -maarch64linux --fix-cortex-a53-843419 -pie -z now -z relro -o cmTC_c2c7c /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/Scrt1.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crti.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc-cross/aarch64-linux-gnu/11 -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib -L/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/lib/../lib -L/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/usr/lib/../lib -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib -L/home/projects/goen-220/sysroot/lib -L/home/projects/goen-220/sysroot/usr/lib CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtendS.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crtn.o]
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cct6OjFt.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [--sysroot=/home/projects/goen-220/sysroot] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib/ld-linux-aarch64.so.1] ==> ignore
+          arg [-X] ==> ignore
+          arg [-EL] ==> ignore
+          arg [-maarch64linux] ==> ignore
+          arg [--fix-cortex-a53-843419] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_c2c7c] ==> ignore
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/Scrt1.o] ==> obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/Scrt1.o]
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crti.o] ==> obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crti.o]
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/crtbeginS.o] ==> obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/crtbeginS.o]
+          arg [-L/usr/lib/gcc-cross/aarch64-linux-gnu/11] ==> dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11]
+          arg [-L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib] ==> dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib]
+          arg [-L/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu] ==> dir [/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu]
+          arg [-L/home/projects/goen-220/sysroot/lib/../lib] ==> dir [/home/projects/goen-220/sysroot/lib/../lib]
+          arg [-L/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu] ==> dir [/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu]
+          arg [-L/home/projects/goen-220/sysroot/usr/lib/../lib] ==> dir [/home/projects/goen-220/sysroot/usr/lib/../lib]
+          arg [-L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib] ==> dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib]
+          arg [-L/home/projects/goen-220/sysroot/lib] ==> dir [/home/projects/goen-220/sysroot/lib]
+          arg [-L/home/projects/goen-220/sysroot/usr/lib] ==> dir [/home/projects/goen-220/sysroot/usr/lib]
+          arg [CMakeFiles/cmTC_c2c7c.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/crtendS.o] ==> obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/crtendS.o]
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crtn.o] ==> obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crtn.o]
+        collapse obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/Scrt1.o] ==> [/usr/aarch64-linux-gnu/lib/Scrt1.o]
+        collapse obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crti.o] ==> [/usr/aarch64-linux-gnu/lib/crti.o]
+        collapse obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crtn.o] ==> [/usr/aarch64-linux-gnu/lib/crtn.o]
+        collapse library dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11] ==> [/usr/lib/gcc-cross/aarch64-linux-gnu/11]
+        collapse library dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib] ==> [/usr/aarch64-linux-gnu/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu] ==> [/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu]
+        collapse library dir [/home/projects/goen-220/sysroot/lib/../lib] ==> [/home/projects/goen-220/sysroot/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu] ==> [/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu]
+        collapse library dir [/home/projects/goen-220/sysroot/usr/lib/../lib] ==> [/home/projects/goen-220/sysroot/usr/lib]
+        collapse library dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib] ==> [/usr/aarch64-linux-gnu/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/lib] ==> [/home/projects/goen-220/sysroot/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/usr/lib] ==> [/home/projects/goen-220/sysroot/usr/lib]
+        implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+        implicit objs: [/usr/aarch64-linux-gnu/lib/Scrt1.o;/usr/aarch64-linux-gnu/lib/crti.o;/usr/lib/gcc-cross/aarch64-linux-gnu/11/crtbeginS.o;/usr/lib/gcc-cross/aarch64-linux-gnu/11/crtendS.o;/usr/aarch64-linux-gnu/lib/crtn.o]
+        implicit dirs: [/usr/lib/gcc-cross/aarch64-linux-gnu/11;/usr/aarch64-linux-gnu/lib;/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu;/home/projects/goen-220/sysroot/lib;/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu;/home/projects/goen-220/sysroot/usr/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-JmCqf5"
+      binary: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-JmCqf5"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_CXX_FLAGS: "-DQT_QML_DEBUG"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_C_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_SYSROOT: "/home/projects/goen-220/sysroot"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-JmCqf5'
+        
+        Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_5e7b9
+        [1/2] /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot   -DQT_QML_DEBUG  -fdiagnostics-color=always   -v -o CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/bin/aarch64-linux-gnu-g++-11
+        Target: aarch64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) 
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_5e7b9.dir/'
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/cc1plus -quiet -v -imultiarch aarch64-linux-gnu -isysroot /home/projects/goen-220/sysroot -D_GNU_SOURCE -D QT_QML_DEBUG /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_5e7b9.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mlittle-endian -mabi=lp64 -version -fdiagnostics-color=always -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -o /tmp/ccJRib4v.s
+        GNU C++17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)
+        	compiled by GNU C version 11.4.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/home/projects/goen-220/sysroot/usr/local/include/aarch64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc-cross/aarch64-linux-gnu/11/include-fixed"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11/backward
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/include
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include
+         /home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu
+         /home/projects/goen-220/sysroot/usr/include
+        End of search list.
+        GNU C++17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)
+        	compiled by GNU C version 11.4.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 6f61bae3c968d9370093aedad7bbcc7e
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_5e7b9.dir/'
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccJRib4v.s
+        GNU assembler version 2.42 (aarch64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
+        COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/
+        LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.'
+        [2/2] : && /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot -DQT_QML_DEBUG -v CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_5e7b9   && :
+        Using built-in specs.
+        COLLECT_GCC=/bin/aarch64-linux-gnu-g++-11
+        COLLECT_LTO_WRAPPER=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper
+        Target: aarch64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) 
+        COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/
+        LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/
+        COLLECT_GCC_OPTIONS='-D' 'QT_QML_DEBUG' '-v' '-o' 'cmTC_5e7b9' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'cmTC_5e7b9.'
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/collect2 -plugin /usr/lib/gcc-cross/aarch64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/cc3PncfL.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/home/projects/goen-220/sysroot --build-id --eh-frame-hdr --hash-style=gnu --as-needed -dynamic-linker /lib/ld-linux-aarch64.so.1 -X -EL -maarch64linux --fix-cortex-a53-843419 -pie -z now -z relro -o cmTC_5e7b9 /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/Scrt1.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crti.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc-cross/aarch64-linux-gnu/11 -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib -L/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/lib/../lib -L/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/usr/lib/../lib -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib -L/home/projects/goen-220/sysroot/lib -L/home/projects/goen-220/sysroot/usr/lib CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtendS.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crtn.o
+        COLLECT_GCC_OPTIONS='-D' 'QT_QML_DEBUG' '-v' '-o' 'cmTC_5e7b9' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'cmTC_5e7b9.'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11]
+          add: [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu]
+          add: [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11/backward]
+          add: [/usr/lib/gcc-cross/aarch64-linux-gnu/11/include]
+          add: [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include]
+          add: [/home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu]
+          add: [/home/projects/goen-220/sysroot/usr/include]
+        end of search list found
+        collapse include dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11] ==> [/usr/aarch64-linux-gnu/include/c++/11]
+        collapse include dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu] ==> [/usr/aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu]
+        collapse include dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11/backward] ==> [/usr/aarch64-linux-gnu/include/c++/11/backward]
+        collapse include dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/include] ==> [/usr/lib/gcc-cross/aarch64-linux-gnu/11/include]
+        collapse include dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include] ==> [/usr/aarch64-linux-gnu/include]
+        collapse include dir [/home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu] ==> [/home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu]
+        collapse include dir [/home/projects/goen-220/sysroot/usr/include] ==> [/home/projects/goen-220/sysroot/usr/include]
+        implicit include dirs: [/usr/aarch64-linux-gnu/include/c++/11;/usr/aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu;/usr/aarch64-linux-gnu/include/c++/11/backward;/usr/lib/gcc-cross/aarch64-linux-gnu/11/include;/usr/aarch64-linux-gnu/include;/home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu;/home/projects/goen-220/sysroot/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(aarch64-linux-gnu-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-JmCqf5']
+        ignore line: []
+        ignore line: [Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_5e7b9]
+        ignore line: [[1/2] /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot   -DQT_QML_DEBUG  -fdiagnostics-color=always   -v -o CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/bin/aarch64-linux-gnu-g++-11]
+        ignore line: [Target: aarch64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_5e7b9.dir/']
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/cc1plus -quiet -v -imultiarch aarch64-linux-gnu -isysroot /home/projects/goen-220/sysroot -D_GNU_SOURCE -D QT_QML_DEBUG /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_5e7b9.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mlittle-endian -mabi=lp64 -version -fdiagnostics-color=always -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -o /tmp/ccJRib4v.s]
+        ignore line: [GNU C++17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/home/projects/goen-220/sysroot/usr/local/include/aarch64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc-cross/aarch64-linux-gnu/11/include-fixed"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11]
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu]
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11/backward]
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/include]
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include]
+        ignore line: [ /home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu]
+        ignore line: [ /home/projects/goen-220/sysroot/usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C++17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: 6f61bae3c968d9370093aedad7bbcc7e]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_5e7b9.dir/']
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccJRib4v.s]
+        ignore line: [GNU assembler version 2.42 (aarch64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [[2/2] : && /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot -DQT_QML_DEBUG -v CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_5e7b9   && :]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/bin/aarch64-linux-gnu-g++-11]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper]
+        ignore line: [Target: aarch64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) ]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-D' 'QT_QML_DEBUG' '-v' '-o' 'cmTC_5e7b9' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-dumpdir' 'cmTC_5e7b9.']
+        link line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/collect2 -plugin /usr/lib/gcc-cross/aarch64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/cc3PncfL.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/home/projects/goen-220/sysroot --build-id --eh-frame-hdr --hash-style=gnu --as-needed -dynamic-linker /lib/ld-linux-aarch64.so.1 -X -EL -maarch64linux --fix-cortex-a53-843419 -pie -z now -z relro -o cmTC_5e7b9 /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/Scrt1.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crti.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc-cross/aarch64-linux-gnu/11 -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib -L/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/lib/../lib -L/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/usr/lib/../lib -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib -L/home/projects/goen-220/sysroot/lib -L/home/projects/goen-220/sysroot/usr/lib CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtendS.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crtn.o]
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cc3PncfL.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--sysroot=/home/projects/goen-220/sysroot] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib/ld-linux-aarch64.so.1] ==> ignore
+          arg [-X] ==> ignore
+          arg [-EL] ==> ignore
+          arg [-maarch64linux] ==> ignore
+          arg [--fix-cortex-a53-843419] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_5e7b9] ==> ignore
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/Scrt1.o] ==> obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/Scrt1.o]
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crti.o] ==> obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crti.o]
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/crtbeginS.o] ==> obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/crtbeginS.o]
+          arg [-L/usr/lib/gcc-cross/aarch64-linux-gnu/11] ==> dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11]
+          arg [-L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib] ==> dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib]
+          arg [-L/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu] ==> dir [/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu]
+          arg [-L/home/projects/goen-220/sysroot/lib/../lib] ==> dir [/home/projects/goen-220/sysroot/lib/../lib]
+          arg [-L/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu] ==> dir [/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu]
+          arg [-L/home/projects/goen-220/sysroot/usr/lib/../lib] ==> dir [/home/projects/goen-220/sysroot/usr/lib/../lib]
+          arg [-L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib] ==> dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib]
+          arg [-L/home/projects/goen-220/sysroot/lib] ==> dir [/home/projects/goen-220/sysroot/lib]
+          arg [-L/home/projects/goen-220/sysroot/usr/lib] ==> dir [/home/projects/goen-220/sysroot/usr/lib]
+          arg [CMakeFiles/cmTC_5e7b9.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/crtendS.o] ==> obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/crtendS.o]
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crtn.o] ==> obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crtn.o]
+        collapse obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/Scrt1.o] ==> [/usr/aarch64-linux-gnu/lib/Scrt1.o]
+        collapse obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crti.o] ==> [/usr/aarch64-linux-gnu/lib/crti.o]
+        collapse obj [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crtn.o] ==> [/usr/aarch64-linux-gnu/lib/crtn.o]
+        collapse library dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11] ==> [/usr/lib/gcc-cross/aarch64-linux-gnu/11]
+        collapse library dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib] ==> [/usr/aarch64-linux-gnu/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu] ==> [/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu]
+        collapse library dir [/home/projects/goen-220/sysroot/lib/../lib] ==> [/home/projects/goen-220/sysroot/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu] ==> [/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu]
+        collapse library dir [/home/projects/goen-220/sysroot/usr/lib/../lib] ==> [/home/projects/goen-220/sysroot/usr/lib]
+        collapse library dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib] ==> [/usr/aarch64-linux-gnu/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/lib] ==> [/home/projects/goen-220/sysroot/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/usr/lib] ==> [/home/projects/goen-220/sysroot/usr/lib]
+        implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+        implicit objs: [/usr/aarch64-linux-gnu/lib/Scrt1.o;/usr/aarch64-linux-gnu/lib/crti.o;/usr/lib/gcc-cross/aarch64-linux-gnu/11/crtbeginS.o;/usr/lib/gcc-cross/aarch64-linux-gnu/11/crtendS.o;/usr/aarch64-linux-gnu/lib/crtn.o]
+        implicit dirs: [/usr/lib/gcc-cross/aarch64-linux-gnu/11;/usr/aarch64-linux-gnu/lib;/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu;/home/projects/goen-220/sysroot/lib;/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu;/home/projects/goen-220/sysroot/usr/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:36 (find_dependency)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/Qt6Dependencies.cmake:27 (_qt_internal_find_third_party_dependencies)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/Qt6Config.cmake:122 (include)"
+      - "CMakeLists.txt:18 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-jNGwAx"
+      binary: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-jNGwAx"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_C_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin"
+      CMAKE_SYSROOT: "/home/projects/goen-220/sysroot"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-jNGwAx'
+        
+        Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_b07c0
+        [1/2] /bin/aarch64-linux-gnu-gcc-11 --sysroot=/home/projects/goen-220/sysroot -DCMAKE_HAVE_LIBC_PTHREAD  -fdiagnostics-color=always -o CMakeFiles/cmTC_b07c0.dir/src.c.o -c /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-jNGwAx/src.c
+        [2/2] : && /bin/aarch64-linux-gnu-gcc-11 --sysroot=/home/projects/goen-220/sysroot   CMakeFiles/cmTC_b07c0.dir/src.c.o -o cmTC_b07c0   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/FindWrapAtomic.cmake:36 (check_cxx_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:36 (find_dependency)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6Core/Qt6CoreDependencies.cmake:33 (_qt_internal_find_third_party_dependencies)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6Core/Qt6CoreConfig.cmake:45 (include)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/Qt6Config.cmake:167 (find_package)"
+      - "CMakeLists.txt:18 (find_package)"
+    checks:
+      - "Performing Test HAVE_STDATOMIC"
+    directories:
+      source: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-sMa5IO"
+      binary: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-sMa5IO"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_CXX_FLAGS: "-DQT_QML_DEBUG"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_C_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin"
+      CMAKE_SYSROOT: "/home/projects/goen-220/sysroot"
+    buildResult:
+      variable: "HAVE_STDATOMIC"
+      cached: true
+      stdout: |
+        Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-sMa5IO'
+        
+        Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_c72f7
+        [1/2] /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot -DHAVE_STDATOMIC  -DQT_QML_DEBUG  -fdiagnostics-color=always -o CMakeFiles/cmTC_c72f7.dir/src.cxx.o -c /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-sMa5IO/src.cxx
+        [2/2] : && /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot -DQT_QML_DEBUG  CMakeFiles/cmTC_c72f7.dir/src.cxx.o -o cmTC_c72f7   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindOpenMP.cmake:486 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:24 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-khMV2M"
+      binary: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-khMV2M"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_C_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin"
+      CMAKE_SYSROOT: "/home/projects/goen-220/sysroot"
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-khMV2M'
+        
+        Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_d04c7
+        [1/2] /bin/aarch64-linux-gnu-gcc-11 --sysroot=/home/projects/goen-220/sysroot   -fopenmp -v -fdiagnostics-color=always -o CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o -c /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-khMV2M/OpenMPTryFlag.c
+        Using built-in specs.
+        COLLECT_GCC=/bin/aarch64-linux-gnu-gcc-11
+        Target: aarch64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) 
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o' '-c' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_d04c7.dir/'
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/cc1 -quiet -v -imultiarch aarch64-linux-gnu -isysroot /home/projects/goen-220/sysroot -D_REENTRANT /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-khMV2M/OpenMPTryFlag.c -quiet -dumpdir CMakeFiles/cmTC_d04c7.dir/ -dumpbase OpenMPTryFlag.c.c -dumpbase-ext .c -mlittle-endian -mabi=lp64 -version -fdiagnostics-color=always -fopenmp -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -o /tmp/ccJTbAPB.s
+        GNU C17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)
+        	compiled by GNU C version 11.4.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/home/projects/goen-220/sysroot/usr/local/include/aarch64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc-cross/aarch64-linux-gnu/11/include-fixed"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/include
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include
+         /home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu
+         /home/projects/goen-220/sysroot/usr/include
+        End of search list.
+        GNU C17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)
+        	compiled by GNU C version 11.4.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: e3f86c46370880bec59f649bebf84a75
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o' '-c' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_d04c7.dir/'
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o /tmp/ccJTbAPB.s
+        GNU assembler version 2.42 (aarch64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
+        COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/
+        LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o' '-c' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.'
+        [2/2] : && /bin/aarch64-linux-gnu-gcc-11 --sysroot=/home/projects/goen-220/sysroot -fopenmp -v  CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o -o cmTC_d04c7  -v && :
+        Using built-in specs.
+        COLLECT_GCC=/bin/aarch64-linux-gnu-gcc-11
+        COLLECT_LTO_WRAPPER=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper
+        Target: aarch64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) 
+        COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/
+        LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/
+        Reading specs from /usr/lib/gcc-cross/aarch64-linux-gnu/11/libgomp.spec
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_d04c7' '-v' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'cmTC_d04c7.'
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/collect2 -plugin /usr/lib/gcc-cross/aarch64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/cc111dlw.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/home/projects/goen-220/sysroot --build-id --eh-frame-hdr --hash-style=gnu --as-needed -dynamic-linker /lib/ld-linux-aarch64.so.1 -X -EL -maarch64linux --fix-cortex-a53-843419 -pie -z now -z relro -o cmTC_d04c7 /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/Scrt1.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crti.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc-cross/aarch64-linux-gnu/11 -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib -L/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/lib/../lib -L/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/usr/lib/../lib -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib -L/home/projects/goen-220/sysroot/lib -L/home/projects/goen-220/sysroot/usr/lib CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o -lgomp -lgcc --push-state --as-needed -lgcc_s --pop-state -lpthread -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtendS.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crtn.o
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_d04c7' '-v' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'cmTC_d04c7.'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindOpenMP.cmake:262 (message)"
+      - "/usr/share/cmake-3.28/Modules/FindOpenMP.cmake:486 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:24 (find_package)"
+    message: |
+      Parsed C OpenMP implicit link information from above output:
+        link line regex: [^( *|.*[/\\])(aarch64-linux-gnu-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-khMV2M']
+        ignore line: []
+        ignore line: [Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_d04c7]
+        ignore line: [[1/2] /bin/aarch64-linux-gnu-gcc-11 --sysroot=/home/projects/goen-220/sysroot   -fopenmp -v -fdiagnostics-color=always -o CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o -c /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-khMV2M/OpenMPTryFlag.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/bin/aarch64-linux-gnu-gcc-11]
+        ignore line: [Target: aarch64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o' '-c' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_d04c7.dir/']
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/cc1 -quiet -v -imultiarch aarch64-linux-gnu -isysroot /home/projects/goen-220/sysroot -D_REENTRANT /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-khMV2M/OpenMPTryFlag.c -quiet -dumpdir CMakeFiles/cmTC_d04c7.dir/ -dumpbase OpenMPTryFlag.c.c -dumpbase-ext .c -mlittle-endian -mabi=lp64 -version -fdiagnostics-color=always -fopenmp -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -o /tmp/ccJTbAPB.s]
+        ignore line: [GNU C17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/home/projects/goen-220/sysroot/usr/local/include/aarch64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc-cross/aarch64-linux-gnu/11/include-fixed"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/include]
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include]
+        ignore line: [ /home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu]
+        ignore line: [ /home/projects/goen-220/sysroot/usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: e3f86c46370880bec59f649bebf84a75]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o' '-c' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_d04c7.dir/']
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o /tmp/ccJTbAPB.s]
+        ignore line: [GNU assembler version 2.42 (aarch64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o' '-c' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.']
+        ignore line: [[2/2] : && /bin/aarch64-linux-gnu-gcc-11 --sysroot=/home/projects/goen-220/sysroot -fopenmp -v  CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o -o cmTC_d04c7  -v && :]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/bin/aarch64-linux-gnu-gcc-11]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper]
+        ignore line: [Target: aarch64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) ]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/]
+        ignore line: [Reading specs from /usr/lib/gcc-cross/aarch64-linux-gnu/11/libgomp.spec]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_d04c7' '-v' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'cmTC_d04c7.']
+        link line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/collect2 -plugin /usr/lib/gcc-cross/aarch64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/cc111dlw.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/home/projects/goen-220/sysroot --build-id --eh-frame-hdr --hash-style=gnu --as-needed -dynamic-linker /lib/ld-linux-aarch64.so.1 -X -EL -maarch64linux --fix-cortex-a53-843419 -pie -z now -z relro -o cmTC_d04c7 /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/Scrt1.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crti.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc-cross/aarch64-linux-gnu/11 -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib -L/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/lib/../lib -L/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/usr/lib/../lib -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib -L/home/projects/goen-220/sysroot/lib -L/home/projects/goen-220/sysroot/usr/lib CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o -lgomp -lgcc --push-state --as-needed -lgcc_s --pop-state -lpthread -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtendS.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crtn.o]
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cc111dlw.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [--sysroot=/home/projects/goen-220/sysroot] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib/ld-linux-aarch64.so.1] ==> ignore
+          arg [-X] ==> ignore
+          arg [-EL] ==> ignore
+          arg [-maarch64linux] ==> ignore
+          arg [--fix-cortex-a53-843419] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_d04c7] ==> ignore
+          arg [-L/usr/lib/gcc-cross/aarch64-linux-gnu/11] ==> dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11]
+          arg [-L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib] ==> dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib]
+          arg [-L/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu] ==> dir [/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu]
+          arg [-L/home/projects/goen-220/sysroot/lib/../lib] ==> dir [/home/projects/goen-220/sysroot/lib/../lib]
+          arg [-L/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu] ==> dir [/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu]
+          arg [-L/home/projects/goen-220/sysroot/usr/lib/../lib] ==> dir [/home/projects/goen-220/sysroot/usr/lib/../lib]
+          arg [-L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib] ==> dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib]
+          arg [-L/home/projects/goen-220/sysroot/lib] ==> dir [/home/projects/goen-220/sysroot/lib]
+          arg [-L/home/projects/goen-220/sysroot/usr/lib] ==> dir [/home/projects/goen-220/sysroot/usr/lib]
+          arg [CMakeFiles/cmTC_d04c7.dir/OpenMPTryFlag.c.o] ==> ignore
+          arg [-lgomp] ==> lib [gomp]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [-lpthread] ==> lib [pthread]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+        collapse library dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11] ==> [/usr/lib/gcc-cross/aarch64-linux-gnu/11]
+        collapse library dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib] ==> [/usr/aarch64-linux-gnu/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu] ==> [/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu]
+        collapse library dir [/home/projects/goen-220/sysroot/lib/../lib] ==> [/home/projects/goen-220/sysroot/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu] ==> [/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu]
+        collapse library dir [/home/projects/goen-220/sysroot/usr/lib/../lib] ==> [/home/projects/goen-220/sysroot/usr/lib]
+        collapse library dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib] ==> [/usr/aarch64-linux-gnu/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/lib] ==> [/home/projects/goen-220/sysroot/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/usr/lib] ==> [/home/projects/goen-220/sysroot/usr/lib]
+        implicit libs: [gomp;gcc;gcc_s;pthread;c;gcc;gcc_s]
+        implicit objs: []
+        implicit dirs: [/usr/lib/gcc-cross/aarch64-linux-gnu/11;/usr/aarch64-linux-gnu/lib;/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu;/home/projects/goen-220/sysroot/lib;/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu;/home/projects/goen-220/sysroot/usr/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindOpenMP.cmake:486 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:24 (find_package)"
+    description: "Detecting CXX OpenMP compiler info"
+    directories:
+      source: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-bT55o7"
+      binary: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-bT55o7"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_CXX_FLAGS: "-DQT_QML_DEBUG"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_C_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin"
+      CMAKE_SYSROOT: "/home/projects/goen-220/sysroot"
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_CXX_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-bT55o7'
+        
+        Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_f0da4
+        [1/2] /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot   -DQT_QML_DEBUG -fopenmp -v -fdiagnostics-color=always -o CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o -c /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-bT55o7/OpenMPTryFlag.cpp
+        Using built-in specs.
+        COLLECT_GCC=/bin/aarch64-linux-gnu-g++-11
+        Target: aarch64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) 
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_f0da4.dir/'
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/cc1plus -quiet -v -imultiarch aarch64-linux-gnu -isysroot /home/projects/goen-220/sysroot -D_GNU_SOURCE -D_REENTRANT -D QT_QML_DEBUG /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-bT55o7/OpenMPTryFlag.cpp -quiet -dumpdir CMakeFiles/cmTC_f0da4.dir/ -dumpbase OpenMPTryFlag.cpp.cpp -dumpbase-ext .cpp -mlittle-endian -mabi=lp64 -version -fdiagnostics-color=always -fopenmp -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -o /tmp/ccPlUIDJ.s
+        GNU C++17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)
+        	compiled by GNU C version 11.4.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/home/projects/goen-220/sysroot/usr/local/include/aarch64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc-cross/aarch64-linux-gnu/11/include-fixed"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11/backward
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/include
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include
+         /home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu
+         /home/projects/goen-220/sysroot/usr/include
+        End of search list.
+        GNU C++17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)
+        	compiled by GNU C version 11.4.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 6f61bae3c968d9370093aedad7bbcc7e
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_f0da4.dir/'
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o /tmp/ccPlUIDJ.s
+        GNU assembler version 2.42 (aarch64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
+        COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/
+        LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.'
+        [2/2] : && /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot -DQT_QML_DEBUG -fopenmp -v  CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o -o cmTC_f0da4  -v && :
+        Using built-in specs.
+        COLLECT_GCC=/bin/aarch64-linux-gnu-g++-11
+        COLLECT_LTO_WRAPPER=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper
+        Target: aarch64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) 
+        COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/
+        LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/
+        Reading specs from /usr/lib/gcc-cross/aarch64-linux-gnu/11/libgomp.spec
+        COLLECT_GCC_OPTIONS='-D' 'QT_QML_DEBUG' '-fopenmp' '-v' '-o' 'cmTC_f0da4' '-v' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'cmTC_f0da4.'
+         /usr/lib/gcc-cross/aarch64-linux-gnu/11/collect2 -plugin /usr/lib/gcc-cross/aarch64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/cct8lZ0R.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/home/projects/goen-220/sysroot --build-id --eh-frame-hdr --hash-style=gnu --as-needed -dynamic-linker /lib/ld-linux-aarch64.so.1 -X -EL -maarch64linux --fix-cortex-a53-843419 -pie -z now -z relro -o cmTC_f0da4 /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/Scrt1.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crti.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc-cross/aarch64-linux-gnu/11 -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib -L/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/lib/../lib -L/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/usr/lib/../lib -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib -L/home/projects/goen-220/sysroot/lib -L/home/projects/goen-220/sysroot/usr/lib CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o -lstdc++ -lm -lgomp -lgcc_s -lgcc -lpthread -lc -lgcc_s -lgcc /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtendS.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crtn.o
+        COLLECT_GCC_OPTIONS='-D' 'QT_QML_DEBUG' '-fopenmp' '-v' '-o' 'cmTC_f0da4' '-v' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'cmTC_f0da4.'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindOpenMP.cmake:262 (message)"
+      - "/usr/share/cmake-3.28/Modules/FindOpenMP.cmake:486 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:24 (find_package)"
+    message: |
+      Parsed CXX OpenMP implicit link information from above output:
+        link line regex: [^( *|.*[/\\])(aarch64-linux-gnu-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-bT55o7']
+        ignore line: []
+        ignore line: [Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_f0da4]
+        ignore line: [[1/2] /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot   -DQT_QML_DEBUG -fopenmp -v -fdiagnostics-color=always -o CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o -c /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-bT55o7/OpenMPTryFlag.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/bin/aarch64-linux-gnu-g++-11]
+        ignore line: [Target: aarch64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_f0da4.dir/']
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/cc1plus -quiet -v -imultiarch aarch64-linux-gnu -isysroot /home/projects/goen-220/sysroot -D_GNU_SOURCE -D_REENTRANT -D QT_QML_DEBUG /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-bT55o7/OpenMPTryFlag.cpp -quiet -dumpdir CMakeFiles/cmTC_f0da4.dir/ -dumpbase OpenMPTryFlag.cpp.cpp -dumpbase-ext .cpp -mlittle-endian -mabi=lp64 -version -fdiagnostics-color=always -fopenmp -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -o /tmp/ccPlUIDJ.s]
+        ignore line: [GNU C++17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/home/projects/goen-220/sysroot/usr/local/include/aarch64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc-cross/aarch64-linux-gnu/11/include-fixed"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11]
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11/aarch64-linux-gnu]
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include/c++/11/backward]
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/include]
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/include]
+        ignore line: [ /home/projects/goen-220/sysroot/usr/include/aarch64-linux-gnu]
+        ignore line: [ /home/projects/goen-220/sysroot/usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C++17 (Ubuntu 11.4.0-9ubuntu1) version 11.4.0 (aarch64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 11.4.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: 6f61bae3c968d9370093aedad7bbcc7e]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_f0da4.dir/']
+        ignore line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/as -v -EL -mabi=lp64 -o CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o /tmp/ccPlUIDJ.s]
+        ignore line: [GNU assembler version 2.42 (aarch64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-fopenmp' '-v' '-o' 'CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.']
+        ignore line: [[2/2] : && /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot -DQT_QML_DEBUG -fopenmp -v  CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o -o cmTC_f0da4  -v && :]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/bin/aarch64-linux-gnu-g++-11]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper]
+        ignore line: [Target: aarch64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 11.4.0-9ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-11/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-11 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-libquadmath --disable-libquadmath-support --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --without-target-system-zlib --enable-multiarch --enable-fix-cortex-a53-843419 --disable-werror --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=aarch64-linux-gnu --program-prefix=aarch64-linux-gnu- --includedir=/usr/aarch64-linux-gnu/include --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.4.0 (Ubuntu 11.4.0-9ubuntu1) ]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/bin/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc-cross/aarch64-linux-gnu/11/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/:/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/lib/../lib/:/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/:/home/projects/goen-220/sysroot/usr/lib/../lib/:/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/:/home/projects/goen-220/sysroot/lib/:/home/projects/goen-220/sysroot/usr/lib/]
+        ignore line: [Reading specs from /usr/lib/gcc-cross/aarch64-linux-gnu/11/libgomp.spec]
+        ignore line: [COLLECT_GCC_OPTIONS='-D' 'QT_QML_DEBUG' '-fopenmp' '-v' '-o' 'cmTC_f0da4' '-v' '-shared-libgcc' '-mlittle-endian' '-mabi=lp64' '-pthread' '-dumpdir' 'cmTC_f0da4.']
+        link line: [ /usr/lib/gcc-cross/aarch64-linux-gnu/11/collect2 -plugin /usr/lib/gcc-cross/aarch64-linux-gnu/11/liblto_plugin.so -plugin-opt=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper -plugin-opt=-fresolution=/tmp/cct8lZ0R.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/home/projects/goen-220/sysroot --build-id --eh-frame-hdr --hash-style=gnu --as-needed -dynamic-linker /lib/ld-linux-aarch64.so.1 -X -EL -maarch64linux --fix-cortex-a53-843419 -pie -z now -z relro -o cmTC_f0da4 /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/Scrt1.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crti.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtbeginS.o -L/usr/lib/gcc-cross/aarch64-linux-gnu/11 -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib -L/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/lib/../lib -L/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu -L/home/projects/goen-220/sysroot/usr/lib/../lib -L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib -L/home/projects/goen-220/sysroot/lib -L/home/projects/goen-220/sysroot/usr/lib CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o -lstdc++ -lm -lgomp -lgcc_s -lgcc -lpthread -lc -lgcc_s -lgcc /usr/lib/gcc-cross/aarch64-linux-gnu/11/crtendS.o /usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib/crtn.o]
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/lib/gcc-cross/aarch64-linux-gnu/11/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/lib/gcc-cross/aarch64-linux-gnu/11/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cct8lZ0R.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--sysroot=/home/projects/goen-220/sysroot] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib/ld-linux-aarch64.so.1] ==> ignore
+          arg [-X] ==> ignore
+          arg [-EL] ==> ignore
+          arg [-maarch64linux] ==> ignore
+          arg [--fix-cortex-a53-843419] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_f0da4] ==> ignore
+          arg [-L/usr/lib/gcc-cross/aarch64-linux-gnu/11] ==> dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11]
+          arg [-L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib] ==> dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib]
+          arg [-L/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu] ==> dir [/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu]
+          arg [-L/home/projects/goen-220/sysroot/lib/../lib] ==> dir [/home/projects/goen-220/sysroot/lib/../lib]
+          arg [-L/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu] ==> dir [/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu]
+          arg [-L/home/projects/goen-220/sysroot/usr/lib/../lib] ==> dir [/home/projects/goen-220/sysroot/usr/lib/../lib]
+          arg [-L/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib] ==> dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib]
+          arg [-L/home/projects/goen-220/sysroot/lib] ==> dir [/home/projects/goen-220/sysroot/lib]
+          arg [-L/home/projects/goen-220/sysroot/usr/lib] ==> dir [/home/projects/goen-220/sysroot/usr/lib]
+          arg [CMakeFiles/cmTC_f0da4.dir/OpenMPTryFlag.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgomp] ==> lib [gomp]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lpthread] ==> lib [pthread]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+        collapse library dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11] ==> [/usr/lib/gcc-cross/aarch64-linux-gnu/11]
+        collapse library dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib/../lib] ==> [/usr/aarch64-linux-gnu/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu] ==> [/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu]
+        collapse library dir [/home/projects/goen-220/sysroot/lib/../lib] ==> [/home/projects/goen-220/sysroot/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu] ==> [/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu]
+        collapse library dir [/home/projects/goen-220/sysroot/usr/lib/../lib] ==> [/home/projects/goen-220/sysroot/usr/lib]
+        collapse library dir [/usr/lib/gcc-cross/aarch64-linux-gnu/11/../../../../aarch64-linux-gnu/lib] ==> [/usr/aarch64-linux-gnu/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/lib] ==> [/home/projects/goen-220/sysroot/lib]
+        collapse library dir [/home/projects/goen-220/sysroot/usr/lib] ==> [/home/projects/goen-220/sysroot/usr/lib]
+        implicit libs: [stdc++;m;gomp;gcc_s;gcc;pthread;c;gcc_s;gcc]
+        implicit objs: []
+        implicit dirs: [/usr/lib/gcc-cross/aarch64-linux-gnu/11;/usr/aarch64-linux-gnu/lib;/home/projects/goen-220/sysroot/lib/aarch64-linux-gnu;/home/projects/goen-220/sysroot/lib;/home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu;/home/projects/goen-220/sysroot/usr/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindOpenMP.cmake:420 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindOpenMP.cmake:560 (_OPENMP_GET_SPEC_DATE)"
+      - "CMakeLists.txt:24 (find_package)"
+    description: "Detecting C OpenMP version"
+    directories:
+      source: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-BRVaQA"
+      binary: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-BRVaQA"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_C_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin"
+      CMAKE_SYSROOT: "/home/projects/goen-220/sysroot"
+    buildResult:
+      variable: "OpenMP_SPECTEST_C_"
+      cached: true
+      stdout: |
+        Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-BRVaQA'
+        
+        Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_58dd3
+        [1/2] /bin/aarch64-linux-gnu-gcc-11 --sysroot=/home/projects/goen-220/sysroot   -fopenmp -fdiagnostics-color=always -o CMakeFiles/cmTC_58dd3.dir/OpenMPCheckVersion.c.o -c /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-BRVaQA/OpenMPCheckVersion.c
+        [2/2] : && /bin/aarch64-linux-gnu-gcc-11 --sysroot=/home/projects/goen-220/sysroot -fopenmp  CMakeFiles/cmTC_58dd3.dir/OpenMPCheckVersion.c.o -o cmTC_58dd3   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindOpenMP.cmake:420 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindOpenMP.cmake:560 (_OPENMP_GET_SPEC_DATE)"
+      - "CMakeLists.txt:24 (find_package)"
+    description: "Detecting CXX OpenMP version"
+    directories:
+      source: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-x3ddqC"
+      binary: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-x3ddqC"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_CXX_FLAGS: "-DQT_QML_DEBUG"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_C_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin"
+      CMAKE_SYSROOT: "/home/projects/goen-220/sysroot"
+    buildResult:
+      variable: "OpenMP_SPECTEST_CXX_"
+      cached: true
+      stdout: |
+        Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-x3ddqC'
+        
+        Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_b539f
+        [1/2] /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot   -DQT_QML_DEBUG -fopenmp -fdiagnostics-color=always -o CMakeFiles/cmTC_b539f.dir/OpenMPCheckVersion.cpp.o -c /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-x3ddqC/OpenMPCheckVersion.cpp
+        [2/2] : && /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot -DQT_QML_DEBUG -fopenmp  CMakeFiles/cmTC_b539f.dir/OpenMPCheckVersion.cpp.o -o cmTC_b539f   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "/usr/share/cmake-3.28/Modules/FindOpenCL.cmake:59 (CHECK_SYMBOL_EXISTS)"
+      - "/usr/share/cmake-3.28/Modules/FindOpenCL.cmake:100 (_FIND_OPENCL_VERSION)"
+      - "app/CMakeLists.txt:121 (find_package)"
+    checks:
+      - "Looking for CL_VERSION_3_0"
+    directories:
+      source: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-BMfhfo"
+      binary: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-BMfhfo"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_C_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin"
+      CMAKE_SYSROOT: "/home/projects/goen-220/sysroot"
+    buildResult:
+      variable: "OPENCL_VERSION_3_0"
+      cached: true
+      stdout: |
+        Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-BMfhfo'
+        
+        Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_e28e2
+        [1/2] /bin/aarch64-linux-gnu-gcc-11 --sysroot=/home/projects/goen-220/sysroot   -fdiagnostics-color=always -o CMakeFiles/cmTC_e28e2.dir/CheckSymbolExists.c.o -c /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-BMfhfo/CheckSymbolExists.c
+        In file included from \x1b[01m\x1b[K/home/projects/goen-220/sysroot/usr/include/CL/cl.h:20\x1b[m\x1b[K,
+                         from \x1b[01m\x1b[K/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-BMfhfo/CheckSymbolExists.c:2\x1b[m\x1b[K:
+        \x1b[01m\x1b[K/home/projects/goen-220/sysroot/usr/include/CL/cl_version.h:22:9:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K‘\x1b[01m\x1b[K#pragma message: cl_version.h: CL_TARGET_OPENCL_VERSION is not defined. Defaulting to 300 (OpenCL 3.0)\x1b[m\x1b[K’
+           22 | #pragma \x1b[01;36m\x1b[Kmessage\x1b[m\x1b[K("cl_version.h: CL_TARGET_OPENCL_VERSION is not defined. Defaulting to 300 (OpenCL 3.0)")
+              |         \x1b[01;36m\x1b[K^~~~~~~\x1b[m\x1b[K
+        [2/2] : && /bin/aarch64-linux-gnu-gcc-11 --sysroot=/home/projects/goen-220/sysroot   CMakeFiles/cmTC_e28e2.dir/CheckSymbolExists.c.o -o cmTC_e28e2   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules/FindEGL.cmake:127 (check_cxx_source_compiles)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/FindGLESv2.cmake:13 (find_package)"
+      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:36 (find_dependency)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:33 (_qt_internal_find_third_party_dependencies)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake:43 (include)"
+      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:111 (find_dependency)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6StateMachine/Qt6StateMachineDependencies.cmake:42 (_qt_internal_find_qt_dependencies)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6StateMachine/Qt6StateMachineConfig.cmake:43 (include)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/Qt6Config.cmake:167 (find_package)"
+      - "lib/gsp/Goen220Vdb/CMakeLists.txt:46 (find_package)"
+    checks:
+      - "Performing Test HAVE_EGL"
+    directories:
+      source: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-vkW5dD"
+      binary: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-vkW5dD"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_CXX_FLAGS: "-DQT_QML_DEBUG"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_C_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin"
+      CMAKE_SYSROOT: "/home/projects/goen-220/sysroot"
+    buildResult:
+      variable: "HAVE_EGL"
+      cached: true
+      stdout: |
+        Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-vkW5dD'
+        
+        Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_0a6ff
+        [1/2] /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot -DHAVE_EGL  -DQT_QML_DEBUG  -std=gnu++17 -fdiagnostics-color=always -o CMakeFiles/cmTC_0a6ff.dir/src.cxx.o -c /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-vkW5dD/src.cxx
+        [2/2] : && /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot -DQT_QML_DEBUG  CMakeFiles/cmTC_0a6ff.dir/src.cxx.o -o cmTC_0a6ff  /home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/libEGL.so && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/FindGLESv2.cmake:27 (check_cxx_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:36 (find_dependency)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:33 (_qt_internal_find_third_party_dependencies)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake:43 (include)"
+      - "/usr/share/cmake-3.28/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:111 (find_dependency)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6StateMachine/Qt6StateMachineDependencies.cmake:42 (_qt_internal_find_qt_dependencies)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6StateMachine/Qt6StateMachineConfig.cmake:43 (include)"
+      - "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/Qt6Config.cmake:167 (find_package)"
+      - "lib/gsp/Goen220Vdb/CMakeLists.txt:46 (find_package)"
+    checks:
+      - "Performing Test HAVE_GLESv2"
+    directories:
+      source: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-aRfe90"
+      binary: "/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-aRfe90"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_CXX_FLAGS: "-DQT_QML_DEBUG"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_C_COMPILER_TARGET: "aarch64-linux-gnu"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/home/projects/goen-220/qt_arm64_build/stage/lib/cmake/Qt6/3rdparty/kwin"
+      CMAKE_SYSROOT: "/home/projects/goen-220/sysroot"
+    buildResult:
+      variable: "HAVE_GLESv2"
+      cached: true
+      stdout: |
+        Change Dir: '/home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-aRfe90'
+        
+        Run Build Command(s): /home/projects/goen-220/sysroot/usr/bin/ninja -v cmTC_46cdf
+        [1/2] /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot -DHAVE_GLESv2  -DQT_QML_DEBUG  -std=gnu++17 -fdiagnostics-color=always -o CMakeFiles/cmTC_46cdf.dir/src.cxx.o -c /home/projects/goen-220_firefly/project/goen220_rk3588_daemon/Software/runtime/Khadas_Edge_Qt_6_7_0_ARM64-Debug/CMakeFiles/CMakeScratch/TryCompile-aRfe90/src.cxx
+        [2/2] : && /bin/aarch64-linux-gnu-g++-11 --sysroot=/home/projects/goen-220/sysroot -DQT_QML_DEBUG  CMakeFiles/cmTC_46cdf.dir/src.cxx.o -o cmTC_46cdf  /home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/libGLESv2.so  /home/projects/goen-220/sysroot/usr/lib/aarch64-linux-gnu/libEGL.so && :
+        
+      exitCode: 0
+...
