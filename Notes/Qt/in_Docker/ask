@@ -1,0 +1,1 @@
+Кросскомпиляция Проект Qt, CMake  host: x86 ubuntu 22  target: arm64 folder sysroot: /home/user/sysroot_arm64  folder Qt libs for Arm64 : /home/user/stage

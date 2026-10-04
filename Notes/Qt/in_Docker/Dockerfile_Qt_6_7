@@ -1,0 +1,109 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    ninja-build \
+    git \
+    ca-certificates \
+    pkg-config \
+    python3 \
+    perl \
+    bison \
+    flex \
+    gperf \
+    libssl-dev \
+    libfontconfig1-dev \
+    libfreetype6-dev \
+    libglib2.0-dev \
+    libdbus-1-dev \
+    libicu-dev \
+    libsqlite3-dev \
+    libdouble-conversion-dev \
+    libpcre2-dev \
+    libharfbuzz-dev \
+    libxml2-dev \
+    gcc-aarch64-linux-gnu \
+    g++-aarch64-linux-gnu \
+    binutils-aarch64-linux-gnu \
+    gdb-multiarch \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN cmake --version && \
+    ninja --version && \
+    aarch64-linux-gnu-g++ --version
+
+WORKDIR /opt
+
+# Загружаем только модули, не требующие внешнего ARM64 sysroot
+RUN git clone --branch 6.7 --depth 1 \
+    https://code.qt.io/qt/qt5.git qt6-source && \
+    cd /opt/qt6-source && \
+    ./init-repository \
+    --module-subset=qtbase,qttools,qttranslations,qtsvg,qtserialport
+
+RUN cd /opt/qt6-source && \
+    git submodule status
+
+# ---------------------------------------------------------
+# Host Qt для x86_64.
+# Собираем только qtbase: он содержит moc, rcc, uic и qmake.
+# ---------------------------------------------------------
+
+WORKDIR /opt/qt6-host-build
+
+RUN /opt/qt6-source/configure \
+    -submodules qtbase \
+    -prefix /opt/qt6-host \
+    -release \
+    -opensource \
+    -confirm-license \
+    -nomake tests \
+    -nomake examples \
+    -no-opengl \
+    -cmake-generator Ninja
+
+RUN cmake --build /opt/qt6-host-build \
+    --parallel "$(nproc)" && \
+    cmake --install /opt/qt6-host-build
+
+RUN echo "Installed host tools:" && \
+    find /opt/qt6-host \
+        -type f \
+        \( -name moc -o -name rcc -o -name uic -o -name qmake \) \
+        -exec ls -l {} \;
+
+RUN test -x /opt/qt6-host/libexec/moc && \
+    test -x /opt/qt6-host/libexec/rcc
+
+# ---------------------------------------------------------
+# 2. Qt-версия для ARM64
+# ---------------------------------------------------------
+
+WORKDIR /opt/qt6-arm64-build
+
+RUN /opt/qt6-source/configure \
+    -qt-host-path /opt/qt6-host \
+    -xplatform linux-aarch64-gnu-g++ \
+    -prefix /opt/qt6-arm64 \
+    -release \
+    -opensource \
+    -confirm-license \
+    -nomake tests \
+    -nomake examples \
+    -no-opengl \
+    -cmake-generator Ninja
+
+RUN cmake --build /opt/qt6-arm64-build \
+    --parallel "$(nproc)" && \
+    cmake --install /opt/qt6-arm64-build
+
+ENV PATH="/opt/qt6-host/bin:/opt/qt6-host/libexec:/opt/qt6-arm64/bin:${PATH}"
+ENV QT_HOST_PATH="/opt/qt6-host"
+
+RUN test -d /opt/qt6-arm64 && \
+    find /opt/qt6-arm64 -maxdepth 2 -type f \
+    \( -name qmake -o -name qtpaths -o -name moc \) \
+    -print
